@@ -18,56 +18,59 @@ import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretGroupDef;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretGroupResource;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretGroupDef model.
  */
 public class SecretGroupDefTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testSecretGroupDef() throws Throwable {
-    CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-      .collectionType("application/vnd.ibm.secrets-manager.secret+json")
-      .collectionTotal(Long.valueOf("1"))
-      .build();
-    assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
-    assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
+    @Test
+    public void testSecretGroupDef() throws Throwable {
+        CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
+                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionTotal(Long.valueOf("1"))
+                .build();
+        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
+        assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
-    SecretGroupResource secretGroupResourceModel = new SecretGroupResource.Builder()
-      .name("my-secret-group")
-      .description("Extended description for this group.")
-      .add("foo", "testString")
-      .build();
-    assertEquals(secretGroupResourceModel.getName(), "my-secret-group");
-    assertEquals(secretGroupResourceModel.getDescription(), "Extended description for this group.");
-    assertEquals(secretGroupResourceModel.get("foo"), "testString");
+        SecretGroupResource secretGroupResourceModel = new SecretGroupResource.Builder()
+                .name("my-secret-group")
+                .description("Extended description for this group.")
+                .add("foo", "testString")
+                .build();
+        assertEquals(secretGroupResourceModel.getName(), "my-secret-group");
+        assertEquals(secretGroupResourceModel.getDescription(), "Extended description for this group.");
+        assertEquals(secretGroupResourceModel.get("foo"), "testString");
 
-    SecretGroupDef secretGroupDefModel = new SecretGroupDef.Builder()
-      .metadata(collectionMetadataModel)
-      .resources(new java.util.ArrayList<SecretGroupResource>(java.util.Arrays.asList(secretGroupResourceModel)))
-      .build();
-    assertEquals(secretGroupDefModel.metadata(), collectionMetadataModel);
-    assertEquals(secretGroupDefModel.resources(), new java.util.ArrayList<SecretGroupResource>(java.util.Arrays.asList(secretGroupResourceModel)));
+        SecretGroupDef secretGroupDefModel = new SecretGroupDef.Builder()
+                .metadata(collectionMetadataModel)
+                .resources(new java.util.ArrayList<SecretGroupResource>(java.util.Arrays.asList(secretGroupResourceModel)))
+                .build();
+        assertEquals(secretGroupDefModel.metadata(), collectionMetadataModel);
+        assertEquals(secretGroupDefModel.resources(), new java.util.ArrayList<SecretGroupResource>(java.util.Arrays.asList(secretGroupResourceModel)));
 
-    String json = TestUtilities.serialize(secretGroupDefModel);
+        String json = TestUtilities.serialize(secretGroupDefModel);
 
-    SecretGroupDef secretGroupDefModelNew = TestUtilities.deserialize(json, SecretGroupDef.class);
-    assertTrue(secretGroupDefModelNew instanceof SecretGroupDef);
-    assertEquals(secretGroupDefModelNew.metadata().toString(), collectionMetadataModel.toString());
-  }
+        SecretGroupDef secretGroupDefModelNew = TestUtilities.deserialize(json, SecretGroupDef.class);
+        assertTrue(secretGroupDefModelNew instanceof SecretGroupDef);
+        assertEquals(secretGroupDefModelNew.metadata().toString(), collectionMetadataModel.toString());
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testSecretGroupDefError() throws Throwable {
-    new SecretGroupDef.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testSecretGroupDefError() throws Throwable {
+        new SecretGroupDef.Builder().build();
+    }
 
 }

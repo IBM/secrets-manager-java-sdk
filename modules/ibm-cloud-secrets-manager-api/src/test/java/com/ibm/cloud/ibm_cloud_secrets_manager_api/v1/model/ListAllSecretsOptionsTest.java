@@ -16,26 +16,29 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.ListAllSecretsOptions;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ListAllSecretsOptions model.
  */
 public class ListAllSecretsOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testListAllSecretsOptions() throws Throwable {
-    ListAllSecretsOptions listAllSecretsOptionsModel = new ListAllSecretsOptions.Builder()
-      .limit(Long.valueOf("1"))
-      .offset(Long.valueOf("0"))
-      .build();
-    assertEquals(listAllSecretsOptionsModel.limit(), Long.valueOf("1"));
-    assertEquals(listAllSecretsOptionsModel.offset(), Long.valueOf("0"));
-  }
+    @Test
+    public void testListAllSecretsOptions() throws Throwable {
+        ListAllSecretsOptions listAllSecretsOptionsModel = new ListAllSecretsOptions.Builder()
+                .limit(Long.valueOf("1"))
+                .offset(Long.valueOf("0"))
+                .build();
+        assertEquals(listAllSecretsOptionsModel.limit(), Long.valueOf("1"));
+        assertEquals(listAllSecretsOptionsModel.offset(), Long.valueOf("0"));
+    }
 }

@@ -17,7 +17,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * SecretActionOneOf.
- *
+ * <p>
  * Classes which extend this class:
  * - SecretActionOneOfRotateArbitrarySecretBody
  * - SecretActionOneOfRotateUsernamePasswordSecretBody
@@ -25,45 +25,45 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretActionOneOf extends GenericModel {
 
-  protected String payload;
-  protected String password;
-  @SerializedName("service_id")
-  protected String serviceId;
+    protected String payload;
+    protected String password;
+    @SerializedName("service_id")
+    protected String serviceId;
 
-  protected SecretActionOneOf() {
-  }
+    protected SecretActionOneOf() {
+    }
 
-  /**
-   * Gets the payload.
-   *
-   * The new secret data to assign to an `arbitrary` secret.
-   *
-   * @return the payload
-   */
-  public String payload() {
-    return payload;
-  }
+    /**
+     * Gets the payload.
+     * <p>
+     * The new secret data to assign to an `arbitrary` secret.
+     *
+     * @return the payload
+     */
+    public String payload() {
+        return payload;
+    }
 
-  /**
-   * Gets the password.
-   *
-   * The new password to assign to a `username_password` secret.
-   *
-   * @return the password
-   */
-  public String password() {
-    return password;
-  }
+    /**
+     * Gets the password.
+     * <p>
+     * The new password to assign to a `username_password` secret.
+     *
+     * @return the password
+     */
+    public String password() {
+        return password;
+    }
 
-  /**
-   * Gets the serviceId.
-   *
-   * The service ID that you want to delete. It is deleted together with its API key.
-   *
-   * @return the serviceId
-   */
-  public String serviceId() {
-    return serviceId;
-  }
+    /**
+     * Gets the serviceId.
+     * <p>
+     * The service ID that you want to delete. It is deleted together with its API key.
+     *
+     * @return the serviceId
+     */
+    public String serviceId() {
+        return serviceId;
+    }
 }
 

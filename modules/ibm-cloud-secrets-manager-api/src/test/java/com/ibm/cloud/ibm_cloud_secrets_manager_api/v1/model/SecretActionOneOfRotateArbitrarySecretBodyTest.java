@@ -16,36 +16,39 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretActionOneOfRotateArbitrarySecretBody;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretActionOneOfRotateArbitrarySecretBody model.
  */
 public class SecretActionOneOfRotateArbitrarySecretBodyTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testSecretActionOneOfRotateArbitrarySecretBody() throws Throwable {
-    SecretActionOneOfRotateArbitrarySecretBody secretActionOneOfRotateArbitrarySecretBodyModel = new SecretActionOneOfRotateArbitrarySecretBody.Builder()
-      .payload("testString")
-      .build();
-    assertEquals(secretActionOneOfRotateArbitrarySecretBodyModel.payload(), "testString");
+    @Test
+    public void testSecretActionOneOfRotateArbitrarySecretBody() throws Throwable {
+        SecretActionOneOfRotateArbitrarySecretBody secretActionOneOfRotateArbitrarySecretBodyModel = new SecretActionOneOfRotateArbitrarySecretBody.Builder()
+                .payload("testString")
+                .build();
+        assertEquals(secretActionOneOfRotateArbitrarySecretBodyModel.payload(), "testString");
 
-    String json = TestUtilities.serialize(secretActionOneOfRotateArbitrarySecretBodyModel);
+        String json = TestUtilities.serialize(secretActionOneOfRotateArbitrarySecretBodyModel);
 
-    SecretActionOneOfRotateArbitrarySecretBody secretActionOneOfRotateArbitrarySecretBodyModelNew = TestUtilities.deserialize(json, SecretActionOneOfRotateArbitrarySecretBody.class);
-    assertTrue(secretActionOneOfRotateArbitrarySecretBodyModelNew instanceof SecretActionOneOfRotateArbitrarySecretBody);
-    assertEquals(secretActionOneOfRotateArbitrarySecretBodyModelNew.payload(), "testString");
-  }
+        SecretActionOneOfRotateArbitrarySecretBody secretActionOneOfRotateArbitrarySecretBodyModelNew = TestUtilities.deserialize(json, SecretActionOneOfRotateArbitrarySecretBody.class);
+        assertTrue(secretActionOneOfRotateArbitrarySecretBodyModelNew instanceof SecretActionOneOfRotateArbitrarySecretBody);
+        assertEquals(secretActionOneOfRotateArbitrarySecretBodyModelNew.payload(), "testString");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testSecretActionOneOfRotateArbitrarySecretBodyError() throws Throwable {
-    new SecretActionOneOfRotateArbitrarySecretBody.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testSecretActionOneOfRotateArbitrarySecretBodyError() throws Throwable {
+        new SecretActionOneOfRotateArbitrarySecretBody.Builder().build();
+    }
 
 }

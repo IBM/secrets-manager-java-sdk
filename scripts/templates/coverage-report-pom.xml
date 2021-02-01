@@ -1,5 +1,5 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <!-- Update this section to reflect the correct values for your SDK project -->
     <parent>
         <!-- >>> Update this to reflect your parent project's artifact id -->
@@ -17,14 +17,14 @@
     <name>My Services Coverage Reports</name>
 
     <dependencies>
-	<!--
-	     There should be a dependency for EACH module in the project.
-	     Add new "dependency" entries here as needed when you add modules to
-	     your parent pom.xml.   This will ensure that an aggregate code
-	     coverage report contains information for all of your modules.
-	     Note: the "artifactId" values below should reflect the "artifactId" value specified
-	     in each module's pom.xml file (i.e. not the module's directory name).
-	-->
+        <!--
+             There should be a dependency for EACH module in the project.
+             Add new "dependency" entries here as needed when you add modules to
+             your parent pom.xml.   This will ensure that an aggregate code
+             coverage report contains information for all of your modules.
+             Note: the "artifactId" values below should reflect the "artifactId" value specified
+             in each module's pom.xml file (i.e. not the module's directory name).
+        -->
         $COVERAGE_REPORT_MODULES
     </dependencies>
 

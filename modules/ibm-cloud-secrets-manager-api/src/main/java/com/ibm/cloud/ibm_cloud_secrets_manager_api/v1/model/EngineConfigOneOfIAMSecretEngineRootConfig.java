@@ -18,65 +18,65 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 public class EngineConfigOneOfIAMSecretEngineRootConfig extends EngineConfigOneOf {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String apiKey;
-
-    public Builder(EngineConfigOneOf engineConfigOneOfIamSecretEngineRootConfig) {
-      this.apiKey = engineConfigOneOfIamSecretEngineRootConfig.apiKey;
-    }
-
     /**
-     * Instantiates a new builder.
+     * Builder.
      */
-    public Builder() {
+    public static class Builder {
+        private String apiKey;
+
+        public Builder(EngineConfigOneOf engineConfigOneOfIamSecretEngineRootConfig) {
+            this.apiKey = engineConfigOneOfIamSecretEngineRootConfig.apiKey;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param apiKey the apiKey
+         */
+        public Builder(String apiKey) {
+            this.apiKey = apiKey;
+        }
+
+        /**
+         * Builds a EngineConfigOneOfIAMSecretEngineRootConfig.
+         *
+         * @return the new EngineConfigOneOfIAMSecretEngineRootConfig instance
+         */
+        public EngineConfigOneOfIAMSecretEngineRootConfig build() {
+            return new EngineConfigOneOfIAMSecretEngineRootConfig(this);
+        }
+
+        /**
+         * Set the apiKey.
+         *
+         * @param apiKey the apiKey
+         * @return the EngineConfigOneOfIAMSecretEngineRootConfig builder
+         */
+        public Builder apiKey(String apiKey) {
+            this.apiKey = apiKey;
+            return this;
+        }
+    }
+
+    protected EngineConfigOneOfIAMSecretEngineRootConfig(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.apiKey,
+                "apiKey cannot be null");
+        apiKey = builder.apiKey;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param apiKey the apiKey
+     * @return a EngineConfigOneOfIAMSecretEngineRootConfig builder
      */
-    public Builder(String apiKey) {
-      this.apiKey = apiKey;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Builds a EngineConfigOneOfIAMSecretEngineRootConfig.
-     *
-     * @return the new EngineConfigOneOfIAMSecretEngineRootConfig instance
-     */
-    public EngineConfigOneOfIAMSecretEngineRootConfig build() {
-      return new EngineConfigOneOfIAMSecretEngineRootConfig(this);
-    }
-
-    /**
-     * Set the apiKey.
-     *
-     * @param apiKey the apiKey
-     * @return the EngineConfigOneOfIAMSecretEngineRootConfig builder
-     */
-    public Builder apiKey(String apiKey) {
-      this.apiKey = apiKey;
-      return this;
-    }
-  }
-
-  protected EngineConfigOneOfIAMSecretEngineRootConfig(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.apiKey,
-      "apiKey cannot be null");
-    apiKey = builder.apiKey;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a EngineConfigOneOfIAMSecretEngineRootConfig builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

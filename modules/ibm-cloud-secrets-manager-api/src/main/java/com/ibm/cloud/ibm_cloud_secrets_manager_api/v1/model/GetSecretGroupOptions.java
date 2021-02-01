@@ -19,78 +19,78 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetSecretGroupOptions extends GenericModel {
 
-  protected String id;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String id;
-
-    private Builder(GetSecretGroupOptions getSecretGroupOptions) {
-      this.id = getSecretGroupOptions.id;
-    }
+    protected String id;
 
     /**
-     * Instantiates a new builder.
+     * Builder.
      */
-    public Builder() {
+    public static class Builder {
+        private String id;
+
+        private Builder(GetSecretGroupOptions getSecretGroupOptions) {
+            this.id = getSecretGroupOptions.id;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param id the id
+         */
+        public Builder(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Builds a GetSecretGroupOptions.
+         *
+         * @return the new GetSecretGroupOptions instance
+         */
+        public GetSecretGroupOptions build() {
+            return new GetSecretGroupOptions(this);
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the GetSecretGroupOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+    }
+
+    protected GetSecretGroupOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        id = builder.id;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param id the id
+     * @return a GetSecretGroupOptions builder
      */
-    public Builder(String id) {
-      this.id = id;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Builds a GetSecretGroupOptions.
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret group.
      *
-     * @return the new GetSecretGroupOptions instance
+     * @return the id
      */
-    public GetSecretGroupOptions build() {
-      return new GetSecretGroupOptions(this);
+    public String id() {
+        return id;
     }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the GetSecretGroupOptions builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-  }
-
-  protected GetSecretGroupOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    id = builder.id;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a GetSecretGroupOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret group.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
 }
 

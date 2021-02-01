@@ -19,23 +19,26 @@ import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.GetSecretPoliciesOne
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretPolicyRotationRotation;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSecretPoliciesOneOfGetSecretPolicyRotation model.
  */
 public class GetSecretPoliciesOneOfGetSecretPolicyRotationTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetSecretPoliciesOneOfGetSecretPolicyRotation() throws Throwable {
-    GetSecretPoliciesOneOfGetSecretPolicyRotation getSecretPoliciesOneOfGetSecretPolicyRotationModel = new GetSecretPoliciesOneOfGetSecretPolicyRotation();
-    assertNull(getSecretPoliciesOneOfGetSecretPolicyRotationModel.getMetadata());
-    assertNull(getSecretPoliciesOneOfGetSecretPolicyRotationModel.getResources());
-  }
+    @Test
+    public void testGetSecretPoliciesOneOfGetSecretPolicyRotation() throws Throwable {
+        GetSecretPoliciesOneOfGetSecretPolicyRotation getSecretPoliciesOneOfGetSecretPolicyRotationModel = new GetSecretPoliciesOneOfGetSecretPolicyRotation();
+        assertNull(getSecretPoliciesOneOfGetSecretPolicyRotationModel.getMetadata());
+        assertNull(getSecretPoliciesOneOfGetSecretPolicyRotationModel.getResources());
+    }
 }

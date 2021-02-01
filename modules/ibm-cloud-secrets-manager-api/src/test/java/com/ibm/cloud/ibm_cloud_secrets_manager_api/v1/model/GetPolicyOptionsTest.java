@@ -16,34 +16,37 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.GetPolicyOptions;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetPolicyOptions model.
  */
 public class GetPolicyOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetPolicyOptions() throws Throwable {
-    GetPolicyOptions getPolicyOptionsModel = new GetPolicyOptions.Builder()
-      .secretType("username_password")
-      .id("testString")
-      .policy("rotation")
-      .build();
-    assertEquals(getPolicyOptionsModel.secretType(), "username_password");
-    assertEquals(getPolicyOptionsModel.id(), "testString");
-    assertEquals(getPolicyOptionsModel.policy(), "rotation");
-  }
+    @Test
+    public void testGetPolicyOptions() throws Throwable {
+        GetPolicyOptions getPolicyOptionsModel = new GetPolicyOptions.Builder()
+                .secretType("username_password")
+                .id("testString")
+                .policy("rotation")
+                .build();
+        assertEquals(getPolicyOptionsModel.secretType(), "username_password");
+        assertEquals(getPolicyOptionsModel.id(), "testString");
+        assertEquals(getPolicyOptionsModel.policy(), "rotation");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testGetPolicyOptionsError() throws Throwable {
-    new GetPolicyOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetPolicyOptionsError() throws Throwable {
+        new GetPolicyOptions.Builder().build();
+    }
 
 }

@@ -19,114 +19,116 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class PutConfigOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-  }
-
-  protected String secretType;
-  protected EngineConfigOneOf engineConfigOneOf;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private EngineConfigOneOf engineConfigOneOf;
-
-    private Builder(PutConfigOptions putConfigOptions) {
-      this.secretType = putConfigOptions.secretType;
-      this.engineConfigOneOf = putConfigOptions.engineConfigOneOf;
-    }
-
     /**
-     * Instantiates a new builder.
+     * The secret type.
      */
-    public Builder() {
+    public interface SecretType {
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+    }
+
+    protected String secretType;
+    protected EngineConfigOneOf engineConfigOneOf;
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private EngineConfigOneOf engineConfigOneOf;
+
+        private Builder(PutConfigOptions putConfigOptions) {
+            this.secretType = putConfigOptions.secretType;
+            this.engineConfigOneOf = putConfigOptions.engineConfigOneOf;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType        the secretType
+         * @param engineConfigOneOf the engineConfigOneOf
+         */
+        public Builder(String secretType, EngineConfigOneOf engineConfigOneOf) {
+            this.secretType = secretType;
+            this.engineConfigOneOf = engineConfigOneOf;
+        }
+
+        /**
+         * Builds a PutConfigOptions.
+         *
+         * @return the new PutConfigOptions instance
+         */
+        public PutConfigOptions build() {
+            return new PutConfigOptions(this);
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the PutConfigOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the engineConfigOneOf.
+         *
+         * @param engineConfigOneOf the engineConfigOneOf
+         * @return the PutConfigOptions builder
+         */
+        public Builder engineConfigOneOf(EngineConfigOneOf engineConfigOneOf) {
+            this.engineConfigOneOf = engineConfigOneOf;
+            return this;
+        }
+    }
+
+    protected PutConfigOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.engineConfigOneOf,
+                "engineConfigOneOf cannot be null");
+        secretType = builder.secretType;
+        engineConfigOneOf = builder.engineConfigOneOf;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param secretType the secretType
-     * @param engineConfigOneOf the engineConfigOneOf
+     * @return a PutConfigOptions builder
      */
-    public Builder(String secretType, EngineConfigOneOf engineConfigOneOf) {
-      this.secretType = secretType;
-      this.engineConfigOneOf = engineConfigOneOf;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Builds a PutConfigOptions.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @return the new PutConfigOptions instance
+     * @return the secretType
      */
-    public PutConfigOptions build() {
-      return new PutConfigOptions(this);
+    public String secretType() {
+        return secretType;
     }
 
     /**
-     * Set the secretType.
+     * Gets the engineConfigOneOf.
      *
-     * @param secretType the secretType
-     * @return the PutConfigOptions builder
+     * @return the engineConfigOneOf
      */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
+    public EngineConfigOneOf engineConfigOneOf() {
+        return engineConfigOneOf;
     }
-
-    /**
-     * Set the engineConfigOneOf.
-     *
-     * @param engineConfigOneOf the engineConfigOneOf
-     * @return the PutConfigOptions builder
-     */
-    public Builder engineConfigOneOf(EngineConfigOneOf engineConfigOneOf) {
-      this.engineConfigOneOf = engineConfigOneOf;
-      return this;
-    }
-  }
-
-  protected PutConfigOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.engineConfigOneOf,
-      "engineConfigOneOf cannot be null");
-    secretType = builder.secretType;
-    engineConfigOneOf = builder.engineConfigOneOf;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a PutConfigOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
-
-  /**
-   * Gets the engineConfigOneOf.
-   *
-   * @return the engineConfigOneOf
-   */
-  public EngineConfigOneOf engineConfigOneOf() {
-    return engineConfigOneOf;
-  }
 }
 

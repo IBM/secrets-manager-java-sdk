@@ -19,118 +19,122 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretPolicyRotationRotation extends GenericModel {
 
-  /**
-   * Specifies the units for the secret rotation time interval.
-   */
-  public interface Unit {
-    /** day. */
-    String DAY = "day";
-    /** month. */
-    String MONTH = "month";
-  }
-
-  protected Long interval;
-  protected String unit;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Long interval;
-    private String unit;
-
-    private Builder(SecretPolicyRotationRotation secretPolicyRotationRotation) {
-      this.interval = secretPolicyRotationRotation.interval;
-      this.unit = secretPolicyRotationRotation.unit;
-    }
-
     /**
-     * Instantiates a new builder.
+     * Specifies the units for the secret rotation time interval.
      */
-    public Builder() {
+    public interface Unit {
+        /**
+         * day.
+         */
+        String DAY = "day";
+        /**
+         * month.
+         */
+        String MONTH = "month";
+    }
+
+    protected Long interval;
+    protected String unit;
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private Long interval;
+        private String unit;
+
+        private Builder(SecretPolicyRotationRotation secretPolicyRotationRotation) {
+            this.interval = secretPolicyRotationRotation.interval;
+            this.unit = secretPolicyRotationRotation.unit;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param interval the interval
+         * @param unit     the unit
+         */
+        public Builder(Long interval, String unit) {
+            this.interval = interval;
+            this.unit = unit;
+        }
+
+        /**
+         * Builds a SecretPolicyRotationRotation.
+         *
+         * @return the new SecretPolicyRotationRotation instance
+         */
+        public SecretPolicyRotationRotation build() {
+            return new SecretPolicyRotationRotation(this);
+        }
+
+        /**
+         * Set the interval.
+         *
+         * @param interval the interval
+         * @return the SecretPolicyRotationRotation builder
+         */
+        public Builder interval(long interval) {
+            this.interval = interval;
+            return this;
+        }
+
+        /**
+         * Set the unit.
+         *
+         * @param unit the unit
+         * @return the SecretPolicyRotationRotation builder
+         */
+        public Builder unit(String unit) {
+            this.unit = unit;
+            return this;
+        }
+    }
+
+    protected SecretPolicyRotationRotation(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.interval,
+                "interval cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.unit,
+                "unit cannot be null");
+        interval = builder.interval;
+        unit = builder.unit;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param interval the interval
-     * @param unit the unit
+     * @return a SecretPolicyRotationRotation builder
      */
-    public Builder(Long interval, String unit) {
-      this.interval = interval;
-      this.unit = unit;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Builds a SecretPolicyRotationRotation.
+     * Gets the interval.
+     * <p>
+     * Specifies the length of the secret rotation time interval.
      *
-     * @return the new SecretPolicyRotationRotation instance
+     * @return the interval
      */
-    public SecretPolicyRotationRotation build() {
-      return new SecretPolicyRotationRotation(this);
+    public Long interval() {
+        return interval;
     }
 
     /**
-     * Set the interval.
+     * Gets the unit.
+     * <p>
+     * Specifies the units for the secret rotation time interval.
      *
-     * @param interval the interval
-     * @return the SecretPolicyRotationRotation builder
+     * @return the unit
      */
-    public Builder interval(long interval) {
-      this.interval = interval;
-      return this;
+    public String unit() {
+        return unit;
     }
-
-    /**
-     * Set the unit.
-     *
-     * @param unit the unit
-     * @return the SecretPolicyRotationRotation builder
-     */
-    public Builder unit(String unit) {
-      this.unit = unit;
-      return this;
-    }
-  }
-
-  protected SecretPolicyRotationRotation(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.interval,
-      "interval cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.unit,
-      "unit cannot be null");
-    interval = builder.interval;
-    unit = builder.unit;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a SecretPolicyRotationRotation builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the interval.
-   *
-   * Specifies the length of the secret rotation time interval.
-   *
-   * @return the interval
-   */
-  public Long interval() {
-    return interval;
-  }
-
-  /**
-   * Gets the unit.
-   *
-   * Specifies the units for the secret rotation time interval.
-   *
-   * @return the unit
-   */
-  public String unit() {
-    return unit;
-  }
 }
 

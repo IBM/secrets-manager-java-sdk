@@ -17,37 +17,40 @@ import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.EngineConfigOneOfIAM
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.PutConfigOptions;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the PutConfigOptions model.
  */
 public class PutConfigOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testPutConfigOptions() throws Throwable {
-    EngineConfigOneOfIAMSecretEngineRootConfig engineConfigOneOfModel = new EngineConfigOneOfIAMSecretEngineRootConfig.Builder()
-      .apiKey("API_KEY")
-      .build();
-    assertEquals(engineConfigOneOfModel.apiKey(), "API_KEY");
+    @Test
+    public void testPutConfigOptions() throws Throwable {
+        EngineConfigOneOfIAMSecretEngineRootConfig engineConfigOneOfModel = new EngineConfigOneOfIAMSecretEngineRootConfig.Builder()
+                .apiKey("API_KEY")
+                .build();
+        assertEquals(engineConfigOneOfModel.apiKey(), "API_KEY");
 
-    PutConfigOptions putConfigOptionsModel = new PutConfigOptions.Builder()
-      .secretType("iam_credentials")
-      .engineConfigOneOf(engineConfigOneOfModel)
-      .build();
-    assertEquals(putConfigOptionsModel.secretType(), "iam_credentials");
-    assertEquals(putConfigOptionsModel.engineConfigOneOf(), engineConfigOneOfModel);
-  }
+        PutConfigOptions putConfigOptionsModel = new PutConfigOptions.Builder()
+                .secretType("iam_credentials")
+                .engineConfigOneOf(engineConfigOneOfModel)
+                .build();
+        assertEquals(putConfigOptionsModel.secretType(), "iam_credentials");
+        assertEquals(putConfigOptionsModel.engineConfigOneOf(), engineConfigOneOfModel);
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testPutConfigOptionsError() throws Throwable {
-    new PutConfigOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testPutConfigOptionsError() throws Throwable {
+        new PutConfigOptions.Builder().build();
+    }
 
 }

@@ -19,19 +19,19 @@ env:
 
 branches:
   except:
-  - gh-pages
+    - gh-pages
 
 cache:
   directories:
-  - "$HOME/.m2"
+    - "$HOME/.m2"
 
 
 before_install:
-- sudo apt-get update
-- sudo apt-get install python
-- nvm install 12
-- npm install -g npm@6.x
-- echo -e "machine github.ibm.com\n  login $GITHUB_OAUTH_TOKEN" > ~/.netrc
+  - sudo apt-get update
+  - sudo apt-get install python
+  - nvm install 12
+  - npm install -g npm@6.x
+  - echo -e "machine github.ibm.com\n  login $GITHUB_OAUTH_TOKEN" > ~/.netrc
 # Uncomment this section and update as needed to decrypt each configuration file.
 # - >-
 #       [ -z "${TRAVIS_TAG}" ] && [ "${TRAVIS_PULL_REQUEST}" == "false" ]
@@ -39,17 +39,17 @@ before_install:
 #       || true
 
 install:
-- curl -s https://codecov.io/bash > $HOME/codecov-bash.sh && chmod +x $HOME/codecov-bash.sh
+  - curl -s https://codecov.io/bash > $HOME/codecov-bash.sh && chmod +x $HOME/codecov-bash.sh
 
 before_script:
-- echo "TRAVIS_TAG = '${TRAVIS_TAG}'"
-- >-
-      [ -n "${TRAVIS_TAG}" ]
-      && mvn versions:set -DnewVersion=${TRAVIS_TAG} -DgenerateBackupPoms=false
-      || true
+  - echo "TRAVIS_TAG = '${TRAVIS_TAG}'"
+  - >-
+    [ -n "${TRAVIS_TAG}" ]
+    && mvn versions:set -DnewVersion=${TRAVIS_TAG} -DgenerateBackupPoms=false
+    || true
 
 script:
--  mvn clean verify $MVN_ARGS
+  - mvn clean verify $MVN_ARGS
 
 # To enable semantic-release, uncomment these sections.
 # before_deploy:

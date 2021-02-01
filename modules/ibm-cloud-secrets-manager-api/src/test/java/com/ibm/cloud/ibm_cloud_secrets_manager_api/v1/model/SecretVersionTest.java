@@ -16,27 +16,30 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretVersion;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretVersion model.
  */
 public class SecretVersionTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testSecretVersion() throws Throwable {
-    SecretVersion secretVersionModel = new SecretVersion.Builder()
-      .build();
+    @Test
+    public void testSecretVersion() throws Throwable {
+        SecretVersion secretVersionModel = new SecretVersion.Builder()
+                .build();
 
-    String json = TestUtilities.serialize(secretVersionModel);
+        String json = TestUtilities.serialize(secretVersionModel);
 
-    SecretVersion secretVersionModelNew = TestUtilities.deserialize(json, SecretVersion.class);
-    assertTrue(secretVersionModelNew instanceof SecretVersion);
-  }
+        SecretVersion secretVersionModelNew = TestUtilities.deserialize(json, SecretVersion.class);
+        assertTrue(secretVersionModelNew instanceof SecretVersion);
+    }
 }

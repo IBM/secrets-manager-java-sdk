@@ -1,11 +1,11 @@
 /**
  * Copyright 2019 IBM Corp. All Rights Reserved.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
@@ -60,7 +60,7 @@ public class SdkCommon {
             buildProps.load(is);
             version = buildProps.getProperty("version", "unknown");
             projectName = buildProps.getProperty("title", "unknown");
-       } catch (Throwable t) {
+        } catch (Throwable t) {
             version = "unknown";
             projectName = "unknown";
         }
@@ -70,6 +70,7 @@ public class SdkCommon {
      * This function uses lazy initialization to build the SDK's "user agent" value.
      * This will consist of the SDK name and version, followed by
      * a set of properties provided by the Java Core's RequestUtils class.
+     *
      * @return the SDK-specific user agent value
      */
     private static synchronized String getUserAgent() {
@@ -91,27 +92,23 @@ public class SdkCommon {
      * function, it is recommended that you initialize the returned map just once (perhaps by using
      * lazy initialization) and simply return it each time the function is invoked, instead of building it each time
      * as in the example below.
-     *
+     * <p>
      * If you plan to gather metrics for your SDK, the User-Agent header value must
      * be a string similar to the following:
      * my-java-sdk/0.0.1 (lang=java; java.vendor=AdoptOpenJDK; java.version=1.8.0_232; os.arch=x86_64; os.name=Linux; os.version=5.1)
-
      * In the example above, the analytics tool will parse the user-agent header and
      * use the following properties:
      * "my-java-sdk" - the name of your sdk
      * "0.0.1"- the version of your sdk
      * "lang=java" - the language of the current sdk
      * "java.vendor=AdoptOpenJDK; java.version=1.8.0_232; os.arch=x86_64; os.name=Linux; os.version=5.1" - system information
-     *
+     * <p>
      * Note: It is very important that the sdk name ends with the string `-sdk`,
      * as the analytics data collector uses this to gather usage data.
      *
-     * @param serviceName
-     *            the name of the service as defined in the API definition (e.g. "MyService1")
-     * @param serviceVersion
-     *            the version of the service as defined in the API definition (e.g. "V1")
-     * @param operationId
-     *            the operationId as defined in the API definition (e.g. getContext)
+     * @param serviceName    the name of the service as defined in the API definition (e.g. "MyService1")
+     * @param serviceVersion the version of the service as defined in the API definition (e.g. "V1")
+     * @param operationId    the operationId as defined in the API definition (e.g. getContext)
      * @return a Map which contains the set of headers to be included in the REST API request
      */
     public static Map<String, String> getSdkHeaders(String serviceName, String serviceVersion, String operationId) {
