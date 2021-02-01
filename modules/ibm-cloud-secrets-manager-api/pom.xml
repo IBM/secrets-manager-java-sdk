@@ -3,17 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <!-- >>> Replace this with the parent pom's artifactId -->
         <artifactId>secrets-manger-sdk</artifactId>
         <groupId>com.ibm.cloud</groupId>
         <version>99-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
 
-    <!-- >>> Replace this with the service module's artifactId (e.g. "example-service") -->
     <artifactId>secrets-manager</artifactId>
 
-    <!-- >>> Replace this with a text description of this module (e.g. "Example Service") -->
     <name>Secrets Manager</name>
     <packaging>jar</packaging>
 
@@ -23,7 +20,6 @@
             <artifactId>sdk-core</artifactId>
         </dependency>
         <dependency>
-            <!-- >>> Replace this with the "common" module's artifactId (e.g. my-services-common) -->
             <artifactId>secrets-manger-sdk-common</artifactId>
             <groupId>${project.groupId}</groupId>
         </dependency>

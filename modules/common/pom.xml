@@ -4,18 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <!-- >>> Replace this with the parent pom's artifactId -->
         <artifactId>secrets-manger-sdk</artifactId>
         <groupId>com.ibm.cloud</groupId>
         <version>99-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
 
-    <!-- >>> Replace this with the common module's artifactId (e.g. platform-services-common) -->
     <artifactId>secrets-manger-sdk-common</artifactId>
 
-    <!-- >>> Replace this with the common module's description (e.g. Platform Services Common Library) -->
     <name>Secrets Manager SDK Common Library</name>
+
     <packaging>jar</packaging>
 
     <dependencies>

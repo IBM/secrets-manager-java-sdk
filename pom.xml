@@ -2,16 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- >>> Replace this with your service category (e.g. "platform-services") -->
     <artifactId>secrets-manger-sdk</artifactId>
 
-    <!-- >>> Update this field to reflect your project -->
     <name>IBM Cloud Secrets Manager Service Java SDK</name>
 
-    <!-- >>> Update this field to reflect your project -->
     <description>Java Client Library to access the IBM Cloud Secrets Manager SDK</description>
 
-    <!-- >>> Update this field to reflect your project's github URL -->
     <url>https://github.com/IBM/secrets-manager-java-sdk</url>
 
     <groupId>com.ibm.cloud</groupId>
@@ -27,7 +23,6 @@
         -->
         <sdk-core-version>9.5.4</sdk-core-version>
 
-        <!-- >>> Replace this with the name of your SDK's github repository -->
         <git-repository-name>secrets-manager-java-sdk</git-repository-name>
 
         <testng-version>7.1.0</testng-version>
@@ -52,23 +47,13 @@
 
         <!-- Deployment-related properties -->
         <bintray.org>ibm-cloud-sdks</bintray.org>
-        <!-- >>> Replace this with the name of your project's bintray repository -->
         <bintray.repo>secrets-manager-java-sdk</bintray.repo>
-        <!-- >>> Replace this with your github repository's URL -->
         <bintray.package.url>https://github.com/IBM/secrets-manager-java-sdk</bintray.package.url>
     </properties>
 
     <modules>
-        <!-- This module should always be listed first -->
         <module>modules/common</module>
         <module>modules/ibm-cloud-secrets-manager-api</module>
-        <!-- >>> List each service's module here -->
-        <!-- i.e. <module>modules/example-service</module> -->
-
-        <!-- >>> Uncomment the following line if you want to build the examples -->
-        <!-- <module>modules/examples</module> -->
-
-        <!-- This module should always be listed last -->
         <module>modules/coverage-reports</module>
     </modules>
 
@@ -83,42 +68,18 @@
         <name>IBM Cloud</name>
     </organization>
 
-    <!-- >>> Update these values to reflect your project -->
     <scm>
         <connection>scm:git:https://github.com/IBM/secrets-manager-java-sdk</connection>
         <developerConnection>scm:git:https://github.com/IBM/secrets-manager-java-sdk</developerConnection>
         <url>https://github.com/IBM/secrets-manager-java-sdk/tree/master</url>
     </scm>
 
-    <!-- >>> Update these values to reflect your project -->
     <issueManagement>
         <system>Github</system>
         <url>https://github.com/IBM/secrets-manager-java-sdk/issues</url>
     </issueManagement>
 
-    <!-- >>> Update these values to reflect your project -->
-    <ciManagement>
-        <system>Travis-CI</system>
-        <url>https://travis.ibm.com/IBM/secrets-manager-java-sdk/</url>
-    </ciManagement>
-
-    <repositories>
-        <!-- these definitions are useful only for internal SDK projects -->
-        <repository>
-            <id>na-artifactory-ibmcloud-sdks</id>
-            <url>https://na.artifactory.swg-devops.com:443/artifactory/wcp-ibmcloud-sdks-team-maven-local/</url>
-        </repository>
-
-        <repository>
-            <id>jcenter</id>
-            <url>https://jcenter.bintray.com/</url>
-        </repository>
-    </repositories>
-
-    <!-- This section is commented out because we use an alternate deploy plugin.
-    <distributionManagement>
-    </distributionManagement>
-    -->
+    <repositories></repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -129,15 +90,12 @@
                 <version>${sdk-core-version}</version>
             </dependency>
 
-            <!-- Each module (except "common") should depend on this artifact -->
             <dependency>
-                <!-- >>> Replace this with the common module's artifactId -->
                 <artifactId>secrets-manger-sdk-common</artifactId>
                 <groupId>${project.groupId}</groupId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <!-- >>> Replace this with the common module's artifactId -->
                 <artifactId>secrets-manger-sdk-common</artifactId>
                 <groupId>${project.groupId}</groupId>
                 <version>${project.version}</version>
@@ -176,7 +134,6 @@
                 <version>${powermock-version}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Depedency needed to build examples -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-jdk14</artifactId>
