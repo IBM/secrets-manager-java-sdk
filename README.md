@@ -1,6 +1,7 @@
 # IBM Cloud Secrets Manager Java SDK
 
-A Java client library to interact with the [IBM Cloud® Secrets Manager APIs](https://cloud.ibm.com/apidocs/secrets-manager).
+A Java client library to interact with
+the [IBM Cloud® Secrets Manager APIs](https://cloud.ibm.com/apidocs/secrets-manager).
 
 <details>
 <summary>Table of Contents</summary>
@@ -14,11 +15,13 @@ A Java client library to interact with the [IBM Cloud® Secrets Manager APIs](ht
 * [Issues](#issues)
 * [Contributing](#contributing)
 * [License](#license)
+
 </details>
 
 ## Overview
 
-The IBM Cloud Secrets Manager Java SDK allows developers to programmatically interact with the following IBM Cloud services:
+The IBM Cloud Secrets Manager Java SDK allows developers to programmatically interact with the following IBM Cloud
+services:
 
 Service name | Imported class name
 --- | ---
@@ -31,6 +34,7 @@ Service name | Imported class name
 - An [IBM Cloud account](https://cloud.ibm.com/registration).
 - A [Secrets Manager service instance](https://cloud.ibm.com/catalog/services/secrets-manager).
 - An [IBM Cloud API key](https://cloud.ibm.com/iam/apikeys) that allows the SDK to access your account.
+
 * Java 8 or above.
 
 ## Installation
@@ -54,6 +58,7 @@ version) for the service, like this:
 ##### Maven
 
 ```xml
+
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>example-service</artifactId>
@@ -71,9 +76,13 @@ version) for the service, like this:
 
 Secrets Manager uses token-based Identity and Access Management (IAM) authentication.
 
-With IAM authentication, you supply an API key that is used to generate an access token. Then, the access token is included in each API request to Secrets Manager. Access tokens are valid for a limited amount of time and must be regenerated.
+With IAM authentication, you supply an API key that is used to generate an access token. Then, the access token is
+included in each API request to Secrets Manager. Access tokens are valid for a limited amount of time and must be
+regenerated.
 
-Authentication for this SDK is accomplished by using [IAM authenticators](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md#authentication). Import authenticators from `com.ibm.cloud.sdk.core.security`.
+Authentication for this SDK is accomplished by
+using [IAM authenticators](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md#authentication). Import
+authenticators from `com.ibm.cloud.sdk.core.security`.
 
 ### Examples
 
@@ -82,16 +91,18 @@ Authentication for this SDK is accomplished by using [IAM authenticators](https:
 ```java
 import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 ...
-        IamAuthenticator iamAuthenticator = new IamAuthenticator("<IBM_CLOUD_API_KEY>");
+        IamAuthenticator iamAuthenticator=new IamAuthenticator("<IBM_CLOUD_API_KEY>");
 ```
 
-To learn more about IAM authenticators and how to use them in your Java application, see the [IBM Java SDK Core documentation](https://github.com/IBM/java-sdk-core/blob/master/Authentication.md).
+To learn more about IAM authenticators and how to use them in your Java application, see
+the [IBM Java SDK Core documentation](https://github.com/IBM/java-sdk-core/blob/master/Authentication.md).
 
 ## Using the SDK
 
 ### Basic usage
 
-- Use the `setServiceUrl` method to set the endpoint URL that is specific to your Secrets Manager service instance. To find your endpoint URL, you can copy it from the **Endpoints** page in the Secrets Manager UI.
+- Use the `setServiceUrl` method to set the endpoint URL that is specific to your Secrets Manager service instance. To
+  find your endpoint URL, you can copy it from the **Endpoints** page in the Secrets Manager UI.
 
 #### Examples
 
@@ -109,61 +120,67 @@ import java.util.Collections;
 
 public class main {
 
-  protected static IbmCloudSecretsManagerApi sm;
-  protected static IamAuthenticator iamAuthenticator;
+    protected static IbmCloudSecretsManagerApi sm;
+    protected static IamAuthenticator iamAuthenticator;
 
-  public static void main(String[] args) {
-    iamAuthenticator = new IamAuthenticator("IBM_CLOUD_API_KEY");
-    sm = new IbmCloudSecretsManagerApi("My Secrets-Manager service", iamAuthenticator);
-    sm.setServiceUrl("SERVICE_URL");
+    public static void main(String[] args) {
+        iamAuthenticator = new IamAuthenticator("IBM_CLOUD_API_KEY");
+        sm = new IbmCloudSecretsManagerApi("My Secrets-Manager service", iamAuthenticator);
+        sm.setServiceUrl("SERVICE_URL");
 
-    // create arbitrary secret
-    CollectionMetadata collectionMetadata = new CollectionMetadata.Builder()
-            .collectionType("application/vnd.ibm.secrets-manager.secret+json")
-            .collectionTotal(Long.parseLong("1"))
-            .build();
-    SecretResourceArbitrarySecretResource arbitrarySecretResource = new SecretResourceArbitrarySecretResource.Builder()
-            .name("example-arbitrary-secret")
-            .description("Extended description for this secret.")
-            .payload("secret-data")
-            .build();
-    CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
-            .secretType("arbitrary")
-            .resources(new java.util.ArrayList<>(Collections.singletonList(arbitrarySecretResource)))
-            .metadata(collectionMetadata)
-            .build();
-    Response<CreateSecret> createResp = sm.createSecret(createSecretOptions).execute();
+        // create arbitrary secret
+        CollectionMetadata collectionMetadata = new CollectionMetadata.Builder()
+                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionTotal(Long.parseLong("1"))
+                .build();
+        SecretResourceArbitrarySecretResource arbitrarySecretResource = new SecretResourceArbitrarySecretResource.Builder()
+                .name("example-arbitrary-secret")
+                .description("Extended description for this secret.")
+                .payload("secret-data")
+                .build();
+        CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
+                .secretType("arbitrary")
+                .resources(new java.util.ArrayList<>(Collections.singletonList(arbitrarySecretResource)))
+                .metadata(collectionMetadata)
+                .build();
+        Response<CreateSecret> createResp = sm.createSecret(createSecretOptions).execute();
 
-    String secretId = createResp.getResult().resources().get(0).id();
+        String secretId = createResp.getResult().resources().get(0).id();
 
-    // get arbitrary secret
-    GetSecretOptions getSecretOptions = new GetSecretOptions.Builder()
-            .secretType("arbitrary")
-            .id(secretId)
-            .build();
-    Response<GetSecret> getResp = sm.getSecret(getSecretOptions).execute();
+        // get arbitrary secret
+        GetSecretOptions getSecretOptions = new GetSecretOptions.Builder()
+                .secretType("arbitrary")
+                .id(secretId)
+                .build();
+        Response<GetSecret> getResp = sm.getSecret(getSecretOptions).execute();
 
-    String secretPayload = (String) getResp.getResult().getResources().get(0).secretData().get("payload");
+        String secretPayload = (String) getResp.getResult().getResources().get(0).secretData().get("payload");
 
-    System.out.println("The arbitrary secret payload is: " + secretPayload);
-  }
+        System.out.println("The arbitrary secret payload is: " + secretPayload);
+    }
 
 }
 ```
 
-Replace the `IBM_CLOUD_API_KEY` and `SERVICE_URL` values. Then run your application. You should see the payload of the arbitrary secret that was created.
+Replace the `IBM_CLOUD_API_KEY` and `SERVICE_URL` values. Then run your application. You should see the payload of the
+arbitrary secret that was created.
 
-For more information and IBM Cloud SDK usage examples for Java, see the [IBM Cloud SDK Common documentation](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md).
+For more information and IBM Cloud SDK usage examples for Java, see
+the [IBM Cloud SDK Common documentation](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md).
 
 ## Questions
 
-If you're having difficulties using this SDK, you can ask questions about this project by using [Stack Overflow](https://stackoverflow.com/questions/tagged/ibm-cloud+secrets-manager). Be sure to include the `ibm-cloud` and `secrets-manager` tags.
+If you're having difficulties using this SDK, you can ask questions about this project by
+using [Stack Overflow](https://stackoverflow.com/questions/tagged/ibm-cloud+secrets-manager). Be sure to include
+the `ibm-cloud` and `secrets-manager` tags.
 
-You can also check out the [Secrets Manager documentation](https://cloud.ibm.com/docs/secrets-manager) and [API reference](https://cloud.ibm.com/apidocs/secrets-manager) for more information about the service.
+You can also check out the [Secrets Manager documentation](https://cloud.ibm.com/docs/secrets-manager)
+and [API reference](https://cloud.ibm.com/apidocs/secrets-manager) for more information about the service.
 
 ## Issues
 
-If you encounter an issue with the project, you're welcome to submit a [bug report](https://github.com/IBM/secrets-manager-java-sdk/issues) to help us improve.
+If you encounter an issue with the project, you're welcome to submit
+a [bug report](https://github.com/IBM/secrets-manager-java-sdk/issues) to help us improve.
 
 ## Contributing
 
