@@ -43,7 +43,7 @@ public class SecretResourceArbitrarySecretResourceTest {
                 .description("testString")
                 .secretGroupId("testString")
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00Z"))
+                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .payload("testString")
                 .build();
         assertEquals(secretResourceArbitrarySecretResourceModel.type(), "testString");
@@ -51,7 +51,7 @@ public class SecretResourceArbitrarySecretResourceTest {
         assertEquals(secretResourceArbitrarySecretResourceModel.description(), "testString");
         assertEquals(secretResourceArbitrarySecretResourceModel.secretGroupId(), "testString");
         assertEquals(secretResourceArbitrarySecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(secretResourceArbitrarySecretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00Z"));
+        assertEquals(secretResourceArbitrarySecretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(secretResourceArbitrarySecretResourceModel.payload(), "testString");
 
         String json = TestUtilities.serialize(secretResourceArbitrarySecretResourceModel);
@@ -62,7 +62,7 @@ public class SecretResourceArbitrarySecretResourceTest {
         assertEquals(secretResourceArbitrarySecretResourceModelNew.name(), "testString");
         assertEquals(secretResourceArbitrarySecretResourceModelNew.description(), "testString");
         assertEquals(secretResourceArbitrarySecretResourceModelNew.secretGroupId(), "testString");
-        assertEquals(secretResourceArbitrarySecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00Z"));
+        assertEquals(secretResourceArbitrarySecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(secretResourceArbitrarySecretResourceModelNew.payload(), "testString");
     }
 

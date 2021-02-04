@@ -52,7 +52,7 @@ public class CreateSecretTest {
                 .description("testString")
                 .secretGroupId("testString")
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00Z"))
+                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .payload("testString")
                 .build();
         assertEquals(secretResourceModel.type(), "testString");
@@ -60,7 +60,7 @@ public class CreateSecretTest {
         assertEquals(secretResourceModel.description(), "testString");
         assertEquals(secretResourceModel.secretGroupId(), "testString");
         assertEquals(secretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(secretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00Z"));
+        assertEquals(secretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(secretResourceModel.payload(), "testString");
 
         CreateSecret createSecretModel = new CreateSecret.Builder()
