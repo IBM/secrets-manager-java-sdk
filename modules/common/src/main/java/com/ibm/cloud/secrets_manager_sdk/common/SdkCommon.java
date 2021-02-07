@@ -11,7 +11,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-// >>> Replace "secrets_manager_sdk" with the correct value for your project
 package com.ibm.cloud.secrets_manager_sdk.common;
 
 import java.io.InputStream;
@@ -36,7 +35,6 @@ public class SdkCommon {
     private static String projectName;
     private static String version;
 
-    // >>> Replace "secrets-manager-sdk" with the parent project's artifactId (e.g. platform-services)
     private static String parentArtifactId = "secrets-manager-sdk";
 
     static {

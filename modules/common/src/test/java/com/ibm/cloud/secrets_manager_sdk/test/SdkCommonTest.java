@@ -11,7 +11,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-// >>> Replace "secrets_manager_sdk" with the correct value for your project (e.g. "platform_services")
 package com.ibm.cloud.secrets_manager_sdk.test;
 
 import static org.testng.Assert.assertFalse;
@@ -22,7 +21,6 @@ import java.util.Map;
 
 import org.testng.annotations.Test;
 
-// >>> Replace "secrets_manager_sdk" with the correct value for your project (e.g. "platform_services")
 import com.ibm.cloud.secrets_manager_sdk.common.SdkCommon;
 
 /**
