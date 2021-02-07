@@ -11,8 +11,16 @@
     <url>https://github.com/IBM/secrets-manager-java-sdk</url>
 
     <groupId>com.ibm.cloud</groupId>
-    <version>99-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
+         
+    <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <name>Central Repository OSSRH</name>
+      <url>https://oss.sonatype.org/service/</url>
+    </repository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
