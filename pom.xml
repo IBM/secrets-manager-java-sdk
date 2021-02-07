@@ -6,7 +6,7 @@
 
     <name>IBM Cloud Secrets Manager Service Java SDK</name>
 
-    <description>Java Client Library to access the IBM Cloud Secrets Manager SDK</description>
+    <description>Java Client Library to access the IBM Cloud Secrets Manager APIs</description>
 
     <url>https://github.com/IBM/secrets-manager-java-sdk</url>
 
