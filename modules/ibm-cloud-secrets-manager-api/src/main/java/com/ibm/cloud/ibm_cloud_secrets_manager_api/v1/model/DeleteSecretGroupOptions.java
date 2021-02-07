@@ -19,78 +19,78 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class DeleteSecretGroupOptions extends GenericModel {
 
-  protected String id;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String id;
-
-    private Builder(DeleteSecretGroupOptions deleteSecretGroupOptions) {
-      this.id = deleteSecretGroupOptions.id;
-    }
+    protected String id;
 
     /**
-     * Instantiates a new builder.
+     * Builder.
      */
-    public Builder() {
+    public static class Builder {
+        private String id;
+
+        private Builder(DeleteSecretGroupOptions deleteSecretGroupOptions) {
+            this.id = deleteSecretGroupOptions.id;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param id the id
+         */
+        public Builder(String id) {
+            this.id = id;
+        }
+
+        /**
+         * Builds a DeleteSecretGroupOptions.
+         *
+         * @return the new DeleteSecretGroupOptions instance
+         */
+        public DeleteSecretGroupOptions build() {
+            return new DeleteSecretGroupOptions(this);
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the DeleteSecretGroupOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+    }
+
+    protected DeleteSecretGroupOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        id = builder.id;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param id the id
+     * @return a DeleteSecretGroupOptions builder
      */
-    public Builder(String id) {
-      this.id = id;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Builds a DeleteSecretGroupOptions.
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret group.
      *
-     * @return the new DeleteSecretGroupOptions instance
+     * @return the id
      */
-    public DeleteSecretGroupOptions build() {
-      return new DeleteSecretGroupOptions(this);
+    public String id() {
+        return id;
     }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the DeleteSecretGroupOptions builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-  }
-
-  protected DeleteSecretGroupOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    id = builder.id;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a DeleteSecretGroupOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret group.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
 }
 

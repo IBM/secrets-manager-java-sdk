@@ -19,190 +19,200 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class UpdateSecretOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-  }
-
-  /**
-   * The action to perform on the specified secret.
-   */
-  public interface Action {
-    /** rotate. */
-    String ROTATE = "rotate";
-    /** delete_credentials. */
-    String DELETE_CREDENTIALS = "delete_credentials";
-  }
-
-  protected String secretType;
-  protected String id;
-  protected String action;
-  protected SecretActionOneOf secretActionOneOf;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private String id;
-    private String action;
-    private SecretActionOneOf secretActionOneOf;
-
-    private Builder(UpdateSecretOptions updateSecretOptions) {
-      this.secretType = updateSecretOptions.secretType;
-      this.id = updateSecretOptions.id;
-      this.action = updateSecretOptions.action;
-      this.secretActionOneOf = updateSecretOptions.secretActionOneOf;
-    }
-
     /**
-     * Instantiates a new builder.
+     * The secret type.
      */
-    public Builder() {
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * The action to perform on the specified secret.
+     */
+    public interface Action {
+        /**
+         * rotate.
+         */
+        String ROTATE = "rotate";
+        /**
+         * delete_credentials.
+         */
+        String DELETE_CREDENTIALS = "delete_credentials";
+    }
+
+    protected String secretType;
+    protected String id;
+    protected String action;
+    protected SecretActionOneOf secretActionOneOf;
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private String id;
+        private String action;
+        private SecretActionOneOf secretActionOneOf;
+
+        private Builder(UpdateSecretOptions updateSecretOptions) {
+            this.secretType = updateSecretOptions.secretType;
+            this.id = updateSecretOptions.id;
+            this.action = updateSecretOptions.action;
+            this.secretActionOneOf = updateSecretOptions.secretActionOneOf;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType        the secretType
+         * @param id                the id
+         * @param action            the action
+         * @param secretActionOneOf the secretActionOneOf
+         */
+        public Builder(String secretType, String id, String action, SecretActionOneOf secretActionOneOf) {
+            this.secretType = secretType;
+            this.id = id;
+            this.action = action;
+            this.secretActionOneOf = secretActionOneOf;
+        }
+
+        /**
+         * Builds a UpdateSecretOptions.
+         *
+         * @return the new UpdateSecretOptions instance
+         */
+        public UpdateSecretOptions build() {
+            return new UpdateSecretOptions(this);
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the UpdateSecretOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the UpdateSecretOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Set the action.
+         *
+         * @param action the action
+         * @return the UpdateSecretOptions builder
+         */
+        public Builder action(String action) {
+            this.action = action;
+            return this;
+        }
+
+        /**
+         * Set the secretActionOneOf.
+         *
+         * @param secretActionOneOf the secretActionOneOf
+         * @return the UpdateSecretOptions builder
+         */
+        public Builder secretActionOneOf(SecretActionOneOf secretActionOneOf) {
+            this.secretActionOneOf = secretActionOneOf;
+            return this;
+        }
+    }
+
+    protected UpdateSecretOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.action,
+                "action cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretActionOneOf,
+                "secretActionOneOf cannot be null");
+        secretType = builder.secretType;
+        id = builder.id;
+        action = builder.action;
+        secretActionOneOf = builder.secretActionOneOf;
+    }
+
+    /**
+     * New builder.
      *
-     * @param secretType the secretType
-     * @param id the id
-     * @param action the action
-     * @param secretActionOneOf the secretActionOneOf
+     * @return a UpdateSecretOptions builder
      */
-    public Builder(String secretType, String id, String action, SecretActionOneOf secretActionOneOf) {
-      this.secretType = secretType;
-      this.id = id;
-      this.action = action;
-      this.secretActionOneOf = secretActionOneOf;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Builds a UpdateSecretOptions.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @return the new UpdateSecretOptions instance
+     * @return the secretType
      */
-    public UpdateSecretOptions build() {
-      return new UpdateSecretOptions(this);
+    public String secretType() {
+        return secretType;
     }
 
     /**
-     * Set the secretType.
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret.
      *
-     * @param secretType the secretType
-     * @return the UpdateSecretOptions builder
+     * @return the id
      */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
+    public String id() {
+        return id;
     }
 
     /**
-     * Set the id.
+     * Gets the action.
+     * <p>
+     * The action to perform on the specified secret.
      *
-     * @param id the id
-     * @return the UpdateSecretOptions builder
+     * @return the action
      */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
+    public String action() {
+        return action;
     }
 
     /**
-     * Set the action.
+     * Gets the secretActionOneOf.
+     * <p>
+     * The base request for invoking an action on a secret.
      *
-     * @param action the action
-     * @return the UpdateSecretOptions builder
+     * @return the secretActionOneOf
      */
-    public Builder action(String action) {
-      this.action = action;
-      return this;
+    public SecretActionOneOf secretActionOneOf() {
+        return secretActionOneOf;
     }
-
-    /**
-     * Set the secretActionOneOf.
-     *
-     * @param secretActionOneOf the secretActionOneOf
-     * @return the UpdateSecretOptions builder
-     */
-    public Builder secretActionOneOf(SecretActionOneOf secretActionOneOf) {
-      this.secretActionOneOf = secretActionOneOf;
-      return this;
-    }
-  }
-
-  protected UpdateSecretOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.action,
-      "action cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretActionOneOf,
-      "secretActionOneOf cannot be null");
-    secretType = builder.secretType;
-    id = builder.id;
-    action = builder.action;
-    secretActionOneOf = builder.secretActionOneOf;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a UpdateSecretOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
-
-  /**
-   * Gets the action.
-   *
-   * The action to perform on the specified secret.
-   *
-   * @return the action
-   */
-  public String action() {
-    return action;
-  }
-
-  /**
-   * Gets the secretActionOneOf.
-   *
-   * The base request for invoking an action on a secret.
-   *
-   * @return the secretActionOneOf
-   */
-  public SecretActionOneOf secretActionOneOf() {
-    return secretActionOneOf;
-  }
 }
 

@@ -16,23 +16,26 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretActionOneOf;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretActionOneOf model.
  */
 public class SecretActionOneOfTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  // TODO: Add tests for models that are abstract
-  @Test
-  public void testSecretActionOneOf() throws Throwable {
-    SecretActionOneOf secretActionOneOfModel = new SecretActionOneOf();
-    assertNotNull(secretActionOneOfModel);
-  }
+    // TODO: Add tests for models that are abstract
+    @Test
+    public void testSecretActionOneOf() throws Throwable {
+        SecretActionOneOf secretActionOneOfModel = new SecretActionOneOf();
+        assertNotNull(secretActionOneOfModel);
+    }
 }

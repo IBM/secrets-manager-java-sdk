@@ -16,32 +16,35 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.DeleteSecretOptions;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the DeleteSecretOptions model.
  */
 public class DeleteSecretOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testDeleteSecretOptions() throws Throwable {
-    DeleteSecretOptions deleteSecretOptionsModel = new DeleteSecretOptions.Builder()
-      .secretType("arbitrary")
-      .id("testString")
-      .build();
-    assertEquals(deleteSecretOptionsModel.secretType(), "arbitrary");
-    assertEquals(deleteSecretOptionsModel.id(), "testString");
-  }
+    @Test
+    public void testDeleteSecretOptions() throws Throwable {
+        DeleteSecretOptions deleteSecretOptionsModel = new DeleteSecretOptions.Builder()
+                .secretType("arbitrary")
+                .id("testString")
+                .build();
+        assertEquals(deleteSecretOptionsModel.secretType(), "arbitrary");
+        assertEquals(deleteSecretOptionsModel.id(), "testString");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testDeleteSecretOptionsError() throws Throwable {
-    new DeleteSecretOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testDeleteSecretOptionsError() throws Throwable {
+        new DeleteSecretOptions.Builder().build();
+    }
 
 }

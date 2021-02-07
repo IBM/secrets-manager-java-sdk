@@ -16,30 +16,33 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.GetSecretGroupOptions;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSecretGroupOptions model.
  */
 public class GetSecretGroupOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetSecretGroupOptions() throws Throwable {
-    GetSecretGroupOptions getSecretGroupOptionsModel = new GetSecretGroupOptions.Builder()
-      .id("testString")
-      .build();
-    assertEquals(getSecretGroupOptionsModel.id(), "testString");
-  }
+    @Test
+    public void testGetSecretGroupOptions() throws Throwable {
+        GetSecretGroupOptions getSecretGroupOptionsModel = new GetSecretGroupOptions.Builder()
+                .id("testString")
+                .build();
+        assertEquals(getSecretGroupOptionsModel.id(), "testString");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testGetSecretGroupOptionsError() throws Throwable {
-    new GetSecretGroupOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetSecretGroupOptionsError() throws Throwable {
+        new GetSecretGroupOptions.Builder().build();
+    }
 
 }

@@ -42,6 +42,7 @@ Service name | Imported class name
 ##### Maven
 
 ```xml
+
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager-sdk</artifactId>
@@ -50,6 +51,7 @@ Service name | Imported class name
 ```
 
 ##### Gradle
+
 ```gradle
 'com.ibm.cloud:secrets-manager-sdk:0.0.1'
 ```

@@ -18,65 +18,65 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 public class SecretActionOneOfRotateArbitrarySecretBody extends SecretActionOneOf {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String payload;
-
-    public Builder(SecretActionOneOf secretActionOneOfRotateArbitrarySecretBody) {
-      this.payload = secretActionOneOfRotateArbitrarySecretBody.payload;
-    }
-
     /**
-     * Instantiates a new builder.
+     * Builder.
      */
-    public Builder() {
+    public static class Builder {
+        private String payload;
+
+        public Builder(SecretActionOneOf secretActionOneOfRotateArbitrarySecretBody) {
+            this.payload = secretActionOneOfRotateArbitrarySecretBody.payload;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param payload the payload
+         */
+        public Builder(String payload) {
+            this.payload = payload;
+        }
+
+        /**
+         * Builds a SecretActionOneOfRotateArbitrarySecretBody.
+         *
+         * @return the new SecretActionOneOfRotateArbitrarySecretBody instance
+         */
+        public SecretActionOneOfRotateArbitrarySecretBody build() {
+            return new SecretActionOneOfRotateArbitrarySecretBody(this);
+        }
+
+        /**
+         * Set the payload.
+         *
+         * @param payload the payload
+         * @return the SecretActionOneOfRotateArbitrarySecretBody builder
+         */
+        public Builder payload(String payload) {
+            this.payload = payload;
+            return this;
+        }
+    }
+
+    protected SecretActionOneOfRotateArbitrarySecretBody(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.payload,
+                "payload cannot be null");
+        payload = builder.payload;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param payload the payload
+     * @return a SecretActionOneOfRotateArbitrarySecretBody builder
      */
-    public Builder(String payload) {
-      this.payload = payload;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Builds a SecretActionOneOfRotateArbitrarySecretBody.
-     *
-     * @return the new SecretActionOneOfRotateArbitrarySecretBody instance
-     */
-    public SecretActionOneOfRotateArbitrarySecretBody build() {
-      return new SecretActionOneOfRotateArbitrarySecretBody(this);
-    }
-
-    /**
-     * Set the payload.
-     *
-     * @param payload the payload
-     * @return the SecretActionOneOfRotateArbitrarySecretBody builder
-     */
-    public Builder payload(String payload) {
-      this.payload = payload;
-      return this;
-    }
-  }
-
-  protected SecretActionOneOfRotateArbitrarySecretBody(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.payload,
-      "payload cannot be null");
-    payload = builder.payload;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a SecretActionOneOfRotateArbitrarySecretBody builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

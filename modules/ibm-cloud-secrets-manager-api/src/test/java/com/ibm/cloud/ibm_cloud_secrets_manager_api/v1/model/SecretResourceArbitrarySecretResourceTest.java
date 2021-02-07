@@ -17,55 +17,58 @@ import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretResourceArbitr
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretResourceArbitrarySecretResource model.
  */
 public class SecretResourceArbitrarySecretResourceTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testSecretResourceArbitrarySecretResource() throws Throwable {
-    SecretResourceArbitrarySecretResource secretResourceArbitrarySecretResourceModel = new SecretResourceArbitrarySecretResource.Builder()
-      .type("testString")
-      .name("testString")
-      .description("testString")
-      .secretGroupId("testString")
-      .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-      .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-      .payload("testString")
-      .build();
-    assertEquals(secretResourceArbitrarySecretResourceModel.type(), "testString");
-    assertEquals(secretResourceArbitrarySecretResourceModel.name(), "testString");
-    assertEquals(secretResourceArbitrarySecretResourceModel.description(), "testString");
-    assertEquals(secretResourceArbitrarySecretResourceModel.secretGroupId(), "testString");
-    assertEquals(secretResourceArbitrarySecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-    assertEquals(secretResourceArbitrarySecretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-    assertEquals(secretResourceArbitrarySecretResourceModel.payload(), "testString");
+    @Test
+    public void testSecretResourceArbitrarySecretResource() throws Throwable {
+        SecretResourceArbitrarySecretResource secretResourceArbitrarySecretResourceModel = new SecretResourceArbitrarySecretResource.Builder()
+                .type("testString")
+                .name("testString")
+                .description("testString")
+                .secretGroupId("testString")
+                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
+                .payload("testString")
+                .build();
+        assertEquals(secretResourceArbitrarySecretResourceModel.type(), "testString");
+        assertEquals(secretResourceArbitrarySecretResourceModel.name(), "testString");
+        assertEquals(secretResourceArbitrarySecretResourceModel.description(), "testString");
+        assertEquals(secretResourceArbitrarySecretResourceModel.secretGroupId(), "testString");
+        assertEquals(secretResourceArbitrarySecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(secretResourceArbitrarySecretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
+        assertEquals(secretResourceArbitrarySecretResourceModel.payload(), "testString");
 
-    String json = TestUtilities.serialize(secretResourceArbitrarySecretResourceModel);
+        String json = TestUtilities.serialize(secretResourceArbitrarySecretResourceModel);
 
-    SecretResourceArbitrarySecretResource secretResourceArbitrarySecretResourceModelNew = TestUtilities.deserialize(json, SecretResourceArbitrarySecretResource.class);
-    assertTrue(secretResourceArbitrarySecretResourceModelNew instanceof SecretResourceArbitrarySecretResource);
-    assertEquals(secretResourceArbitrarySecretResourceModelNew.type(), "testString");
-    assertEquals(secretResourceArbitrarySecretResourceModelNew.name(), "testString");
-    assertEquals(secretResourceArbitrarySecretResourceModelNew.description(), "testString");
-    assertEquals(secretResourceArbitrarySecretResourceModelNew.secretGroupId(), "testString");
-    assertEquals(secretResourceArbitrarySecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-    assertEquals(secretResourceArbitrarySecretResourceModelNew.payload(), "testString");
-  }
+        SecretResourceArbitrarySecretResource secretResourceArbitrarySecretResourceModelNew = TestUtilities.deserialize(json, SecretResourceArbitrarySecretResource.class);
+        assertTrue(secretResourceArbitrarySecretResourceModelNew instanceof SecretResourceArbitrarySecretResource);
+        assertEquals(secretResourceArbitrarySecretResourceModelNew.type(), "testString");
+        assertEquals(secretResourceArbitrarySecretResourceModelNew.name(), "testString");
+        assertEquals(secretResourceArbitrarySecretResourceModelNew.description(), "testString");
+        assertEquals(secretResourceArbitrarySecretResourceModelNew.secretGroupId(), "testString");
+        assertEquals(secretResourceArbitrarySecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
+        assertEquals(secretResourceArbitrarySecretResourceModelNew.payload(), "testString");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testSecretResourceArbitrarySecretResourceError() throws Throwable {
-    new SecretResourceArbitrarySecretResource.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testSecretResourceArbitrarySecretResourceError() throws Throwable {
+        new SecretResourceArbitrarySecretResource.Builder().build();
+    }
 
 }

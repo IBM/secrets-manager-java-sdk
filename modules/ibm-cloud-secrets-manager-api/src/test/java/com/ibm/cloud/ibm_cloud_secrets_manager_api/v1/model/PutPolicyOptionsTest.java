@@ -19,61 +19,64 @@ import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretPolicyRotation
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretPolicyRotationRotation;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the PutPolicyOptions model.
  */
 public class PutPolicyOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testPutPolicyOptions() throws Throwable {
-    CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-      .collectionType("application/vnd.ibm.secrets-manager.secret+json")
-      .collectionTotal(Long.valueOf("1"))
-      .build();
-    assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
-    assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
+    @Test
+    public void testPutPolicyOptions() throws Throwable {
+        CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
+                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionTotal(Long.valueOf("1"))
+                .build();
+        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
+        assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
-    SecretPolicyRotationRotation secretPolicyRotationRotationModel = new SecretPolicyRotationRotation.Builder()
-      .interval(Long.valueOf("1"))
-      .unit("day")
-      .build();
-    assertEquals(secretPolicyRotationRotationModel.interval(), Long.valueOf("1"));
-    assertEquals(secretPolicyRotationRotationModel.unit(), "day");
+        SecretPolicyRotationRotation secretPolicyRotationRotationModel = new SecretPolicyRotationRotation.Builder()
+                .interval(Long.valueOf("1"))
+                .unit("day")
+                .build();
+        assertEquals(secretPolicyRotationRotationModel.interval(), Long.valueOf("1"));
+        assertEquals(secretPolicyRotationRotationModel.unit(), "day");
 
-    SecretPolicyRotation secretPolicyRotationModel = new SecretPolicyRotation.Builder()
-      .type("application/vnd.ibm.secrets-manager.secret.policy+json")
-      .rotation(secretPolicyRotationRotationModel)
-      .build();
-    assertEquals(secretPolicyRotationModel.type(), "application/vnd.ibm.secrets-manager.secret.policy+json");
-    assertEquals(secretPolicyRotationModel.rotation(), secretPolicyRotationRotationModel);
+        SecretPolicyRotation secretPolicyRotationModel = new SecretPolicyRotation.Builder()
+                .type("application/vnd.ibm.secrets-manager.secret.policy+json")
+                .rotation(secretPolicyRotationRotationModel)
+                .build();
+        assertEquals(secretPolicyRotationModel.type(), "application/vnd.ibm.secrets-manager.secret.policy+json");
+        assertEquals(secretPolicyRotationModel.rotation(), secretPolicyRotationRotationModel);
 
-    PutPolicyOptions putPolicyOptionsModel = new PutPolicyOptions.Builder()
-      .secretType("username_password")
-      .id("testString")
-      .metadata(collectionMetadataModel)
-      .resources(new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)))
-      .policy("rotation")
-      .build();
-    assertEquals(putPolicyOptionsModel.secretType(), "username_password");
-    assertEquals(putPolicyOptionsModel.id(), "testString");
-    assertEquals(putPolicyOptionsModel.metadata(), collectionMetadataModel);
-    assertEquals(putPolicyOptionsModel.resources(), new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)));
-    assertEquals(putPolicyOptionsModel.policy(), "rotation");
-  }
+        PutPolicyOptions putPolicyOptionsModel = new PutPolicyOptions.Builder()
+                .secretType("username_password")
+                .id("testString")
+                .metadata(collectionMetadataModel)
+                .resources(new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)))
+                .policy("rotation")
+                .build();
+        assertEquals(putPolicyOptionsModel.secretType(), "username_password");
+        assertEquals(putPolicyOptionsModel.id(), "testString");
+        assertEquals(putPolicyOptionsModel.metadata(), collectionMetadataModel);
+        assertEquals(putPolicyOptionsModel.resources(), new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)));
+        assertEquals(putPolicyOptionsModel.policy(), "rotation");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testPutPolicyOptionsError() throws Throwable {
-    new PutPolicyOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testPutPolicyOptionsError() throws Throwable {
+        new PutPolicyOptions.Builder().build();
+    }
 
 }

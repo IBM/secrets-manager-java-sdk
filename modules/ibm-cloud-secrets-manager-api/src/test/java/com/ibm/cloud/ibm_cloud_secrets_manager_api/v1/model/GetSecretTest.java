@@ -19,25 +19,28 @@ import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.SecretResourceArbitr
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSecret model.
  */
 public class GetSecretTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetSecret() throws Throwable {
-    GetSecret getSecretModel = new GetSecret();
-    assertNull(getSecretModel.getMetadata());
-    assertNull(getSecretModel.getResources());
-  }
+    @Test
+    public void testGetSecret() throws Throwable {
+        GetSecret getSecretModel = new GetSecret();
+        assertNull(getSecretModel.getMetadata());
+        assertNull(getSecretModel.getResources());
+    }
 }

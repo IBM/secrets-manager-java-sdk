@@ -21,179 +21,185 @@ import java.util.List;
  */
 public class SecretResourceArbitrarySecretResource extends SecretResource {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-  }
-
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String type;
-    private String name;
-    private String description;
-    private String secretGroupId;
-    private List<String> labels;
-    private Date expirationDate;
-    private String payload;
-
-    public Builder(SecretResource secretResourceArbitrarySecretResource) {
-      this.type = secretResourceArbitrarySecretResource.type;
-      this.name = secretResourceArbitrarySecretResource.name;
-      this.description = secretResourceArbitrarySecretResource.description;
-      this.secretGroupId = secretResourceArbitrarySecretResource.secretGroupId;
-      this.labels = secretResourceArbitrarySecretResource.labels;
-      this.expirationDate = secretResourceArbitrarySecretResource.expirationDate;
-      this.payload = secretResourceArbitrarySecretResource.payload;
-    }
-
     /**
-     * Instantiates a new builder.
+     * The secret type.
      */
-    public Builder() {
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+    }
+
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String type;
+        private String name;
+        private String description;
+        private String secretGroupId;
+        private List<String> labels;
+        private Date expirationDate;
+        private String payload;
+
+        public Builder(SecretResource secretResourceArbitrarySecretResource) {
+            this.type = secretResourceArbitrarySecretResource.type;
+            this.name = secretResourceArbitrarySecretResource.name;
+            this.description = secretResourceArbitrarySecretResource.description;
+            this.secretGroupId = secretResourceArbitrarySecretResource.secretGroupId;
+            this.labels = secretResourceArbitrarySecretResource.labels;
+            this.expirationDate = secretResourceArbitrarySecretResource.expirationDate;
+            this.payload = secretResourceArbitrarySecretResource.payload;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param name the name
+         */
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Builds a SecretResourceArbitrarySecretResource.
+         *
+         * @return the new SecretResourceArbitrarySecretResource instance
+         */
+        public SecretResourceArbitrarySecretResource build() {
+            return new SecretResourceArbitrarySecretResource(this);
+        }
+
+        /**
+         * Adds an labels to labels.
+         *
+         * @param labels the new labels
+         * @return the SecretResourceArbitrarySecretResource builder
+         */
+        public Builder addLabels(String labels) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
+                    "labels cannot be null");
+            if (this.labels == null) {
+                this.labels = new ArrayList<String>();
+            }
+            this.labels.add(labels);
+            return this;
+        }
+
+        /**
+         * Set the type.
+         *
+         * @param type the type
+         * @return the SecretResourceArbitrarySecretResource builder
+         */
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the SecretResourceArbitrarySecretResource builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the description.
+         *
+         * @param description the description
+         * @return the SecretResourceArbitrarySecretResource builder
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        /**
+         * Set the secretGroupId.
+         *
+         * @param secretGroupId the secretGroupId
+         * @return the SecretResourceArbitrarySecretResource builder
+         */
+        public Builder secretGroupId(String secretGroupId) {
+            this.secretGroupId = secretGroupId;
+            return this;
+        }
+
+        /**
+         * Set the labels.
+         * Existing labels will be replaced.
+         *
+         * @param labels the labels
+         * @return the SecretResourceArbitrarySecretResource builder
+         */
+        public Builder labels(List<String> labels) {
+            this.labels = labels;
+            return this;
+        }
+
+        /**
+         * Set the expirationDate.
+         *
+         * @param expirationDate the expirationDate
+         * @return the SecretResourceArbitrarySecretResource builder
+         */
+        public Builder expirationDate(Date expirationDate) {
+            this.expirationDate = expirationDate;
+            return this;
+        }
+
+        /**
+         * Set the payload.
+         *
+         * @param payload the payload
+         * @return the SecretResourceArbitrarySecretResource builder
+         */
+        public Builder payload(String payload) {
+            this.payload = payload;
+            return this;
+        }
+    }
+
+    protected SecretResourceArbitrarySecretResource(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+                "name cannot be null");
+        type = builder.type;
+        name = builder.name;
+        description = builder.description;
+        secretGroupId = builder.secretGroupId;
+        labels = builder.labels;
+        expirationDate = builder.expirationDate;
+        payload = builder.payload;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param name the name
+     * @return a SecretResourceArbitrarySecretResource builder
      */
-    public Builder(String name) {
-      this.name = name;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Builds a SecretResourceArbitrarySecretResource.
-     *
-     * @return the new SecretResourceArbitrarySecretResource instance
-     */
-    public SecretResourceArbitrarySecretResource build() {
-      return new SecretResourceArbitrarySecretResource(this);
-    }
-
-    /**
-     * Adds an labels to labels.
-     *
-     * @param labels the new labels
-     * @return the SecretResourceArbitrarySecretResource builder
-     */
-    public Builder addLabels(String labels) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
-        "labels cannot be null");
-      if (this.labels == null) {
-        this.labels = new ArrayList<String>();
-      }
-      this.labels.add(labels);
-      return this;
-    }
-
-    /**
-     * Set the type.
-     *
-     * @param type the type
-     * @return the SecretResourceArbitrarySecretResource builder
-     */
-    public Builder type(String type) {
-      this.type = type;
-      return this;
-    }
-
-    /**
-     * Set the name.
-     *
-     * @param name the name
-     * @return the SecretResourceArbitrarySecretResource builder
-     */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
-    }
-
-    /**
-     * Set the description.
-     *
-     * @param description the description
-     * @return the SecretResourceArbitrarySecretResource builder
-     */
-    public Builder description(String description) {
-      this.description = description;
-      return this;
-    }
-
-    /**
-     * Set the secretGroupId.
-     *
-     * @param secretGroupId the secretGroupId
-     * @return the SecretResourceArbitrarySecretResource builder
-     */
-    public Builder secretGroupId(String secretGroupId) {
-      this.secretGroupId = secretGroupId;
-      return this;
-    }
-
-    /**
-     * Set the labels.
-     * Existing labels will be replaced.
-     *
-     * @param labels the labels
-     * @return the SecretResourceArbitrarySecretResource builder
-     */
-    public Builder labels(List<String> labels) {
-      this.labels = labels;
-      return this;
-    }
-
-    /**
-     * Set the expirationDate.
-     *
-     * @param expirationDate the expirationDate
-     * @return the SecretResourceArbitrarySecretResource builder
-     */
-    public Builder expirationDate(Date expirationDate) {
-      this.expirationDate = expirationDate;
-      return this;
-    }
-
-    /**
-     * Set the payload.
-     *
-     * @param payload the payload
-     * @return the SecretResourceArbitrarySecretResource builder
-     */
-    public Builder payload(String payload) {
-      this.payload = payload;
-      return this;
-    }
-  }
-
-  protected SecretResourceArbitrarySecretResource(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
-      "name cannot be null");
-    type = builder.type;
-    name = builder.name;
-    description = builder.description;
-    secretGroupId = builder.secretGroupId;
-    labels = builder.labels;
-    expirationDate = builder.expirationDate;
-    payload = builder.payload;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a SecretResourceArbitrarySecretResource builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

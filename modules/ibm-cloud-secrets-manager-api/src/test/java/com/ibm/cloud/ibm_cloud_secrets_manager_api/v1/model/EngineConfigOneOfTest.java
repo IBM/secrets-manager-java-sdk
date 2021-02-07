@@ -16,23 +16,26 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model.EngineConfigOneOf;
 import com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.utils.TestUtilities;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the EngineConfigOneOf model.
  */
 public class EngineConfigOneOfTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  // TODO: Add tests for models that are abstract
-  @Test
-  public void testEngineConfigOneOf() throws Throwable {
-    EngineConfigOneOf engineConfigOneOfModel = new EngineConfigOneOf();
-    assertNotNull(engineConfigOneOfModel);
-  }
+    // TODO: Add tests for models that are abstract
+    @Test
+    public void testEngineConfigOneOf() throws Throwable {
+        EngineConfigOneOf engineConfigOneOfModel = new EngineConfigOneOf();
+        assertNotNull(engineConfigOneOfModel);
+    }
 }

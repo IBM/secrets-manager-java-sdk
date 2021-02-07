@@ -18,65 +18,65 @@ package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1.model;
 public class SecretActionOneOfDeleteCredentialsForIAMSecret extends SecretActionOneOf {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String serviceId;
-
-    public Builder(SecretActionOneOf secretActionOneOfDeleteCredentialsForIamSecret) {
-      this.serviceId = secretActionOneOfDeleteCredentialsForIamSecret.serviceId;
-    }
-
     /**
-     * Instantiates a new builder.
+     * Builder.
      */
-    public Builder() {
+    public static class Builder {
+        private String serviceId;
+
+        public Builder(SecretActionOneOf secretActionOneOfDeleteCredentialsForIamSecret) {
+            this.serviceId = secretActionOneOfDeleteCredentialsForIamSecret.serviceId;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param serviceId the serviceId
+         */
+        public Builder(String serviceId) {
+            this.serviceId = serviceId;
+        }
+
+        /**
+         * Builds a SecretActionOneOfDeleteCredentialsForIAMSecret.
+         *
+         * @return the new SecretActionOneOfDeleteCredentialsForIAMSecret instance
+         */
+        public SecretActionOneOfDeleteCredentialsForIAMSecret build() {
+            return new SecretActionOneOfDeleteCredentialsForIAMSecret(this);
+        }
+
+        /**
+         * Set the serviceId.
+         *
+         * @param serviceId the serviceId
+         * @return the SecretActionOneOfDeleteCredentialsForIAMSecret builder
+         */
+        public Builder serviceId(String serviceId) {
+            this.serviceId = serviceId;
+            return this;
+        }
+    }
+
+    protected SecretActionOneOfDeleteCredentialsForIAMSecret(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.serviceId,
+                "serviceId cannot be null");
+        serviceId = builder.serviceId;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param serviceId the serviceId
+     * @return a SecretActionOneOfDeleteCredentialsForIAMSecret builder
      */
-    public Builder(String serviceId) {
-      this.serviceId = serviceId;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Builds a SecretActionOneOfDeleteCredentialsForIAMSecret.
-     *
-     * @return the new SecretActionOneOfDeleteCredentialsForIAMSecret instance
-     */
-    public SecretActionOneOfDeleteCredentialsForIAMSecret build() {
-      return new SecretActionOneOfDeleteCredentialsForIAMSecret(this);
-    }
-
-    /**
-     * Set the serviceId.
-     *
-     * @param serviceId the serviceId
-     * @return the SecretActionOneOfDeleteCredentialsForIAMSecret builder
-     */
-    public Builder serviceId(String serviceId) {
-      this.serviceId = serviceId;
-      return this;
-    }
-  }
-
-  protected SecretActionOneOfDeleteCredentialsForIAMSecret(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.serviceId,
-      "serviceId cannot be null");
-    serviceId = builder.serviceId;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a SecretActionOneOfDeleteCredentialsForIAMSecret builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 
