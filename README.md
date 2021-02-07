@@ -38,27 +38,21 @@ Service name | Imported class name
 * Java 8 or above.
 
 ## Installation
-
 The current version of this SDK is: 0.0.1
 
 Each service's artifact coordinates are listed in the table above.
 
-The project artifacts are published on the following public maven repositories:
+The project artifacts are published on the public [Maven Central](https://repo1.maven.org/maven2/)
+artifact repository.  This is the default public repository used by maven when searching for dependencies.
+To use this repository within a gradle build, please see
+[this link](https://docs.gradle.org/current/userguide/declaring_repositories.html).
 
-- [JCenter](https://bintray.com/bintray/jcenter) - For information on how to use the public JCenter maven repository,
-  open [this link](https://bintray.com/bintray/jcenter)
-  then click the `Set Me Up!` button.
-- [Maven Central](https://repo1.maven.org/maven2/) - This is the default public repository used by maven when searching
-  for dependencies. To use this repository within your gradle build, please see
-  [this link](https://docs.gradle.org/current/userguide/declaring_repositories.html).
-
-To use a particular service, define a dependency that contains the artifact coordinates (group id, artifact id and
-version) for the service, like this:
+To use a particular service, define a dependency that contains the
+artifact coordinates (group id, artifact id and version) for the service, like this:
 
 ##### Maven
 
 ```xml
-
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>example-service</artifactId>
@@ -67,7 +61,6 @@ version) for the service, like this:
 ```
 
 ##### Gradle
-
 ```gradle
 'com.ibm.cloud:example-service:0.0.1'
 ```
