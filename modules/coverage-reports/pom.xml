@@ -1,20 +1,20 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>secrets-manger-sdk</artifactId>
+        <artifactId>secrets-manager-sdk</artifactId>
         <groupId>com.ibm.cloud</groupId>
         <version>99-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>secrets-manger-sdk-coverage-reports</artifactId>
+    <artifactId>secrets-manager-sdk-coverage-reports</artifactId>
 
     <name>Secrets Manager SDK Coverage Reports</name>
 
     <dependencies>
         <dependency>
-            <artifactId>secrets-manger-sdk-common</artifactId>
+            <artifactId>secrets-manager-sdk-common</artifactId>
             <groupId>${project.groupId}</groupId>
             <version>${project.version}</version>
         </dependency>

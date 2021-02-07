@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>secrets-manger-sdk</artifactId>
+    <artifactId>secrets-manager-sdk</artifactId>
 
     <name>IBM Cloud Secrets Manager Service Java SDK</name>
 
@@ -91,12 +91,12 @@
             </dependency>
 
             <dependency>
-                <artifactId>secrets-manger-sdk-common</artifactId>
+                <artifactId>secrets-manager-sdk-common</artifactId>
                 <groupId>${project.groupId}</groupId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <artifactId>secrets-manger-sdk-common</artifactId>
+                <artifactId>secrets-manager-sdk-common</artifactId>
                 <groupId>${project.groupId}</groupId>
                 <version>${project.version}</version>
                 <type>test-jar</type>

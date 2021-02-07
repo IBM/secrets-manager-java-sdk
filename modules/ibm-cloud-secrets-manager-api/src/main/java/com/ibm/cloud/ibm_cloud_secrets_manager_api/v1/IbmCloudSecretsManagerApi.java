@@ -49,7 +49,7 @@ import com.ibm.cloud.sdk.core.security.Authenticator;
 import com.ibm.cloud.sdk.core.security.ConfigBasedAuthenticatorFactory;
 import com.ibm.cloud.sdk.core.service.BaseService;
 import com.ibm.cloud.sdk.core.util.ResponseConverterUtils;
-import com.ibm.cloud.secrets_manger_sdk.common.SdkCommon;
+import com.ibm.cloud.secrets_manager_sdk.common.SdkCommon;
 
 import java.util.HashMap;
 import java.util.Map;

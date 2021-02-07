@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>secrets-manger-sdk</artifactId>
+        <artifactId>secrets-manager-sdk</artifactId>
         <groupId>com.ibm.cloud</groupId>
         <version>99-SNAPSHOT</version>
         <relativePath>../..</relativePath>
     </parent>
 
-    <artifactId>secrets-manger-sdk-common</artifactId>
+    <artifactId>secrets-manager-sdk-common</artifactId>
 
     <name>Secrets Manager SDK Common Library</name>
 

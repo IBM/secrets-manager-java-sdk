@@ -11,7 +11,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package com.ibm.cloud.secrets_manger_sdk.test;
+package com.ibm.cloud.secrets_manager_sdk.test;
 
 import java.io.File;
 
