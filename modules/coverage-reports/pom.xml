@@ -12,12 +12,6 @@
 
     <name>Secrets Manager SDK Coverage Reports</name>
 
-    <properties>
-        <!-- There is no need to publish this module's artifacts on maven central -->
-        <maven.deploy.skip>true</maven.deploy.skip>
-        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
-    </properties>
-
     <dependencies>
         <dependency>
             <artifactId>secrets-manager-sdk-common</artifactId>
