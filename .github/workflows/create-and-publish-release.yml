@@ -31,10 +31,9 @@ jobs:
         prerelease: false
     - name: Configure GPG Key
       run: |
+            echo ${{ secrets.GPG_SIGNING_KEY }} 
             cat <(echo -e "${{ secrets.GPG_SIGNING_KEY }}") | gpg --batch --import
             gpg --list-secret-keys --keyid-format LONG
-      env:
-          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
     - name: Set up Maven Central Repository
       uses: actions/setup-java@v1
       with:
@@ -52,4 +51,3 @@ jobs:
       env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
