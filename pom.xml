@@ -461,16 +461,12 @@
                                 <gpgArgument>--yes</gpgArgument>
                                 <gpgArgument>--no-tty</gpgArgument>
                                 <arg>--pinentry-mode</arg>
-                                ™<arg>loopback</arg>
+                                <arg>loopback</arg>
                             </gpgArguments>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
-            <properties>
-                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
-                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-            </properties>
         </profile>
     </profiles>
 </project>
