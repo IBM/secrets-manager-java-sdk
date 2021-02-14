@@ -13,6 +13,14 @@
     <groupId>com.ibm.cloud</groupId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
+         
+    <configuration>
+              <!-- Prevent gpg from using pinentry programs -->
+              <gpgArguments>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+    </configuration>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -406,21 +414,19 @@
 
     <developers>
         <developer>
-            <name>IBM Cloud DevX SDK Development</name>
-            <email>devxsdk@us.ibm.com</email>
-            <url>https://www.ibm.com/</url>
+            <name>IBM Cloud Secrets Manager Development</name>
+            <email>secrets.automation.dev@il.ibm.com</email>
+            <url>https://cloud.ibm.com/catalog/secrets-manager</url>
         </developer>
     </developers>
-
+         
     <profiles>
-
         <!-- "central" is used to deploy artifacts on maven central -->
         <profile>
             <id>central</id>
 
             <!-- For this profile, we'll get dependencies from maven central -->
             <repositories></repositories>
-
             <distributionManagement>
                 <snapshotRepository>
                     <!-- We don't deploy snapshot releases -->
