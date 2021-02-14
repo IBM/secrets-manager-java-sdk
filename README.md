@@ -73,7 +73,7 @@ authenticators from `com.ibm.cloud.sdk.core.security`.
 ```java
 import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 ...
-IamAuthenticator iamAuthenticator=new IamAuthenticator("<IBM_CLOUD_API_KEY>");
+IamAuthenticator iamAuthenticator = new IamAuthenticator("<IBM_CLOUD_API_KEY>");
 ```
 
 To learn more about IAM authenticators and how to use them in your Java application, see
