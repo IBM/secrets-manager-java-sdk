@@ -29,10 +29,9 @@ jobs:
           ${{ steps.Changelog.outputs.changelog }}
         draft: false
         prerelease: false
-    - uses: actions/checkout@v2
     - name: Configure GPG Key
       run: |
-            cat <(echo -e "${{ secrets.GPG_SECRET_KEY }}") | gpg --batch --import
+            cat <(echo -e "${{ secrets.GPG_SIGNING_KEY }}") | gpg --batch --import
             gpg --list-secret-keys --keyid-format LONG
       env:
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
