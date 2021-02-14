@@ -1,0 +1,56 @@
+# This workflow will install Python dependencies, and publishes a new release.
+# For more information see: https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+
+name: Publish a new release
+
+on:
+  push:
+    branches: 
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Changelog
+      uses: scottbrenner/generate-changelog-action@master
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: v0.0.${{ github.run_number }}
+        release_name: Release v0.0.${{ github.run_number }}
+        body: |
+          ${{ steps.Changelog.outputs.changelog }}
+        draft: false
+        prerelease: false
+    - uses: actions/checkout@v2
+    - name: Configure GPG Key
+      run: |
+            cat <(echo -e "${{ secrets.GPG_SECRET_KEY }}") | gpg --batch --import
+            gpg --list-secret-keys --keyid-format LONG
+      env:
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+    - name: Set up Maven Central Repository
+      uses: actions/setup-java@v1
+      with:
+          java-version: 1.8
+          server-id: ossrh
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+    - name: Publish package
+      run: |
+            mvn \
+            --no-transfer-progress \
+            --batch-mode \
+            -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
+            clean deploy
+      env:
+          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
