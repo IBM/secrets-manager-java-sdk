@@ -107,8 +107,8 @@ public class main {
     protected static IbmCloudSecretsManagerApi sm;
     protected static IamAuthenticator iamAuthenticator;
 
-    public static void main(String[] args) {
-      iamAuthenticator = new IamAuthenticator.Builder()
+    public static void main(String[] args) { 
+        iamAuthenticator = new IamAuthenticator.Builder()
               .apikey("IBM_CLOUD_API_KEY")
               .build();
         sm = new IbmCloudSecretsManagerApi("My Secrets-Manager service", iamAuthenticator);
