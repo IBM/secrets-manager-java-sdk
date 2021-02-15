@@ -48,6 +48,7 @@ jobs:
             --batch-mode \
             -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
             -P central \
+            - MVN_ARGS="--settings build-settings.xml" \
             clean deploy
       env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
