@@ -31,7 +31,9 @@ public class IbmCloudSecretsManagerApiIntegrationTest extends PowerMockTestCase 
 
     @BeforeClass
     public void initTest() {
-        iamAuthenticator = new IamAuthenticator(System.getenv("SECRETS_MANAGER_API_APIKEY"));
+        iamAuthenticator = new IamAuthenticator.Builder()
+                .apikey(System.getenv("SECRETS_MANAGER_API_APIKEY"))
+                .build();
         ibmCloudSecretsManagerApiService = new IbmCloudSecretsManagerApi("Secrets Manager integration test", iamAuthenticator);
         ibmCloudSecretsManagerApiService.setServiceUrl(System.getenv("SERVICE_URL"));
     }

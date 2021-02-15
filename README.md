@@ -44,14 +44,14 @@ Service name | Imported class name
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager-sdk</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager-sdk:0.0.1'
+'com.ibm.cloud:secrets-manager-sdk:0.0.2'
 ```
 
 ## Authentication
@@ -73,7 +73,9 @@ authenticators from `com.ibm.cloud.sdk.core.security`.
 ```java
 import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 ...
-IamAuthenticator iamAuthenticator = new IamAuthenticator("<IBM_CLOUD_API_KEY>");
+IamAuthenticator iamAuthenticator = new IamAuthenticator.Builder()
+        .apikey("<IBM_CLOUD_API_KEY>")
+        .build();
 ```
 
 To learn more about IAM authenticators and how to use them in your Java application, see
@@ -106,7 +108,9 @@ public class main {
     protected static IamAuthenticator iamAuthenticator;
 
     public static void main(String[] args) {
-        iamAuthenticator = new IamAuthenticator("IBM_CLOUD_API_KEY");
+      iamAuthenticator = new IamAuthenticator.Builder()
+              .apikey("IBM_CLOUD_API_KEY")
+              .build();
         sm = new IbmCloudSecretsManagerApi("My Secrets-Manager service", iamAuthenticator);
         sm.setServiceUrl("SERVICE_URL");
 
