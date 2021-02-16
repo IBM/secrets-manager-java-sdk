@@ -43,15 +43,15 @@ Service name | Imported class name
 ```xml
 <dependency>
     <groupId>com.ibm.cloud</groupId>
-    <artifactId>secrets-manager-sdk</artifactId>
-    <version>0.0.2</version>
+    <artifactId>secrets-manager</artifactId>
+    <version>0.0.3</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager-sdk:0.0.2'
+'com.ibm.cloud:secrets-manager:0.0.3'
 ```
 
 ## Authentication
