@@ -43,7 +43,7 @@ public class SecretResourceIAMSecretResourceTest {
                 .secretGroupId("testString")
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ttl("24h")
-                .accessGroups(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .accessGroups(new java.util.ArrayList<String>(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0")))
                 .build();
         assertEquals(secretResourceIamSecretResourceModel.type(), "testString");
         assertEquals(secretResourceIamSecretResourceModel.name(), "testString");
@@ -51,7 +51,7 @@ public class SecretResourceIAMSecretResourceTest {
         assertEquals(secretResourceIamSecretResourceModel.secretGroupId(), "testString");
         assertEquals(secretResourceIamSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(secretResourceIamSecretResourceModel.ttl(), "24h");
-        assertEquals(secretResourceIamSecretResourceModel.accessGroups(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(secretResourceIamSecretResourceModel.accessGroups(), new java.util.ArrayList<String>(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0")));
 
         String json = TestUtilities.serialize(secretResourceIamSecretResourceModel);
 

@@ -47,13 +47,13 @@ public class UpdateSecretMetadataOptionsTest {
         assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
         SecretMetadata secretMetadataModel = new SecretMetadata.Builder()
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
                 .name("example-secret")
                 .description("Extended description for this secret.")
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .ttl("24h")
                 .build();
-        assertEquals(secretMetadataModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(secretMetadataModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")));
         assertEquals(secretMetadataModel.name(), "example-secret");
         assertEquals(secretMetadataModel.description(), "Extended description for this secret.");
         assertEquals(secretMetadataModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));

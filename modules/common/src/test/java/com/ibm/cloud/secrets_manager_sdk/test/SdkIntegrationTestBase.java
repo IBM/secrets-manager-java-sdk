@@ -32,6 +32,7 @@ public abstract class SdkIntegrationTestBase {
     /**
      * Returns true if and only if test methods within the subclass should be skipped due to
      * lack of an external configuration file.
+     *
      * @return
      */
     protected boolean skipTests() {
@@ -42,6 +43,7 @@ public abstract class SdkIntegrationTestBase {
     /**
      * Each subclass must implement this method in order to provide the name of the
      * testcase's config file.
+     *
      * @return the name of the config file associated with the testcase
      */
     public abstract String getConfigFilename();

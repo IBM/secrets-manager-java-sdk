@@ -201,7 +201,7 @@ public class SecretResource extends GenericModel {
     /**
      * Gets the crn.
      * <p>
-     * The Cloud Resource Name (CRN) that uniquely identifies your cloud resources.
+     * The Cloud Resource Name (CRN) that uniquely identifies your Secrets Manager resource.
      *
      * @return the crn
      */
@@ -294,7 +294,7 @@ public class SecretResource extends GenericModel {
     /**
      * Gets the username.
      * <p>
-     * The username assigend to the username-password secret.
+     * The username to assign to this secret.
      *
      * @return the username
      */
@@ -305,7 +305,7 @@ public class SecretResource extends GenericModel {
     /**
      * Gets the password.
      * <p>
-     * The password assigend to the username-password secret.
+     * The password to assign to this secret.
      *
      * @return the password
      */
@@ -360,7 +360,9 @@ public class SecretResource extends GenericModel {
     /**
      * Gets the apiKey.
      * <p>
-     * The IAM API key of this IAM secret.
+     * The API key that is generated for this secret.
+     * <p>
+     * After the secret reaches the end of its lease (see the `ttl` field), the API key is revoked automatically.
      *
      * @return the apiKey
      */
@@ -371,8 +373,8 @@ public class SecretResource extends GenericModel {
     /**
      * Gets the serviceId.
      * <p>
-     * The IAM ServiceID under which the IAM API key (see the api_key field) was created. This ServiceID is assigned to
-     * the access_groups defined for this IAM secret.
+     * The service ID under which the API key (see the `api_key` field) is created. This service ID is added to the access
+     * groups that you assign for this secret.
      *
      * @return the serviceId
      */

@@ -246,14 +246,14 @@ public class IbmCloudSecretsManagerApiTest extends PowerMockTestCase {
 
         // Construct an instance of the CollectionMetadata model
         CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.secret.policy+json")
+                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
                 .collectionTotal(Long.valueOf("1"))
                 .build();
 
         // Construct an instance of the SecretPolicyRotationRotation model
         SecretPolicyRotationRotation secretPolicyRotationRotationModel = new SecretPolicyRotationRotation.Builder()
                 .interval(Long.valueOf("1"))
-                .unit("month")
+                .unit("day")
                 .build();
 
         // Construct an instance of the SecretPolicyRotation model
@@ -643,12 +643,12 @@ public class IbmCloudSecretsManagerApiTest extends PowerMockTestCase {
         // Construct an instance of the SecretResourceArbitrarySecretResource model
         SecretResourceArbitrarySecretResource secretResourceModel = new SecretResourceArbitrarySecretResource.Builder()
                 .type("testString")
-                .name("example-arbitrary-secret")
-                .description("Extended description for this secret.")
-                .secretGroupId("bc656587-8fda-4d05-9ad8-b1de1ec7e712")
+                .name("testString")
+                .description("testString")
+                .secretGroupId("testString")
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .expirationDate(DateUtils.parseAsDateTime("2030-01-01T00:00:00Z"))
-                .payload("secret-data")
+                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
+                .payload("testString")
                 .build();
 
         // Construct an instance of the CreateSecretOptions model
@@ -761,6 +761,8 @@ public class IbmCloudSecretsManagerApiTest extends PowerMockTestCase {
         ListAllSecretsOptions listAllSecretsOptionsModel = new ListAllSecretsOptions.Builder()
                 .limit(Long.valueOf("1"))
                 .offset(Long.valueOf("0"))
+                .search("testString")
+                .sortBy("id")
                 .build();
 
         // Invoke operation with valid options model (positive test)
@@ -780,6 +782,8 @@ public class IbmCloudSecretsManagerApiTest extends PowerMockTestCase {
         // Get query params
         assertEquals(Long.valueOf(query.get("limit")), Long.valueOf("1"));
         assertEquals(Long.valueOf(query.get("offset")), Long.valueOf("0"));
+        assertEquals(query.get("search"), "testString");
+        assertEquals(query.get("sort_by"), "id");
         // Check request path
         String parsedPath = TestUtilities.parseReqPath(request);
         assertEquals(parsedPath, listAllSecretsPath);
@@ -851,7 +855,7 @@ public class IbmCloudSecretsManagerApiTest extends PowerMockTestCase {
 
         // Construct an instance of the SecretActionOneOfRotateArbitrarySecretBody model
         SecretActionOneOfRotateArbitrarySecretBody secretActionOneOfModel = new SecretActionOneOfRotateArbitrarySecretBody.Builder()
-                .payload("new-secret-data")
+                .payload("testString")
                 .build();
 
         // Construct an instance of the UpdateSecretOptions model
@@ -1018,10 +1022,10 @@ public class IbmCloudSecretsManagerApiTest extends PowerMockTestCase {
 
         // Construct an instance of the SecretMetadata model
         SecretMetadata secretMetadataModel = new SecretMetadata.Builder()
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .name("updated-secret-name")
-                .description("Updated description for this secret.")
-                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00Z"))
+                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
+                .name("example-secret")
+                .description("Extended description for this secret.")
+                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .ttl("24h")
                 .build();
 
