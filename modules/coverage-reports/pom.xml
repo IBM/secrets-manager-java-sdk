@@ -3,7 +3,7 @@
     <parent>
         <artifactId>secrets-manager-sdk</artifactId>
         <groupId>com.ibm.cloud</groupId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
         <relativePath>../..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -14,8 +14,8 @@
 
     <properties>
         <!-- There is no need to publish this module's artifacts on maven central -->
-<!--        <maven.deploy.skip>true</maven.deploy.skip>-->
-<!--        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>-->
+        <!--        <maven.deploy.skip>true</maven.deploy.skip>-->
+        <!--        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>-->
     </properties>
 
     <dependencies>

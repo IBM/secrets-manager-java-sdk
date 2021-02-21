@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.26.0-4b317b0c-20210127-171701
+ * IBM OpenAPI SDK Code Generator Version: 3.28.0-55613c9e-20210220-164656
  */
 
 package com.ibm.cloud.ibm_cloud_secrets_manager_api.v1;
@@ -57,7 +57,7 @@ import java.util.Map.Entry;
 
 /**
  * With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that are used in IBM Cloud
- * services or your custom-built applications. Secrets are stored in a dedicated instance of Secrets Manager, backed by
+ * services or your custom-built applications. Secrets are stored in a dedicated instance of Secrets Manager, built on
  * open source HashiCorp Vault.
  *
  * @version v1
@@ -157,8 +157,8 @@ public class IbmCloudSecretsManagerApi extends BaseService {
      * Set secret policies.
      * <p>
      * Creates or updates one or more policies, such as an [automatic rotation
-     * policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret),  for
-     * the specified secret.
+     * policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret), for the
+     * specified secret.
      *
      * @param putPolicyOptions the {@link PutPolicyOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSecretPoliciesOneOf}
@@ -449,6 +449,12 @@ public class IbmCloudSecretsManagerApi extends BaseService {
         if (listAllSecretsOptions.offset() != null) {
             builder.query("offset", String.valueOf(listAllSecretsOptions.offset()));
         }
+        if (listAllSecretsOptions.search() != null) {
+            builder.query("search", String.valueOf(listAllSecretsOptions.search()));
+        }
+        if (listAllSecretsOptions.sortBy() != null) {
+            builder.query("sort_by", String.valueOf(listAllSecretsOptions.sortBy()));
+        }
         ResponseConverter<ListSecrets> responseConverter =
                 ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ListSecrets>() {
                 }.getType());
@@ -473,7 +479,7 @@ public class IbmCloudSecretsManagerApi extends BaseService {
      * <p>
      * A successful request returns the secret data that is associated with your secret, along with other metadata. To
      * view only the details of a specified secret without retrieving its value, use the [Get secret
-     * metadata](#get-secret-metadata)  method.
+     * metadata](#get-secret-metadata) method.
      *
      * @param getSecretOptions the {@link GetSecretOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSecret}

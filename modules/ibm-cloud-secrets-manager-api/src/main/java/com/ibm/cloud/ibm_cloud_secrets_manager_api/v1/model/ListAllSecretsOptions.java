@@ -19,8 +19,39 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListAllSecretsOptions extends GenericModel {
 
+    /**
+     * Sorts a list of secrets by the field that you specify.
+     * <p>
+     * **Usage:** To sort a list of secrets by their creation date, use
+     * `../secrets/{secret-type}?sort_by=creation_date`.
+     */
+    public interface SortBy {
+        /**
+         * id.
+         */
+        String ID = "id";
+        /**
+         * creation_date.
+         */
+        String CREATION_DATE = "creation_date";
+        /**
+         * expiration_date.
+         */
+        String EXPIRATION_DATE = "expiration_date";
+        /**
+         * secret_type.
+         */
+        String SECRET_TYPE = "secret_type";
+        /**
+         * name.
+         */
+        String NAME = "name";
+    }
+
     protected Long limit;
     protected Long offset;
+    protected String search;
+    protected String sortBy;
 
     /**
      * Builder.
@@ -28,10 +59,14 @@ public class ListAllSecretsOptions extends GenericModel {
     public static class Builder {
         private Long limit;
         private Long offset;
+        private String search;
+        private String sortBy;
 
         private Builder(ListAllSecretsOptions listAllSecretsOptions) {
             this.limit = listAllSecretsOptions.limit;
             this.offset = listAllSecretsOptions.offset;
+            this.search = listAllSecretsOptions.search;
+            this.sortBy = listAllSecretsOptions.sortBy;
         }
 
         /**
@@ -70,11 +105,35 @@ public class ListAllSecretsOptions extends GenericModel {
             this.offset = offset;
             return this;
         }
+
+        /**
+         * Set the search.
+         *
+         * @param search the search
+         * @return the ListAllSecretsOptions builder
+         */
+        public Builder search(String search) {
+            this.search = search;
+            return this;
+        }
+
+        /**
+         * Set the sortBy.
+         *
+         * @param sortBy the sortBy
+         * @return the ListAllSecretsOptions builder
+         */
+        public Builder sortBy(String sortBy) {
+            this.sortBy = sortBy;
+            return this;
+        }
     }
 
     protected ListAllSecretsOptions(Builder builder) {
         limit = builder.limit;
         offset = builder.offset;
+        search = builder.search;
+        sortBy = builder.sortBy;
     }
 
     /**
@@ -114,6 +173,35 @@ public class ListAllSecretsOptions extends GenericModel {
      */
     public Long offset() {
         return offset;
+    }
+
+    /**
+     * Gets the search.
+     * <p>
+     * Filters for secrets that contain the string that you specify. The fields that are searched include: id, name,
+     * description, labels, secret_type.
+     * <p>
+     * **Usage:** If you want to list only the secrets that contain the string "text", use
+     * `../secrets/{secret-type}?search=text`.
+     *
+     * @return the search
+     */
+    public String search() {
+        return search;
+    }
+
+    /**
+     * Gets the sortBy.
+     * <p>
+     * Sorts a list of secrets by the field that you specify.
+     * <p>
+     * **Usage:** To sort a list of secrets by their creation date, use
+     * `../secrets/{secret-type}?sort_by=creation_date`.
+     *
+     * @return the sortBy
+     */
+    public String sortBy() {
+        return sortBy;
     }
 }
 

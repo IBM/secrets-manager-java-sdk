@@ -37,8 +37,12 @@ public class ListAllSecretsOptionsTest {
         ListAllSecretsOptions listAllSecretsOptionsModel = new ListAllSecretsOptions.Builder()
                 .limit(Long.valueOf("1"))
                 .offset(Long.valueOf("0"))
+                .search("testString")
+                .sortBy("id")
                 .build();
         assertEquals(listAllSecretsOptionsModel.limit(), Long.valueOf("1"));
         assertEquals(listAllSecretsOptionsModel.offset(), Long.valueOf("0"));
+        assertEquals(listAllSecretsOptionsModel.search(), "testString");
+        assertEquals(listAllSecretsOptionsModel.sortBy(), "id");
     }
 }
