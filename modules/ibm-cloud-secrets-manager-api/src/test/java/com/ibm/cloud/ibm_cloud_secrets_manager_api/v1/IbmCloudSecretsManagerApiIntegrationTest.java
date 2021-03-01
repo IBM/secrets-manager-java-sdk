@@ -5,6 +5,7 @@ import com.ibm.cloud.sdk.core.http.Response;
 import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.sdk.core.util.EnvironmentUtils;
+import com.ibm.cloud.sdk.core.service.exception.ConflictException;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.testng.PowerMockTestCase;
@@ -33,6 +34,7 @@ public class IbmCloudSecretsManagerApiIntegrationTest extends PowerMockTestCase 
     public void initTest() {
         iamAuthenticator = new IamAuthenticator.Builder()
                 .apikey(System.getenv("SECRETS_MANAGER_API_APIKEY"))
+                .url(System.getenv("AUTH_URL"))
                 .build();
         ibmCloudSecretsManagerApiService = new IbmCloudSecretsManagerApi("Secrets Manager integration test", iamAuthenticator);
         ibmCloudSecretsManagerApiService.setServiceUrl(System.getenv("SERVICE_URL"));
@@ -213,6 +215,45 @@ public class IbmCloudSecretsManagerApiIntegrationTest extends PowerMockTestCase 
                 .build();
         Response<Void> delSecretResp = ibmCloudSecretsManagerApiService.deleteSecret(deleteSecretOptions).execute();
         assertEquals(delSecretResp.getStatusCode(), 204);
+    }
+
+    @Test
+    public void testCreateSecretConflict() {
+        String secretName = "conflict_integration_test_secret";
+        // create arbitrary secret
+        CollectionMetadata collectionMetadata = new CollectionMetadata.Builder()
+                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionTotal(Long.parseLong("1"))
+                .build();
+        SecretResourceArbitrarySecretResource secretResource = new SecretResourceArbitrarySecretResource.Builder()
+                .name(secretName)
+                .description("Integration test generated")
+                .payload("secret-data")
+                .build();
+        CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
+                .secretType("arbitrary")
+                .metadata(collectionMetadata)
+                .resources(new java.util.ArrayList<>(Collections.singletonList(secretResource)))
+                .build();
+        Response<CreateSecret> createResp = ibmCloudSecretsManagerApiService.createSecret(createSecretOptions).execute();
+        assertEquals(createResp.getStatusCode(), 200);
+
+        String secretId = createResp.getResult().resources().get(0).id();
+
+        // now reuse the same secret name under the same secret type, should result in a conflict error
+        try {
+            createResp = ibmCloudSecretsManagerApiService.createSecret(createSecretOptions).execute();
+        } catch (ConflictException e) {
+            assertEquals(e.getStatusCode(), 409);
+            assertEquals(e.getMessage(), "Conflict");
+        }
+        // delete arbitrary secret
+        DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
+                .secretType("arbitrary")
+                .id(secretId)
+                .build();
+        Response<Void> delResp = ibmCloudSecretsManagerApiService.deleteSecret(deleteSecretOptions).execute();
+        assertEquals(delResp.getStatusCode(), 204);
     }
 
     private Date generateExpirationDate() {
