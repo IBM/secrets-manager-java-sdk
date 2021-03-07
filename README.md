@@ -25,7 +25,7 @@ services:
 
 Service name | Imported class name
 --- | ---
-[Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | IbmCloudSecretsManagerApi
+[Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManager
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ Service name | Imported class name
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager:0..0'
+'com.ibm.cloud:secrets-manager:0.1.0'
 ```
 
 ## Authentication
