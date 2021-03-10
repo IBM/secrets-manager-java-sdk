@@ -4,10 +4,8 @@
 
 <!--
     Checkstyle configuration based on the Google coding conventions from:
-
     -  Google Java Style
        https://google.github.io/styleguide/javaguide.html
-
 -->
 
 <module name="Checker">
@@ -128,9 +126,9 @@
         <module name="UpperEll"/>
 
         <!-- Make the @SuppressWarnings annotations available to Checkstyle -->
-        <module name="SuppressWarningsHolder"/>
+        <module name="SuppressWarningsHolder" />
     </module>
 
     <!-- Filter out Checkstyle warnings that have been suppressed with the @SuppressWarnings annotation -->
-    <module name="SuppressWarningsFilter"/>
+    <module name="SuppressWarningsFilter" />
 </module>
