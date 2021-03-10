@@ -4,10 +4,8 @@
 
 <!--
     Checkstyle configuration based on the Google coding conventions from:
-
     -  Google Java Style
        https://google.github.io/styleguide/javaguide.html
-
 -->
 
 <module name="Checker">

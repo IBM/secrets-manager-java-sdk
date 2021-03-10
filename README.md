@@ -44,14 +44,14 @@ Service name | Imported class name
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.27</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager:0.1.0'
+'com.ibm.cloud:secrets-manager:0.1.27'
 ```
 
 ## Authentication
@@ -95,8 +95,8 @@ Construct a service client and use it to create and retrieve a secret from your 
 Here's an example `main.java` class file:
 
 ```java
-import com.ibm.cloud.secrets_manager.v1.SecretsManager;
-import com.ibm.cloud.secrets_manager.v1.model.*;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.SecretsManager;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.*;
 import com.ibm.cloud.sdk.core.http.Response;
 import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 
