@@ -12,6 +12,9 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
@@ -52,6 +55,7 @@ public class ListAllSecretsOptions extends GenericModel {
     protected Long offset;
     protected String search;
     protected String sortBy;
+    protected List<String> groups;
 
     /**
      * Builder.
@@ -61,12 +65,14 @@ public class ListAllSecretsOptions extends GenericModel {
         private Long offset;
         private String search;
         private String sortBy;
+        private List<String> groups;
 
         private Builder(ListAllSecretsOptions listAllSecretsOptions) {
             this.limit = listAllSecretsOptions.limit;
             this.offset = listAllSecretsOptions.offset;
             this.search = listAllSecretsOptions.search;
             this.sortBy = listAllSecretsOptions.sortBy;
+            this.groups = listAllSecretsOptions.groups;
         }
 
         /**
@@ -82,6 +88,22 @@ public class ListAllSecretsOptions extends GenericModel {
          */
         public ListAllSecretsOptions build() {
             return new ListAllSecretsOptions(this);
+        }
+
+        /**
+         * Adds an groups to groups.
+         *
+         * @param groups the new groups
+         * @return the ListAllSecretsOptions builder
+         */
+        public Builder addGroups(String groups) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(groups,
+                    "groups cannot be null");
+            if (this.groups == null) {
+                this.groups = new ArrayList<String>();
+            }
+            this.groups.add(groups);
+            return this;
         }
 
         /**
@@ -127,6 +149,18 @@ public class ListAllSecretsOptions extends GenericModel {
             this.sortBy = sortBy;
             return this;
         }
+
+        /**
+         * Set the groups.
+         * Existing groups will be replaced.
+         *
+         * @param groups the groups
+         * @return the ListAllSecretsOptions builder
+         */
+        public Builder groups(List<String> groups) {
+            this.groups = groups;
+            return this;
+        }
     }
 
     protected ListAllSecretsOptions(Builder builder) {
@@ -134,6 +168,7 @@ public class ListAllSecretsOptions extends GenericModel {
         offset = builder.offset;
         search = builder.search;
         sortBy = builder.sortBy;
+        groups = builder.groups;
     }
 
     /**
@@ -202,6 +237,23 @@ public class ListAllSecretsOptions extends GenericModel {
      */
     public String sortBy() {
         return sortBy;
+    }
+
+    /**
+     * Gets the groups.
+     * <p>
+     * Filter secrets by groups.
+     * <p>
+     * You can apply multiple filters by using a comma-separated list of secret group IDs. If you need to filter secrets
+     * that are in the default secret group, use the `default` keyword.
+     * <p>
+     * **Usage:** To retrieve a list of secrets that are associated with an existing secret group or the default group,
+     * use `../secrets?groups={secret_group_ID},default`.
+     *
+     * @return the groups
+     */
+    public List<String> groups() {
+        return groups;
     }
 }
 
