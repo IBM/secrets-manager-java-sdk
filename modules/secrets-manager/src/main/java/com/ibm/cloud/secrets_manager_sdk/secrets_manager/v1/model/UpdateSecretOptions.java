@@ -207,7 +207,7 @@ public class UpdateSecretOptions extends GenericModel {
     /**
      * Gets the secretActionOneOf.
      * <p>
-     * The base request for invoking an action on a secret.
+     * The base request body for invoking an action on a secret.
      *
      * @return the secretActionOneOf
      */

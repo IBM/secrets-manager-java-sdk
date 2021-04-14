@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.29.0-cd9ba74f-20210305-183535
+ * IBM OpenAPI SDK Code Generator Version: 3.30.0-bd714324-20210406-200538
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -24,6 +24,7 @@ import com.ibm.cloud.sdk.core.http.ServiceCall;
 import com.ibm.cloud.sdk.core.security.Authenticator;
 import com.ibm.cloud.sdk.core.security.ConfigBasedAuthenticatorFactory;
 import com.ibm.cloud.sdk.core.service.BaseService;
+import com.ibm.cloud.sdk.core.util.RequestUtils;
 import com.ibm.cloud.sdk.core.util.ResponseConverterUtils;
 import com.ibm.cloud.secrets_manager_sdk.common.SdkCommon;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecret;
@@ -31,7 +32,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretGr
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretOptions;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.EngineConfigOneOf;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecret;
@@ -134,9 +135,9 @@ public class SecretsManager extends BaseService {
      * Retrieves the configuration that is associated with the given secret type.
      *
      * @param getConfigOptions the {@link GetConfigOptions} containing the options for the call
-     * @return a {@link ServiceCall} with a result of type {@link EngineConfigOneOf}
+     * @return a {@link ServiceCall} with a result of type {@link GetConfig}
      */
-    public ServiceCall<EngineConfigOneOf> getConfig(GetConfigOptions getConfigOptions) {
+    public ServiceCall<GetConfig> getConfig(GetConfigOptions getConfigOptions) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(getConfigOptions,
                 "getConfigOptions cannot be null");
         Map<String, String> pathParamsMap = new HashMap<String, String>();
@@ -147,8 +148,8 @@ public class SecretsManager extends BaseService {
             builder.header(header.getKey(), header.getValue());
         }
         builder.header("Accept", "application/json");
-        ResponseConverter<EngineConfigOneOf> responseConverter =
-                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<EngineConfigOneOf>() {
+        ResponseConverter<GetConfig> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetConfig>() {
                 }.getType());
         return createServiceCall(builder.build(), responseConverter);
     }
@@ -454,6 +455,9 @@ public class SecretsManager extends BaseService {
         }
         if (listAllSecretsOptions.sortBy() != null) {
             builder.query("sort_by", String.valueOf(listAllSecretsOptions.sortBy()));
+        }
+        if (listAllSecretsOptions.groups() != null) {
+            builder.query("groups", RequestUtils.join(listAllSecretsOptions.groups(), ","));
         }
         ResponseConverter<ListSecrets> responseConverter =
                 ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ListSecrets>() {

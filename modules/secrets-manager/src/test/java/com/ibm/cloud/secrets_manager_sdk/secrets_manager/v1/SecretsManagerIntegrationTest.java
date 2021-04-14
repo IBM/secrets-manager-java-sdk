@@ -33,11 +33,11 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
     @BeforeClass
     public void initTest() {
         iamAuthenticator = new IamAuthenticator.Builder()
-                .apikey(System.getenv("SECRETS_MANAGER_API_APIKEY"))
-                .url(System.getenv("AUTH_URL"))
+                .apikey("HJw4PoHUFUWIjS5UJ22LJegSAtgWREkH2gC5JAGr2Sen")
+                .url("https://iam.cloud.ibm.com")
                 .build();
         secretsManager = new SecretsManager("Secrets Manager integration test", iamAuthenticator);
-        secretsManager.setServiceUrl(System.getenv("SERVICE_URL"));
+        secretsManager.setServiceUrl("https://d1950b6b-e874-4262-a4a4-3b9d766ad238.eu-gb.secrets-manager.appdomain.cloud");
     }
 
     @Test
