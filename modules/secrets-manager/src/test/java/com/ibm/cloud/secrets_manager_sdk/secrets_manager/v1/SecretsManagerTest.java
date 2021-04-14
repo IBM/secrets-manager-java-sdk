@@ -18,6 +18,7 @@ import com.ibm.cloud.sdk.core.security.NoAuthAuthenticator;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.sdk.core.util.EnvironmentUtils;
+import com.ibm.cloud.sdk.core.util.RequestUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.SecretsManager;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecret;
@@ -27,6 +28,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretGr
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.EngineConfigOneOf;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.EngineConfigOneOfIAMSecretEngineRootConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecret;
@@ -37,6 +39,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPolic
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPoliciesOneOfGetSecretPolicyRotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPoliciesOneOfResourcesItem;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListAllSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretGroupsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
@@ -184,7 +187,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetConfigWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"api_key\": \"API_KEY\", \"api_key_hash\": \"a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91\"}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"api_key\": \"API_KEY\", \"api_key_hash\": \"a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91\"}]}";
         String getConfigPath = "/api/v1/config/iam_credentials";
 
         server.enqueue(new MockResponse()
@@ -200,9 +203,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke operation with valid options model (positive test)
-        Response<EngineConfigOneOf> response = secretsManagerService.getConfig(getConfigOptionsModel).execute();
+        Response<GetConfig> response = secretsManagerService.getConfig(getConfigOptionsModel).execute();
         assertNotNull(response);
-        EngineConfigOneOf responseObj = response.getResult();
+        GetConfig responseObj = response.getResult();
         assertNotNull(responseObj);
 
         // Verify the contents of the request
@@ -763,6 +766,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .offset(Long.valueOf("0"))
                 .search("testString")
                 .sortBy("id")
+                .groups(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .build();
 
         // Invoke operation with valid options model (positive test)
@@ -784,6 +788,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(Long.valueOf(query.get("offset")), Long.valueOf("0"));
         assertEquals(query.get("search"), "testString");
         assertEquals(query.get("sort_by"), "id");
+        assertEquals(query.get("groups"), RequestUtils.join(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")), ","));
         // Check request path
         String parsedPath = TestUtilities.parseReqPath(request);
         assertEquals(parsedPath, listAllSecretsPath);
@@ -953,7 +958,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetSecretMetadataWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 1, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"ttl\": \"anyValue\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 1, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"ttl\": \"anyValue\", \"reuse_api_key\": false, \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\"}]}";
         String getSecretMetadataPath = "/api/v1/secrets/arbitrary/testString/metadata";
 
         server.enqueue(new MockResponse()
@@ -1004,7 +1009,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testUpdateSecretMetadataWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 1, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"ttl\": \"anyValue\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 1, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"ttl\": \"anyValue\", \"reuse_api_key\": false, \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\"}]}";
         String updateSecretMetadataPath = "/api/v1/secrets/arbitrary/testString/metadata";
 
         server.enqueue(new MockResponse()

@@ -56,6 +56,8 @@ public class SecretMetadata extends GenericModel {
     @SerializedName("expiration_date")
     protected Date expirationDate;
     protected Object ttl;
+    @SerializedName("reuse_api_key")
+    protected Boolean reuseApiKey;
     protected String crn;
     @SerializedName("creation_date")
     protected Date creationDate;
@@ -329,6 +331,19 @@ public class SecretMetadata extends GenericModel {
      */
     public Object ttl() {
         return ttl;
+    }
+
+    /**
+     * Gets the reuseApiKey.
+     * <p>
+     * For `iam_credentials` secrets, this field controls whether to use the same service ID and API key for future read
+     * operations on this secret. If set to `true`, the service reuses the current credentials. If set to `false`, a new
+     * service ID and API key is generated each time that the secret is read or accessed.
+     *
+     * @return the reuseApiKey
+     */
+    public Boolean reuseApiKey() {
+        return reuseApiKey;
     }
 
     /**
