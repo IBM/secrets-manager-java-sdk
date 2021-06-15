@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.30.0-bd714324-20210406-200538
+ * IBM OpenAPI SDK Code Generator Version: 3.33.0-caf29bd0-20210603-225214
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -39,7 +39,11 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretOptions;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPoliciesOneOf;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPolicies;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionMetadataOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListAllSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretGroupsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
@@ -124,7 +128,7 @@ public class SecretsManager extends BaseService {
         for (Entry<String, String> header : sdkHeaders.entrySet()) {
             builder.header(header.getKey(), header.getValue());
         }
-        builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(putConfigOptions.engineConfigOneOf()), "application/json");
+        builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(putConfigOptions.engineConfig()), "application/json");
         ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
         return createServiceCall(builder.build(), responseConverter);
     }
@@ -162,9 +166,9 @@ public class SecretsManager extends BaseService {
      * specified secret.
      *
      * @param putPolicyOptions the {@link PutPolicyOptions} containing the options for the call
-     * @return a {@link ServiceCall} with a result of type {@link GetSecretPoliciesOneOf}
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretPolicies}
      */
-    public ServiceCall<GetSecretPoliciesOneOf> putPolicy(PutPolicyOptions putPolicyOptions) {
+    public ServiceCall<GetSecretPolicies> putPolicy(PutPolicyOptions putPolicyOptions) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(putPolicyOptions,
                 "putPolicyOptions cannot be null");
         Map<String, String> pathParamsMap = new HashMap<String, String>();
@@ -183,8 +187,8 @@ public class SecretsManager extends BaseService {
         contentJson.add("metadata", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(putPolicyOptions.metadata()));
         contentJson.add("resources", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(putPolicyOptions.resources()));
         builder.bodyJson(contentJson);
-        ResponseConverter<GetSecretPoliciesOneOf> responseConverter =
-                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretPoliciesOneOf>() {
+        ResponseConverter<GetSecretPolicies> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretPolicies>() {
                 }.getType());
         return createServiceCall(builder.build(), responseConverter);
     }
@@ -195,9 +199,9 @@ public class SecretsManager extends BaseService {
      * Retrieves a list of policies that are associated with a specified secret.
      *
      * @param getPolicyOptions the {@link GetPolicyOptions} containing the options for the call
-     * @return a {@link ServiceCall} with a result of type {@link GetSecretPoliciesOneOf}
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretPolicies}
      */
-    public ServiceCall<GetSecretPoliciesOneOf> getPolicy(GetPolicyOptions getPolicyOptions) {
+    public ServiceCall<GetSecretPolicies> getPolicy(GetPolicyOptions getPolicyOptions) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(getPolicyOptions,
                 "getPolicyOptions cannot be null");
         Map<String, String> pathParamsMap = new HashMap<String, String>();
@@ -212,8 +216,8 @@ public class SecretsManager extends BaseService {
         if (getPolicyOptions.policy() != null) {
             builder.query("policy", String.valueOf(getPolicyOptions.policy()));
         }
-        ResponseConverter<GetSecretPoliciesOneOf> responseConverter =
-                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretPoliciesOneOf>() {
+        ResponseConverter<GetSecretPolicies> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretPolicies>() {
                 }.getType());
         return createServiceCall(builder.build(), responseConverter);
     }
@@ -363,13 +367,15 @@ public class SecretsManager extends BaseService {
     /**
      * Create a secret.
      * <p>
-     * Creates a secret that you can use to access or authenticate to a protected resource.
+     * Creates a secret or imports an existing value that you can use to access or authenticate to a protected resource.
      * <p>
-     * A successful request stores the secret in your dedicated instance based on the secret type and data that you
-     * specify. The response returns the ID value of the secret, along with other metadata.
+     * Use this method to either generate or import an existing secret, such as an arbitrary value or a TLS certificate,
+     * that you can manage in your Secrets Manager service instance. A successful request stores the secret in your
+     * dedicated instance based on the secret type and data that you specify. The response returns the ID value of the
+     * secret, along with other metadata.
      * <p>
      * To learn more about the types of secrets that you can create with Secrets Manager, check out the
-     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-basics).
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-what-is-secret).
      *
      * @param createSecretOptions the {@link CreateSecretOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link CreateSecret}
@@ -511,7 +517,7 @@ public class SecretsManager extends BaseService {
      * <p>
      * Invokes an action on a specified secret. This method supports the following actions:
      * <p>
-     * - `rotate`: Replace the value of an `arbitrary` or `username_password` secret.
+     * - `rotate`: Replace the value of an `arbitrary`, `username_password` or `imported_cert` secret.
      * - `delete_credentials`: Delete the API key that is associated with an `iam_credentials` secret.
      *
      * @param updateSecretOptions the {@link UpdateSecretOptions} containing the options for the call
@@ -530,7 +536,7 @@ public class SecretsManager extends BaseService {
         }
         builder.header("Accept", "application/json");
         builder.query("action", String.valueOf(updateSecretOptions.action()));
-        builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateSecretOptions.secretActionOneOf()), "application/json");
+        builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateSecretOptions.secretAction()), "application/json");
         ResponseConverter<GetSecret> responseConverter =
                 ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecret>() {
                 }.getType());
@@ -561,12 +567,71 @@ public class SecretsManager extends BaseService {
     }
 
     /**
+     * Get a version of a secret.
+     * <p>
+     * Retrieves a version of a secret by specifying the ID of the version or the alias `previous`.
+     * <p>
+     * A successful request returns the secret data that is associated with the specified version of your secret, along
+     * with other metadata.
+     *
+     * @param getSecretVersionOptions the {@link GetSecretVersionOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretVersion}
+     */
+    public ServiceCall<GetSecretVersion> getSecretVersion(GetSecretVersionOptions getSecretVersionOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(getSecretVersionOptions,
+                "getSecretVersionOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", getSecretVersionOptions.secretType());
+        pathParamsMap.put("id", getSecretVersionOptions.id());
+        pathParamsMap.put("version_id", getSecretVersionOptions.versionId());
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/secrets/{secret_type}/{id}/versions/{version_id}", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "getSecretVersion");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        ResponseConverter<GetSecretVersion> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretVersion>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Get secret version metadata.
+     * <p>
+     * Retrieves secret version metadata by specifying the ID of the version or the alias `previous`.
+     * <p>
+     * A successful request returns the metadata that is associated with the specified version of your secret.
+     *
+     * @param getSecretVersionMetadataOptions the {@link GetSecretVersionMetadataOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretVersionMetadata}
+     */
+    public ServiceCall<GetSecretVersionMetadata> getSecretVersionMetadata(GetSecretVersionMetadataOptions getSecretVersionMetadataOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(getSecretVersionMetadataOptions,
+                "getSecretVersionMetadataOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", getSecretVersionMetadataOptions.secretType());
+        pathParamsMap.put("id", getSecretVersionMetadataOptions.id());
+        pathParamsMap.put("version_id", getSecretVersionMetadataOptions.versionId());
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/secrets/{secret_type}/{id}/versions/{version_id}/metadata", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "getSecretVersionMetadata");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        ResponseConverter<GetSecretVersionMetadata> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretVersionMetadata>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
      * Get secret metadata.
      * <p>
      * Retrieves the details of a secret by specifying the ID.
      * <p>
      * A successful request returns only metadata about the secret, such as its name and creation date. To retrieve the
-     * value of a secret, use the [Get a secret](#get-secret) method.
+     * value of a secret, use the [Get a secret](#get-secret) or [Get a version of a secret](#get-secret-version) methods.
      *
      * @param getSecretMetadataOptions the {@link GetSecretMetadataOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link SecretMetadataRequest}

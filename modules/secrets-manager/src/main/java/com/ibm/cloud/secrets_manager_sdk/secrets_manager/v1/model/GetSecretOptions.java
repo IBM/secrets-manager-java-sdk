@@ -35,6 +35,10 @@ public class GetSecretOptions extends GenericModel {
          * iam_credentials.
          */
         String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
     }
 
     protected String secretType;

@@ -35,34 +35,10 @@ public class SecretMetadataTest {
     final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
     final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
+    // TODO: Add tests for models that are abstract
     @Test
     public void testSecretMetadata() throws Throwable {
-        SecretMetadata secretMetadataModel = new SecretMetadata.Builder()
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
-                .name("example-secret")
-                .description("Extended description for this secret.")
-                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-                .ttl("24h")
-                .build();
-        assertEquals(secretMetadataModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")));
-        assertEquals(secretMetadataModel.name(), "example-secret");
-        assertEquals(secretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(secretMetadataModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-        assertEquals(secretMetadataModel.ttl(), "24h");
-
-        String json = TestUtilities.serialize(secretMetadataModel);
-
-        SecretMetadata secretMetadataModelNew = TestUtilities.deserialize(json, SecretMetadata.class);
-        assertTrue(secretMetadataModelNew instanceof SecretMetadata);
-        assertEquals(secretMetadataModelNew.name(), "example-secret");
-        assertEquals(secretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(secretMetadataModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-        assertEquals(secretMetadataModelNew.ttl(), "24h");
+        SecretMetadata secretMetadataModel = new SecretMetadata();
+        assertNotNull(secretMetadataModel);
     }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testSecretMetadataError() throws Throwable {
-        new SecretMetadata.Builder().build();
-    }
-
 }

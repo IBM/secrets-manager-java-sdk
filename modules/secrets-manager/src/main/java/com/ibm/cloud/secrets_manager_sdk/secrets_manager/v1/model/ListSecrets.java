@@ -17,7 +17,7 @@ import java.util.List;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * The base schema for listing secrets.
+ * Properties that describe a list of secrets.
  */
 public class ListSecrets extends GenericModel {
 

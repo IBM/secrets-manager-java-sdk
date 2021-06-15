@@ -18,63 +18,63 @@ import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Properties that are associated with a specific secret version.
+ * SecretVersion.
+ * <p>
+ * Classes which extend this class:
+ * - CertificateSecretVersion
  */
 public class SecretVersion extends GenericModel {
 
     protected String id;
+    protected String crn;
+    @SerializedName("version_id")
+    protected String versionId;
     @SerializedName("creation_date")
     protected Date creationDate;
     @SerializedName("created_by")
     protected String createdBy;
-    @SerializedName("auto_rotated")
-    protected Boolean autoRotated;
+    protected CertificateValidity validity;
+    @SerializedName("serial_number")
+    protected String serialNumber;
+    @SerializedName("expiration_date")
+    protected Date expirationDate;
+    @SerializedName("secret_data")
+    protected CertificateSecretData secretData;
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-
-        private Builder(SecretVersion secretVersion) {
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Builds a SecretVersion.
-         *
-         * @return the new SecretVersion instance
-         */
-        public SecretVersion build() {
-            return new SecretVersion(this);
-        }
-    }
-
-    protected SecretVersion(Builder builder) {
-    }
-
-    /**
-     * New builder.
-     *
-     * @return a SecretVersion builder
-     */
-    public Builder newBuilder() {
-        return new Builder(this);
+    protected SecretVersion() {
     }
 
     /**
      * Gets the id.
      * <p>
-     * The ID of the secret version.
+     * The v4 UUID that uniquely identifies the secret.
      *
      * @return the id
      */
-    public String id() {
+    public String getId() {
         return id;
+    }
+
+    /**
+     * Gets the crn.
+     * <p>
+     * The Cloud Resource Name (CRN) that uniquely identifies the secret.
+     *
+     * @return the crn
+     */
+    public String getCrn() {
+        return crn;
+    }
+
+    /**
+     * Gets the versionId.
+     * <p>
+     * The ID of the secret version.
+     *
+     * @return the versionId
+     */
+    public String getVersionId() {
+        return versionId;
     }
 
     /**
@@ -84,30 +84,57 @@ public class SecretVersion extends GenericModel {
      *
      * @return the creationDate
      */
-    public Date creationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
     /**
      * Gets the createdBy.
      * <p>
-     * The unique identifier for the entity that created the secret.
+     * The unique identifier for the entity that created the secret version.
      *
      * @return the createdBy
      */
-    public String createdBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
     /**
-     * Gets the autoRotated.
-     * <p>
-     * Indicates whether the version of the secret was created by automatic rotation.
+     * Gets the validity.
      *
-     * @return the autoRotated
+     * @return the validity
      */
-    public Boolean autoRotated() {
-        return autoRotated;
+    public CertificateValidity getValidity() {
+        return validity;
+    }
+
+    /**
+     * Gets the serialNumber.
+     *
+     * @return the serialNumber
+     */
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    /**
+     * Gets the expirationDate.
+     * <p>
+     * The date that the certificate expires. The date format follows RFC 3339.
+     *
+     * @return the expirationDate
+     */
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    /**
+     * Gets the secretData.
+     *
+     * @return the secretData
+     */
+    public CertificateSecretData getSecretData() {
+        return secretData;
     }
 }
 

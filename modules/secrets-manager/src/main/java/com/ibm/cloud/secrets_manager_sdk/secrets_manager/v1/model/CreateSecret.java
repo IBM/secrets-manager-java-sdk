@@ -18,7 +18,7 @@ import java.util.List;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * The base schema for creating secrets.
+ * Properties that describe a secret.
  */
 public class CreateSecret extends GenericModel {
 

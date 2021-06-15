@@ -15,8 +15,8 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
@@ -46,18 +46,16 @@ public class UpdateSecretMetadataOptionsTest {
         assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
         assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
-        SecretMetadata secretMetadataModel = new SecretMetadata.Builder()
+        ArbitrarySecretMetadata secretMetadataModel = new ArbitrarySecretMetadata.Builder()
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
                 .name("example-secret")
                 .description("Extended description for this secret.")
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-                .ttl("24h")
                 .build();
         assertEquals(secretMetadataModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")));
         assertEquals(secretMetadataModel.name(), "example-secret");
         assertEquals(secretMetadataModel.description(), "Extended description for this secret.");
         assertEquals(secretMetadataModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-        assertEquals(secretMetadataModel.ttl(), "24h");
 
         UpdateSecretMetadataOptions updateSecretMetadataOptionsModel = new UpdateSecretMetadataOptions.Builder()
                 .secretType("arbitrary")

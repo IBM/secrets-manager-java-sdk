@@ -23,9 +23,10 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * SecretResource.
  * <p>
  * Classes which extend this class:
- * - SecretResourceArbitrarySecretResource
- * - SecretResourceUsernamePasswordSecretResource
- * - SecretResourceIAMSecretResource
+ * - ArbitrarySecretResource
+ * - UsernamePasswordSecretResource
+ * - IAMCredentialsSecretResource
+ * - CertificateSecretResource
  */
 public class SecretResource extends GenericModel {
 
@@ -45,9 +46,12 @@ public class SecretResource extends GenericModel {
          * iam_credentials.
          */
         String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
     }
 
-    protected String type;
     protected String id;
     protected String name;
     protected String description;
@@ -66,7 +70,9 @@ public class SecretResource extends GenericModel {
     protected String createdBy;
     @SerializedName("last_update_date")
     protected Date lastUpdateDate;
-    protected List<SecretVersion> versions;
+    @SerializedName("versions_total")
+    protected Long versionsTotal;
+    protected List<Map<String, Object>> versions;
     @SerializedName("expiration_date")
     protected Date expirationDate;
     protected String payload;
@@ -85,19 +91,27 @@ public class SecretResource extends GenericModel {
     protected String serviceId;
     @SerializedName("reuse_api_key")
     protected Boolean reuseApiKey;
+    protected String certificate;
+    @SerializedName("private_key")
+    protected String privateKey;
+    protected String intermediate;
+    @SerializedName("serial_number")
+    protected String serialNumber;
+    protected String algorithm;
+    @SerializedName("key_algorithm")
+    protected String keyAlgorithm;
+    protected String issuer;
+    protected CertificateValidity validity;
+    @SerializedName("common_name")
+    protected String commonName;
+    @SerializedName("intermediate_included")
+    protected Boolean intermediateIncluded;
+    @SerializedName("private_key_included")
+    protected Boolean privateKeyIncluded;
+    @SerializedName("alt_names")
+    protected List<String> altNames;
 
     protected SecretResource() {
-    }
-
-    /**
-     * Gets the type.
-     * <p>
-     * The MIME type that represents the secret.
-     *
-     * @return the type
-     */
-    public String type() {
-        return type;
     }
 
     /**
@@ -245,13 +259,25 @@ public class SecretResource extends GenericModel {
     }
 
     /**
+     * Gets the versionsTotal.
+     * <p>
+     * The number of versions that are associated with a secret.
+     *
+     * @return the versionsTotal
+     */
+    public Long versionsTotal() {
+        return versionsTotal;
+    }
+
+    /**
      * Gets the versions.
      * <p>
-     * An array that contains metadata for each secret version.
+     * An array that contains metadata for each secret version. For more information on the metadata properties, see [Get
+     * secret version metadata](#get-secret-version-metadata).
      *
      * @return the versions
      */
-    public List<SecretVersion> versions() {
+    public List<Map<String, Object>> versions() {
         return versions;
     }
 
@@ -276,7 +302,7 @@ public class SecretResource extends GenericModel {
     /**
      * Gets the payload.
      * <p>
-     * The new secret data to assign to an `arbitrary` secret.
+     * The new secret data to assign to the secret.
      *
      * @return the payload
      */
@@ -398,6 +424,140 @@ public class SecretResource extends GenericModel {
      */
     public Boolean reuseApiKey() {
         return reuseApiKey;
+    }
+
+    /**
+     * Gets the certificate.
+     * <p>
+     * The contents of your certificate. The data must be formatted on a single line with embedded newline characters.
+     *
+     * @return the certificate
+     */
+    public String certificate() {
+        return certificate;
+    }
+
+    /**
+     * Gets the privateKey.
+     * <p>
+     * The private key to associate with the certificate. The data must be formatted on a single line with embedded
+     * newline characters.
+     *
+     * @return the privateKey
+     */
+    public String privateKey() {
+        return privateKey;
+    }
+
+    /**
+     * Gets the intermediate.
+     * <p>
+     * The intermediate certificate to associate with the root certificate. The data must be formatted on a single line
+     * with embedded newline characters.
+     *
+     * @return the intermediate
+     */
+    public String intermediate() {
+        return intermediate;
+    }
+
+    /**
+     * Gets the serialNumber.
+     * <p>
+     * The unique serial number that was assigned to the certificate by the issuing certificate authority.
+     *
+     * @return the serialNumber
+     */
+    public String serialNumber() {
+        return serialNumber;
+    }
+
+    /**
+     * Gets the algorithm.
+     * <p>
+     * The identifier for the cryptographic algorthim that was used by the issuing certificate authority to sign the
+     * ceritificate.
+     *
+     * @return the algorithm
+     */
+    public String algorithm() {
+        return algorithm;
+    }
+
+    /**
+     * Gets the keyAlgorithm.
+     * <p>
+     * The identifier for the cryptographic algorithm that was used to generate the public key that is associated with the
+     * certificate.
+     *
+     * @return the keyAlgorithm
+     */
+    public String keyAlgorithm() {
+        return keyAlgorithm;
+    }
+
+    /**
+     * Gets the issuer.
+     * <p>
+     * The distinguished name that identifies the entity that signed and issued the certificate.
+     *
+     * @return the issuer
+     */
+    public String issuer() {
+        return issuer;
+    }
+
+    /**
+     * Gets the validity.
+     *
+     * @return the validity
+     */
+    public CertificateValidity validity() {
+        return validity;
+    }
+
+    /**
+     * Gets the commonName.
+     * <p>
+     * The fully qualified domain name or host domain name that is defined for the certificate.
+     *
+     * @return the commonName
+     */
+    public String commonName() {
+        return commonName;
+    }
+
+    /**
+     * Gets the intermediateIncluded.
+     * <p>
+     * Indicates whether the certificate was imported with an associated intermediate certificate.
+     *
+     * @return the intermediateIncluded
+     */
+    public Boolean intermediateIncluded() {
+        return intermediateIncluded;
+    }
+
+    /**
+     * Gets the privateKeyIncluded.
+     * <p>
+     * Indicates whether the certificate was imported with an associated private key.
+     *
+     * @return the privateKeyIncluded
+     */
+    public Boolean privateKeyIncluded() {
+        return privateKeyIncluded;
+    }
+
+    /**
+     * Gets the altNames.
+     * <p>
+     * The alternative names that are defined for the certificate.
+     *
+     * @return the altNames
+     */
+    public List<String> altNames() {
+        return altNames;
     }
 }
 

@@ -12,7 +12,6 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +19,13 @@ import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Metadata properties that describe a secret.
+ * SecretMetadata.
+ * <p>
+ * Classes which extend this class:
+ * - ArbitrarySecretMetadata
+ * - UsernamePasswordSecretMetadata
+ * - IAMCredentialsSecretMetadata
+ * - CertificateSecretMetadata
  */
 public class SecretMetadata extends GenericModel {
 
@@ -40,6 +45,10 @@ public class SecretMetadata extends GenericModel {
          * iam_credentials.
          */
         String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
     }
 
     protected String id;
@@ -53,11 +62,6 @@ public class SecretMetadata extends GenericModel {
     protected String stateDescription;
     @SerializedName("secret_type")
     protected String secretType;
-    @SerializedName("expiration_date")
-    protected Date expirationDate;
-    protected Object ttl;
-    @SerializedName("reuse_api_key")
-    protected Boolean reuseApiKey;
     protected String crn;
     @SerializedName("creation_date")
     protected Date creationDate;
@@ -65,139 +69,30 @@ public class SecretMetadata extends GenericModel {
     protected String createdBy;
     @SerializedName("last_update_date")
     protected Date lastUpdateDate;
+    @SerializedName("versions_total")
+    protected Long versionsTotal;
+    @SerializedName("expiration_date")
+    protected Date expirationDate;
+    protected Object ttl;
+    @SerializedName("reuse_api_key")
+    protected Boolean reuseApiKey;
+    @SerializedName("serial_number")
+    protected String serialNumber;
+    protected String algorithm;
+    @SerializedName("key_algorithm")
+    protected String keyAlgorithm;
+    protected String issuer;
+    protected CertificateValidity validity;
+    @SerializedName("common_name")
+    protected String commonName;
+    @SerializedName("intermediate_included")
+    protected Boolean intermediateIncluded;
+    @SerializedName("private_key_included")
+    protected Boolean privateKeyIncluded;
+    @SerializedName("alt_names")
+    protected List<String> altNames;
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private List<String> labels;
-        private String name;
-        private String description;
-        private Date expirationDate;
-        private Object ttl;
-
-        private Builder(SecretMetadata secretMetadata) {
-            this.labels = secretMetadata.labels;
-            this.name = secretMetadata.name;
-            this.description = secretMetadata.description;
-            this.expirationDate = secretMetadata.expirationDate;
-            this.ttl = secretMetadata.ttl;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param name the name
-         */
-        public Builder(String name) {
-            this.name = name;
-        }
-
-        /**
-         * Builds a SecretMetadata.
-         *
-         * @return the new SecretMetadata instance
-         */
-        public SecretMetadata build() {
-            return new SecretMetadata(this);
-        }
-
-        /**
-         * Adds an labels to labels.
-         *
-         * @param labels the new labels
-         * @return the SecretMetadata builder
-         */
-        public Builder addLabels(String labels) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
-                    "labels cannot be null");
-            if (this.labels == null) {
-                this.labels = new ArrayList<String>();
-            }
-            this.labels.add(labels);
-            return this;
-        }
-
-        /**
-         * Set the labels.
-         * Existing labels will be replaced.
-         *
-         * @param labels the labels
-         * @return the SecretMetadata builder
-         */
-        public Builder labels(List<String> labels) {
-            this.labels = labels;
-            return this;
-        }
-
-        /**
-         * Set the name.
-         *
-         * @param name the name
-         * @return the SecretMetadata builder
-         */
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        /**
-         * Set the description.
-         *
-         * @param description the description
-         * @return the SecretMetadata builder
-         */
-        public Builder description(String description) {
-            this.description = description;
-            return this;
-        }
-
-        /**
-         * Set the expirationDate.
-         *
-         * @param expirationDate the expirationDate
-         * @return the SecretMetadata builder
-         */
-        public Builder expirationDate(Date expirationDate) {
-            this.expirationDate = expirationDate;
-            return this;
-        }
-
-        /**
-         * Set the ttl.
-         *
-         * @param ttl the ttl
-         * @return the SecretMetadata builder
-         */
-        public Builder ttl(Object ttl) {
-            this.ttl = ttl;
-            return this;
-        }
-    }
-
-    protected SecretMetadata(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
-                "name cannot be null");
-        labels = builder.labels;
-        name = builder.name;
-        description = builder.description;
-        expirationDate = builder.expirationDate;
-        ttl = builder.ttl;
-    }
-
-    /**
-     * New builder.
-     *
-     * @return a SecretMetadata builder
-     */
-    public Builder newBuilder() {
-        return new Builder(this);
+    protected SecretMetadata() {
     }
 
     /**
@@ -301,6 +196,61 @@ public class SecretMetadata extends GenericModel {
     }
 
     /**
+     * Gets the crn.
+     * <p>
+     * The Cloud Resource Name (CRN) that uniquely identifies the resource.
+     *
+     * @return the crn
+     */
+    public String crn() {
+        return crn;
+    }
+
+    /**
+     * Gets the creationDate.
+     * <p>
+     * The date the secret was created. The date format follows RFC 3339.
+     *
+     * @return the creationDate
+     */
+    public Date creationDate() {
+        return creationDate;
+    }
+
+    /**
+     * Gets the createdBy.
+     * <p>
+     * The unique identifier for the entity that created the secret.
+     *
+     * @return the createdBy
+     */
+    public String createdBy() {
+        return createdBy;
+    }
+
+    /**
+     * Gets the lastUpdateDate.
+     * <p>
+     * Updates when any part of the secret metadata is modified. The date format follows RFC 3339.
+     *
+     * @return the lastUpdateDate
+     */
+    public Date lastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    /**
+     * Gets the versionsTotal.
+     * <p>
+     * The number of versions the secret has.
+     *
+     * @return the versionsTotal
+     */
+    public Long versionsTotal() {
+        return versionsTotal;
+    }
+
+    /**
      * Gets the expirationDate.
      * <p>
      * The date the secret material expires. The date format follows RFC 3339.
@@ -347,47 +297,102 @@ public class SecretMetadata extends GenericModel {
     }
 
     /**
-     * Gets the crn.
+     * Gets the serialNumber.
      * <p>
-     * The Cloud Resource Name (CRN) that uniquely identifies the resource.
+     * The unique serial number that was assigned to the certificate by the issuing certificate authority.
      *
-     * @return the crn
+     * @return the serialNumber
      */
-    public String crn() {
-        return crn;
+    public String serialNumber() {
+        return serialNumber;
     }
 
     /**
-     * Gets the creationDate.
+     * Gets the algorithm.
      * <p>
-     * The date the secret was created. The date format follows RFC 3339.
+     * The identifier for the cryptographic algorthim that was used by the issuing certificate authority to sign the
+     * ceritificate.
      *
-     * @return the creationDate
+     * @return the algorithm
      */
-    public Date creationDate() {
-        return creationDate;
+    public String algorithm() {
+        return algorithm;
     }
 
     /**
-     * Gets the createdBy.
+     * Gets the keyAlgorithm.
      * <p>
-     * The unique identifier for the entity that created the secret.
+     * The identifier for the cryptographic algorithm that was used to generate the public key that is associated with the
+     * certificate.
      *
-     * @return the createdBy
+     * @return the keyAlgorithm
      */
-    public String createdBy() {
-        return createdBy;
+    public String keyAlgorithm() {
+        return keyAlgorithm;
     }
 
     /**
-     * Gets the lastUpdateDate.
+     * Gets the issuer.
      * <p>
-     * Updates when any part of the secret metadata is modified. The date format follows RFC 3339.
+     * The distinguished name that identifies the entity that signed and issued the certificate.
      *
-     * @return the lastUpdateDate
+     * @return the issuer
      */
-    public Date lastUpdateDate() {
-        return lastUpdateDate;
+    public String issuer() {
+        return issuer;
+    }
+
+    /**
+     * Gets the validity.
+     *
+     * @return the validity
+     */
+    public CertificateValidity validity() {
+        return validity;
+    }
+
+    /**
+     * Gets the commonName.
+     * <p>
+     * The fully qualified domain name or host domain name that is defined for the certificate.
+     *
+     * @return the commonName
+     */
+    public String commonName() {
+        return commonName;
+    }
+
+    /**
+     * Gets the intermediateIncluded.
+     * <p>
+     * Indicates whether the certificate was imported with an associated intermediate certificate.
+     *
+     * @return the intermediateIncluded
+     */
+    public Boolean intermediateIncluded() {
+        return intermediateIncluded;
+    }
+
+    /**
+     * Gets the privateKeyIncluded.
+     * <p>
+     * Indicates whether the certificate was imported with an associated private key.
+     *
+     * @return the privateKeyIncluded
+     */
+    public Boolean privateKeyIncluded() {
+        return privateKeyIncluded;
+    }
+
+    /**
+     * Gets the altNames.
+     * <p>
+     * The alternative names that are defined for the certificate.
+     *
+     * @return the altNames
+     */
+    public List<String> altNames() {
+        return altNames;
     }
 }
 

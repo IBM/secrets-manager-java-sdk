@@ -30,18 +30,18 @@ public class PutConfigOptions extends GenericModel {
     }
 
     protected String secretType;
-    protected EngineConfigOneOf engineConfigOneOf;
+    protected EngineConfig engineConfig;
 
     /**
      * Builder.
      */
     public static class Builder {
         private String secretType;
-        private EngineConfigOneOf engineConfigOneOf;
+        private EngineConfig engineConfig;
 
         private Builder(PutConfigOptions putConfigOptions) {
             this.secretType = putConfigOptions.secretType;
-            this.engineConfigOneOf = putConfigOptions.engineConfigOneOf;
+            this.engineConfig = putConfigOptions.engineConfig;
         }
 
         /**
@@ -53,12 +53,12 @@ public class PutConfigOptions extends GenericModel {
         /**
          * Instantiates a new builder with required properties.
          *
-         * @param secretType        the secretType
-         * @param engineConfigOneOf the engineConfigOneOf
+         * @param secretType   the secretType
+         * @param engineConfig the engineConfig
          */
-        public Builder(String secretType, EngineConfigOneOf engineConfigOneOf) {
+        public Builder(String secretType, EngineConfig engineConfig) {
             this.secretType = secretType;
-            this.engineConfigOneOf = engineConfigOneOf;
+            this.engineConfig = engineConfig;
         }
 
         /**
@@ -82,13 +82,13 @@ public class PutConfigOptions extends GenericModel {
         }
 
         /**
-         * Set the engineConfigOneOf.
+         * Set the engineConfig.
          *
-         * @param engineConfigOneOf the engineConfigOneOf
+         * @param engineConfig the engineConfig
          * @return the PutConfigOptions builder
          */
-        public Builder engineConfigOneOf(EngineConfigOneOf engineConfigOneOf) {
-            this.engineConfigOneOf = engineConfigOneOf;
+        public Builder engineConfig(EngineConfig engineConfig) {
+            this.engineConfig = engineConfig;
             return this;
         }
     }
@@ -96,10 +96,10 @@ public class PutConfigOptions extends GenericModel {
     protected PutConfigOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.engineConfigOneOf,
-                "engineConfigOneOf cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.engineConfig,
+                "engineConfig cannot be null");
         secretType = builder.secretType;
-        engineConfigOneOf = builder.engineConfigOneOf;
+        engineConfig = builder.engineConfig;
     }
 
     /**
@@ -123,14 +123,14 @@ public class PutConfigOptions extends GenericModel {
     }
 
     /**
-     * Gets the engineConfigOneOf.
+     * Gets the engineConfig.
      * <p>
-     * The base request for setting secret engine configuration.
+     * Properties to update for a secrets engine.
      *
-     * @return the engineConfigOneOf
+     * @return the engineConfig
      */
-    public EngineConfigOneOf engineConfigOneOf() {
-        return engineConfigOneOf;
+    public EngineConfig engineConfig() {
+        return engineConfig;
     }
 }
 
