@@ -119,7 +119,7 @@ public class main {
                 .collectionType("application/vnd.ibm.secrets-manager.secret+json")
                 .collectionTotal(Long.parseLong("1"))
                 .build();
-        SecretResourceArbitrarySecretResource arbitrarySecretResource = new SecretResourceArbitrarySecretResource.Builder()
+      ArbitrarySecretResource arbitrarySecretResource = new ArbitrarySecretResource.Builder()
                 .name("example-arbitrary-secret")
                 .description("Extended description for this secret.")
                 .payload("secret-data")
