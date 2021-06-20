@@ -14,6 +14,9 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+import com.ibm.cloud.sdk.core.util.DateUtils;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretData;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
@@ -32,14 +35,10 @@ public class SecretVersionTest {
     final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
     final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
+    // TODO: Add tests for models that are abstract
     @Test
     public void testSecretVersion() throws Throwable {
-        SecretVersion secretVersionModel = new SecretVersion.Builder()
-                .build();
-
-        String json = TestUtilities.serialize(secretVersionModel);
-
-        SecretVersion secretVersionModelNew = TestUtilities.deserialize(json, SecretVersion.class);
-        assertTrue(secretVersionModelNew instanceof SecretVersion);
+        SecretVersion secretVersionModel = new SecretVersion();
+        assertNotNull(secretVersionModel);
     }
 }

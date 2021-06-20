@@ -35,6 +35,10 @@ public class UpdateSecretOptions extends GenericModel {
          * iam_credentials.
          */
         String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
     }
 
     /**
@@ -54,7 +58,7 @@ public class UpdateSecretOptions extends GenericModel {
     protected String secretType;
     protected String id;
     protected String action;
-    protected SecretActionOneOf secretActionOneOf;
+    protected SecretAction secretAction;
 
     /**
      * Builder.
@@ -63,13 +67,13 @@ public class UpdateSecretOptions extends GenericModel {
         private String secretType;
         private String id;
         private String action;
-        private SecretActionOneOf secretActionOneOf;
+        private SecretAction secretAction;
 
         private Builder(UpdateSecretOptions updateSecretOptions) {
             this.secretType = updateSecretOptions.secretType;
             this.id = updateSecretOptions.id;
             this.action = updateSecretOptions.action;
-            this.secretActionOneOf = updateSecretOptions.secretActionOneOf;
+            this.secretAction = updateSecretOptions.secretAction;
         }
 
         /**
@@ -81,16 +85,16 @@ public class UpdateSecretOptions extends GenericModel {
         /**
          * Instantiates a new builder with required properties.
          *
-         * @param secretType        the secretType
-         * @param id                the id
-         * @param action            the action
-         * @param secretActionOneOf the secretActionOneOf
+         * @param secretType   the secretType
+         * @param id           the id
+         * @param action       the action
+         * @param secretAction the secretAction
          */
-        public Builder(String secretType, String id, String action, SecretActionOneOf secretActionOneOf) {
+        public Builder(String secretType, String id, String action, SecretAction secretAction) {
             this.secretType = secretType;
             this.id = id;
             this.action = action;
-            this.secretActionOneOf = secretActionOneOf;
+            this.secretAction = secretAction;
         }
 
         /**
@@ -136,13 +140,13 @@ public class UpdateSecretOptions extends GenericModel {
         }
 
         /**
-         * Set the secretActionOneOf.
+         * Set the secretAction.
          *
-         * @param secretActionOneOf the secretActionOneOf
+         * @param secretAction the secretAction
          * @return the UpdateSecretOptions builder
          */
-        public Builder secretActionOneOf(SecretActionOneOf secretActionOneOf) {
-            this.secretActionOneOf = secretActionOneOf;
+        public Builder secretAction(SecretAction secretAction) {
+            this.secretAction = secretAction;
             return this;
         }
     }
@@ -154,12 +158,12 @@ public class UpdateSecretOptions extends GenericModel {
                 "id cannot be empty");
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.action,
                 "action cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretActionOneOf,
-                "secretActionOneOf cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretAction,
+                "secretAction cannot be null");
         secretType = builder.secretType;
         id = builder.id;
         action = builder.action;
-        secretActionOneOf = builder.secretActionOneOf;
+        secretAction = builder.secretAction;
     }
 
     /**
@@ -205,14 +209,14 @@ public class UpdateSecretOptions extends GenericModel {
     }
 
     /**
-     * Gets the secretActionOneOf.
+     * Gets the secretAction.
      * <p>
-     * The base request body for invoking an action on a secret.
+     * The properties to update for the secret.
      *
-     * @return the secretActionOneOf
+     * @return the secretAction
      */
-    public SecretActionOneOf secretActionOneOf() {
-        return secretActionOneOf;
+    public SecretAction secretAction() {
+        return secretAction;
     }
 }
 

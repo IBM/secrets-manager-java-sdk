@@ -15,9 +15,9 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecret;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretResourceArbitrarySecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.testng.annotations.Test;
 
@@ -46,8 +47,7 @@ public class CreateSecretTest {
         assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
         assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
-        SecretResourceArbitrarySecretResource secretResourceModel = new SecretResourceArbitrarySecretResource.Builder()
-                .type("testString")
+        ArbitrarySecretResource secretResourceModel = new ArbitrarySecretResource.Builder()
                 .name("testString")
                 .description("testString")
                 .secretGroupId("testString")
@@ -55,7 +55,6 @@ public class CreateSecretTest {
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .payload("testString")
                 .build();
-        assertEquals(secretResourceModel.type(), "testString");
         assertEquals(secretResourceModel.name(), "testString");
         assertEquals(secretResourceModel.description(), "testString");
         assertEquals(secretResourceModel.secretGroupId(), "testString");

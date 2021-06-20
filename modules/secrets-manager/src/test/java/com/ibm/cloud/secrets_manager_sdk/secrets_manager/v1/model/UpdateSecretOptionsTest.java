@@ -14,7 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretActionOneOfRotateArbitrarySecretBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateArbitrarySecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
@@ -35,21 +35,21 @@ public class UpdateSecretOptionsTest {
 
     @Test
     public void testUpdateSecretOptions() throws Throwable {
-        SecretActionOneOfRotateArbitrarySecretBody secretActionOneOfModel = new SecretActionOneOfRotateArbitrarySecretBody.Builder()
+        RotateArbitrarySecretBody secretActionModel = new RotateArbitrarySecretBody.Builder()
                 .payload("testString")
                 .build();
-        assertEquals(secretActionOneOfModel.payload(), "testString");
+        assertEquals(secretActionModel.payload(), "testString");
 
         UpdateSecretOptions updateSecretOptionsModel = new UpdateSecretOptions.Builder()
                 .secretType("arbitrary")
                 .id("testString")
                 .action("rotate")
-                .secretActionOneOf(secretActionOneOfModel)
+                .secretAction(secretActionModel)
                 .build();
         assertEquals(updateSecretOptionsModel.secretType(), "arbitrary");
         assertEquals(updateSecretOptionsModel.id(), "testString");
         assertEquals(updateSecretOptionsModel.action(), "rotate");
-        assertEquals(updateSecretOptionsModel.secretActionOneOf(), secretActionOneOfModel);
+        assertEquals(updateSecretOptionsModel.secretAction(), secretActionModel);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

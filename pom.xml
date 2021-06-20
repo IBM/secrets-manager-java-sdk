@@ -11,13 +11,13 @@
     <url>https://github.com/IBM/secrets-manager-java-sdk</url>
 
     <groupId>com.ibm.cloud</groupId>
-    <version>0.1.28</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sdk-core-version>9.8.1</sdk-core-version>
+        <sdk-core-version>9.10.3</sdk-core-version>
 
         <git-repository-name>secrets-manager-java-sdk</git-repository-name>
 

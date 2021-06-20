@@ -44,14 +44,14 @@ Service name | Imported class name
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager</artifactId>
-    <version>0.1.28</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager:0.1.28'
+'com.ibm.cloud:secrets-manager:1.0.0'
 ```
 
 ## Authentication
@@ -119,7 +119,7 @@ public class main {
                 .collectionType("application/vnd.ibm.secrets-manager.secret+json")
                 .collectionTotal(Long.parseLong("1"))
                 .build();
-        SecretResourceArbitrarySecretResource arbitrarySecretResource = new SecretResourceArbitrarySecretResource.Builder()
+      ArbitrarySecretResource arbitrarySecretResource = new ArbitrarySecretResource.Builder()
                 .name("example-arbitrary-secret")
                 .description("Extended description for this secret.")
                 .payload("secret-data")

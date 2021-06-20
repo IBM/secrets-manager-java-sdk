@@ -15,7 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Metadata properties that describe a secret group.
+ * Metadata properties to update for a secret group.
  */
 public class SecretGroupMetadataUpdatable extends GenericModel {
 

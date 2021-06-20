@@ -22,7 +22,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class GetConfig extends GenericModel {
 
     protected CollectionMetadata metadata;
-    protected List<IAMSecretEngineRootConfig> resources;
+    protected List<IAMCredentialsSecretEngineRootConfig> resources;
 
     /**
      * Gets the metadata.
@@ -42,7 +42,7 @@ public class GetConfig extends GenericModel {
      *
      * @return the resources
      */
-    public List<IAMSecretEngineRootConfig> getResources() {
+    public List<IAMCredentialsSecretEngineRootConfig> getResources() {
         return resources;
     }
 }

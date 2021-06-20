@@ -15,7 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Properties that are associated with a rotation policy.
+ * Properties that describe a rotation policy.
  */
 public class SecretPolicyRotation extends GenericModel {
 
