@@ -245,7 +245,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
             createResp = secretsManager.createSecret(createSecretOptions).execute();
         } catch (ConflictException e) {
             assertEquals(e.getStatusCode(), 409);
-            assertEquals(e.getMessage(), "Conflict");
+            assertEquals(e.getMessage(), "A secret with the same name already exists: " + secretName);
         }
         // delete arbitrary secret
         DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
