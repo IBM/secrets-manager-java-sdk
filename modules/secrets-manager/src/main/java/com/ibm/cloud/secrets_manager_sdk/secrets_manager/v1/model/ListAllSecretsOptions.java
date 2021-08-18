@@ -22,238 +22,228 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListAllSecretsOptions extends GenericModel {
 
+  /**
+   * Sort a list of secrets by the specified field.
+   *
+   * **Usage:** To sort a list of secrets by their creation date, use
+   * `../secrets/{secret-type}?sort_by=creation_date`.
+   */
+  public interface SortBy {
+    /** id. */
+    String ID = "id";
+    /** creation_date. */
+    String CREATION_DATE = "creation_date";
+    /** expiration_date. */
+    String EXPIRATION_DATE = "expiration_date";
+    /** secret_type. */
+    String SECRET_TYPE = "secret_type";
+    /** name. */
+    String NAME = "name";
+  }
+
+  protected Long limit;
+  protected Long offset;
+  protected String search;
+  protected String sortBy;
+  protected List<String> groups;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Long limit;
+    private Long offset;
+    private String search;
+    private String sortBy;
+    private List<String> groups;
+
+    private Builder(ListAllSecretsOptions listAllSecretsOptions) {
+      this.limit = listAllSecretsOptions.limit;
+      this.offset = listAllSecretsOptions.offset;
+      this.search = listAllSecretsOptions.search;
+      this.sortBy = listAllSecretsOptions.sortBy;
+      this.groups = listAllSecretsOptions.groups;
+    }
+
     /**
-     * Sort a list of secrets by the specified field.
-     * <p>
-     * **Usage:** To sort a list of secrets by their creation date, use
-     * `../secrets/{secret-type}?sort_by=creation_date`.
+     * Instantiates a new builder.
      */
-    public interface SortBy {
-        /**
-         * id.
-         */
-        String ID = "id";
-        /**
-         * creation_date.
-         */
-        String CREATION_DATE = "creation_date";
-        /**
-         * expiration_date.
-         */
-        String EXPIRATION_DATE = "expiration_date";
-        /**
-         * secret_type.
-         */
-        String SECRET_TYPE = "secret_type";
-        /**
-         * name.
-         */
-        String NAME = "name";
-    }
-
-    protected Long limit;
-    protected Long offset;
-    protected String search;
-    protected String sortBy;
-    protected List<String> groups;
-
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private Long limit;
-        private Long offset;
-        private String search;
-        private String sortBy;
-        private List<String> groups;
-
-        private Builder(ListAllSecretsOptions listAllSecretsOptions) {
-            this.limit = listAllSecretsOptions.limit;
-            this.offset = listAllSecretsOptions.offset;
-            this.search = listAllSecretsOptions.search;
-            this.sortBy = listAllSecretsOptions.sortBy;
-            this.groups = listAllSecretsOptions.groups;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Builds a ListAllSecretsOptions.
-         *
-         * @return the new ListAllSecretsOptions instance
-         */
-        public ListAllSecretsOptions build() {
-            return new ListAllSecretsOptions(this);
-        }
-
-        /**
-         * Adds an groups to groups.
-         *
-         * @param groups the new groups
-         * @return the ListAllSecretsOptions builder
-         */
-        public Builder addGroups(String groups) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(groups,
-                    "groups cannot be null");
-            if (this.groups == null) {
-                this.groups = new ArrayList<String>();
-            }
-            this.groups.add(groups);
-            return this;
-        }
-
-        /**
-         * Set the limit.
-         *
-         * @param limit the limit
-         * @return the ListAllSecretsOptions builder
-         */
-        public Builder limit(long limit) {
-            this.limit = limit;
-            return this;
-        }
-
-        /**
-         * Set the offset.
-         *
-         * @param offset the offset
-         * @return the ListAllSecretsOptions builder
-         */
-        public Builder offset(long offset) {
-            this.offset = offset;
-            return this;
-        }
-
-        /**
-         * Set the search.
-         *
-         * @param search the search
-         * @return the ListAllSecretsOptions builder
-         */
-        public Builder search(String search) {
-            this.search = search;
-            return this;
-        }
-
-        /**
-         * Set the sortBy.
-         *
-         * @param sortBy the sortBy
-         * @return the ListAllSecretsOptions builder
-         */
-        public Builder sortBy(String sortBy) {
-            this.sortBy = sortBy;
-            return this;
-        }
-
-        /**
-         * Set the groups.
-         * Existing groups will be replaced.
-         *
-         * @param groups the groups
-         * @return the ListAllSecretsOptions builder
-         */
-        public Builder groups(List<String> groups) {
-            this.groups = groups;
-            return this;
-        }
-    }
-
-    protected ListAllSecretsOptions(Builder builder) {
-        limit = builder.limit;
-        offset = builder.offset;
-        search = builder.search;
-        sortBy = builder.sortBy;
-        groups = builder.groups;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Builds a ListAllSecretsOptions.
      *
-     * @return a ListAllSecretsOptions builder
+     * @return the new ListAllSecretsOptions instance
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public ListAllSecretsOptions build() {
+      return new ListAllSecretsOptions(this);
     }
 
     /**
-     * Gets the limit.
-     * <p>
-     * The number of secrets to retrieve. By default, list operations return the first 200 items. To retrieve a different
-     * set of items, use `limit` with `offset` to page through your available resources.
-     * <p>
-     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 secrets, use
-     * `../secrets/{secret-type}?limit=5`.
+     * Adds an groups to groups.
      *
-     * @return the limit
+     * @param groups the new groups
+     * @return the ListAllSecretsOptions builder
      */
-    public Long limit() {
-        return limit;
+    public Builder addGroups(String groups) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(groups,
+        "groups cannot be null");
+      if (this.groups == null) {
+        this.groups = new ArrayList<String>();
+      }
+      this.groups.add(groups);
+      return this;
     }
 
     /**
-     * Gets the offset.
-     * <p>
-     * The number of secrets to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset`
-     * value. Use `offset` with `limit` to page through your available resources.
-     * <p>
-     * **Usage:** If you have 100 secrets in your instance, and you want to retrieve secrets 26 through 50, use
-     * `../secrets/{secret-type}?offset=25&amp;limit=25`.
+     * Set the limit.
      *
-     * @return the offset
+     * @param limit the limit
+     * @return the ListAllSecretsOptions builder
      */
-    public Long offset() {
-        return offset;
+    public Builder limit(long limit) {
+      this.limit = limit;
+      return this;
     }
 
     /**
-     * Gets the search.
-     * <p>
-     * Filter secrets that contain the specified string. The fields that are searched include: id, name, description,
-     * labels, secret_type.
-     * <p>
-     * **Usage:** If you want to list only the secrets that contain the string "text", use
-     * `../secrets/{secret-type}?search=text`.
+     * Set the offset.
      *
-     * @return the search
+     * @param offset the offset
+     * @return the ListAllSecretsOptions builder
      */
-    public String search() {
-        return search;
+    public Builder offset(long offset) {
+      this.offset = offset;
+      return this;
     }
 
     /**
-     * Gets the sortBy.
-     * <p>
-     * Sort a list of secrets by the specified field.
-     * <p>
-     * **Usage:** To sort a list of secrets by their creation date, use
-     * `../secrets/{secret-type}?sort_by=creation_date`.
+     * Set the search.
      *
-     * @return the sortBy
+     * @param search the search
+     * @return the ListAllSecretsOptions builder
      */
-    public String sortBy() {
-        return sortBy;
+    public Builder search(String search) {
+      this.search = search;
+      return this;
     }
 
     /**
-     * Gets the groups.
-     * <p>
-     * Filter secrets by groups.
-     * <p>
-     * You can apply multiple filters by using a comma-separated list of secret group IDs. If you need to filter secrets
-     * that are in the default secret group, use the `default` keyword.
-     * <p>
-     * **Usage:** To retrieve a list of secrets that are associated with an existing secret group or the default group,
-     * use `../secrets?groups={secret_group_ID},default`.
+     * Set the sortBy.
      *
-     * @return the groups
+     * @param sortBy the sortBy
+     * @return the ListAllSecretsOptions builder
      */
-    public List<String> groups() {
-        return groups;
+    public Builder sortBy(String sortBy) {
+      this.sortBy = sortBy;
+      return this;
     }
+
+    /**
+     * Set the groups.
+     * Existing groups will be replaced.
+     *
+     * @param groups the groups
+     * @return the ListAllSecretsOptions builder
+     */
+    public Builder groups(List<String> groups) {
+      this.groups = groups;
+      return this;
+    }
+  }
+
+  protected ListAllSecretsOptions(Builder builder) {
+    limit = builder.limit;
+    offset = builder.offset;
+    search = builder.search;
+    sortBy = builder.sortBy;
+    groups = builder.groups;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a ListAllSecretsOptions builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the limit.
+   *
+   * The number of secrets to retrieve. By default, list operations return the first 200 items. To retrieve a different
+   * set of items, use `limit` with `offset` to page through your available resources.
+   *
+   * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 secrets, use
+   * `../secrets/{secret-type}?limit=5`.
+   *
+   * @return the limit
+   */
+  public Long limit() {
+    return limit;
+  }
+
+  /**
+   * Gets the offset.
+   *
+   * The number of secrets to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset`
+   * value. Use `offset` with `limit` to page through your available resources.
+   *
+   * **Usage:** If you have 100 secrets in your instance, and you want to retrieve secrets 26 through 50, use
+   * `../secrets/{secret-type}?offset=25&amp;limit=25`.
+   *
+   * @return the offset
+   */
+  public Long offset() {
+    return offset;
+  }
+
+  /**
+   * Gets the search.
+   *
+   * Filter secrets that contain the specified string. The fields that are searched include: id, name, description,
+   * labels, secret_type.
+   *
+   * **Usage:** If you want to list only the secrets that contain the string "text", use
+   * `../secrets/{secret-type}?search=text`.
+   *
+   * @return the search
+   */
+  public String search() {
+    return search;
+  }
+
+  /**
+   * Gets the sortBy.
+   *
+   * Sort a list of secrets by the specified field.
+   *
+   * **Usage:** To sort a list of secrets by their creation date, use
+   * `../secrets/{secret-type}?sort_by=creation_date`.
+   *
+   * @return the sortBy
+   */
+  public String sortBy() {
+    return sortBy;
+  }
+
+  /**
+   * Gets the groups.
+   *
+   * Filter secrets by groups.
+   *
+   * You can apply multiple filters by using a comma-separated list of secret group IDs. If you need to filter secrets
+   * that are in the default secret group, use the `default` keyword.
+   *
+   * **Usage:** To retrieve a list of secrets that are associated with an existing secret group or the default group,
+   * use `../secrets?groups={secret_group_ID},default`.
+   *
+   * @return the groups
+   */
+  public List<String> groups() {
+    return groups;
+  }
 }
 

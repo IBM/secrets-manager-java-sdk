@@ -16,39 +16,36 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteCredentialsForIAMCredentialsSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the DeleteCredentialsForIAMCredentialsSecret model.
  */
 public class DeleteCredentialsForIAMCredentialsSecretTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testDeleteCredentialsForIAMCredentialsSecret() throws Throwable {
-        DeleteCredentialsForIAMCredentialsSecret deleteCredentialsForIamCredentialsSecretModel = new DeleteCredentialsForIAMCredentialsSecret.Builder()
-                .serviceId("testString")
-                .build();
-        assertEquals(deleteCredentialsForIamCredentialsSecretModel.serviceId(), "testString");
+  @Test
+  public void testDeleteCredentialsForIAMCredentialsSecret() throws Throwable {
+    DeleteCredentialsForIAMCredentialsSecret deleteCredentialsForIamCredentialsSecretModel = new DeleteCredentialsForIAMCredentialsSecret.Builder()
+      .serviceId("testString")
+      .build();
+    assertEquals(deleteCredentialsForIamCredentialsSecretModel.serviceId(), "testString");
 
-        String json = TestUtilities.serialize(deleteCredentialsForIamCredentialsSecretModel);
+    String json = TestUtilities.serialize(deleteCredentialsForIamCredentialsSecretModel);
 
-        DeleteCredentialsForIAMCredentialsSecret deleteCredentialsForIamCredentialsSecretModelNew = TestUtilities.deserialize(json, DeleteCredentialsForIAMCredentialsSecret.class);
-        assertTrue(deleteCredentialsForIamCredentialsSecretModelNew instanceof DeleteCredentialsForIAMCredentialsSecret);
-        assertEquals(deleteCredentialsForIamCredentialsSecretModelNew.serviceId(), "testString");
-    }
+    DeleteCredentialsForIAMCredentialsSecret deleteCredentialsForIamCredentialsSecretModelNew = TestUtilities.deserialize(json, DeleteCredentialsForIAMCredentialsSecret.class);
+    assertTrue(deleteCredentialsForIamCredentialsSecretModelNew instanceof DeleteCredentialsForIAMCredentialsSecret);
+    assertEquals(deleteCredentialsForIamCredentialsSecretModelNew.serviceId(), "testString");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testDeleteCredentialsForIAMCredentialsSecretError() throws Throwable {
-        new DeleteCredentialsForIAMCredentialsSecret.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testDeleteCredentialsForIAMCredentialsSecretError() throws Throwable {
+    new DeleteCredentialsForIAMCredentialsSecret.Builder().build();
+  }
 
 }

@@ -20,136 +20,128 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CollectionMetadata extends GenericModel {
 
+  /**
+   * The type of resources in the resource array.
+   */
+  public interface CollectionType {
+    /** application/vnd.ibm.secrets-manager.config+json. */
+    String APPLICATION_VND_IBM_SECRETS_MANAGER_CONFIG_JSON = "application/vnd.ibm.secrets-manager.config+json";
+    /** application/vnd.ibm.secrets-manager.secret+json. */
+    String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_JSON = "application/vnd.ibm.secrets-manager.secret+json";
+    /** application/vnd.ibm.secrets-manager.secret.version+json. */
+    String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_VERSION_JSON = "application/vnd.ibm.secrets-manager.secret.version+json";
+    /** application/vnd.ibm.secrets-manager.secret.policy+json. */
+    String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = "application/vnd.ibm.secrets-manager.secret.policy+json";
+    /** application/vnd.ibm.secrets-manager.secret.group+json. */
+    String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_GROUP_JSON = "application/vnd.ibm.secrets-manager.secret.group+json";
+    /** application/vnd.ibm.secrets-manager.error+json. */
+    String APPLICATION_VND_IBM_SECRETS_MANAGER_ERROR_JSON = "application/vnd.ibm.secrets-manager.error+json";
+  }
+
+  @SerializedName("collection_type")
+  protected String collectionType;
+  @SerializedName("collection_total")
+  protected Long collectionTotal;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String collectionType;
+    private Long collectionTotal;
+
+    private Builder(CollectionMetadata collectionMetadata) {
+      this.collectionType = collectionMetadata.collectionType;
+      this.collectionTotal = collectionMetadata.collectionTotal;
+    }
+
     /**
-     * The type of resources in the resource array.
+     * Instantiates a new builder.
      */
-    public interface CollectionType {
-        /**
-         * application/vnd.ibm.secrets-manager.secret+json.
-         */
-        String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_JSON = "application/vnd.ibm.secrets-manager.secret+json";
-        /**
-         * application/vnd.ibm.secrets-manager.secret.version+json.
-         */
-        String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_VERSION_JSON = "application/vnd.ibm.secrets-manager.secret.version+json";
-        /**
-         * application/vnd.ibm.secrets-manager.secret.policy+json.
-         */
-        String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = "application/vnd.ibm.secrets-manager.secret.policy+json";
-        /**
-         * application/vnd.ibm.secrets-manager.secret.group+json.
-         */
-        String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_GROUP_JSON = "application/vnd.ibm.secrets-manager.secret.group+json";
-        /**
-         * application/vnd.ibm.secrets-manager.error+json.
-         */
-        String APPLICATION_VND_IBM_SECRETS_MANAGER_ERROR_JSON = "application/vnd.ibm.secrets-manager.error+json";
-    }
-
-    @SerializedName("collection_type")
-    protected String collectionType;
-    @SerializedName("collection_total")
-    protected Long collectionTotal;
-
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private String collectionType;
-        private Long collectionTotal;
-
-        private Builder(CollectionMetadata collectionMetadata) {
-            this.collectionType = collectionMetadata.collectionType;
-            this.collectionTotal = collectionMetadata.collectionTotal;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param collectionType  the collectionType
-         * @param collectionTotal the collectionTotal
-         */
-        public Builder(String collectionType, Long collectionTotal) {
-            this.collectionType = collectionType;
-            this.collectionTotal = collectionTotal;
-        }
-
-        /**
-         * Builds a CollectionMetadata.
-         *
-         * @return the new CollectionMetadata instance
-         */
-        public CollectionMetadata build() {
-            return new CollectionMetadata(this);
-        }
-
-        /**
-         * Set the collectionType.
-         *
-         * @param collectionType the collectionType
-         * @return the CollectionMetadata builder
-         */
-        public Builder collectionType(String collectionType) {
-            this.collectionType = collectionType;
-            return this;
-        }
-
-        /**
-         * Set the collectionTotal.
-         *
-         * @param collectionTotal the collectionTotal
-         * @return the CollectionMetadata builder
-         */
-        public Builder collectionTotal(long collectionTotal) {
-            this.collectionTotal = collectionTotal;
-            return this;
-        }
-    }
-
-    protected CollectionMetadata(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.collectionType,
-                "collectionType cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.collectionTotal,
-                "collectionTotal cannot be null");
-        collectionType = builder.collectionType;
-        collectionTotal = builder.collectionTotal;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a CollectionMetadata builder
+     * @param collectionType the collectionType
+     * @param collectionTotal the collectionTotal
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(String collectionType, Long collectionTotal) {
+      this.collectionType = collectionType;
+      this.collectionTotal = collectionTotal;
     }
 
     /**
-     * Gets the collectionType.
-     * <p>
-     * The type of resources in the resource array.
+     * Builds a CollectionMetadata.
      *
-     * @return the collectionType
+     * @return the new CollectionMetadata instance
      */
-    public String collectionType() {
-        return collectionType;
+    public CollectionMetadata build() {
+      return new CollectionMetadata(this);
     }
 
     /**
-     * Gets the collectionTotal.
-     * <p>
-     * The number of elements in the resource array.
+     * Set the collectionType.
      *
-     * @return the collectionTotal
+     * @param collectionType the collectionType
+     * @return the CollectionMetadata builder
      */
-    public Long collectionTotal() {
-        return collectionTotal;
+    public Builder collectionType(String collectionType) {
+      this.collectionType = collectionType;
+      return this;
     }
+
+    /**
+     * Set the collectionTotal.
+     *
+     * @param collectionTotal the collectionTotal
+     * @return the CollectionMetadata builder
+     */
+    public Builder collectionTotal(long collectionTotal) {
+      this.collectionTotal = collectionTotal;
+      return this;
+    }
+  }
+
+  protected CollectionMetadata(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.collectionType,
+      "collectionType cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.collectionTotal,
+      "collectionTotal cannot be null");
+    collectionType = builder.collectionType;
+    collectionTotal = builder.collectionTotal;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a CollectionMetadata builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the collectionType.
+   *
+   * The type of resources in the resource array.
+   *
+   * @return the collectionType
+   */
+  public String collectionType() {
+    return collectionType;
+  }
+
+  /**
+   * Gets the collectionTotal.
+   *
+   * The number of elements in the resource array.
+   *
+   * @return the collectionTotal
+   */
+  public Long collectionTotal() {
+    return collectionTotal;
+  }
 }
 

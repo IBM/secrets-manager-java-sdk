@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -179,7 +180,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .collectionType(CollectionMetadata.CollectionType.APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON)
                 .collectionTotal(Long.parseLong("1"))
                 .build();
-        SecretPolicyRotationRotation rotation = new SecretPolicyRotationRotation.Builder()
+        SecretPolicyRotationRotation rotation = new SecretPolicyRotationRotationPolicyRotation.Builder()
                 .interval(Long.parseLong("1"))
                 .unit("month")
                 .build();
@@ -245,7 +246,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
             createResp = secretsManager.createSecret(createSecretOptions).execute();
         } catch (ConflictException e) {
             assertEquals(e.getStatusCode(), 409);
-            assertEquals(e.getMessage(), "A secret with the same name already exists: " + secretName);
+            assertEquals(e.getMessage(), "Conflict");
         }
         // delete arbitrary secret
         DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
@@ -299,6 +300,205 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .build();
         Response<Void> delResp = secretsManager.deleteSecret(deleteSecretOptions).execute();
         assertEquals(delResp.getStatusCode(), 204);
+    }
+
+    @Test
+    public void testPublicCertSecret() {
+
+        String caConfigName = generateName() + "-le-stage-config";
+
+        HashMap<String, Object> config = new HashMap<String, Object>();
+        config.put("PRIVATE_KEY", System.getenv("CA_CONFIG_PRIVATE_KEY").replace("\\n", "\n"));
+
+        ConfigElementDef configElementDef = new ConfigElementDef.Builder()
+                .name(caConfigName)
+                .type("letsencrypt-stage")
+                .config(config).build();
+        //create the CA config
+        CreateConfigElementOptions createConfigElementOptions = new CreateConfigElementOptions.Builder()
+                .secretType(CreateConfigElementOptions.SecretType.PUBLIC_CERT)
+                .configElement(CreateConfigElementOptions.ConfigElement.CERTIFICATE_AUTHORITIES)
+                .configElementDef(configElementDef)
+                .build();
+
+        Response<GetSingleConfigElement> res = secretsManager.createConfigElement(createConfigElementOptions).execute();
+        assertEquals(res.getStatusCode(), 201);
+
+        //create the DNS config
+        String dnsConfigName = generateName() + "-dns-config";
+
+        config.clear();
+
+        config.put("CIS_CRN", System.getenv("DNS_CONFIG_CRN"));
+        config.put("CIS_APIKEY", System.getenv("SECRETS_MANAGER_API_APIKEY"));
+        configElementDef = new ConfigElementDef.Builder()
+                .name(dnsConfigName)
+                .type("cis")
+                .config(config).build();
+
+
+        createConfigElementOptions = new CreateConfigElementOptions.Builder()
+                .secretType(CreateConfigElementOptions.SecretType.PUBLIC_CERT)
+                .configElement(CreateConfigElementOptions.ConfigElement.DNS_PROVIDERS)
+                .configElementDef(configElementDef)
+                .build();
+
+        res = secretsManager.createConfigElement(createConfigElementOptions).execute();
+        assertEquals(res.getStatusCode(), 201);
+
+
+        //Order certificate
+        // create certificate secret
+        CollectionMetadata collectionMetadata = new CollectionMetadata.Builder()
+                .collectionType(CollectionMetadata.CollectionType.APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_JSON)
+                .collectionTotal(Long.parseLong("1"))
+                .build();
+        PublicCertificateSecretResource secretResource = new PublicCertificateSecretResource.Builder()
+                .name(generateName())
+                .description("public_cert integration test generated")
+                .labels(new java.util.ArrayList<>(java.util.Arrays.asList("label1", "label2")))
+                .commonName("integration.secrets-manager.test.appdomain.cloud")
+                .altNames(new java.util.ArrayList<>(java.util.Arrays.asList("integration.secrets-manager.test.appdomain.cloud")))
+                .keyAlgorithm("RSA2048")
+                .ca(caConfigName)
+                .dns(dnsConfigName)
+                .rotation(new Rotation.Builder().autoRotate(false).rotateKeys(false).build())
+                .build();
+        CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
+                .secretType(CreateSecretOptions.SecretType.PUBLIC_CERT)
+                .metadata(collectionMetadata)
+                .resources(new java.util.ArrayList<>(Collections.singletonList(secretResource)))
+                .build();
+
+        Response<CreateSecret> createResp = secretsManager.createSecret(createSecretOptions).execute();
+        assertEquals(createResp.getStatusCode(), 202);
+
+        String secretId = createResp.getResult().resources().get(0).id();
+
+        //Get the secret
+        GetSecretOptions getSecretOptions = new GetSecretOptions.Builder()
+                .secretType(GetSecretOptions.SecretType.PUBLIC_CERT)
+                .id(secretId)
+                .build();
+
+        Response<GetSecret> getResp = secretsManager.getSecret(getSecretOptions).execute();
+        assertEquals(getResp.getStatusCode(), 200);
+
+        //Get the secret metadata
+        GetSecretMetadataOptions getSecretMetadataOptions = new GetSecretMetadataOptions.Builder()
+                .secretType(GetSecretMetadataOptions.SecretType.PUBLIC_CERT)
+                .id(secretId)
+                .build();
+        Response<SecretMetadataRequest> getMetaResp = secretsManager.getSecretMetadata(getSecretMetadataOptions).execute();
+        assertEquals(getMetaResp.getStatusCode(), 200);
+
+        // delete public secret
+        DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
+                .secretType(DeleteConfigElementOptions.SecretType.PUBLIC_CERT)
+                .id(secretId)
+                .build();
+        Response<Void> delResp = secretsManager.deleteSecret(deleteSecretOptions).execute();
+        assertEquals(delResp.getStatusCode(), 204);
+
+        //Delete configs
+        DeleteConfigElementOptions deleteConfigElementOptions = new DeleteConfigElementOptions.Builder()
+                .configElement(DeleteConfigElementOptions.ConfigElement.DNS_PROVIDERS)
+                .secretType(DeleteConfigElementOptions.SecretType.PUBLIC_CERT)
+                .configName(dnsConfigName).build();
+
+        Response<Void> delRes = secretsManager.deleteConfigElement(deleteConfigElementOptions).execute();
+        assertEquals(delResp.getStatusCode(), 204);
+
+        deleteConfigElementOptions = new DeleteConfigElementOptions.Builder()
+                .configElement(DeleteConfigElementOptions.ConfigElement.CERTIFICATE_AUTHORITIES)
+                .secretType(DeleteConfigElementOptions.SecretType.PUBLIC_CERT)
+                .configName(caConfigName).build();
+
+        delRes = secretsManager.deleteConfigElement(deleteConfigElementOptions).execute();
+        assertEquals(delResp.getStatusCode(), 204);
+
+    }
+
+    @Test
+    public void testCreateGetListDeleteConfigElement() {
+        String caConfigName = generateName() + "-le-stage-config";
+
+        HashMap<String, Object> config = new HashMap<String, Object>();
+        config.put("PRIVATE_KEY", System.getenv("CA_CONFIG_PRIVATE_KEY").replace("\\n", "\n"));
+
+        ConfigElementDef configElementDef = new ConfigElementDef.Builder()
+                .name(caConfigName)
+                .type("letsencrypt-stage")
+                .config(config).build();
+        //create the CA config
+        CreateConfigElementOptions createConfigElementOptions = new CreateConfigElementOptions.Builder()
+                .secretType(CreateConfigElementOptions.SecretType.PUBLIC_CERT)
+                .configElement(CreateConfigElementOptions.ConfigElement.CERTIFICATE_AUTHORITIES)
+                .configElementDef(configElementDef)
+                .build();
+
+        Response<GetSingleConfigElement> res = secretsManager.createConfigElement(createConfigElementOptions).execute();
+        assertEquals(res.getStatusCode(), 201);
+
+        //create the DNS config
+        String dnsConfigName = generateName() + "-dns-config";
+
+        config.clear();
+
+        config.put("CIS_CRN", System.getenv("DNS_CONFIG_CRN"));
+        config.put("CIS_APIKEY", System.getenv("SECRETS_MANAGER_API_APIKEY"));
+        configElementDef = new ConfigElementDef.Builder()
+                .name(dnsConfigName)
+                .type("cis")
+                .config(config).build();
+
+
+        createConfigElementOptions = new CreateConfigElementOptions.Builder()
+                .secretType(CreateConfigElementOptions.SecretType.PUBLIC_CERT)
+                .configElement(CreateConfigElementOptions.ConfigElement.DNS_PROVIDERS)
+                .configElementDef(configElementDef)
+                .build();
+
+        res = secretsManager.createConfigElement(createConfigElementOptions).execute();
+        assertEquals(res.getStatusCode(), 201);
+
+        //get the ca config
+        Response<GetSingleConfigElement> caConfig = secretsManager.getConfigElement(new GetConfigElementOptions.Builder()
+                .configElement(GetConfigElementOptions.ConfigElement.CERTIFICATE_AUTHORITIES)
+                .secretType(GetConfigElementOptions.SecretType.PUBLIC_CERT).configName(caConfigName).build()).execute();
+        assertEquals(caConfig.getStatusCode(), 200);
+        assertEquals(caConfig.getResult().getResources().size(), 1);
+        assertEquals(caConfig.getResult().getResources().get(0).name(), caConfigName);
+        assertEquals(caConfig.getResult().getResources().get(0).type(), "letsencrypt-stage");
+
+        //get the dns config
+        Response<GetSingleConfigElement> dnsConfig = secretsManager.getConfigElement(new GetConfigElementOptions.Builder()
+                .configElement(GetConfigElementOptions.ConfigElement.DNS_PROVIDERS)
+                .secretType(GetConfigElementOptions.SecretType.PUBLIC_CERT).configName(dnsConfigName).build()).execute();
+        assertEquals(dnsConfig.getStatusCode(), 200);
+        assertEquals(dnsConfig.getResult().getResources().size(), 1);
+        assertEquals(dnsConfig.getResult().getResources().get(0).name(), dnsConfigName);
+        assertEquals(dnsConfig.getResult().getResources().get(0).type(), "cis");
+
+        //list all
+        Response<GetConfig> all = secretsManager.getConfig(new GetConfigOptions.Builder().secretType(GetConfigOptions.SecretType.PUBLIC_CERT).build()).execute();
+        assertEquals(all.getStatusCode(), 200);
+        assertEquals(all.getResult().getResources().size(), 1);
+        assertNotNull(all.getResult().getResources().get(0).getCertificateAuthorities());
+        assertNotNull(all.getResult().getResources().get(0).getDnsProviders());
+
+
+        //delete
+        Response<Void> delRes = secretsManager.deleteConfigElement(new DeleteConfigElementOptions.Builder()
+                .secretType(DeleteConfigElementOptions.SecretType.PUBLIC_CERT)
+                .configElement(DeleteConfigElementOptions.ConfigElement.DNS_PROVIDERS).configName(dnsConfigName).build()).execute();
+        assertEquals(delRes.getStatusCode(), 204);
+
+        delRes = secretsManager.deleteConfigElement(new DeleteConfigElementOptions.Builder()
+                .secretType(DeleteConfigElementOptions.SecretType.PUBLIC_CERT)
+                .configElement(DeleteConfigElementOptions.ConfigElement.CERTIFICATE_AUTHORITIES).configName(caConfigName).build()).execute();
+        assertEquals(delRes.getStatusCode(), 204);
+
     }
 
     private Date generateExpirationDate() {

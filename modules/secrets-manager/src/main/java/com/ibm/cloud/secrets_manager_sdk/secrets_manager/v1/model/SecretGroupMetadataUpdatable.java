@@ -19,98 +19,98 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretGroupMetadataUpdatable extends GenericModel {
 
-    protected String name;
-    protected String description;
+  protected String name;
+  protected String description;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String name;
+    private String description;
+
+    private Builder(SecretGroupMetadataUpdatable secretGroupMetadataUpdatable) {
+      this.name = secretGroupMetadataUpdatable.name;
+      this.description = secretGroupMetadataUpdatable.description;
+    }
 
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private String name;
-        private String description;
-
-        private Builder(SecretGroupMetadataUpdatable secretGroupMetadataUpdatable) {
-            this.name = secretGroupMetadataUpdatable.name;
-            this.description = secretGroupMetadataUpdatable.description;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Builds a SecretGroupMetadataUpdatable.
-         *
-         * @return the new SecretGroupMetadataUpdatable instance
-         */
-        public SecretGroupMetadataUpdatable build() {
-            return new SecretGroupMetadataUpdatable(this);
-        }
-
-        /**
-         * Set the name.
-         *
-         * @param name the name
-         * @return the SecretGroupMetadataUpdatable builder
-         */
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        /**
-         * Set the description.
-         *
-         * @param description the description
-         * @return the SecretGroupMetadataUpdatable builder
-         */
-        public Builder description(String description) {
-            this.description = description;
-            return this;
-        }
-    }
-
-    protected SecretGroupMetadataUpdatable(Builder builder) {
-        name = builder.name;
-        description = builder.description;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Builds a SecretGroupMetadataUpdatable.
      *
-     * @return a SecretGroupMetadataUpdatable builder
+     * @return the new SecretGroupMetadataUpdatable instance
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public SecretGroupMetadataUpdatable build() {
+      return new SecretGroupMetadataUpdatable(this);
     }
 
     /**
-     * Gets the name.
-     * <p>
-     * A human-readable name to assign to your secret group.
-     * <p>
-     * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret group.
+     * Set the name.
      *
-     * @return the name
+     * @param name the name
+     * @return the SecretGroupMetadataUpdatable builder
      */
-    public String name() {
-        return name;
+    public Builder name(String name) {
+      this.name = name;
+      return this;
     }
 
     /**
-     * Gets the description.
-     * <p>
-     * An extended description of your secret group.
-     * <p>
-     * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
-     * group.
+     * Set the description.
      *
-     * @return the description
+     * @param description the description
+     * @return the SecretGroupMetadataUpdatable builder
      */
-    public String description() {
-        return description;
+    public Builder description(String description) {
+      this.description = description;
+      return this;
     }
+  }
+
+  protected SecretGroupMetadataUpdatable(Builder builder) {
+    name = builder.name;
+    description = builder.description;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a SecretGroupMetadataUpdatable builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the name.
+   *
+   * A human-readable name to assign to your secret group.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret group.
+   *
+   * @return the name
+   */
+  public String name() {
+    return name;
+  }
+
+  /**
+   * Gets the description.
+   *
+   * An extended description of your secret group.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group.
+   *
+   * @return the description
+   */
+  public String description() {
+    return description;
+  }
 }
 

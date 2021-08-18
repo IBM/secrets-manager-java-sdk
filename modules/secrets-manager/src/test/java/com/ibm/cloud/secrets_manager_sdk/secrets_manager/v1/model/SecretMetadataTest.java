@@ -17,28 +17,25 @@ import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretMetadata model.
  */
 public class SecretMetadataTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    // TODO: Add tests for models that are abstract
-    @Test
-    public void testSecretMetadata() throws Throwable {
-        SecretMetadata secretMetadataModel = new SecretMetadata();
-        assertNotNull(secretMetadataModel);
-    }
+  // TODO: Add tests for models that are abstract
+  @Test
+  public void testSecretMetadata() throws Throwable {
+    SecretMetadata secretMetadataModel = new SecretMetadata();
+    assertNotNull(secretMetadataModel);
+  }
 }

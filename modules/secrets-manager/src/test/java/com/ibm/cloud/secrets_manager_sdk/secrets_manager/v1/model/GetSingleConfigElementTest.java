@@ -14,28 +14,27 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.EngineConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDef;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSingleConfigElement;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
- * Unit test class for the EngineConfig model.
+ * Unit test class for the GetSingleConfigElement model.
  */
-public class EngineConfigTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+public class GetSingleConfigElementTest {
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    // TODO: Add tests for models that are abstract
-    @Test
-    public void testEngineConfig() throws Throwable {
-        EngineConfig engineConfigModel = new EngineConfig();
-        assertNotNull(engineConfigModel);
-    }
+  @Test
+  public void testGetSingleConfigElement() throws Throwable {
+    GetSingleConfigElement getSingleConfigElementModel = new GetSingleConfigElement();
+    assertNull(getSingleConfigElementModel.getMetadata());
+    assertNull(getSingleConfigElementModel.getResources());
+  }
 }

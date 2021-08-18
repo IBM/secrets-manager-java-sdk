@@ -20,42 +20,42 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CertificateSecretData extends GenericModel {
 
-    protected String certificate;
-    @SerializedName("private_key")
-    protected String privateKey;
-    protected String intermediate;
+  protected String certificate;
+  @SerializedName("private_key")
+  protected String privateKey;
+  protected String intermediate;
 
-    /**
-     * Gets the certificate.
-     * <p>
-     * The contents of the certificate.
-     *
-     * @return the certificate
-     */
-    public String getCertificate() {
-        return certificate;
-    }
+  /**
+   * Gets the certificate.
+   *
+   * The contents of the certificate.
+   *
+   * @return the certificate
+   */
+  public String getCertificate() {
+    return certificate;
+  }
 
-    /**
-     * Gets the privateKey.
-     * <p>
-     * The private key that is associated with the certificate.
-     *
-     * @return the privateKey
-     */
-    public String getPrivateKey() {
-        return privateKey;
-    }
+  /**
+   * Gets the privateKey.
+   *
+   * The private key that is associated with the certificate.
+   *
+   * @return the privateKey
+   */
+  public String getPrivateKey() {
+    return privateKey;
+  }
 
-    /**
-     * Gets the intermediate.
-     * <p>
-     * The intermediate certificate that is associated with the certificate.
-     *
-     * @return the intermediate
-     */
-    public String getIntermediate() {
-        return intermediate;
-    }
+  /**
+   * Gets the intermediate.
+   *
+   * The intermediate certificate that is associated with the certificate.
+   *
+   * @return the intermediate
+   */
+  public String getIntermediate() {
+    return intermediate;
+  }
 }
 

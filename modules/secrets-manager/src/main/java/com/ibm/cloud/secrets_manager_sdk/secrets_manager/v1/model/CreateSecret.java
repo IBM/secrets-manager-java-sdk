@@ -22,125 +22,125 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateSecret extends GenericModel {
 
-    protected CollectionMetadata metadata;
-    protected List<SecretResource> resources;
+  protected CollectionMetadata metadata;
+  protected List<SecretResource> resources;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private CollectionMetadata metadata;
+    private List<SecretResource> resources;
+
+    private Builder(CreateSecret createSecret) {
+      this.metadata = createSecret.metadata;
+      this.resources = createSecret.resources;
+    }
 
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private CollectionMetadata metadata;
-        private List<SecretResource> resources;
-
-        private Builder(CreateSecret createSecret) {
-            this.metadata = createSecret.metadata;
-            this.resources = createSecret.resources;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param metadata  the metadata
-         * @param resources the resources
-         */
-        public Builder(CollectionMetadata metadata, List<SecretResource> resources) {
-            this.metadata = metadata;
-            this.resources = resources;
-        }
-
-        /**
-         * Builds a CreateSecret.
-         *
-         * @return the new CreateSecret instance
-         */
-        public CreateSecret build() {
-            return new CreateSecret(this);
-        }
-
-        /**
-         * Adds an resources to resources.
-         *
-         * @param resources the new resources
-         * @return the CreateSecret builder
-         */
-        public Builder addResources(SecretResource resources) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
-                    "resources cannot be null");
-            if (this.resources == null) {
-                this.resources = new ArrayList<SecretResource>();
-            }
-            this.resources.add(resources);
-            return this;
-        }
-
-        /**
-         * Set the metadata.
-         *
-         * @param metadata the metadata
-         * @return the CreateSecret builder
-         */
-        public Builder metadata(CollectionMetadata metadata) {
-            this.metadata = metadata;
-            return this;
-        }
-
-        /**
-         * Set the resources.
-         * Existing resources will be replaced.
-         *
-         * @param resources the resources
-         * @return the CreateSecret builder
-         */
-        public Builder resources(List<SecretResource> resources) {
-            this.resources = resources;
-            return this;
-        }
-    }
-
-    protected CreateSecret(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
-                "metadata cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
-                "resources cannot be null");
-        metadata = builder.metadata;
-        resources = builder.resources;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a CreateSecret builder
+     * @param metadata the metadata
+     * @param resources the resources
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(CollectionMetadata metadata, List<SecretResource> resources) {
+      this.metadata = metadata;
+      this.resources = resources;
     }
 
     /**
-     * Gets the metadata.
-     * <p>
-     * The metadata that describes the resource array.
+     * Builds a CreateSecret.
      *
-     * @return the metadata
+     * @return the new CreateSecret instance
      */
-    public CollectionMetadata metadata() {
-        return metadata;
+    public CreateSecret build() {
+      return new CreateSecret(this);
     }
 
     /**
-     * Gets the resources.
-     * <p>
-     * A collection of resources.
+     * Adds an resources to resources.
      *
-     * @return the resources
+     * @param resources the new resources
+     * @return the CreateSecret builder
      */
-    public List<SecretResource> resources() {
-        return resources;
+    public Builder addResources(SecretResource resources) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
+        "resources cannot be null");
+      if (this.resources == null) {
+        this.resources = new ArrayList<SecretResource>();
+      }
+      this.resources.add(resources);
+      return this;
     }
+
+    /**
+     * Set the metadata.
+     *
+     * @param metadata the metadata
+     * @return the CreateSecret builder
+     */
+    public Builder metadata(CollectionMetadata metadata) {
+      this.metadata = metadata;
+      return this;
+    }
+
+    /**
+     * Set the resources.
+     * Existing resources will be replaced.
+     *
+     * @param resources the resources
+     * @return the CreateSecret builder
+     */
+    public Builder resources(List<SecretResource> resources) {
+      this.resources = resources;
+      return this;
+    }
+  }
+
+  protected CreateSecret(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
+      "metadata cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
+      "resources cannot be null");
+    metadata = builder.metadata;
+    resources = builder.resources;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a CreateSecret builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the metadata.
+   *
+   * The metadata that describes the resource array.
+   *
+   * @return the metadata
+   */
+  public CollectionMetadata metadata() {
+    return metadata;
+  }
+
+  /**
+   * Gets the resources.
+   *
+   * A collection of resources.
+   *
+   * @return the resources
+   */
+  public List<SecretResource> resources() {
+    return resources;
+  }
 }
 

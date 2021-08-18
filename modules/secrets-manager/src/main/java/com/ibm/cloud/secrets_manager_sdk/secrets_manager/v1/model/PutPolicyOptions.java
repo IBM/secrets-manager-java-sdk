@@ -22,231 +22,229 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class PutPolicyOptions extends GenericModel {
 
+  /**
+   * The secret type.
+   */
+  public interface SecretType {
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+  }
+
+  /**
+   * The type of policy that is associated with the specified secret.
+   */
+  public interface Policy {
+    /** rotation. */
+    String ROTATION = "rotation";
+  }
+
+  protected String secretType;
+  protected String id;
+  protected CollectionMetadata metadata;
+  protected List<SecretPolicyRotation> resources;
+  protected String policy;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String secretType;
+    private String id;
+    private CollectionMetadata metadata;
+    private List<SecretPolicyRotation> resources;
+    private String policy;
+
+    private Builder(PutPolicyOptions putPolicyOptions) {
+      this.secretType = putPolicyOptions.secretType;
+      this.id = putPolicyOptions.id;
+      this.metadata = putPolicyOptions.metadata;
+      this.resources = putPolicyOptions.resources;
+      this.policy = putPolicyOptions.policy;
+    }
+
     /**
-     * The secret type.
+     * Instantiates a new builder.
      */
-    public interface SecretType {
-        /**
-         * username_password.
-         */
-        String USERNAME_PASSWORD = "username_password";
+    public Builder() {
     }
 
     /**
-     * The type of policy that is associated with the specified secret.
-     */
-    public interface Policy {
-        /**
-         * rotation.
-         */
-        String ROTATION = "rotation";
-    }
-
-    protected String secretType;
-    protected String id;
-    protected CollectionMetadata metadata;
-    protected List<SecretPolicyRotation> resources;
-    protected String policy;
-
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private String secretType;
-        private String id;
-        private CollectionMetadata metadata;
-        private List<SecretPolicyRotation> resources;
-        private String policy;
-
-        private Builder(PutPolicyOptions putPolicyOptions) {
-            this.secretType = putPolicyOptions.secretType;
-            this.id = putPolicyOptions.id;
-            this.metadata = putPolicyOptions.metadata;
-            this.resources = putPolicyOptions.resources;
-            this.policy = putPolicyOptions.policy;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param secretType the secretType
-         * @param id         the id
-         * @param metadata   the metadata
-         * @param resources  the resources
-         */
-        public Builder(String secretType, String id, CollectionMetadata metadata, List<SecretPolicyRotation> resources) {
-            this.secretType = secretType;
-            this.id = id;
-            this.metadata = metadata;
-            this.resources = resources;
-        }
-
-        /**
-         * Builds a PutPolicyOptions.
-         *
-         * @return the new PutPolicyOptions instance
-         */
-        public PutPolicyOptions build() {
-            return new PutPolicyOptions(this);
-        }
-
-        /**
-         * Adds an resources to resources.
-         *
-         * @param resources the new resources
-         * @return the PutPolicyOptions builder
-         */
-        public Builder addResources(SecretPolicyRotation resources) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
-                    "resources cannot be null");
-            if (this.resources == null) {
-                this.resources = new ArrayList<SecretPolicyRotation>();
-            }
-            this.resources.add(resources);
-            return this;
-        }
-
-        /**
-         * Set the secretType.
-         *
-         * @param secretType the secretType
-         * @return the PutPolicyOptions builder
-         */
-        public Builder secretType(String secretType) {
-            this.secretType = secretType;
-            return this;
-        }
-
-        /**
-         * Set the id.
-         *
-         * @param id the id
-         * @return the PutPolicyOptions builder
-         */
-        public Builder id(String id) {
-            this.id = id;
-            return this;
-        }
-
-        /**
-         * Set the metadata.
-         *
-         * @param metadata the metadata
-         * @return the PutPolicyOptions builder
-         */
-        public Builder metadata(CollectionMetadata metadata) {
-            this.metadata = metadata;
-            return this;
-        }
-
-        /**
-         * Set the resources.
-         * Existing resources will be replaced.
-         *
-         * @param resources the resources
-         * @return the PutPolicyOptions builder
-         */
-        public Builder resources(List<SecretPolicyRotation> resources) {
-            this.resources = resources;
-            return this;
-        }
-
-        /**
-         * Set the policy.
-         *
-         * @param policy the policy
-         * @return the PutPolicyOptions builder
-         */
-        public Builder policy(String policy) {
-            this.policy = policy;
-            return this;
-        }
-    }
-
-    protected PutPolicyOptions(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-                "secretType cannot be empty");
-        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-                "id cannot be empty");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
-                "metadata cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
-                "resources cannot be null");
-        secretType = builder.secretType;
-        id = builder.id;
-        metadata = builder.metadata;
-        resources = builder.resources;
-        policy = builder.policy;
-    }
-
-    /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a PutPolicyOptions builder
+     * @param secretType the secretType
+     * @param id the id
+     * @param metadata the metadata
+     * @param resources the resources
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(String secretType, String id, CollectionMetadata metadata, List<SecretPolicyRotation> resources) {
+      this.secretType = secretType;
+      this.id = id;
+      this.metadata = metadata;
+      this.resources = resources;
     }
 
     /**
-     * Gets the secretType.
-     * <p>
-     * The secret type.
+     * Builds a PutPolicyOptions.
      *
-     * @return the secretType
+     * @return the new PutPolicyOptions instance
      */
-    public String secretType() {
-        return secretType;
+    public PutPolicyOptions build() {
+      return new PutPolicyOptions(this);
     }
 
     /**
-     * Gets the id.
-     * <p>
-     * The v4 UUID that uniquely identifies the secret.
+     * Adds an resources to resources.
      *
-     * @return the id
+     * @param resources the new resources
+     * @return the PutPolicyOptions builder
      */
-    public String id() {
-        return id;
+    public Builder addResources(SecretPolicyRotation resources) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
+        "resources cannot be null");
+      if (this.resources == null) {
+        this.resources = new ArrayList<SecretPolicyRotation>();
+      }
+      this.resources.add(resources);
+      return this;
     }
 
     /**
-     * Gets the metadata.
-     * <p>
-     * The metadata that describes the resource array.
+     * Set the secretType.
      *
-     * @return the metadata
+     * @param secretType the secretType
+     * @return the PutPolicyOptions builder
      */
-    public CollectionMetadata metadata() {
-        return metadata;
+    public Builder secretType(String secretType) {
+      this.secretType = secretType;
+      return this;
     }
 
     /**
-     * Gets the resources.
-     * <p>
-     * A collection of resources.
+     * Set the id.
      *
-     * @return the resources
+     * @param id the id
+     * @return the PutPolicyOptions builder
      */
-    public List<SecretPolicyRotation> resources() {
-        return resources;
+    public Builder id(String id) {
+      this.id = id;
+      return this;
     }
 
     /**
-     * Gets the policy.
-     * <p>
-     * The type of policy that is associated with the specified secret.
+     * Set the metadata.
      *
-     * @return the policy
+     * @param metadata the metadata
+     * @return the PutPolicyOptions builder
      */
-    public String policy() {
-        return policy;
+    public Builder metadata(CollectionMetadata metadata) {
+      this.metadata = metadata;
+      return this;
     }
+
+    /**
+     * Set the resources.
+     * Existing resources will be replaced.
+     *
+     * @param resources the resources
+     * @return the PutPolicyOptions builder
+     */
+    public Builder resources(List<SecretPolicyRotation> resources) {
+      this.resources = resources;
+      return this;
+    }
+
+    /**
+     * Set the policy.
+     *
+     * @param policy the policy
+     * @return the PutPolicyOptions builder
+     */
+    public Builder policy(String policy) {
+      this.policy = policy;
+      return this;
+    }
+  }
+
+  protected PutPolicyOptions(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+      "secretType cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+      "id cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
+      "metadata cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
+      "resources cannot be null");
+    secretType = builder.secretType;
+    id = builder.id;
+    metadata = builder.metadata;
+    resources = builder.resources;
+    policy = builder.policy;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a PutPolicyOptions builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the secretType.
+   *
+   * The secret type.
+   *
+   * @return the secretType
+   */
+  public String secretType() {
+    return secretType;
+  }
+
+  /**
+   * Gets the id.
+   *
+   * The v4 UUID that uniquely identifies the secret.
+   *
+   * @return the id
+   */
+  public String id() {
+    return id;
+  }
+
+  /**
+   * Gets the metadata.
+   *
+   * The metadata that describes the resource array.
+   *
+   * @return the metadata
+   */
+  public CollectionMetadata metadata() {
+    return metadata;
+  }
+
+  /**
+   * Gets the resources.
+   *
+   * A collection of resources.
+   *
+   * @return the resources
+   */
+  public List<SecretPolicyRotation> resources() {
+    return resources;
+  }
+
+  /**
+   * Gets the policy.
+   *
+   * The type of policy that is associated with the specified secret.
+   *
+   * @return the policy
+   */
+  public String policy() {
+    return policy;
+  }
 }
 

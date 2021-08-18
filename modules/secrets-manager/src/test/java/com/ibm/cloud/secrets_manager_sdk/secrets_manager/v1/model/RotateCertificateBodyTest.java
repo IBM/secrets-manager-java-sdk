@@ -16,45 +16,42 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCertificateBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the RotateCertificateBody model.
  */
 public class RotateCertificateBodyTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testRotateCertificateBody() throws Throwable {
-        RotateCertificateBody rotateCertificateBodyModel = new RotateCertificateBody.Builder()
-                .certificate("testString")
-                .privateKey("testString")
-                .intermediate("testString")
-                .build();
-        assertEquals(rotateCertificateBodyModel.certificate(), "testString");
-        assertEquals(rotateCertificateBodyModel.privateKey(), "testString");
-        assertEquals(rotateCertificateBodyModel.intermediate(), "testString");
+  @Test
+  public void testRotateCertificateBody() throws Throwable {
+    RotateCertificateBody rotateCertificateBodyModel = new RotateCertificateBody.Builder()
+      .certificate("testString")
+      .privateKey("testString")
+      .intermediate("testString")
+      .build();
+    assertEquals(rotateCertificateBodyModel.certificate(), "testString");
+    assertEquals(rotateCertificateBodyModel.privateKey(), "testString");
+    assertEquals(rotateCertificateBodyModel.intermediate(), "testString");
 
-        String json = TestUtilities.serialize(rotateCertificateBodyModel);
+    String json = TestUtilities.serialize(rotateCertificateBodyModel);
 
-        RotateCertificateBody rotateCertificateBodyModelNew = TestUtilities.deserialize(json, RotateCertificateBody.class);
-        assertTrue(rotateCertificateBodyModelNew instanceof RotateCertificateBody);
-        assertEquals(rotateCertificateBodyModelNew.certificate(), "testString");
-        assertEquals(rotateCertificateBodyModelNew.privateKey(), "testString");
-        assertEquals(rotateCertificateBodyModelNew.intermediate(), "testString");
-    }
+    RotateCertificateBody rotateCertificateBodyModelNew = TestUtilities.deserialize(json, RotateCertificateBody.class);
+    assertTrue(rotateCertificateBodyModelNew instanceof RotateCertificateBody);
+    assertEquals(rotateCertificateBodyModelNew.certificate(), "testString");
+    assertEquals(rotateCertificateBodyModelNew.privateKey(), "testString");
+    assertEquals(rotateCertificateBodyModelNew.intermediate(), "testString");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testRotateCertificateBodyError() throws Throwable {
-        new RotateCertificateBody.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testRotateCertificateBodyError() throws Throwable {
+    new RotateCertificateBody.Builder().build();
+  }
 
 }

@@ -18,65 +18,65 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class RotateUsernamePasswordSecretBody extends SecretAction {
 
 
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String password;
+
+    public Builder(SecretAction rotateUsernamePasswordSecretBody) {
+      this.password = rotateUsernamePasswordSecretBody.password;
+    }
+
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private String password;
-
-        public Builder(SecretAction rotateUsernamePasswordSecretBody) {
-            this.password = rotateUsernamePasswordSecretBody.password;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param password the password
-         */
-        public Builder(String password) {
-            this.password = password;
-        }
-
-        /**
-         * Builds a RotateUsernamePasswordSecretBody.
-         *
-         * @return the new RotateUsernamePasswordSecretBody instance
-         */
-        public RotateUsernamePasswordSecretBody build() {
-            return new RotateUsernamePasswordSecretBody(this);
-        }
-
-        /**
-         * Set the password.
-         *
-         * @param password the password
-         * @return the RotateUsernamePasswordSecretBody builder
-         */
-        public Builder password(String password) {
-            this.password = password;
-            return this;
-        }
-    }
-
-    protected RotateUsernamePasswordSecretBody(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.password,
-                "password cannot be null");
-        password = builder.password;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a RotateUsernamePasswordSecretBody builder
+     * @param password the password
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(String password) {
+      this.password = password;
     }
+
+    /**
+     * Builds a RotateUsernamePasswordSecretBody.
+     *
+     * @return the new RotateUsernamePasswordSecretBody instance
+     */
+    public RotateUsernamePasswordSecretBody build() {
+      return new RotateUsernamePasswordSecretBody(this);
+    }
+
+    /**
+     * Set the password.
+     *
+     * @param password the password
+     * @return the RotateUsernamePasswordSecretBody builder
+     */
+    public Builder password(String password) {
+      this.password = password;
+      return this;
+    }
+  }
+
+  protected RotateUsernamePasswordSecretBody(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.password,
+      "password cannot be null");
+    password = builder.password;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a RotateUsernamePasswordSecretBody builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 
