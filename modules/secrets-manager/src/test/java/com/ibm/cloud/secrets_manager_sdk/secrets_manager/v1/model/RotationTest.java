@@ -32,17 +32,17 @@ public class RotationTest {
   @Test
   public void testRotation() throws Throwable {
     Rotation rotationModel = new Rotation.Builder()
-      .autoRotate(true)
-      .rotateKeys(true)
+      .autoRotate(false)
+      .rotateKeys(false)
       .build();
-    assertEquals(rotationModel.autoRotate(), Boolean.valueOf(true));
-    assertEquals(rotationModel.rotateKeys(), Boolean.valueOf(true));
+    assertEquals(rotationModel.autoRotate(), Boolean.valueOf(false));
+    assertEquals(rotationModel.rotateKeys(), Boolean.valueOf(false));
 
     String json = TestUtilities.serialize(rotationModel);
 
     Rotation rotationModelNew = TestUtilities.deserialize(json, Rotation.class);
     assertTrue(rotationModelNew instanceof Rotation);
-    assertEquals(rotationModelNew.autoRotate(), Boolean.valueOf(true));
-    assertEquals(rotationModelNew.rotateKeys(), Boolean.valueOf(true));
+    assertEquals(rotationModelNew.autoRotate(), Boolean.valueOf(false));
+    assertEquals(rotationModelNew.rotateKeys(), Boolean.valueOf(false));
   }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Config elements.
+ * Properties that describe a list of configurations.
  */
 public class GetConfigElements extends GenericModel {
 

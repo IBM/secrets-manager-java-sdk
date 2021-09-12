@@ -30,13 +30,27 @@ public class UpdateConfigElementOptions extends GenericModel {
   }
 
   /**
-   * The Config element type.
+   * The configuration element to define or manage.
    */
   public interface ConfigElement {
     /** certificate_authorities. */
     String CERTIFICATE_AUTHORITIES = "certificate_authorities";
     /** dns_providers. */
     String DNS_PROVIDERS = "dns_providers";
+  }
+
+  /**
+   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
+   */
+  public interface Type {
+    /** letsencrypt. */
+    String LETSENCRYPT = "letsencrypt";
+    /** letsencrypt-stage. */
+    String LETSENCRYPT_STAGE = "letsencrypt-stage";
+    /** cis. */
+    String CIS = "cis";
+    /** classic_infrastructure. */
+    String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
   }
 
   protected String secretType;
@@ -192,7 +206,7 @@ public class UpdateConfigElementOptions extends GenericModel {
   /**
    * Gets the configElement.
    *
-   * The Config element type.
+   * The configuration element to define or manage.
    *
    * @return the configElement
    */
@@ -203,7 +217,7 @@ public class UpdateConfigElementOptions extends GenericModel {
   /**
    * Gets the configName.
    *
-   * Config name.
+   * The name of your configuration.
    *
    * @return the configName
    */
@@ -214,7 +228,7 @@ public class UpdateConfigElementOptions extends GenericModel {
   /**
    * Gets the type.
    *
-   * Dns provider config type.
+   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
    *
    * @return the type
    */

@@ -14,6 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigLetsEncryptConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 import java.io.InputStream;
@@ -31,18 +32,23 @@ public class CreateConfigElementOptionsTest {
 
   @Test
   public void testCreateConfigElementOptions() throws Throwable {
+    ConfigElementDefConfigLetsEncryptConfig configElementDefConfigModel = new ConfigElementDefConfigLetsEncryptConfig.Builder()
+      .privateKey("testString")
+      .build();
+    assertEquals(configElementDefConfigModel.privateKey(), "testString");
+
     CreateConfigElementOptions createConfigElementOptionsModel = new CreateConfigElementOptions.Builder()
       .secretType("public_cert")
       .configElement("certificate_authorities")
       .name("testString")
-      .type("testString")
-      .config(new java.util.HashMap<String, Object>() { { put("foo", "testString"); } })
+      .type("letsencrypt")
+      .config(configElementDefConfigModel)
       .build();
     assertEquals(createConfigElementOptionsModel.secretType(), "public_cert");
     assertEquals(createConfigElementOptionsModel.configElement(), "certificate_authorities");
     assertEquals(createConfigElementOptionsModel.name(), "testString");
-    assertEquals(createConfigElementOptionsModel.type(), "testString");
-    assertEquals(createConfigElementOptionsModel.config(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } });
+    assertEquals(createConfigElementOptionsModel.type(), "letsencrypt");
+    assertEquals(createConfigElementOptionsModel.config(), configElementDefConfigModel);
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

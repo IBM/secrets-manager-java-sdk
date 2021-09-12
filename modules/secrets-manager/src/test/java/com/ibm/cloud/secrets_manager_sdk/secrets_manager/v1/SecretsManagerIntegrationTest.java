@@ -307,13 +307,14 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
 
         String caConfigName = generateName() + "-le-stage-config";
 
-        HashMap<String, Object> config = new HashMap<String, Object>();
-        config.put("PRIVATE_KEY", System.getenv("CA_CONFIG_PRIVATE_KEY").replace("\\n", "\n"));
+
+        ConfigElementDefConfigLetsEncryptConfig letsEncryptConfig = new ConfigElementDefConfigLetsEncryptConfig.Builder()
+                .privateKey(System.getenv("CA_CONFIG_PRIVATE_KEY").replace("\\n", "\n")).build();
 
         ConfigElementDef configElementDef = new ConfigElementDef.Builder()
                 .name(caConfigName)
                 .type("letsencrypt-stage")
-                .config(config).build();
+                .config(letsEncryptConfig).build();
         //create the CA config
         CreateConfigElementOptions createConfigElementOptions = new CreateConfigElementOptions.Builder()
                 .secretType(CreateConfigElementOptions.SecretType.PUBLIC_CERT)
@@ -327,14 +328,14 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
         //create the DNS config
         String dnsConfigName = generateName() + "-dns-config";
 
-        config.clear();
+        ConfigElementDefConfigCloudInternetServicesConfig cisConfig = new ConfigElementDefConfigCloudInternetServicesConfig.Builder()
+                .cisApikey(System.getenv("SECRETS_MANAGER_API_APIKEY"))
+                .cisCrn(System.getenv("DNS_CONFIG_CRN")).build();
 
-        config.put("CIS_CRN", System.getenv("DNS_CONFIG_CRN"));
-        config.put("CIS_APIKEY", System.getenv("SECRETS_MANAGER_API_APIKEY"));
         configElementDef = new ConfigElementDef.Builder()
                 .name(dnsConfigName)
                 .type("cis")
-                .config(config).build();
+                .config(cisConfig).build();
 
 
         createConfigElementOptions = new CreateConfigElementOptions.Builder()
@@ -423,13 +424,12 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
     public void testCreateGetListDeleteConfigElement() {
         String caConfigName = generateName() + "-le-stage-config";
 
-        HashMap<String, Object> config = new HashMap<String, Object>();
-        config.put("PRIVATE_KEY", System.getenv("CA_CONFIG_PRIVATE_KEY").replace("\\n", "\n"));
-
+        ConfigElementDefConfigLetsEncryptConfig letsEncryptConfig = new ConfigElementDefConfigLetsEncryptConfig.Builder()
+                .privateKey(System.getenv("CA_CONFIG_PRIVATE_KEY").replace("\\n", "\n")).build();
         ConfigElementDef configElementDef = new ConfigElementDef.Builder()
                 .name(caConfigName)
                 .type("letsencrypt-stage")
-                .config(config).build();
+                .config(letsEncryptConfig).build();
         //create the CA config
         CreateConfigElementOptions createConfigElementOptions = new CreateConfigElementOptions.Builder()
                 .secretType(CreateConfigElementOptions.SecretType.PUBLIC_CERT)
@@ -443,14 +443,14 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
         //create the DNS config
         String dnsConfigName = generateName() + "-dns-config";
 
-        config.clear();
+        ConfigElementDefConfigCloudInternetServicesConfig cisConfig = new ConfigElementDefConfigCloudInternetServicesConfig.Builder()
+                .cisCrn(System.getenv("DNS_CONFIG_CRN"))
+                .cisApikey(System.getenv("SECRETS_MANAGER_API_APIKEY")).build();
 
-        config.put("CIS_CRN", System.getenv("DNS_CONFIG_CRN"));
-        config.put("CIS_APIKEY", System.getenv("SECRETS_MANAGER_API_APIKEY"));
         configElementDef = new ConfigElementDef.Builder()
                 .name(dnsConfigName)
                 .type("cis")
-                .config(config).build();
+                .config(cisConfig).build();
 
 
         createConfigElementOptions = new CreateConfigElementOptions.Builder()

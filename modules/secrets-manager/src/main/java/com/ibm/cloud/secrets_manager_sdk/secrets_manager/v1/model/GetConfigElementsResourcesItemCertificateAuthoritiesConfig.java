@@ -13,7 +13,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 /**
- * Certificate authorities config.
+ * Certificate authorities configuration.
  */
 public class GetConfigElementsResourcesItemCertificateAuthoritiesConfig extends GetConfigElementsResourcesItem {
 

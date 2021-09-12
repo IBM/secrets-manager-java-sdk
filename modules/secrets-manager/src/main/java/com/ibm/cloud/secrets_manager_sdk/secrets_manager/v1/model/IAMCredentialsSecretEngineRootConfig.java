@@ -13,7 +13,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 /**
- * Configuration that is used to generate IAM credentials.
+ * Configuration for the IAM credentials engine.
  */
 public class IAMCredentialsSecretEngineRootConfig extends GetConfigResourcesItem {
 

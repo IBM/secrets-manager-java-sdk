@@ -28,7 +28,7 @@ public class DeleteConfigElementOptions extends GenericModel {
   }
 
   /**
-   * The Config element type.
+   * The configuration element to define or manage.
    */
   public interface ConfigElement {
     /** certificate_authorities. */
@@ -152,7 +152,7 @@ public class DeleteConfigElementOptions extends GenericModel {
   /**
    * Gets the configElement.
    *
-   * The Config element type.
+   * The configuration element to define or manage.
    *
    * @return the configElement
    */
@@ -163,7 +163,7 @@ public class DeleteConfigElementOptions extends GenericModel {
   /**
    * Gets the configName.
    *
-   * Config name.
+   * The name of your configuration.
    *
    * @return the configName
    */

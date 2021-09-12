@@ -35,13 +35,13 @@ public class UpdateConfigElementOptionsTest {
       .secretType("public_cert")
       .configElement("certificate_authorities")
       .configName("testString")
-      .type("testString")
+      .type("letsencrypt")
       .config(new java.util.HashMap<String, Object>() { { put("foo", "testString"); } })
       .build();
     assertEquals(updateConfigElementOptionsModel.secretType(), "public_cert");
     assertEquals(updateConfigElementOptionsModel.configElement(), "certificate_authorities");
     assertEquals(updateConfigElementOptionsModel.configName(), "testString");
-    assertEquals(updateConfigElementOptionsModel.type(), "testString");
+    assertEquals(updateConfigElementOptionsModel.type(), "letsencrypt");
     assertEquals(updateConfigElementOptionsModel.config(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } });
   }
 

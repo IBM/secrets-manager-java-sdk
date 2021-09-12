@@ -36,11 +36,11 @@ public class PublicCertificateMetadataSecretResourceTest {
   @Test
   public void testPublicCertificateMetadataSecretResource() throws Throwable {
     Rotation rotationModel = new Rotation.Builder()
-      .autoRotate(true)
-      .rotateKeys(true)
+      .autoRotate(false)
+      .rotateKeys(false)
       .build();
-    assertEquals(rotationModel.autoRotate(), Boolean.valueOf(true));
-    assertEquals(rotationModel.rotateKeys(), Boolean.valueOf(true));
+    assertEquals(rotationModel.autoRotate(), Boolean.valueOf(false));
+    assertEquals(rotationModel.rotateKeys(), Boolean.valueOf(false));
 
     IssuanceInfo issuanceInfoModel = new IssuanceInfo.Builder()
       .build();

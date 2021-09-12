@@ -17,7 +17,7 @@ import java.util.List;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Configuration that is used to generate IAM credentials.
+ * Configuration for the specified secret type.
  */
 public class GetConfig extends GenericModel {
 

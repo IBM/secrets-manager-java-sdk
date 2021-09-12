@@ -92,6 +92,11 @@ public class Rotation extends GenericModel {
   /**
    * Gets the autoRotate.
    *
+   * Determines whether Secrets Manager rotates your certificate automatically.
+   *
+   * If set to `true`, the service reorders your certificate 31 days before it expires. To access the previous  version
+   * of the certifcate, you can use the [Get a version of a secret](#get-secret-version) method.
+   *
    * @return the autoRotate
    */
   public Boolean autoRotate() {
@@ -100,6 +105,10 @@ public class Rotation extends GenericModel {
 
   /**
    * Gets the rotateKeys.
+   *
+   * Determines whether Secrets Manager rotates the private key for your certificate automatically.
+   *
+   * If set to `true`, the service generates and stores a new private key for your rotated certificate.
    *
    * @return the rotateKeys
    */

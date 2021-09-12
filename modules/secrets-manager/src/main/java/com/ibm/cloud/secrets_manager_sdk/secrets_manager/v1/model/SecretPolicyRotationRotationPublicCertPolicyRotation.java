@@ -24,10 +24,12 @@ public class SecretPolicyRotationRotationPublicCertPolicyRotation extends Secret
   public static class Builder {
     private Boolean autoRotate;
     private Boolean rotateKeys;
+    private Warning warning;
 
     public Builder(SecretPolicyRotationRotation secretPolicyRotationRotationPublicCertPolicyRotation) {
       this.autoRotate = secretPolicyRotationRotationPublicCertPolicyRotation.autoRotate;
       this.rotateKeys = secretPolicyRotationRotationPublicCertPolicyRotation.rotateKeys;
+      this.warning = secretPolicyRotationRotationPublicCertPolicyRotation.warning;
     }
 
     /**
@@ -77,6 +79,17 @@ public class SecretPolicyRotationRotationPublicCertPolicyRotation extends Secret
       this.rotateKeys = rotateKeys;
       return this;
     }
+
+    /**
+     * Set the warning.
+     *
+     * @param warning the warning
+     * @return the SecretPolicyRotationRotationPublicCertPolicyRotation builder
+     */
+    public Builder warning(Warning warning) {
+      this.warning = warning;
+      return this;
+    }
   }
 
   protected SecretPolicyRotationRotationPublicCertPolicyRotation(Builder builder) {
@@ -86,6 +99,7 @@ public class SecretPolicyRotationRotationPublicCertPolicyRotation extends Secret
       "rotateKeys cannot be null");
     autoRotate = builder.autoRotate;
     rotateKeys = builder.rotateKeys;
+    warning = builder.warning;
   }
 
   /**

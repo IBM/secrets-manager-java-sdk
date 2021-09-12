@@ -18,7 +18,7 @@ import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Public certificate issuance info.
+ * Issuance information that is associated with your certificate.
  */
 public class IssuanceInfo extends GenericModel {
 
@@ -88,7 +88,10 @@ public class IssuanceInfo extends GenericModel {
   /**
    * Gets the errorCode.
    *
-   * The issuance info error code.
+   * An code that identifies an issuance error.
+   *
+   * This field, along with `error_message`, is returned when Secrets Manager successfully processes your request, but a
+   * certificate is unable to be issued by the certificate authority.
    *
    * @return the errorCode
    */
@@ -99,7 +102,7 @@ public class IssuanceInfo extends GenericModel {
   /**
    * Gets the errorMessage.
    *
-   * The issuance info error message.
+   * A human-readable message that provides details about the issuance error.
    *
    * @return the errorMessage
    */
@@ -109,6 +112,8 @@ public class IssuanceInfo extends GenericModel {
 
   /**
    * Gets the bundleCerts.
+   *
+   * Indicates whether the issued certificate is bundled with intermediate certificates.
    *
    * @return the bundleCerts
    */
@@ -142,6 +147,8 @@ public class IssuanceInfo extends GenericModel {
   /**
    * Gets the autoRotated.
    *
+   * Indicates whether the issued certificate is configured with an automatic rotation policy.
+   *
    * @return the autoRotated
    */
   public Boolean autoRotated() {
@@ -151,6 +158,8 @@ public class IssuanceInfo extends GenericModel {
   /**
    * Gets the ca.
    *
+   * The name that was assigned to the certificate authority configuration.
+   *
    * @return the ca
    */
   public String ca() {
@@ -159,6 +168,8 @@ public class IssuanceInfo extends GenericModel {
 
   /**
    * Gets the dns.
+   *
+   * The name that was assigned to the DNS provider configuration.
    *
    * @return the dns
    */

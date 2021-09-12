@@ -13,7 +13,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 /**
- * Dns providers config.
+ * DNS providers configuration.
  */
 public class GetConfigElementsResourcesItemDnsProvidersConfig extends GetConfigElementsResourcesItem {
 

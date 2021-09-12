@@ -563,6 +563,10 @@ public class SecretResource extends GenericModel {
   /**
    * Gets the bundleCerts.
    *
+   * Determines whether your issued certificate is bundled with intermediate certificates.
+   *
+   * Set to `false` for the certificate file to contain only the issued certificate.
+   *
    * @return the bundleCerts
    */
   public Boolean bundleCerts() {
@@ -572,7 +576,9 @@ public class SecretResource extends GenericModel {
   /**
    * Gets the ca.
    *
-   * The configured ca name.
+   * The name of the certificate authority configuration.
+   *
+   * To view a list of your configured authorities, use the [List configurations API](#get-secret-config-element).
    *
    * @return the ca
    */
@@ -583,7 +589,9 @@ public class SecretResource extends GenericModel {
   /**
    * Gets the dns.
    *
-   * The configured dns provider.
+   * The name of the DNS provider configuration.
+   *
+   * To view a list of your configured authorities, use the [List configurations API](#get-secret-config-element).
    *
    * @return the dns
    */
@@ -603,7 +611,7 @@ public class SecretResource extends GenericModel {
   /**
    * Gets the issuanceInfo.
    *
-   * Public certificate issuance info.
+   * Issuance information that is associated with your certificate.
    *
    * @return the issuanceInfo
    */

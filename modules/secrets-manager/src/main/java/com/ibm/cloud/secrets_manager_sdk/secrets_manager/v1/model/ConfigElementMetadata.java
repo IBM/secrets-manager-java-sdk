@@ -15,9 +15,23 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Dns provider config metadata.
+ * Properties that describe a configuration element.
  */
 public class ConfigElementMetadata extends GenericModel {
+
+  /**
+   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
+   */
+  public interface Type {
+    /** letsencrypt. */
+    String LETSENCRYPT = "letsencrypt";
+    /** letsencrypt-stage. */
+    String LETSENCRYPT_STAGE = "letsencrypt-stage";
+    /** cis. */
+    String CIS = "cis";
+    /** classic_infrastructure. */
+    String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
+  }
 
   protected String name;
   protected String type;
@@ -25,7 +39,7 @@ public class ConfigElementMetadata extends GenericModel {
   /**
    * Gets the name.
    *
-   * Config element name.
+   * The human-readable name to assign to your configuration.
    *
    * @return the name
    */
@@ -36,7 +50,7 @@ public class ConfigElementMetadata extends GenericModel {
   /**
    * Gets the type.
    *
-   * Dns provider config type.
+   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
    *
    * @return the type
    */

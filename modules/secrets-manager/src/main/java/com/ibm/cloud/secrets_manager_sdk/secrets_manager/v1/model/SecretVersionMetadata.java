@@ -91,6 +91,8 @@ public class SecretVersionMetadata extends GenericModel {
   /**
    * Gets the serialNumber.
    *
+   * The unique serial number that was assigned to the certificate by the issuing certificate authority.
+   *
    * @return the serialNumber
    */
   public String getSerialNumber() {

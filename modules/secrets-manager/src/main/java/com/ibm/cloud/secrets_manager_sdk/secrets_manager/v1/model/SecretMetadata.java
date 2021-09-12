@@ -398,6 +398,10 @@ public class SecretMetadata extends GenericModel {
   /**
    * Gets the bundleCerts.
    *
+   * Determines whether your issued certificate is bundled with intermediate certificates.
+   *
+   * Set to `false` for the certificate file to contain only the issued certificate.
+   *
    * @return the bundleCerts
    */
   public Boolean bundleCerts() {
@@ -416,7 +420,7 @@ public class SecretMetadata extends GenericModel {
   /**
    * Gets the issuanceInfo.
    *
-   * Public certificate issuance info.
+   * Issuance information that is associated with your certificate.
    *
    * @return the issuanceInfo
    */

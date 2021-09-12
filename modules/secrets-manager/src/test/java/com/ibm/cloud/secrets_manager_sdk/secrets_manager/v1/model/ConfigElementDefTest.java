@@ -15,6 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDef;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigLetsEncryptConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -31,22 +32,27 @@ public class ConfigElementDefTest {
 
   @Test
   public void testConfigElementDef() throws Throwable {
+    ConfigElementDefConfigLetsEncryptConfig configElementDefConfigModel = new ConfigElementDefConfigLetsEncryptConfig.Builder()
+      .privateKey("testString")
+      .build();
+    assertEquals(configElementDefConfigModel.privateKey(), "testString");
+
     ConfigElementDef configElementDefModel = new ConfigElementDef.Builder()
       .name("testString")
-      .type("testString")
-      .config(new java.util.HashMap<String, Object>() { { put("foo", "testString"); } })
+      .type("letsencrypt")
+      .config(configElementDefConfigModel)
       .build();
     assertEquals(configElementDefModel.name(), "testString");
-    assertEquals(configElementDefModel.type(), "testString");
-    assertEquals(configElementDefModel.config(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } });
+    assertEquals(configElementDefModel.type(), "letsencrypt");
+    assertEquals(configElementDefModel.config(), configElementDefConfigModel);
 
     String json = TestUtilities.serialize(configElementDefModel);
 
     ConfigElementDef configElementDefModelNew = TestUtilities.deserialize(json, ConfigElementDef.class);
     assertTrue(configElementDefModelNew instanceof ConfigElementDef);
     assertEquals(configElementDefModelNew.name(), "testString");
-    assertEquals(configElementDefModelNew.type(), "testString");
-    assertEquals(configElementDefModelNew.config().toString(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } }.toString());
+    assertEquals(configElementDefModelNew.type(), "letsencrypt");
+    assertEquals(configElementDefModelNew.config().toString(), configElementDefConfigModel.toString());
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

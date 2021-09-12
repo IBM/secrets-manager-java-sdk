@@ -13,7 +13,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 /**
- * Configuration for `public_cert` secret.
+ * Configuration for the public certificates engine.
  */
 public class PublicCertSecretEngineRootConfig extends GetConfigResourcesItem {
 

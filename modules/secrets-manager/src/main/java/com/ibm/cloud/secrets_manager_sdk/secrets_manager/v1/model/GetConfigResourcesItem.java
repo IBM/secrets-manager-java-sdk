@@ -41,7 +41,7 @@ public class GetConfigResourcesItem extends GenericModel {
   /**
    * Gets the certificateAuthorities.
    *
-   * `public_cert` certificate authorites configuration.
+   * The certificate authority configurations that are associated with your instance.
    *
    * @return the certificateAuthorities
    */
@@ -52,7 +52,7 @@ public class GetConfigResourcesItem extends GenericModel {
   /**
    * Gets the dnsProviders.
    *
-   * `public_cert` dns provider configuration.
+   * The DNS provider configurations that are associated with your instance.
    *
    * @return the dnsProviders
    */

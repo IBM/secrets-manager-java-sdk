@@ -12,18 +12,30 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
-import java.util.Map;
-
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Config element.
+ * The configuration to add or update.
  */
 public class ConfigElementDef extends GenericModel {
 
+  /**
+   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
+   */
+  public interface Type {
+    /** letsencrypt. */
+    String LETSENCRYPT = "letsencrypt";
+    /** letsencrypt-stage. */
+    String LETSENCRYPT_STAGE = "letsencrypt-stage";
+    /** cis. */
+    String CIS = "cis";
+    /** classic_infrastructure. */
+    String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
+  }
+
   protected String name;
   protected String type;
-  protected Map<String, Object> config;
+  protected ConfigElementDefConfig config;
 
   /**
    * Builder.
@@ -31,7 +43,7 @@ public class ConfigElementDef extends GenericModel {
   public static class Builder {
     private String name;
     private String type;
-    private Map<String, Object> config;
+    private ConfigElementDefConfig config;
 
     private Builder(ConfigElementDef configElementDef) {
       this.name = configElementDef.name;
@@ -52,7 +64,7 @@ public class ConfigElementDef extends GenericModel {
      * @param type the type
      * @param config the config
      */
-    public Builder(String name, String type, Map<String, Object> config) {
+    public Builder(String name, String type, ConfigElementDefConfig config) {
       this.name = name;
       this.type = type;
       this.config = config;
@@ -95,7 +107,7 @@ public class ConfigElementDef extends GenericModel {
      * @param config the config
      * @return the ConfigElementDef builder
      */
-    public Builder config(Map<String, Object> config) {
+    public Builder config(ConfigElementDefConfig config) {
       this.config = config;
       return this;
     }
@@ -125,7 +137,7 @@ public class ConfigElementDef extends GenericModel {
   /**
    * Gets the name.
    *
-   * Config element name.
+   * The human-readable name to assign to your configuration.
    *
    * @return the name
    */
@@ -136,7 +148,7 @@ public class ConfigElementDef extends GenericModel {
   /**
    * Gets the type.
    *
-   * Dns provider config type.
+   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
    *
    * @return the type
    */
@@ -147,9 +159,11 @@ public class ConfigElementDef extends GenericModel {
   /**
    * Gets the config.
    *
+   * The configuration to define for the specified secret type.
+   *
    * @return the config
    */
-  public Map<String, Object> config() {
+  public ConfigElementDefConfig config() {
     return config;
   }
 }
