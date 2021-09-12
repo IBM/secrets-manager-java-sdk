@@ -218,6 +218,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, createSecretGroupPath);
   }
+  
+  public void testCreateSecretGroupWOptionsWRetries() throws Throwable {
+    // Enable retries and run testCreateSecretGroupWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testCreateSecretGroupWOptions();
+
+    // Disable retries and run testCreateSecretGroupWOptions.
+    secretsManagerService.disableRetries();
+    testCreateSecretGroupWOptions();
+  }  
 
   // Test the createSecretGroup operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -266,6 +276,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, listSecretGroupsPath);
   }
+  
+  public void testListSecretGroupsWOptionsWRetries() throws Throwable {
+    // Enable retries and run testListSecretGroupsWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testListSecretGroupsWOptions();
+
+    // Disable retries and run testListSecretGroupsWOptions.
+    secretsManagerService.disableRetries();
+    testListSecretGroupsWOptions();
+  }  
 
   @Test
   public void testGetSecretGroupWOptions() throws Throwable {
@@ -304,6 +324,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getSecretGroupPath);
   }
+  
+  public void testGetSecretGroupWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetSecretGroupWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetSecretGroupWOptions();
+
+    // Disable retries and run testGetSecretGroupWOptions.
+    secretsManagerService.disableRetries();
+    testGetSecretGroupWOptions();
+  }  
 
   // Test the getSecretGroup operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -368,6 +398,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, updateSecretGroupMetadataPath);
   }
+  
+  public void testUpdateSecretGroupMetadataWOptionsWRetries() throws Throwable {
+    // Enable retries and run testUpdateSecretGroupMetadataWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testUpdateSecretGroupMetadataWOptions();
+
+    // Disable retries and run testUpdateSecretGroupMetadataWOptions.
+    secretsManagerService.disableRetries();
+    testUpdateSecretGroupMetadataWOptions();
+  }  
 
   // Test the updateSecretGroupMetadata operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -418,6 +458,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, deleteSecretGroupPath);
   }
+  
+  public void testDeleteSecretGroupWOptionsWRetries() throws Throwable {
+    // Enable retries and run testDeleteSecretGroupWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testDeleteSecretGroupWOptions();
+
+    // Disable retries and run testDeleteSecretGroupWOptions.
+    secretsManagerService.disableRetries();
+    testDeleteSecretGroupWOptions();
+  }  
 
   // Test the deleteSecretGroup operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -486,6 +536,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, createSecretPath);
   }
+  
+  public void testCreateSecretWOptionsWRetries() throws Throwable {
+    // Enable retries and run testCreateSecretWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testCreateSecretWOptions();
+
+    // Disable retries and run testCreateSecretWOptions.
+    secretsManagerService.disableRetries();
+    testCreateSecretWOptions();
+  }  
 
   // Test the createSecret operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -540,6 +600,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, listSecretsPath);
   }
+  
+  public void testListSecretsWOptionsWRetries() throws Throwable {
+    // Enable retries and run testListSecretsWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testListSecretsWOptions();
+
+    // Disable retries and run testListSecretsWOptions.
+    secretsManagerService.disableRetries();
+    testListSecretsWOptions();
+  }  
 
   // Test the listSecrets operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -599,6 +669,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, listAllSecretsPath);
   }
+  
+  public void testListAllSecretsWOptionsWRetries() throws Throwable {
+    // Enable retries and run testListAllSecretsWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testListAllSecretsWOptions();
+
+    // Disable retries and run testListAllSecretsWOptions.
+    secretsManagerService.disableRetries();
+    testListAllSecretsWOptions();
+  }  
 
   @Test
   public void testGetSecretWOptions() throws Throwable {
@@ -638,6 +718,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getSecretPath);
   }
+  
+  public void testGetSecretWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetSecretWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetSecretWOptions();
+
+    // Disable retries and run testGetSecretWOptions.
+    secretsManagerService.disableRetries();
+    testGetSecretWOptions();
+  }  
 
   // Test the getSecret operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -697,6 +787,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, updateSecretPath);
   }
+  
+  public void testUpdateSecretWOptionsWRetries() throws Throwable {
+    // Enable retries and run testUpdateSecretWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testUpdateSecretWOptions();
+
+    // Disable retries and run testUpdateSecretWOptions.
+    secretsManagerService.disableRetries();
+    testUpdateSecretWOptions();
+  }  
 
   // Test the updateSecret operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -748,6 +848,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, deleteSecretPath);
   }
+  
+  public void testDeleteSecretWOptionsWRetries() throws Throwable {
+    // Enable retries and run testDeleteSecretWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testDeleteSecretWOptions();
+
+    // Disable retries and run testDeleteSecretWOptions.
+    secretsManagerService.disableRetries();
+    testDeleteSecretWOptions();
+  }  
 
   // Test the deleteSecret operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -800,6 +910,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getSecretVersionPath);
   }
+  
+  public void testGetSecretVersionWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetSecretVersionWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetSecretVersionWOptions();
+
+    // Disable retries and run testGetSecretVersionWOptions.
+    secretsManagerService.disableRetries();
+    testGetSecretVersionWOptions();
+  }  
 
   // Test the getSecretVersion operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -852,6 +972,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getSecretVersionMetadataPath);
   }
+  
+  public void testGetSecretVersionMetadataWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetSecretVersionMetadataWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetSecretVersionMetadataWOptions();
+
+    // Disable retries and run testGetSecretVersionMetadataWOptions.
+    secretsManagerService.disableRetries();
+    testGetSecretVersionMetadataWOptions();
+  }  
 
   // Test the getSecretVersionMetadata operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -903,6 +1033,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getSecretMetadataPath);
   }
+  
+  public void testGetSecretMetadataWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetSecretMetadataWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetSecretMetadataWOptions();
+
+    // Disable retries and run testGetSecretMetadataWOptions.
+    secretsManagerService.disableRetries();
+    testGetSecretMetadataWOptions();
+  }  
 
   // Test the getSecretMetadata operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -970,6 +1110,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, updateSecretMetadataPath);
   }
+  
+  public void testUpdateSecretMetadataWOptionsWRetries() throws Throwable {
+    // Enable retries and run testUpdateSecretMetadataWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testUpdateSecretMetadataWOptions();
+
+    // Disable retries and run testUpdateSecretMetadataWOptions.
+    secretsManagerService.disableRetries();
+    testUpdateSecretMetadataWOptions();
+  }  
 
   // Test the updateSecretMetadata operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1043,6 +1193,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, putPolicyPath);
   }
+  
+  public void testPutPolicyWOptionsWRetries() throws Throwable {
+    // Enable retries and run testPutPolicyWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testPutPolicyWOptions();
+
+    // Disable retries and run testPutPolicyWOptions.
+    secretsManagerService.disableRetries();
+    testPutPolicyWOptions();
+  }  
 
   // Test the putPolicy operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1096,6 +1256,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getPolicyPath);
   }
+  
+  public void testGetPolicyWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetPolicyWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetPolicyWOptions();
+
+    // Disable retries and run testGetPolicyWOptions.
+    secretsManagerService.disableRetries();
+    testGetPolicyWOptions();
+  }  
 
   // Test the getPolicy operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1146,6 +1316,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, putConfigPath);
   }
+  
+  public void testPutConfigWOptionsWRetries() throws Throwable {
+    // Enable retries and run testPutConfigWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testPutConfigWOptions();
+
+    // Disable retries and run testPutConfigWOptions.
+    secretsManagerService.disableRetries();
+    testPutConfigWOptions();
+  }  
 
   // Test the putConfig operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1196,6 +1376,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getConfigPath);
   }
+  
+  public void testGetConfigWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetConfigWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetConfigWOptions();
+
+    // Disable retries and run testGetConfigWOptions.
+    secretsManagerService.disableRetries();
+    testGetConfigWOptions();
+  }  
 
   // Test the getConfig operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1255,6 +1445,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, createConfigElementPath);
   }
+  
+  public void testCreateConfigElementWOptionsWRetries() throws Throwable {
+    // Enable retries and run testCreateConfigElementWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testCreateConfigElementWOptions();
+
+    // Disable retries and run testCreateConfigElementWOptions.
+    secretsManagerService.disableRetries();
+    testCreateConfigElementWOptions();
+  }  
 
   // Test the createConfigElement operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1306,6 +1506,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getConfigElementsPath);
   }
+  
+  public void testGetConfigElementsWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetConfigElementsWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetConfigElementsWOptions();
+
+    // Disable retries and run testGetConfigElementsWOptions.
+    secretsManagerService.disableRetries();
+    testGetConfigElementsWOptions();
+  }  
 
   // Test the getConfigElements operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1360,6 +1570,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, updateConfigElementPath);
   }
+  
+  public void testUpdateConfigElementWOptionsWRetries() throws Throwable {
+    // Enable retries and run testUpdateConfigElementWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testUpdateConfigElementWOptions();
+
+    // Disable retries and run testUpdateConfigElementWOptions.
+    secretsManagerService.disableRetries();
+    testUpdateConfigElementWOptions();
+  }  
 
   // Test the updateConfigElement operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1412,6 +1632,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, deleteConfigElementPath);
   }
+  
+  public void testDeleteConfigElementWOptionsWRetries() throws Throwable {
+    // Enable retries and run testDeleteConfigElementWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testDeleteConfigElementWOptions();
+
+    // Disable retries and run testDeleteConfigElementWOptions.
+    secretsManagerService.disableRetries();
+    testDeleteConfigElementWOptions();
+  }  
 
   // Test the deleteConfigElement operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
@@ -1464,6 +1694,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, getConfigElementPath);
   }
+  
+  public void testGetConfigElementWOptionsWRetries() throws Throwable {
+    // Enable retries and run testGetConfigElementWOptions.
+    secretsManagerService.enableRetries(4, 30);
+    testGetConfigElementWOptions();
+
+    // Disable retries and run testGetConfigElementWOptions.
+    secretsManagerService.disableRetries();
+    testGetConfigElementWOptions();
+  }  
 
   // Test the getConfigElement operation with null options model parameter
   @Test(expectedExceptions = IllegalArgumentException.class)
