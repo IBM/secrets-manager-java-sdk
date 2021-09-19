@@ -16,32 +16,35 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetConfigElementsOptions model.
  */
 public class GetConfigElementsOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetConfigElementsOptions() throws Throwable {
-    GetConfigElementsOptions getConfigElementsOptionsModel = new GetConfigElementsOptions.Builder()
-      .secretType("public_cert")
-      .configElement("certificate_authorities")
-      .build();
-    assertEquals(getConfigElementsOptionsModel.secretType(), "public_cert");
-    assertEquals(getConfigElementsOptionsModel.configElement(), "certificate_authorities");
-  }
+    @Test
+    public void testGetConfigElementsOptions() throws Throwable {
+        GetConfigElementsOptions getConfigElementsOptionsModel = new GetConfigElementsOptions.Builder()
+                .secretType("public_cert")
+                .configElement("certificate_authorities")
+                .build();
+        assertEquals(getConfigElementsOptionsModel.secretType(), "public_cert");
+        assertEquals(getConfigElementsOptionsModel.configElement(), "certificate_authorities");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testGetConfigElementsOptionsError() throws Throwable {
-    new GetConfigElementsOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetConfigElementsOptionsError() throws Throwable {
+        new GetConfigElementsOptions.Builder().build();
+    }
 
 }

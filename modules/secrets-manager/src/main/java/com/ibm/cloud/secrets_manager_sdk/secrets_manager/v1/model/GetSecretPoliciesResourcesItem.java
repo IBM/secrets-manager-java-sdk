@@ -22,111 +22,113 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetSecretPoliciesResourcesItem extends GenericModel {
 
-  /**
-   * The MIME type that represents the policy. Currently, only the default is supported.
-   */
-  public interface Type {
-    /** application/vnd.ibm.secrets-manager.secret.policy+json. */
-    String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = "application/vnd.ibm.secrets-manager.secret.policy+json";
-  }
+    /**
+     * The MIME type that represents the policy. Currently, only the default is supported.
+     */
+    public interface Type {
+        /**
+         * application/vnd.ibm.secrets-manager.secret.policy+json.
+         */
+        String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = "application/vnd.ibm.secrets-manager.secret.policy+json";
+    }
 
-  protected String id;
-  protected String crn;
-  @SerializedName("creation_date")
-  protected Date creationDate;
-  @SerializedName("created_by")
-  protected String createdBy;
-  @SerializedName("last_update_date")
-  protected Date lastUpdateDate;
-  @SerializedName("updated_by")
-  protected String updatedBy;
-  protected String type;
-  protected SecretPolicyRotationRotation rotation;
+    protected String id;
+    protected String crn;
+    @SerializedName("creation_date")
+    protected Date creationDate;
+    @SerializedName("created_by")
+    protected String createdBy;
+    @SerializedName("last_update_date")
+    protected Date lastUpdateDate;
+    @SerializedName("updated_by")
+    protected String updatedBy;
+    protected String type;
+    protected SecretPolicyRotationRotation rotation;
 
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the policy.
-   *
-   * @return the id
-   */
-  public String getId() {
-    return id;
-  }
+    /**
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the policy.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-  /**
-   * Gets the crn.
-   *
-   * The Cloud Resource Name (CRN) that uniquely identifies your cloud resources.
-   *
-   * @return the crn
-   */
-  public String getCrn() {
-    return crn;
-  }
+    /**
+     * Gets the crn.
+     * <p>
+     * The Cloud Resource Name (CRN) that uniquely identifies your cloud resources.
+     *
+     * @return the crn
+     */
+    public String getCrn() {
+        return crn;
+    }
 
-  /**
-   * Gets the creationDate.
-   *
-   * The date the policy was created. The date format follows RFC 3339.
-   *
-   * @return the creationDate
-   */
-  public Date getCreationDate() {
-    return creationDate;
-  }
+    /**
+     * Gets the creationDate.
+     * <p>
+     * The date the policy was created. The date format follows RFC 3339.
+     *
+     * @return the creationDate
+     */
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-  /**
-   * Gets the createdBy.
-   *
-   * The unique identifier for the entity that created the policy.
-   *
-   * @return the createdBy
-   */
-  public String getCreatedBy() {
-    return createdBy;
-  }
+    /**
+     * Gets the createdBy.
+     * <p>
+     * The unique identifier for the entity that created the policy.
+     *
+     * @return the createdBy
+     */
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-  /**
-   * Gets the lastUpdateDate.
-   *
-   * Updates when the policy is replaced or modified. The date format follows RFC 3339.
-   *
-   * @return the lastUpdateDate
-   */
-  public Date getLastUpdateDate() {
-    return lastUpdateDate;
-  }
+    /**
+     * Gets the lastUpdateDate.
+     * <p>
+     * Updates when the policy is replaced or modified. The date format follows RFC 3339.
+     *
+     * @return the lastUpdateDate
+     */
+    public Date getLastUpdateDate() {
+        return lastUpdateDate;
+    }
 
-  /**
-   * Gets the updatedBy.
-   *
-   * The unique identifier for the entity that updated the policy.
-   *
-   * @return the updatedBy
-   */
-  public String getUpdatedBy() {
-    return updatedBy;
-  }
+    /**
+     * Gets the updatedBy.
+     * <p>
+     * The unique identifier for the entity that updated the policy.
+     *
+     * @return the updatedBy
+     */
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
 
-  /**
-   * Gets the type.
-   *
-   * The MIME type that represents the policy. Currently, only the default is supported.
-   *
-   * @return the type
-   */
-  public String getType() {
-    return type;
-  }
+    /**
+     * Gets the type.
+     * <p>
+     * The MIME type that represents the policy. Currently, only the default is supported.
+     *
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
 
-  /**
-   * Gets the rotation.
-   *
-   * @return the rotation
-   */
-  public SecretPolicyRotationRotation getRotation() {
-    return rotation;
-  }
+    /**
+     * Gets the rotation.
+     *
+     * @return the rotation
+     */
+    public SecretPolicyRotationRotation getRotation() {
+        return rotation;
+    }
 }
 

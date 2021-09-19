@@ -19,124 +19,124 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * SecretVersion.
- *
+ * <p>
  * Classes which extend this class:
  * - CertificateSecretVersion
  */
 public class SecretVersion extends GenericModel {
 
-  protected String id;
-  protected String crn;
-  @SerializedName("version_id")
-  protected String versionId;
-  @SerializedName("creation_date")
-  protected Date creationDate;
-  @SerializedName("created_by")
-  protected String createdBy;
-  protected CertificateValidity validity;
-  @SerializedName("serial_number")
-  protected String serialNumber;
-  @SerializedName("expiration_date")
-  protected Date expirationDate;
-  @SerializedName("secret_data")
-  protected CertificateSecretData secretData;
+    protected String id;
+    protected String crn;
+    @SerializedName("version_id")
+    protected String versionId;
+    @SerializedName("creation_date")
+    protected Date creationDate;
+    @SerializedName("created_by")
+    protected String createdBy;
+    protected CertificateValidity validity;
+    @SerializedName("serial_number")
+    protected String serialNumber;
+    @SerializedName("expiration_date")
+    protected Date expirationDate;
+    @SerializedName("secret_data")
+    protected CertificateSecretData secretData;
 
-  protected SecretVersion() {
-  }
+    protected SecretVersion() {
+    }
 
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret.
-   *
-   * @return the id
-   */
-  public String getId() {
-    return id;
-  }
+    /**
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-  /**
-   * Gets the crn.
-   *
-   * The Cloud Resource Name (CRN) that uniquely identifies the secret.
-   *
-   * @return the crn
-   */
-  public String getCrn() {
-    return crn;
-  }
+    /**
+     * Gets the crn.
+     * <p>
+     * The Cloud Resource Name (CRN) that uniquely identifies the secret.
+     *
+     * @return the crn
+     */
+    public String getCrn() {
+        return crn;
+    }
 
-  /**
-   * Gets the versionId.
-   *
-   * The ID of the secret version.
-   *
-   * @return the versionId
-   */
-  public String getVersionId() {
-    return versionId;
-  }
+    /**
+     * Gets the versionId.
+     * <p>
+     * The ID of the secret version.
+     *
+     * @return the versionId
+     */
+    public String getVersionId() {
+        return versionId;
+    }
 
-  /**
-   * Gets the creationDate.
-   *
-   * The date that the version of the secret was created.
-   *
-   * @return the creationDate
-   */
-  public Date getCreationDate() {
-    return creationDate;
-  }
+    /**
+     * Gets the creationDate.
+     * <p>
+     * The date that the version of the secret was created.
+     *
+     * @return the creationDate
+     */
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-  /**
-   * Gets the createdBy.
-   *
-   * The unique identifier for the entity that created the secret version.
-   *
-   * @return the createdBy
-   */
-  public String getCreatedBy() {
-    return createdBy;
-  }
+    /**
+     * Gets the createdBy.
+     * <p>
+     * The unique identifier for the entity that created the secret version.
+     *
+     * @return the createdBy
+     */
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-  /**
-   * Gets the validity.
-   *
-   * @return the validity
-   */
-  public CertificateValidity getValidity() {
-    return validity;
-  }
+    /**
+     * Gets the validity.
+     *
+     * @return the validity
+     */
+    public CertificateValidity getValidity() {
+        return validity;
+    }
 
-  /**
-   * Gets the serialNumber.
-   *
-   * The unique serial number that was assigned to the certificate by the issuing certificate authority.
-   *
-   * @return the serialNumber
-   */
-  public String getSerialNumber() {
-    return serialNumber;
-  }
+    /**
+     * Gets the serialNumber.
+     * <p>
+     * The unique serial number that was assigned to the certificate by the issuing certificate authority.
+     *
+     * @return the serialNumber
+     */
+    public String getSerialNumber() {
+        return serialNumber;
+    }
 
-  /**
-   * Gets the expirationDate.
-   *
-   * The date that the certificate expires. The date format follows RFC 3339.
-   *
-   * @return the expirationDate
-   */
-  public Date getExpirationDate() {
-    return expirationDate;
-  }
+    /**
+     * Gets the expirationDate.
+     * <p>
+     * The date that the certificate expires. The date format follows RFC 3339.
+     *
+     * @return the expirationDate
+     */
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
 
-  /**
-   * Gets the secretData.
-   *
-   * @return the secretData
-   */
-  public CertificateSecretData getSecretData() {
-    return secretData;
-  }
+    /**
+     * Gets the secretData.
+     *
+     * @return the secretData
+     */
+    public CertificateSecretData getSecretData() {
+        return secretData;
+    }
 }
 

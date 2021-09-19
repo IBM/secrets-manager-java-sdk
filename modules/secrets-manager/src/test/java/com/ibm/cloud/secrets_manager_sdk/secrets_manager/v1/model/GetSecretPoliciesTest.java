@@ -19,23 +19,26 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPolic
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPolicyRotationResourcesItem;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRotationRotationPolicyRotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSecretPolicies model.
  */
 public class GetSecretPoliciesTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  // TODO: Add tests for models that are abstract
-  @Test
-  public void testGetSecretPolicies() throws Throwable {
-    GetSecretPolicies getSecretPoliciesModel = new GetSecretPolicies();
-    assertNotNull(getSecretPoliciesModel);
-  }
+    // TODO: Add tests for models that are abstract
+    @Test
+    public void testGetSecretPolicies() throws Throwable {
+        GetSecretPolicies getSecretPoliciesModel = new GetSecretPolicies();
+        assertNotNull(getSecretPoliciesModel);
+    }
 }

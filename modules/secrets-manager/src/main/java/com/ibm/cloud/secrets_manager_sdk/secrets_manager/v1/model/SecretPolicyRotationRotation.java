@@ -17,83 +17,87 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * SecretPolicyRotationRotation.
- *
+ * <p>
  * Classes which extend this class:
  * - SecretPolicyRotationRotationPolicyRotation
  * - SecretPolicyRotationRotationPublicCertPolicyRotation
  */
 public class SecretPolicyRotationRotation extends GenericModel {
 
-  /**
-   * Specifies the units for the secret rotation time interval.
-   */
-  public interface Unit {
-    /** day. */
-    String DAY = "day";
-    /** month. */
-    String MONTH = "month";
-  }
+    /**
+     * Specifies the units for the secret rotation time interval.
+     */
+    public interface Unit {
+        /**
+         * day.
+         */
+        String DAY = "day";
+        /**
+         * month.
+         */
+        String MONTH = "month";
+    }
 
-  protected Long interval;
-  protected String unit;
-  @SerializedName("auto_rotate")
-  protected Boolean autoRotate;
-  @SerializedName("rotate_keys")
-  protected Boolean rotateKeys;
-  protected Warning warning;
+    protected Long interval;
+    protected String unit;
+    @SerializedName("auto_rotate")
+    protected Boolean autoRotate;
+    @SerializedName("rotate_keys")
+    protected Boolean rotateKeys;
+    protected Warning warning;
 
-  protected SecretPolicyRotationRotation() {
-  }
+    protected SecretPolicyRotationRotation() {
+    }
 
-  /**
-   * Gets the interval.
-   *
-   * Specifies the length of the secret rotation time interval.
-   *
-   * @return the interval
-   */
-  public Long interval() {
-    return interval;
-  }
+    /**
+     * Gets the interval.
+     * <p>
+     * Specifies the length of the secret rotation time interval.
+     *
+     * @return the interval
+     */
+    public Long interval() {
+        return interval;
+    }
 
-  /**
-   * Gets the unit.
-   *
-   * Specifies the units for the secret rotation time interval.
-   *
-   * @return the unit
-   */
-  public String unit() {
-    return unit;
-  }
+    /**
+     * Gets the unit.
+     * <p>
+     * Specifies the units for the secret rotation time interval.
+     *
+     * @return the unit
+     */
+    public String unit() {
+        return unit;
+    }
 
-  /**
-   * Gets the autoRotate.
-   *
-   * @return the autoRotate
-   */
-  public Boolean autoRotate() {
-    return autoRotate;
-  }
+    /**
+     * Gets the autoRotate.
+     *
+     * @return the autoRotate
+     */
+    public Boolean autoRotate() {
+        return autoRotate;
+    }
 
-  /**
-   * Gets the rotateKeys.
-   *
-   * @return the rotateKeys
-   */
-  public Boolean rotateKeys() {
-    return rotateKeys;
-  }
+    /**
+     * Gets the rotateKeys.
+     *
+     * @return the rotateKeys
+     */
+    public Boolean rotateKeys() {
+        return rotateKeys;
+    }
 
-  /**
-   * Gets the warning.
-   *
-   * Warning response.
-   *
-   * @return the warning
-   */
-  public Warning warning() {
-    return warning;
-  }
+    /**
+     * Gets the warning.
+     * <p>
+     * Warning response.
+     *
+     * @return the warning
+     */
+    public Warning warning() {
+        return warning;
+    }
 }
 

@@ -19,88 +19,92 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class PutConfigOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-  }
-
-  protected String secretType;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-
-    private Builder(PutConfigOptions putConfigOptions) {
-      this.secretType = putConfigOptions.secretType;
-    }
-
     /**
-     * Instantiates a new builder.
+     * The secret type.
      */
-    public Builder() {
+    public interface SecretType {
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+    }
+
+    protected String secretType;
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+
+        private Builder(PutConfigOptions putConfigOptions) {
+            this.secretType = putConfigOptions.secretType;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType the secretType
+         */
+        public Builder(String secretType) {
+            this.secretType = secretType;
+        }
+
+        /**
+         * Builds a PutConfigOptions.
+         *
+         * @return the new PutConfigOptions instance
+         */
+        public PutConfigOptions build() {
+            return new PutConfigOptions(this);
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the PutConfigOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+    }
+
+    protected PutConfigOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        secretType = builder.secretType;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param secretType the secretType
+     * @return a PutConfigOptions builder
      */
-    public Builder(String secretType) {
-      this.secretType = secretType;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Builds a PutConfigOptions.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @return the new PutConfigOptions instance
+     * @return the secretType
      */
-    public PutConfigOptions build() {
-      return new PutConfigOptions(this);
+    public String secretType() {
+        return secretType;
     }
-
-    /**
-     * Set the secretType.
-     *
-     * @param secretType the secretType
-     * @return the PutConfigOptions builder
-     */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
-    }
-  }
-
-  protected PutConfigOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    secretType = builder.secretType;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a PutConfigOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
 }
 

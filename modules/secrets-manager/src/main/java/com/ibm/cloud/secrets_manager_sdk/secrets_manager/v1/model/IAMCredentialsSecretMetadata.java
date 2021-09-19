@@ -20,141 +20,151 @@ import java.util.List;
  */
 public class IAMCredentialsSecretMetadata extends SecretMetadata {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-  }
-
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private List<String> labels;
-    private String name;
-    private String description;
-    private Object ttl;
-
-    public Builder(SecretMetadata iamCredentialsSecretMetadata) {
-      this.labels = iamCredentialsSecretMetadata.labels;
-      this.name = iamCredentialsSecretMetadata.name;
-      this.description = iamCredentialsSecretMetadata.description;
-      this.ttl = iamCredentialsSecretMetadata.ttl;
-    }
-
     /**
-     * Instantiates a new builder.
+     * The secret type.
      */
-    public Builder() {
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+    }
+
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private List<String> labels;
+        private String name;
+        private String description;
+        private Object ttl;
+
+        public Builder(SecretMetadata iamCredentialsSecretMetadata) {
+            this.labels = iamCredentialsSecretMetadata.labels;
+            this.name = iamCredentialsSecretMetadata.name;
+            this.description = iamCredentialsSecretMetadata.description;
+            this.ttl = iamCredentialsSecretMetadata.ttl;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param name the name
+         */
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Builds a IAMCredentialsSecretMetadata.
+         *
+         * @return the new IAMCredentialsSecretMetadata instance
+         */
+        public IAMCredentialsSecretMetadata build() {
+            return new IAMCredentialsSecretMetadata(this);
+        }
+
+        /**
+         * Adds an labels to labels.
+         *
+         * @param labels the new labels
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder addLabels(String labels) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
+                    "labels cannot be null");
+            if (this.labels == null) {
+                this.labels = new ArrayList<String>();
+            }
+            this.labels.add(labels);
+            return this;
+        }
+
+        /**
+         * Set the labels.
+         * Existing labels will be replaced.
+         *
+         * @param labels the labels
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder labels(List<String> labels) {
+            this.labels = labels;
+            return this;
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the description.
+         *
+         * @param description the description
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        /**
+         * Set the ttl.
+         *
+         * @param ttl the ttl
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder ttl(Object ttl) {
+            this.ttl = ttl;
+            return this;
+        }
+    }
+
+    protected IAMCredentialsSecretMetadata(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+                "name cannot be null");
+        labels = builder.labels;
+        name = builder.name;
+        description = builder.description;
+        ttl = builder.ttl;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param name the name
+     * @return a IAMCredentialsSecretMetadata builder
      */
-    public Builder(String name) {
-      this.name = name;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Builds a IAMCredentialsSecretMetadata.
-     *
-     * @return the new IAMCredentialsSecretMetadata instance
-     */
-    public IAMCredentialsSecretMetadata build() {
-      return new IAMCredentialsSecretMetadata(this);
-    }
-
-    /**
-     * Adds an labels to labels.
-     *
-     * @param labels the new labels
-     * @return the IAMCredentialsSecretMetadata builder
-     */
-    public Builder addLabels(String labels) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
-        "labels cannot be null");
-      if (this.labels == null) {
-        this.labels = new ArrayList<String>();
-      }
-      this.labels.add(labels);
-      return this;
-    }
-
-    /**
-     * Set the labels.
-     * Existing labels will be replaced.
-     *
-     * @param labels the labels
-     * @return the IAMCredentialsSecretMetadata builder
-     */
-    public Builder labels(List<String> labels) {
-      this.labels = labels;
-      return this;
-    }
-
-    /**
-     * Set the name.
-     *
-     * @param name the name
-     * @return the IAMCredentialsSecretMetadata builder
-     */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
-    }
-
-    /**
-     * Set the description.
-     *
-     * @param description the description
-     * @return the IAMCredentialsSecretMetadata builder
-     */
-    public Builder description(String description) {
-      this.description = description;
-      return this;
-    }
-
-    /**
-     * Set the ttl.
-     *
-     * @param ttl the ttl
-     * @return the IAMCredentialsSecretMetadata builder
-     */
-    public Builder ttl(Object ttl) {
-      this.ttl = ttl;
-      return this;
-    }
-  }
-
-  protected IAMCredentialsSecretMetadata(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
-      "name cannot be null");
-    labels = builder.labels;
-    name = builder.name;
-    description = builder.description;
-    ttl = builder.ttl;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a IAMCredentialsSecretMetadata builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

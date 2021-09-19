@@ -19,37 +19,37 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * GetConfigElementsResourcesItem.
- *
+ * <p>
  * Classes which extend this class:
  * - GetConfigElementsResourcesItemCertificateAuthoritiesConfig
  * - GetConfigElementsResourcesItemDnsProvidersConfig
  */
 public class GetConfigElementsResourcesItem extends GenericModel {
 
-  @SerializedName("certificate_authorities")
-  protected List<ConfigElementMetadata> certificateAuthorities;
-  @SerializedName("dns_providers")
-  protected List<ConfigElementMetadata> dnsProviders;
+    @SerializedName("certificate_authorities")
+    protected List<ConfigElementMetadata> certificateAuthorities;
+    @SerializedName("dns_providers")
+    protected List<ConfigElementMetadata> dnsProviders;
 
-  protected GetConfigElementsResourcesItem() {
-  }
+    protected GetConfigElementsResourcesItem() {
+    }
 
-  /**
-   * Gets the certificateAuthorities.
-   *
-   * @return the certificateAuthorities
-   */
-  public List<ConfigElementMetadata> getCertificateAuthorities() {
-    return certificateAuthorities;
-  }
+    /**
+     * Gets the certificateAuthorities.
+     *
+     * @return the certificateAuthorities
+     */
+    public List<ConfigElementMetadata> getCertificateAuthorities() {
+        return certificateAuthorities;
+    }
 
-  /**
-   * Gets the dnsProviders.
-   *
-   * @return the dnsProviders
-   */
-  public List<ConfigElementMetadata> getDnsProviders() {
-    return dnsProviders;
-  }
+    /**
+     * Gets the dnsProviders.
+     *
+     * @return the dnsProviders
+     */
+    public List<ConfigElementMetadata> getDnsProviders() {
+        return dnsProviders;
+    }
 }
 

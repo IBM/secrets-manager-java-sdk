@@ -22,159 +22,159 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class IssuanceInfo extends GenericModel {
 
-  @SerializedName("ordered_on")
-  protected Date orderedOn;
-  @SerializedName("error_code")
-  protected String errorCode;
-  @SerializedName("error_message")
-  protected String errorMessage;
-  @SerializedName("bundle_certs")
-  protected Boolean bundleCerts;
-  protected Long state;
-  @SerializedName("state_description")
-  protected String stateDescription;
-  @SerializedName("auto_rotated")
-  protected Boolean autoRotated;
-  protected String ca;
-  protected String dns;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-
-    private Builder(IssuanceInfo issuanceInfo) {
-    }
+    @SerializedName("ordered_on")
+    protected Date orderedOn;
+    @SerializedName("error_code")
+    protected String errorCode;
+    @SerializedName("error_message")
+    protected String errorMessage;
+    @SerializedName("bundle_certs")
+    protected Boolean bundleCerts;
+    protected Long state;
+    @SerializedName("state_description")
+    protected String stateDescription;
+    @SerializedName("auto_rotated")
+    protected Boolean autoRotated;
+    protected String ca;
+    protected String dns;
 
     /**
-     * Instantiates a new builder.
+     * Builder.
      */
-    public Builder() {
+    public static class Builder {
+
+        private Builder(IssuanceInfo issuanceInfo) {
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a IssuanceInfo.
+         *
+         * @return the new IssuanceInfo instance
+         */
+        public IssuanceInfo build() {
+            return new IssuanceInfo(this);
+        }
+    }
+
+    protected IssuanceInfo(Builder builder) {
     }
 
     /**
-     * Builds a IssuanceInfo.
+     * New builder.
      *
-     * @return the new IssuanceInfo instance
+     * @return a IssuanceInfo builder
      */
-    public IssuanceInfo build() {
-      return new IssuanceInfo(this);
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-  }
 
-  protected IssuanceInfo(Builder builder) {
-  }
+    /**
+     * Gets the orderedOn.
+     * <p>
+     * The date the certificate was ordered. The date format follows RFC 3339.
+     *
+     * @return the orderedOn
+     */
+    public Date orderedOn() {
+        return orderedOn;
+    }
 
-  /**
-   * New builder.
-   *
-   * @return a IssuanceInfo builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
+    /**
+     * Gets the errorCode.
+     * <p>
+     * An code that identifies an issuance error.
+     * <p>
+     * This field, along with `error_message`, is returned when Secrets Manager successfully processes your request, but a
+     * certificate is unable to be issued by the certificate authority.
+     *
+     * @return the errorCode
+     */
+    public String errorCode() {
+        return errorCode;
+    }
 
-  /**
-   * Gets the orderedOn.
-   *
-   * The date the certificate was ordered. The date format follows RFC 3339.
-   *
-   * @return the orderedOn
-   */
-  public Date orderedOn() {
-    return orderedOn;
-  }
+    /**
+     * Gets the errorMessage.
+     * <p>
+     * A human-readable message that provides details about the issuance error.
+     *
+     * @return the errorMessage
+     */
+    public String errorMessage() {
+        return errorMessage;
+    }
 
-  /**
-   * Gets the errorCode.
-   *
-   * An code that identifies an issuance error.
-   *
-   * This field, along with `error_message`, is returned when Secrets Manager successfully processes your request, but a
-   * certificate is unable to be issued by the certificate authority.
-   *
-   * @return the errorCode
-   */
-  public String errorCode() {
-    return errorCode;
-  }
+    /**
+     * Gets the bundleCerts.
+     * <p>
+     * Indicates whether the issued certificate is bundled with intermediate certificates.
+     *
+     * @return the bundleCerts
+     */
+    public Boolean bundleCerts() {
+        return bundleCerts;
+    }
 
-  /**
-   * Gets the errorMessage.
-   *
-   * A human-readable message that provides details about the issuance error.
-   *
-   * @return the errorMessage
-   */
-  public String errorMessage() {
-    return errorMessage;
-  }
+    /**
+     * Gets the state.
+     * <p>
+     * The secret state based on NIST SP 800-57. States are integers and correspond to the Pre-activation = 0, Active = 1,
+     * Suspended = 2, Deactivated = 3, and Destroyed = 5 values.
+     *
+     * @return the state
+     */
+    public Long state() {
+        return state;
+    }
 
-  /**
-   * Gets the bundleCerts.
-   *
-   * Indicates whether the issued certificate is bundled with intermediate certificates.
-   *
-   * @return the bundleCerts
-   */
-  public Boolean bundleCerts() {
-    return bundleCerts;
-  }
+    /**
+     * Gets the stateDescription.
+     * <p>
+     * A text representation of the secret state.
+     *
+     * @return the stateDescription
+     */
+    public String stateDescription() {
+        return stateDescription;
+    }
 
-  /**
-   * Gets the state.
-   *
-   * The secret state based on NIST SP 800-57. States are integers and correspond to the Pre-activation = 0, Active = 1,
-   *  Suspended = 2, Deactivated = 3, and Destroyed = 5 values.
-   *
-   * @return the state
-   */
-  public Long state() {
-    return state;
-  }
+    /**
+     * Gets the autoRotated.
+     * <p>
+     * Indicates whether the issued certificate is configured with an automatic rotation policy.
+     *
+     * @return the autoRotated
+     */
+    public Boolean autoRotated() {
+        return autoRotated;
+    }
 
-  /**
-   * Gets the stateDescription.
-   *
-   * A text representation of the secret state.
-   *
-   * @return the stateDescription
-   */
-  public String stateDescription() {
-    return stateDescription;
-  }
+    /**
+     * Gets the ca.
+     * <p>
+     * The name that was assigned to the certificate authority configuration.
+     *
+     * @return the ca
+     */
+    public String ca() {
+        return ca;
+    }
 
-  /**
-   * Gets the autoRotated.
-   *
-   * Indicates whether the issued certificate is configured with an automatic rotation policy.
-   *
-   * @return the autoRotated
-   */
-  public Boolean autoRotated() {
-    return autoRotated;
-  }
-
-  /**
-   * Gets the ca.
-   *
-   * The name that was assigned to the certificate authority configuration.
-   *
-   * @return the ca
-   */
-  public String ca() {
-    return ca;
-  }
-
-  /**
-   * Gets the dns.
-   *
-   * The name that was assigned to the DNS provider configuration.
-   *
-   * @return the dns
-   */
-  public String dns() {
-    return dns;
-  }
+    /**
+     * Gets the dns.
+     * <p>
+     * The name that was assigned to the DNS provider configuration.
+     *
+     * @return the dns
+     */
+    public String dns() {
+        return dns;
+    }
 }
 

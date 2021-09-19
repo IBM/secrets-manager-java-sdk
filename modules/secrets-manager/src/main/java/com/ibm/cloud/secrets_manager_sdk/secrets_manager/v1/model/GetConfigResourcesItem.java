@@ -19,71 +19,71 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * GetConfigResourcesItem.
- *
+ * <p>
  * Classes which extend this class:
  * - PublicCertSecretEngineRootConfig
  * - IAMCredentialsSecretEngineRootConfig
  */
 public class GetConfigResourcesItem extends GenericModel {
 
-  @SerializedName("certificate_authorities")
-  protected List<ConfigElementMetadata> certificateAuthorities;
-  @SerializedName("dns_providers")
-  protected List<ConfigElementMetadata> dnsProviders;
-  @SerializedName("api_key")
-  protected String apiKey;
-  @SerializedName("api_key_hash")
-  protected String apiKeyHash;
+    @SerializedName("certificate_authorities")
+    protected List<ConfigElementMetadata> certificateAuthorities;
+    @SerializedName("dns_providers")
+    protected List<ConfigElementMetadata> dnsProviders;
+    @SerializedName("api_key")
+    protected String apiKey;
+    @SerializedName("api_key_hash")
+    protected String apiKeyHash;
 
-  protected GetConfigResourcesItem() {
-  }
+    protected GetConfigResourcesItem() {
+    }
 
-  /**
-   * Gets the certificateAuthorities.
-   *
-   * The certificate authority configurations that are associated with your instance.
-   *
-   * @return the certificateAuthorities
-   */
-  public List<ConfigElementMetadata> getCertificateAuthorities() {
-    return certificateAuthorities;
-  }
+    /**
+     * Gets the certificateAuthorities.
+     * <p>
+     * The certificate authority configurations that are associated with your instance.
+     *
+     * @return the certificateAuthorities
+     */
+    public List<ConfigElementMetadata> getCertificateAuthorities() {
+        return certificateAuthorities;
+    }
 
-  /**
-   * Gets the dnsProviders.
-   *
-   * The DNS provider configurations that are associated with your instance.
-   *
-   * @return the dnsProviders
-   */
-  public List<ConfigElementMetadata> getDnsProviders() {
-    return dnsProviders;
-  }
+    /**
+     * Gets the dnsProviders.
+     * <p>
+     * The DNS provider configurations that are associated with your instance.
+     *
+     * @return the dnsProviders
+     */
+    public List<ConfigElementMetadata> getDnsProviders() {
+        return dnsProviders;
+    }
 
-  /**
-   * Gets the apiKey.
-   *
-   * An IBM Cloud API key that has the capability to create and manage service IDs.
-   *
-   * The API key must be assigned the Editor platform role on the Access Groups Service and the Operator platform role
-   * on the IAM Identity Service. For more information, see [Configuring the IAM secrets
-   * engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
-   *
-   * @return the apiKey
-   */
-  public String getApiKey() {
-    return apiKey;
-  }
+    /**
+     * Gets the apiKey.
+     * <p>
+     * An IBM Cloud API key that has the capability to create and manage service IDs.
+     * <p>
+     * The API key must be assigned the Editor platform role on the Access Groups Service and the Operator platform role
+     * on the IAM Identity Service. For more information, see [Configuring the IAM secrets
+     * engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
+     *
+     * @return the apiKey
+     */
+    public String getApiKey() {
+        return apiKey;
+    }
 
-  /**
-   * Gets the apiKeyHash.
-   *
-   * The hash value of the IBM Cloud API key that is used to create and manage service IDs.
-   *
-   * @return the apiKeyHash
-   */
-  public String getApiKeyHash() {
-    return apiKeyHash;
-  }
+    /**
+     * Gets the apiKeyHash.
+     * <p>
+     * The hash value of the IBM Cloud API key that is used to create and manage service IDs.
+     *
+     * @return the apiKeyHash
+     */
+    public String getApiKeyHash() {
+        return apiKeyHash;
+    }
 }
 

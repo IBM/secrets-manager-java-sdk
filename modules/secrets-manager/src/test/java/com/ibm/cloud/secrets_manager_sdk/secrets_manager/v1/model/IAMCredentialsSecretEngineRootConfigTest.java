@@ -16,36 +16,39 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the IAMCredentialsSecretEngineRootConfig model.
  */
 public class IAMCredentialsSecretEngineRootConfigTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testIAMCredentialsSecretEngineRootConfig() throws Throwable {
-    IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModel = new IAMCredentialsSecretEngineRootConfig.Builder()
-      .apiKey("API_KEY")
-      .build();
-    assertEquals(iamCredentialsSecretEngineRootConfigModel.getApiKey(), "API_KEY");
+    @Test
+    public void testIAMCredentialsSecretEngineRootConfig() throws Throwable {
+        IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModel = new IAMCredentialsSecretEngineRootConfig.Builder()
+                .apiKey("API_KEY")
+                .build();
+        assertEquals(iamCredentialsSecretEngineRootConfigModel.getApiKey(), "API_KEY");
 
-    String json = TestUtilities.serialize(iamCredentialsSecretEngineRootConfigModel);
+        String json = TestUtilities.serialize(iamCredentialsSecretEngineRootConfigModel);
 
-    IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModelNew = TestUtilities.deserialize(json, IAMCredentialsSecretEngineRootConfig.class);
-    assertTrue(iamCredentialsSecretEngineRootConfigModelNew instanceof IAMCredentialsSecretEngineRootConfig);
-    assertEquals(iamCredentialsSecretEngineRootConfigModelNew.getApiKey(), "API_KEY");
-  }
+        IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModelNew = TestUtilities.deserialize(json, IAMCredentialsSecretEngineRootConfig.class);
+        assertTrue(iamCredentialsSecretEngineRootConfigModelNew instanceof IAMCredentialsSecretEngineRootConfig);
+        assertEquals(iamCredentialsSecretEngineRootConfigModelNew.getApiKey(), "API_KEY");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testIAMCredentialsSecretEngineRootConfigError() throws Throwable {
-    new IAMCredentialsSecretEngineRootConfig.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testIAMCredentialsSecretEngineRootConfigError() throws Throwable {
+        new IAMCredentialsSecretEngineRootConfig.Builder().build();
+    }
 
 }

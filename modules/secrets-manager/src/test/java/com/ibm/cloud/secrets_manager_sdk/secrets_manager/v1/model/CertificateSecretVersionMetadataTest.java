@@ -18,22 +18,25 @@ import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the CertificateSecretVersionMetadata model.
  */
 public class CertificateSecretVersionMetadataTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testCertificateSecretVersionMetadata() throws Throwable {
-    CertificateSecretVersionMetadata certificateSecretVersionMetadataModel = new CertificateSecretVersionMetadata();
-    assertNull(certificateSecretVersionMetadataModel.getValidity());
-  }
+    @Test
+    public void testCertificateSecretVersionMetadata() throws Throwable {
+        CertificateSecretVersionMetadata certificateSecretVersionMetadataModel = new CertificateSecretVersionMetadata();
+        assertNull(certificateSecretVersionMetadataModel.getValidity());
+    }
 }

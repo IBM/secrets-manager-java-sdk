@@ -19,156 +19,162 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class DeleteConfigElementOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-  }
-
-  /**
-   * The configuration element to define or manage.
-   */
-  public interface ConfigElement {
-    /** certificate_authorities. */
-    String CERTIFICATE_AUTHORITIES = "certificate_authorities";
-    /** dns_providers. */
-    String DNS_PROVIDERS = "dns_providers";
-  }
-
-  protected String secretType;
-  protected String configElement;
-  protected String configName;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private String configElement;
-    private String configName;
-
-    private Builder(DeleteConfigElementOptions deleteConfigElementOptions) {
-      this.secretType = deleteConfigElementOptions.secretType;
-      this.configElement = deleteConfigElementOptions.configElement;
-      this.configName = deleteConfigElementOptions.configName;
-    }
-
     /**
-     * Instantiates a new builder.
+     * The secret type.
      */
-    public Builder() {
+    public interface SecretType {
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * The configuration element to define or manage.
+     */
+    public interface ConfigElement {
+        /**
+         * certificate_authorities.
+         */
+        String CERTIFICATE_AUTHORITIES = "certificate_authorities";
+        /**
+         * dns_providers.
+         */
+        String DNS_PROVIDERS = "dns_providers";
+    }
+
+    protected String secretType;
+    protected String configElement;
+    protected String configName;
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private String configElement;
+        private String configName;
+
+        private Builder(DeleteConfigElementOptions deleteConfigElementOptions) {
+            this.secretType = deleteConfigElementOptions.secretType;
+            this.configElement = deleteConfigElementOptions.configElement;
+            this.configName = deleteConfigElementOptions.configName;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType    the secretType
+         * @param configElement the configElement
+         * @param configName    the configName
+         */
+        public Builder(String secretType, String configElement, String configName) {
+            this.secretType = secretType;
+            this.configElement = configElement;
+            this.configName = configName;
+        }
+
+        /**
+         * Builds a DeleteConfigElementOptions.
+         *
+         * @return the new DeleteConfigElementOptions instance
+         */
+        public DeleteConfigElementOptions build() {
+            return new DeleteConfigElementOptions(this);
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the DeleteConfigElementOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the configElement.
+         *
+         * @param configElement the configElement
+         * @return the DeleteConfigElementOptions builder
+         */
+        public Builder configElement(String configElement) {
+            this.configElement = configElement;
+            return this;
+        }
+
+        /**
+         * Set the configName.
+         *
+         * @param configName the configName
+         * @return the DeleteConfigElementOptions builder
+         */
+        public Builder configName(String configName) {
+            this.configName = configName;
+            return this;
+        }
+    }
+
+    protected DeleteConfigElementOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configElement,
+                "configElement cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configName,
+                "configName cannot be empty");
+        secretType = builder.secretType;
+        configElement = builder.configElement;
+        configName = builder.configName;
+    }
+
+    /**
+     * New builder.
      *
-     * @param secretType the secretType
-     * @param configElement the configElement
-     * @param configName the configName
+     * @return a DeleteConfigElementOptions builder
      */
-    public Builder(String secretType, String configElement, String configName) {
-      this.secretType = secretType;
-      this.configElement = configElement;
-      this.configName = configName;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Builds a DeleteConfigElementOptions.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @return the new DeleteConfigElementOptions instance
+     * @return the secretType
      */
-    public DeleteConfigElementOptions build() {
-      return new DeleteConfigElementOptions(this);
+    public String secretType() {
+        return secretType;
     }
 
     /**
-     * Set the secretType.
+     * Gets the configElement.
+     * <p>
+     * The configuration element to define or manage.
      *
-     * @param secretType the secretType
-     * @return the DeleteConfigElementOptions builder
+     * @return the configElement
      */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
+    public String configElement() {
+        return configElement;
     }
 
     /**
-     * Set the configElement.
+     * Gets the configName.
+     * <p>
+     * The name of your configuration.
      *
-     * @param configElement the configElement
-     * @return the DeleteConfigElementOptions builder
+     * @return the configName
      */
-    public Builder configElement(String configElement) {
-      this.configElement = configElement;
-      return this;
+    public String configName() {
+        return configName;
     }
-
-    /**
-     * Set the configName.
-     *
-     * @param configName the configName
-     * @return the DeleteConfigElementOptions builder
-     */
-    public Builder configName(String configName) {
-      this.configName = configName;
-      return this;
-    }
-  }
-
-  protected DeleteConfigElementOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configElement,
-      "configElement cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configName,
-      "configName cannot be empty");
-    secretType = builder.secretType;
-    configElement = builder.configElement;
-    configName = builder.configName;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a DeleteConfigElementOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
-
-  /**
-   * Gets the configElement.
-   *
-   * The configuration element to define or manage.
-   *
-   * @return the configElement
-   */
-  public String configElement() {
-    return configElement;
-  }
-
-  /**
-   * Gets the configName.
-   *
-   * The name of your configuration.
-   *
-   * @return the configName
-   */
-  public String configName() {
-    return configName;
-  }
 }
 

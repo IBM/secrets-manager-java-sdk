@@ -19,7 +19,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * SecretVersionMetadata.
- *
+ * <p>
  * Classes which extend this class:
  * - ArbitrarySecretVersionMetadata
  * - UsernamePasswordSecretVersionMetadata
@@ -28,95 +28,95 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretVersionMetadata extends GenericModel {
 
-  protected String id;
-  @SerializedName("creation_date")
-  protected Date creationDate;
-  @SerializedName("created_by")
-  protected String createdBy;
-  @SerializedName("auto_rotated")
-  protected Boolean autoRotated;
-  @SerializedName("serial_number")
-  protected String serialNumber;
-  @SerializedName("expiration_date")
-  protected Date expirationDate;
-  protected CertificateValidity validity;
+    protected String id;
+    @SerializedName("creation_date")
+    protected Date creationDate;
+    @SerializedName("created_by")
+    protected String createdBy;
+    @SerializedName("auto_rotated")
+    protected Boolean autoRotated;
+    @SerializedName("serial_number")
+    protected String serialNumber;
+    @SerializedName("expiration_date")
+    protected Date expirationDate;
+    protected CertificateValidity validity;
 
-  protected SecretVersionMetadata() {
-  }
+    protected SecretVersionMetadata() {
+    }
 
-  /**
-   * Gets the id.
-   *
-   * The ID of the secret version.
-   *
-   * @return the id
-   */
-  public String getId() {
-    return id;
-  }
+    /**
+     * Gets the id.
+     * <p>
+     * The ID of the secret version.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-  /**
-   * Gets the creationDate.
-   *
-   * The date that the version of the secret was created.
-   *
-   * @return the creationDate
-   */
-  public Date getCreationDate() {
-    return creationDate;
-  }
+    /**
+     * Gets the creationDate.
+     * <p>
+     * The date that the version of the secret was created.
+     *
+     * @return the creationDate
+     */
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-  /**
-   * Gets the createdBy.
-   *
-   * The unique identifier for the entity that created the secret version.
-   *
-   * @return the createdBy
-   */
-  public String getCreatedBy() {
-    return createdBy;
-  }
+    /**
+     * Gets the createdBy.
+     * <p>
+     * The unique identifier for the entity that created the secret version.
+     *
+     * @return the createdBy
+     */
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-  /**
-   * Gets the autoRotated.
-   *
-   * Indicates whether the version of the secret was created by automatic rotation.
-   *
-   * @return the autoRotated
-   */
-  public Boolean isAutoRotated() {
-    return autoRotated;
-  }
+    /**
+     * Gets the autoRotated.
+     * <p>
+     * Indicates whether the version of the secret was created by automatic rotation.
+     *
+     * @return the autoRotated
+     */
+    public Boolean isAutoRotated() {
+        return autoRotated;
+    }
 
-  /**
-   * Gets the serialNumber.
-   *
-   * The unique serial number that was assigned to the certificate by the issuing certificate authority.
-   *
-   * @return the serialNumber
-   */
-  public String getSerialNumber() {
-    return serialNumber;
-  }
+    /**
+     * Gets the serialNumber.
+     * <p>
+     * The unique serial number that was assigned to the certificate by the issuing certificate authority.
+     *
+     * @return the serialNumber
+     */
+    public String getSerialNumber() {
+        return serialNumber;
+    }
 
-  /**
-   * Gets the expirationDate.
-   *
-   * The date that the certificate expires. The date format follows RFC 3339.
-   *
-   * @return the expirationDate
-   */
-  public Date getExpirationDate() {
-    return expirationDate;
-  }
+    /**
+     * Gets the expirationDate.
+     * <p>
+     * The date that the certificate expires. The date format follows RFC 3339.
+     *
+     * @return the expirationDate
+     */
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
 
-  /**
-   * Gets the validity.
-   *
-   * @return the validity
-   */
-  public CertificateValidity getValidity() {
-    return validity;
-  }
+    /**
+     * Gets the validity.
+     *
+     * @return the validity
+     */
+    public CertificateValidity getValidity() {
+        return validity;
+    }
 }
 

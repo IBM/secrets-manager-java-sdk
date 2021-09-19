@@ -17,7 +17,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * SecretAction.
- *
+ * <p>
  * Classes which extend this class:
  * - RotateArbitrarySecretBody
  * - RotatePublicCertBody
@@ -27,95 +27,95 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretAction extends GenericModel {
 
-  protected String payload;
-  @SerializedName("rotate_keys")
-  protected Boolean rotateKeys;
-  protected String password;
-  protected String certificate;
-  @SerializedName("private_key")
-  protected String privateKey;
-  protected String intermediate;
-  @SerializedName("service_id")
-  protected String serviceId;
+    protected String payload;
+    @SerializedName("rotate_keys")
+    protected Boolean rotateKeys;
+    protected String password;
+    protected String certificate;
+    @SerializedName("private_key")
+    protected String privateKey;
+    protected String intermediate;
+    @SerializedName("service_id")
+    protected String serviceId;
 
-  protected SecretAction() {
-  }
+    protected SecretAction() {
+    }
 
-  /**
-   * Gets the payload.
-   *
-   * The new secret data to assign to an `arbitrary` secret.
-   *
-   * @return the payload
-   */
-  public String payload() {
-    return payload;
-  }
+    /**
+     * Gets the payload.
+     * <p>
+     * The new secret data to assign to an `arbitrary` secret.
+     *
+     * @return the payload
+     */
+    public String payload() {
+        return payload;
+    }
 
-  /**
-   * Gets the rotateKeys.
-   *
-   * Determine whether keys should be rotated.
-   *
-   * @return the rotateKeys
-   */
-  public Boolean rotateKeys() {
-    return rotateKeys;
-  }
+    /**
+     * Gets the rotateKeys.
+     * <p>
+     * Determine whether keys should be rotated.
+     *
+     * @return the rotateKeys
+     */
+    public Boolean rotateKeys() {
+        return rotateKeys;
+    }
 
-  /**
-   * Gets the password.
-   *
-   * The new password to assign to a `username_password` secret.
-   *
-   * @return the password
-   */
-  public String password() {
-    return password;
-  }
+    /**
+     * Gets the password.
+     * <p>
+     * The new password to assign to a `username_password` secret.
+     *
+     * @return the password
+     */
+    public String password() {
+        return password;
+    }
 
-  /**
-   * Gets the certificate.
-   *
-   * The new data to associate with the certificate.
-   *
-   * @return the certificate
-   */
-  public String certificate() {
-    return certificate;
-  }
+    /**
+     * Gets the certificate.
+     * <p>
+     * The new data to associate with the certificate.
+     *
+     * @return the certificate
+     */
+    public String certificate() {
+        return certificate;
+    }
 
-  /**
-   * Gets the privateKey.
-   *
-   * The new private key to associate with the certificate.
-   *
-   * @return the privateKey
-   */
-  public String privateKey() {
-    return privateKey;
-  }
+    /**
+     * Gets the privateKey.
+     * <p>
+     * The new private key to associate with the certificate.
+     *
+     * @return the privateKey
+     */
+    public String privateKey() {
+        return privateKey;
+    }
 
-  /**
-   * Gets the intermediate.
-   *
-   * The new intermediate certificate to associate with the certificate.
-   *
-   * @return the intermediate
-   */
-  public String intermediate() {
-    return intermediate;
-  }
+    /**
+     * Gets the intermediate.
+     * <p>
+     * The new intermediate certificate to associate with the certificate.
+     *
+     * @return the intermediate
+     */
+    public String intermediate() {
+        return intermediate;
+    }
 
-  /**
-   * Gets the serviceId.
-   *
-   * The service ID that you want to delete. It is deleted together with its API key.
-   *
-   * @return the serviceId
-   */
-  public String serviceId() {
-    return serviceId;
-  }
+    /**
+     * Gets the serviceId.
+     * <p>
+     * The service ID that you want to delete. It is deleted together with its API key.
+     *
+     * @return the serviceId
+     */
+    public String serviceId() {
+        return serviceId;
+    }
 }
 

@@ -19,152 +19,160 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ConfigElementDef extends GenericModel {
 
-  /**
-   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
-   */
-  public interface Type {
-    /** letsencrypt. */
-    String LETSENCRYPT = "letsencrypt";
-    /** letsencrypt-stage. */
-    String LETSENCRYPT_STAGE = "letsencrypt-stage";
-    /** cis. */
-    String CIS = "cis";
-    /** classic_infrastructure. */
-    String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
-  }
-
-  protected String name;
-  protected String type;
-  protected ConfigElementDefConfig config;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String name;
-    private String type;
-    private ConfigElementDefConfig config;
-
-    private Builder(ConfigElementDef configElementDef) {
-      this.name = configElementDef.name;
-      this.type = configElementDef.type;
-      this.config = configElementDef.config;
-    }
-
     /**
-     * Instantiates a new builder.
+     * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
      */
-    public Builder() {
+    public interface Type {
+        /**
+         * letsencrypt.
+         */
+        String LETSENCRYPT = "letsencrypt";
+        /**
+         * letsencrypt-stage.
+         */
+        String LETSENCRYPT_STAGE = "letsencrypt-stage";
+        /**
+         * cis.
+         */
+        String CIS = "cis";
+        /**
+         * classic_infrastructure.
+         */
+        String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
+    }
+
+    protected String name;
+    protected String type;
+    protected ConfigElementDefConfig config;
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String name;
+        private String type;
+        private ConfigElementDefConfig config;
+
+        private Builder(ConfigElementDef configElementDef) {
+            this.name = configElementDef.name;
+            this.type = configElementDef.type;
+            this.config = configElementDef.config;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param name   the name
+         * @param type   the type
+         * @param config the config
+         */
+        public Builder(String name, String type, ConfigElementDefConfig config) {
+            this.name = name;
+            this.type = type;
+            this.config = config;
+        }
+
+        /**
+         * Builds a ConfigElementDef.
+         *
+         * @return the new ConfigElementDef instance
+         */
+        public ConfigElementDef build() {
+            return new ConfigElementDef(this);
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the ConfigElementDef builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the type.
+         *
+         * @param type the type
+         * @return the ConfigElementDef builder
+         */
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Set the config.
+         *
+         * @param config the config
+         * @return the ConfigElementDef builder
+         */
+        public Builder config(ConfigElementDefConfig config) {
+            this.config = config;
+            return this;
+        }
+    }
+
+    protected ConfigElementDef(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+                "name cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
+                "type cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.config,
+                "config cannot be null");
+        name = builder.name;
+        type = builder.type;
+        config = builder.config;
     }
 
     /**
-     * Instantiates a new builder with required properties.
+     * New builder.
      *
-     * @param name the name
-     * @param type the type
-     * @param config the config
+     * @return a ConfigElementDef builder
      */
-    public Builder(String name, String type, ConfigElementDefConfig config) {
-      this.name = name;
-      this.type = type;
-      this.config = config;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Builds a ConfigElementDef.
+     * Gets the name.
+     * <p>
+     * The human-readable name to assign to your configuration.
      *
-     * @return the new ConfigElementDef instance
+     * @return the name
      */
-    public ConfigElementDef build() {
-      return new ConfigElementDef(this);
+    public String name() {
+        return name;
     }
 
     /**
-     * Set the name.
+     * Gets the type.
+     * <p>
+     * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
      *
-     * @param name the name
-     * @return the ConfigElementDef builder
+     * @return the type
      */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
+    public String type() {
+        return type;
     }
 
     /**
-     * Set the type.
+     * Gets the config.
+     * <p>
+     * The configuration to define for the specified secret type.
      *
-     * @param type the type
-     * @return the ConfigElementDef builder
+     * @return the config
      */
-    public Builder type(String type) {
-      this.type = type;
-      return this;
+    public ConfigElementDefConfig config() {
+        return config;
     }
-
-    /**
-     * Set the config.
-     *
-     * @param config the config
-     * @return the ConfigElementDef builder
-     */
-    public Builder config(ConfigElementDefConfig config) {
-      this.config = config;
-      return this;
-    }
-  }
-
-  protected ConfigElementDef(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
-      "name cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
-      "type cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.config,
-      "config cannot be null");
-    name = builder.name;
-    type = builder.type;
-    config = builder.config;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ConfigElementDef builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the name.
-   *
-   * The human-readable name to assign to your configuration.
-   *
-   * @return the name
-   */
-  public String name() {
-    return name;
-  }
-
-  /**
-   * Gets the type.
-   *
-   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
-   *
-   * @return the type
-   */
-  public String type() {
-    return type;
-  }
-
-  /**
-   * Gets the config.
-   *
-   * The configuration to define for the specified secret type.
-   *
-   * @return the config
-   */
-  public ConfigElementDefConfig config() {
-    return config;
-  }
 }
 

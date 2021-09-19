@@ -328,7 +328,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
         String dnsConfigName = generateName() + "-dns-config";
 
         ConfigElementDefConfigCloudInternetServicesConfig cisConfig = new ConfigElementDefConfigCloudInternetServicesConfig.Builder()
-                .cisApikey(System.getenv("SECRETS_MANAGER_API_APIKEY"))
+                .cisApikey(System.getenv("DNS_CONFIG_API_KEY"))
                 .cisCrn(System.getenv("DNS_CONFIG_CRN")).build();
 
         configElementDef = new ConfigElementDef.Builder()
@@ -444,7 +444,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
 
         ConfigElementDefConfigCloudInternetServicesConfig cisConfig = new ConfigElementDefConfigCloudInternetServicesConfig.Builder()
                 .cisCrn(System.getenv("DNS_CONFIG_CRN"))
-                .cisApikey(System.getenv("SECRETS_MANAGER_API_APIKEY")).build();
+                .cisApikey(System.getenv("DNS_CONFIG_API_KEY")).build();
 
         configElementDef = new ConfigElementDef.Builder()
                 .name(dnsConfigName)
