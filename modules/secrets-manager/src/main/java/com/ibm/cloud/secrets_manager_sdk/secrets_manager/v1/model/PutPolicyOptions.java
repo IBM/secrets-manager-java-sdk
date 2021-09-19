@@ -30,6 +30,10 @@ public class PutPolicyOptions extends GenericModel {
          * username_password.
          */
         String USERNAME_PASSWORD = "username_password";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
     }
 
     /**

@@ -25,6 +25,10 @@ public class CollectionMetadata extends GenericModel {
      */
     public interface CollectionType {
         /**
+         * application/vnd.ibm.secrets-manager.config+json.
+         */
+        String APPLICATION_VND_IBM_SECRETS_MANAGER_CONFIG_JSON = "application/vnd.ibm.secrets-manager.config+json";
+        /**
          * application/vnd.ibm.secrets-manager.secret+json.
          */
         String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_JSON = "application/vnd.ibm.secrets-manager.secret+json";

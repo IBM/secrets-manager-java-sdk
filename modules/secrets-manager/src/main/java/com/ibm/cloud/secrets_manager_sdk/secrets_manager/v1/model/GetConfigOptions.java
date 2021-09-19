@@ -27,6 +27,10 @@ public class GetConfigOptions extends GenericModel {
          * iam_credentials.
          */
         String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
     }
 
     protected String secretType;

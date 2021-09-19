@@ -20,6 +20,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * <p>
  * Classes which extend this class:
  * - RotateArbitrarySecretBody
+ * - RotatePublicCertBody
  * - RotateUsernamePasswordSecretBody
  * - RotateCertificateBody
  * - DeleteCredentialsForIAMCredentialsSecret
@@ -27,6 +28,8 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class SecretAction extends GenericModel {
 
     protected String payload;
+    @SerializedName("rotate_keys")
+    protected Boolean rotateKeys;
     protected String password;
     protected String certificate;
     @SerializedName("private_key")
@@ -47,6 +50,17 @@ public class SecretAction extends GenericModel {
      */
     public String payload() {
         return payload;
+    }
+
+    /**
+     * Gets the rotateKeys.
+     * <p>
+     * Determine whether keys should be rotated.
+     *
+     * @return the rotateKeys
+     */
+    public Boolean rotateKeys() {
+        return rotateKeys;
     }
 
     /**

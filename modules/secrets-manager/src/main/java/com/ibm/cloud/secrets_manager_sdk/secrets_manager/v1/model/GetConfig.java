@@ -17,12 +17,12 @@ import java.util.List;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * Configuration that is used to generate IAM credentials.
+ * Configuration for the specified secret type.
  */
 public class GetConfig extends GenericModel {
 
     protected CollectionMetadata metadata;
-    protected List<IAMCredentialsSecretEngineRootConfig> resources;
+    protected List<GetConfigResourcesItem> resources;
 
     /**
      * Gets the metadata.
@@ -42,7 +42,7 @@ public class GetConfig extends GenericModel {
      *
      * @return the resources
      */
-    public List<IAMCredentialsSecretEngineRootConfig> getResources() {
+    public List<GetConfigResourcesItem> getResources() {
         return resources;
     }
 }

@@ -32,26 +32,10 @@ public class SecretPolicyRotationRotationTest {
     final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
     final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
+    // TODO: Add tests for models that are abstract
     @Test
     public void testSecretPolicyRotationRotation() throws Throwable {
-        SecretPolicyRotationRotation secretPolicyRotationRotationModel = new SecretPolicyRotationRotation.Builder()
-                .interval(Long.valueOf("1"))
-                .unit("day")
-                .build();
-        assertEquals(secretPolicyRotationRotationModel.interval(), Long.valueOf("1"));
-        assertEquals(secretPolicyRotationRotationModel.unit(), "day");
-
-        String json = TestUtilities.serialize(secretPolicyRotationRotationModel);
-
-        SecretPolicyRotationRotation secretPolicyRotationRotationModelNew = TestUtilities.deserialize(json, SecretPolicyRotationRotation.class);
-        assertTrue(secretPolicyRotationRotationModelNew instanceof SecretPolicyRotationRotation);
-        assertEquals(secretPolicyRotationRotationModelNew.interval(), Long.valueOf("1"));
-        assertEquals(secretPolicyRotationRotationModelNew.unit(), "day");
+        SecretPolicyRotationRotation secretPolicyRotationRotationModel = new SecretPolicyRotationRotation();
+        assertNotNull(secretPolicyRotationRotationModel);
     }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testSecretPolicyRotationRotationError() throws Throwable {
-        new SecretPolicyRotationRotation.Builder().build();
-    }
-
 }

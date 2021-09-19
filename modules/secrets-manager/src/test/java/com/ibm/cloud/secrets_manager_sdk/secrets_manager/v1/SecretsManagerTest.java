@@ -30,15 +30,29 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSec
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDef;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigClassicInfrastructureConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigCloudInternetServicesConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigLetsEncryptConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteCredentialsForIAMCredentialsSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretOptions;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.EngineConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElements;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsResourcesItem;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsResourcesItemCertificateAuthoritiesConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsResourcesItemDnsProvidersConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigResourcesItem;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretGroupOptions;
@@ -52,19 +66,26 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersi
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSingleConfigElement;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IssuanceInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListAllSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretGroupsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretsOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertSecretEngineRootConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateMetadataSecretResource;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateArbitrarySecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCertificateBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePublicCertBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateUsernamePasswordSecretBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretGroupDef;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretGroupMetadataUpdatable;
@@ -73,15 +94,19 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretMetadata
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretMetadataRequest;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRotationRotation;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRotationRotationPolicyRotation;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRotationRotationPublicCertPolicyRotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Warning;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.IOException;
@@ -146,241 +171,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
     }
 
     @Test
-    public void testPutConfigWOptions() throws Throwable {
-        // Schedule some responses.
-        String mockResponseBody = "";
-        String putConfigPath = "/api/v1/config/iam_credentials";
-
-        server.enqueue(new MockResponse()
-                .setResponseCode(204)
-                .setBody(mockResponseBody));
-
-        constructClientService();
-
-        // Construct an instance of the IAMCredentialsSecretEngineRootConfig model
-        IAMCredentialsSecretEngineRootConfig engineConfigModel = new IAMCredentialsSecretEngineRootConfig.Builder()
-                .apiKey("API_KEY")
-                .build();
-
-        // Construct an instance of the PutConfigOptions model
-        PutConfigOptions putConfigOptionsModel = new PutConfigOptions.Builder()
-                .secretType("iam_credentials")
-                .engineConfig(engineConfigModel)
-                .build();
-
-        // Invoke operation with valid options model (positive test)
-        Response<Void> response = secretsManagerService.putConfig(putConfigOptionsModel).execute();
-        assertNotNull(response);
-        Void responseObj = response.getResult();
-        // Response does not have a return type. Check that the result is null.
-        assertNull(responseObj);
-
-        // Verify the contents of the request
-        RecordedRequest request = server.takeRequest();
-        assertNotNull(request);
-        assertEquals(request.getMethod(), "PUT");
-
-        // Check query
-        Map<String, String> query = TestUtilities.parseQueryString(request);
-        assertNull(query);
-
-        // Check request path
-        String parsedPath = TestUtilities.parseReqPath(request);
-        assertEquals(parsedPath, putConfigPath);
-    }
-
-    // Test the putConfig operation with null options model parameter
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testPutConfigNoOptions() throws Throwable {
-        // construct the service
-        constructClientService();
-
-        server.enqueue(new MockResponse());
-
-        // Invoke operation with null options model (negative test)
-        secretsManagerService.putConfig(null).execute();
-    }
-
-    @Test
-    public void testGetConfigWOptions() throws Throwable {
-        // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"api_key\": \"API_KEY\", \"api_key_hash\": \"a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91\"}]}";
-        String getConfigPath = "/api/v1/config/iam_credentials";
-
-        server.enqueue(new MockResponse()
-                .setHeader("Content-type", "application/json")
-                .setResponseCode(200)
-                .setBody(mockResponseBody));
-
-        constructClientService();
-
-        // Construct an instance of the GetConfigOptions model
-        GetConfigOptions getConfigOptionsModel = new GetConfigOptions.Builder()
-                .secretType("iam_credentials")
-                .build();
-
-        // Invoke operation with valid options model (positive test)
-        Response<GetConfig> response = secretsManagerService.getConfig(getConfigOptionsModel).execute();
-        assertNotNull(response);
-        GetConfig responseObj = response.getResult();
-        assertNotNull(responseObj);
-
-        // Verify the contents of the request
-        RecordedRequest request = server.takeRequest();
-        assertNotNull(request);
-        assertEquals(request.getMethod(), "GET");
-
-        // Check query
-        Map<String, String> query = TestUtilities.parseQueryString(request);
-        assertNull(query);
-
-        // Check request path
-        String parsedPath = TestUtilities.parseReqPath(request);
-        assertEquals(parsedPath, getConfigPath);
-    }
-
-    // Test the getConfig operation with null options model parameter
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testGetConfigNoOptions() throws Throwable {
-        // construct the service
-        constructClientService();
-
-        server.enqueue(new MockResponse());
-
-        // Invoke operation with null options model (negative test)
-        secretsManagerService.getConfig(null).execute();
-    }
-
-    @Test
-    public void testPutPolicyWOptions() throws Throwable {
-        // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2019-01-01T12:00:00.000Z\", \"updated_by\": \"updatedBy\", \"type\": \"application/vnd.ibm.secrets-manager.secret.policy+json\", \"rotation\": {\"interval\": 1, \"unit\": \"day\"}}]}";
-        String putPolicyPath = "/api/v1/secrets/username_password/testString/policies";
-
-        server.enqueue(new MockResponse()
-                .setHeader("Content-type", "application/json")
-                .setResponseCode(200)
-                .setBody(mockResponseBody));
-
-        constructClientService();
-
-        // Construct an instance of the CollectionMetadata model
-        CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
-                .collectionTotal(Long.valueOf("1"))
-                .build();
-
-        // Construct an instance of the SecretPolicyRotationRotation model
-        SecretPolicyRotationRotation secretPolicyRotationRotationModel = new SecretPolicyRotationRotation.Builder()
-                .interval(Long.valueOf("1"))
-                .unit("day")
-                .build();
-
-        // Construct an instance of the SecretPolicyRotation model
-        SecretPolicyRotation secretPolicyRotationModel = new SecretPolicyRotation.Builder()
-                .type("application/vnd.ibm.secrets-manager.secret.policy+json")
-                .rotation(secretPolicyRotationRotationModel)
-                .build();
-
-        // Construct an instance of the PutPolicyOptions model
-        PutPolicyOptions putPolicyOptionsModel = new PutPolicyOptions.Builder()
-                .secretType("username_password")
-                .id("testString")
-                .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)))
-                .policy("rotation")
-                .build();
-
-        // Invoke operation with valid options model (positive test)
-        Response<GetSecretPolicies> response = secretsManagerService.putPolicy(putPolicyOptionsModel).execute();
-        assertNotNull(response);
-        GetSecretPolicies responseObj = response.getResult();
-        assertNotNull(responseObj);
-
-        // Verify the contents of the request
-        RecordedRequest request = server.takeRequest();
-        assertNotNull(request);
-        assertEquals(request.getMethod(), "PUT");
-
-        // Check query
-        Map<String, String> query = TestUtilities.parseQueryString(request);
-        assertNotNull(query);
-        // Get query params
-        assertEquals(query.get("policy"), "rotation");
-        // Check request path
-        String parsedPath = TestUtilities.parseReqPath(request);
-        assertEquals(parsedPath, putPolicyPath);
-    }
-
-    // Test the putPolicy operation with null options model parameter
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testPutPolicyNoOptions() throws Throwable {
-        // construct the service
-        constructClientService();
-
-        server.enqueue(new MockResponse());
-
-        // Invoke operation with null options model (negative test)
-        secretsManagerService.putPolicy(null).execute();
-    }
-
-    @Test
-    public void testGetPolicyWOptions() throws Throwable {
-        // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2019-01-01T12:00:00.000Z\", \"updated_by\": \"updatedBy\", \"type\": \"application/vnd.ibm.secrets-manager.secret.policy+json\", \"rotation\": {\"interval\": 1, \"unit\": \"day\"}}]}";
-        String getPolicyPath = "/api/v1/secrets/username_password/testString/policies";
-
-        server.enqueue(new MockResponse()
-                .setHeader("Content-type", "application/json")
-                .setResponseCode(200)
-                .setBody(mockResponseBody));
-
-        constructClientService();
-
-        // Construct an instance of the GetPolicyOptions model
-        GetPolicyOptions getPolicyOptionsModel = new GetPolicyOptions.Builder()
-                .secretType("username_password")
-                .id("testString")
-                .policy("rotation")
-                .build();
-
-        // Invoke operation with valid options model (positive test)
-        Response<GetSecretPolicies> response = secretsManagerService.getPolicy(getPolicyOptionsModel).execute();
-        assertNotNull(response);
-        GetSecretPolicies responseObj = response.getResult();
-        assertNotNull(responseObj);
-
-        // Verify the contents of the request
-        RecordedRequest request = server.takeRequest();
-        assertNotNull(request);
-        assertEquals(request.getMethod(), "GET");
-
-        // Check query
-        Map<String, String> query = TestUtilities.parseQueryString(request);
-        assertNotNull(query);
-        // Get query params
-        assertEquals(query.get("policy"), "rotation");
-        // Check request path
-        String parsedPath = TestUtilities.parseReqPath(request);
-        assertEquals(parsedPath, getPolicyPath);
-    }
-
-    // Test the getPolicy operation with null options model parameter
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testGetPolicyNoOptions() throws Throwable {
-        // construct the service
-        constructClientService();
-
-        server.enqueue(new MockResponse());
-
-        // Invoke operation with null options model (negative test)
-        secretsManagerService.getPolicy(null).execute();
-    }
-
-    @Test
     public void testCreateSecretGroupWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"bc656587-8fda-4d05-9ad8-b1de1ec7e712\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"last_update_date\": \"2018-05-12T23:20:50.520Z\", \"type\": \"application/vnd.ibm.secrets-manager.secret.group+json\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"bc656587-8fda-4d05-9ad8-b1de1ec7e712\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"last_update_date\": \"2018-05-12T23:20:50.520Z\", \"type\": \"application/vnd.ibm.secrets-manager.secret.group+json\"}]}";
         String createSecretGroupPath = "/api/v1/secret_groups";
 
         server.enqueue(new MockResponse()
@@ -429,6 +222,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, createSecretGroupPath);
     }
 
+    public void testCreateSecretGroupWOptionsWRetries() throws Throwable {
+        // Enable retries and run testCreateSecretGroupWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testCreateSecretGroupWOptions();
+
+        // Disable retries and run testCreateSecretGroupWOptions.
+        secretsManagerService.disableRetries();
+        testCreateSecretGroupWOptions();
+    }
+
     // Test the createSecretGroup operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testCreateSecretGroupNoOptions() throws Throwable {
@@ -444,7 +247,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testListSecretGroupsWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"bc656587-8fda-4d05-9ad8-b1de1ec7e712\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"last_update_date\": \"2018-05-12T23:20:50.520Z\", \"type\": \"application/vnd.ibm.secrets-manager.secret.group+json\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"bc656587-8fda-4d05-9ad8-b1de1ec7e712\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"last_update_date\": \"2018-05-12T23:20:50.520Z\", \"type\": \"application/vnd.ibm.secrets-manager.secret.group+json\"}]}";
         String listSecretGroupsPath = "/api/v1/secret_groups";
 
         server.enqueue(new MockResponse()
@@ -477,10 +280,20 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, listSecretGroupsPath);
     }
 
+    public void testListSecretGroupsWOptionsWRetries() throws Throwable {
+        // Enable retries and run testListSecretGroupsWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testListSecretGroupsWOptions();
+
+        // Disable retries and run testListSecretGroupsWOptions.
+        secretsManagerService.disableRetries();
+        testListSecretGroupsWOptions();
+    }
+
     @Test
     public void testGetSecretGroupWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"bc656587-8fda-4d05-9ad8-b1de1ec7e712\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"last_update_date\": \"2018-05-12T23:20:50.520Z\", \"type\": \"application/vnd.ibm.secrets-manager.secret.group+json\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"bc656587-8fda-4d05-9ad8-b1de1ec7e712\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"last_update_date\": \"2018-05-12T23:20:50.520Z\", \"type\": \"application/vnd.ibm.secrets-manager.secret.group+json\"}]}";
         String getSecretGroupPath = "/api/v1/secret_groups/testString";
 
         server.enqueue(new MockResponse()
@@ -515,6 +328,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, getSecretGroupPath);
     }
 
+    public void testGetSecretGroupWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetSecretGroupWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetSecretGroupWOptions();
+
+        // Disable retries and run testGetSecretGroupWOptions.
+        secretsManagerService.disableRetries();
+        testGetSecretGroupWOptions();
+    }
+
     // Test the getSecretGroup operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetSecretGroupNoOptions() throws Throwable {
@@ -530,7 +353,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testUpdateSecretGroupMetadataWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"bc656587-8fda-4d05-9ad8-b1de1ec7e712\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"last_update_date\": \"2018-05-12T23:20:50.520Z\", \"type\": \"application/vnd.ibm.secrets-manager.secret.group+json\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"bc656587-8fda-4d05-9ad8-b1de1ec7e712\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"last_update_date\": \"2018-05-12T23:20:50.520Z\", \"type\": \"application/vnd.ibm.secrets-manager.secret.group+json\"}]}";
         String updateSecretGroupMetadataPath = "/api/v1/secret_groups/testString";
 
         server.enqueue(new MockResponse()
@@ -577,6 +400,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         // Check request path
         String parsedPath = TestUtilities.parseReqPath(request);
         assertEquals(parsedPath, updateSecretGroupMetadataPath);
+    }
+
+    public void testUpdateSecretGroupMetadataWOptionsWRetries() throws Throwable {
+        // Enable retries and run testUpdateSecretGroupMetadataWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testUpdateSecretGroupMetadataWOptions();
+
+        // Disable retries and run testUpdateSecretGroupMetadataWOptions.
+        secretsManagerService.disableRetries();
+        testUpdateSecretGroupMetadataWOptions();
     }
 
     // Test the updateSecretGroupMetadata operation with null options model parameter
@@ -629,6 +462,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, deleteSecretGroupPath);
     }
 
+    public void testDeleteSecretGroupWOptionsWRetries() throws Throwable {
+        // Enable retries and run testDeleteSecretGroupWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testDeleteSecretGroupWOptions();
+
+        // Disable retries and run testDeleteSecretGroupWOptions.
+        secretsManagerService.disableRetries();
+        testDeleteSecretGroupWOptions();
+    }
+
     // Test the deleteSecretGroup operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testDeleteSecretGroupNoOptions() throws Throwable {
@@ -644,7 +487,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testCreateSecretWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String createSecretPath = "/api/v1/secrets/arbitrary";
 
         server.enqueue(new MockResponse()
@@ -656,7 +499,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the CollectionMetadata model
         CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionType("application/vnd.ibm.secrets-manager.config+json")
                 .collectionTotal(Long.valueOf("1"))
                 .build();
 
@@ -697,6 +540,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, createSecretPath);
     }
 
+    public void testCreateSecretWOptionsWRetries() throws Throwable {
+        // Enable retries and run testCreateSecretWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testCreateSecretWOptions();
+
+        // Disable retries and run testCreateSecretWOptions.
+        secretsManagerService.disableRetries();
+        testCreateSecretWOptions();
+    }
+
     // Test the createSecret operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testCreateSecretNoOptions() throws Throwable {
@@ -712,7 +565,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testListSecretsWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String listSecretsPath = "/api/v1/secrets/arbitrary";
 
         server.enqueue(new MockResponse()
@@ -751,6 +604,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, listSecretsPath);
     }
 
+    public void testListSecretsWOptionsWRetries() throws Throwable {
+        // Enable retries and run testListSecretsWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testListSecretsWOptions();
+
+        // Disable retries and run testListSecretsWOptions.
+        secretsManagerService.disableRetries();
+        testListSecretsWOptions();
+    }
+
     // Test the listSecrets operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testListSecretsNoOptions() throws Throwable {
@@ -766,7 +629,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testListAllSecretsWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String listAllSecretsPath = "/api/v1/secrets";
 
         server.enqueue(new MockResponse()
@@ -810,10 +673,20 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, listAllSecretsPath);
     }
 
+    public void testListAllSecretsWOptionsWRetries() throws Throwable {
+        // Enable retries and run testListAllSecretsWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testListAllSecretsWOptions();
+
+        // Disable retries and run testListAllSecretsWOptions.
+        secretsManagerService.disableRetries();
+        testListAllSecretsWOptions();
+    }
+
     @Test
     public void testGetSecretWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String getSecretPath = "/api/v1/secrets/arbitrary/testString";
 
         server.enqueue(new MockResponse()
@@ -849,6 +722,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, getSecretPath);
     }
 
+    public void testGetSecretWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetSecretWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetSecretWOptions();
+
+        // Disable retries and run testGetSecretWOptions.
+        secretsManagerService.disableRetries();
+        testGetSecretWOptions();
+    }
+
     // Test the getSecret operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetSecretNoOptions() throws Throwable {
@@ -864,7 +747,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testUpdateSecretWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String updateSecretPath = "/api/v1/secrets/arbitrary/testString";
 
         server.enqueue(new MockResponse()
@@ -906,6 +789,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         // Check request path
         String parsedPath = TestUtilities.parseReqPath(request);
         assertEquals(parsedPath, updateSecretPath);
+    }
+
+    public void testUpdateSecretWOptionsWRetries() throws Throwable {
+        // Enable retries and run testUpdateSecretWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testUpdateSecretWOptions();
+
+        // Disable retries and run testUpdateSecretWOptions.
+        secretsManagerService.disableRetries();
+        testUpdateSecretWOptions();
     }
 
     // Test the updateSecret operation with null options model parameter
@@ -959,6 +852,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, deleteSecretPath);
     }
 
+    public void testDeleteSecretWOptionsWRetries() throws Throwable {
+        // Enable retries and run testDeleteSecretWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testDeleteSecretWOptions();
+
+        // Disable retries and run testDeleteSecretWOptions.
+        secretsManagerService.disableRetries();
+        testDeleteSecretWOptions();
+    }
+
     // Test the deleteSecret operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testDeleteSecretNoOptions() throws Throwable {
@@ -974,7 +877,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetSecretVersionWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"validity\": {\"not_before\": \"2020-10-05T21:33:11.000Z\", \"not_after\": \"2021-01-01T00:00:00.000Z\"}, \"serial_number\": \"serialNumber\", \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"secret_data\": {\"certificate\": \"certificate\", \"private_key\": \"privateKey\", \"intermediate\": \"intermediate\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"validity\": {\"not_before\": \"2020-10-05T21:33:11.000Z\", \"not_after\": \"2021-01-01T00:00:00.000Z\"}, \"serial_number\": \"d9:be:fe:35:ba:09:42:b5\", \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"secret_data\": {\"certificate\": \"certificate\", \"private_key\": \"privateKey\", \"intermediate\": \"intermediate\"}}]}";
         String getSecretVersionPath = "/api/v1/secrets/imported_cert/testString/versions/testString";
 
         server.enqueue(new MockResponse()
@@ -1011,6 +914,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, getSecretVersionPath);
     }
 
+    public void testGetSecretVersionWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetSecretVersionWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetSecretVersionWOptions();
+
+        // Disable retries and run testGetSecretVersionWOptions.
+        secretsManagerService.disableRetries();
+        testGetSecretVersionWOptions();
+    }
+
     // Test the getSecretVersion operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetSecretVersionNoOptions() throws Throwable {
@@ -1026,7 +939,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetSecretVersionMetadataWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\"}]}";
         String getSecretVersionMetadataPath = "/api/v1/secrets/imported_cert/testString/versions/testString/metadata";
 
         server.enqueue(new MockResponse()
@@ -1063,6 +976,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, getSecretVersionMetadataPath);
     }
 
+    public void testGetSecretVersionMetadataWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetSecretVersionMetadataWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetSecretVersionMetadataWOptions();
+
+        // Disable retries and run testGetSecretVersionMetadataWOptions.
+        secretsManagerService.disableRetries();
+        testGetSecretVersionMetadataWOptions();
+    }
+
     // Test the getSecretVersionMetadata operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetSecretVersionMetadataNoOptions() throws Throwable {
@@ -1078,7 +1001,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetSecretMetadataWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 1, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\"}]}";
         String getSecretMetadataPath = "/api/v1/secrets/arbitrary/testString/metadata";
 
         server.enqueue(new MockResponse()
@@ -1114,6 +1037,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, getSecretMetadataPath);
     }
 
+    public void testGetSecretMetadataWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetSecretMetadataWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetSecretMetadataWOptions();
+
+        // Disable retries and run testGetSecretMetadataWOptions.
+        secretsManagerService.disableRetries();
+        testGetSecretMetadataWOptions();
+    }
+
     // Test the getSecretMetadata operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetSecretMetadataNoOptions() throws Throwable {
@@ -1129,7 +1062,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testUpdateSecretMetadataWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.secret+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 1, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\"}]}";
         String updateSecretMetadataPath = "/api/v1/secrets/arbitrary/testString/metadata";
 
         server.enqueue(new MockResponse()
@@ -1141,7 +1074,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the CollectionMetadata model
         CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionType("application/vnd.ibm.secrets-manager.config+json")
                 .collectionTotal(Long.valueOf("1"))
                 .build();
 
@@ -1181,6 +1114,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(parsedPath, updateSecretMetadataPath);
     }
 
+    public void testUpdateSecretMetadataWOptionsWRetries() throws Throwable {
+        // Enable retries and run testUpdateSecretMetadataWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testUpdateSecretMetadataWOptions();
+
+        // Disable retries and run testUpdateSecretMetadataWOptions.
+        secretsManagerService.disableRetries();
+        testUpdateSecretMetadataWOptions();
+    }
+
     // Test the updateSecretMetadata operation with null options model parameter
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUpdateSecretMetadataNoOptions() throws Throwable {
@@ -1191,6 +1134,594 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Invoke operation with null options model (negative test)
         secretsManagerService.updateSecretMetadata(null).execute();
+    }
+
+    @Test
+    public void testPutPolicyWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2019-01-01T12:00:00.000Z\", \"updated_by\": \"updatedBy\", \"type\": \"application/vnd.ibm.secrets-manager.secret.policy+json\", \"rotation\": {\"interval\": 1, \"unit\": \"day\"}}]}";
+        String putPolicyPath = "/api/v1/secrets/username_password/testString/policies";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the CollectionMetadata model
+        CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
+                .collectionType("application/vnd.ibm.secrets-manager.config+json")
+                .collectionTotal(Long.valueOf("1"))
+                .build();
+
+        // Construct an instance of the SecretPolicyRotationRotationPolicyRotation model
+        SecretPolicyRotationRotationPolicyRotation secretPolicyRotationRotationModel = new SecretPolicyRotationRotationPolicyRotation.Builder()
+                .interval(Long.valueOf("1"))
+                .unit("day")
+                .build();
+
+        // Construct an instance of the SecretPolicyRotation model
+        SecretPolicyRotation secretPolicyRotationModel = new SecretPolicyRotation.Builder()
+                .type("application/vnd.ibm.secrets-manager.secret.policy+json")
+                .rotation(secretPolicyRotationRotationModel)
+                .build();
+
+        // Construct an instance of the PutPolicyOptions model
+        PutPolicyOptions putPolicyOptionsModel = new PutPolicyOptions.Builder()
+                .secretType("username_password")
+                .id("testString")
+                .metadata(collectionMetadataModel)
+                .resources(new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)))
+                .policy("rotation")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<GetSecretPolicies> response = secretsManagerService.putPolicy(putPolicyOptionsModel).execute();
+        assertNotNull(response);
+        GetSecretPolicies responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "PUT");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNotNull(query);
+        // Get query params
+        assertEquals(query.get("policy"), "rotation");
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, putPolicyPath);
+    }
+
+    public void testPutPolicyWOptionsWRetries() throws Throwable {
+        // Enable retries and run testPutPolicyWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testPutPolicyWOptions();
+
+        // Disable retries and run testPutPolicyWOptions.
+        secretsManagerService.disableRetries();
+        testPutPolicyWOptions();
+    }
+
+    // Test the putPolicy operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testPutPolicyNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.putPolicy(null).execute();
+    }
+
+    @Test
+    public void testGetPolicyWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2019-01-01T12:00:00.000Z\", \"updated_by\": \"updatedBy\", \"type\": \"application/vnd.ibm.secrets-manager.secret.policy+json\", \"rotation\": {\"interval\": 1, \"unit\": \"day\"}}]}";
+        String getPolicyPath = "/api/v1/secrets/username_password/testString/policies";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the GetPolicyOptions model
+        GetPolicyOptions getPolicyOptionsModel = new GetPolicyOptions.Builder()
+                .secretType("username_password")
+                .id("testString")
+                .policy("rotation")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<GetSecretPolicies> response = secretsManagerService.getPolicy(getPolicyOptionsModel).execute();
+        assertNotNull(response);
+        GetSecretPolicies responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "GET");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNotNull(query);
+        // Get query params
+        assertEquals(query.get("policy"), "rotation");
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, getPolicyPath);
+    }
+
+    public void testGetPolicyWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetPolicyWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetPolicyWOptions();
+
+        // Disable retries and run testGetPolicyWOptions.
+        secretsManagerService.disableRetries();
+        testGetPolicyWOptions();
+    }
+
+    // Test the getPolicy operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetPolicyNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.getPolicy(null).execute();
+    }
+
+    @Test
+    public void testPutConfigWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "";
+        String putConfigPath = "/api/v1/config/iam_credentials";
+
+        server.enqueue(new MockResponse()
+                .setResponseCode(204)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the PutConfigOptions model
+        PutConfigOptions putConfigOptionsModel = new PutConfigOptions.Builder()
+                .secretType("iam_credentials")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<Void> response = secretsManagerService.putConfig(putConfigOptionsModel).execute();
+        assertNotNull(response);
+        Void responseObj = response.getResult();
+        // Response does not have a return type. Check that the result is null.
+        assertNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "PUT");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, putConfigPath);
+    }
+
+    public void testPutConfigWOptionsWRetries() throws Throwable {
+        // Enable retries and run testPutConfigWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testPutConfigWOptions();
+
+        // Disable retries and run testPutConfigWOptions.
+        secretsManagerService.disableRetries();
+        testPutConfigWOptions();
+    }
+
+    // Test the putConfig operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testPutConfigNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.putConfig(null).execute();
+    }
+
+    @Test
+    public void testGetConfigWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"certificate_authorities\": [{\"name\": \"name\", \"type\": \"letsencrypt\"}], \"dns_providers\": [{\"name\": \"name\", \"type\": \"letsencrypt\"}]}]}";
+        String getConfigPath = "/api/v1/config/iam_credentials";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the GetConfigOptions model
+        GetConfigOptions getConfigOptionsModel = new GetConfigOptions.Builder()
+                .secretType("iam_credentials")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<GetConfig> response = secretsManagerService.getConfig(getConfigOptionsModel).execute();
+        assertNotNull(response);
+        GetConfig responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "GET");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, getConfigPath);
+    }
+
+    public void testGetConfigWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetConfigWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetConfigWOptions();
+
+        // Disable retries and run testGetConfigWOptions.
+        secretsManagerService.disableRetries();
+        testGetConfigWOptions();
+    }
+
+    // Test the getConfig operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetConfigNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.getConfig(null).execute();
+    }
+
+    @Test
+    public void testCreateConfigElementWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"private_key\": \"privateKey\"}}]}";
+        String createConfigElementPath = "/api/v1/config/public_cert/certificate_authorities";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(201)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the ConfigElementDefConfigLetsEncryptConfig model
+        ConfigElementDefConfigLetsEncryptConfig configElementDefConfigModel = new ConfigElementDefConfigLetsEncryptConfig.Builder()
+                .privateKey("testString")
+                .build();
+
+        // Construct an instance of the CreateConfigElementOptions model
+        CreateConfigElementOptions createConfigElementOptionsModel = new CreateConfigElementOptions.Builder()
+                .secretType("public_cert")
+                .configElement("certificate_authorities")
+                .name("testString")
+                .type("letsencrypt")
+                .config(configElementDefConfigModel)
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<GetSingleConfigElement> response = secretsManagerService.createConfigElement(createConfigElementOptionsModel).execute();
+        assertNotNull(response);
+        GetSingleConfigElement responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "POST");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, createConfigElementPath);
+    }
+
+    public void testCreateConfigElementWOptionsWRetries() throws Throwable {
+        // Enable retries and run testCreateConfigElementWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testCreateConfigElementWOptions();
+
+        // Disable retries and run testCreateConfigElementWOptions.
+        secretsManagerService.disableRetries();
+        testCreateConfigElementWOptions();
+    }
+
+    // Test the createConfigElement operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testCreateConfigElementNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.createConfigElement(null).execute();
+    }
+
+    @Test
+    public void testGetConfigElementsWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"certificate_authorities\": [{\"name\": \"name\", \"type\": \"letsencrypt\"}]}]}";
+        String getConfigElementsPath = "/api/v1/config/public_cert/certificate_authorities";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the GetConfigElementsOptions model
+        GetConfigElementsOptions getConfigElementsOptionsModel = new GetConfigElementsOptions.Builder()
+                .secretType("public_cert")
+                .configElement("certificate_authorities")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<GetConfigElements> response = secretsManagerService.getConfigElements(getConfigElementsOptionsModel).execute();
+        assertNotNull(response);
+        GetConfigElements responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "GET");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, getConfigElementsPath);
+    }
+
+    public void testGetConfigElementsWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetConfigElementsWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetConfigElementsWOptions();
+
+        // Disable retries and run testGetConfigElementsWOptions.
+        secretsManagerService.disableRetries();
+        testGetConfigElementsWOptions();
+    }
+
+    // Test the getConfigElements operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetConfigElementsNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.getConfigElements(null).execute();
+    }
+
+    @Test
+    public void testUpdateConfigElementWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"private_key\": \"privateKey\"}}]}";
+        String updateConfigElementPath = "/api/v1/config/public_cert/certificate_authorities/testString";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the UpdateConfigElementOptions model
+        UpdateConfigElementOptions updateConfigElementOptionsModel = new UpdateConfigElementOptions.Builder()
+                .secretType("public_cert")
+                .configElement("certificate_authorities")
+                .configName("testString")
+                .type("letsencrypt")
+                .config(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<GetSingleConfigElement> response = secretsManagerService.updateConfigElement(updateConfigElementOptionsModel).execute();
+        assertNotNull(response);
+        GetSingleConfigElement responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "PUT");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, updateConfigElementPath);
+    }
+
+    public void testUpdateConfigElementWOptionsWRetries() throws Throwable {
+        // Enable retries and run testUpdateConfigElementWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testUpdateConfigElementWOptions();
+
+        // Disable retries and run testUpdateConfigElementWOptions.
+        secretsManagerService.disableRetries();
+        testUpdateConfigElementWOptions();
+    }
+
+    // Test the updateConfigElement operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testUpdateConfigElementNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.updateConfigElement(null).execute();
+    }
+
+    @Test
+    public void testDeleteConfigElementWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "";
+        String deleteConfigElementPath = "/api/v1/config/public_cert/certificate_authorities/testString";
+
+        server.enqueue(new MockResponse()
+                .setResponseCode(204)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the DeleteConfigElementOptions model
+        DeleteConfigElementOptions deleteConfigElementOptionsModel = new DeleteConfigElementOptions.Builder()
+                .secretType("public_cert")
+                .configElement("certificate_authorities")
+                .configName("testString")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<Void> response = secretsManagerService.deleteConfigElement(deleteConfigElementOptionsModel).execute();
+        assertNotNull(response);
+        Void responseObj = response.getResult();
+        // Response does not have a return type. Check that the result is null.
+        assertNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "DELETE");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, deleteConfigElementPath);
+    }
+
+    public void testDeleteConfigElementWOptionsWRetries() throws Throwable {
+        // Enable retries and run testDeleteConfigElementWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testDeleteConfigElementWOptions();
+
+        // Disable retries and run testDeleteConfigElementWOptions.
+        secretsManagerService.disableRetries();
+        testDeleteConfigElementWOptions();
+    }
+
+    // Test the deleteConfigElement operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testDeleteConfigElementNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.deleteConfigElement(null).execute();
+    }
+
+    @Test
+    public void testGetConfigElementWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"private_key\": \"privateKey\"}}]}";
+        String getConfigElementPath = "/api/v1/config/public_cert/certificate_authorities/testString";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the GetConfigElementOptions model
+        GetConfigElementOptions getConfigElementOptionsModel = new GetConfigElementOptions.Builder()
+                .secretType("public_cert")
+                .configElement("certificate_authorities")
+                .configName("testString")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<GetSingleConfigElement> response = secretsManagerService.getConfigElement(getConfigElementOptionsModel).execute();
+        assertNotNull(response);
+        GetSingleConfigElement responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "GET");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, getConfigElementPath);
+    }
+
+    public void testGetConfigElementWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetConfigElementWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetConfigElementWOptions();
+
+        // Disable retries and run testGetConfigElementWOptions.
+        secretsManagerService.disableRetries();
+        testGetConfigElementWOptions();
+    }
+
+    // Test the getConfigElement operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetConfigElementNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.getConfigElement(null).execute();
     }
 
     /**

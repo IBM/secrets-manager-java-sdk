@@ -27,6 +27,10 @@ public class GetSecretVersionOptions extends GenericModel {
          * imported_cert.
          */
         String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
     }
 
     protected String secretType;

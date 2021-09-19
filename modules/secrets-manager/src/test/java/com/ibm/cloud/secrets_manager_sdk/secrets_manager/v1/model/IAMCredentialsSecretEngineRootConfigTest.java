@@ -37,13 +37,13 @@ public class IAMCredentialsSecretEngineRootConfigTest {
         IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModel = new IAMCredentialsSecretEngineRootConfig.Builder()
                 .apiKey("API_KEY")
                 .build();
-        assertEquals(iamCredentialsSecretEngineRootConfigModel.apiKey(), "API_KEY");
+        assertEquals(iamCredentialsSecretEngineRootConfigModel.getApiKey(), "API_KEY");
 
         String json = TestUtilities.serialize(iamCredentialsSecretEngineRootConfigModel);
 
         IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModelNew = TestUtilities.deserialize(json, IAMCredentialsSecretEngineRootConfig.class);
         assertTrue(iamCredentialsSecretEngineRootConfigModelNew instanceof IAMCredentialsSecretEngineRootConfig);
-        assertEquals(iamCredentialsSecretEngineRootConfigModelNew.apiKey(), "API_KEY");
+        assertEquals(iamCredentialsSecretEngineRootConfigModelNew.getApiKey(), "API_KEY");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

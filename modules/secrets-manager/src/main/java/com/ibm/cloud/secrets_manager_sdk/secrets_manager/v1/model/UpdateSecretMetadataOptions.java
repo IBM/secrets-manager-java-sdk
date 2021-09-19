@@ -31,10 +31,6 @@ public class UpdateSecretMetadataOptions extends GenericModel {
          */
         String ARBITRARY = "arbitrary";
         /**
-         * username_password.
-         */
-        String USERNAME_PASSWORD = "username_password";
-        /**
          * iam_credentials.
          */
         String IAM_CREDENTIALS = "iam_credentials";
@@ -42,6 +38,14 @@ public class UpdateSecretMetadataOptions extends GenericModel {
          * imported_cert.
          */
         String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
     }
 
     protected String secretType;

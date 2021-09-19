@@ -39,7 +39,6 @@ public class CertificateSecretVersionTest {
     public void testCertificateSecretVersion() throws Throwable {
         CertificateSecretVersion certificateSecretVersionModel = new CertificateSecretVersion();
         assertNull(certificateSecretVersionModel.getValidity());
-        assertNull(certificateSecretVersionModel.getSerialNumber());
         assertNull(certificateSecretVersionModel.getSecretData());
     }
 }

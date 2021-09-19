@@ -14,7 +14,6 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
@@ -35,17 +34,10 @@ public class PutConfigOptionsTest {
 
     @Test
     public void testPutConfigOptions() throws Throwable {
-        IAMCredentialsSecretEngineRootConfig engineConfigModel = new IAMCredentialsSecretEngineRootConfig.Builder()
-                .apiKey("API_KEY")
-                .build();
-        assertEquals(engineConfigModel.apiKey(), "API_KEY");
-
         PutConfigOptions putConfigOptionsModel = new PutConfigOptions.Builder()
                 .secretType("iam_credentials")
-                .engineConfig(engineConfigModel)
                 .build();
         assertEquals(putConfigOptionsModel.secretType(), "iam_credentials");
-        assertEquals(putConfigOptionsModel.engineConfig(), engineConfigModel);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

@@ -44,7 +44,7 @@ public class IAMCredentialsSecretResourceTest {
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ttl("24h")
                 .accessGroups(new java.util.ArrayList<String>(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0")))
-                .reuseApiKey(true)
+                .reuseApiKey(false)
                 .build();
         assertEquals(iamCredentialsSecretResourceModel.name(), "testString");
         assertEquals(iamCredentialsSecretResourceModel.description(), "testString");
@@ -52,7 +52,7 @@ public class IAMCredentialsSecretResourceTest {
         assertEquals(iamCredentialsSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(iamCredentialsSecretResourceModel.ttl(), "24h");
         assertEquals(iamCredentialsSecretResourceModel.accessGroups(), new java.util.ArrayList<String>(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0")));
-        assertEquals(iamCredentialsSecretResourceModel.reuseApiKey(), Boolean.valueOf(true));
+        assertEquals(iamCredentialsSecretResourceModel.reuseApiKey(), Boolean.valueOf(false));
 
         String json = TestUtilities.serialize(iamCredentialsSecretResourceModel);
 
@@ -62,7 +62,7 @@ public class IAMCredentialsSecretResourceTest {
         assertEquals(iamCredentialsSecretResourceModelNew.description(), "testString");
         assertEquals(iamCredentialsSecretResourceModelNew.secretGroupId(), "testString");
         assertEquals(iamCredentialsSecretResourceModelNew.ttl(), "24h");
-        assertEquals(iamCredentialsSecretResourceModelNew.reuseApiKey(), Boolean.valueOf(true));
+        assertEquals(iamCredentialsSecretResourceModelNew.reuseApiKey(), Boolean.valueOf(false));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

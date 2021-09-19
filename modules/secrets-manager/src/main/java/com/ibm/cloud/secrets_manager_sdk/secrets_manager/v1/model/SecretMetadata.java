@@ -26,6 +26,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - UsernamePasswordSecretMetadata
  * - IAMCredentialsSecretMetadata
  * - CertificateSecretMetadata
+ * - PublicCertificateMetadataSecretResource
  */
 public class SecretMetadata extends GenericModel {
 
@@ -49,6 +50,10 @@ public class SecretMetadata extends GenericModel {
          * imported_cert.
          */
         String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
     }
 
     protected String id;
@@ -91,6 +96,11 @@ public class SecretMetadata extends GenericModel {
     protected Boolean privateKeyIncluded;
     @SerializedName("alt_names")
     protected List<String> altNames;
+    @SerializedName("bundle_certs")
+    protected Boolean bundleCerts;
+    protected Rotation rotation;
+    @SerializedName("issuance_info")
+    protected IssuanceInfo issuanceInfo;
 
     protected SecretMetadata() {
     }
@@ -393,6 +403,39 @@ public class SecretMetadata extends GenericModel {
      */
     public List<String> altNames() {
         return altNames;
+    }
+
+    /**
+     * Gets the bundleCerts.
+     * <p>
+     * Determines whether your issued certificate is bundled with intermediate certificates.
+     * <p>
+     * Set to `false` for the certificate file to contain only the issued certificate.
+     *
+     * @return the bundleCerts
+     */
+    public Boolean bundleCerts() {
+        return bundleCerts;
+    }
+
+    /**
+     * Gets the rotation.
+     *
+     * @return the rotation
+     */
+    public Rotation rotation() {
+        return rotation;
+    }
+
+    /**
+     * Gets the issuanceInfo.
+     * <p>
+     * Issuance information that is associated with your certificate.
+     *
+     * @return the issuanceInfo
+     */
+    public IssuanceInfo issuanceInfo() {
+        return issuanceInfo;
     }
 }
 

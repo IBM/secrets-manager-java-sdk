@@ -13,9 +13,9 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 /**
- * Configuration that is used to generate IAM credentials.
+ * Configuration for the IAM credentials engine.
  */
-public class IAMCredentialsSecretEngineRootConfig extends EngineConfig {
+public class IAMCredentialsSecretEngineRootConfig extends GetConfigResourcesItem {
 
 
     /**
@@ -24,7 +24,7 @@ public class IAMCredentialsSecretEngineRootConfig extends EngineConfig {
     public static class Builder {
         private String apiKey;
 
-        public Builder(EngineConfig iamCredentialsSecretEngineRootConfig) {
+        public Builder(GetConfigResourcesItem iamCredentialsSecretEngineRootConfig) {
             this.apiKey = iamCredentialsSecretEngineRootConfig.apiKey;
         }
 

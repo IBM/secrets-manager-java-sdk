@@ -124,8 +124,6 @@ public class GetSecretPolicyRotationResourcesItem extends GenericModel {
 
     /**
      * Gets the rotation.
-     * <p>
-     * The secret rotation time interval.
      *
      * @return the rotation
      */

@@ -27,6 +27,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - UsernamePasswordSecretResource
  * - IAMCredentialsSecretResource
  * - CertificateSecretResource
+ * - PublicCertificateSecretResource
  */
 public class SecretResource extends GenericModel {
 
@@ -110,6 +111,13 @@ public class SecretResource extends GenericModel {
     protected Boolean privateKeyIncluded;
     @SerializedName("alt_names")
     protected List<String> altNames;
+    @SerializedName("bundle_certs")
+    protected Boolean bundleCerts;
+    protected String ca;
+    protected String dns;
+    protected Rotation rotation;
+    @SerializedName("issuance_info")
+    protected IssuanceInfo issuanceInfo;
 
     protected SecretResource() {
     }
@@ -558,6 +566,65 @@ public class SecretResource extends GenericModel {
      */
     public List<String> altNames() {
         return altNames;
+    }
+
+    /**
+     * Gets the bundleCerts.
+     * <p>
+     * Determines whether your issued certificate is bundled with intermediate certificates.
+     * <p>
+     * Set to `false` for the certificate file to contain only the issued certificate.
+     *
+     * @return the bundleCerts
+     */
+    public Boolean bundleCerts() {
+        return bundleCerts;
+    }
+
+    /**
+     * Gets the ca.
+     * <p>
+     * The name of the certificate authority configuration.
+     * <p>
+     * To view a list of your configured authorities, use the [List configurations API](#get-secret-config-element).
+     *
+     * @return the ca
+     */
+    public String ca() {
+        return ca;
+    }
+
+    /**
+     * Gets the dns.
+     * <p>
+     * The name of the DNS provider configuration.
+     * <p>
+     * To view a list of your configured authorities, use the [List configurations API](#get-secret-config-element).
+     *
+     * @return the dns
+     */
+    public String dns() {
+        return dns;
+    }
+
+    /**
+     * Gets the rotation.
+     *
+     * @return the rotation
+     */
+    public Rotation rotation() {
+        return rotation;
+    }
+
+    /**
+     * Gets the issuanceInfo.
+     * <p>
+     * Issuance information that is associated with your certificate.
+     *
+     * @return the issuanceInfo
+     */
+    public IssuanceInfo issuanceInfo() {
+        return issuanceInfo;
     }
 }
 

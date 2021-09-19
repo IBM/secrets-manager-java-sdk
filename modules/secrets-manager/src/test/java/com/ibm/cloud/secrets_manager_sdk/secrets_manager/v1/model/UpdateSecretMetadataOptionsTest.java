@@ -40,10 +40,10 @@ public class UpdateSecretMetadataOptionsTest {
     @Test
     public void testUpdateSecretMetadataOptions() throws Throwable {
         CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionType("application/vnd.ibm.secrets-manager.config+json")
                 .collectionTotal(Long.valueOf("1"))
                 .build();
-        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
+        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.config+json");
         assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
         ArbitrarySecretMetadata secretMetadataModel = new ArbitrarySecretMetadata.Builder()

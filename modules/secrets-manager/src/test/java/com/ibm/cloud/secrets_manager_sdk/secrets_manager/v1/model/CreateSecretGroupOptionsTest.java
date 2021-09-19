@@ -39,10 +39,10 @@ public class CreateSecretGroupOptionsTest {
     @Test
     public void testCreateSecretGroupOptions() throws Throwable {
         CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionType("application/vnd.ibm.secrets-manager.config+json")
                 .collectionTotal(Long.valueOf("1"))
                 .build();
-        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
+        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.config+json");
         assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
         SecretGroupResource secretGroupResourceModel = new SecretGroupResource.Builder()

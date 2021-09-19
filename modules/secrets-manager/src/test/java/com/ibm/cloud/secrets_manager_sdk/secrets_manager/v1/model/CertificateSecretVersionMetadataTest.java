@@ -37,7 +37,6 @@ public class CertificateSecretVersionMetadataTest {
     @Test
     public void testCertificateSecretVersionMetadata() throws Throwable {
         CertificateSecretVersionMetadata certificateSecretVersionMetadataModel = new CertificateSecretVersionMetadata();
-        assertNull(certificateSecretVersionMetadataModel.getSerialNumber());
         assertNull(certificateSecretVersionMetadataModel.getValidity());
     }
 }

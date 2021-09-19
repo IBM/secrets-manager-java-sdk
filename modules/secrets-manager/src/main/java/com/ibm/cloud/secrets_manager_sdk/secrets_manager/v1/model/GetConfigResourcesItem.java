@@ -12,23 +12,52 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * EngineConfig.
+ * GetConfigResourcesItem.
  * <p>
  * Classes which extend this class:
+ * - PublicCertSecretEngineRootConfig
  * - IAMCredentialsSecretEngineRootConfig
  */
-public class EngineConfig extends GenericModel {
+public class GetConfigResourcesItem extends GenericModel {
 
+    @SerializedName("certificate_authorities")
+    protected List<ConfigElementMetadata> certificateAuthorities;
+    @SerializedName("dns_providers")
+    protected List<ConfigElementMetadata> dnsProviders;
     @SerializedName("api_key")
     protected String apiKey;
     @SerializedName("api_key_hash")
     protected String apiKeyHash;
 
-    protected EngineConfig() {
+    protected GetConfigResourcesItem() {
+    }
+
+    /**
+     * Gets the certificateAuthorities.
+     * <p>
+     * The certificate authority configurations that are associated with your instance.
+     *
+     * @return the certificateAuthorities
+     */
+    public List<ConfigElementMetadata> getCertificateAuthorities() {
+        return certificateAuthorities;
+    }
+
+    /**
+     * Gets the dnsProviders.
+     * <p>
+     * The DNS provider configurations that are associated with your instance.
+     *
+     * @return the dnsProviders
+     */
+    public List<ConfigElementMetadata> getDnsProviders() {
+        return dnsProviders;
     }
 
     /**
@@ -42,7 +71,7 @@ public class EngineConfig extends GenericModel {
      *
      * @return the apiKey
      */
-    public String apiKey() {
+    public String getApiKey() {
         return apiKey;
     }
 
@@ -53,7 +82,7 @@ public class EngineConfig extends GenericModel {
      *
      * @return the apiKeyHash
      */
-    public String apiKeyHash() {
+    public String getApiKeyHash() {
         return apiKeyHash;
     }
 }

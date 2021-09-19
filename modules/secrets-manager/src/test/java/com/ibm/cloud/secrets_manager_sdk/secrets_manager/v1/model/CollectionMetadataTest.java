@@ -35,17 +35,17 @@ public class CollectionMetadataTest {
     @Test
     public void testCollectionMetadata() throws Throwable {
         CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionType("application/vnd.ibm.secrets-manager.config+json")
                 .collectionTotal(Long.valueOf("1"))
                 .build();
-        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
+        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.config+json");
         assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
         String json = TestUtilities.serialize(collectionMetadataModel);
 
         CollectionMetadata collectionMetadataModelNew = TestUtilities.deserialize(json, CollectionMetadata.class);
         assertTrue(collectionMetadataModelNew instanceof CollectionMetadata);
-        assertEquals(collectionMetadataModelNew.collectionType(), "application/vnd.ibm.secrets-manager.secret+json");
+        assertEquals(collectionMetadataModelNew.collectionType(), "application/vnd.ibm.secrets-manager.config+json");
         assertEquals(collectionMetadataModelNew.collectionTotal(), Long.valueOf("1"));
     }
 
