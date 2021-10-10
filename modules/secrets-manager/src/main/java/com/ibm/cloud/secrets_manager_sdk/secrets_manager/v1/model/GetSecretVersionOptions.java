@@ -20,7 +20,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class GetSecretVersionOptions extends GenericModel {
 
     /**
-     * The secret type. Supported options include: imported_cert.
+     * The secret type.
      */
     public interface SecretType {
         /**
@@ -137,7 +137,7 @@ public class GetSecretVersionOptions extends GenericModel {
     /**
      * Gets the secretType.
      * <p>
-     * The secret type. Supported options include: imported_cert.
+     * The secret type.
      *
      * @return the secretType
      */

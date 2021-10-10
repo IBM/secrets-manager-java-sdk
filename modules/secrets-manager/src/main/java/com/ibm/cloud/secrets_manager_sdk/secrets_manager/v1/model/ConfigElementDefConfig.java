@@ -42,7 +42,12 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the privateKey.
      * <p>
-     * The private key that is associated with your ACME account.
+     * The private key that is associated with your Automatic Certificate Management Environment (ACME) account.
+     * <p>
+     * If you have a working ACME client or account for Let's Encrypt, you can use the existing private key to  enable
+     * communications with Secrets Manager. If you don't have an account yet, you can create one. For more information,
+     * see the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#create-acme-account).
      *
      * @return the privateKey
      */
@@ -85,6 +90,11 @@ public class ConfigElementDefConfig extends GenericModel {
      * Gets the classicInfrastructureUsername.
      * <p>
      * The username that is associated with your classic infrastructure account.
+     * <p>
+     * In most cases, your classic infrastructure username is your `&lt;account_id&gt;_&lt;email_address&gt;`. In the
+     * console, you can find your username by going to **Manage &gt; Access (IAM) &gt; Users &gt; name &gt; VPN
+     * password.** For more information, see the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
      *
      * @return the classicInfrastructureUsername
      */
@@ -96,6 +106,10 @@ public class ConfigElementDefConfig extends GenericModel {
      * Gets the classicInfrastructurePassword.
      * <p>
      * Your classic infrastructure API key.
+     * <p>
+     * In the console, you can view or create a classic infrastructure API key by going to **Manage &gt; Access (IAM)
+     * &gt; Users &gt; name &gt; API keys.** For more information, see the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
      *
      * @return the classicInfrastructurePassword
      */

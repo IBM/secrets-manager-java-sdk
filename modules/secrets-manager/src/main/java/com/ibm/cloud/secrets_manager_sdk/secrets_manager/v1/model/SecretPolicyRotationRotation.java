@@ -44,7 +44,6 @@ public class SecretPolicyRotationRotation extends GenericModel {
     protected Boolean autoRotate;
     @SerializedName("rotate_keys")
     protected Boolean rotateKeys;
-    protected Warning warning;
 
     protected SecretPolicyRotationRotation() {
     }
@@ -87,17 +86,6 @@ public class SecretPolicyRotationRotation extends GenericModel {
      */
     public Boolean rotateKeys() {
         return rotateKeys;
-    }
-
-    /**
-     * Gets the warning.
-     * <p>
-     * Warning response.
-     *
-     * @return the warning
-     */
-    public Warning warning() {
-        return warning;
     }
 }
 

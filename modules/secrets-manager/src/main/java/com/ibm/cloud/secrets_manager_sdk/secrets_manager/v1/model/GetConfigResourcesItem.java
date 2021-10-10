@@ -66,8 +66,8 @@ public class GetConfigResourcesItem extends GenericModel {
      * An IBM Cloud API key that has the capability to create and manage service IDs.
      * <p>
      * The API key must be assigned the Editor platform role on the Access Groups Service and the Operator platform role
-     * on the IAM Identity Service. For more information, see [Configuring the IAM secrets
-     * engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
+     * on the IAM Identity Service. For more information, see the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
      *
      * @return the apiKey
      */

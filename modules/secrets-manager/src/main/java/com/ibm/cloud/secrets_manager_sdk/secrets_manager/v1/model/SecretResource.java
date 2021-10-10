@@ -384,8 +384,10 @@ public class SecretResource extends GenericModel {
      * The access groups that define the capabilities of the service ID and API key that are generated for an
      * `iam_credentials` secret.
      * <p>
-     * **Tip:** To find the ID of an access group, go to **Manage &gt; Access (IAM) &gt; Access groups** in the IBM Cloud
-     * console. Select the access group to inspect, and click **Details** to view its ID.
+     * **Tip:** To list the access groups that are available in an account, you can use the [IAM Access Groups
+     * API](https://cloud.ibm.com/apidocs/iam-access-groups#list-access-groups). To find the ID of an access group in the
+     * console, go to **Manage &gt; Access (IAM) &gt; Access groups**. Select the access group to inspect, and click
+     * **Details** to view its ID.
      *
      * @return the accessGroups
      */

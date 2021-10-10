@@ -34,21 +34,7 @@ public class IAMCredentialsSecretEngineRootConfigTest {
 
     @Test
     public void testIAMCredentialsSecretEngineRootConfig() throws Throwable {
-        IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModel = new IAMCredentialsSecretEngineRootConfig.Builder()
-                .apiKey("API_KEY")
-                .build();
-        assertEquals(iamCredentialsSecretEngineRootConfigModel.getApiKey(), "API_KEY");
-
-        String json = TestUtilities.serialize(iamCredentialsSecretEngineRootConfigModel);
-
-        IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModelNew = TestUtilities.deserialize(json, IAMCredentialsSecretEngineRootConfig.class);
-        assertTrue(iamCredentialsSecretEngineRootConfigModelNew instanceof IAMCredentialsSecretEngineRootConfig);
-        assertEquals(iamCredentialsSecretEngineRootConfigModelNew.getApiKey(), "API_KEY");
+        IAMCredentialsSecretEngineRootConfig iamCredentialsSecretEngineRootConfigModel = new IAMCredentialsSecretEngineRootConfig();
+        assertNull(iamCredentialsSecretEngineRootConfigModel.getApiKey());
     }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testIAMCredentialsSecretEngineRootConfigError() throws Throwable {
-        new IAMCredentialsSecretEngineRootConfig.Builder().build();
-    }
-
 }
