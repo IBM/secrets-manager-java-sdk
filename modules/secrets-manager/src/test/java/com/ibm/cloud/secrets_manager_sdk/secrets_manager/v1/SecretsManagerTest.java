@@ -37,6 +37,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementD
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigLetsEncryptConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateConfigElementOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateIAMCredentialsSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretOptions;
@@ -44,6 +45,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteConfigEl
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteCredentialsForIAMCredentialsSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.EngineConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElements;
@@ -106,7 +108,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretOp
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretVersionMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Warning;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.IOException;
@@ -1294,9 +1295,15 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         constructClientService();
 
+        // Construct an instance of the CreateIAMCredentialsSecretEngineRootConfig model
+        CreateIAMCredentialsSecretEngineRootConfig engineConfigModel = new CreateIAMCredentialsSecretEngineRootConfig.Builder()
+                .apiKey("API_KEY")
+                .build();
+
         // Construct an instance of the PutConfigOptions model
         PutConfigOptions putConfigOptionsModel = new PutConfigOptions.Builder()
                 .secretType("iam_credentials")
+                .engineConfig(engineConfigModel)
                 .build();
 
         // Invoke operation with valid options model (positive test)
@@ -1533,6 +1540,68 @@ public class SecretsManagerTest extends PowerMockTestCase {
     }
 
     @Test
+    public void testGetConfigElementWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"private_key\": \"privateKey\"}}]}";
+        String getConfigElementPath = "/api/v1/config/public_cert/certificate_authorities/testString";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the GetConfigElementOptions model
+        GetConfigElementOptions getConfigElementOptionsModel = new GetConfigElementOptions.Builder()
+                .secretType("public_cert")
+                .configElement("certificate_authorities")
+                .configName("testString")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<GetSingleConfigElement> response = secretsManagerService.getConfigElement(getConfigElementOptionsModel).execute();
+        assertNotNull(response);
+        GetSingleConfigElement responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "GET");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, getConfigElementPath);
+    }
+
+    public void testGetConfigElementWOptionsWRetries() throws Throwable {
+        // Enable retries and run testGetConfigElementWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testGetConfigElementWOptions();
+
+        // Disable retries and run testGetConfigElementWOptions.
+        secretsManagerService.disableRetries();
+        testGetConfigElementWOptions();
+    }
+
+    // Test the getConfigElement operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetConfigElementNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.getConfigElement(null).execute();
+    }
+
+    @Test
     public void testUpdateConfigElementWOptions() throws Throwable {
         // Schedule some responses.
         String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"private_key\": \"privateKey\"}}]}";
@@ -1660,68 +1729,6 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Invoke operation with null options model (negative test)
         secretsManagerService.deleteConfigElement(null).execute();
-    }
-
-    @Test
-    public void testGetConfigElementWOptions() throws Throwable {
-        // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"private_key\": \"privateKey\"}}]}";
-        String getConfigElementPath = "/api/v1/config/public_cert/certificate_authorities/testString";
-
-        server.enqueue(new MockResponse()
-                .setHeader("Content-type", "application/json")
-                .setResponseCode(200)
-                .setBody(mockResponseBody));
-
-        constructClientService();
-
-        // Construct an instance of the GetConfigElementOptions model
-        GetConfigElementOptions getConfigElementOptionsModel = new GetConfigElementOptions.Builder()
-                .secretType("public_cert")
-                .configElement("certificate_authorities")
-                .configName("testString")
-                .build();
-
-        // Invoke operation with valid options model (positive test)
-        Response<GetSingleConfigElement> response = secretsManagerService.getConfigElement(getConfigElementOptionsModel).execute();
-        assertNotNull(response);
-        GetSingleConfigElement responseObj = response.getResult();
-        assertNotNull(responseObj);
-
-        // Verify the contents of the request
-        RecordedRequest request = server.takeRequest();
-        assertNotNull(request);
-        assertEquals(request.getMethod(), "GET");
-
-        // Check query
-        Map<String, String> query = TestUtilities.parseQueryString(request);
-        assertNull(query);
-
-        // Check request path
-        String parsedPath = TestUtilities.parseReqPath(request);
-        assertEquals(parsedPath, getConfigElementPath);
-    }
-
-    public void testGetConfigElementWOptionsWRetries() throws Throwable {
-        // Enable retries and run testGetConfigElementWOptions.
-        secretsManagerService.enableRetries(4, 30);
-        testGetConfigElementWOptions();
-
-        // Disable retries and run testGetConfigElementWOptions.
-        secretsManagerService.disableRetries();
-        testGetConfigElementWOptions();
-    }
-
-    // Test the getConfigElement operation with null options model parameter
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testGetConfigElementNoOptions() throws Throwable {
-        // construct the service
-        constructClientService();
-
-        server.enqueue(new MockResponse());
-
-        // Invoke operation with null options model (negative test)
-        secretsManagerService.getConfigElement(null).execute();
     }
 
     /**

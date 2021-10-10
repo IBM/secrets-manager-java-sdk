@@ -15,7 +15,6 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateIAMCredentialsSecretEngineRootConfig;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
@@ -27,30 +26,29 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 /**
- * Unit test class for the PutConfigOptions model.
+ * Unit test class for the CreateIAMCredentialsSecretEngineRootConfig model.
  */
-public class PutConfigOptionsTest {
+public class CreateIAMCredentialsSecretEngineRootConfigTest {
     final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
     final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
     @Test
-    public void testPutConfigOptions() throws Throwable {
-        CreateIAMCredentialsSecretEngineRootConfig engineConfigModel = new CreateIAMCredentialsSecretEngineRootConfig.Builder()
+    public void testCreateIAMCredentialsSecretEngineRootConfig() throws Throwable {
+        CreateIAMCredentialsSecretEngineRootConfig createIamCredentialsSecretEngineRootConfigModel = new CreateIAMCredentialsSecretEngineRootConfig.Builder()
                 .apiKey("API_KEY")
                 .build();
-        assertEquals(engineConfigModel.apiKey(), "API_KEY");
+        assertEquals(createIamCredentialsSecretEngineRootConfigModel.apiKey(), "API_KEY");
 
-        PutConfigOptions putConfigOptionsModel = new PutConfigOptions.Builder()
-                .engineConfig(engineConfigModel)
-                .secretType("iam_credentials")
-                .build();
-        assertEquals(putConfigOptionsModel.engineConfig(), engineConfigModel);
-        assertEquals(putConfigOptionsModel.secretType(), "iam_credentials");
+        String json = TestUtilities.serialize(createIamCredentialsSecretEngineRootConfigModel);
+
+        CreateIAMCredentialsSecretEngineRootConfig createIamCredentialsSecretEngineRootConfigModelNew = TestUtilities.deserialize(json, CreateIAMCredentialsSecretEngineRootConfig.class);
+        assertTrue(createIamCredentialsSecretEngineRootConfigModelNew instanceof CreateIAMCredentialsSecretEngineRootConfig);
+        assertEquals(createIamCredentialsSecretEngineRootConfigModelNew.apiKey(), "API_KEY");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testPutConfigOptionsError() throws Throwable {
-        new PutConfigOptions.Builder().build();
+    public void testCreateIAMCredentialsSecretEngineRootConfigError() throws Throwable {
+        new CreateIAMCredentialsSecretEngineRootConfig.Builder().build();
     }
 
 }

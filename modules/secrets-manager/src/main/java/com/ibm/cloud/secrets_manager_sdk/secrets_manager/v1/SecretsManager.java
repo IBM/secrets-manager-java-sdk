@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.38.1-1037b405-20210908-184149
+ * IBM OpenAPI SDK Code Generator Version: 3.40.0-910cf8c2-20211006-154754
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -668,8 +668,7 @@ public class SecretsManager extends BaseService {
         for (Entry<String, String> header : sdkHeaders.entrySet()) {
             builder.header(header.getKey(), header.getValue());
         }
-        final JsonObject contentJson = new JsonObject();
-        builder.bodyJson(contentJson);
+        builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(putConfigOptions.engineConfig()), "application/json");
         ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
         return createServiceCall(builder.build(), responseConverter);
     }
@@ -760,6 +759,33 @@ public class SecretsManager extends BaseService {
     }
 
     /**
+     * Get a configuration.
+     * <p>
+     * Retrieves the details of a specific configuration that is associated with a secret type.
+     *
+     * @param getConfigElementOptions the {@link GetConfigElementOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSingleConfigElement}
+     */
+    public ServiceCall<GetSingleConfigElement> getConfigElement(GetConfigElementOptions getConfigElementOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(getConfigElementOptions,
+                "getConfigElementOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", getConfigElementOptions.secretType());
+        pathParamsMap.put("config_element", getConfigElementOptions.configElement());
+        pathParamsMap.put("config_name", getConfigElementOptions.configName());
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/config/{secret_type}/{config_element}/{config_name}", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "getConfigElement");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        ResponseConverter<GetSingleConfigElement> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSingleConfigElement>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
      * Update a configuration.
      * <p>
      * Updates a configuration element that is associated with the specified secret type.
@@ -791,9 +817,9 @@ public class SecretsManager extends BaseService {
     }
 
     /**
-     * Remove a configuration.
+     * Delete a configuration.
      * <p>
-     * Removes a configuration element from the specified secret type.
+     * Deletes a configuration element from the specified secret type.
      *
      * @param deleteConfigElementOptions the {@link DeleteConfigElementOptions} containing the options for the call
      * @return a {@link ServiceCall} with a void result
@@ -811,33 +837,6 @@ public class SecretsManager extends BaseService {
             builder.header(header.getKey(), header.getValue());
         }
         ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
-        return createServiceCall(builder.build(), responseConverter);
-    }
-
-    /**
-     * Get a configuration.
-     * <p>
-     * Retrieves the details of a specific configuration that is associated with a secret type.
-     *
-     * @param getConfigElementOptions the {@link GetConfigElementOptions} containing the options for the call
-     * @return a {@link ServiceCall} with a result of type {@link GetSingleConfigElement}
-     */
-    public ServiceCall<GetSingleConfigElement> getConfigElement(GetConfigElementOptions getConfigElementOptions) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(getConfigElementOptions,
-                "getConfigElementOptions cannot be null");
-        Map<String, String> pathParamsMap = new HashMap<String, String>();
-        pathParamsMap.put("secret_type", getConfigElementOptions.secretType());
-        pathParamsMap.put("config_element", getConfigElementOptions.configElement());
-        pathParamsMap.put("config_name", getConfigElementOptions.configName());
-        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/config/{secret_type}/{config_element}/{config_name}", pathParamsMap));
-        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "getConfigElement");
-        for (Entry<String, String> header : sdkHeaders.entrySet()) {
-            builder.header(header.getKey(), header.getValue());
-        }
-        builder.header("Accept", "application/json");
-        ResponseConverter<GetSingleConfigElement> responseConverter =
-                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSingleConfigElement>() {
-                }.getType());
         return createServiceCall(builder.build(), responseConverter);
     }
 

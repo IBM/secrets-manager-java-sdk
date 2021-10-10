@@ -12,52 +12,23 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * GetConfigResourcesItem.
+ * EngineConfig.
  * <p>
  * Classes which extend this class:
- * - PublicCertSecretEngineRootConfig
- * - IAMCredentialsSecretEngineRootConfig
+ * - CreateIAMCredentialsSecretEngineRootConfig
  */
-public class GetConfigResourcesItem extends GenericModel {
+public class EngineConfig extends GenericModel {
 
-    @SerializedName("certificate_authorities")
-    protected List<ConfigElementMetadata> certificateAuthorities;
-    @SerializedName("dns_providers")
-    protected List<ConfigElementMetadata> dnsProviders;
     @SerializedName("api_key")
     protected String apiKey;
     @SerializedName("api_key_hash")
     protected String apiKeyHash;
 
-    protected GetConfigResourcesItem() {
-    }
-
-    /**
-     * Gets the certificateAuthorities.
-     * <p>
-     * The certificate authority configurations that are associated with your instance.
-     *
-     * @return the certificateAuthorities
-     */
-    public List<ConfigElementMetadata> getCertificateAuthorities() {
-        return certificateAuthorities;
-    }
-
-    /**
-     * Gets the dnsProviders.
-     * <p>
-     * The DNS provider configurations that are associated with your instance.
-     *
-     * @return the dnsProviders
-     */
-    public List<ConfigElementMetadata> getDnsProviders() {
-        return dnsProviders;
+    protected EngineConfig() {
     }
 
     /**
@@ -71,7 +42,7 @@ public class GetConfigResourcesItem extends GenericModel {
      *
      * @return the apiKey
      */
-    public String getApiKey() {
+    public String apiKey() {
         return apiKey;
     }
 
@@ -82,7 +53,7 @@ public class GetConfigResourcesItem extends GenericModel {
      *
      * @return the apiKeyHash
      */
-    public String getApiKeyHash() {
+    public String apiKeyHash() {
         return apiKeyHash;
     }
 }

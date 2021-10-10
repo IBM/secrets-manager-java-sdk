@@ -15,7 +15,6 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRotationRotationPublicCertPolicyRotation;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Warning;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
@@ -35,21 +34,12 @@ public class SecretPolicyRotationRotationPublicCertPolicyRotationTest {
 
     @Test
     public void testSecretPolicyRotationRotationPublicCertPolicyRotation() throws Throwable {
-        Warning warningModel = new Warning.Builder()
-                .code("testString")
-                .message("testString")
-                .build();
-        assertEquals(warningModel.code(), "testString");
-        assertEquals(warningModel.message(), "testString");
-
         SecretPolicyRotationRotationPublicCertPolicyRotation secretPolicyRotationRotationPublicCertPolicyRotationModel = new SecretPolicyRotationRotationPublicCertPolicyRotation.Builder()
                 .autoRotate(false)
                 .rotateKeys(false)
-                .warning(warningModel)
                 .build();
         assertEquals(secretPolicyRotationRotationPublicCertPolicyRotationModel.autoRotate(), Boolean.valueOf(false));
         assertEquals(secretPolicyRotationRotationPublicCertPolicyRotationModel.rotateKeys(), Boolean.valueOf(false));
-        assertEquals(secretPolicyRotationRotationPublicCertPolicyRotationModel.warning(), warningModel);
 
         String json = TestUtilities.serialize(secretPolicyRotationRotationPublicCertPolicyRotationModel);
 
@@ -57,7 +47,6 @@ public class SecretPolicyRotationRotationPublicCertPolicyRotationTest {
         assertTrue(secretPolicyRotationRotationPublicCertPolicyRotationModelNew instanceof SecretPolicyRotationRotationPublicCertPolicyRotation);
         assertEquals(secretPolicyRotationRotationPublicCertPolicyRotationModelNew.autoRotate(), Boolean.valueOf(false));
         assertEquals(secretPolicyRotationRotationPublicCertPolicyRotationModelNew.rotateKeys(), Boolean.valueOf(false));
-        assertEquals(secretPolicyRotationRotationPublicCertPolicyRotationModelNew.warning().toString(), warningModel.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

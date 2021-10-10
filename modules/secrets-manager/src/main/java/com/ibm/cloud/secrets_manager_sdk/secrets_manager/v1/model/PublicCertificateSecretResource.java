@@ -45,6 +45,10 @@ public class PublicCertificateSecretResource extends SecretResource {
     /**
      * The identifier for the cryptographic algorithm to be used to generate the public key that is associated with the
      * certificate.
+     * <p>
+     * The algorithm that you select determines the encryption algorthim (`RSA` or `ECDSA`) and key size to be used to
+     * generate keys and sign certificates. For longer living certificates it is recommended to use longer keys to provide
+     * more encryption protection.
      */
     public interface KeyAlgorithm {
         /**
