@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -15,52 +15,43 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDef;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigLetsEncryptConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ConfigElementDef model.
  */
 public class ConfigElementDefTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testConfigElementDef() throws Throwable {
-        ConfigElementDefConfigLetsEncryptConfig configElementDefConfigModel = new ConfigElementDefConfigLetsEncryptConfig.Builder()
-                .privateKey("testString")
-                .build();
-        assertEquals(configElementDefConfigModel.privateKey(), "testString");
+  @Test
+  public void testConfigElementDef() throws Throwable {
+    ConfigElementDef configElementDefModel = new ConfigElementDef.Builder()
+      .name("testString")
+      .type("letsencrypt")
+      .config(new java.util.HashMap<String, Object>() { { put("foo", "testString"); } })
+      .build();
+    assertEquals(configElementDefModel.name(), "testString");
+    assertEquals(configElementDefModel.type(), "letsencrypt");
+    assertEquals(configElementDefModel.config(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } });
 
-        ConfigElementDef configElementDefModel = new ConfigElementDef.Builder()
-                .name("testString")
-                .type("letsencrypt")
-                .config(configElementDefConfigModel)
-                .build();
-        assertEquals(configElementDefModel.name(), "testString");
-        assertEquals(configElementDefModel.type(), "letsencrypt");
-        assertEquals(configElementDefModel.config(), configElementDefConfigModel);
+    String json = TestUtilities.serialize(configElementDefModel);
 
-        String json = TestUtilities.serialize(configElementDefModel);
+    ConfigElementDef configElementDefModelNew = TestUtilities.deserialize(json, ConfigElementDef.class);
+    assertTrue(configElementDefModelNew instanceof ConfigElementDef);
+    assertEquals(configElementDefModelNew.name(), "testString");
+    assertEquals(configElementDefModelNew.type(), "letsencrypt");
+    assertEquals(configElementDefModelNew.config().toString(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } }.toString());
+  }
 
-        ConfigElementDef configElementDefModelNew = TestUtilities.deserialize(json, ConfigElementDef.class);
-        assertTrue(configElementDefModelNew instanceof ConfigElementDef);
-        assertEquals(configElementDefModelNew.name(), "testString");
-        assertEquals(configElementDefModelNew.type(), "letsencrypt");
-        assertEquals(configElementDefModelNew.config().toString(), configElementDefConfigModel.toString());
-    }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testConfigElementDefError() throws Throwable {
-        new ConfigElementDef.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testConfigElementDefError() throws Throwable {
+    new ConfigElementDef.Builder().build();
+  }
 
 }

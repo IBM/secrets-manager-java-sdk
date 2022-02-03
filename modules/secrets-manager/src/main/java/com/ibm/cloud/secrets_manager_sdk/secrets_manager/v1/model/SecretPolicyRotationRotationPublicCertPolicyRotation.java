@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,83 +18,83 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class SecretPolicyRotationRotationPublicCertPolicyRotation extends SecretPolicyRotationRotation {
 
 
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Boolean autoRotate;
+    private Boolean rotateKeys;
+
+    public Builder(SecretPolicyRotationRotation secretPolicyRotationRotationPublicCertPolicyRotation) {
+      this.autoRotate = secretPolicyRotationRotationPublicCertPolicyRotation.autoRotate;
+      this.rotateKeys = secretPolicyRotationRotationPublicCertPolicyRotation.rotateKeys;
+    }
+
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private Boolean autoRotate;
-        private Boolean rotateKeys;
-
-        public Builder(SecretPolicyRotationRotation secretPolicyRotationRotationPublicCertPolicyRotation) {
-            this.autoRotate = secretPolicyRotationRotationPublicCertPolicyRotation.autoRotate;
-            this.rotateKeys = secretPolicyRotationRotationPublicCertPolicyRotation.rotateKeys;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param autoRotate the autoRotate
-         * @param rotateKeys the rotateKeys
-         */
-        public Builder(Boolean autoRotate, Boolean rotateKeys) {
-            this.autoRotate = autoRotate;
-            this.rotateKeys = rotateKeys;
-        }
-
-        /**
-         * Builds a SecretPolicyRotationRotationPublicCertPolicyRotation.
-         *
-         * @return the new SecretPolicyRotationRotationPublicCertPolicyRotation instance
-         */
-        public SecretPolicyRotationRotationPublicCertPolicyRotation build() {
-            return new SecretPolicyRotationRotationPublicCertPolicyRotation(this);
-        }
-
-        /**
-         * Set the autoRotate.
-         *
-         * @param autoRotate the autoRotate
-         * @return the SecretPolicyRotationRotationPublicCertPolicyRotation builder
-         */
-        public Builder autoRotate(Boolean autoRotate) {
-            this.autoRotate = autoRotate;
-            return this;
-        }
-
-        /**
-         * Set the rotateKeys.
-         *
-         * @param rotateKeys the rotateKeys
-         * @return the SecretPolicyRotationRotationPublicCertPolicyRotation builder
-         */
-        public Builder rotateKeys(Boolean rotateKeys) {
-            this.rotateKeys = rotateKeys;
-            return this;
-        }
-    }
-
-    protected SecretPolicyRotationRotationPublicCertPolicyRotation(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.autoRotate,
-                "autoRotate cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.rotateKeys,
-                "rotateKeys cannot be null");
-        autoRotate = builder.autoRotate;
-        rotateKeys = builder.rotateKeys;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a SecretPolicyRotationRotationPublicCertPolicyRotation builder
+     * @param autoRotate the autoRotate
+     * @param rotateKeys the rotateKeys
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(Boolean autoRotate, Boolean rotateKeys) {
+      this.autoRotate = autoRotate;
+      this.rotateKeys = rotateKeys;
     }
+
+    /**
+     * Builds a SecretPolicyRotationRotationPublicCertPolicyRotation.
+     *
+     * @return the new SecretPolicyRotationRotationPublicCertPolicyRotation instance
+     */
+    public SecretPolicyRotationRotationPublicCertPolicyRotation build() {
+      return new SecretPolicyRotationRotationPublicCertPolicyRotation(this);
+    }
+
+    /**
+     * Set the autoRotate.
+     *
+     * @param autoRotate the autoRotate
+     * @return the SecretPolicyRotationRotationPublicCertPolicyRotation builder
+     */
+    public Builder autoRotate(Boolean autoRotate) {
+      this.autoRotate = autoRotate;
+      return this;
+    }
+
+    /**
+     * Set the rotateKeys.
+     *
+     * @param rotateKeys the rotateKeys
+     * @return the SecretPolicyRotationRotationPublicCertPolicyRotation builder
+     */
+    public Builder rotateKeys(Boolean rotateKeys) {
+      this.rotateKeys = rotateKeys;
+      return this;
+    }
+  }
+
+  protected SecretPolicyRotationRotationPublicCertPolicyRotation(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.autoRotate,
+      "autoRotate cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.rotateKeys,
+      "rotateKeys cannot be null");
+    autoRotate = builder.autoRotate;
+    rotateKeys = builder.rotateKeys;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a SecretPolicyRotationRotationPublicCertPolicyRotation builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 

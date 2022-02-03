@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,100 +20,100 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class Rotation extends GenericModel {
 
-    @SerializedName("auto_rotate")
-    protected Boolean autoRotate;
-    @SerializedName("rotate_keys")
-    protected Boolean rotateKeys;
+  @SerializedName("auto_rotate")
+  protected Boolean autoRotate;
+  @SerializedName("rotate_keys")
+  protected Boolean rotateKeys;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Boolean autoRotate;
+    private Boolean rotateKeys;
+
+    private Builder(Rotation rotation) {
+      this.autoRotate = rotation.autoRotate;
+      this.rotateKeys = rotation.rotateKeys;
+    }
 
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private Boolean autoRotate;
-        private Boolean rotateKeys;
-
-        private Builder(Rotation rotation) {
-            this.autoRotate = rotation.autoRotate;
-            this.rotateKeys = rotation.rotateKeys;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Builds a Rotation.
-         *
-         * @return the new Rotation instance
-         */
-        public Rotation build() {
-            return new Rotation(this);
-        }
-
-        /**
-         * Set the autoRotate.
-         *
-         * @param autoRotate the autoRotate
-         * @return the Rotation builder
-         */
-        public Builder autoRotate(Boolean autoRotate) {
-            this.autoRotate = autoRotate;
-            return this;
-        }
-
-        /**
-         * Set the rotateKeys.
-         *
-         * @param rotateKeys the rotateKeys
-         * @return the Rotation builder
-         */
-        public Builder rotateKeys(Boolean rotateKeys) {
-            this.rotateKeys = rotateKeys;
-            return this;
-        }
-    }
-
-    protected Rotation(Builder builder) {
-        autoRotate = builder.autoRotate;
-        rotateKeys = builder.rotateKeys;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Builds a Rotation.
      *
-     * @return a Rotation builder
+     * @return the new Rotation instance
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Rotation build() {
+      return new Rotation(this);
     }
 
     /**
-     * Gets the autoRotate.
-     * <p>
-     * Determines whether Secrets Manager rotates your certificate automatically.
-     * <p>
-     * If set to `true`, the service reorders your certificate 31 days before it expires. To access the previous  version
-     * of the certifcate, you can use the [Get a version of a secret](#get-secret-version) method.
+     * Set the autoRotate.
      *
-     * @return the autoRotate
+     * @param autoRotate the autoRotate
+     * @return the Rotation builder
      */
-    public Boolean autoRotate() {
-        return autoRotate;
+    public Builder autoRotate(Boolean autoRotate) {
+      this.autoRotate = autoRotate;
+      return this;
     }
 
     /**
-     * Gets the rotateKeys.
-     * <p>
-     * Determines whether Secrets Manager rotates the private key for your certificate automatically.
-     * <p>
-     * If set to `true`, the service generates and stores a new private key for your rotated certificate.
+     * Set the rotateKeys.
      *
-     * @return the rotateKeys
+     * @param rotateKeys the rotateKeys
+     * @return the Rotation builder
      */
-    public Boolean rotateKeys() {
-        return rotateKeys;
+    public Builder rotateKeys(Boolean rotateKeys) {
+      this.rotateKeys = rotateKeys;
+      return this;
     }
+  }
+
+  protected Rotation(Builder builder) {
+    autoRotate = builder.autoRotate;
+    rotateKeys = builder.rotateKeys;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a Rotation builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the autoRotate.
+   *
+   * Determines whether Secrets Manager rotates your certificate automatically.
+   *
+   * If set to `true`, the service reorders your certificate 31 days before it expires. To access the previous  version
+   * of the certificate, you can use the [Get a version of a secret](#get-secret-version) method.
+   *
+   * @return the autoRotate
+   */
+  public Boolean autoRotate() {
+    return autoRotate;
+  }
+
+  /**
+   * Gets the rotateKeys.
+   *
+   * Determines whether Secrets Manager rotates the private key for your certificate automatically.
+   *
+   * If set to `true`, the service generates and stores a new private key for your rotated certificate.
+   *
+   * @return the rotateKeys
+   */
+  public Boolean rotateKeys() {
+    return rotateKeys;
+  }
 }
 

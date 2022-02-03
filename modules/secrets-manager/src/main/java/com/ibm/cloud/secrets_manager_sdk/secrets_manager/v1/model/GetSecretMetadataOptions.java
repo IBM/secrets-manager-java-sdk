@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,134 +19,126 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetSecretMetadataOptions extends GenericModel {
 
+  /**
+   * The secret type.
+   */
+  public interface SecretType {
+    /** arbitrary. */
+    String ARBITRARY = "arbitrary";
+    /** iam_credentials. */
+    String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
+    /** kv. */
+    String KV = "kv";
+  }
+
+  protected String secretType;
+  protected String id;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String secretType;
+    private String id;
+
+    private Builder(GetSecretMetadataOptions getSecretMetadataOptions) {
+      this.secretType = getSecretMetadataOptions.secretType;
+      this.id = getSecretMetadataOptions.id;
+    }
+
     /**
-     * The secret type.
+     * Instantiates a new builder.
      */
-    public interface SecretType {
-        /**
-         * arbitrary.
-         */
-        String ARBITRARY = "arbitrary";
-        /**
-         * iam_credentials.
-         */
-        String IAM_CREDENTIALS = "iam_credentials";
-        /**
-         * imported_cert.
-         */
-        String IMPORTED_CERT = "imported_cert";
-        /**
-         * public_cert.
-         */
-        String PUBLIC_CERT = "public_cert";
-        /**
-         * username_password.
-         */
-        String USERNAME_PASSWORD = "username_password";
-    }
-
-    protected String secretType;
-    protected String id;
-
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private String secretType;
-        private String id;
-
-        private Builder(GetSecretMetadataOptions getSecretMetadataOptions) {
-            this.secretType = getSecretMetadataOptions.secretType;
-            this.id = getSecretMetadataOptions.id;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param secretType the secretType
-         * @param id         the id
-         */
-        public Builder(String secretType, String id) {
-            this.secretType = secretType;
-            this.id = id;
-        }
-
-        /**
-         * Builds a GetSecretMetadataOptions.
-         *
-         * @return the new GetSecretMetadataOptions instance
-         */
-        public GetSecretMetadataOptions build() {
-            return new GetSecretMetadataOptions(this);
-        }
-
-        /**
-         * Set the secretType.
-         *
-         * @param secretType the secretType
-         * @return the GetSecretMetadataOptions builder
-         */
-        public Builder secretType(String secretType) {
-            this.secretType = secretType;
-            return this;
-        }
-
-        /**
-         * Set the id.
-         *
-         * @param id the id
-         * @return the GetSecretMetadataOptions builder
-         */
-        public Builder id(String id) {
-            this.id = id;
-            return this;
-        }
-    }
-
-    protected GetSecretMetadataOptions(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-                "secretType cannot be empty");
-        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-                "id cannot be empty");
-        secretType = builder.secretType;
-        id = builder.id;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a GetSecretMetadataOptions builder
+     * @param secretType the secretType
+     * @param id the id
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(String secretType, String id) {
+      this.secretType = secretType;
+      this.id = id;
     }
 
     /**
-     * Gets the secretType.
-     * <p>
-     * The secret type.
+     * Builds a GetSecretMetadataOptions.
      *
-     * @return the secretType
+     * @return the new GetSecretMetadataOptions instance
      */
-    public String secretType() {
-        return secretType;
+    public GetSecretMetadataOptions build() {
+      return new GetSecretMetadataOptions(this);
     }
 
     /**
-     * Gets the id.
-     * <p>
-     * The v4 UUID that uniquely identifies the secret.
+     * Set the secretType.
      *
-     * @return the id
+     * @param secretType the secretType
+     * @return the GetSecretMetadataOptions builder
      */
-    public String id() {
-        return id;
+    public Builder secretType(String secretType) {
+      this.secretType = secretType;
+      return this;
     }
+
+    /**
+     * Set the id.
+     *
+     * @param id the id
+     * @return the GetSecretMetadataOptions builder
+     */
+    public Builder id(String id) {
+      this.id = id;
+      return this;
+    }
+  }
+
+  protected GetSecretMetadataOptions(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+      "secretType cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+      "id cannot be empty");
+    secretType = builder.secretType;
+    id = builder.id;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a GetSecretMetadataOptions builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the secretType.
+   *
+   * The secret type.
+   *
+   * @return the secretType
+   */
+  public String secretType() {
+    return secretType;
+  }
+
+  /**
+   * Gets the id.
+   *
+   * The v4 UUID that uniquely identifies the secret.
+   *
+   * @return the id
+   */
+  public String id() {
+    return id;
+  }
 }
 

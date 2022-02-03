@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,137 +22,137 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateSecretGroupOptions extends GenericModel {
 
-    protected CollectionMetadata metadata;
-    protected List<SecretGroupResource> resources;
+  protected CollectionMetadata metadata;
+  protected List<SecretGroupResource> resources;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private CollectionMetadata metadata;
+    private List<SecretGroupResource> resources;
+
+    private Builder(CreateSecretGroupOptions createSecretGroupOptions) {
+      this.metadata = createSecretGroupOptions.metadata;
+      this.resources = createSecretGroupOptions.resources;
+    }
 
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private CollectionMetadata metadata;
-        private List<SecretGroupResource> resources;
-
-        private Builder(CreateSecretGroupOptions createSecretGroupOptions) {
-            this.metadata = createSecretGroupOptions.metadata;
-            this.resources = createSecretGroupOptions.resources;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param metadata  the metadata
-         * @param resources the resources
-         */
-        public Builder(CollectionMetadata metadata, List<SecretGroupResource> resources) {
-            this.metadata = metadata;
-            this.resources = resources;
-        }
-
-        /**
-         * Builds a CreateSecretGroupOptions.
-         *
-         * @return the new CreateSecretGroupOptions instance
-         */
-        public CreateSecretGroupOptions build() {
-            return new CreateSecretGroupOptions(this);
-        }
-
-        /**
-         * Adds an resources to resources.
-         *
-         * @param resources the new resources
-         * @return the CreateSecretGroupOptions builder
-         */
-        public Builder addResources(SecretGroupResource resources) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
-                    "resources cannot be null");
-            if (this.resources == null) {
-                this.resources = new ArrayList<SecretGroupResource>();
-            }
-            this.resources.add(resources);
-            return this;
-        }
-
-        /**
-         * Set the metadata.
-         *
-         * @param metadata the metadata
-         * @return the CreateSecretGroupOptions builder
-         */
-        public Builder metadata(CollectionMetadata metadata) {
-            this.metadata = metadata;
-            return this;
-        }
-
-        /**
-         * Set the resources.
-         * Existing resources will be replaced.
-         *
-         * @param resources the resources
-         * @return the CreateSecretGroupOptions builder
-         */
-        public Builder resources(List<SecretGroupResource> resources) {
-            this.resources = resources;
-            return this;
-        }
-
-        /**
-         * Set the secretGroupDef.
-         *
-         * @param secretGroupDef the secretGroupDef
-         * @return the CreateSecretGroupOptions builder
-         */
-        public Builder secretGroupDef(SecretGroupDef secretGroupDef) {
-            this.metadata = secretGroupDef.metadata();
-            this.resources = secretGroupDef.resources();
-            return this;
-        }
-    }
-
-    protected CreateSecretGroupOptions(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
-                "metadata cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
-                "resources cannot be null");
-        metadata = builder.metadata;
-        resources = builder.resources;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a CreateSecretGroupOptions builder
+     * @param metadata the metadata
+     * @param resources the resources
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(CollectionMetadata metadata, List<SecretGroupResource> resources) {
+      this.metadata = metadata;
+      this.resources = resources;
     }
 
     /**
-     * Gets the metadata.
-     * <p>
-     * The metadata that describes the resource array.
+     * Builds a CreateSecretGroupOptions.
      *
-     * @return the metadata
+     * @return the new CreateSecretGroupOptions instance
      */
-    public CollectionMetadata metadata() {
-        return metadata;
+    public CreateSecretGroupOptions build() {
+      return new CreateSecretGroupOptions(this);
     }
 
     /**
-     * Gets the resources.
-     * <p>
-     * A collection of resources.
+     * Adds an resources to resources.
      *
-     * @return the resources
+     * @param resources the new resources
+     * @return the CreateSecretGroupOptions builder
      */
-    public List<SecretGroupResource> resources() {
-        return resources;
+    public Builder addResources(SecretGroupResource resources) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
+        "resources cannot be null");
+      if (this.resources == null) {
+        this.resources = new ArrayList<SecretGroupResource>();
+      }
+      this.resources.add(resources);
+      return this;
     }
+
+    /**
+     * Set the metadata.
+     *
+     * @param metadata the metadata
+     * @return the CreateSecretGroupOptions builder
+     */
+    public Builder metadata(CollectionMetadata metadata) {
+      this.metadata = metadata;
+      return this;
+    }
+
+    /**
+     * Set the resources.
+     * Existing resources will be replaced.
+     *
+     * @param resources the resources
+     * @return the CreateSecretGroupOptions builder
+     */
+    public Builder resources(List<SecretGroupResource> resources) {
+      this.resources = resources;
+      return this;
+    }
+
+    /**
+     * Set the secretGroupDef.
+     *
+     * @param secretGroupDef the secretGroupDef
+     * @return the CreateSecretGroupOptions builder
+     */
+    public Builder secretGroupDef(SecretGroupDef secretGroupDef) {
+      this.metadata = secretGroupDef.metadata();
+      this.resources = secretGroupDef.resources();
+      return this;
+    }
+  }
+
+  protected CreateSecretGroupOptions(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
+      "metadata cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
+      "resources cannot be null");
+    metadata = builder.metadata;
+    resources = builder.resources;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a CreateSecretGroupOptions builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the metadata.
+   *
+   * The metadata that describes the resource array.
+   *
+   * @return the metadata
+   */
+  public CollectionMetadata metadata() {
+    return metadata;
+  }
+
+  /**
+   * Gets the resources.
+   *
+   * A collection of resources.
+   *
+   * @return the resources
+   */
+  public List<SecretGroupResource> resources() {
+    return resources;
+  }
 }
 

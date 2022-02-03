@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -21,29 +21,29 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListSecrets extends GenericModel {
 
-    protected CollectionMetadata metadata;
-    protected List<SecretResource> resources;
+  protected CollectionMetadata metadata;
+  protected List<SecretResource> resources;
 
-    /**
-     * Gets the metadata.
-     * <p>
-     * The metadata that describes the resource array.
-     *
-     * @return the metadata
-     */
-    public CollectionMetadata getMetadata() {
-        return metadata;
-    }
+  /**
+   * Gets the metadata.
+   *
+   * The metadata that describes the resource array.
+   *
+   * @return the metadata
+   */
+  public CollectionMetadata getMetadata() {
+    return metadata;
+  }
 
-    /**
-     * Gets the resources.
-     * <p>
-     * A collection of resources.
-     *
-     * @return the resources
-     */
-    public List<SecretResource> getResources() {
-        return resources;
-    }
+  /**
+   * Gets the resources.
+   *
+   * A collection of resources.
+   *
+   * @return the resources
+   */
+  public List<SecretResource> getResources() {
+    return resources;
+  }
 }
 

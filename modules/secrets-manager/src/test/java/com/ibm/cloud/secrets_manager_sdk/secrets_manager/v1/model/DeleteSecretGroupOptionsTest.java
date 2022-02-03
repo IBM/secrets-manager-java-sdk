@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,33 +16,30 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the DeleteSecretGroupOptions model.
  */
 public class DeleteSecretGroupOptionsTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testDeleteSecretGroupOptions() throws Throwable {
-        DeleteSecretGroupOptions deleteSecretGroupOptionsModel = new DeleteSecretGroupOptions.Builder()
-                .id("testString")
-                .build();
-        assertEquals(deleteSecretGroupOptionsModel.id(), "testString");
-    }
+  @Test
+  public void testDeleteSecretGroupOptions() throws Throwable {
+    DeleteSecretGroupOptions deleteSecretGroupOptionsModel = new DeleteSecretGroupOptions.Builder()
+      .id("testString")
+      .build();
+    assertEquals(deleteSecretGroupOptionsModel.id(), "testString");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testDeleteSecretGroupOptionsError() throws Throwable {
-        new DeleteSecretGroupOptions.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testDeleteSecretGroupOptionsError() throws Throwable {
+    new DeleteSecretGroupOptions.Builder().build();
+  }
 
 }

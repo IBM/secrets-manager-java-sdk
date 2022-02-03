@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,29 +19,26 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecre
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSecret model.
  */
 public class GetSecretTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testGetSecret() throws Throwable {
-        GetSecret getSecretModel = new GetSecret();
-        assertNull(getSecretModel.getMetadata());
-        assertNull(getSecretModel.getResources());
-    }
+  @Test
+  public void testGetSecret() throws Throwable {
+    GetSecret getSecretModel = new GetSecret();
+    assertNull(getSecretModel.getMetadata());
+    assertNull(getSecretModel.getResources());
+  }
 }
