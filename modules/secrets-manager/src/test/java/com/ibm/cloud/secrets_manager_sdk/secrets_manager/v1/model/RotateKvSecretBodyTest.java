@@ -34,13 +34,13 @@ public class RotateKvSecretBodyTest {
     RotateKvSecretBody rotateKvSecretBodyModel = new RotateKvSecretBody.Builder()
       .payload(new java.util.HashMap<String, Object>() { { put("foo", "testString"); } })
       .build();
-    assertEquals(rotateKvSecretBodyModel.kvPayload(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } });
+    assertEquals(rotateKvSecretBodyModel.payload(), "{foo=testString}");
 
     String json = TestUtilities.serialize(rotateKvSecretBodyModel);
 
     RotateKvSecretBody rotateKvSecretBodyModelNew = TestUtilities.deserialize(json, RotateKvSecretBody.class);
     assertTrue(rotateKvSecretBodyModelNew instanceof RotateKvSecretBody);
-    assertEquals(rotateKvSecretBodyModelNew.kvPayload().toString(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } }.toString());
+    assertEquals(rotateKvSecretBodyModelNew.payload().toString(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } }.toString());
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

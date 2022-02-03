@@ -30,7 +30,6 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretAction extends GenericModel {
 
-  protected Map<String, Object> kvPayload;
   protected String payload;
   @SerializedName("rotate_keys")
   protected Boolean rotateKeys;
@@ -58,17 +57,6 @@ public class SecretAction extends GenericModel {
    */
   public String payload() {
     return payload;
-  }
-
-  /**
-   * Gets the kv payload.
-   *
-   * The new secret data to assign to a `kv` secret.
-   *
-   * @return the kv payload
-   */
-  public Map<String, Object> kvPayload() {
-    return kvPayload;
   }
 
   /**

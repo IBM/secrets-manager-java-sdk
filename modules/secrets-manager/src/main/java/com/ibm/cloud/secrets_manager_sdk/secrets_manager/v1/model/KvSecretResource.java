@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Properties that describe a secret.
  */
@@ -52,13 +54,13 @@ public class KvSecretResource extends SecretResource {
     private Date expirationDate;
     private Map<String, Object> payload;
 
-    public Builder(SecretResource kvSecretResource) {
+    public Builder(SecretResource kvSecretResource) throws Exception {
       this.name = kvSecretResource.name;
       this.description = kvSecretResource.description;
       this.secretGroupId = kvSecretResource.secretGroupId;
       this.labels = kvSecretResource.labels;
       this.expirationDate = kvSecretResource.expirationDate;
-      this.payload = kvSecretResource.kvPayload;
+      this.payload = new ObjectMapper().readValue(kvSecretResource.payload, Map.class);
     }
 
     /**
@@ -81,7 +83,7 @@ public class KvSecretResource extends SecretResource {
      *
      * @return the new KvSecretResource instance
      */
-    public KvSecretResource build() {
+    public KvSecretResource build() throws Exception {
       return new KvSecretResource(this);
     }
 
@@ -169,7 +171,7 @@ public class KvSecretResource extends SecretResource {
     }
   }
 
-  protected KvSecretResource(Builder builder) {
+  protected KvSecretResource(Builder builder) throws Exception {
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
       "name cannot be null");
     name = builder.name;
@@ -177,7 +179,7 @@ public class KvSecretResource extends SecretResource {
     secretGroupId = builder.secretGroupId;
     labels = builder.labels;
     expirationDate = builder.expirationDate;
-    kvPayload = builder.payload;
+    payload = builder.payload.toString();
   }
 
   /**
@@ -185,7 +187,7 @@ public class KvSecretResource extends SecretResource {
    *
    * @return a KvSecretResource builder
    */
-  public Builder newBuilder() {
+  public Builder newBuilder() throws Exception {
     return new Builder(this);
   }
 }

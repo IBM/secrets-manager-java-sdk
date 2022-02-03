@@ -74,7 +74,6 @@ public class SecretResource extends GenericModel {
   @SerializedName("expiration_date")
   protected Date expirationDate;
   protected String payload;
-  protected Map<String, Object> kvPayload;
   @SerializedName("secret_data")
   protected Map<String, Object> secretData;
   protected String username;
@@ -318,17 +317,6 @@ public class SecretResource extends GenericModel {
    */
   public String payload() {
     return payload;
-  }
-
-  /**
-   * Gets the kv payload.
-   *
-   * The new secret data to assign to a `kv` secret.
-   *
-   * @return the kv payload
-   */
-  public Map<String, Object> kvPayload() {
-    return kvPayload;
   }
 
   /**

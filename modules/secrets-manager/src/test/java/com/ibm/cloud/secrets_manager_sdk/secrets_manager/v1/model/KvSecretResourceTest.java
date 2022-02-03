@@ -47,7 +47,7 @@ public class KvSecretResourceTest {
     assertEquals(kvSecretResourceModel.description(), "testString");
     assertEquals(kvSecretResourceModel.secretGroupId(), "testString");
     assertEquals(kvSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-    assertEquals(kvSecretResourceModel.kvPayload(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } });
+    assertEquals(kvSecretResourceModel.payload(), "{foo=testString}");
 
     String json = TestUtilities.serialize(kvSecretResourceModel);
 
@@ -56,7 +56,7 @@ public class KvSecretResourceTest {
     assertEquals(kvSecretResourceModelNew.name(), "testString");
     assertEquals(kvSecretResourceModelNew.description(), "testString");
     assertEquals(kvSecretResourceModelNew.secretGroupId(), "testString");
-    assertEquals(kvSecretResourceModelNew.kvPayload().toString(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } }.toString());
+    assertEquals(kvSecretResourceModelNew.payload().toString(), new java.util.HashMap<String, Object>() { { put("foo", "testString"); } }.toString());
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)
