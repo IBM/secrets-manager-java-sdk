@@ -83,6 +83,48 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
     }
 
     @Test
+    public void testKVSecret() {
+        // create kv secret
+        CollectionMetadata collectionMetadata = new CollectionMetadata.Builder()
+                .collectionType(CollectionMetadata.CollectionType.APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_JSON)
+                .collectionTotal(Long.parseLong("1"))
+                .build();
+        KvSecretResource secretResource = new KvSecretResource.Builder()
+                .name(generateName())
+                .description("Integration test generated")
+                .labels(new java.util.ArrayList<>(java.util.Arrays.asList("label1", "label2")))
+                .expirationDate(generateExpirationDate())
+                .payload(Collections.singletonMap("foo", "bar"))
+                .build();
+        CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
+                .secretType(SecretResource.SecretType.KV)
+                .metadata(collectionMetadata)
+                .resources(new java.util.ArrayList<>(Collections.singletonList(secretResource)))
+                .build();
+        Response<CreateSecret> createResp = secretsManager.createSecret(createSecretOptions).execute();
+        assertEquals(createResp.getStatusCode(), 200);
+
+        String secretId = createResp.getResult().resources().get(0).id();
+
+        // get kv secret
+        GetSecretOptions getSecretOptions = new GetSecretOptions.Builder()
+                .secretType(SecretResource.SecretType.KV)
+                .id(secretId)
+                .build();
+        Response<GetSecret> getResp = secretsManager.getSecret(getSecretOptions).execute();
+        assertEquals(getResp.getStatusCode(), 200);
+        assertEquals(getResp.getResult().getResources().get(0).secretData().get("payload"), "secret-data");
+
+        // delete kv secret
+        DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
+                .secretType(SecretResource.SecretType.KV)
+                .id(secretId)
+                .build();
+        Response<Void> delResp = secretsManager.deleteSecret(deleteSecretOptions).execute();
+        assertEquals(delResp.getStatusCode(), 204);
+    }
+
+    @Test
     public void testSecretGroup() {
         // create a secret group
         CollectionMetadata secretGroupCollectionMetadata = new CollectionMetadata.Builder()

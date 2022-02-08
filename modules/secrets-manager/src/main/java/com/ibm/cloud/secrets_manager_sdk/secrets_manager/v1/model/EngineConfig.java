@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -17,44 +17,44 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * EngineConfig.
- * <p>
+ *
  * Classes which extend this class:
  * - CreateIAMCredentialsSecretEngineRootConfig
  */
 public class EngineConfig extends GenericModel {
 
-    @SerializedName("api_key")
-    protected String apiKey;
-    @SerializedName("api_key_hash")
-    protected String apiKeyHash;
+  @SerializedName("api_key")
+  protected String apiKey;
+  @SerializedName("api_key_hash")
+  protected String apiKeyHash;
 
-    protected EngineConfig() {
-    }
+  protected EngineConfig() {
+  }
 
-    /**
-     * Gets the apiKey.
-     * <p>
-     * An IBM Cloud API key that has the capability to create and manage service IDs.
-     * <p>
-     * The API key must be assigned the Editor platform role on the Access Groups Service and the Operator platform role
-     * on the IAM Identity Service. For more information, see the
-     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
-     *
-     * @return the apiKey
-     */
-    public String apiKey() {
-        return apiKey;
-    }
+  /**
+   * Gets the apiKey.
+   *
+   * An IBM Cloud API key that can create and manage service IDs.
+   *
+   * The API key must be assigned the Editor platform role on the Access Groups Service and the Operator platform role
+   * on the IAM Identity Service. For more information, see the
+   * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
+   *
+   * @return the apiKey
+   */
+  public String apiKey() {
+    return apiKey;
+  }
 
-    /**
-     * Gets the apiKeyHash.
-     * <p>
-     * The hash value of the IBM Cloud API key that is used to create and manage service IDs.
-     *
-     * @return the apiKeyHash
-     */
-    public String apiKeyHash() {
-        return apiKeyHash;
-    }
+  /**
+   * Gets the apiKeyHash.
+   *
+   * The hash value of the IBM Cloud API key that is used to create and manage service IDs.
+   *
+   * @return the apiKeyHash
+   */
+  public String apiKeyHash() {
+    return apiKeyHash;
+  }
 }
 

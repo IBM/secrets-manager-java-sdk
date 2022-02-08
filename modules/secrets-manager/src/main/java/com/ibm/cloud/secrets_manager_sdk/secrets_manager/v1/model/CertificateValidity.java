@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,95 +22,95 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CertificateValidity extends GenericModel {
 
-    @SerializedName("not_before")
-    protected Date notBefore;
-    @SerializedName("not_after")
-    protected Date notAfter;
+  @SerializedName("not_before")
+  protected Date notBefore;
+  @SerializedName("not_after")
+  protected Date notAfter;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Date notBefore;
+    private Date notAfter;
+
+    private Builder(CertificateValidity certificateValidity) {
+      this.notBefore = certificateValidity.notBefore;
+      this.notAfter = certificateValidity.notAfter;
+    }
 
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private Date notBefore;
-        private Date notAfter;
-
-        private Builder(CertificateValidity certificateValidity) {
-            this.notBefore = certificateValidity.notBefore;
-            this.notAfter = certificateValidity.notAfter;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Builds a CertificateValidity.
-         *
-         * @return the new CertificateValidity instance
-         */
-        public CertificateValidity build() {
-            return new CertificateValidity(this);
-        }
-
-        /**
-         * Set the notBefore.
-         *
-         * @param notBefore the notBefore
-         * @return the CertificateValidity builder
-         */
-        public Builder notBefore(Date notBefore) {
-            this.notBefore = notBefore;
-            return this;
-        }
-
-        /**
-         * Set the notAfter.
-         *
-         * @param notAfter the notAfter
-         * @return the CertificateValidity builder
-         */
-        public Builder notAfter(Date notAfter) {
-            this.notAfter = notAfter;
-            return this;
-        }
-    }
-
-    protected CertificateValidity(Builder builder) {
-        notBefore = builder.notBefore;
-        notAfter = builder.notAfter;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Builds a CertificateValidity.
      *
-     * @return a CertificateValidity builder
+     * @return the new CertificateValidity instance
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public CertificateValidity build() {
+      return new CertificateValidity(this);
     }
 
     /**
-     * Gets the notBefore.
-     * <p>
-     * The date the certificate validity period begins.
+     * Set the notBefore.
      *
-     * @return the notBefore
+     * @param notBefore the notBefore
+     * @return the CertificateValidity builder
      */
-    public Date notBefore() {
-        return notBefore;
+    public Builder notBefore(Date notBefore) {
+      this.notBefore = notBefore;
+      return this;
     }
 
     /**
-     * Gets the notAfter.
-     * <p>
-     * The date the certificate validity period ends.
+     * Set the notAfter.
      *
-     * @return the notAfter
+     * @param notAfter the notAfter
+     * @return the CertificateValidity builder
      */
-    public Date notAfter() {
-        return notAfter;
+    public Builder notAfter(Date notAfter) {
+      this.notAfter = notAfter;
+      return this;
     }
+  }
+
+  protected CertificateValidity(Builder builder) {
+    notBefore = builder.notBefore;
+    notAfter = builder.notAfter;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a CertificateValidity builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the notBefore.
+   *
+   * The date the certificate validity period begins.
+   *
+   * @return the notBefore
+   */
+  public Date notBefore() {
+    return notBefore;
+  }
+
+  /**
+   * Gets the notAfter.
+   *
+   * The date the certificate validity period ends.
+   *
+   * @return the notAfter
+   */
+  public Date notAfter() {
+    return notAfter;
+  }
 }
 

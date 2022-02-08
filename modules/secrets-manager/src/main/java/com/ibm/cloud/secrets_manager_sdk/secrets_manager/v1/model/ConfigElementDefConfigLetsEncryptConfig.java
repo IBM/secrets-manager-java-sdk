@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,65 +18,65 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class ConfigElementDefConfigLetsEncryptConfig extends ConfigElementDefConfig {
 
 
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String privateKey;
+
+    public Builder(ConfigElementDefConfig configElementDefConfigLetsEncryptConfig) {
+      this.privateKey = configElementDefConfigLetsEncryptConfig.privateKey;
+    }
+
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private String privateKey;
-
-        public Builder(ConfigElementDefConfig configElementDefConfigLetsEncryptConfig) {
-            this.privateKey = configElementDefConfigLetsEncryptConfig.privateKey;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param privateKey the privateKey
-         */
-        public Builder(String privateKey) {
-            this.privateKey = privateKey;
-        }
-
-        /**
-         * Builds a ConfigElementDefConfigLetsEncryptConfig.
-         *
-         * @return the new ConfigElementDefConfigLetsEncryptConfig instance
-         */
-        public ConfigElementDefConfigLetsEncryptConfig build() {
-            return new ConfigElementDefConfigLetsEncryptConfig(this);
-        }
-
-        /**
-         * Set the privateKey.
-         *
-         * @param privateKey the privateKey
-         * @return the ConfigElementDefConfigLetsEncryptConfig builder
-         */
-        public Builder privateKey(String privateKey) {
-            this.privateKey = privateKey;
-            return this;
-        }
-    }
-
-    protected ConfigElementDefConfigLetsEncryptConfig(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.privateKey,
-                "privateKey cannot be null");
-        privateKey = builder.privateKey;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a ConfigElementDefConfigLetsEncryptConfig builder
+     * @param privateKey the privateKey
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(String privateKey) {
+      this.privateKey = privateKey;
     }
+
+    /**
+     * Builds a ConfigElementDefConfigLetsEncryptConfig.
+     *
+     * @return the new ConfigElementDefConfigLetsEncryptConfig instance
+     */
+    public ConfigElementDefConfigLetsEncryptConfig build() {
+      return new ConfigElementDefConfigLetsEncryptConfig(this);
+    }
+
+    /**
+     * Set the privateKey.
+     *
+     * @param privateKey the privateKey
+     * @return the ConfigElementDefConfigLetsEncryptConfig builder
+     */
+    public Builder privateKey(String privateKey) {
+      this.privateKey = privateKey;
+      return this;
+    }
+  }
+
+  protected ConfigElementDefConfigLetsEncryptConfig(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.privateKey,
+      "privateKey cannot be null");
+    privateKey = builder.privateKey;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a ConfigElementDefConfigLetsEncryptConfig builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 

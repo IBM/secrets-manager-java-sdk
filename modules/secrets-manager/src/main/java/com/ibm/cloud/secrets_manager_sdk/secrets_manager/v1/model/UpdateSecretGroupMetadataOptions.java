@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,155 +22,155 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class UpdateSecretGroupMetadataOptions extends GenericModel {
 
-    protected String id;
-    protected CollectionMetadata metadata;
-    protected List<SecretGroupMetadataUpdatable> resources;
+  protected String id;
+  protected CollectionMetadata metadata;
+  protected List<SecretGroupMetadataUpdatable> resources;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String id;
+    private CollectionMetadata metadata;
+    private List<SecretGroupMetadataUpdatable> resources;
+
+    private Builder(UpdateSecretGroupMetadataOptions updateSecretGroupMetadataOptions) {
+      this.id = updateSecretGroupMetadataOptions.id;
+      this.metadata = updateSecretGroupMetadataOptions.metadata;
+      this.resources = updateSecretGroupMetadataOptions.resources;
+    }
 
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private String id;
-        private CollectionMetadata metadata;
-        private List<SecretGroupMetadataUpdatable> resources;
-
-        private Builder(UpdateSecretGroupMetadataOptions updateSecretGroupMetadataOptions) {
-            this.id = updateSecretGroupMetadataOptions.id;
-            this.metadata = updateSecretGroupMetadataOptions.metadata;
-            this.resources = updateSecretGroupMetadataOptions.resources;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param id        the id
-         * @param metadata  the metadata
-         * @param resources the resources
-         */
-        public Builder(String id, CollectionMetadata metadata, List<SecretGroupMetadataUpdatable> resources) {
-            this.id = id;
-            this.metadata = metadata;
-            this.resources = resources;
-        }
-
-        /**
-         * Builds a UpdateSecretGroupMetadataOptions.
-         *
-         * @return the new UpdateSecretGroupMetadataOptions instance
-         */
-        public UpdateSecretGroupMetadataOptions build() {
-            return new UpdateSecretGroupMetadataOptions(this);
-        }
-
-        /**
-         * Adds an resources to resources.
-         *
-         * @param resources the new resources
-         * @return the UpdateSecretGroupMetadataOptions builder
-         */
-        public Builder addResources(SecretGroupMetadataUpdatable resources) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
-                    "resources cannot be null");
-            if (this.resources == null) {
-                this.resources = new ArrayList<SecretGroupMetadataUpdatable>();
-            }
-            this.resources.add(resources);
-            return this;
-        }
-
-        /**
-         * Set the id.
-         *
-         * @param id the id
-         * @return the UpdateSecretGroupMetadataOptions builder
-         */
-        public Builder id(String id) {
-            this.id = id;
-            return this;
-        }
-
-        /**
-         * Set the metadata.
-         *
-         * @param metadata the metadata
-         * @return the UpdateSecretGroupMetadataOptions builder
-         */
-        public Builder metadata(CollectionMetadata metadata) {
-            this.metadata = metadata;
-            return this;
-        }
-
-        /**
-         * Set the resources.
-         * Existing resources will be replaced.
-         *
-         * @param resources the resources
-         * @return the UpdateSecretGroupMetadataOptions builder
-         */
-        public Builder resources(List<SecretGroupMetadataUpdatable> resources) {
-            this.resources = resources;
-            return this;
-        }
-    }
-
-    protected UpdateSecretGroupMetadataOptions(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-                "id cannot be empty");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
-                "metadata cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
-                "resources cannot be null");
-        id = builder.id;
-        metadata = builder.metadata;
-        resources = builder.resources;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a UpdateSecretGroupMetadataOptions builder
+     * @param id the id
+     * @param metadata the metadata
+     * @param resources the resources
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(String id, CollectionMetadata metadata, List<SecretGroupMetadataUpdatable> resources) {
+      this.id = id;
+      this.metadata = metadata;
+      this.resources = resources;
     }
 
     /**
-     * Gets the id.
-     * <p>
-     * The v4 UUID that uniquely identifies the secret group.
+     * Builds a UpdateSecretGroupMetadataOptions.
      *
-     * @return the id
+     * @return the new UpdateSecretGroupMetadataOptions instance
      */
-    public String id() {
-        return id;
+    public UpdateSecretGroupMetadataOptions build() {
+      return new UpdateSecretGroupMetadataOptions(this);
     }
 
     /**
-     * Gets the metadata.
-     * <p>
-     * The metadata that describes the resource array.
+     * Adds an resources to resources.
      *
-     * @return the metadata
+     * @param resources the new resources
+     * @return the UpdateSecretGroupMetadataOptions builder
      */
-    public CollectionMetadata metadata() {
-        return metadata;
+    public Builder addResources(SecretGroupMetadataUpdatable resources) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
+        "resources cannot be null");
+      if (this.resources == null) {
+        this.resources = new ArrayList<SecretGroupMetadataUpdatable>();
+      }
+      this.resources.add(resources);
+      return this;
     }
 
     /**
-     * Gets the resources.
-     * <p>
-     * A collection of resources.
+     * Set the id.
      *
-     * @return the resources
+     * @param id the id
+     * @return the UpdateSecretGroupMetadataOptions builder
      */
-    public List<SecretGroupMetadataUpdatable> resources() {
-        return resources;
+    public Builder id(String id) {
+      this.id = id;
+      return this;
     }
+
+    /**
+     * Set the metadata.
+     *
+     * @param metadata the metadata
+     * @return the UpdateSecretGroupMetadataOptions builder
+     */
+    public Builder metadata(CollectionMetadata metadata) {
+      this.metadata = metadata;
+      return this;
+    }
+
+    /**
+     * Set the resources.
+     * Existing resources will be replaced.
+     *
+     * @param resources the resources
+     * @return the UpdateSecretGroupMetadataOptions builder
+     */
+    public Builder resources(List<SecretGroupMetadataUpdatable> resources) {
+      this.resources = resources;
+      return this;
+    }
+  }
+
+  protected UpdateSecretGroupMetadataOptions(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+      "id cannot be empty");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
+      "metadata cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
+      "resources cannot be null");
+    id = builder.id;
+    metadata = builder.metadata;
+    resources = builder.resources;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a UpdateSecretGroupMetadataOptions builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the id.
+   *
+   * The v4 UUID that uniquely identifies the secret group.
+   *
+   * @return the id
+   */
+  public String id() {
+    return id;
+  }
+
+  /**
+   * Gets the metadata.
+   *
+   * The metadata that describes the resource array.
+   *
+   * @return the metadata
+   */
+  public CollectionMetadata metadata() {
+    return metadata;
+  }
+
+  /**
+   * Gets the resources.
+   *
+   * A collection of resources.
+   *
+   * @return the resources
+   */
+  public List<SecretGroupMetadataUpdatable> resources() {
+    return resources;
+  }
 }
 

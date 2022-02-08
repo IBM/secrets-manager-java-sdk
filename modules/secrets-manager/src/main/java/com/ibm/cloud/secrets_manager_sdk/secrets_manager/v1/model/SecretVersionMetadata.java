@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,7 +19,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * SecretVersionMetadata.
- * <p>
+ *
  * Classes which extend this class:
  * - ArbitrarySecretVersionMetadata
  * - UsernamePasswordSecretVersionMetadata
@@ -28,95 +28,134 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretVersionMetadata extends GenericModel {
 
-    protected String id;
-    @SerializedName("creation_date")
-    protected Date creationDate;
-    @SerializedName("created_by")
-    protected String createdBy;
-    @SerializedName("auto_rotated")
-    protected Boolean autoRotated;
-    @SerializedName("serial_number")
-    protected String serialNumber;
-    @SerializedName("expiration_date")
-    protected Date expirationDate;
-    protected CertificateValidity validity;
+  protected String id;
+  @SerializedName("version_id")
+  protected String versionId;
+  @SerializedName("creation_date")
+  protected Date creationDate;
+  @SerializedName("created_by")
+  protected String createdBy;
+  @SerializedName("payload_available")
+  protected Boolean payloadAvailable;
+  protected Boolean downloaded;
+  @SerializedName("auto_rotated")
+  protected Boolean autoRotated;
+  @SerializedName("serial_number")
+  protected String serialNumber;
+  @SerializedName("expiration_date")
+  protected Date expirationDate;
+  protected CertificateValidity validity;
 
-    protected SecretVersionMetadata() {
-    }
+  protected SecretVersionMetadata() {
+  }
 
-    /**
-     * Gets the id.
-     * <p>
-     * The ID of the secret version.
-     *
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
+  /**
+   * Gets the id.
+   *
+   * The v4 UUID that uniquely identifies the secret.
+   *
+   * @return the id
+   */
+  public String getId() {
+    return id;
+  }
 
-    /**
-     * Gets the creationDate.
-     * <p>
-     * The date that the version of the secret was created.
-     *
-     * @return the creationDate
-     */
-    public Date getCreationDate() {
-        return creationDate;
-    }
+  /**
+   * Gets the versionId.
+   *
+   * The ID of the secret version.
+   *
+   * @return the versionId
+   */
+  public String getVersionId() {
+    return versionId;
+  }
 
-    /**
-     * Gets the createdBy.
-     * <p>
-     * The unique identifier for the entity that created the secret version.
-     *
-     * @return the createdBy
-     */
-    public String getCreatedBy() {
-        return createdBy;
-    }
+  /**
+   * Gets the creationDate.
+   *
+   * The date that the version of the secret was created.
+   *
+   * @return the creationDate
+   */
+  public Date getCreationDate() {
+    return creationDate;
+  }
 
-    /**
-     * Gets the autoRotated.
-     * <p>
-     * Indicates whether the version of the secret was created by automatic rotation.
-     *
-     * @return the autoRotated
-     */
-    public Boolean isAutoRotated() {
-        return autoRotated;
-    }
+  /**
+   * Gets the createdBy.
+   *
+   * The unique identifier for the entity that created the secret version.
+   *
+   * @return the createdBy
+   */
+  public String getCreatedBy() {
+    return createdBy;
+  }
 
-    /**
-     * Gets the serialNumber.
-     * <p>
-     * The unique serial number that was assigned to the certificate by the issuing certificate authority.
-     *
-     * @return the serialNumber
-     */
-    public String getSerialNumber() {
-        return serialNumber;
-    }
+  /**
+   * Gets the payloadAvailable.
+   *
+   * Indicates whether the payload for the secret version is stored and available.
+   *
+   * @return the payloadAvailable
+   */
+  public Boolean isPayloadAvailable() {
+    return payloadAvailable;
+  }
 
-    /**
-     * Gets the expirationDate.
-     * <p>
-     * The date that the certificate expires. The date format follows RFC 3339.
-     *
-     * @return the expirationDate
-     */
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
+  /**
+   * Gets the downloaded.
+   *
+   * Indicates whether the secret data that is associated with a secret version was retrieved in a call to the service
+   * API.
+   *
+   * @return the downloaded
+   */
+  public Boolean isDownloaded() {
+    return downloaded;
+  }
 
-    /**
-     * Gets the validity.
-     *
-     * @return the validity
-     */
-    public CertificateValidity getValidity() {
-        return validity;
-    }
+  /**
+   * Gets the autoRotated.
+   *
+   * Indicates whether the version of the secret was created by automatic rotation.
+   *
+   * @return the autoRotated
+   */
+  public Boolean isAutoRotated() {
+    return autoRotated;
+  }
+
+  /**
+   * Gets the serialNumber.
+   *
+   * The unique serial number that was assigned to the certificate by the issuing certificate authority.
+   *
+   * @return the serialNumber
+   */
+  public String getSerialNumber() {
+    return serialNumber;
+  }
+
+  /**
+   * Gets the expirationDate.
+   *
+   * The date that the certificate expires. The date format follows RFC 3339.
+   *
+   * @return the expirationDate
+   */
+  public Date getExpirationDate() {
+    return expirationDate;
+  }
+
+  /**
+   * Gets the validity.
+   *
+   * @return the validity
+   */
+  public CertificateValidity getValidity() {
+    return validity;
+  }
 }
 

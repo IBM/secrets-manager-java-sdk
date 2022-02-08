@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,125 +22,125 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretMetadataRequest extends GenericModel {
 
-    protected CollectionMetadata metadata;
-    protected List<SecretMetadata> resources;
+  protected CollectionMetadata metadata;
+  protected List<SecretMetadata> resources;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private CollectionMetadata metadata;
+    private List<SecretMetadata> resources;
+
+    private Builder(SecretMetadataRequest secretMetadataRequest) {
+      this.metadata = secretMetadataRequest.metadata;
+      this.resources = secretMetadataRequest.resources;
+    }
 
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private CollectionMetadata metadata;
-        private List<SecretMetadata> resources;
-
-        private Builder(SecretMetadataRequest secretMetadataRequest) {
-            this.metadata = secretMetadataRequest.metadata;
-            this.resources = secretMetadataRequest.resources;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param metadata  the metadata
-         * @param resources the resources
-         */
-        public Builder(CollectionMetadata metadata, List<SecretMetadata> resources) {
-            this.metadata = metadata;
-            this.resources = resources;
-        }
-
-        /**
-         * Builds a SecretMetadataRequest.
-         *
-         * @return the new SecretMetadataRequest instance
-         */
-        public SecretMetadataRequest build() {
-            return new SecretMetadataRequest(this);
-        }
-
-        /**
-         * Adds an resources to resources.
-         *
-         * @param resources the new resources
-         * @return the SecretMetadataRequest builder
-         */
-        public Builder addResources(SecretMetadata resources) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
-                    "resources cannot be null");
-            if (this.resources == null) {
-                this.resources = new ArrayList<SecretMetadata>();
-            }
-            this.resources.add(resources);
-            return this;
-        }
-
-        /**
-         * Set the metadata.
-         *
-         * @param metadata the metadata
-         * @return the SecretMetadataRequest builder
-         */
-        public Builder metadata(CollectionMetadata metadata) {
-            this.metadata = metadata;
-            return this;
-        }
-
-        /**
-         * Set the resources.
-         * Existing resources will be replaced.
-         *
-         * @param resources the resources
-         * @return the SecretMetadataRequest builder
-         */
-        public Builder resources(List<SecretMetadata> resources) {
-            this.resources = resources;
-            return this;
-        }
-    }
-
-    protected SecretMetadataRequest(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
-                "metadata cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
-                "resources cannot be null");
-        metadata = builder.metadata;
-        resources = builder.resources;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a SecretMetadataRequest builder
+     * @param metadata the metadata
+     * @param resources the resources
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(CollectionMetadata metadata, List<SecretMetadata> resources) {
+      this.metadata = metadata;
+      this.resources = resources;
     }
 
     /**
-     * Gets the metadata.
-     * <p>
-     * The metadata that describes the resource array.
+     * Builds a SecretMetadataRequest.
      *
-     * @return the metadata
+     * @return the new SecretMetadataRequest instance
      */
-    public CollectionMetadata metadata() {
-        return metadata;
+    public SecretMetadataRequest build() {
+      return new SecretMetadataRequest(this);
     }
 
     /**
-     * Gets the resources.
-     * <p>
-     * A collection of resources.
+     * Adds an resources to resources.
      *
-     * @return the resources
+     * @param resources the new resources
+     * @return the SecretMetadataRequest builder
      */
-    public List<SecretMetadata> resources() {
-        return resources;
+    public Builder addResources(SecretMetadata resources) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
+        "resources cannot be null");
+      if (this.resources == null) {
+        this.resources = new ArrayList<SecretMetadata>();
+      }
+      this.resources.add(resources);
+      return this;
     }
+
+    /**
+     * Set the metadata.
+     *
+     * @param metadata the metadata
+     * @return the SecretMetadataRequest builder
+     */
+    public Builder metadata(CollectionMetadata metadata) {
+      this.metadata = metadata;
+      return this;
+    }
+
+    /**
+     * Set the resources.
+     * Existing resources will be replaced.
+     *
+     * @param resources the resources
+     * @return the SecretMetadataRequest builder
+     */
+    public Builder resources(List<SecretMetadata> resources) {
+      this.resources = resources;
+      return this;
+    }
+  }
+
+  protected SecretMetadataRequest(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
+      "metadata cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
+      "resources cannot be null");
+    metadata = builder.metadata;
+    resources = builder.resources;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a SecretMetadataRequest builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the metadata.
+   *
+   * The metadata that describes the resource array.
+   *
+   * @return the metadata
+   */
+  public CollectionMetadata metadata() {
+    return metadata;
+  }
+
+  /**
+   * Gets the resources.
+   *
+   * A collection of resources.
+   *
+   * @return the resources
+   */
+  public List<SecretMetadata> resources() {
+    return resources;
+  }
 }
 

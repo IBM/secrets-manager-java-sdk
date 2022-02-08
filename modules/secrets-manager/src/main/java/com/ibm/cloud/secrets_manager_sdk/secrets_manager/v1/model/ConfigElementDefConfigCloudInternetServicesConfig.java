@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,79 +18,79 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class ConfigElementDefConfigCloudInternetServicesConfig extends ConfigElementDefConfig {
 
 
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String cisCrn;
+    private String cisApikey;
+
+    public Builder(ConfigElementDefConfig configElementDefConfigCloudInternetServicesConfig) {
+      this.cisCrn = configElementDefConfigCloudInternetServicesConfig.cisCrn;
+      this.cisApikey = configElementDefConfigCloudInternetServicesConfig.cisApikey;
+    }
+
     /**
-     * Builder.
+     * Instantiates a new builder.
      */
-    public static class Builder {
-        private String cisCrn;
-        private String cisApikey;
-
-        public Builder(ConfigElementDefConfig configElementDefConfigCloudInternetServicesConfig) {
-            this.cisCrn = configElementDefConfigCloudInternetServicesConfig.cisCrn;
-            this.cisApikey = configElementDefConfigCloudInternetServicesConfig.cisApikey;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param cisCrn the cisCrn
-         */
-        public Builder(String cisCrn) {
-            this.cisCrn = cisCrn;
-        }
-
-        /**
-         * Builds a ConfigElementDefConfigCloudInternetServicesConfig.
-         *
-         * @return the new ConfigElementDefConfigCloudInternetServicesConfig instance
-         */
-        public ConfigElementDefConfigCloudInternetServicesConfig build() {
-            return new ConfigElementDefConfigCloudInternetServicesConfig(this);
-        }
-
-        /**
-         * Set the cisCrn.
-         *
-         * @param cisCrn the cisCrn
-         * @return the ConfigElementDefConfigCloudInternetServicesConfig builder
-         */
-        public Builder cisCrn(String cisCrn) {
-            this.cisCrn = cisCrn;
-            return this;
-        }
-
-        /**
-         * Set the cisApikey.
-         *
-         * @param cisApikey the cisApikey
-         * @return the ConfigElementDefConfigCloudInternetServicesConfig builder
-         */
-        public Builder cisApikey(String cisApikey) {
-            this.cisApikey = cisApikey;
-            return this;
-        }
-    }
-
-    protected ConfigElementDefConfigCloudInternetServicesConfig(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.cisCrn,
-                "cisCrn cannot be null");
-        cisCrn = builder.cisCrn;
-        cisApikey = builder.cisApikey;
+    public Builder() {
     }
 
     /**
-     * New builder.
+     * Instantiates a new builder with required properties.
      *
-     * @return a ConfigElementDefConfigCloudInternetServicesConfig builder
+     * @param cisCrn the cisCrn
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(String cisCrn) {
+      this.cisCrn = cisCrn;
     }
+
+    /**
+     * Builds a ConfigElementDefConfigCloudInternetServicesConfig.
+     *
+     * @return the new ConfigElementDefConfigCloudInternetServicesConfig instance
+     */
+    public ConfigElementDefConfigCloudInternetServicesConfig build() {
+      return new ConfigElementDefConfigCloudInternetServicesConfig(this);
+    }
+
+    /**
+     * Set the cisCrn.
+     *
+     * @param cisCrn the cisCrn
+     * @return the ConfigElementDefConfigCloudInternetServicesConfig builder
+     */
+    public Builder cisCrn(String cisCrn) {
+      this.cisCrn = cisCrn;
+      return this;
+    }
+
+    /**
+     * Set the cisApikey.
+     *
+     * @param cisApikey the cisApikey
+     * @return the ConfigElementDefConfigCloudInternetServicesConfig builder
+     */
+    public Builder cisApikey(String cisApikey) {
+      this.cisApikey = cisApikey;
+      return this;
+    }
+  }
+
+  protected ConfigElementDefConfigCloudInternetServicesConfig(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.cisCrn,
+      "cisCrn cannot be null");
+    cisCrn = builder.cisCrn;
+    cisApikey = builder.cisApikey;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a ConfigElementDefConfigCloudInternetServicesConfig builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 
