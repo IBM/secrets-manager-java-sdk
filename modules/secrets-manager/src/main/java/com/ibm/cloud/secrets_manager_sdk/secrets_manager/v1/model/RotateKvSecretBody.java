@@ -12,8 +12,6 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.Map;
 
 /**
@@ -28,8 +26,8 @@ public class RotateKvSecretBody extends SecretAction {
   public static class Builder {
     private Map<String, Object> payload;
 
-    public Builder(SecretAction rotateKvSecretBody) throws Exception {
-      this.payload = new ObjectMapper().readValue(rotateKvSecretBody.payload, Map.class);
+    public Builder(SecretAction rotateKvSecretBody) {
+      this.payload = rotateKvSecretBody.payload;
     }
 
     /**
@@ -71,7 +69,7 @@ public class RotateKvSecretBody extends SecretAction {
   protected RotateKvSecretBody(Builder builder) {
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.payload,
       "payload cannot be null");
-    payload = builder.payload.toString();
+    payload = builder.payload;
   }
 
   /**
@@ -79,7 +77,7 @@ public class RotateKvSecretBody extends SecretAction {
    *
    * @return a RotateKvSecretBody builder
    */
-  public Builder newBuilder() throws Exception {
+  public Builder newBuilder() {
     return new Builder(this);
   }
 }

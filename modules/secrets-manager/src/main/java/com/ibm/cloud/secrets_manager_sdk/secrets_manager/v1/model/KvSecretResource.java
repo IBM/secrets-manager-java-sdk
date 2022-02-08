@@ -17,8 +17,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 /**
  * Properties that describe a secret.
  */
@@ -54,13 +52,13 @@ public class KvSecretResource extends SecretResource {
     private Date expirationDate;
     private Map<String, Object> payload;
 
-    public Builder(SecretResource kvSecretResource) throws Exception{
+    public Builder(SecretResource kvSecretResource) {
       this.name = kvSecretResource.name;
       this.description = kvSecretResource.description;
       this.secretGroupId = kvSecretResource.secretGroupId;
       this.labels = kvSecretResource.labels;
       this.expirationDate = kvSecretResource.expirationDate;
-      this.payload = new ObjectMapper().readValue(kvSecretResource.payload, Map.class);
+      this.payload = kvSecretResource.payload;
     }
 
     /**
@@ -179,7 +177,7 @@ public class KvSecretResource extends SecretResource {
     secretGroupId = builder.secretGroupId;
     labels = builder.labels;
     expirationDate = builder.expirationDate;
-    payload = builder.payload.toString();
+    payload = builder.payload;
   }
 
   /**
@@ -187,7 +185,7 @@ public class KvSecretResource extends SecretResource {
    *
    * @return a KvSecretResource builder
    */
-  public Builder newBuilder() throws Exception {
+  public Builder newBuilder() {
     return new Builder(this);
   }
 }
