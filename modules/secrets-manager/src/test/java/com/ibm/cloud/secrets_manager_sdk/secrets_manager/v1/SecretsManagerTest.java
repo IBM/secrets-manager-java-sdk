@@ -118,11 +118,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswo
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -524,6 +521,61 @@ public class SecretsManagerTest extends PowerMockTestCase {
     .metadata(collectionMetadataModel)
     .resources(new java.util.ArrayList<SecretResource>(java.util.Arrays.asList(secretResourceModel)))
     .build();
+
+    // Invoke operation with valid options model (positive test)
+    Response<CreateSecret> response = secretsManagerService.createSecret(createSecretOptionsModel).execute();
+    assertNotNull(response);
+    CreateSecret responseObj = response.getResult();
+    assertNotNull(responseObj);
+
+    // Verify the contents of the request
+    RecordedRequest request = server.takeRequest();
+    assertNotNull(request);
+    assertEquals(request.getMethod(), "POST");
+
+    // Check query
+    Map<String, String> query = TestUtilities.parseQueryString(request);
+    assertNull(query);
+
+    // Check request path
+    String parsedPath = TestUtilities.parseReqPath(request);
+    assertEquals(parsedPath, createSecretPath);
+  }
+
+  @Test
+  public void testCreateKVSecret() throws Throwable {
+    // Schedule some responses.
+    String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"kv\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"payload\": \"\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+    String createSecretPath = "/api/v1/secrets/kv";
+
+    server.enqueue(new MockResponse()
+            .setHeader("Content-type", "application/json")
+            .setResponseCode(200)
+            .setBody(mockResponseBody));
+
+    constructClientService();
+
+    // Construct an instance of the CollectionMetadata model
+    CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
+            .collectionType("application/vnd.ibm.secrets-manager.config+json")
+            .collectionTotal(Long.valueOf("1"))
+            .build();
+
+    // Construct an instance of the ArbitrarySecretResource model
+    KvSecretResource secretResourceModel = new KvSecretResource.Builder()
+            .name("testString")
+            .description("testString")
+            .secretGroupId("testString")
+            .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+            .payload(Collections.singletonMap("username1", "password1"))
+            .build();
+
+    // Construct an instance of the CreateSecretOptions model
+    CreateSecretOptions createSecretOptionsModel = new CreateSecretOptions.Builder()
+            .secretType("kv")
+            .metadata(collectionMetadataModel)
+            .resources(new java.util.ArrayList<SecretResource>(java.util.Arrays.asList(secretResourceModel)))
+            .build();
 
     // Invoke operation with valid options model (positive test)
     Response<CreateSecret> response = secretsManagerService.createSecret(createSecretOptionsModel).execute();
