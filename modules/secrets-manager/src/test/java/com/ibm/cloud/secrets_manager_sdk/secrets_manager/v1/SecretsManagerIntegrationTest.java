@@ -113,7 +113,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .build();
         Response<GetSecret> getResp = secretsManager.getSecret(getSecretOptions).execute();
         assertEquals(getResp.getStatusCode(), 200);
-        assertEquals(getResp.getResult().getResources().get(0).secretData().get("payload"), "secret-data");
+        assertEquals(getResp.getResult().getResources().get(0).secretData().get("payload"), Collections.singletonMap("foo", "bar"));
 
         // delete kv secret
         DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
