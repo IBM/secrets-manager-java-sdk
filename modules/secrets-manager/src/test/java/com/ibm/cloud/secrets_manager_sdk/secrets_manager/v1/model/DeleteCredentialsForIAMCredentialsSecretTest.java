@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -35,20 +35,17 @@ public class DeleteCredentialsForIAMCredentialsSecretTest {
     @Test
     public void testDeleteCredentialsForIAMCredentialsSecret() throws Throwable {
         DeleteCredentialsForIAMCredentialsSecret deleteCredentialsForIamCredentialsSecretModel = new DeleteCredentialsForIAMCredentialsSecret.Builder()
+                .apiKeyId("testString")
                 .serviceId("testString")
                 .build();
+        assertEquals(deleteCredentialsForIamCredentialsSecretModel.apiKeyId(), "testString");
         assertEquals(deleteCredentialsForIamCredentialsSecretModel.serviceId(), "testString");
 
         String json = TestUtilities.serialize(deleteCredentialsForIamCredentialsSecretModel);
 
         DeleteCredentialsForIAMCredentialsSecret deleteCredentialsForIamCredentialsSecretModelNew = TestUtilities.deserialize(json, DeleteCredentialsForIAMCredentialsSecret.class);
         assertTrue(deleteCredentialsForIamCredentialsSecretModelNew instanceof DeleteCredentialsForIAMCredentialsSecret);
+        assertEquals(deleteCredentialsForIamCredentialsSecretModelNew.apiKeyId(), "testString");
         assertEquals(deleteCredentialsForIamCredentialsSecretModelNew.serviceId(), "testString");
     }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testDeleteCredentialsForIAMCredentialsSecretError() throws Throwable {
-        new DeleteCredentialsForIAMCredentialsSecret.Builder().build();
-    }
-
 }

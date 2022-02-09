@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -41,11 +41,11 @@ public class PutConfigOptionsTest {
         assertEquals(engineConfigModel.apiKey(), "API_KEY");
 
         PutConfigOptions putConfigOptionsModel = new PutConfigOptions.Builder()
-                .engineConfig(engineConfigModel)
                 .secretType("iam_credentials")
+                .engineConfig(engineConfigModel)
                 .build();
-        assertEquals(putConfigOptionsModel.engineConfig(), engineConfigModel);
         assertEquals(putConfigOptionsModel.secretType(), "iam_credentials");
+        assertEquals(putConfigOptionsModel.engineConfig(), engineConfigModel);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

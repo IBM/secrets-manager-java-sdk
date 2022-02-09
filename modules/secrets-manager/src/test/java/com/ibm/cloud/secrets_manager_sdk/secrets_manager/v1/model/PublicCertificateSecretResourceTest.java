@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,6 +14,8 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+import com.ibm.cloud.sdk.core.util.DateUtils;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IssuanceInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
@@ -49,6 +51,13 @@ public class PublicCertificateSecretResourceTest {
         IssuanceInfo issuanceInfoModel = new IssuanceInfo.Builder()
                 .build();
 
+        CertificateValidity certificateValidityModel = new CertificateValidity.Builder()
+                .notBefore(DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"))
+                .notAfter(DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"))
+                .build();
+        assertEquals(certificateValidityModel.notBefore(), DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"));
+        assertEquals(certificateValidityModel.notAfter(), DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"));
+
         PublicCertificateSecretResource publicCertificateSecretResourceModel = new PublicCertificateSecretResource.Builder()
                 .name("testString")
                 .description("testString")
@@ -62,6 +71,7 @@ public class PublicCertificateSecretResourceTest {
                 .commonName("example.com")
                 .rotation(rotationModel)
                 .issuanceInfo(issuanceInfoModel)
+                .validity(certificateValidityModel)
                 .build();
         assertEquals(publicCertificateSecretResourceModel.name(), "testString");
         assertEquals(publicCertificateSecretResourceModel.description(), "testString");
@@ -75,6 +85,7 @@ public class PublicCertificateSecretResourceTest {
         assertEquals(publicCertificateSecretResourceModel.commonName(), "example.com");
         assertEquals(publicCertificateSecretResourceModel.rotation(), rotationModel);
         assertEquals(publicCertificateSecretResourceModel.issuanceInfo(), issuanceInfoModel);
+        assertEquals(publicCertificateSecretResourceModel.validity(), certificateValidityModel);
 
         String json = TestUtilities.serialize(publicCertificateSecretResourceModel);
 
@@ -90,6 +101,7 @@ public class PublicCertificateSecretResourceTest {
         assertEquals(publicCertificateSecretResourceModelNew.commonName(), "example.com");
         assertEquals(publicCertificateSecretResourceModelNew.rotation().toString(), rotationModel.toString());
         assertEquals(publicCertificateSecretResourceModelNew.issuanceInfo().toString(), issuanceInfoModel.toString());
+        assertEquals(publicCertificateSecretResourceModelNew.validity().toString(), certificateValidityModel.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

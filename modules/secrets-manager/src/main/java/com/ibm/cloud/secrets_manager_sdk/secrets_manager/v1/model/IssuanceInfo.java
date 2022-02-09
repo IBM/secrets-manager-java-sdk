@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -88,7 +88,7 @@ public class IssuanceInfo extends GenericModel {
     /**
      * Gets the errorCode.
      * <p>
-     * An code that identifies an issuance error.
+     * A code that identifies an issuance error.
      * <p>
      * This field, along with `error_message`, is returned when Secrets Manager successfully processes your request, but a
      * certificate is unable to be issued by the certificate authority.

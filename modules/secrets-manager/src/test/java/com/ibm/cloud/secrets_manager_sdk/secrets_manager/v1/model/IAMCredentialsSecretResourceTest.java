@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -44,6 +44,7 @@ public class IAMCredentialsSecretResourceTest {
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ttl("24h")
                 .accessGroups(new java.util.ArrayList<String>(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0")))
+                .serviceId("testString")
                 .reuseApiKey(false)
                 .build();
         assertEquals(iamCredentialsSecretResourceModel.name(), "testString");
@@ -52,6 +53,7 @@ public class IAMCredentialsSecretResourceTest {
         assertEquals(iamCredentialsSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(iamCredentialsSecretResourceModel.ttl(), "24h");
         assertEquals(iamCredentialsSecretResourceModel.accessGroups(), new java.util.ArrayList<String>(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0")));
+        assertEquals(iamCredentialsSecretResourceModel.serviceId(), "testString");
         assertEquals(iamCredentialsSecretResourceModel.reuseApiKey(), Boolean.valueOf(false));
 
         String json = TestUtilities.serialize(iamCredentialsSecretResourceModel);
@@ -62,6 +64,7 @@ public class IAMCredentialsSecretResourceTest {
         assertEquals(iamCredentialsSecretResourceModelNew.description(), "testString");
         assertEquals(iamCredentialsSecretResourceModelNew.secretGroupId(), "testString");
         assertEquals(iamCredentialsSecretResourceModelNew.ttl(), "24h");
+        assertEquals(iamCredentialsSecretResourceModelNew.serviceId(), "testString");
         assertEquals(iamCredentialsSecretResourceModelNew.reuseApiKey(), Boolean.valueOf(false));
     }
 

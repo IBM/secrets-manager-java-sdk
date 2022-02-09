@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -43,6 +43,10 @@ public class UpdateSecretOptions extends GenericModel {
          * username_password.
          */
         String USERNAME_PASSWORD = "username_password";
+        /**
+         * kv.
+         */
+        String KV = "kv";
     }
 
     /**
@@ -53,6 +57,10 @@ public class UpdateSecretOptions extends GenericModel {
          * rotate.
          */
         String ROTATE = "rotate";
+        /**
+         * restore.
+         */
+        String RESTORE = "restore";
         /**
          * delete_credentials.
          */
@@ -89,16 +97,14 @@ public class UpdateSecretOptions extends GenericModel {
         /**
          * Instantiates a new builder with required properties.
          *
-         * @param secretType   the secretType
-         * @param id           the id
-         * @param action       the action
-         * @param secretAction the secretAction
+         * @param secretType the secretType
+         * @param id         the id
+         * @param action     the action
          */
-        public Builder(String secretType, String id, String action, SecretAction secretAction) {
+        public Builder(String secretType, String id, String action) {
             this.secretType = secretType;
             this.id = id;
             this.action = action;
-            this.secretAction = secretAction;
         }
 
         /**
@@ -162,8 +168,6 @@ public class UpdateSecretOptions extends GenericModel {
                 "id cannot be empty");
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.action,
                 "action cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretAction,
-                "secretAction cannot be null");
         secretType = builder.secretType;
         id = builder.id;
         action = builder.action;

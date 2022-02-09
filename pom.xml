@@ -11,13 +11,13 @@
     <url>https://github.com/IBM/secrets-manager-java-sdk</url>
 
     <groupId>com.ibm.cloud</groupId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sdk-core-version>9.13.3</sdk-core-version>
+        <sdk-core-version>9.15.3</sdk-core-version>
 
         <git-repository-name>secrets-manager-java-sdk</git-repository-name>
 
@@ -41,6 +41,7 @@
         <powermock-version>2.0.5</powermock-version>
         <mockito-version>3.2.4</mockito-version>
         <slf4j-version>1.7.28</slf4j-version>
+        <junit-version>4.13.2</junit-version>
     </properties>
 
     <modules>

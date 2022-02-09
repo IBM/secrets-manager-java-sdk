@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,11 +22,13 @@ import com.ibm.cloud.sdk.core.util.RequestUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.SecretsManager;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretResource;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretVersionMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretData;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
@@ -61,9 +63,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretGroup
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPolicies;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPoliciesResourcesItem;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPolicyRotation;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPolicyRotationResourcesItem;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionMetadataOptions;
@@ -72,19 +72,27 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSingleConfi
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretResource;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IssuanceInfo;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.KvSecretMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.KvSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListAllSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretGroupsOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVersions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertSecretEngineRootConfig;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateMetadataSecretResource;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutPolicyOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RestoreIAMCredentialsSecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateArbitrarySecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCertificateBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateKvSecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePublicCertBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateUsernamePasswordSecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
@@ -100,6 +108,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRo
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRotationRotationPublicCertPolicyRotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
@@ -107,6 +116,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMe
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretResource;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
@@ -493,7 +504,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
-                .setResponseCode(201)
+                .setResponseCode(200)
                 .setBody(mockResponseBody));
 
         constructClientService();
@@ -876,10 +887,71 @@ public class SecretsManagerTest extends PowerMockTestCase {
     }
 
     @Test
+    public void testListSecretVersionsWOptions() throws Throwable {
+        // Schedule some responses.
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"payload_available\": true, \"downloaded\": true}]}";
+        String listSecretVersionsPath = "/api/v1/secrets/arbitrary/testString/versions";
+
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        constructClientService();
+
+        // Construct an instance of the ListSecretVersionsOptions model
+        ListSecretVersionsOptions listSecretVersionsOptionsModel = new ListSecretVersionsOptions.Builder()
+                .secretType("arbitrary")
+                .id("testString")
+                .build();
+
+        // Invoke operation with valid options model (positive test)
+        Response<ListSecretVersions> response = secretsManagerService.listSecretVersions(listSecretVersionsOptionsModel).execute();
+        assertNotNull(response);
+        ListSecretVersions responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "GET");
+
+        // Check query
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+
+        // Check request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, listSecretVersionsPath);
+    }
+
+    public void testListSecretVersionsWOptionsWRetries() throws Throwable {
+        // Enable retries and run testListSecretVersionsWOptions.
+        secretsManagerService.enableRetries(4, 30);
+        testListSecretVersionsWOptions();
+
+        // Disable retries and run testListSecretVersionsWOptions.
+        secretsManagerService.disableRetries();
+        testListSecretVersionsWOptions();
+    }
+
+    // Test the listSecretVersions operation with null options model parameter
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testListSecretVersionsNoOptions() throws Throwable {
+        // construct the service
+        constructClientService();
+
+        server.enqueue(new MockResponse());
+
+        // Invoke operation with null options model (negative test)
+        secretsManagerService.listSecretVersions(null).execute();
+    }
+
+    @Test
     public void testGetSecretVersionWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"validity\": {\"not_before\": \"2020-10-05T21:33:11.000Z\", \"not_after\": \"2021-01-01T00:00:00.000Z\"}, \"serial_number\": \"d9:be:fe:35:ba:09:42:b5\", \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"secret_data\": {\"certificate\": \"certificate\", \"private_key\": \"privateKey\", \"intermediate\": \"intermediate\"}}]}";
-        String getSecretVersionPath = "/api/v1/secrets/imported_cert/testString/versions/testString";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String getSecretVersionPath = "/api/v1/secrets/arbitrary/testString/versions/testString";
 
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -890,7 +962,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the GetSecretVersionOptions model
         GetSecretVersionOptions getSecretVersionOptionsModel = new GetSecretVersionOptions.Builder()
-                .secretType("imported_cert")
+                .secretType("arbitrary")
                 .id("testString")
                 .versionId("testString")
                 .build();
@@ -940,8 +1012,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetSecretVersionMetadataWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\"}]}";
-        String getSecretVersionMetadataPath = "/api/v1/secrets/imported_cert/testString/versions/testString/metadata";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"payload_available\": true, \"downloaded\": true}]}";
+        String getSecretVersionMetadataPath = "/api/v1/secrets/arbitrary/testString/versions/testString/metadata";
 
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -952,7 +1024,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the GetSecretVersionMetadataOptions model
         GetSecretVersionMetadataOptions getSecretVersionMetadataOptionsModel = new GetSecretVersionMetadataOptions.Builder()
-                .secretType("imported_cert")
+                .secretType("arbitrary")
                 .id("testString")
                 .versionId("testString")
                 .build();
@@ -1140,7 +1212,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testPutPolicyWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2019-01-01T12:00:00.000Z\", \"updated_by\": \"updatedBy\", \"type\": \"application/vnd.ibm.secrets-manager.secret.policy+json\", \"rotation\": {\"interval\": 1, \"unit\": \"day\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"anyKey\": \"anyValue\"}]}";
         String putPolicyPath = "/api/v1/secrets/username_password/testString/policies";
 
         server.enqueue(new MockResponse()
@@ -1223,7 +1295,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetPolicyWOptions() throws Throwable {
         // Schedule some responses.
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"crn\": \"crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2019-01-01T12:00:00.000Z\", \"updated_by\": \"updatedBy\", \"type\": \"application/vnd.ibm.secrets-manager.secret.policy+json\", \"rotation\": {\"interval\": 1, \"unit\": \"day\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"anyKey\": \"anyValue\"}]}";
         String getPolicyPath = "/api/v1/secrets/username_password/testString/policies";
 
         server.enqueue(new MockResponse()

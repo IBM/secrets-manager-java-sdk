@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,9 +22,11 @@ public class DeleteCredentialsForIAMCredentialsSecret extends SecretAction {
      * Builder.
      */
     public static class Builder {
+        private String apiKeyId;
         private String serviceId;
 
         public Builder(SecretAction deleteCredentialsForIamCredentialsSecret) {
+            this.apiKeyId = deleteCredentialsForIamCredentialsSecret.apiKeyId;
             this.serviceId = deleteCredentialsForIamCredentialsSecret.serviceId;
         }
 
@@ -35,21 +37,23 @@ public class DeleteCredentialsForIAMCredentialsSecret extends SecretAction {
         }
 
         /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param serviceId the serviceId
-         */
-        public Builder(String serviceId) {
-            this.serviceId = serviceId;
-        }
-
-        /**
          * Builds a DeleteCredentialsForIAMCredentialsSecret.
          *
          * @return the new DeleteCredentialsForIAMCredentialsSecret instance
          */
         public DeleteCredentialsForIAMCredentialsSecret build() {
             return new DeleteCredentialsForIAMCredentialsSecret(this);
+        }
+
+        /**
+         * Set the apiKeyId.
+         *
+         * @param apiKeyId the apiKeyId
+         * @return the DeleteCredentialsForIAMCredentialsSecret builder
+         */
+        public Builder apiKeyId(String apiKeyId) {
+            this.apiKeyId = apiKeyId;
+            return this;
         }
 
         /**
@@ -65,8 +69,7 @@ public class DeleteCredentialsForIAMCredentialsSecret extends SecretAction {
     }
 
     protected DeleteCredentialsForIAMCredentialsSecret(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.serviceId,
-                "serviceId cannot be null");
+        apiKeyId = builder.apiKeyId;
         serviceId = builder.serviceId;
     }
 

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -35,11 +35,11 @@ public class GetSecretVersionMetadataOptionsTest {
     @Test
     public void testGetSecretVersionMetadataOptions() throws Throwable {
         GetSecretVersionMetadataOptions getSecretVersionMetadataOptionsModel = new GetSecretVersionMetadataOptions.Builder()
-                .secretType("imported_cert")
+                .secretType("arbitrary")
                 .id("testString")
                 .versionId("testString")
                 .build();
-        assertEquals(getSecretVersionMetadataOptionsModel.secretType(), "imported_cert");
+        assertEquals(getSecretVersionMetadataOptionsModel.secretType(), "arbitrary");
         assertEquals(getSecretVersionMetadataOptionsModel.id(), "testString");
         assertEquals(getSecretVersionMetadataOptionsModel.versionId(), "testString");
     }

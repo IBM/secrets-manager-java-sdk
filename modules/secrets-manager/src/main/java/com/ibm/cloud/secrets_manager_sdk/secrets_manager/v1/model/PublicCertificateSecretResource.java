@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -40,15 +40,23 @@ public class PublicCertificateSecretResource extends SecretResource {
          * imported_cert.
          */
         String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * kv.
+         */
+        String KV = "kv";
     }
 
     /**
      * The identifier for the cryptographic algorithm to be used to generate the public key that is associated with the
      * certificate.
      * <p>
-     * The algorithm that you select determines the encryption algorthim (`RSA` or `ECDSA`) and key size to be used to
-     * generate keys and sign certificates. For longer living certificates it is recommended to use longer keys to provide
-     * more encryption protection.
+     * The algorithm that you select determines the encryption algorithm (`RSA` or `ECDSA`) and key size to be used to
+     * generate keys and sign certificates. For longer living certificates, it is recommended to use longer keys to
+     * provide more encryption protection.
      */
     public interface KeyAlgorithm {
         /**
@@ -86,6 +94,7 @@ public class PublicCertificateSecretResource extends SecretResource {
         private String commonName;
         private Rotation rotation;
         private IssuanceInfo issuanceInfo;
+        private CertificateValidity validity;
 
         public Builder(SecretResource publicCertificateSecretResource) {
             this.name = publicCertificateSecretResource.name;
@@ -100,6 +109,7 @@ public class PublicCertificateSecretResource extends SecretResource {
             this.commonName = publicCertificateSecretResource.commonName;
             this.rotation = publicCertificateSecretResource.rotation;
             this.issuanceInfo = publicCertificateSecretResource.issuanceInfo;
+            this.validity = publicCertificateSecretResource.validity;
         }
 
         /**
@@ -291,6 +301,17 @@ public class PublicCertificateSecretResource extends SecretResource {
             this.issuanceInfo = issuanceInfo;
             return this;
         }
+
+        /**
+         * Set the validity.
+         *
+         * @param validity the validity
+         * @return the PublicCertificateSecretResource builder
+         */
+        public Builder validity(CertificateValidity validity) {
+            this.validity = validity;
+            return this;
+        }
     }
 
     protected PublicCertificateSecretResource(Builder builder) {
@@ -308,6 +329,7 @@ public class PublicCertificateSecretResource extends SecretResource {
         commonName = builder.commonName;
         rotation = builder.rotation;
         issuanceInfo = builder.issuanceInfo;
+        validity = builder.validity;
     }
 
     /**

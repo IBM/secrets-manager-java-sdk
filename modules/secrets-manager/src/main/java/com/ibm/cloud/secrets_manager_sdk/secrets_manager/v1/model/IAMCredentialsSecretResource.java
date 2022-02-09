@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -40,6 +40,14 @@ public class IAMCredentialsSecretResource extends SecretResource {
          * imported_cert.
          */
         String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * kv.
+         */
+        String KV = "kv";
     }
 
 
@@ -53,6 +61,7 @@ public class IAMCredentialsSecretResource extends SecretResource {
         private List<String> labels;
         private Object ttl;
         private List<String> accessGroups;
+        private String serviceId;
         private Boolean reuseApiKey;
 
         public Builder(SecretResource iamCredentialsSecretResource) {
@@ -62,6 +71,7 @@ public class IAMCredentialsSecretResource extends SecretResource {
             this.labels = iamCredentialsSecretResource.labels;
             this.ttl = iamCredentialsSecretResource.ttl;
             this.accessGroups = iamCredentialsSecretResource.accessGroups;
+            this.serviceId = iamCredentialsSecretResource.serviceId;
             this.reuseApiKey = iamCredentialsSecretResource.reuseApiKey;
         }
 
@@ -190,6 +200,17 @@ public class IAMCredentialsSecretResource extends SecretResource {
         }
 
         /**
+         * Set the serviceId.
+         *
+         * @param serviceId the serviceId
+         * @return the IAMCredentialsSecretResource builder
+         */
+        public Builder serviceId(String serviceId) {
+            this.serviceId = serviceId;
+            return this;
+        }
+
+        /**
          * Set the reuseApiKey.
          *
          * @param reuseApiKey the reuseApiKey
@@ -210,6 +231,7 @@ public class IAMCredentialsSecretResource extends SecretResource {
         labels = builder.labels;
         ttl = builder.ttl;
         accessGroups = builder.accessGroups;
+        serviceId = builder.serviceId;
         reuseApiKey = builder.reuseApiKey;
     }
 

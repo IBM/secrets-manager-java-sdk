@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -24,6 +24,14 @@ public class GetSecretVersionMetadataOptions extends GenericModel {
      */
     public interface SecretType {
         /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
          * imported_cert.
          */
         String IMPORTED_CERT = "imported_cert";
@@ -31,6 +39,14 @@ public class GetSecretVersionMetadataOptions extends GenericModel {
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * kv.
+         */
+        String KV = "kv";
     }
 
     protected String secretType;

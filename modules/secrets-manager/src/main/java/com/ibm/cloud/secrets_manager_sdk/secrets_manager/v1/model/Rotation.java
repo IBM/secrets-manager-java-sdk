@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -95,7 +95,7 @@ public class Rotation extends GenericModel {
      * Determines whether Secrets Manager rotates your certificate automatically.
      * <p>
      * If set to `true`, the service reorders your certificate 31 days before it expires. To access the previous  version
-     * of the certifcate, you can use the [Get a version of a secret](#get-secret-version) method.
+     * of the certificate, you can use the [Get a version of a secret](#get-secret-version) method.
      *
      * @return the autoRotate
      */
