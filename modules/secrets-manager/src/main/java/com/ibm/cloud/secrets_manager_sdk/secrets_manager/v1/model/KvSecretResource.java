@@ -62,7 +62,7 @@ public class KvSecretResource extends SecretResource {
         private String secretGroupId;
         private List<String> labels;
         private Date expirationDate;
-        private Map<String, Object> payload;
+        private Object payload;
 
         public Builder(SecretResource kvSecretResource) {
             this.name = kvSecretResource.name;

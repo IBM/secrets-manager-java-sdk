@@ -29,7 +29,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretAction extends GenericModel {
 
-    protected String payload;
+    protected Object payload;
     @SerializedName("rotate_keys")
     protected Boolean rotateKeys;
     protected String password;
@@ -54,7 +54,7 @@ public class SecretAction extends GenericModel {
      *
      * @return the payload
      */
-    public String payload() {
+    public Object payload() {
         return payload;
     }
 

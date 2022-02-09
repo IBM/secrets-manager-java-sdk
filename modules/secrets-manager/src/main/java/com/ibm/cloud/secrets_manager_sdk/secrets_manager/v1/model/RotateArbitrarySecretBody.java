@@ -22,7 +22,7 @@ public class RotateArbitrarySecretBody extends SecretAction {
      * Builder.
      */
     public static class Builder {
-        private String payload;
+        private Object payload;
 
         public Builder(SecretAction rotateArbitrarySecretBody) {
             this.payload = rotateArbitrarySecretBody.payload;

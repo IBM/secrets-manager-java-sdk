@@ -24,7 +24,7 @@ public class RotateKvSecretBody extends SecretAction {
      * Builder.
      */
     public static class Builder {
-        private Map<String, Object> payload;
+        private Object payload;
 
         public Builder(SecretAction rotateKvSecretBody) {
             this.payload = rotateKvSecretBody.payload;
