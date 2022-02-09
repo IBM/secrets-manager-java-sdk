@@ -93,7 +93,6 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .name(generateName())
                 .description("Integration test generated")
                 .labels(new java.util.ArrayList<>(java.util.Arrays.asList("label1", "label2")))
-                .expirationDate(generateExpirationDate())
                 .payload(Collections.singletonMap("foo", "bar"))
                 .build();
         CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
