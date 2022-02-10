@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -28,6 +28,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - IAMCredentialsSecretResource
  * - CertificateSecretResource
  * - PublicCertificateSecretResource
+ * - KvSecretResource
  */
 public class SecretResource extends GenericModel {
 
@@ -51,6 +52,14 @@ public class SecretResource extends GenericModel {
          * imported_cert.
          */
         String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * kv.
+         */
+        String KV = "kv";
     }
 
     protected String id;
@@ -76,7 +85,7 @@ public class SecretResource extends GenericModel {
     protected List<Map<String, Object>> versions;
     @SerializedName("expiration_date")
     protected Date expirationDate;
-    protected String payload;
+    protected Object payload;
     @SerializedName("secret_data")
     protected Map<String, Object> secretData;
     protected String username;
@@ -88,8 +97,12 @@ public class SecretResource extends GenericModel {
     protected List<String> accessGroups;
     @SerializedName("api_key")
     protected String apiKey;
+    @SerializedName("api_key_id")
+    protected String apiKeyId;
     @SerializedName("service_id")
     protected String serviceId;
+    @SerializedName("service_id_is_static")
+    protected Boolean serviceIdIsStatic;
     @SerializedName("reuse_api_key")
     protected Boolean reuseApiKey;
     protected String certificate;
@@ -177,7 +190,7 @@ public class SecretResource extends GenericModel {
      * <p>
      * Labels that you can use to filter for secrets in your instance.
      * <p>
-     * Up to 30 labels can be created. Labels can be between 2-30 characters, including spaces. Special characters not
+     * Up to 30 labels can be created. Labels can be 2 - 30 characters, including spaces. Special characters that are not
      * permitted include the angled bracket, comma, colon, ampersand, and vertical pipe character (|).
      * <p>
      * To protect your privacy, do not use personal data, such as your name or location, as a label for your secret.
@@ -314,12 +327,14 @@ public class SecretResource extends GenericModel {
      *
      * @return the payload
      */
-    public String payload() {
+    public Object payload() {
         return payload;
     }
 
     /**
      * Gets the secretData.
+     * <p>
+     * The data that is associated with the secret version. The data object contains the field `payload`.
      *
      * @return the secretData
      */
@@ -371,6 +386,8 @@ public class SecretResource extends GenericModel {
      * For `iam_credentials` secrets, the TTL defines for how long each generated API key remains valid. The value can be
      * either an integer that specifies the number of seconds, or the string representation of a duration, such as `120m`
      * or `24h`.
+     * <p>
+     * Minimum duration is 1 minute. Maximum is 90 days.
      *
      * @return the ttl
      */
@@ -382,7 +399,8 @@ public class SecretResource extends GenericModel {
      * Gets the accessGroups.
      * <p>
      * The access groups that define the capabilities of the service ID and API key that are generated for an
-     * `iam_credentials` secret.
+     * `iam_credentials` secret. If you prefer to use an existing service ID that is already assigned the access policies
+     * that you require, you can omit this parameter and use the `service_id` field instead.
      * <p>
      * **Tip:** To list the access groups that are available in an account, you can use the [IAM Access Groups
      * API](https://cloud.ibm.com/apidocs/iam-access-groups#list-access-groups). To find the ID of an access group in the
@@ -410,10 +428,27 @@ public class SecretResource extends GenericModel {
     }
 
     /**
+     * Gets the apiKeyId.
+     * <p>
+     * The ID of the API key that is generated for this secret.
+     *
+     * @return the apiKeyId
+     */
+    public String apiKeyId() {
+        return apiKeyId;
+    }
+
+    /**
      * Gets the serviceId.
      * <p>
-     * The service ID under which the API key (see the `api_key` field) is created. This service ID is added to the access
-     * groups that you assign for this secret.
+     * The service ID under which the API key (see the `api_key` field) is created.
+     * <p>
+     * If you omit this parameter, Secrets Manager generates a new service ID for your secret at its creation and adds it
+     * to the access groups that you assign.
+     * <p>
+     * Optionally, you can use this field to provide your own service ID if you prefer to manage its access directly or
+     * retain the service ID after your secret expires, is rotated, or deleted. If you provide a service ID, do not
+     * include the `access_groups` parameter.
      *
      * @return the serviceId
      */
@@ -422,12 +457,26 @@ public class SecretResource extends GenericModel {
     }
 
     /**
+     * Gets the serviceIdIsStatic.
+     * <p>
+     * Indicates whether an `iam_credentials` secret was created with a static service ID.
+     * <p>
+     * If `true`, the service ID for the secret was provided by the user at secret creation. If `false`, the service ID
+     * was generated by Secrets Manager.
+     *
+     * @return the serviceIdIsStatic
+     */
+    public Boolean serviceIdIsStatic() {
+        return serviceIdIsStatic;
+    }
+
+    /**
      * Gets the reuseApiKey.
      * <p>
-     * Set to `true` to reuse the service ID and API key for this secret.
+     * Determines whether to use the same service ID and API key for future read operations on an
+     * `iam_credentials` secret.
      * <p>
-     * Use this field to control whether to use the same service ID and API key for future read operations on this secret.
-     * If set to `true`, the service reuses the current credentials. If set to `false`, a new service ID and API key is
+     * If set to `true`, the service reuses the current credentials. If set to `false`, a new service ID and API key are
      * generated each time that the secret is read or accessed.
      *
      * @return the reuseApiKey
@@ -485,8 +534,8 @@ public class SecretResource extends GenericModel {
     /**
      * Gets the algorithm.
      * <p>
-     * The identifier for the cryptographic algorthim that was used by the issuing certificate authority to sign the
-     * ceritificate.
+     * The identifier for the cryptographic algorithm that was used by the issuing certificate authority to sign the
+     * certificate.
      *
      * @return the algorithm
      */

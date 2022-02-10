@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -44,6 +44,10 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
+        /**
+         * kv.
+         */
+        String KV = "kv";
     }
 
 
@@ -55,12 +59,18 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
         private String name;
         private String description;
         private Object ttl;
+        private Boolean serviceIdIsStatic;
+        private String serviceId;
+        private List<String> accessGroups;
 
         public Builder(SecretMetadata iamCredentialsSecretMetadata) {
             this.labels = iamCredentialsSecretMetadata.labels;
             this.name = iamCredentialsSecretMetadata.name;
             this.description = iamCredentialsSecretMetadata.description;
             this.ttl = iamCredentialsSecretMetadata.ttl;
+            this.serviceIdIsStatic = iamCredentialsSecretMetadata.serviceIdIsStatic;
+            this.serviceId = iamCredentialsSecretMetadata.serviceId;
+            this.accessGroups = iamCredentialsSecretMetadata.accessGroups;
         }
 
         /**
@@ -100,6 +110,22 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
                 this.labels = new ArrayList<String>();
             }
             this.labels.add(labels);
+            return this;
+        }
+
+        /**
+         * Adds an accessGroups to accessGroups.
+         *
+         * @param accessGroups the new accessGroups
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder addAccessGroups(String accessGroups) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(accessGroups,
+                    "accessGroups cannot be null");
+            if (this.accessGroups == null) {
+                this.accessGroups = new ArrayList<String>();
+            }
+            this.accessGroups.add(accessGroups);
             return this;
         }
 
@@ -147,6 +173,40 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
             this.ttl = ttl;
             return this;
         }
+
+        /**
+         * Set the serviceIdIsStatic.
+         *
+         * @param serviceIdIsStatic the serviceIdIsStatic
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder serviceIdIsStatic(Boolean serviceIdIsStatic) {
+            this.serviceIdIsStatic = serviceIdIsStatic;
+            return this;
+        }
+
+        /**
+         * Set the serviceId.
+         *
+         * @param serviceId the serviceId
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder serviceId(String serviceId) {
+            this.serviceId = serviceId;
+            return this;
+        }
+
+        /**
+         * Set the accessGroups.
+         * Existing accessGroups will be replaced.
+         *
+         * @param accessGroups the accessGroups
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder accessGroups(List<String> accessGroups) {
+            this.accessGroups = accessGroups;
+            return this;
+        }
     }
 
     protected IAMCredentialsSecretMetadata(Builder builder) {
@@ -156,6 +216,9 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
         name = builder.name;
         description = builder.description;
         ttl = builder.ttl;
+        serviceIdIsStatic = builder.serviceIdIsStatic;
+        serviceId = builder.serviceId;
+        accessGroups = builder.accessGroups;
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -29,10 +29,15 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class SecretVersionMetadata extends GenericModel {
 
     protected String id;
+    @SerializedName("version_id")
+    protected String versionId;
     @SerializedName("creation_date")
     protected Date creationDate;
     @SerializedName("created_by")
     protected String createdBy;
+    @SerializedName("payload_available")
+    protected Boolean payloadAvailable;
+    protected Boolean downloaded;
     @SerializedName("auto_rotated")
     protected Boolean autoRotated;
     @SerializedName("serial_number")
@@ -47,12 +52,23 @@ public class SecretVersionMetadata extends GenericModel {
     /**
      * Gets the id.
      * <p>
-     * The ID of the secret version.
+     * The v4 UUID that uniquely identifies the secret.
      *
      * @return the id
      */
     public String getId() {
         return id;
+    }
+
+    /**
+     * Gets the versionId.
+     * <p>
+     * The ID of the secret version.
+     *
+     * @return the versionId
+     */
+    public String getVersionId() {
+        return versionId;
     }
 
     /**
@@ -75,6 +91,29 @@ public class SecretVersionMetadata extends GenericModel {
      */
     public String getCreatedBy() {
         return createdBy;
+    }
+
+    /**
+     * Gets the payloadAvailable.
+     * <p>
+     * Indicates whether the payload for the secret version is stored and available.
+     *
+     * @return the payloadAvailable
+     */
+    public Boolean isPayloadAvailable() {
+        return payloadAvailable;
+    }
+
+    /**
+     * Gets the downloaded.
+     * <p>
+     * Indicates whether the secret data that is associated with a secret version was retrieved in a call to the service
+     * API.
+     *
+     * @return the downloaded
+     */
+    public Boolean isDownloaded() {
+        return downloaded;
     }
 
     /**

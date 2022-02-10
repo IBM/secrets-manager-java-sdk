@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -44,7 +44,7 @@ public class ConfigElementDefConfig extends GenericModel {
      * <p>
      * The private key that is associated with your Automatic Certificate Management Environment (ACME) account.
      * <p>
-     * If you have a working ACME client or account for Let's Encrypt, you can use the existing private key to  enable
+     * If you have a working ACME client or account for Let's Encrypt, you can use the existing private key to enable
      * communications with Secrets Manager. If you don't have an account yet, you can create one. For more information,
      * see the
      * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#create-acme-account).
@@ -69,7 +69,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the cisApikey.
      * <p>
-     * An IBM Cloud API key that has the capability to list domains in your CIS instance.
+     * An IBM Cloud API key that can to list domains in your CIS instance.
      * <p>
      * To grant Secrets Manager the ability to view the CIS instance and all of its domains, the API key must be assigned
      * the Reader service role on Internet Services (`internet-svcs`).

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,6 +19,9 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class PutConfigOptions extends GenericModel {
 
+    /**
+     * The secret type.
+     */
     public interface SecretType {
         /**
          * iam_credentials.
@@ -26,19 +29,19 @@ public class PutConfigOptions extends GenericModel {
         String IAM_CREDENTIALS = "iam_credentials";
     }
 
-    protected EngineConfig engineConfig;
     protected String secretType;
+    protected EngineConfig engineConfig;
 
     /**
      * Builder.
      */
     public static class Builder {
-        private EngineConfig engineConfig;
         private String secretType;
+        private EngineConfig engineConfig;
 
         private Builder(PutConfigOptions putConfigOptions) {
-            this.engineConfig = putConfigOptions.engineConfig;
             this.secretType = putConfigOptions.secretType;
+            this.engineConfig = putConfigOptions.engineConfig;
         }
 
         /**
@@ -50,9 +53,11 @@ public class PutConfigOptions extends GenericModel {
         /**
          * Instantiates a new builder with required properties.
          *
+         * @param secretType   the secretType
          * @param engineConfig the engineConfig
          */
-        public Builder(EngineConfig engineConfig) {
+        public Builder(String secretType, EngineConfig engineConfig) {
+            this.secretType = secretType;
             this.engineConfig = engineConfig;
         }
 
@@ -66,17 +71,6 @@ public class PutConfigOptions extends GenericModel {
         }
 
         /**
-         * Set the engineConfig.
-         *
-         * @param engineConfig the engineConfig
-         * @return the PutConfigOptions builder
-         */
-        public Builder engineConfig(EngineConfig engineConfig) {
-            this.engineConfig = engineConfig;
-            return this;
-        }
-
-        /**
          * Set the secretType.
          *
          * @param secretType the secretType
@@ -86,13 +80,26 @@ public class PutConfigOptions extends GenericModel {
             this.secretType = secretType;
             return this;
         }
+
+        /**
+         * Set the engineConfig.
+         *
+         * @param engineConfig the engineConfig
+         * @return the PutConfigOptions builder
+         */
+        public Builder engineConfig(EngineConfig engineConfig) {
+            this.engineConfig = engineConfig;
+            return this;
+        }
     }
 
     protected PutConfigOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.engineConfig,
                 "engineConfig cannot be null");
-        engineConfig = builder.engineConfig;
         secretType = builder.secretType;
+        engineConfig = builder.engineConfig;
     }
 
     /**
@@ -105,6 +112,17 @@ public class PutConfigOptions extends GenericModel {
     }
 
     /**
+     * Gets the secretType.
+     * <p>
+     * The secret type.
+     *
+     * @return the secretType
+     */
+    public String secretType() {
+        return secretType;
+    }
+
+    /**
      * Gets the engineConfig.
      * <p>
      * Properties to update for a secrets engine.
@@ -113,15 +131,6 @@ public class PutConfigOptions extends GenericModel {
      */
     public EngineConfig engineConfig() {
         return engineConfig;
-    }
-
-    /**
-     * Gets the secretType.
-     *
-     * @return the secretType
-     */
-    public String secretType() {
-        return secretType;
     }
 }
 

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -41,6 +41,14 @@ public class ArbitrarySecretResource extends SecretResource {
          * imported_cert.
          */
         String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * kv.
+         */
+        String KV = "kv";
     }
 
 
@@ -53,7 +61,7 @@ public class ArbitrarySecretResource extends SecretResource {
         private String secretGroupId;
         private List<String> labels;
         private Date expirationDate;
-        private String payload;
+        private Object payload;
 
         public Builder(SecretResource arbitrarySecretResource) {
             this.name = arbitrarySecretResource.name;
@@ -166,7 +174,7 @@ public class ArbitrarySecretResource extends SecretResource {
          * @param payload the payload
          * @return the ArbitrarySecretResource builder
          */
-        public Builder payload(String payload) {
+        public Builder payload(Object payload) {
             this.payload = payload;
             return this;
         }

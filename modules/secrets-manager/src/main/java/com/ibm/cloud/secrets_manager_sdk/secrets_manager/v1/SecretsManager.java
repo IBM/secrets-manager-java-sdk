@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.40.0-910cf8c2-20211006-154754
+ * IBM OpenAPI SDK Code Generator Version: 3.45.0-05af0f12-20220209-193923
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -52,6 +52,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersi
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSingleConfigElement;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListAllSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretGroupsOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVersions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutConfigOptions;
@@ -69,8 +71,8 @@ import java.util.Map.Entry;
 
 /**
  * With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that are used in IBM Cloud
- * services or your custom-built applications. Secrets are stored in a dedicated instance of Secrets Manager, built on
- * open source HashiCorp Vault.
+ * services or your custom-built applications. Secrets are stored in a dedicated instance of Secrets Manager, which is
+ * built on open source HashiCorp Vault.
  * <p>
  * API Version: 1.0.0
  * See: https://cloud.ibm.com/docs/secrets-manager
@@ -262,7 +264,7 @@ public class SecretsManager extends BaseService {
     /**
      * Create a secret.
      * <p>
-     * Creates a secret or imports an existing value that you can use to access or authenticate to a protected resource.
+     * Create a secret or import an existing value that you can use to access or authenticate to a protected resource.
      * <p>
      * Use this method to either generate or import an existing secret, such as an arbitrary value or a TLS certificate,
      * that you can manage in your Secrets Manager service instance. A successful request stores the secret in your
@@ -380,7 +382,7 @@ public class SecretsManager extends BaseService {
     /**
      * Get a secret.
      * <p>
-     * Retrieves a secret and its details by specifying the ID of the secret.
+     * Get a secret and its details by specifying the ID of the secret.
      * <p>
      * A successful request returns the secret data that is associated with your secret, along with other metadata. To
      * view only the details of a specified secret without retrieving its value, use the [Get secret
@@ -412,7 +414,8 @@ public class SecretsManager extends BaseService {
      * <p>
      * Invokes an action on a specified secret. This method supports the following actions:
      * <p>
-     * - `rotate`: Replace the value of an `arbitrary`, `username_password`, `public_cert` or `imported_cert` secret.
+     * - `rotate`: Replace the value of a secret.
+     * - `restore`: Restore a previous version of an `iam_credentials` secret.
      * - `delete_credentials`: Delete the API key that is associated with an `iam_credentials` secret.
      *
      * @param updateSecretOptions the {@link UpdateSecretOptions} containing the options for the call
@@ -431,7 +434,9 @@ public class SecretsManager extends BaseService {
         }
         builder.header("Accept", "application/json");
         builder.query("action", String.valueOf(updateSecretOptions.action()));
-        builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateSecretOptions.secretAction()), "application/json");
+        if (updateSecretOptions.secretAction() != null) {
+            builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateSecretOptions.secretAction()), "application/json");
+        }
         ResponseConverter<GetSecret> responseConverter =
                 ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecret>() {
                 }.getType());
@@ -458,6 +463,34 @@ public class SecretsManager extends BaseService {
             builder.header(header.getKey(), header.getValue());
         }
         ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * List versions of a secret.
+     * <p>
+     * Retrieves a list of the versions of a secret.
+     * <p>
+     * A successful request returns the list of the versions along with the metadata of each version.
+     *
+     * @param listSecretVersionsOptions the {@link ListSecretVersionsOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link ListSecretVersions}
+     */
+    public ServiceCall<ListSecretVersions> listSecretVersions(ListSecretVersionsOptions listSecretVersionsOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(listSecretVersionsOptions,
+                "listSecretVersionsOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", listSecretVersionsOptions.secretType());
+        pathParamsMap.put("id", listSecretVersionsOptions.id());
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/secrets/{secret_type}/{id}/versions", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "listSecretVersions");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        ResponseConverter<ListSecretVersions> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ListSecretVersions>() {
+                }.getType());
         return createServiceCall(builder.build(), responseConverter);
     }
 
@@ -703,7 +736,7 @@ public class SecretsManager extends BaseService {
      * <p>
      * Adds a configuration element to the specified secret type.
      * <p>
-     * Use this method to define the configurations that are required to enable the  public certificates (`public_cert`)
+     * Use this method to define the configurations that are required to enable the public certificates (`public_cert`)
      * engine. You can add up to 10 certificate authority and DNS provider configurations for your instance.
      *
      * @param createConfigElementOptions the {@link CreateConfigElementOptions} containing the options for the call
