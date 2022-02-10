@@ -174,7 +174,7 @@ public class ArbitrarySecretResource extends SecretResource {
          * @param payload the payload
          * @return the ArbitrarySecretResource builder
          */
-        public Builder payload(String payload) {
+        public Builder payload(Object payload) {
             this.payload = payload;
             return this;
         }

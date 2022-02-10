@@ -175,7 +175,7 @@ public class KvSecretResource extends SecretResource {
          * @param payload the payload
          * @return the KvSecretResource builder
          */
-        public Builder payload(Map<String, Object> payload) {
+        public Builder payload(Object payload) {
             this.payload = payload;
             return this;
         }
