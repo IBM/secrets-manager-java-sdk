@@ -12,7 +12,6 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
-import java.util.Map;
 
 /**
  * The request body of a `rotate` action.
