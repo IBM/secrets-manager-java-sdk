@@ -44,7 +44,7 @@ public class RotateKvSecretBodyTest {
 
         RotateKvSecretBody rotateKvSecretBodyModelNew = TestUtilities.deserialize(json, RotateKvSecretBody.class);
         assertTrue(rotateKvSecretBodyModelNew instanceof RotateKvSecretBody);
-        assertEquals(rotateKvSecretBodyModelNew.payload().toString(), Collections.singletonMap("foo", "testString"));
+        assertEquals(rotateKvSecretBodyModelNew.payload(), Collections.singletonMap("foo", "testString"));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
