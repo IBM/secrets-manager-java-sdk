@@ -89,7 +89,7 @@ public class SecretResource extends GenericModel {
     protected List<Map<String, Object>> versions;
     @SerializedName("expiration_date")
     protected Date expirationDate;
-    protected Map<String,Object> payload;
+    protected Object payload;
     @SerializedName("secret_data")
     protected Map<String, Object> secretData;
     protected String username;
@@ -331,7 +331,7 @@ public class SecretResource extends GenericModel {
      *
      * @return the payload
      */
-    public Map<String,Object> payload() {
+    public Object payload() {
         return payload;
     }
 

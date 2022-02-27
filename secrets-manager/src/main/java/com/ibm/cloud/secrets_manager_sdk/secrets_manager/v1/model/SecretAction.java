@@ -54,7 +54,7 @@ public class SecretAction extends GenericModel {
      *
      * @return the payload
      */
-    public Map<String,Object> payload() {
+    public Object payload() {
         return payload;
     }
 

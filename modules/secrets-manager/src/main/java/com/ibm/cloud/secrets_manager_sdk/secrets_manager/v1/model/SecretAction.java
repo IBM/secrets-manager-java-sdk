@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class SecretAction extends GenericModel {
 
-    protected Map<String,Object> payload;
+    protected Object payload;
     @SerializedName("rotate_keys")
     protected Boolean rotateKeys;
     protected String password;
@@ -56,7 +56,7 @@ public class SecretAction extends GenericModel {
      *
      * @return the payload
      */
-    public Map<String,Object> payload() {
+    public Object payload() {
         return payload;
     }
 

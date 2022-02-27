@@ -24,7 +24,7 @@ public class RotateArbitrarySecretBody extends SecretAction {
      * Builder.
      */
     public static class Builder {
-        private Map<String,Object> payload;
+        private Object payload;
 
         public Builder(SecretAction rotateArbitrarySecretBody) {
             this.payload = rotateArbitrarySecretBody.payload;
@@ -41,7 +41,7 @@ public class RotateArbitrarySecretBody extends SecretAction {
          *
          * @param payload the payload
          */
-        public Builder(Map<String,Object> payload) {
+        public Builder(Object payload) {
             this.payload = payload;
         }
 
@@ -60,7 +60,7 @@ public class RotateArbitrarySecretBody extends SecretAction {
          * @param payload the payload
          * @return the RotateArbitrarySecretBody builder
          */
-        public Builder payload(Map<String,Object> payload) {
+        public Builder payload(Object payload) {
             this.payload = payload;
             return this;
         }
