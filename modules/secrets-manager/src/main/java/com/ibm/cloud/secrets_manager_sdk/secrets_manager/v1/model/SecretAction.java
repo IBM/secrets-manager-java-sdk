@@ -15,8 +15,6 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
-import java.util.Map;
-
 /**
  * SecretAction.
  * <p>
