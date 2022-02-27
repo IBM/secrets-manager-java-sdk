@@ -96,7 +96,9 @@ public class SecretVersion extends GenericModel {
     /**
      * Gets the secretData.
      * <p>
-     * The data that is associated with the secret version. The data object contains the field `payload`.
+     * The data that is associated with the secret version.
+     * <p>
+     * The data object contains the field `payload`.
      *
      * @return the secretData
      */

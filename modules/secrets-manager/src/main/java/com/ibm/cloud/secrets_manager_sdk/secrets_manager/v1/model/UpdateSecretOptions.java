@@ -40,6 +40,10 @@ public class UpdateSecretOptions extends GenericModel {
          */
         String PUBLIC_CERT = "public_cert";
         /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
          * username_password.
          */
         String USERNAME_PASSWORD = "username_password";
@@ -61,6 +65,10 @@ public class UpdateSecretOptions extends GenericModel {
          * restore.
          */
         String RESTORE = "restore";
+        /**
+         * revoke.
+         */
+        String REVOKE = "revoke";
         /**
          * delete_credentials.
          */

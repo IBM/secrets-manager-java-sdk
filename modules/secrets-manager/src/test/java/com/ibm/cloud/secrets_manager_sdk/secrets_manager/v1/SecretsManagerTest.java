@@ -40,11 +40,13 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementD
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateIAMCredentialsSecretEngineRootConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteCredentialsForIAMCredentialsSecret;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.EngineConfig;
@@ -57,6 +59,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigEleme
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsResourcesItemDnsProvidersConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigResourcesItem;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetNotificationsRegistrationOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetNotificationsSettings;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretGroupOptions;
@@ -84,6 +88,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVers
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretsOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.NotificationsSettings;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretResource;
@@ -110,6 +116,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretResource
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SendTestNotificationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
@@ -123,11 +130,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -459,7 +462,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .secretGroupId("testString")
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-                .payload("testString")
+                .payload(Collections.singletonMap("foo", "testString"))
                 .build();
 
         // Construct an instance of the CreateSecretOptions model
@@ -677,7 +680,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the RotateArbitrarySecretBody model
         RotateArbitrarySecretBody secretActionModel = new RotateArbitrarySecretBody.Builder()
-                .payload("testString")
+                .payload(Collections.singletonMap("foo", "testString"))
                 .build();
 
         // Construct an instance of the UpdateSecretOptions model
@@ -1413,9 +1416,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the GetConfigElementOptions model
         GetConfigElementOptions getConfigElementOptionsModel = new GetConfigElementOptions.Builder()
+                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
-                .configName("testString")
                 .build();
 
         // Invoke getConfigElement() with a valid options model and verify the result
@@ -1466,9 +1469,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the UpdateConfigElementOptions model
         UpdateConfigElementOptions updateConfigElementOptionsModel = new UpdateConfigElementOptions.Builder()
+                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
-                .configName("testString")
                 .type("letsencrypt")
                 .config(new java.util.HashMap<String, Object>() {
                     {
@@ -1524,9 +1527,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the DeleteConfigElementOptions model
         DeleteConfigElementOptions deleteConfigElementOptionsModel = new DeleteConfigElementOptions.Builder()
+                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
-                .configName("testString")
                 .build();
 
         // Invoke deleteConfigElement() with a valid options model and verify the result
@@ -1562,6 +1565,183 @@ public class SecretsManagerTest extends PowerMockTestCase {
     public void testDeleteConfigElementNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
         secretsManagerService.deleteConfigElement(null).execute();
+    }
+
+    // Test the createNotificationsRegistration operation with a valid options model parameter
+    @Test
+    public void testCreateNotificationsRegistrationWOptions() throws Throwable {
+        // Register a mock response
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"event_notifications_instance_crn\": \"crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::\"}]}";
+        String createNotificationsRegistrationPath = "/api/v1/notifications/registration";
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(201)
+                .setBody(mockResponseBody));
+
+        // Construct an instance of the CreateNotificationsRegistrationOptions model
+        CreateNotificationsRegistrationOptions createNotificationsRegistrationOptionsModel = new CreateNotificationsRegistrationOptions.Builder()
+                .eventNotificationsInstanceCrn("crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::")
+                .eventNotificationsSourceName("My Secrets Manager")
+                .eventNotificationsSourceDescription("Optional description of this source in an Event Notifications instance.")
+                .build();
+
+        // Invoke createNotificationsRegistration() with a valid options model and verify the result
+        Response<GetNotificationsSettings> response = secretsManagerService.createNotificationsRegistration(createNotificationsRegistrationOptionsModel).execute();
+        assertNotNull(response);
+        GetNotificationsSettings responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request sent to the mock server
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "POST");
+        // Verify request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, createNotificationsRegistrationPath);
+        // Verify that there is no query string
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+    }
+
+    // Test the createNotificationsRegistration operation with and without retries enabled
+    @Test
+    public void testCreateNotificationsRegistrationWRetries() throws Throwable {
+        secretsManagerService.enableRetries(4, 30);
+        testCreateNotificationsRegistrationWOptions();
+
+        secretsManagerService.disableRetries();
+        testCreateNotificationsRegistrationWOptions();
+    }
+
+    // Test the createNotificationsRegistration operation with a null options model (negative test)
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testCreateNotificationsRegistrationNoOptions() throws Throwable {
+        server.enqueue(new MockResponse());
+        secretsManagerService.createNotificationsRegistration(null).execute();
+    }
+
+    // Test the getNotificationsRegistration operation with a valid options model parameter
+    @Test
+    public void testGetNotificationsRegistrationWOptions() throws Throwable {
+        // Register a mock response
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"event_notifications_instance_crn\": \"crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::\"}]}";
+        String getNotificationsRegistrationPath = "/api/v1/notifications/registration";
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        // Construct an instance of the GetNotificationsRegistrationOptions model
+        GetNotificationsRegistrationOptions getNotificationsRegistrationOptionsModel = new GetNotificationsRegistrationOptions();
+
+        // Invoke getNotificationsRegistration() with a valid options model and verify the result
+        Response<GetNotificationsSettings> response = secretsManagerService.getNotificationsRegistration(getNotificationsRegistrationOptionsModel).execute();
+        assertNotNull(response);
+        GetNotificationsSettings responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request sent to the mock server
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "GET");
+        // Verify request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, getNotificationsRegistrationPath);
+        // Verify that there is no query string
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+    }
+
+    // Test the getNotificationsRegistration operation with and without retries enabled
+    @Test
+    public void testGetNotificationsRegistrationWRetries() throws Throwable {
+        secretsManagerService.enableRetries(4, 30);
+        testGetNotificationsRegistrationWOptions();
+
+        secretsManagerService.disableRetries();
+        testGetNotificationsRegistrationWOptions();
+    }
+
+    // Test the deleteNotificationsRegistration operation with a valid options model parameter
+    @Test
+    public void testDeleteNotificationsRegistrationWOptions() throws Throwable {
+        // Register a mock response
+        String mockResponseBody = "";
+        String deleteNotificationsRegistrationPath = "/api/v1/notifications/registration";
+        server.enqueue(new MockResponse()
+                .setResponseCode(204)
+                .setBody(mockResponseBody));
+
+        // Construct an instance of the DeleteNotificationsRegistrationOptions model
+        DeleteNotificationsRegistrationOptions deleteNotificationsRegistrationOptionsModel = new DeleteNotificationsRegistrationOptions();
+
+        // Invoke deleteNotificationsRegistration() with a valid options model and verify the result
+        Response<Void> response = secretsManagerService.deleteNotificationsRegistration(deleteNotificationsRegistrationOptionsModel).execute();
+        assertNotNull(response);
+        Void responseObj = response.getResult();
+        assertNull(responseObj);
+
+        // Verify the contents of the request sent to the mock server
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "DELETE");
+        // Verify request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, deleteNotificationsRegistrationPath);
+        // Verify that there is no query string
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+    }
+
+    // Test the deleteNotificationsRegistration operation with and without retries enabled
+    @Test
+    public void testDeleteNotificationsRegistrationWRetries() throws Throwable {
+        secretsManagerService.enableRetries(4, 30);
+        testDeleteNotificationsRegistrationWOptions();
+
+        secretsManagerService.disableRetries();
+        testDeleteNotificationsRegistrationWOptions();
+    }
+
+    // Test the sendTestNotification operation with a valid options model parameter
+    @Test
+    public void testSendTestNotificationWOptions() throws Throwable {
+        // Register a mock response
+        String mockResponseBody = "";
+        String sendTestNotificationPath = "/api/v1/notifications/test";
+        server.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        // Construct an instance of the SendTestNotificationOptions model
+        SendTestNotificationOptions sendTestNotificationOptionsModel = new SendTestNotificationOptions();
+
+        // Invoke sendTestNotification() with a valid options model and verify the result
+        Response<Void> response = secretsManagerService.sendTestNotification(sendTestNotificationOptionsModel).execute();
+        assertNotNull(response);
+        Void responseObj = response.getResult();
+        assertNull(responseObj);
+
+        // Verify the contents of the request sent to the mock server
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "GET");
+        // Verify request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, sendTestNotificationPath);
+        // Verify that there is no query string
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+    }
+
+    // Test the sendTestNotification operation with and without retries enabled
+    @Test
+    public void testSendTestNotificationWRetries() throws Throwable {
+        secretsManagerService.enableRetries(4, 30);
+        testSendTestNotificationWOptions();
+
+        secretsManagerService.disableRetries();
+        testSendTestNotificationWOptions();
     }
 
     // Perform setup needed before each test method

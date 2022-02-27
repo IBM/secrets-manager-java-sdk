@@ -35,13 +35,13 @@ public class DeleteConfigElementOptionsTest {
     @Test
     public void testDeleteConfigElementOptions() throws Throwable {
         DeleteConfigElementOptions deleteConfigElementOptionsModel = new DeleteConfigElementOptions.Builder()
+                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
-                .configName("testString")
                 .build();
+        assertEquals(deleteConfigElementOptionsModel.configName(), "testString");
         assertEquals(deleteConfigElementOptionsModel.secretType(), "public_cert");
         assertEquals(deleteConfigElementOptionsModel.configElement(), "certificate_authorities");
-        assertEquals(deleteConfigElementOptionsModel.configName(), "testString");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

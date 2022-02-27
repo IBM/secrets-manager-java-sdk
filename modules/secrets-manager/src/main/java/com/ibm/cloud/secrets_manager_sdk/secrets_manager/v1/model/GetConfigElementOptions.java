@@ -27,6 +27,10 @@ public class GetConfigElementOptions extends GenericModel {
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
     }
 
     /**
@@ -41,24 +45,36 @@ public class GetConfigElementOptions extends GenericModel {
          * dns_providers.
          */
         String DNS_PROVIDERS = "dns_providers";
+        /**
+         * root_certificate_authorities.
+         */
+        String ROOT_CERTIFICATE_AUTHORITIES = "root_certificate_authorities";
+        /**
+         * intermediate_certificate_authorities.
+         */
+        String INTERMEDIATE_CERTIFICATE_AUTHORITIES = "intermediate_certificate_authorities";
+        /**
+         * certificate_templates.
+         */
+        String CERTIFICATE_TEMPLATES = "certificate_templates";
     }
 
+    protected String configName;
     protected String secretType;
     protected String configElement;
-    protected String configName;
 
     /**
      * Builder.
      */
     public static class Builder {
+        private String configName;
         private String secretType;
         private String configElement;
-        private String configName;
 
         private Builder(GetConfigElementOptions getConfigElementOptions) {
+            this.configName = getConfigElementOptions.configName;
             this.secretType = getConfigElementOptions.secretType;
             this.configElement = getConfigElementOptions.configElement;
-            this.configName = getConfigElementOptions.configName;
         }
 
         /**
@@ -70,14 +86,14 @@ public class GetConfigElementOptions extends GenericModel {
         /**
          * Instantiates a new builder with required properties.
          *
+         * @param configName    the configName
          * @param secretType    the secretType
          * @param configElement the configElement
-         * @param configName    the configName
          */
-        public Builder(String secretType, String configElement, String configName) {
+        public Builder(String configName, String secretType, String configElement) {
+            this.configName = configName;
             this.secretType = secretType;
             this.configElement = configElement;
-            this.configName = configName;
         }
 
         /**
@@ -87,6 +103,17 @@ public class GetConfigElementOptions extends GenericModel {
          */
         public GetConfigElementOptions build() {
             return new GetConfigElementOptions(this);
+        }
+
+        /**
+         * Set the configName.
+         *
+         * @param configName the configName
+         * @return the GetConfigElementOptions builder
+         */
+        public Builder configName(String configName) {
+            this.configName = configName;
+            return this;
         }
 
         /**
@@ -110,29 +137,18 @@ public class GetConfigElementOptions extends GenericModel {
             this.configElement = configElement;
             return this;
         }
-
-        /**
-         * Set the configName.
-         *
-         * @param configName the configName
-         * @return the GetConfigElementOptions builder
-         */
-        public Builder configName(String configName) {
-            this.configName = configName;
-            return this;
-        }
     }
 
     protected GetConfigElementOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configName,
+                "configName cannot be empty");
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configElement,
                 "configElement cannot be empty");
-        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configName,
-                "configName cannot be empty");
+        configName = builder.configName;
         secretType = builder.secretType;
         configElement = builder.configElement;
-        configName = builder.configName;
     }
 
     /**
@@ -142,6 +158,17 @@ public class GetConfigElementOptions extends GenericModel {
      */
     public Builder newBuilder() {
         return new Builder(this);
+    }
+
+    /**
+     * Gets the configName.
+     * <p>
+     * The name of your configuration.
+     *
+     * @return the configName
+     */
+    public String configName() {
+        return configName;
     }
 
     /**
@@ -164,17 +191,6 @@ public class GetConfigElementOptions extends GenericModel {
      */
     public String configElement() {
         return configElement;
-    }
-
-    /**
-     * Gets the configName.
-     * <p>
-     * The name of your configuration.
-     *
-     * @return the configName
-     */
-    public String configName() {
-        return configName;
     }
 }
 

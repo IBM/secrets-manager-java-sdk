@@ -91,10 +91,8 @@ public class ConfigElementDefConfig extends GenericModel {
      * <p>
      * The username that is associated with your classic infrastructure account.
      * <p>
-     * In most cases, your classic infrastructure username is your `&lt;account_id&gt;_&lt;email_address&gt;`. In the
-     * console, you can find your username by going to **Manage &gt; Access (IAM) &gt; Users &gt; name &gt; VPN
-     * password.** For more information, see the
-     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
+     * In most cases, your classic infrastructure username is your `&lt;account_id&gt;_&lt;email_address&gt;`. For more
+     * information, see the [docs](https://cloud.ibm.com/docs/account?topic=account-classic_keys).
      *
      * @return the classicInfrastructureUsername
      */
@@ -107,9 +105,8 @@ public class ConfigElementDefConfig extends GenericModel {
      * <p>
      * Your classic infrastructure API key.
      * <p>
-     * In the console, you can view or create a classic infrastructure API key by going to **Manage &gt; Access (IAM)
-     * &gt; Users &gt; name &gt; API keys.** For more information, see the
-     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
+     * For information about viewing and accessing your classic infrastructure API key, see the
+     * [docs](https://cloud.ibm.com/docs/account?topic=account-classic_keys).
      *
      * @return the classicInfrastructurePassword
      */

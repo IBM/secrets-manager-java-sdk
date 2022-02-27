@@ -34,6 +34,10 @@ public class PutPolicyOptions extends GenericModel {
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
     }
 
     /**

@@ -37,9 +37,13 @@ public class RotationTest {
         Rotation rotationModel = new Rotation.Builder()
                 .autoRotate(false)
                 .rotateKeys(false)
+                .interval(Long.valueOf("26"))
+                .unit("day")
                 .build();
         assertEquals(rotationModel.autoRotate(), Boolean.valueOf(false));
         assertEquals(rotationModel.rotateKeys(), Boolean.valueOf(false));
+        assertEquals(rotationModel.interval(), Long.valueOf("26"));
+        assertEquals(rotationModel.unit(), "day");
 
         String json = TestUtilities.serialize(rotationModel);
 
@@ -47,5 +51,7 @@ public class RotationTest {
         assertTrue(rotationModelNew instanceof Rotation);
         assertEquals(rotationModelNew.autoRotate(), Boolean.valueOf(false));
         assertEquals(rotationModelNew.rotateKeys(), Boolean.valueOf(false));
+        assertEquals(rotationModelNew.interval(), Long.valueOf("26"));
+        assertEquals(rotationModelNew.unit(), "day");
     }
 }

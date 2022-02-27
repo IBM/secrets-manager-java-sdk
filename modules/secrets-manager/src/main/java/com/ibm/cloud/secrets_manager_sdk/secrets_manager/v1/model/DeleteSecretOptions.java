@@ -40,6 +40,10 @@ public class DeleteSecretOptions extends GenericModel {
          */
         String PUBLIC_CERT = "public_cert";
         /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
          * username_password.
          */
         String USERNAME_PASSWORD = "username_password";

@@ -58,7 +58,7 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
         private List<String> labels;
         private String name;
         private String description;
-        private Object ttl;
+        private String ttl;
         private Boolean serviceIdIsStatic;
         private String serviceId;
         private List<String> accessGroups;
@@ -169,7 +169,7 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
          * @param ttl the ttl
          * @return the IAMCredentialsSecretMetadata builder
          */
-        public Builder ttl(Object ttl) {
+        public Builder ttl(String ttl) {
             this.ttl = ttl;
             return this;
         }

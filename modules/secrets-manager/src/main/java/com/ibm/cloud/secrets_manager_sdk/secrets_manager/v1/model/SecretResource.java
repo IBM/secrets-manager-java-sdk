@@ -57,6 +57,10 @@ public class SecretResource extends GenericModel {
          */
         String PUBLIC_CERT = "public_cert";
         /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
          * kv.
          */
         String KV = "kv";
@@ -85,7 +89,7 @@ public class SecretResource extends GenericModel {
     protected List<Map<String, Object>> versions;
     @SerializedName("expiration_date")
     protected Date expirationDate;
-    protected Object payload;
+    protected Map<String,Object> payload;
     @SerializedName("secret_data")
     protected Map<String, Object> secretData;
     protected String username;
@@ -327,14 +331,16 @@ public class SecretResource extends GenericModel {
      *
      * @return the payload
      */
-    public Object payload() {
+    public Map<String,Object> payload() {
         return payload;
     }
 
     /**
      * Gets the secretData.
      * <p>
-     * The data that is associated with the secret version. The data object contains the field `payload`.
+     * The data that is associated with the secret version.
+     * <p>
+     * The data object contains the field `payload`.
      *
      * @return the secretData
      */

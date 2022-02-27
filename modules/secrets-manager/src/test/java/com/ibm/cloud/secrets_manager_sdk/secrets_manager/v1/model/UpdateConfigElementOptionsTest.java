@@ -35,9 +35,9 @@ public class UpdateConfigElementOptionsTest {
     @Test
     public void testUpdateConfigElementOptions() throws Throwable {
         UpdateConfigElementOptions updateConfigElementOptionsModel = new UpdateConfigElementOptions.Builder()
+                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
-                .configName("testString")
                 .type("letsencrypt")
                 .config(new java.util.HashMap<String, Object>() {
                     {
@@ -45,9 +45,9 @@ public class UpdateConfigElementOptionsTest {
                     }
                 })
                 .build();
+        assertEquals(updateConfigElementOptionsModel.configName(), "testString");
         assertEquals(updateConfigElementOptionsModel.secretType(), "public_cert");
         assertEquals(updateConfigElementOptionsModel.configElement(), "certificate_authorities");
-        assertEquals(updateConfigElementOptionsModel.configName(), "testString");
         assertEquals(updateConfigElementOptionsModel.type(), "letsencrypt");
         assertEquals(updateConfigElementOptionsModel.config(), new java.util.HashMap<String, Object>() {
             {

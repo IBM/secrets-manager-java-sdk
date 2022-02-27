@@ -39,6 +39,18 @@ public class ConfigElementMetadata extends GenericModel {
          * classic_infrastructure.
          */
         String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
+        /**
+         * root_certificate_authority.
+         */
+        String ROOT_CERTIFICATE_AUTHORITY = "root_certificate_authority";
+        /**
+         * intermediate_certificate_authority.
+         */
+        String INTERMEDIATE_CERTIFICATE_AUTHORITY = "intermediate_certificate_authority";
+        /**
+         * certificate_template.
+         */
+        String CERTIFICATE_TEMPLATE = "certificate_template";
     }
 
     protected String name;

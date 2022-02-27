@@ -20,10 +20,28 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class Rotation extends GenericModel {
 
+    /**
+     * The time unit of the rotation interval.
+     * <p>
+     * **Note:** Use this field only for private certificates. Ignored for public certificates.
+     */
+    public interface Unit {
+        /**
+         * day.
+         */
+        String DAY = "day";
+        /**
+         * month.
+         */
+        String MONTH = "month";
+    }
+
     @SerializedName("auto_rotate")
     protected Boolean autoRotate;
     @SerializedName("rotate_keys")
     protected Boolean rotateKeys;
+    protected Long interval;
+    protected String unit;
 
     /**
      * Builder.
@@ -31,10 +49,14 @@ public class Rotation extends GenericModel {
     public static class Builder {
         private Boolean autoRotate;
         private Boolean rotateKeys;
+        private Long interval;
+        private String unit;
 
         private Builder(Rotation rotation) {
             this.autoRotate = rotation.autoRotate;
             this.rotateKeys = rotation.rotateKeys;
+            this.interval = rotation.interval;
+            this.unit = rotation.unit;
         }
 
         /**
@@ -73,11 +95,35 @@ public class Rotation extends GenericModel {
             this.rotateKeys = rotateKeys;
             return this;
         }
+
+        /**
+         * Set the interval.
+         *
+         * @param interval the interval
+         * @return the Rotation builder
+         */
+        public Builder interval(long interval) {
+            this.interval = interval;
+            return this;
+        }
+
+        /**
+         * Set the unit.
+         *
+         * @param unit the unit
+         * @return the Rotation builder
+         */
+        public Builder unit(String unit) {
+            this.unit = unit;
+            return this;
+        }
     }
 
     protected Rotation(Builder builder) {
         autoRotate = builder.autoRotate;
         rotateKeys = builder.rotateKeys;
+        interval = builder.interval;
+        unit = builder.unit;
     }
 
     /**
@@ -94,8 +140,12 @@ public class Rotation extends GenericModel {
      * <p>
      * Determines whether Secrets Manager rotates your certificate automatically.
      * <p>
-     * If set to `true`, the service reorders your certificate 31 days before it expires. To access the previous  version
-     * of the certificate, you can use the [Get a version of a secret](#get-secret-version) method.
+     * For public certificates, if `auto_rotate` is set to `true` the service reorders your certificate 31 days before it
+     * expires. For private certificates, the certificate is rotated according to the time interval specified in the
+     * `interval` and `unit` fields.
+     * <p>
+     * To access the previous version of the certificate, you can use the
+     * [Get a version of a secret](#get-secret-version) method.
      *
      * @return the autoRotate
      */
@@ -109,11 +159,40 @@ public class Rotation extends GenericModel {
      * Determines whether Secrets Manager rotates the private key for your certificate automatically.
      * <p>
      * If set to `true`, the service generates and stores a new private key for your rotated certificate.
+     * <p>
+     * **Note:** Use this field only for public certificates. Ignored for private certificates.
      *
      * @return the rotateKeys
      */
     public Boolean rotateKeys() {
         return rotateKeys;
+    }
+
+    /**
+     * Gets the interval.
+     * <p>
+     * Used together with the `unit` field to specify the rotation interval. The minimum interval is one day, and the
+     * maximum interval is 3 years (1095 days). Required in case `auto_rotate` is set to `true`.
+     * <p>
+     * **Note:** Use this field only for private certificates Ignored for public certificates.
+     *
+     * @return the interval
+     */
+    public Long interval() {
+        return interval;
+    }
+
+    /**
+     * Gets the unit.
+     * <p>
+     * The time unit of the rotation interval.
+     * <p>
+     * **Note:** Use this field only for private certificates. Ignored for public certificates.
+     *
+     * @return the unit
+     */
+    public String unit() {
+        return unit;
     }
 }
 

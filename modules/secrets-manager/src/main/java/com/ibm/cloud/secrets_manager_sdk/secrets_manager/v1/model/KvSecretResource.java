@@ -15,6 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties that describe a secret.
@@ -46,6 +47,10 @@ public class KvSecretResource extends SecretResource {
          */
         String PUBLIC_CERT = "public_cert";
         /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
          * kv.
          */
         String KV = "kv";
@@ -61,7 +66,7 @@ public class KvSecretResource extends SecretResource {
         private String secretGroupId;
         private List<String> labels;
         private Date expirationDate;
-        private Object payload;
+        private Map<String, Object> payload;
 
         public Builder(SecretResource kvSecretResource) {
             this.name = kvSecretResource.name;
@@ -174,7 +179,7 @@ public class KvSecretResource extends SecretResource {
          * @param payload the payload
          * @return the KvSecretResource builder
          */
-        public Builder payload(Object payload) {
+        public Builder payload(Map<String, Object> payload) {
             this.payload = payload;
             return this;
         }

@@ -35,13 +35,13 @@ public class GetConfigElementOptionsTest {
     @Test
     public void testGetConfigElementOptions() throws Throwable {
         GetConfigElementOptions getConfigElementOptionsModel = new GetConfigElementOptions.Builder()
+                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
-                .configName("testString")
                 .build();
+        assertEquals(getConfigElementOptionsModel.configName(), "testString");
         assertEquals(getConfigElementOptionsModel.secretType(), "public_cert");
         assertEquals(getConfigElementOptionsModel.configElement(), "certificate_authorities");
-        assertEquals(getConfigElementOptionsModel.configName(), "testString");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

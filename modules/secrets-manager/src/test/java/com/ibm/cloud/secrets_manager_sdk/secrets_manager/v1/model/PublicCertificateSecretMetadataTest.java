@@ -43,9 +43,13 @@ public class PublicCertificateSecretMetadataTest {
         Rotation rotationModel = new Rotation.Builder()
                 .autoRotate(false)
                 .rotateKeys(false)
+                .interval(Long.valueOf("26"))
+                .unit("day")
                 .build();
         assertEquals(rotationModel.autoRotate(), Boolean.valueOf(false));
         assertEquals(rotationModel.rotateKeys(), Boolean.valueOf(false));
+        assertEquals(rotationModel.interval(), Long.valueOf("26"));
+        assertEquals(rotationModel.unit(), "day");
 
         IssuanceInfo issuanceInfoModel = new IssuanceInfo.Builder()
                 .build();

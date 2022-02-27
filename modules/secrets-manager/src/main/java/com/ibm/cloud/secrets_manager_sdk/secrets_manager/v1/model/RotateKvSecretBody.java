@@ -12,6 +12,7 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.Map;
 
 /**
  * The request body of a `rotate` action.
@@ -23,7 +24,7 @@ public class RotateKvSecretBody extends SecretAction {
      * Builder.
      */
     public static class Builder {
-        private Object payload;
+        private Map<String, Object> payload;
 
         public Builder(SecretAction rotateKvSecretBody) {
             this.payload = rotateKvSecretBody.payload;
@@ -40,7 +41,7 @@ public class RotateKvSecretBody extends SecretAction {
          *
          * @param payload the payload
          */
-        public Builder(Object payload) {
+        public Builder(Map<String, Object> payload) {
             this.payload = payload;
         }
 
@@ -59,7 +60,7 @@ public class RotateKvSecretBody extends SecretAction {
          * @param payload the payload
          * @return the RotateKvSecretBody builder
          */
-        public Builder payload(Object payload) {
+        public Builder payload(Map<String, Object> payload) {
             this.payload = payload;
             return this;
         }

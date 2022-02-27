@@ -27,6 +27,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - IAMCredentialsSecretMetadata
  * - CertificateSecretMetadata
  * - PublicCertificateSecretMetadata
+ * - PrivateCertificateSecretMetadata
  * - KvSecretMetadata
  */
 public class SecretMetadata extends GenericModel {
@@ -83,7 +84,7 @@ public class SecretMetadata extends GenericModel {
     protected Long versionsTotal;
     @SerializedName("expiration_date")
     protected Date expirationDate;
-    protected Object ttl;
+    protected String ttl;
     @SerializedName("reuse_api_key")
     protected Boolean reuseApiKey;
     @SerializedName("service_id_is_static")
@@ -292,17 +293,11 @@ public class SecretMetadata extends GenericModel {
     /**
      * Gets the ttl.
      * <p>
-     * The time-to-live (TTL) or lease duration to assign to generated credentials.
-     * <p>
-     * For `iam_credentials` secrets, the TTL defines for how long each generated API key remains valid. The value can be
-     * either an integer that specifies the number of seconds, or the string representation of a duration, such as `120m`
-     * or `24h`.
-     * <p>
-     * Minimum duration is 1 minute. Maximum is 90 days.
+     * Specifies the Time To Live value provided as a string duration with time suffix.
      *
      * @return the ttl
      */
-    public Object ttl() {
+    public String ttl() {
         return ttl;
     }
 

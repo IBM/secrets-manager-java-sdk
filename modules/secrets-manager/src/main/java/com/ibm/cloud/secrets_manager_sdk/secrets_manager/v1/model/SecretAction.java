@@ -15,6 +15,8 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
+import java.util.Map;
+
 /**
  * SecretAction.
  * <p>
@@ -29,7 +31,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretAction extends GenericModel {
 
-    protected Object payload;
+    protected Map<String,Object> payload;
     @SerializedName("rotate_keys")
     protected Boolean rotateKeys;
     protected String password;
@@ -54,7 +56,7 @@ public class SecretAction extends GenericModel {
      *
      * @return the payload
      */
-    public Object payload() {
+    public Map<String,Object> payload() {
         return payload;
     }
 
