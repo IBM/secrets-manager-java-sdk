@@ -29,7 +29,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretAction extends GenericModel {
 
-    protected Map<String,Object> payload;
+    protected Object payload;
     @SerializedName("rotate_keys")
     protected Boolean rotateKeys;
     protected String password;
