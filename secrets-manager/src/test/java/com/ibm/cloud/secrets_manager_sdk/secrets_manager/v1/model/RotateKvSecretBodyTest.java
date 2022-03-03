@@ -35,27 +35,15 @@ public class RotateKvSecretBodyTest {
     @Test
     public void testRotateKvSecretBody() throws Throwable {
         RotateKvSecretBody rotateKvSecretBodyModel = new RotateKvSecretBody.Builder()
-                .payload(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .payload(Collections.singletonMap("foo", "testString"))
                 .build();
-        assertEquals(rotateKvSecretBodyModel.payload(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(rotateKvSecretBodyModel.payload(), Collections.singletonMap("foo", "testString"));
 
         String json = TestUtilities.serialize(rotateKvSecretBodyModel);
 
         RotateKvSecretBody rotateKvSecretBodyModelNew = TestUtilities.deserialize(json, RotateKvSecretBody.class);
         assertTrue(rotateKvSecretBodyModelNew instanceof RotateKvSecretBody);
-        assertEquals(rotateKvSecretBodyModelNew.payload().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(rotateKvSecretBodyModelNew.payload(), Collections.singletonMap("foo", "testString"));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
