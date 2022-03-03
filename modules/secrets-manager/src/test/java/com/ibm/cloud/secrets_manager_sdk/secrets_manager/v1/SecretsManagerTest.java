@@ -130,7 +130,11 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -462,7 +466,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .secretGroupId("testString")
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-                .payload(Collections.singletonMap("foo", "testString"))
+                .payload("testString")
                 .build();
 
         // Construct an instance of the CreateSecretOptions model
@@ -680,7 +684,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the RotateArbitrarySecretBody model
         RotateArbitrarySecretBody secretActionModel = new RotateArbitrarySecretBody.Builder()
-                .payload(Collections.singletonMap("foo", "testString"))
+                .payload("testString")
                 .build();
 
         // Construct an instance of the UpdateSecretOptions model
@@ -1416,9 +1420,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the GetConfigElementOptions model
         GetConfigElementOptions getConfigElementOptionsModel = new GetConfigElementOptions.Builder()
-                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
+                .configName("testString")
                 .build();
 
         // Invoke getConfigElement() with a valid options model and verify the result
@@ -1469,9 +1473,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the UpdateConfigElementOptions model
         UpdateConfigElementOptions updateConfigElementOptionsModel = new UpdateConfigElementOptions.Builder()
-                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
+                .configName("testString")
                 .type("letsencrypt")
                 .config(new java.util.HashMap<String, Object>() {
                     {
@@ -1527,9 +1531,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the DeleteConfigElementOptions model
         DeleteConfigElementOptions deleteConfigElementOptionsModel = new DeleteConfigElementOptions.Builder()
-                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
+                .configName("testString")
                 .build();
 
         // Invoke deleteConfigElement() with a valid options model and verify the result

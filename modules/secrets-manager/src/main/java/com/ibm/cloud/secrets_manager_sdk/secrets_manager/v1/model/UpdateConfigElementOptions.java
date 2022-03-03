@@ -95,9 +95,9 @@ public class UpdateConfigElementOptions extends GenericModel {
         String CERTIFICATE_TEMPLATE = "certificate_template";
     }
 
-    protected String configName;
     protected String secretType;
     protected String configElement;
+    protected String configName;
     protected String type;
     protected Map<String, Object> config;
 
@@ -105,16 +105,16 @@ public class UpdateConfigElementOptions extends GenericModel {
      * Builder.
      */
     public static class Builder {
-        private String configName;
         private String secretType;
         private String configElement;
+        private String configName;
         private String type;
         private Map<String, Object> config;
 
         private Builder(UpdateConfigElementOptions updateConfigElementOptions) {
-            this.configName = updateConfigElementOptions.configName;
             this.secretType = updateConfigElementOptions.secretType;
             this.configElement = updateConfigElementOptions.configElement;
+            this.configName = updateConfigElementOptions.configName;
             this.type = updateConfigElementOptions.type;
             this.config = updateConfigElementOptions.config;
         }
@@ -128,16 +128,16 @@ public class UpdateConfigElementOptions extends GenericModel {
         /**
          * Instantiates a new builder with required properties.
          *
-         * @param configName    the configName
          * @param secretType    the secretType
          * @param configElement the configElement
+         * @param configName    the configName
          * @param type          the type
          * @param config        the config
          */
-        public Builder(String configName, String secretType, String configElement, String type, Map<String, Object> config) {
-            this.configName = configName;
+        public Builder(String secretType, String configElement, String configName, String type, Map<String, Object> config) {
             this.secretType = secretType;
             this.configElement = configElement;
+            this.configName = configName;
             this.type = type;
             this.config = config;
         }
@@ -149,17 +149,6 @@ public class UpdateConfigElementOptions extends GenericModel {
          */
         public UpdateConfigElementOptions build() {
             return new UpdateConfigElementOptions(this);
-        }
-
-        /**
-         * Set the configName.
-         *
-         * @param configName the configName
-         * @return the UpdateConfigElementOptions builder
-         */
-        public Builder configName(String configName) {
-            this.configName = configName;
-            return this;
         }
 
         /**
@@ -181,6 +170,17 @@ public class UpdateConfigElementOptions extends GenericModel {
          */
         public Builder configElement(String configElement) {
             this.configElement = configElement;
+            return this;
+        }
+
+        /**
+         * Set the configName.
+         *
+         * @param configName the configName
+         * @return the UpdateConfigElementOptions builder
+         */
+        public Builder configName(String configName) {
+            this.configName = configName;
             return this;
         }
 
@@ -208,19 +208,19 @@ public class UpdateConfigElementOptions extends GenericModel {
     }
 
     protected UpdateConfigElementOptions(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configName,
-                "configName cannot be empty");
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configElement,
                 "configElement cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configName,
+                "configName cannot be empty");
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
                 "type cannot be null");
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.config,
                 "config cannot be null");
-        configName = builder.configName;
         secretType = builder.secretType;
         configElement = builder.configElement;
+        configName = builder.configName;
         type = builder.type;
         config = builder.config;
     }
@@ -232,17 +232,6 @@ public class UpdateConfigElementOptions extends GenericModel {
      */
     public Builder newBuilder() {
         return new Builder(this);
-    }
-
-    /**
-     * Gets the configName.
-     * <p>
-     * The name of your configuration.
-     *
-     * @return the configName
-     */
-    public String configName() {
-        return configName;
     }
 
     /**
@@ -265,6 +254,17 @@ public class UpdateConfigElementOptions extends GenericModel {
      */
     public String configElement() {
         return configElement;
+    }
+
+    /**
+     * Gets the configName.
+     * <p>
+     * The name of your configuration.
+     *
+     * @return the configName
+     */
+    public String configName() {
+        return configName;
     }
 
     /**

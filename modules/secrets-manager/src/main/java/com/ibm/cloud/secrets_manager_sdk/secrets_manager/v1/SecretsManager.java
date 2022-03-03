@@ -743,7 +743,15 @@ public class SecretsManager extends BaseService {
      * Adds a configuration element to the specified secret type.
      * <p>
      * Use this method to define the configurations that are required to enable the public certificates (`public_cert`)
-     * engine. You can add up to 10 certificate authority and DNS provider configurations for your instance.
+     * engine and the private certificates (`private_cert`) engine.
+     * <p>
+     * You can add multiple configurations for your instance as follows:
+     * <p>
+     * - Up to 10 public certificate authority configurations
+     * - Up to 10 DNS provider configurations
+     * - Up to 10 private root certifiate authority configurations
+     * - Up to 10 private intermediate certifiate authority configurations
+     * - Up to 10 certificate templates.
      *
      * @param createConfigElementOptions the {@link CreateConfigElementOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSingleConfigElement}
@@ -809,9 +817,9 @@ public class SecretsManager extends BaseService {
         com.ibm.cloud.sdk.core.util.Validator.notNull(getConfigElementOptions,
                 "getConfigElementOptions cannot be null");
         Map<String, String> pathParamsMap = new HashMap<String, String>();
-        pathParamsMap.put("config_name", getConfigElementOptions.configName());
         pathParamsMap.put("secret_type", getConfigElementOptions.secretType());
         pathParamsMap.put("config_element", getConfigElementOptions.configElement());
+        pathParamsMap.put("config_name", getConfigElementOptions.configName());
         RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/config/{secret_type}/{config_element}/{config_name}", pathParamsMap));
         Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "getConfigElement");
         for (Entry<String, String> header : sdkHeaders.entrySet()) {
@@ -836,9 +844,9 @@ public class SecretsManager extends BaseService {
         com.ibm.cloud.sdk.core.util.Validator.notNull(updateConfigElementOptions,
                 "updateConfigElementOptions cannot be null");
         Map<String, String> pathParamsMap = new HashMap<String, String>();
-        pathParamsMap.put("config_name", updateConfigElementOptions.configName());
         pathParamsMap.put("secret_type", updateConfigElementOptions.secretType());
         pathParamsMap.put("config_element", updateConfigElementOptions.configElement());
+        pathParamsMap.put("config_name", updateConfigElementOptions.configName());
         RequestBuilder builder = RequestBuilder.put(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/config/{secret_type}/{config_element}/{config_name}", pathParamsMap));
         Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "updateConfigElement");
         for (Entry<String, String> header : sdkHeaders.entrySet()) {
@@ -867,9 +875,9 @@ public class SecretsManager extends BaseService {
         com.ibm.cloud.sdk.core.util.Validator.notNull(deleteConfigElementOptions,
                 "deleteConfigElementOptions cannot be null");
         Map<String, String> pathParamsMap = new HashMap<String, String>();
-        pathParamsMap.put("config_name", deleteConfigElementOptions.configName());
         pathParamsMap.put("secret_type", deleteConfigElementOptions.secretType());
         pathParamsMap.put("config_element", deleteConfigElementOptions.configElement());
+        pathParamsMap.put("config_name", deleteConfigElementOptions.configName());
         RequestBuilder builder = RequestBuilder.delete(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/config/{secret_type}/{config_element}/{config_name}", pathParamsMap));
         Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "deleteConfigElement");
         for (Entry<String, String> header : sdkHeaders.entrySet()) {

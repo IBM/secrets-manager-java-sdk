@@ -1420,9 +1420,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the GetConfigElementOptions model
         GetConfigElementOptions getConfigElementOptionsModel = new GetConfigElementOptions.Builder()
-                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
+                .configName("testString")
                 .build();
 
         // Invoke getConfigElement() with a valid options model and verify the result
@@ -1473,9 +1473,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the UpdateConfigElementOptions model
         UpdateConfigElementOptions updateConfigElementOptionsModel = new UpdateConfigElementOptions.Builder()
-                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
+                .configName("testString")
                 .type("letsencrypt")
                 .config(new java.util.HashMap<String, Object>() {
                     {
@@ -1531,9 +1531,9 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the DeleteConfigElementOptions model
         DeleteConfigElementOptions deleteConfigElementOptionsModel = new DeleteConfigElementOptions.Builder()
-                .configName("testString")
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
+                .configName("testString")
                 .build();
 
         // Invoke deleteConfigElement() with a valid options model and verify the result
