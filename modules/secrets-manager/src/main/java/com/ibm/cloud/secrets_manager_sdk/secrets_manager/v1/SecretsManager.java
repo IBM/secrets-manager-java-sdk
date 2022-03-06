@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.45.0-05af0f12-20220209-193923
+ * IBM OpenAPI SDK Code Generator Version: 3.46.0-a4e29da0-20220224-210428
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -28,10 +28,12 @@ import com.ibm.cloud.sdk.core.util.RequestUtils;
 import com.ibm.cloud.sdk.core.util.ResponseConverterUtils;
 import com.ibm.cloud.secrets_manager_sdk.common.SdkCommon;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateConfigElementOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteConfigElementOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.DeleteSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfig;
@@ -39,6 +41,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigEleme
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElements;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetNotificationsRegistrationOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetNotificationsSettings;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretGroupOptions;
@@ -60,6 +64,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutConfigOptio
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretGroupDef;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretMetadataRequest;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SendTestNotificationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
@@ -416,6 +421,7 @@ public class SecretsManager extends BaseService {
      * <p>
      * - `rotate`: Replace the value of a secret.
      * - `restore`: Restore a previous version of an `iam_credentials` secret.
+     * - `revoke`: Revoke a private certificate.
      * - `delete_credentials`: Delete the API key that is associated with an `iam_credentials` secret.
      *
      * @param updateSecretOptions the {@link UpdateSecretOptions} containing the options for the call
@@ -737,7 +743,15 @@ public class SecretsManager extends BaseService {
      * Adds a configuration element to the specified secret type.
      * <p>
      * Use this method to define the configurations that are required to enable the public certificates (`public_cert`)
-     * engine. You can add up to 10 certificate authority and DNS provider configurations for your instance.
+     * engine and the private certificates (`private_cert`) engine.
+     * <p>
+     * You can add multiple configurations for your instance as follows:
+     * <p>
+     * - Up to 10 public certificate authority configurations
+     * - Up to 10 DNS provider configurations
+     * - Up to 10 private root certifiate authority configurations
+     * - Up to 10 private intermediate certifiate authority configurations
+     * - Up to 10 certificate templates.
      *
      * @param createConfigElementOptions the {@link CreateConfigElementOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSingleConfigElement}
@@ -871,6 +885,145 @@ public class SecretsManager extends BaseService {
         }
         ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
         return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Register with Event Notifications.
+     * <p>
+     * Creates a registration between a Secrets Manager instance and [Event
+     * Notifications](https://cloud.ibm.com/apidocs/event-notifications).
+     * <p>
+     * A successful request adds Secrets Manager as a source that you can reference from your Event Notifications
+     * instance. For more information about enabling notifications for Secrets Manager, check out the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-event-notifications).
+     *
+     * @param createNotificationsRegistrationOptions the {@link CreateNotificationsRegistrationOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetNotificationsSettings}
+     */
+    public ServiceCall<GetNotificationsSettings> createNotificationsRegistration(CreateNotificationsRegistrationOptions createNotificationsRegistrationOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(createNotificationsRegistrationOptions,
+                "createNotificationsRegistrationOptions cannot be null");
+        RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/notifications/registration"));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "createNotificationsRegistration");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        final JsonObject contentJson = new JsonObject();
+        contentJson.addProperty("event_notifications_instance_crn", createNotificationsRegistrationOptions.eventNotificationsInstanceCrn());
+        contentJson.addProperty("event_notifications_source_name", createNotificationsRegistrationOptions.eventNotificationsSourceName());
+        if (createNotificationsRegistrationOptions.eventNotificationsSourceDescription() != null) {
+            contentJson.addProperty("event_notifications_source_description", createNotificationsRegistrationOptions.eventNotificationsSourceDescription());
+        }
+        builder.bodyJson(contentJson);
+        ResponseConverter<GetNotificationsSettings> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetNotificationsSettings>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Get Event Notifications registration details.
+     * <p>
+     * Retrieves the details of an existing registration between a Secrets Manager instance and Event Notifications.
+     *
+     * @param getNotificationsRegistrationOptions the {@link GetNotificationsRegistrationOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetNotificationsSettings}
+     */
+    public ServiceCall<GetNotificationsSettings> getNotificationsRegistration(GetNotificationsRegistrationOptions getNotificationsRegistrationOptions) {
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/notifications/registration"));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "getNotificationsRegistration");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        ResponseConverter<GetNotificationsSettings> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetNotificationsSettings>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Get Event Notifications registration details.
+     * <p>
+     * Retrieves the details of an existing registration between a Secrets Manager instance and Event Notifications.
+     *
+     * @return a {@link ServiceCall} with a result of type {@link GetNotificationsSettings}
+     */
+    public ServiceCall<GetNotificationsSettings> getNotificationsRegistration() {
+        return getNotificationsRegistration(null);
+    }
+
+    /**
+     * Unregister from Event Notifications.
+     * <p>
+     * Deletes a registration between a Secrets Manager instance and Event Notifications.
+     * <p>
+     * A successful request removes your Secrets Manager instance as a source in Event Notifications.
+     *
+     * @param deleteNotificationsRegistrationOptions the {@link DeleteNotificationsRegistrationOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a void result
+     */
+    public ServiceCall<Void> deleteNotificationsRegistration(DeleteNotificationsRegistrationOptions deleteNotificationsRegistrationOptions) {
+        RequestBuilder builder = RequestBuilder.delete(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/notifications/registration"));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "deleteNotificationsRegistration");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Unregister from Event Notifications.
+     * <p>
+     * Deletes a registration between a Secrets Manager instance and Event Notifications.
+     * <p>
+     * A successful request removes your Secrets Manager instance as a source in Event Notifications.
+     *
+     * @return a {@link ServiceCall} with a void result
+     */
+    public ServiceCall<Void> deleteNotificationsRegistration() {
+        return deleteNotificationsRegistration(null);
+    }
+
+    /**
+     * Send test event.
+     * <p>
+     * Send a test event from a Secrets Manager instance to a configured [Event
+     * Notifications](https://cloud.ibm.com/apidocs/event-notifications) instance.
+     * <p>
+     * A successful request sends a test event to the Event Notifications instance. For more information about enabling
+     * notifications for Secrets Manager, check out the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-event-notifications).
+     *
+     * @param sendTestNotificationOptions the {@link SendTestNotificationOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a void result
+     */
+    public ServiceCall<Void> sendTestNotification(SendTestNotificationOptions sendTestNotificationOptions) {
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/notifications/test"));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "sendTestNotification");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Send test event.
+     * <p>
+     * Send a test event from a Secrets Manager instance to a configured [Event
+     * Notifications](https://cloud.ibm.com/apidocs/event-notifications) instance.
+     * <p>
+     * A successful request sends a test event to the Event Notifications instance. For more information about enabling
+     * notifications for Secrets Manager, check out the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-event-notifications).
+     *
+     * @return a {@link ServiceCall} with a void result
+     */
+    public ServiceCall<Void> sendTestNotification() {
+        return sendTestNotification(null);
     }
 
 }

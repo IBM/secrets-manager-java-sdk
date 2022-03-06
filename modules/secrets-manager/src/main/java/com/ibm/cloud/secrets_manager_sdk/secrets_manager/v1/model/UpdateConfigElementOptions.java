@@ -29,6 +29,10 @@ public class UpdateConfigElementOptions extends GenericModel {
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
     }
 
     /**
@@ -43,6 +47,18 @@ public class UpdateConfigElementOptions extends GenericModel {
          * dns_providers.
          */
         String DNS_PROVIDERS = "dns_providers";
+        /**
+         * root_certificate_authorities.
+         */
+        String ROOT_CERTIFICATE_AUTHORITIES = "root_certificate_authorities";
+        /**
+         * intermediate_certificate_authorities.
+         */
+        String INTERMEDIATE_CERTIFICATE_AUTHORITIES = "intermediate_certificate_authorities";
+        /**
+         * certificate_templates.
+         */
+        String CERTIFICATE_TEMPLATES = "certificate_templates";
     }
 
     /**
@@ -65,6 +81,18 @@ public class UpdateConfigElementOptions extends GenericModel {
          * classic_infrastructure.
          */
         String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
+        /**
+         * root_certificate_authority.
+         */
+        String ROOT_CERTIFICATE_AUTHORITY = "root_certificate_authority";
+        /**
+         * intermediate_certificate_authority.
+         */
+        String INTERMEDIATE_CERTIFICATE_AUTHORITY = "intermediate_certificate_authority";
+        /**
+         * certificate_template.
+         */
+        String CERTIFICATE_TEMPLATE = "certificate_template";
     }
 
     protected String secretType;

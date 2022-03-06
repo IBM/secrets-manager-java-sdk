@@ -27,6 +27,10 @@ public class GetConfigElementOptions extends GenericModel {
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
     }
 
     /**
@@ -41,6 +45,18 @@ public class GetConfigElementOptions extends GenericModel {
          * dns_providers.
          */
         String DNS_PROVIDERS = "dns_providers";
+        /**
+         * root_certificate_authorities.
+         */
+        String ROOT_CERTIFICATE_AUTHORITIES = "root_certificate_authorities";
+        /**
+         * intermediate_certificate_authorities.
+         */
+        String INTERMEDIATE_CERTIFICATE_AUTHORITIES = "intermediate_certificate_authorities";
+        /**
+         * certificate_templates.
+         */
+        String CERTIFICATE_TEMPLATES = "certificate_templates";
     }
 
     protected String secretType;
