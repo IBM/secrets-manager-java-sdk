@@ -13,9 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -30,6 +28,8 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
     protected SecretsManager secretsManager;
     protected IamAuthenticator iamAuthenticator;
 
+    private final String TESTCASEPREFIX = "Java-SDK_";
+
     @BeforeClass
     public void initTest() {
         iamAuthenticator = new IamAuthenticator.Builder()
@@ -38,6 +38,10 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .build();
         secretsManager = new SecretsManager("Secrets Manager integration test", iamAuthenticator);
         secretsManager.setServiceUrl(System.getenv("SERVICE_URL"));
+
+        clearSecrets(secretsManager, TESTCASEPREFIX);
+        clearSecretGroups(secretsManager, TESTCASEPREFIX);
+        clearConfigs(secretsManager, TESTCASEPREFIX);
     }
 
     @Test
@@ -261,7 +265,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
 
     @Test
     public void testCreateSecretConflict() {
-        String secretName = "conflict_integration_test_secret";
+        String secretName = generateName();
         // create arbitrary secret
         CollectionMetadata collectionMetadata = new CollectionMetadata.Builder()
                 .collectionType(CollectionMetadata.CollectionType.APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_JSON)
@@ -287,7 +291,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
             createResp = secretsManager.createSecret(createSecretOptions).execute();
         } catch (ConflictException e) {
             assertEquals(e.getStatusCode(), 409);
-            assertEquals(e.getMessage(), "A secret with the same name already exists: conflict_integration_test_secret");
+            assertEquals(e.getMessage(), "A secret with the same name already exists: " + secretName);
         }
         // delete arbitrary secret
         DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
@@ -552,7 +556,68 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
     }
 
     private String generateName() {
-        return "test-integration-" + System.currentTimeMillis();
+        return TESTCASEPREFIX + "test-integration-" + System.currentTimeMillis();
     }
 
+    private void clearSecrets(SecretsManager secretsManager, String prefix) {
+        Response<ListSecrets> response = secretsManager.listAllSecrets().execute();
+        List<SecretResource> secrets = response.getResult().getResources();
+
+        for (SecretResource secret : secrets) {
+            if (prefix.isEmpty() || secret.name().startsWith(prefix)) {
+                DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
+                        .secretType(secret.secretType())
+                        .id(secret.id())
+                        .build();
+                secretsManager.deleteSecret(deleteSecretOptions).execute();
+            }
+        }
+    }
+
+    private void clearSecretGroups(SecretsManager secretsManager, String prefix) {
+        Response<SecretGroupDef> response = secretsManager.listSecretGroups().execute();
+        List<SecretGroupResource> secretGroups = response.getResult().resources();
+
+        for (SecretGroupResource secretGroup : secretGroups) {
+            if (prefix.isEmpty() || secretGroup.getName().startsWith(prefix)) {
+                DeleteSecretGroupOptions deleteSecretGroupOptions = new DeleteSecretGroupOptions.Builder()
+                        .id(secretGroup.getId())
+                        .build();
+                secretsManager.deleteSecretGroup(deleteSecretGroupOptions).execute();
+            }
+        }
+    }
+
+    private void clearConfigs(SecretsManager secretsManager, String prefix) {
+        GetConfigOptions getConfigElementsOptions = new GetConfigOptions.Builder().secretType(GetConfigOptions.SecretType.PUBLIC_CERT).build();
+
+        Response<GetConfig> response = secretsManager.getConfig(getConfigElementsOptions).execute();
+        List<GetConfigResourcesItem> listConfigs = response.getResult().getResources();
+        if (listConfigs.size() < 1)
+            return;
+        List<ConfigElementMetadata> certConfigs = listConfigs.get(0).getCertificateAuthorities();
+        List<ConfigElementMetadata> dnsConfigs = listConfigs.get(0).getDnsProviders();
+
+        for (ConfigElementMetadata config : certConfigs) {
+            if (prefix.isEmpty() || config.getName().startsWith(prefix)) {
+                DeleteConfigElementOptions deleteConfigElementOptions = new DeleteConfigElementOptions.Builder()
+                        .secretType(GetConfigOptions.SecretType.PUBLIC_CERT)
+                        .configElement(DeleteConfigElementOptions.ConfigElement.CERTIFICATE_AUTHORITIES)
+                        .configName(config.getName())
+                        .build();
+                secretsManager.deleteConfigElement(deleteConfigElementOptions).execute();
+            }
+        }
+
+        for (ConfigElementMetadata config : dnsConfigs) {
+            if (prefix.isEmpty() || config.getName().startsWith(prefix)) {
+                DeleteConfigElementOptions deleteConfigElementOptions = new DeleteConfigElementOptions.Builder()
+                        .secretType(GetConfigOptions.SecretType.PUBLIC_CERT)
+                        .configElement(DeleteConfigElementOptions.ConfigElement.DNS_PROVIDERS)
+                        .configName(config.getName())
+                        .build();
+                secretsManager.deleteConfigElement(deleteConfigElementOptions).execute();
+            }
+        }
+    }
 }
