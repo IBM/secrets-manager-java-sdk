@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.46.0-a4e29da0-20220224-210428
+ * IBM OpenAPI SDK Code Generator Version: 3.47.1-be944570-20220406-170244
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -27,6 +27,8 @@ import com.ibm.cloud.sdk.core.service.BaseService;
 import com.ibm.cloud.sdk.core.util.RequestUtils;
 import com.ibm.cloud.sdk.core.util.ResponseConverterUtils;
 import com.ibm.cloud.secrets_manager_sdk.common.SdkCommon;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ActionOnConfigElementOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementActionResult;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecret;
@@ -69,6 +71,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigEl
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretVersionOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -86,7 +89,6 @@ public class SecretsManager extends BaseService {
 
     public static final String DEFAULT_SERVICE_NAME = "secrets_manager";
 
-    public static final String DEFAULT_SERVICE_URL = "https://secrets-manager.cloud.ibm.com";
 
     /**
      * Class method which constructs an instance of the `SecretsManager` client.
@@ -121,13 +123,12 @@ public class SecretsManager extends BaseService {
      */
     public SecretsManager(String serviceName, Authenticator authenticator) {
         super(serviceName, authenticator);
-        setServiceUrl(DEFAULT_SERVICE_URL);
     }
 
     /**
      * Create a secret group.
      * <p>
-     * Creates a secret group that you can use to organize secrets and control who on your team has access to them.
+     * Create a secret group that you can use to organize secrets and control who on your team has access to them.
      * <p>
      * A successful request returns the ID value of the secret group, along with other metadata. To learn more about
      * secret groups, check out the
@@ -158,7 +159,7 @@ public class SecretsManager extends BaseService {
     /**
      * List secret groups.
      * <p>
-     * Retrieves the list of secret groups that are available in your Secrets Manager instance.
+     * List the secret groups that are available in your Secrets Manager instance.
      *
      * @param listSecretGroupsOptions the {@link ListSecretGroupsOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link SecretGroupDef}
@@ -179,7 +180,7 @@ public class SecretsManager extends BaseService {
     /**
      * List secret groups.
      * <p>
-     * Retrieves the list of secret groups that are available in your Secrets Manager instance.
+     * List the secret groups that are available in your Secrets Manager instance.
      *
      * @return a {@link ServiceCall} with a result of type {@link SecretGroupDef}
      */
@@ -190,7 +191,7 @@ public class SecretsManager extends BaseService {
     /**
      * Get a secret group.
      * <p>
-     * Retrieves the metadata of an existing secret group by specifying the ID of the group.
+     * Get the metadata of an existing secret group by specifying the ID of the group.
      *
      * @param getSecretGroupOptions the {@link GetSecretGroupOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link SecretGroupDef}
@@ -215,7 +216,7 @@ public class SecretsManager extends BaseService {
     /**
      * Update a secret group.
      * <p>
-     * Updates the metadata of an existing secret group, such as its name or description.
+     * Update the metadata of an existing secret group, such as its name or description.
      *
      * @param updateSecretGroupMetadataOptions the {@link UpdateSecretGroupMetadataOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link SecretGroupDef}
@@ -244,7 +245,7 @@ public class SecretsManager extends BaseService {
     /**
      * Delete a secret group.
      * <p>
-     * Deletes a secret group by specifying the ID of the secret group.
+     * Delete a secret group by specifying the ID of the secret group.
      * <p>
      * **Note:** To delete a secret group, it must be empty. If you need to remove a secret group that contains secrets,
      * you must first [delete the secrets](#delete-secret) that are associated with the group.
@@ -306,7 +307,7 @@ public class SecretsManager extends BaseService {
     /**
      * List secrets by type.
      * <p>
-     * Retrieves a list of secrets based on the type that you specify.
+     * List the secrets in your Secrets Manager instance based on the type that you specify.
      *
      * @param listSecretsOptions the {@link ListSecretsOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link ListSecrets}
@@ -337,7 +338,7 @@ public class SecretsManager extends BaseService {
     /**
      * List all secrets.
      * <p>
-     * Retrieves a list of all secrets in your Secrets Manager instance.
+     * List all of the secrets in your Secrets Manager instance.
      *
      * @param listAllSecretsOptions the {@link ListAllSecretsOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link ListSecrets}
@@ -376,7 +377,7 @@ public class SecretsManager extends BaseService {
     /**
      * List all secrets.
      * <p>
-     * Retrieves a list of all secrets in your Secrets Manager instance.
+     * List all of the secrets in your Secrets Manager instance.
      *
      * @return a {@link ServiceCall} with a result of type {@link ListSecrets}
      */
@@ -417,7 +418,7 @@ public class SecretsManager extends BaseService {
     /**
      * Invoke an action on a secret.
      * <p>
-     * Invokes an action on a specified secret. This method supports the following actions:
+     * Invoke an action on a specified secret. This method supports the following actions:
      * <p>
      * - `rotate`: Replace the value of a secret.
      * - `restore`: Restore a previous version of an `iam_credentials` secret.
@@ -452,7 +453,7 @@ public class SecretsManager extends BaseService {
     /**
      * Delete a secret.
      * <p>
-     * Deletes a secret by specifying the ID of the secret.
+     * Delete a secret by specifying the ID of the secret.
      *
      * @param deleteSecretOptions the {@link DeleteSecretOptions} containing the options for the call
      * @return a {@link ServiceCall} with a void result
@@ -475,7 +476,7 @@ public class SecretsManager extends BaseService {
     /**
      * List versions of a secret.
      * <p>
-     * Retrieves a list of the versions of a secret.
+     * List the versions of a secret.
      * <p>
      * A successful request returns the list of the versions along with the metadata of each version.
      *
@@ -503,7 +504,7 @@ public class SecretsManager extends BaseService {
     /**
      * Get a version of a secret.
      * <p>
-     * Retrieves a version of a secret by specifying the ID of the version or the alias `previous`.
+     * Get a version of a secret by specifying the ID of the version or the alias `previous`.
      * <p>
      * A successful request returns the secret data that is associated with the specified version of your secret, along
      * with other metadata.
@@ -531,9 +532,39 @@ public class SecretsManager extends BaseService {
     }
 
     /**
+     * Invoke an action on a version of a secret.
+     * <p>
+     * Invoke an action on a specified version of a secret. This method supports the following actions:
+     * <p>
+     * - `revoke`: Revoke a version of a private certificate.
+     *
+     * @param updateSecretVersionOptions the {@link UpdateSecretVersionOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSecret}
+     */
+    public ServiceCall<GetSecret> updateSecretVersion(UpdateSecretVersionOptions updateSecretVersionOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(updateSecretVersionOptions,
+                "updateSecretVersionOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", updateSecretVersionOptions.secretType());
+        pathParamsMap.put("id", updateSecretVersionOptions.id());
+        pathParamsMap.put("version_id", updateSecretVersionOptions.versionId());
+        RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/secrets/{secret_type}/{id}/versions/{version_id}", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "updateSecretVersion");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        builder.query("action", String.valueOf(updateSecretVersionOptions.action()));
+        ResponseConverter<GetSecret> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecret>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
      * Get secret version metadata.
      * <p>
-     * Retrieves secret version metadata by specifying the ID of the version or the alias `previous`.
+     * Get the metadata of a secret version by specifying the ID of the version or the alias `previous`.
      * <p>
      * A successful request returns the metadata that is associated with the specified version of your secret.
      *
@@ -562,7 +593,7 @@ public class SecretsManager extends BaseService {
     /**
      * Get secret metadata.
      * <p>
-     * Retrieves the details of a secret by specifying the ID.
+     * Get the details of a secret by specifying its ID.
      * <p>
      * A successful request returns only metadata about the secret, such as its name and creation date. To retrieve the
      * value of a secret, use the [Get a secret](#get-secret) or [Get a version of a secret](#get-secret-version) methods.
@@ -591,7 +622,7 @@ public class SecretsManager extends BaseService {
     /**
      * Update secret metadata.
      * <p>
-     * Updates the metadata of a secret, such as its name or description.
+     * Update the metadata of a secret, such as its name or description.
      * <p>
      * To update the actual contents of a secret, rotate the secret by using the [Invoke an action on a
      * secret](#update-secret) method.
@@ -624,9 +655,9 @@ public class SecretsManager extends BaseService {
     /**
      * Set secret policies.
      * <p>
-     * Creates or updates one or more policies, such as an [automatic rotation
-     * policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret), for the
-     * specified secret.
+     * Create or update one or more policies, such as an [automatic rotation
+     * policy](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-automatic-rotation), for the specified
+     * secret.
      *
      * @param putPolicyOptions the {@link PutPolicyOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSecretPolicies}
@@ -659,7 +690,7 @@ public class SecretsManager extends BaseService {
     /**
      * List secret policies.
      * <p>
-     * Retrieves a list of policies that are associated with a specified secret.
+     * List the rotation policies that are associated with a specified secret.
      *
      * @param getPolicyOptions the {@link GetPolicyOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSecretPolicies}
@@ -688,11 +719,11 @@ public class SecretsManager extends BaseService {
     /**
      * Set the configuration of a secret type.
      * <p>
-     * Sets the configuration for the specified secret type.
+     * Set the configuration for the specified secret type.
      * <p>
      * Use this method to configure the IAM credentials (`iam_credentials`) engine for your service instance. Looking to
-     * set up certificate ordering? To configure the public certificates (`public_cert`) engine, use the [Add a
-     * configuration](#create_config_element) method.
+     * order or generate certificates? To configure the public certificates (`public_cert`) or  private certificates
+     * (`private_cert`) engines, use the [Add a configuration](#create_config_element) method.
      *
      * @param putConfigOptions the {@link PutConfigOptions} containing the options for the call
      * @return a {@link ServiceCall} with a void result
@@ -715,7 +746,7 @@ public class SecretsManager extends BaseService {
     /**
      * Get the configuration of a secret type.
      * <p>
-     * Retrieves the configuration that is associated with the specified secret type.
+     * Get the configuration that is associated with the specified secret type.
      *
      * @param getConfigOptions the {@link GetConfigOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetConfig}
@@ -740,17 +771,17 @@ public class SecretsManager extends BaseService {
     /**
      * Add a configuration.
      * <p>
-     * Adds a configuration element to the specified secret type.
+     * Add a configuration element to the specified secret type.
      * <p>
      * Use this method to define the configurations that are required to enable the public certificates (`public_cert`)
-     * engine and the private certificates (`private_cert`) engine.
+     * and private certificates (`private_cert`) engines.
      * <p>
      * You can add multiple configurations for your instance as follows:
      * <p>
      * - Up to 10 public certificate authority configurations
      * - Up to 10 DNS provider configurations
-     * - Up to 10 private root certifiate authority configurations
-     * - Up to 10 private intermediate certifiate authority configurations
+     * - Up to 10 private root certificate authority configurations
+     * - Up to 10 private intermediate certificate authority configurations
      * - Up to 10 certificate templates.
      *
      * @param createConfigElementOptions the {@link CreateConfigElementOptions} containing the options for the call
@@ -782,7 +813,7 @@ public class SecretsManager extends BaseService {
     /**
      * List configurations.
      * <p>
-     * Lists the configuration elements that are associated with a specified secret type.
+     * List the configuration elements that are associated with a specified secret type.
      *
      * @param getConfigElementsOptions the {@link GetConfigElementsOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetConfigElements}
@@ -808,7 +839,7 @@ public class SecretsManager extends BaseService {
     /**
      * Get a configuration.
      * <p>
-     * Retrieves the details of a specific configuration that is associated with a secret type.
+     * Get the details of a specific configuration that is associated with a secret type.
      *
      * @param getConfigElementOptions the {@link GetConfigElementOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSingleConfigElement}
@@ -835,7 +866,7 @@ public class SecretsManager extends BaseService {
     /**
      * Update a configuration.
      * <p>
-     * Updates a configuration element that is associated with the specified secret type.
+     * Update a configuration element that is associated with the specified secret type.
      *
      * @param updateConfigElementOptions the {@link UpdateConfigElementOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSingleConfigElement}
@@ -864,9 +895,48 @@ public class SecretsManager extends BaseService {
     }
 
     /**
+     * Invoke an action on a configuration.
+     * <p>
+     * Invoke an action on a specified configuration element. This method supports the following actions:
+     * <p>
+     * - `sign_intermediate`: Sign an intermediate certificate authority.
+     * - `sign_csr`: Sign a certificate signing request.
+     * - `set_signed`: Set a signed intermediate certificate authority.
+     * - `revoke`: Revoke an internally signed intermediate certificate authority certificate.
+     * - `rotate_crl`: Rotate the certificate revocation list (CRL) of an intermediate certificate authority.
+     *
+     * @param actionOnConfigElementOptions the {@link ActionOnConfigElementOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link ConfigElementActionResult}
+     */
+    public ServiceCall<ConfigElementActionResult> actionOnConfigElement(ActionOnConfigElementOptions actionOnConfigElementOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(actionOnConfigElementOptions,
+                "actionOnConfigElementOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", actionOnConfigElementOptions.secretType());
+        pathParamsMap.put("config_element", actionOnConfigElementOptions.configElement());
+        pathParamsMap.put("config_name", actionOnConfigElementOptions.configName());
+        RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/config/{secret_type}/{config_element}/{config_name}", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "actionOnConfigElement");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        builder.query("action", String.valueOf(actionOnConfigElementOptions.action()));
+        final JsonObject contentJson = new JsonObject();
+        if (actionOnConfigElementOptions.config() != null) {
+            contentJson.add("config", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(actionOnConfigElementOptions.config()));
+        }
+        builder.bodyJson(contentJson);
+        ResponseConverter<ConfigElementActionResult> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ConfigElementActionResult>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
      * Delete a configuration.
      * <p>
-     * Deletes a configuration element from the specified secret type.
+     * Delete a configuration element from the specified secret type.
      *
      * @param deleteConfigElementOptions the {@link DeleteConfigElementOptions} containing the options for the call
      * @return a {@link ServiceCall} with a void result
@@ -890,7 +960,7 @@ public class SecretsManager extends BaseService {
     /**
      * Register with Event Notifications.
      * <p>
-     * Creates a registration between a Secrets Manager instance and [Event
+     * Create a registration between a Secrets Manager instance and [Event
      * Notifications](https://cloud.ibm.com/apidocs/event-notifications).
      * <p>
      * A successful request adds Secrets Manager as a source that you can reference from your Event Notifications
@@ -925,7 +995,7 @@ public class SecretsManager extends BaseService {
     /**
      * Get Event Notifications registration details.
      * <p>
-     * Retrieves the details of an existing registration between a Secrets Manager instance and Event Notifications.
+     * Get the details of an existing registration between a Secrets Manager instance and Event Notifications.
      *
      * @param getNotificationsRegistrationOptions the {@link GetNotificationsRegistrationOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetNotificationsSettings}
@@ -946,7 +1016,7 @@ public class SecretsManager extends BaseService {
     /**
      * Get Event Notifications registration details.
      * <p>
-     * Retrieves the details of an existing registration between a Secrets Manager instance and Event Notifications.
+     * Get the details of an existing registration between a Secrets Manager instance and Event Notifications.
      *
      * @return a {@link ServiceCall} with a result of type {@link GetNotificationsSettings}
      */
@@ -957,7 +1027,7 @@ public class SecretsManager extends BaseService {
     /**
      * Unregister from Event Notifications.
      * <p>
-     * Deletes a registration between a Secrets Manager instance and Event Notifications.
+     * Delete a registration between a Secrets Manager instance and Event Notifications.
      * <p>
      * A successful request removes your Secrets Manager instance as a source in Event Notifications.
      *
@@ -977,7 +1047,7 @@ public class SecretsManager extends BaseService {
     /**
      * Unregister from Event Notifications.
      * <p>
-     * Deletes a registration between a Secrets Manager instance and Event Notifications.
+     * Delete a registration between a Secrets Manager instance and Event Notifications.
      * <p>
      * A successful request removes your Secrets Manager instance as a source in Event Notifications.
      *
@@ -988,7 +1058,7 @@ public class SecretsManager extends BaseService {
     }
 
     /**
-     * Send test event.
+     * Send a test event.
      * <p>
      * Send a test event from a Secrets Manager instance to a configured [Event
      * Notifications](https://cloud.ibm.com/apidocs/event-notifications) instance.
@@ -1011,7 +1081,7 @@ public class SecretsManager extends BaseService {
     }
 
     /**
-     * Send test event.
+     * Send a test event.
      * <p>
      * Send a test event from a Secrets Manager instance to a configured [Event
      * Notifications](https://cloud.ibm.com/apidocs/event-notifications) instance.

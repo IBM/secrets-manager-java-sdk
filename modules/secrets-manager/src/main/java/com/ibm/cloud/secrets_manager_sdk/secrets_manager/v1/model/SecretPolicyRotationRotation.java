@@ -21,11 +21,12 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * Classes which extend this class:
  * - SecretPolicyRotationRotationPolicyRotation
  * - SecretPolicyRotationRotationPublicCertPolicyRotation
+ * - PrivateCertPolicyRotation
  */
 public class SecretPolicyRotationRotation extends GenericModel {
 
     /**
-     * Specifies the units for the secret rotation time interval.
+     * The units for the secret rotation time interval.
      */
     public interface Unit {
         /**
@@ -51,7 +52,7 @@ public class SecretPolicyRotationRotation extends GenericModel {
     /**
      * Gets the interval.
      * <p>
-     * Specifies the length of the secret rotation time interval.
+     * The length of the secret rotation time interval.
      *
      * @return the interval
      */
@@ -62,7 +63,7 @@ public class SecretPolicyRotationRotation extends GenericModel {
     /**
      * Gets the unit.
      * <p>
-     * Specifies the units for the secret rotation time interval.
+     * The units for the secret rotation time interval.
      *
      * @return the unit
      */

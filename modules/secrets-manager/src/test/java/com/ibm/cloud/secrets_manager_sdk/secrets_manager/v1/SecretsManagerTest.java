@@ -20,18 +20,25 @@ import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.sdk.core.util.EnvironmentUtils;
 import com.ibm.cloud.sdk.core.util.RequestUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.SecretsManager;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ActionOnConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretData;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateTemplateConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigAction;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementActionData;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementActionResult;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementActionResultConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDef;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigClassicInfrastructureConfig;
@@ -79,6 +86,9 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentials
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IntermediateCertificateAuthoritiesConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IntermediateCertificateAuthoritiesConfigItem;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IntermediateCertificateAuthorityConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IssuanceInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.KvSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.KvSecretResource;
@@ -89,15 +99,27 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVers
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.NotificationsSettings;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertPolicyRotation;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretResource;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretVersionInfo;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertSecretEngineRootConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RestoreIAMCredentialsSecretBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RevokeAction;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RevokeActionResult;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RootCertificateAuthoritiesConfig;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RootCertificateAuthoritiesConfigItem;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RootCertificateAuthorityConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateArbitrarySecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCertificateBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCrlActionResult;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateKvSecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePublicCertBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateUsernamePasswordSecretBody;
@@ -117,10 +139,19 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SendTestNotificationOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SetSignedAction;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SetSignedActionResult;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignActionResultData;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignCsrAction;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignCsrActionResult;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignIntermediateAction;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignIntermediateActionResult;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignIntermediateActionResultData;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretVersion;
@@ -455,18 +486,18 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the CollectionMetadata model
         CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.config+json")
+                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
                 .collectionTotal(Long.valueOf("1"))
                 .build();
 
         // Construct an instance of the ArbitrarySecretResource model
         ArbitrarySecretResource secretResourceModel = new ArbitrarySecretResource.Builder()
-                .name("testString")
-                .description("testString")
-                .secretGroupId("testString")
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-                .payload("testString")
+                .name("example-arbitrary-secret")
+                .description("Extended description for this secret.")
+                .secretGroupId("bc656587-8fda-4d05-9ad8-b1de1ec7e712")
+                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
+                .expirationDate(DateUtils.parseAsDateTime("2030-01-01T00:00:00Z"))
+                .payload("secret-data")
                 .build();
 
         // Construct an instance of the CreateSecretOptions model
@@ -887,6 +918,61 @@ public class SecretsManagerTest extends PowerMockTestCase {
         secretsManagerService.getSecretVersion(null).execute();
     }
 
+    // Test the updateSecretVersion operation with a valid options model parameter
+    @Test
+    public void testUpdateSecretVersionWOptions() throws Throwable {
+        // Register a mock response
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String updateSecretVersionPath = "/api/v1/secrets/private_cert/testString/versions/testString";
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        // Construct an instance of the UpdateSecretVersionOptions model
+        UpdateSecretVersionOptions updateSecretVersionOptionsModel = new UpdateSecretVersionOptions.Builder()
+                .secretType("private_cert")
+                .id("testString")
+                .versionId("testString")
+                .action("revoke")
+                .build();
+
+        // Invoke updateSecretVersion() with a valid options model and verify the result
+        Response<GetSecret> response = secretsManagerService.updateSecretVersion(updateSecretVersionOptionsModel).execute();
+        assertNotNull(response);
+        GetSecret responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request sent to the mock server
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "POST");
+        // Verify request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, updateSecretVersionPath);
+        // Verify query params
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNotNull(query);
+        assertEquals(query.get("action"), "revoke");
+    }
+
+    // Test the updateSecretVersion operation with and without retries enabled
+    @Test
+    public void testUpdateSecretVersionWRetries() throws Throwable {
+        secretsManagerService.enableRetries(4, 30);
+        testUpdateSecretVersionWOptions();
+
+        secretsManagerService.disableRetries();
+        testUpdateSecretVersionWOptions();
+    }
+
+    // Test the updateSecretVersion operation with a null options model (negative test)
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testUpdateSecretVersionNoOptions() throws Throwable {
+        server.enqueue(new MockResponse());
+        secretsManagerService.updateSecretVersion(null).execute();
+    }
+
     // Test the getSecretVersionMetadata operation with a valid options model parameter
     @Test
     public void testGetSecretVersionMetadataWOptions() throws Throwable {
@@ -1005,16 +1091,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the CollectionMetadata model
         CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.config+json")
+                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
                 .collectionTotal(Long.valueOf("1"))
                 .build();
 
         // Construct an instance of the ArbitrarySecretMetadata model
         ArbitrarySecretMetadata secretMetadataModel = new ArbitrarySecretMetadata.Builder()
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
-                .name("example-secret")
-                .description("Extended description for this secret.")
-                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
+                .name("updated-secret-name")
+                .description("Updated description for this secret.")
+                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00Z"))
                 .build();
 
         // Construct an instance of the UpdateSecretMetadataOptions model
@@ -1306,17 +1392,18 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .setResponseCode(201)
                 .setBody(mockResponseBody));
 
-        // Construct an instance of the ConfigElementDefConfigLetsEncryptConfig model
-        ConfigElementDefConfigLetsEncryptConfig configElementDefConfigModel = new ConfigElementDefConfigLetsEncryptConfig.Builder()
-                .privateKey("testString")
+        // Construct an instance of the ConfigElementDefConfigCloudInternetServicesConfig model
+        ConfigElementDefConfigCloudInternetServicesConfig configElementDefConfigModel = new ConfigElementDefConfigCloudInternetServicesConfig.Builder()
+                .cisCrn("crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::")
+                .cisApikey("cis_apikey_value")
                 .build();
 
         // Construct an instance of the CreateConfigElementOptions model
         CreateConfigElementOptions createConfigElementOptionsModel = new CreateConfigElementOptions.Builder()
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
-                .name("testString")
-                .type("letsencrypt")
+                .name("cis-example-config")
+                .type("cis")
                 .config(configElementDefConfigModel)
                 .build();
 
@@ -1476,7 +1563,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .secretType("public_cert")
                 .configElement("certificate_authorities")
                 .configName("testString")
-                .type("letsencrypt")
+                .type("cis")
                 .config(new java.util.HashMap<String, Object>() {
                     {
                         put("foo", "testString");
@@ -1517,6 +1604,86 @@ public class SecretsManagerTest extends PowerMockTestCase {
     public void testUpdateConfigElementNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
         secretsManagerService.updateConfigElement(null).execute();
+    }
+
+    // Test the actionOnConfigElement operation with a valid options model parameter
+    @Test
+    public void testActionOnConfigElementWOptions() throws Throwable {
+        // Register a mock response
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"common_name\": \"example.com\", \"alt_names\": \"altNames\", \"ip_sans\": \"ipSans\", \"uri_sans\": \"uriSans\", \"other_sans\": [\"otherSans\"], \"ttl\": \"12h\", \"format\": \"pem\", \"max_path_length\": 13, \"exclude_cn_from_sans\": false, \"permitted_dns_domains\": [\"permittedDnsDomains\"], \"use_csr_values\": false, \"ou\": [\"ou\"], \"organization\": [\"organization\"], \"country\": [\"country\"], \"locality\": [\"locality\"], \"province\": [\"province\"], \"street_address\": [\"streetAddress\"], \"postal_code\": [\"postalCode\"], \"serial_number\": \"d9:be:fe:35:ba:09:42:b5\", \"data\": {\"certificate\": \"certificate\", \"serial_number\": \"d9:be:fe:35:ba:09:42:b5\", \"issuing_ca\": \"issuingCa\", \"ca_chain\": [\"caChain\"], \"expiration\": 10}, \"csr\": \"csr\"}}]}";
+        String actionOnConfigElementPath = "/api/v1/config/private_cert/root_certificate_authorities/testString";
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        // Construct an instance of the SignCsrAction model
+        SignCsrAction configActionModel = new SignCsrAction.Builder()
+                .commonName("example.com")
+                .altNames("testString")
+                .ipSans("testString")
+                .uriSans("testString")
+                .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .ttl("12h")
+                .format("pem")
+                .maxPathLength(Long.valueOf("26"))
+                .excludeCnFromSans(false)
+                .permittedDnsDomains(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .useCsrValues(false)
+                .ou(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .organization(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .country(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .locality(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .province(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .streetAddress(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .postalCode(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .serialNumber("d9:be:fe:35:ba:09:42:b5")
+                .csr("testString")
+                .build();
+
+        // Construct an instance of the ActionOnConfigElementOptions model
+        ActionOnConfigElementOptions actionOnConfigElementOptionsModel = new ActionOnConfigElementOptions.Builder()
+                .secretType("private_cert")
+                .configElement("root_certificate_authorities")
+                .configName("testString")
+                .action("sign_intermediate")
+                .config(configActionModel)
+                .build();
+
+        // Invoke actionOnConfigElement() with a valid options model and verify the result
+        Response<ConfigElementActionResult> response = secretsManagerService.actionOnConfigElement(actionOnConfigElementOptionsModel).execute();
+        assertNotNull(response);
+        ConfigElementActionResult responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request sent to the mock server
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "POST");
+        // Verify request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, actionOnConfigElementPath);
+        // Verify query params
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNotNull(query);
+        assertEquals(query.get("action"), "sign_intermediate");
+    }
+
+    // Test the actionOnConfigElement operation with and without retries enabled
+    @Test
+    public void testActionOnConfigElementWRetries() throws Throwable {
+        secretsManagerService.enableRetries(4, 30);
+        testActionOnConfigElementWOptions();
+
+        secretsManagerService.disableRetries();
+        testActionOnConfigElementWOptions();
+    }
+
+    // Test the actionOnConfigElement operation with a null options model (negative test)
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testActionOnConfigElementNoOptions() throws Throwable {
+        server.enqueue(new MockResponse());
+        secretsManagerService.actionOnConfigElement(null).execute();
     }
 
     // Test the deleteConfigElement operation with a valid options model parameter

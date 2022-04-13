@@ -22,6 +22,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * <p>
  * Classes which extend this class:
  * - PublicCertSecretEngineRootConfig
+ * - PrivateCertSecretEngineRootConfig
  * - IAMCredentialsSecretEngineRootConfig
  */
 public class GetConfigResourcesItem extends GenericModel {
@@ -30,6 +31,12 @@ public class GetConfigResourcesItem extends GenericModel {
     protected List<ConfigElementMetadata> certificateAuthorities;
     @SerializedName("dns_providers")
     protected List<ConfigElementMetadata> dnsProviders;
+    @SerializedName("root_certificate_authorities")
+    protected List<RootCertificateAuthorityConfig> rootCertificateAuthorities;
+    @SerializedName("intermdiate_certificate_authorities")
+    protected List<IntermediateCertificateAuthorityConfig> intermdiateCertificateAuthorities;
+    @SerializedName("certificate_templates")
+    protected List<CertificateTemplateConfig> certificateTemplates;
     @SerializedName("api_key")
     protected String apiKey;
     @SerializedName("api_key_hash")
@@ -58,6 +65,39 @@ public class GetConfigResourcesItem extends GenericModel {
      */
     public List<ConfigElementMetadata> getDnsProviders() {
         return dnsProviders;
+    }
+
+    /**
+     * Gets the rootCertificateAuthorities.
+     * <p>
+     * The root certificate authority configurations that are associated with your instance.
+     *
+     * @return the rootCertificateAuthorities
+     */
+    public List<RootCertificateAuthorityConfig> getRootCertificateAuthorities() {
+        return rootCertificateAuthorities;
+    }
+
+    /**
+     * Gets the intermdiateCertificateAuthorities.
+     * <p>
+     * The intermediate certificate authority configurations that are associated with your instance.
+     *
+     * @return the intermdiateCertificateAuthorities
+     */
+    public List<IntermediateCertificateAuthorityConfig> getIntermdiateCertificateAuthorities() {
+        return intermdiateCertificateAuthorities;
+    }
+
+    /**
+     * Gets the certificateTemplates.
+     * <p>
+     * The certificate templates that are associated with your instance.
+     *
+     * @return the certificateTemplates
+     */
+    public List<CertificateTemplateConfig> getCertificateTemplates() {
+        return certificateTemplates;
     }
 
     /**

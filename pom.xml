@@ -11,20 +11,20 @@
     <url>https://github.com/IBM/secrets-manager-java-sdk</url>
 
     <groupId>com.ibm.cloud</groupId>
-    <version>1.0.37</version>
+    <version>1.0.39</version>
     <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sdk-core-version>9.15.3</sdk-core-version>
+        <sdk-core-version>9.16.1</sdk-core-version>
 
         <git-repository-name>secrets-manager-java-sdk</git-repository-name>
 
         <testng-version>7.4.0</testng-version>
         <okhttp3-version>4.9.1</okhttp3-version>
         <surefire-version>3.0.0-M3</surefire-version>
-        <jacoco-plugin-version>0.8.5</jacoco-plugin-version>
+        <jacoco-plugin-version>0.8.7</jacoco-plugin-version>
         <maven-deploy-plugin-version>3.0.0-M1</maven-deploy-plugin-version>
         <nexus-staging-plugin-version>1.6.8</nexus-staging-plugin-version>
         <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
@@ -38,9 +38,9 @@
         <maven-reports-plugin-version>3.0.0</maven-reports-plugin-version>
         <maven-failsafe-plugin-version>3.0.0-M4</maven-failsafe-plugin-version>
         <maven-buildnumber-plugin-version>1.4</maven-buildnumber-plugin-version>
-        <powermock-version>2.0.5</powermock-version>
-        <mockito-version>3.2.4</mockito-version>
-        <slf4j-version>1.7.28</slf4j-version>
+        <powermock-version>2.0.9</powermock-version>
+        <mockito-version>3.12.4</mockito-version>
+        <slf4j-version>1.7.36</slf4j-version>
         <junit-version>4.13.2</junit-version>
     </properties>
 

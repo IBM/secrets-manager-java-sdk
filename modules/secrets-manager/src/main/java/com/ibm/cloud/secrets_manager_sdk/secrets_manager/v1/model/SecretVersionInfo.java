@@ -25,6 +25,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - UsernamePasswordSecretVersionInfo
  * - IAMCredentialsSecretVersionInfo
  * - CertificateSecretVersionInfo
+ * - PrivateCertificateSecretVersionInfo
  */
 public class SecretVersionInfo extends GenericModel {
 
@@ -43,6 +44,13 @@ public class SecretVersionInfo extends GenericModel {
     @SerializedName("expiration_date")
     protected Date expirationDate;
     protected CertificateValidity validity;
+    protected Long state;
+    @SerializedName("state_description")
+    protected String stateDescription;
+    @SerializedName("revocation_time")
+    protected Long revocationTime;
+    @SerializedName("revocation_time_rfc3339")
+    protected Date revocationTimeRfc3339;
 
     protected SecretVersionInfo() {
     }
@@ -143,6 +151,51 @@ public class SecretVersionInfo extends GenericModel {
      */
     public CertificateValidity getValidity() {
         return validity;
+    }
+
+    /**
+     * Gets the state.
+     * <p>
+     * The secret state based on NIST SP 800-57. States are integers and correspond to the Pre-activation = 0, Active = 1,
+     * Suspended = 2, Deactivated = 3, and Destroyed = 5 values.
+     *
+     * @return the state
+     */
+    public Long getState() {
+        return state;
+    }
+
+    /**
+     * Gets the stateDescription.
+     * <p>
+     * A text representation of the secret state.
+     *
+     * @return the stateDescription
+     */
+    public String getStateDescription() {
+        return stateDescription;
+    }
+
+    /**
+     * Gets the revocationTime.
+     * <p>
+     * The timestamp of the certificate revocation.
+     *
+     * @return the revocationTime
+     */
+    public Long getRevocationTime() {
+        return revocationTime;
+    }
+
+    /**
+     * Gets the revocationTimeRfc3339.
+     * <p>
+     * The date and time that the certificate was revoked. The date format follows RFC 3339.
+     *
+     * @return the revocationTimeRfc3339
+     */
+    public Date getRevocationTimeRfc3339() {
+        return revocationTimeRfc3339;
     }
 }
 

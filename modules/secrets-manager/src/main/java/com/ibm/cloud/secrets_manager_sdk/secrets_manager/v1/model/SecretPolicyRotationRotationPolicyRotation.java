@@ -18,7 +18,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class SecretPolicyRotationRotationPolicyRotation extends SecretPolicyRotationRotation {
 
     /**
-     * Specifies the units for the secret rotation time interval.
+     * The units for the secret rotation time interval.
      */
     public interface Unit {
         /**

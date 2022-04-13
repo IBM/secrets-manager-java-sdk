@@ -45,6 +45,10 @@ public class CertificateSecretMetadata extends SecretMetadata {
          */
         String PUBLIC_CERT = "public_cert";
         /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
          * kv.
          */
         String KV = "kv";

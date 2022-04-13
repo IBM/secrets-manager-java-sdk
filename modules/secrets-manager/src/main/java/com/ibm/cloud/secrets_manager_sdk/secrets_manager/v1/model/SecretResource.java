@@ -28,6 +28,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - IAMCredentialsSecretResource
  * - CertificateSecretResource
  * - PublicCertificateSecretResource
+ * - PrivateCertificateSecretResource
  * - KvSecretResource
  */
 public class SecretResource extends GenericModel {
@@ -64,6 +65,38 @@ public class SecretResource extends GenericModel {
          * kv.
          */
         String KV = "kv";
+    }
+
+    /**
+     * The format of the returned data.
+     */
+    public interface Format {
+        /**
+         * pem.
+         */
+        String PEM = "pem";
+        /**
+         * der.
+         */
+        String DER = "der";
+        /**
+         * pem_bundle.
+         */
+        String PEM_BUNDLE = "pem_bundle";
+    }
+
+    /**
+     * The format of the generated private key.
+     */
+    public interface PrivateKeyFormat {
+        /**
+         * der.
+         */
+        String DER = "der";
+        /**
+         * pkcs8.
+         */
+        String PKCS8 = "pkcs8";
     }
 
     protected String id;
@@ -135,6 +168,25 @@ public class SecretResource extends GenericModel {
     protected Rotation rotation;
     @SerializedName("issuance_info")
     protected IssuanceInfo issuanceInfo;
+    @SerializedName("certificate_template")
+    protected String certificateTemplate;
+    @SerializedName("certificate_authority")
+    protected String certificateAuthority;
+    @SerializedName("ip_sans")
+    protected String ipSans;
+    @SerializedName("uri_sans")
+    protected String uriSans;
+    @SerializedName("other_sans")
+    protected List<String> otherSans;
+    protected String format;
+    @SerializedName("private_key_format")
+    protected String privateKeyFormat;
+    @SerializedName("exclude_cn_from_sans")
+    protected Boolean excludeCnFromSans;
+    @SerializedName("revocation_time")
+    protected Long revocationTime;
+    @SerializedName("revocation_time_rfc3339")
+    protected Date revocationTimeRfc3339;
 
     protected SecretResource() {
     }
@@ -552,8 +604,8 @@ public class SecretResource extends GenericModel {
     /**
      * Gets the keyAlgorithm.
      * <p>
-     * The identifier for the cryptographic algorithm that was used to generate the public key that is associated with the
-     * certificate.
+     * The identifier for the cryptographic algorithm that was used to generate the public and private keys that are
+     * associated with the certificate.
      *
      * @return the keyAlgorithm
      */
@@ -682,6 +734,123 @@ public class SecretResource extends GenericModel {
      */
     public IssuanceInfo issuanceInfo() {
         return issuanceInfo;
+    }
+
+    /**
+     * Gets the certificateTemplate.
+     * <p>
+     * The name of the certificate template.
+     *
+     * @return the certificateTemplate
+     */
+    public String certificateTemplate() {
+        return certificateTemplate;
+    }
+
+    /**
+     * Gets the certificateAuthority.
+     * <p>
+     * The intermediate certificate authority that signed this certificate.
+     *
+     * @return the certificateAuthority
+     */
+    public String certificateAuthority() {
+        return certificateAuthority;
+    }
+
+    /**
+     * Gets the ipSans.
+     * <p>
+     * The IP Subject Alternative Names to define for the CA certificate, in a comma-delimited list.
+     *
+     * @return the ipSans
+     */
+    public String ipSans() {
+        return ipSans;
+    }
+
+    /**
+     * Gets the uriSans.
+     * <p>
+     * The URI Subject Alternative Names to define for the CA certificate, in a comma-delimited list.
+     *
+     * @return the uriSans
+     */
+    public String uriSans() {
+        return uriSans;
+    }
+
+    /**
+     * Gets the otherSans.
+     * <p>
+     * The custom Object Identifier (OID) or UTF8-string Subject Alternative Names to define for the CA certificate.
+     * <p>
+     * The alternative names must match the values that are specified in the `allowed_other_sans` field in the associated
+     * certificate template. The format is the same as OpenSSL: `&lt;oid&gt;:&lt;type&gt;:&lt;value&gt;` where the current
+     * valid type is `UTF8`.
+     *
+     * @return the otherSans
+     */
+    public List<String> otherSans() {
+        return otherSans;
+    }
+
+    /**
+     * Gets the format.
+     * <p>
+     * The format of the returned data.
+     *
+     * @return the format
+     */
+    public String format() {
+        return format;
+    }
+
+    /**
+     * Gets the privateKeyFormat.
+     * <p>
+     * The format of the generated private key.
+     *
+     * @return the privateKeyFormat
+     */
+    public String privateKeyFormat() {
+        return privateKeyFormat;
+    }
+
+    /**
+     * Gets the excludeCnFromSans.
+     * <p>
+     * Controls whether the common name is excluded from Subject Alternative Names (SANs).
+     * <p>
+     * If set to `true`, the common name is is not included in DNS or Email SANs if they apply. This field can be useful
+     * if the common name is not a hostname or an email address, but is instead a human-readable identifier.
+     *
+     * @return the excludeCnFromSans
+     */
+    public Boolean excludeCnFromSans() {
+        return excludeCnFromSans;
+    }
+
+    /**
+     * Gets the revocationTime.
+     * <p>
+     * The timestamp of the certificate revocation.
+     *
+     * @return the revocationTime
+     */
+    public Long revocationTime() {
+        return revocationTime;
+    }
+
+    /**
+     * Gets the revocationTimeRfc3339.
+     * <p>
+     * The date and time that the certificate was revoked. The date format follows RFC 3339.
+     *
+     * @return the revocationTimeRfc3339
+     */
+    public Date revocationTimeRfc3339() {
+        return revocationTimeRfc3339;
     }
 }
 

@@ -94,7 +94,7 @@ public class CertificateValidity extends GenericModel {
     /**
      * Gets the notBefore.
      * <p>
-     * The date the certificate validity period begins.
+     * The date and time that the certificate validity period begins.
      *
      * @return the notBefore
      */
@@ -105,7 +105,7 @@ public class CertificateValidity extends GenericModel {
     /**
      * Gets the notAfter.
      * <p>
-     * The date the certificate validity period ends.
+     * The date and time that the certificate validity period ends.
      *
      * @return the notAfter
      */

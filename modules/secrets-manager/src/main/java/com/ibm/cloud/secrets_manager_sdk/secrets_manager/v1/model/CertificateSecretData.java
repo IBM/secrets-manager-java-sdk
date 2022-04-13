@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2021.
+ * (C) Copyright IBM Corp. 2022.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -12,50 +12,16 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * CertificateSecretData.
+ * The data that is associated with the secret version. The data object contains the following fields:
+ * <p>
+ * - `certificate`: The contents of the certificate.
+ * - `private_key`: The private key that is associated with the certificate.
+ * - `intermediate`: The intermediate certificate that is associated with the certificate.
  */
 public class CertificateSecretData extends GenericModel {
 
-    protected String certificate;
-    @SerializedName("private_key")
-    protected String privateKey;
-    protected String intermediate;
-
-    /**
-     * Gets the certificate.
-     * <p>
-     * The contents of the certificate.
-     *
-     * @return the certificate
-     */
-    public String getCertificate() {
-        return certificate;
-    }
-
-    /**
-     * Gets the privateKey.
-     * <p>
-     * The private key that is associated with the certificate.
-     *
-     * @return the privateKey
-     */
-    public String getPrivateKey() {
-        return privateKey;
-    }
-
-    /**
-     * Gets the intermediate.
-     * <p>
-     * The intermediate certificate that is associated with the certificate.
-     *
-     * @return the intermediate
-     */
-    public String getIntermediate() {
-        return intermediate;
-    }
 }
 
