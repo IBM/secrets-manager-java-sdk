@@ -38,7 +38,7 @@ public class SignCsrActionTest {
     public void testSignCsrAction() throws Throwable {
         SignCsrAction signCsrActionModel = new SignCsrAction.Builder()
                 .commonName("example.com")
-                .altNames("testString")
+                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ipSans("testString")
                 .uriSans("testString")
                 .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
@@ -59,7 +59,7 @@ public class SignCsrActionTest {
                 .csr("testString")
                 .build();
         assertEquals(signCsrActionModel.commonName(), "example.com");
-        assertEquals(signCsrActionModel.altNames(), "testString");
+        assertEquals(signCsrActionModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(signCsrActionModel.ipSans(), "testString");
         assertEquals(signCsrActionModel.uriSans(), "testString");
         assertEquals(signCsrActionModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
@@ -84,7 +84,6 @@ public class SignCsrActionTest {
         SignCsrAction signCsrActionModelNew = TestUtilities.deserialize(json, SignCsrAction.class);
         assertTrue(signCsrActionModelNew instanceof SignCsrAction);
         assertEquals(signCsrActionModelNew.commonName(), "example.com");
-        assertEquals(signCsrActionModelNew.altNames(), "testString");
         assertEquals(signCsrActionModelNew.ipSans(), "testString");
         assertEquals(signCsrActionModelNew.uriSans(), "testString");
         assertEquals(signCsrActionModelNew.ttl(), "12h");

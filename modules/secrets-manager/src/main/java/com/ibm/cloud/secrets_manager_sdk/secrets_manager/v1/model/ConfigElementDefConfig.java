@@ -157,7 +157,7 @@ public class ConfigElementDefConfig extends GenericModel {
     @SerializedName("expiration_date")
     protected Date expirationDate;
     @SerializedName("alt_names")
-    protected String altNames;
+    protected List<String> altNames;
     @SerializedName("ip_sans")
     protected String ipSans;
     @SerializedName("uri_sans")
@@ -433,7 +433,7 @@ public class ConfigElementDefConfig extends GenericModel {
      *
      * @return the altNames
      */
-    public String altNames() {
+    public List<String> altNames() {
         return altNames;
     }
 

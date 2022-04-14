@@ -18,7 +18,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateKvSecret
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,15 +35,27 @@ public class RotateKvSecretBodyTest {
     @Test
     public void testRotateKvSecretBody() throws Throwable {
         RotateKvSecretBody rotateKvSecretBodyModel = new RotateKvSecretBody.Builder()
-                .payload(Collections.singletonMap("foo", "testString"))
+                .payload(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .build();
-        assertEquals(rotateKvSecretBodyModel.payload(), Collections.singletonMap("foo", "testString"));
+        assertEquals(rotateKvSecretBodyModel.payload(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
 
         String json = TestUtilities.serialize(rotateKvSecretBodyModel);
 
         RotateKvSecretBody rotateKvSecretBodyModelNew = TestUtilities.deserialize(json, RotateKvSecretBody.class);
         assertTrue(rotateKvSecretBodyModelNew instanceof RotateKvSecretBody);
-        assertEquals(rotateKvSecretBodyModelNew.payload(), Collections.singletonMap("foo", "testString"));
+        assertEquals(rotateKvSecretBodyModelNew.payload().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

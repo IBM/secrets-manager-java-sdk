@@ -66,7 +66,7 @@ public class KvSecretResource extends SecretResource {
         private String secretGroupId;
         private List<String> labels;
         private Date expirationDate;
-        private Object payload;
+        private Map<String, Object> payload;
 
         public Builder(SecretResource kvSecretResource) {
             this.name = kvSecretResource.name;
@@ -179,7 +179,7 @@ public class KvSecretResource extends SecretResource {
          * @param payload the payload
          * @return the KvSecretResource builder
          */
-        public Builder payload(Object payload) {
+        public Builder payload(Map<String, Object> payload) {
             this.payload = payload;
             return this;
         }

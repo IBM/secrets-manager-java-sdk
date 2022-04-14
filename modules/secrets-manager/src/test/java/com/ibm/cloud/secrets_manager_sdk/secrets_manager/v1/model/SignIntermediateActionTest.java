@@ -38,7 +38,7 @@ public class SignIntermediateActionTest {
     public void testSignIntermediateAction() throws Throwable {
         SignIntermediateAction signIntermediateActionModel = new SignIntermediateAction.Builder()
                 .commonName("example.com")
-                .altNames("testString")
+                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ipSans("testString")
                 .uriSans("testString")
                 .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
@@ -59,7 +59,7 @@ public class SignIntermediateActionTest {
                 .intermediateCertificateAuthority("testString")
                 .build();
         assertEquals(signIntermediateActionModel.commonName(), "example.com");
-        assertEquals(signIntermediateActionModel.altNames(), "testString");
+        assertEquals(signIntermediateActionModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(signIntermediateActionModel.ipSans(), "testString");
         assertEquals(signIntermediateActionModel.uriSans(), "testString");
         assertEquals(signIntermediateActionModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
@@ -84,7 +84,6 @@ public class SignIntermediateActionTest {
         SignIntermediateAction signIntermediateActionModelNew = TestUtilities.deserialize(json, SignIntermediateAction.class);
         assertTrue(signIntermediateActionModelNew instanceof SignIntermediateAction);
         assertEquals(signIntermediateActionModelNew.commonName(), "example.com");
-        assertEquals(signIntermediateActionModelNew.altNames(), "testString");
         assertEquals(signIntermediateActionModelNew.ipSans(), "testString");
         assertEquals(signIntermediateActionModelNew.uriSans(), "testString");
         assertEquals(signIntermediateActionModelNew.ttl(), "12h");

@@ -96,7 +96,7 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
         private String description;
         private String certificateTemplate;
         private String commonName;
-        private String altNames;
+        private List<String> altNames;
         private String ipSans;
         private String uriSans;
         private List<String> otherSans;
@@ -166,6 +166,22 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
                 this.labels = new ArrayList<String>();
             }
             this.labels.add(labels);
+            return this;
+        }
+
+        /**
+         * Adds an altNames to altNames.
+         *
+         * @param altNames the new altNames
+         * @return the PrivateCertificateSecretMetadata builder
+         */
+        public Builder addAltNames(String altNames) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(altNames,
+                    "altNames cannot be null");
+            if (this.altNames == null) {
+                this.altNames = new ArrayList<String>();
+            }
+            this.altNames.add(altNames);
             return this;
         }
 
@@ -243,11 +259,12 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
 
         /**
          * Set the altNames.
+         * Existing altNames will be replaced.
          *
          * @param altNames the altNames
          * @return the PrivateCertificateSecretMetadata builder
          */
-        public Builder altNames(String altNames) {
+        public Builder altNames(List<String> altNames) {
             this.altNames = altNames;
             return this;
         }

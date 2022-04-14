@@ -65,7 +65,7 @@ public class PrivateCertificateSecretResourceTest {
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .certificateTemplate("cert-template-1")
                 .commonName("example.com")
-                .altNames("testString")
+                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ipSans("testString")
                 .uriSans("testString")
                 .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
@@ -82,7 +82,7 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(privateCertificateSecretResourceModel.certificateTemplate(), "cert-template-1");
         assertEquals(privateCertificateSecretResourceModel.commonName(), "example.com");
-        assertEquals(privateCertificateSecretResourceModel.altNames(), "testString");
+        assertEquals(privateCertificateSecretResourceModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(privateCertificateSecretResourceModel.ipSans(), "testString");
         assertEquals(privateCertificateSecretResourceModel.uriSans(), "testString");
         assertEquals(privateCertificateSecretResourceModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
@@ -102,7 +102,6 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModelNew.secretGroupId(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.certificateTemplate(), "cert-template-1");
         assertEquals(privateCertificateSecretResourceModelNew.commonName(), "example.com");
-        assertEquals(privateCertificateSecretResourceModelNew.altNames(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.ipSans(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.uriSans(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.ttl(), "12h");

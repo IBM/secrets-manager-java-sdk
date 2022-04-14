@@ -65,7 +65,7 @@ public class ArbitrarySecretResource extends SecretResource {
         private String secretGroupId;
         private List<String> labels;
         private Date expirationDate;
-        private Object payload;
+        private String payload;
 
         public Builder(SecretResource arbitrarySecretResource) {
             this.name = arbitrarySecretResource.name;
@@ -178,7 +178,7 @@ public class ArbitrarySecretResource extends SecretResource {
          * @param payload the payload
          * @return the ArbitrarySecretResource builder
          */
-        public Builder payload(Object payload) {
+        public Builder payload(String payload) {
             this.payload = payload;
             return this;
         }

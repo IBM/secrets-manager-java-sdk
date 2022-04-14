@@ -122,14 +122,14 @@ public class SecretResource extends GenericModel {
     protected List<Map<String, Object>> versions;
     @SerializedName("expiration_date")
     protected Date expirationDate;
-    protected Object payload;
+    protected String payload;
     @SerializedName("secret_data")
     protected Map<String, Object> secretData;
     protected String username;
     protected String password;
     @SerializedName("next_rotation_date")
     protected Date nextRotationDate;
-    protected Object ttl;
+    protected String ttl;
     @SerializedName("access_groups")
     protected List<String> accessGroups;
     @SerializedName("api_key")
@@ -383,7 +383,7 @@ public class SecretResource extends GenericModel {
      *
      * @return the payload
      */
-    public Object payload() {
+    public String payload() {
         return payload;
     }
 
@@ -449,7 +449,7 @@ public class SecretResource extends GenericModel {
      *
      * @return the ttl
      */
-    public Object ttl() {
+    public String ttl() {
         return ttl;
     }
 

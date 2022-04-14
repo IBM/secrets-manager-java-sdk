@@ -45,7 +45,7 @@ public class IntermediateCertificateAuthorityConfigTest {
                 .crlDistributionPointsEncoded(false)
                 .issuingCertificatesUrlsEncoded(false)
                 .commonName("example.com")
-                .altNames("testString")
+                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ipSans("testString")
                 .uriSans("testString")
                 .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
@@ -71,7 +71,7 @@ public class IntermediateCertificateAuthorityConfigTest {
         assertEquals(intermediateCertificateAuthorityConfigModel.crlDistributionPointsEncoded(), Boolean.valueOf(false));
         assertEquals(intermediateCertificateAuthorityConfigModel.issuingCertificatesUrlsEncoded(), Boolean.valueOf(false));
         assertEquals(intermediateCertificateAuthorityConfigModel.commonName(), "example.com");
-        assertEquals(intermediateCertificateAuthorityConfigModel.altNames(), "testString");
+        assertEquals(intermediateCertificateAuthorityConfigModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(intermediateCertificateAuthorityConfigModel.ipSans(), "testString");
         assertEquals(intermediateCertificateAuthorityConfigModel.uriSans(), "testString");
         assertEquals(intermediateCertificateAuthorityConfigModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
@@ -101,7 +101,6 @@ public class IntermediateCertificateAuthorityConfigTest {
         assertEquals(intermediateCertificateAuthorityConfigModelNew.crlDistributionPointsEncoded(), Boolean.valueOf(false));
         assertEquals(intermediateCertificateAuthorityConfigModelNew.issuingCertificatesUrlsEncoded(), Boolean.valueOf(false));
         assertEquals(intermediateCertificateAuthorityConfigModelNew.commonName(), "example.com");
-        assertEquals(intermediateCertificateAuthorityConfigModelNew.altNames(), "testString");
         assertEquals(intermediateCertificateAuthorityConfigModelNew.ipSans(), "testString");
         assertEquals(intermediateCertificateAuthorityConfigModelNew.uriSans(), "testString");
         assertEquals(intermediateCertificateAuthorityConfigModelNew.format(), "pem");

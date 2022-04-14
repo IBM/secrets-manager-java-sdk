@@ -49,7 +49,7 @@ public class ConfigAction extends GenericModel {
     @SerializedName("common_name")
     protected String commonName;
     @SerializedName("alt_names")
-    protected String altNames;
+    protected List<String> altNames;
     @SerializedName("ip_sans")
     protected String ipSans;
     @SerializedName("uri_sans")
@@ -105,7 +105,7 @@ public class ConfigAction extends GenericModel {
      *
      * @return the altNames
      */
-    public String altNames() {
+    public List<String> altNames() {
         return altNames;
     }
 

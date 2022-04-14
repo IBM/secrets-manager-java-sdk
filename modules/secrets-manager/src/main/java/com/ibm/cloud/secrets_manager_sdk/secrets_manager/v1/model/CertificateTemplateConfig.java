@@ -52,7 +52,7 @@ public class CertificateTemplateConfig extends ConfigElementDefConfig {
         private String certificateAuthority;
         private String allowedSecretGroups;
         private Object maxTtl;
-        private Object ttl;
+        private String ttl;
         private Boolean allowLocalhost;
         private List<String> allowedDomains;
         private Boolean allowedDomainsTemplate;
@@ -416,7 +416,7 @@ public class CertificateTemplateConfig extends ConfigElementDefConfig {
          * @param ttl the ttl
          * @return the CertificateTemplateConfig builder
          */
-        public Builder ttl(Object ttl) {
+        public Builder ttl(String ttl) {
             this.ttl = ttl;
             return this;
         }

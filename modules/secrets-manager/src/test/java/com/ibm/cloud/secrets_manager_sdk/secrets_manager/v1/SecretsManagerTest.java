@@ -1610,7 +1610,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testActionOnConfigElementWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"common_name\": \"example.com\", \"alt_names\": \"altNames\", \"ip_sans\": \"ipSans\", \"uri_sans\": \"uriSans\", \"other_sans\": [\"otherSans\"], \"ttl\": \"12h\", \"format\": \"pem\", \"max_path_length\": 13, \"exclude_cn_from_sans\": false, \"permitted_dns_domains\": [\"permittedDnsDomains\"], \"use_csr_values\": false, \"ou\": [\"ou\"], \"organization\": [\"organization\"], \"country\": [\"country\"], \"locality\": [\"locality\"], \"province\": [\"province\"], \"street_address\": [\"streetAddress\"], \"postal_code\": [\"postalCode\"], \"serial_number\": \"d9:be:fe:35:ba:09:42:b5\", \"data\": {\"certificate\": \"certificate\", \"serial_number\": \"d9:be:fe:35:ba:09:42:b5\", \"issuing_ca\": \"issuingCa\", \"ca_chain\": [\"caChain\"], \"expiration\": 10}, \"csr\": \"csr\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"name\": \"name\", \"type\": \"letsencrypt\", \"config\": {\"common_name\": \"example.com\", \"alt_names\": [\"altNames\"], \"ip_sans\": \"ipSans\", \"uri_sans\": \"uriSans\", \"other_sans\": [\"otherSans\"], \"ttl\": \"12h\", \"format\": \"pem\", \"max_path_length\": 13, \"exclude_cn_from_sans\": false, \"permitted_dns_domains\": [\"permittedDnsDomains\"], \"use_csr_values\": false, \"ou\": [\"ou\"], \"organization\": [\"organization\"], \"country\": [\"country\"], \"locality\": [\"locality\"], \"province\": [\"province\"], \"street_address\": [\"streetAddress\"], \"postal_code\": [\"postalCode\"], \"serial_number\": \"d9:be:fe:35:ba:09:42:b5\", \"data\": {\"certificate\": \"certificate\", \"serial_number\": \"d9:be:fe:35:ba:09:42:b5\", \"issuing_ca\": \"issuingCa\", \"ca_chain\": [\"caChain\"], \"expiration\": 10}, \"csr\": \"csr\"}}]}";
         String actionOnConfigElementPath = "/api/v1/config/private_cert/root_certificate_authorities/testString";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -1620,7 +1620,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         // Construct an instance of the SignCsrAction model
         SignCsrAction configActionModel = new SignCsrAction.Builder()
                 .commonName("example.com")
-                .altNames("testString")
+                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ipSans("testString")
                 .uriSans("testString")
                 .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))

@@ -63,7 +63,7 @@ public class PrivateCertificateSecretMetadataTest {
                 .description("Extended description for this secret.")
                 .certificateTemplate("cert-template-1")
                 .commonName("example.com")
-                .altNames("testString")
+                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .ipSans("testString")
                 .uriSans("testString")
                 .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
@@ -79,7 +79,7 @@ public class PrivateCertificateSecretMetadataTest {
         assertEquals(privateCertificateSecretMetadataModel.description(), "Extended description for this secret.");
         assertEquals(privateCertificateSecretMetadataModel.certificateTemplate(), "cert-template-1");
         assertEquals(privateCertificateSecretMetadataModel.commonName(), "example.com");
-        assertEquals(privateCertificateSecretMetadataModel.altNames(), "testString");
+        assertEquals(privateCertificateSecretMetadataModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(privateCertificateSecretMetadataModel.ipSans(), "testString");
         assertEquals(privateCertificateSecretMetadataModel.uriSans(), "testString");
         assertEquals(privateCertificateSecretMetadataModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
@@ -98,7 +98,6 @@ public class PrivateCertificateSecretMetadataTest {
         assertEquals(privateCertificateSecretMetadataModelNew.description(), "Extended description for this secret.");
         assertEquals(privateCertificateSecretMetadataModelNew.certificateTemplate(), "cert-template-1");
         assertEquals(privateCertificateSecretMetadataModelNew.commonName(), "example.com");
-        assertEquals(privateCertificateSecretMetadataModelNew.altNames(), "testString");
         assertEquals(privateCertificateSecretMetadataModelNew.ipSans(), "testString");
         assertEquals(privateCertificateSecretMetadataModelNew.uriSans(), "testString");
         assertEquals(privateCertificateSecretMetadataModelNew.ttl(), "12h");

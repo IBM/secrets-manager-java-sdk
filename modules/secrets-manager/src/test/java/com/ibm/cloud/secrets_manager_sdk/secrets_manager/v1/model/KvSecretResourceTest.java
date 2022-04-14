@@ -19,7 +19,11 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.KvSecretResour
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.testng.annotations.Test;
 
@@ -40,14 +44,22 @@ public class KvSecretResourceTest {
                 .secretGroupId("testString")
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-                .payload(Collections.singletonMap("foo", "testString"))
+                .payload(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .build();
         assertEquals(kvSecretResourceModel.name(), "testString");
         assertEquals(kvSecretResourceModel.description(), "testString");
         assertEquals(kvSecretResourceModel.secretGroupId(), "testString");
         assertEquals(kvSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
         assertEquals(kvSecretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-        assertEquals(kvSecretResourceModel.payload(), Collections.singletonMap("foo", "testString"));
+        assertEquals(kvSecretResourceModel.payload(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
 
         String json = TestUtilities.serialize(kvSecretResourceModel);
 
@@ -57,7 +69,11 @@ public class KvSecretResourceTest {
         assertEquals(kvSecretResourceModelNew.description(), "testString");
         assertEquals(kvSecretResourceModelNew.secretGroupId(), "testString");
         assertEquals(kvSecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-        assertEquals(kvSecretResourceModelNew.payload(), Collections.singletonMap("foo", "testString"));
+        assertEquals(kvSecretResourceModelNew.payload().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

@@ -44,7 +44,7 @@ public class SignCsrAction extends ConfigAction {
      */
     public static class Builder {
         private String commonName;
-        private String altNames;
+        private List<String> altNames;
         private String ipSans;
         private String uriSans;
         private List<String> otherSans;
@@ -109,6 +109,22 @@ public class SignCsrAction extends ConfigAction {
          */
         public SignCsrAction build() {
             return new SignCsrAction(this);
+        }
+
+        /**
+         * Adds an altNames to altNames.
+         *
+         * @param altNames the new altNames
+         * @return the SignCsrAction builder
+         */
+        public Builder addAltNames(String altNames) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(altNames,
+                    "altNames cannot be null");
+            if (this.altNames == null) {
+                this.altNames = new ArrayList<String>();
+            }
+            this.altNames.add(altNames);
+            return this;
         }
 
         /**
@@ -268,11 +284,12 @@ public class SignCsrAction extends ConfigAction {
 
         /**
          * Set the altNames.
+         * Existing altNames will be replaced.
          *
          * @param altNames the altNames
          * @return the SignCsrAction builder
          */
-        public Builder altNames(String altNames) {
+        public Builder altNames(List<String> altNames) {
             this.altNames = altNames;
             return this;
         }
