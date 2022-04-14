@@ -23,7 +23,7 @@ public class Rotation extends GenericModel {
     /**
      * The time unit of the rotation interval.
      * <p>
-     * **Note:** Use this field only for private certificates. Ignored for public certificates.
+     * **Note:** Use this field only for private certificates. It is ignored for public certificates.
      */
     public interface Unit {
         /**
@@ -160,7 +160,7 @@ public class Rotation extends GenericModel {
      * <p>
      * If set to `true`, the service generates and stores a new private key for your rotated certificate.
      * <p>
-     * **Note:** Use this field only for public certificates. Ignored for private certificates.
+     * **Note:** Use this field only for public certificates. It is ignored for private certificates.
      *
      * @return the rotateKeys
      */
@@ -174,7 +174,7 @@ public class Rotation extends GenericModel {
      * Used together with the `unit` field to specify the rotation interval. The minimum interval is one day, and the
      * maximum interval is 3 years (1095 days). Required in case `auto_rotate` is set to `true`.
      * <p>
-     * **Note:** Use this field only for private certificates Ignored for public certificates.
+     * **Note:** Use this field only for private certificates. It is ignored for public certificates.
      *
      * @return the interval
      */
@@ -187,7 +187,7 @@ public class Rotation extends GenericModel {
      * <p>
      * The time unit of the rotation interval.
      * <p>
-     * **Note:** Use this field only for private certificates. Ignored for public certificates.
+     * **Note:** Use this field only for private certificates. It is ignored for public certificates.
      *
      * @return the unit
      */

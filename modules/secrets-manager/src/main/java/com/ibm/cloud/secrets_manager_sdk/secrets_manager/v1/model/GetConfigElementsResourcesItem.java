@@ -23,6 +23,8 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * Classes which extend this class:
  * - GetConfigElementsResourcesItemCertificateAuthoritiesConfig
  * - GetConfigElementsResourcesItemDnsProvidersConfig
+ * - RootCertificateAuthoritiesConfig
+ * - IntermediateCertificateAuthoritiesConfig
  */
 public class GetConfigElementsResourcesItem extends GenericModel {
 
@@ -30,6 +32,10 @@ public class GetConfigElementsResourcesItem extends GenericModel {
     protected List<ConfigElementMetadata> certificateAuthorities;
     @SerializedName("dns_providers")
     protected List<ConfigElementMetadata> dnsProviders;
+    @SerializedName("root_certificate_authorities")
+    protected List<RootCertificateAuthoritiesConfigItem> rootCertificateAuthorities;
+    @SerializedName("intermediate_certificate_authorities")
+    protected List<IntermediateCertificateAuthoritiesConfigItem> intermediateCertificateAuthorities;
 
     protected GetConfigElementsResourcesItem() {
     }
@@ -50,6 +56,24 @@ public class GetConfigElementsResourcesItem extends GenericModel {
      */
     public List<ConfigElementMetadata> getDnsProviders() {
         return dnsProviders;
+    }
+
+    /**
+     * Gets the rootCertificateAuthorities.
+     *
+     * @return the rootCertificateAuthorities
+     */
+    public List<RootCertificateAuthoritiesConfigItem> getRootCertificateAuthorities() {
+        return rootCertificateAuthorities;
+    }
+
+    /**
+     * Gets the intermediateCertificateAuthorities.
+     *
+     * @return the intermediateCertificateAuthorities
+     */
+    public List<IntermediateCertificateAuthoritiesConfigItem> getIntermediateCertificateAuthorities() {
+        return intermediateCertificateAuthorities;
     }
 }
 

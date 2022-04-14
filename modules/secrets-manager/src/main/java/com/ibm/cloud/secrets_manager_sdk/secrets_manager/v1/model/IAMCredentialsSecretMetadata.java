@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Metadata properties that describe a iam_credentials secret.
+ * Metadata properties that describe an `iam_credentials` secret.
  */
 public class IAMCredentialsSecretMetadata extends SecretMetadata {
 
@@ -44,6 +44,10 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
         /**
          * kv.
          */
