@@ -57,7 +57,7 @@ public class KvSecretResourceTest {
         assertEquals(kvSecretResourceModelNew.description(), "testString");
         assertEquals(kvSecretResourceModelNew.secretGroupId(), "testString");
         assertEquals(kvSecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-        assertEquals(kvSecretResourceModelNew.payload().toString(), Collections.singletonMap("foo", "testString").toString());
+        assertEquals(kvSecretResourceModelNew.payload(), Collections.singletonMap("foo", "testString"));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
