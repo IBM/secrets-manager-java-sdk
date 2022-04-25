@@ -301,7 +301,7 @@ public class PrivateCertificateSecretResource extends SecretResource {
          * @param ttl the ttl
          * @return the PrivateCertificateSecretResource builder
          */
-        public Builder ttl(String ttl) {
+        public Builder ttl(Object ttl) {
             this.ttl = ttl;
             return this;
         }
