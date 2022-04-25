@@ -61,32 +61,12 @@ public class PrivateCertificateSecretMetadataTest {
                 .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
                 .name("example-secret")
                 .description("Extended description for this secret.")
-                .certificateTemplate("cert-template-1")
-                .commonName("example.com")
-                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .ipSans("testString")
-                .uriSans("testString")
-                .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .ttl("12h")
-                .format("pem")
-                .privateKeyFormat("der")
-                .excludeCnFromSans(false)
                 .rotation(rotationModel)
                 .validity(certificateValidityModel)
                 .build();
         assertEquals(privateCertificateSecretMetadataModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")));
         assertEquals(privateCertificateSecretMetadataModel.name(), "example-secret");
         assertEquals(privateCertificateSecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(privateCertificateSecretMetadataModel.certificateTemplate(), "cert-template-1");
-        assertEquals(privateCertificateSecretMetadataModel.commonName(), "example.com");
-        assertEquals(privateCertificateSecretMetadataModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(privateCertificateSecretMetadataModel.ipSans(), "testString");
-        assertEquals(privateCertificateSecretMetadataModel.uriSans(), "testString");
-        assertEquals(privateCertificateSecretMetadataModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(privateCertificateSecretMetadataModel.ttl(), "12h");
-        assertEquals(privateCertificateSecretMetadataModel.format(), "pem");
-        assertEquals(privateCertificateSecretMetadataModel.privateKeyFormat(), "der");
-        assertEquals(privateCertificateSecretMetadataModel.excludeCnFromSans(), Boolean.valueOf(false));
         assertEquals(privateCertificateSecretMetadataModel.rotation(), rotationModel);
         assertEquals(privateCertificateSecretMetadataModel.validity(), certificateValidityModel);
 
@@ -96,14 +76,6 @@ public class PrivateCertificateSecretMetadataTest {
         assertTrue(privateCertificateSecretMetadataModelNew instanceof PrivateCertificateSecretMetadata);
         assertEquals(privateCertificateSecretMetadataModelNew.name(), "example-secret");
         assertEquals(privateCertificateSecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(privateCertificateSecretMetadataModelNew.certificateTemplate(), "cert-template-1");
-        assertEquals(privateCertificateSecretMetadataModelNew.commonName(), "example.com");
-        assertEquals(privateCertificateSecretMetadataModelNew.ipSans(), "testString");
-        assertEquals(privateCertificateSecretMetadataModelNew.uriSans(), "testString");
-        assertEquals(privateCertificateSecretMetadataModelNew.ttl(), "12h");
-        assertEquals(privateCertificateSecretMetadataModelNew.format(), "pem");
-        assertEquals(privateCertificateSecretMetadataModelNew.privateKeyFormat(), "der");
-        assertEquals(privateCertificateSecretMetadataModelNew.excludeCnFromSans(), Boolean.valueOf(false));
         assertEquals(privateCertificateSecretMetadataModelNew.rotation().toString(), rotationModel.toString());
         assertEquals(privateCertificateSecretMetadataModelNew.validity().toString(), certificateValidityModel.toString());
     }

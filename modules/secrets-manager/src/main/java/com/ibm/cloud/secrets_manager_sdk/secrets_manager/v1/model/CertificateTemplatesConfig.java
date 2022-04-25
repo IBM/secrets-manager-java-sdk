@@ -13,23 +13,9 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 /**
- * Properties that are returned with a successful `sign_csr` action.
+ * Certificate templates configuration.
  */
-public class SignCsrActionResult extends ConfigElementActionResultConfig {
-
-    /**
-     * The format of the returned data.
-     */
-    public interface Format {
-        /**
-         * pem.
-         */
-        String PEM = "pem";
-        /**
-         * pem_bundle.
-         */
-        String PEM_BUNDLE = "pem_bundle";
-    }
+public class CertificateTemplatesConfig extends GetConfigElementsResourcesItem {
 
 }
 

@@ -26,8 +26,7 @@ public class CertificateTemplateConfig extends ConfigElementDefConfig {
      * The type of private key to generate for private certificates and the type of key that is expected for submitted
      * certificate signing requests (CSRs).
      * <p>
-     * Allowable values are: `rsa`, `ec` and `any`. A value of `any` allow keys of either type and with any bit size. The
-     * bit size must be greater than 1024 bits for RSA keys.
+     * Allowable values are: `rsa` and `ec`.
      */
     public interface KeyType {
         /**
@@ -38,10 +37,6 @@ public class CertificateTemplateConfig extends ConfigElementDefConfig {
          * ec.
          */
         String EC = "ec";
-        /**
-         * any.
-         */
-        String ANY = "any";
     }
 
 
@@ -52,7 +47,7 @@ public class CertificateTemplateConfig extends ConfigElementDefConfig {
         private String certificateAuthority;
         private String allowedSecretGroups;
         private Object maxTtl;
-        private String ttl;
+        private Object ttl;
         private Boolean allowLocalhost;
         private List<String> allowedDomains;
         private Boolean allowedDomainsTemplate;
@@ -416,7 +411,7 @@ public class CertificateTemplateConfig extends ConfigElementDefConfig {
          * @param ttl the ttl
          * @return the CertificateTemplateConfig builder
          */
-        public Builder ttl(String ttl) {
+        public Builder ttl(Object ttl) {
             this.ttl = ttl;
             return this;
         }

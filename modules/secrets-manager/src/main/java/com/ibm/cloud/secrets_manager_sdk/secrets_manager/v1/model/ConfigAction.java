@@ -37,10 +37,6 @@ public class ConfigAction extends GenericModel {
          */
         String PEM = "pem";
         /**
-         * der.
-         */
-        String DER = "der";
-        /**
          * pem_bundle.
          */
         String PEM_BUNDLE = "pem_bundle";
@@ -49,14 +45,14 @@ public class ConfigAction extends GenericModel {
     @SerializedName("common_name")
     protected String commonName;
     @SerializedName("alt_names")
-    protected List<String> altNames;
+    protected String altNames;
     @SerializedName("ip_sans")
     protected String ipSans;
     @SerializedName("uri_sans")
     protected String uriSans;
     @SerializedName("other_sans")
     protected List<String> otherSans;
-    protected String ttl;
+    protected Object ttl;
     protected String format;
     @SerializedName("max_path_length")
     protected Long maxPathLength;
@@ -105,7 +101,7 @@ public class ConfigAction extends GenericModel {
      *
      * @return the altNames
      */
-    public List<String> altNames() {
+    public String altNames() {
         return altNames;
     }
 
@@ -149,14 +145,14 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the ttl.
      * <p>
-     * The time-to-live (TTL) or lease duration to assign to a private certificate.
+     * The time-to-live (TTL) to assign to a private certificate.
      * <p>
      * The value can be supplied as a string representation of a duration in hours, such as `12h`. The value can't exceed
      * the `max_ttl` that is defined in the associated certificate template.
      *
      * @return the ttl
      */
-    public String ttl() {
+    public Object ttl() {
         return ttl;
     }
 
@@ -233,7 +229,7 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the ou.
      * <p>
-     * The Organizational Unit (OU) values to define in the subject field of the resulting CA certificate.
+     * The Organizational Unit (OU) values to define in the subject field of the resulting certificate.
      *
      * @return the ou
      */
@@ -244,7 +240,7 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the organization.
      * <p>
-     * The Organization (O) values to define in the subject field of the resulting CA certificate.
+     * The Organization (O) values to define in the subject field of the resulting certificate.
      *
      * @return the organization
      */
@@ -255,7 +251,7 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the country.
      * <p>
-     * The Country (C) values to define in the subject field of the resulting CA certificate.
+     * The Country (C) values to define in the subject field of the resulting certificate.
      *
      * @return the country
      */
@@ -266,7 +262,7 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the locality.
      * <p>
-     * The Locality (L) values to define in the subject field of the resulting CA certificate.
+     * The Locality (L) values to define in the subject field of the resulting certificate.
      *
      * @return the locality
      */
@@ -277,7 +273,7 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the province.
      * <p>
-     * The Province (ST) values to define in the subject field of the resulting CA certificate.
+     * The Province (ST) values to define in the subject field of the resulting certificate.
      *
      * @return the province
      */
@@ -288,7 +284,7 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the streetAddress.
      * <p>
-     * The Street Address values in the subject field of the resulting CA certificate.
+     * The Street Address values in the subject field of the resulting certificate.
      *
      * @return the streetAddress
      */
@@ -299,7 +295,7 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the postalCode.
      * <p>
-     * The Postal Code values in the subject field of the resulting CA certificate.
+     * The Postal Code values in the subject field of the resulting certificate.
      *
      * @return the postalCode
      */
@@ -310,8 +306,8 @@ public class ConfigAction extends GenericModel {
     /**
      * Gets the serialNumber.
      * <p>
-     * The serial number to assign to the generated private certificate. To assign a random serial number, you can omit
-     * this field.
+     * The serial number to assign to the generated certificate. To assign a random serial number, you can omit this
+     * field.
      *
      * @return the serialNumber
      */

@@ -76,10 +76,6 @@ public class SecretResource extends GenericModel {
          */
         String PEM = "pem";
         /**
-         * der.
-         */
-        String DER = "der";
-        /**
          * pem_bundle.
          */
         String PEM_BUNDLE = "pem_bundle";
@@ -129,7 +125,7 @@ public class SecretResource extends GenericModel {
     protected String password;
     @SerializedName("next_rotation_date")
     protected Date nextRotationDate;
-    protected String ttl;
+    protected Object ttl;
     @SerializedName("access_groups")
     protected List<String> accessGroups;
     @SerializedName("api_key")
@@ -160,7 +156,7 @@ public class SecretResource extends GenericModel {
     @SerializedName("private_key_included")
     protected Boolean privateKeyIncluded;
     @SerializedName("alt_names")
-    protected List<String> altNames;
+    protected Object altNames;
     @SerializedName("bundle_certs")
     protected Boolean bundleCerts;
     protected String ca;
@@ -449,7 +445,7 @@ public class SecretResource extends GenericModel {
      *
      * @return the ttl
      */
-    public String ttl() {
+    public Object ttl() {
         return ttl;
     }
 
@@ -670,10 +666,14 @@ public class SecretResource extends GenericModel {
      * Gets the altNames.
      * <p>
      * The alternative names that are defined for the certificate.
+     * <p>
+     * For public certificates, this value is provided as an array of strings. For private certificates, this value is
+     * provided as a comma-delimited list (string). In the API response, this value is returned as an array of strings for
+     * all the types of certificate secrets.
      *
      * @return the altNames
      */
-    public List<String> altNames() {
+    public Object altNames() {
         return altNames;
     }
 
