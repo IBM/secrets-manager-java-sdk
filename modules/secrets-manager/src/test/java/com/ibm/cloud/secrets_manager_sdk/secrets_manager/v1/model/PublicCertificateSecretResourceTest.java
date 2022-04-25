@@ -71,7 +71,7 @@ public class PublicCertificateSecretResourceTest {
                 .ca("testString")
                 .dns("testString")
                 .keyAlgorithm("RSA2048")
-                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .altNames("testString")
                 .commonName("example.com")
                 .rotation(rotationModel)
                 .issuanceInfo(issuanceInfoModel)
@@ -85,7 +85,7 @@ public class PublicCertificateSecretResourceTest {
         assertEquals(publicCertificateSecretResourceModel.ca(), "testString");
         assertEquals(publicCertificateSecretResourceModel.dns(), "testString");
         assertEquals(publicCertificateSecretResourceModel.keyAlgorithm(), "RSA2048");
-        assertEquals(publicCertificateSecretResourceModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(publicCertificateSecretResourceModel.altNames(), "testString");
         assertEquals(publicCertificateSecretResourceModel.commonName(), "example.com");
         assertEquals(publicCertificateSecretResourceModel.rotation(), rotationModel);
         assertEquals(publicCertificateSecretResourceModel.issuanceInfo(), issuanceInfoModel);
@@ -102,6 +102,7 @@ public class PublicCertificateSecretResourceTest {
         assertEquals(publicCertificateSecretResourceModelNew.ca(), "testString");
         assertEquals(publicCertificateSecretResourceModelNew.dns(), "testString");
         assertEquals(publicCertificateSecretResourceModelNew.keyAlgorithm(), "RSA2048");
+        assertEquals(publicCertificateSecretResourceModelNew.altNames(), "testString");
         assertEquals(publicCertificateSecretResourceModelNew.commonName(), "example.com");
         assertEquals(publicCertificateSecretResourceModelNew.rotation().toString(), rotationModel.toString());
         assertEquals(publicCertificateSecretResourceModelNew.issuanceInfo().toString(), issuanceInfoModel.toString());

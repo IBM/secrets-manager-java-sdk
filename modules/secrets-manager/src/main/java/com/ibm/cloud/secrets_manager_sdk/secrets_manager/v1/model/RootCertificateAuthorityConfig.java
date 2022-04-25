@@ -61,10 +61,6 @@ public class RootCertificateAuthorityConfig extends ConfigElementDefConfig {
          */
         String PEM = "pem";
         /**
-         * der.
-         */
-        String DER = "der";
-        /**
          * pem_bundle.
          */
         String PEM_BUNDLE = "pem_bundle";
@@ -93,10 +89,6 @@ public class RootCertificateAuthorityConfig extends ConfigElementDefConfig {
          */
         String RSA = "rsa";
         /**
-         * ed25519.
-         */
-        String ED25519 = "ed25519";
-        /**
          * ec.
          */
         String EC = "ec";
@@ -113,11 +105,11 @@ public class RootCertificateAuthorityConfig extends ConfigElementDefConfig {
         private Boolean crlDistributionPointsEncoded;
         private Boolean issuingCertificatesUrlsEncoded;
         private String commonName;
-        private List<String> altNames;
+        private String altNames;
         private String ipSans;
         private String uriSans;
         private List<String> otherSans;
-        private String ttl;
+        private Object ttl;
         private String format;
         private String privateKeyFormat;
         private String keyType;
@@ -187,22 +179,6 @@ public class RootCertificateAuthorityConfig extends ConfigElementDefConfig {
          */
         public RootCertificateAuthorityConfig build() {
             return new RootCertificateAuthorityConfig(this);
-        }
-
-        /**
-         * Adds an altNames to altNames.
-         *
-         * @param altNames the new altNames
-         * @return the RootCertificateAuthorityConfig builder
-         */
-        public Builder addAltNames(String altNames) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(altNames,
-                    "altNames cannot be null");
-            if (this.altNames == null) {
-                this.altNames = new ArrayList<String>();
-            }
-            this.altNames.add(altNames);
-            return this;
         }
 
         /**
@@ -417,12 +393,11 @@ public class RootCertificateAuthorityConfig extends ConfigElementDefConfig {
 
         /**
          * Set the altNames.
-         * Existing altNames will be replaced.
          *
          * @param altNames the altNames
          * @return the RootCertificateAuthorityConfig builder
          */
-        public Builder altNames(List<String> altNames) {
+        public Builder altNames(String altNames) {
             this.altNames = altNames;
             return this;
         }
@@ -467,7 +442,7 @@ public class RootCertificateAuthorityConfig extends ConfigElementDefConfig {
          * @param ttl the ttl
          * @return the RootCertificateAuthorityConfig builder
          */
-        public Builder ttl(String ttl) {
+        public Builder ttl(Object ttl) {
             this.ttl = ttl;
             return this;
         }

@@ -55,7 +55,7 @@ public class CertificateSecretResourceTest {
                 .privateKey("testString")
                 .intermediate("testString")
                 .validity(certificateValidityModel)
-                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .altNames("testString")
                 .build();
         assertEquals(certificateSecretResourceModel.name(), "testString");
         assertEquals(certificateSecretResourceModel.description(), "testString");
@@ -65,7 +65,7 @@ public class CertificateSecretResourceTest {
         assertEquals(certificateSecretResourceModel.privateKey(), "testString");
         assertEquals(certificateSecretResourceModel.intermediate(), "testString");
         assertEquals(certificateSecretResourceModel.validity(), certificateValidityModel);
-        assertEquals(certificateSecretResourceModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(certificateSecretResourceModel.altNames(), "testString");
 
         String json = TestUtilities.serialize(certificateSecretResourceModel);
 
@@ -78,6 +78,7 @@ public class CertificateSecretResourceTest {
         assertEquals(certificateSecretResourceModelNew.privateKey(), "testString");
         assertEquals(certificateSecretResourceModelNew.intermediate(), "testString");
         assertEquals(certificateSecretResourceModelNew.validity().toString(), certificateValidityModel.toString());
+        assertEquals(certificateSecretResourceModelNew.altNames(), "testString");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

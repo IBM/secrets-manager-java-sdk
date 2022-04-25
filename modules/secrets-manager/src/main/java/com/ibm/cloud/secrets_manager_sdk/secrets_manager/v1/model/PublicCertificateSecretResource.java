@@ -94,7 +94,7 @@ public class PublicCertificateSecretResource extends SecretResource {
         private String ca;
         private String dns;
         private String keyAlgorithm;
-        private List<String> altNames;
+        private Object altNames;
         private String commonName;
         private Rotation rotation;
         private IssuanceInfo issuanceInfo;
@@ -153,22 +153,6 @@ public class PublicCertificateSecretResource extends SecretResource {
                 this.labels = new ArrayList<String>();
             }
             this.labels.add(labels);
-            return this;
-        }
-
-        /**
-         * Adds an altNames to altNames.
-         *
-         * @param altNames the new altNames
-         * @return the PublicCertificateSecretResource builder
-         */
-        public Builder addAltNames(String altNames) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(altNames,
-                    "altNames cannot be null");
-            if (this.altNames == null) {
-                this.altNames = new ArrayList<String>();
-            }
-            this.altNames.add(altNames);
             return this;
         }
 
@@ -263,12 +247,11 @@ public class PublicCertificateSecretResource extends SecretResource {
 
         /**
          * Set the altNames.
-         * Existing altNames will be replaced.
          *
          * @param altNames the altNames
          * @return the PublicCertificateSecretResource builder
          */
-        public Builder altNames(List<String> altNames) {
+        public Builder altNames(Object altNames) {
             this.altNames = altNames;
             return this;
         }

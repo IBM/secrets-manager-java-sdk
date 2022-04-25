@@ -43,7 +43,7 @@ public class RootCertificateAuthorityConfigTest {
                 .crlDistributionPointsEncoded(false)
                 .issuingCertificatesUrlsEncoded(false)
                 .commonName("example.com")
-                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .altNames("testString")
                 .ipSans("testString")
                 .uriSans("testString")
                 .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
@@ -70,7 +70,7 @@ public class RootCertificateAuthorityConfigTest {
         assertEquals(rootCertificateAuthorityConfigModel.crlDistributionPointsEncoded(), Boolean.valueOf(false));
         assertEquals(rootCertificateAuthorityConfigModel.issuingCertificatesUrlsEncoded(), Boolean.valueOf(false));
         assertEquals(rootCertificateAuthorityConfigModel.commonName(), "example.com");
-        assertEquals(rootCertificateAuthorityConfigModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(rootCertificateAuthorityConfigModel.altNames(), "testString");
         assertEquals(rootCertificateAuthorityConfigModel.ipSans(), "testString");
         assertEquals(rootCertificateAuthorityConfigModel.uriSans(), "testString");
         assertEquals(rootCertificateAuthorityConfigModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
@@ -101,6 +101,7 @@ public class RootCertificateAuthorityConfigTest {
         assertEquals(rootCertificateAuthorityConfigModelNew.crlDistributionPointsEncoded(), Boolean.valueOf(false));
         assertEquals(rootCertificateAuthorityConfigModelNew.issuingCertificatesUrlsEncoded(), Boolean.valueOf(false));
         assertEquals(rootCertificateAuthorityConfigModelNew.commonName(), "example.com");
+        assertEquals(rootCertificateAuthorityConfigModelNew.altNames(), "testString");
         assertEquals(rootCertificateAuthorityConfigModelNew.ipSans(), "testString");
         assertEquals(rootCertificateAuthorityConfigModelNew.uriSans(), "testString");
         assertEquals(rootCertificateAuthorityConfigModelNew.ttl(), "testString");

@@ -32,11 +32,11 @@ public class GetConfigResourcesItem extends GenericModel {
     @SerializedName("dns_providers")
     protected List<ConfigElementMetadata> dnsProviders;
     @SerializedName("root_certificate_authorities")
-    protected List<RootCertificateAuthorityConfig> rootCertificateAuthorities;
-    @SerializedName("intermdiate_certificate_authorities")
-    protected List<IntermediateCertificateAuthorityConfig> intermdiateCertificateAuthorities;
+    protected List<RootCertificateAuthoritiesConfigItem> rootCertificateAuthorities;
+    @SerializedName("intermediate_certificate_authorities")
+    protected List<IntermediateCertificateAuthoritiesConfigItem> intermediateCertificateAuthorities;
     @SerializedName("certificate_templates")
-    protected List<CertificateTemplateConfig> certificateTemplates;
+    protected List<CertificateTemplatesConfigItem> certificateTemplates;
     @SerializedName("api_key")
     protected String apiKey;
     @SerializedName("api_key_hash")
@@ -74,19 +74,19 @@ public class GetConfigResourcesItem extends GenericModel {
      *
      * @return the rootCertificateAuthorities
      */
-    public List<RootCertificateAuthorityConfig> getRootCertificateAuthorities() {
+    public List<RootCertificateAuthoritiesConfigItem> getRootCertificateAuthorities() {
         return rootCertificateAuthorities;
     }
 
     /**
-     * Gets the intermdiateCertificateAuthorities.
+     * Gets the intermediateCertificateAuthorities.
      * <p>
      * The intermediate certificate authority configurations that are associated with your instance.
      *
-     * @return the intermdiateCertificateAuthorities
+     * @return the intermediateCertificateAuthorities
      */
-    public List<IntermediateCertificateAuthorityConfig> getIntermdiateCertificateAuthorities() {
-        return intermdiateCertificateAuthorities;
+    public List<IntermediateCertificateAuthoritiesConfigItem> getIntermediateCertificateAuthorities() {
+        return intermediateCertificateAuthorities;
     }
 
     /**
@@ -96,7 +96,7 @@ public class GetConfigResourcesItem extends GenericModel {
      *
      * @return the certificateTemplates
      */
-    public List<CertificateTemplateConfig> getCertificateTemplates() {
+    public List<CertificateTemplatesConfigItem> getCertificateTemplates() {
         return certificateTemplates;
     }
 

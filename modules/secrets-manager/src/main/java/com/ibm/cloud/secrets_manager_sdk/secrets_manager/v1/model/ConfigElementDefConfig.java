@@ -73,10 +73,6 @@ public class ConfigElementDefConfig extends GenericModel {
          */
         String PEM = "pem";
         /**
-         * der.
-         */
-        String DER = "der";
-        /**
          * pem_bundle.
          */
         String PEM_BUNDLE = "pem_bundle";
@@ -104,10 +100,6 @@ public class ConfigElementDefConfig extends GenericModel {
          * rsa.
          */
         String RSA = "rsa";
-        /**
-         * ed25519.
-         */
-        String ED25519 = "ed25519";
         /**
          * ec.
          */
@@ -157,14 +149,14 @@ public class ConfigElementDefConfig extends GenericModel {
     @SerializedName("expiration_date")
     protected Date expirationDate;
     @SerializedName("alt_names")
-    protected List<String> altNames;
+    protected String altNames;
     @SerializedName("ip_sans")
     protected String ipSans;
     @SerializedName("uri_sans")
     protected String uriSans;
     @SerializedName("other_sans")
     protected List<String> otherSans;
-    protected String ttl;
+    protected Object ttl;
     protected String format;
     @SerializedName("private_key_format")
     protected String privateKeyFormat;
@@ -327,9 +319,10 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the maxTtl.
      * <p>
-     * The maximum time-to-live (TTL) for certificates that are created by this CA. The value can be supplied as a string
-     * representation of a duration in hours, for example '8760h'. Note that in the API response the value is returned in
-     * seconds (integer).
+     * The maximum time-to-live (TTL) for certificates that are created by this CA.
+     * <p>
+     * The value can be supplied as a string representation of a duration in hours, for example '8760h'. In the API
+     * response, this value is returned in seconds (integer).
      * <p>
      * Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
      *
@@ -342,9 +335,12 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the crlExpiry.
      * <p>
-     * The time until the certificate revocation list (CRL) expires. The value can be supplied as a string representation
-     * of a duration in hours, such as `48h`. The default is 72 hours. Note that in the API response the value is returned
-     * in seconds (integer).
+     * The time until the certificate revocation list (CRL) expires.
+     * <p>
+     * The value can be supplied as a string representation of a duration in hours, such as `48h`. The default is 72
+     * hours. In the API response, this value is returned in seconds (integer).
+     * <p>
+     * **Note:** The CRL is rotated automatically before it expires.
      *
      * @return the crlExpiry
      */
@@ -355,9 +351,10 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the crlDisable.
      * <p>
-     * Determines whether to disable certificate revocation list (CRL) building.
+     * Disables or enables certificate revocation list (CRL) building.
      * <p>
-     * By default, each request rebuilds a CRL. To disable CRL building, set this field to `true`.
+     * If CRL building is disabled, a signed but zero-length CRL is returned when downloading the CRL. If CRL building is
+     * enabled,  it will rebuild the CRL.
      *
      * @return the crlDisable
      */
@@ -368,8 +365,8 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the crlDistributionPointsEncoded.
      * <p>
-     * Determines whether to encode the certificate revocation list (CRL) distribution points in the private certificates
-     * that are issued by a certificate authority.
+     * Determines whether to encode the certificate revocation list (CRL) distribution points in the certificates that are
+     * issued by this certificate authority.
      *
      * @return the crlDistributionPointsEncoded
      */
@@ -380,7 +377,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the issuingCertificatesUrlsEncoded.
      * <p>
-     * Determines whether to encode the URL of the issuing certificate in the private certificates that are issued by a
+     * Determines whether to encode the URL of the issuing certificate in the certificates that are issued by this
      * certificate authority.
      *
      * @return the issuingCertificatesUrlsEncoded
@@ -433,7 +430,7 @@ public class ConfigElementDefConfig extends GenericModel {
      *
      * @return the altNames
      */
-    public List<String> altNames() {
+    public String altNames() {
         return altNames;
     }
 
@@ -477,15 +474,15 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the ttl.
      * <p>
-     * The time-to-live (TTL) or lease duration to assign to a private certificate.
+     * The time-to-live (TTL) to assign to this CA certificate.
      * <p>
      * The value can be supplied as a string representation of a duration, such as `12h`. The value can't exceed the
-     * `max_ttl` that is defined in the associated certificate template. Note that in the API response the value is
-     * returned in seconds (integer).
+     * `max_ttl` that is defined in the associated certificate template. In the API response, this value is returned in
+     * seconds (integer).
      *
      * @return the ttl
      */
-    public String ttl() {
+    public Object ttl() {
         return ttl;
     }
 
@@ -526,6 +523,9 @@ public class ConfigElementDefConfig extends GenericModel {
      * Gets the keyBits.
      * <p>
      * The number of bits to use when generating the private key.
+     * <p>
+     * Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC keys are: `224`, `256`, `384`, and
+     * `521`. The default for RSA keys is `2048`. The default for EC keys is `256`.
      *
      * @return the keyBits
      */
@@ -575,7 +575,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the ou.
      * <p>
-     * The Organizational Unit (OU) values to define in the subject field of the resulting CA certificate.
+     * The Organizational Unit (OU) values to define in the subject field of the resulting certificate.
      *
      * @return the ou
      */
@@ -586,7 +586,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the organization.
      * <p>
-     * The Organization (O) values to define in the subject field of the resulting CA certificate.
+     * The Organization (O) values to define in the subject field of the resulting certificate.
      *
      * @return the organization
      */
@@ -597,7 +597,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the country.
      * <p>
-     * The Country (C) values to define in the subject field of the resulting CA certificate.
+     * The Country (C) values to define in the subject field of the resulting certificate.
      *
      * @return the country
      */
@@ -608,7 +608,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the locality.
      * <p>
-     * The Locality (L) values to define in the subject field of the resulting CA certificate.
+     * The Locality (L) values to define in the subject field of the resulting certificate.
      *
      * @return the locality
      */
@@ -619,7 +619,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the province.
      * <p>
-     * The Province (ST) values to define in the subject field of the resulting CA certificate.
+     * The Province (ST) values to define in the subject field of the resulting certificate.
      *
      * @return the province
      */
@@ -630,7 +630,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the streetAddress.
      * <p>
-     * The Street Address values in the subject field of the resulting CA certificate.
+     * The Street Address values in the subject field of the resulting certificate.
      *
      * @return the streetAddress
      */
@@ -641,7 +641,7 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the postalCode.
      * <p>
-     * The Postal Code values in the subject field of the resulting CA certificate.
+     * The Postal Code values in the subject field of the resulting certificate.
      *
      * @return the postalCode
      */
@@ -652,8 +652,8 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the serialNumber.
      * <p>
-     * The serial number to assign to the generated private certificate. To assign a random serial number, you can omit
-     * this field.
+     * The serial number to assign to the generated certificate. To assign a random serial number, you can omit this
+     * field.
      *
      * @return the serialNumber
      */
@@ -1029,9 +1029,10 @@ public class ConfigElementDefConfig extends GenericModel {
     /**
      * Gets the notBeforeDuration.
      * <p>
-     * The duration in seconds by which to backdate the `not_before` property of an issued private certificate. The value
-     * can be supplied as a string representation of a duration, such as `30s`. Note that in the API response the value is
-     * returned in seconds (integer).
+     * The duration in seconds by which to backdate the `not_before` property of an issued private certificate.
+     * <p>
+     * The value can be supplied as a string representation of a duration, such as `30s`. In the API response, this value
+     * is returned in seconds (integer).
      *
      * @return the notBeforeDuration
      */

@@ -25,6 +25,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - GetConfigElementsResourcesItemDnsProvidersConfig
  * - RootCertificateAuthoritiesConfig
  * - IntermediateCertificateAuthoritiesConfig
+ * - CertificateTemplatesConfig
  */
 public class GetConfigElementsResourcesItem extends GenericModel {
 
@@ -36,6 +37,8 @@ public class GetConfigElementsResourcesItem extends GenericModel {
     protected List<RootCertificateAuthoritiesConfigItem> rootCertificateAuthorities;
     @SerializedName("intermediate_certificate_authorities")
     protected List<IntermediateCertificateAuthoritiesConfigItem> intermediateCertificateAuthorities;
+    @SerializedName("certificate_templates")
+    protected List<CertificateTemplatesConfigItem> certificateTemplates;
 
     protected GetConfigElementsResourcesItem() {
     }
@@ -74,6 +77,15 @@ public class GetConfigElementsResourcesItem extends GenericModel {
      */
     public List<IntermediateCertificateAuthoritiesConfigItem> getIntermediateCertificateAuthorities() {
         return intermediateCertificateAuthorities;
+    }
+
+    /**
+     * Gets the certificateTemplates.
+     *
+     * @return the certificateTemplates
+     */
+    public List<CertificateTemplatesConfigItem> getCertificateTemplates() {
+        return certificateTemplates;
     }
 }
 

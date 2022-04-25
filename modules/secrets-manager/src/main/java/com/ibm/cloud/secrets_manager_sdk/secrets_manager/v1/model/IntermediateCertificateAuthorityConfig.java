@@ -78,10 +78,6 @@ public class IntermediateCertificateAuthorityConfig extends ConfigElementDefConf
          */
         String PEM = "pem";
         /**
-         * der.
-         */
-        String DER = "der";
-        /**
          * pem_bundle.
          */
         String PEM_BUNDLE = "pem_bundle";
@@ -110,10 +106,6 @@ public class IntermediateCertificateAuthorityConfig extends ConfigElementDefConf
          */
         String RSA = "rsa";
         /**
-         * ed25519.
-         */
-        String ED25519 = "ed25519";
-        /**
          * ec.
          */
         String EC = "ec";
@@ -132,7 +124,7 @@ public class IntermediateCertificateAuthorityConfig extends ConfigElementDefConf
         private Boolean crlDistributionPointsEncoded;
         private Boolean issuingCertificatesUrlsEncoded;
         private String commonName;
-        private List<String> altNames;
+        private String altNames;
         private String ipSans;
         private String uriSans;
         private List<String> otherSans;
@@ -204,22 +196,6 @@ public class IntermediateCertificateAuthorityConfig extends ConfigElementDefConf
          */
         public IntermediateCertificateAuthorityConfig build() {
             return new IntermediateCertificateAuthorityConfig(this);
-        }
-
-        /**
-         * Adds an altNames to altNames.
-         *
-         * @param altNames the new altNames
-         * @return the IntermediateCertificateAuthorityConfig builder
-         */
-        public Builder addAltNames(String altNames) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(altNames,
-                    "altNames cannot be null");
-            if (this.altNames == null) {
-                this.altNames = new ArrayList<String>();
-            }
-            this.altNames.add(altNames);
-            return this;
         }
 
         /**
@@ -440,12 +416,11 @@ public class IntermediateCertificateAuthorityConfig extends ConfigElementDefConf
 
         /**
          * Set the altNames.
-         * Existing altNames will be replaced.
          *
          * @param altNames the altNames
          * @return the IntermediateCertificateAuthorityConfig builder
          */
-        public Builder altNames(List<String> altNames) {
+        public Builder altNames(String altNames) {
             this.altNames = altNames;
             return this;
         }

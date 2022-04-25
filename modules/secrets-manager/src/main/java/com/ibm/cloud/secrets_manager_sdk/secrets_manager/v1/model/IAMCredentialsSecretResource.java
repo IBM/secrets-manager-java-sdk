@@ -63,7 +63,7 @@ public class IAMCredentialsSecretResource extends SecretResource {
         private String description;
         private String secretGroupId;
         private List<String> labels;
-        private String ttl;
+        private Object ttl;
         private List<String> accessGroups;
         private String serviceId;
         private Boolean reuseApiKey;
@@ -186,7 +186,7 @@ public class IAMCredentialsSecretResource extends SecretResource {
          * @param ttl the ttl
          * @return the IAMCredentialsSecretResource builder
          */
-        public Builder ttl(String ttl) {
+        public Builder ttl(Object ttl) {
             this.ttl = ttl;
             return this;
         }

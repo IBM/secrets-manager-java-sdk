@@ -26,10 +26,6 @@ public class SignCsrActionResult extends ConfigElementActionResultConfig {
          */
         String PEM = "pem";
         /**
-         * der.
-         */
-        String DER = "der";
-        /**
          * pem_bundle.
          */
         String PEM_BUNDLE = "pem_bundle";

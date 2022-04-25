@@ -39,7 +39,7 @@ public class ActionOnConfigElementOptionsTest {
     public void testActionOnConfigElementOptions() throws Throwable {
         SignCsrAction configActionModel = new SignCsrAction.Builder()
                 .commonName("example.com")
-                .altNames(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .altNames("testString")
                 .ipSans("testString")
                 .uriSans("testString")
                 .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
@@ -60,7 +60,7 @@ public class ActionOnConfigElementOptionsTest {
                 .csr("testString")
                 .build();
         assertEquals(configActionModel.commonName(), "example.com");
-        assertEquals(configActionModel.altNames(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(configActionModel.altNames(), "testString");
         assertEquals(configActionModel.ipSans(), "testString");
         assertEquals(configActionModel.uriSans(), "testString");
         assertEquals(configActionModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
