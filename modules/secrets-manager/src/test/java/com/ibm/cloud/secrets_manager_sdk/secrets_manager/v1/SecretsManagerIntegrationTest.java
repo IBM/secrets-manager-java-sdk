@@ -586,8 +586,13 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .secretType(SecretResource.SecretType.ARBITRARY)
                 .id(secretId)
                 .build();
-        Response<Void> delResp = secretsManager.deleteSecret(deleteSecretOptions).execute();
-        assertEquals(delResp.getStatusCode(), 412);
+        try {
+            secretsManager.deleteSecret(deleteSecretOptions).execute();
+        } catch (ConflictException e) {
+            assertEquals(e.getStatusCode(), 412);
+        }  catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         // Unlock secret
         UnlockSecretOptions unlockSecretOptions = new UnlockSecretOptions.Builder()
@@ -599,7 +604,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
         assertEquals(lockResp.getStatusCode(), 200);
 
         // delete arbitrary secret
-        delResp = secretsManager.deleteSecret(deleteSecretOptions).execute();
+        Response<Void> delResp = secretsManager.deleteSecret(deleteSecretOptions).execute();
         assertEquals(delResp.getStatusCode(), 204);
     }
 
