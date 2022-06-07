@@ -44,14 +44,14 @@ Service name | Imported class name
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager</artifactId>
-    <version>1.0.40</version>
+    <version>1.0.41</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager:1.0.40'
+'com.ibm.cloud:secrets-manager:1.0.41'
 ```
 
 ## Authentication
