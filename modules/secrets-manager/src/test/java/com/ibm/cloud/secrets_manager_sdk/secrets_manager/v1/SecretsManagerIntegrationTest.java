@@ -127,7 +127,6 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
         assertEquals(delResp.getStatusCode(), 204);
     }
 
-
     @Test
     public void testSecretGroup() {
         // create a secret group
@@ -544,6 +543,64 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .configElement(DeleteConfigElementOptions.ConfigElement.CERTIFICATE_AUTHORITIES).configName(caConfigName).build()).execute();
         assertEquals(delRes.getStatusCode(), 204);
 
+    }
+
+    @Test
+    public void testLockSecret() {
+        // create arbitrary secret
+        CollectionMetadata collectionMetadata = new CollectionMetadata.Builder()
+                .collectionType(CollectionMetadata.CollectionType.APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_JSON)
+                .collectionTotal(Long.parseLong("1"))
+                .build();
+        ArbitrarySecretResource secretResource = new ArbitrarySecretResource.Builder()
+                .name(generateName())
+                .description("Integration test generated")
+                .expirationDate(generateExpirationDate())
+                .payload("secret-data")
+                .build();
+        CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
+                .secretType(SecretResource.SecretType.ARBITRARY)
+                .metadata(collectionMetadata)
+                .resources(new java.util.ArrayList<>(Collections.singletonList(secretResource)))
+                .build();
+        Response<CreateSecret> createResp = secretsManager.createSecret(createSecretOptions).execute();
+        assertEquals(createResp.getStatusCode(), 200);
+
+        String secretId = createResp.getResult().resources().get(0).id();
+
+        // Lock secret
+        List<LockSecretBodyLocksItem> locks = new ArrayList<>();
+        locks.add(new LockSecretBodyLocksItem.Builder().name("test-lock").description("exclusive").attributes(Collections.singletonMap("Key", "Value")).build());
+
+        LockSecretOptions lockSecretOptions = new LockSecretOptions.Builder()
+                .secretType(SecretResource.SecretType.ARBITRARY)
+                .id(secretId)
+                .locks(locks)
+                .mode(LockSecretOptions.Mode.EXCLUSIVE)
+                .build();
+        Response<GetSecretLocks> lockResp = secretsManager.lockSecret(lockSecretOptions).execute();
+        assertEquals(lockResp.getStatusCode(), 200);
+
+        // delete arbitrary secret - should fail on 412 error code, "secret locked".
+        DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
+                .secretType(SecretResource.SecretType.ARBITRARY)
+                .id(secretId)
+                .build();
+        Response<Void> delResp = secretsManager.deleteSecret(deleteSecretOptions).execute();
+        assertEquals(delResp.getStatusCode(), 412);
+
+        // Unlock secret
+        UnlockSecretOptions unlockSecretOptions = new UnlockSecretOptions.Builder()
+                .secretType(SecretResource.SecretType.ARBITRARY)
+                .id(secretId)
+                .locks(Collections.singletonList("test-lock"))
+                .build();
+        Response<GetSecretLocks> unlockResp = secretsManager.unlockSecret(unlockSecretOptions).execute();
+        assertEquals(lockResp.getStatusCode(), 200);
+
+        // delete arbitrary secret
+        delResp = secretsManager.deleteSecret(deleteSecretOptions).execute();
+        assertEquals(delResp.getStatusCode(), 204);
     }
 
     private Date generateExpirationDate() {
