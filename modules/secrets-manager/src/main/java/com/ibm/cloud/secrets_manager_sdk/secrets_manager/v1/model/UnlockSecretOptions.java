@@ -12,12 +12,15 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * The listSecrets options.
+ * The unlockSecret options.
  */
-public class ListSecretsOptions extends GenericModel {
+public class UnlockSecretOptions extends GenericModel {
 
     /**
      * The secret type.
@@ -54,21 +57,21 @@ public class ListSecretsOptions extends GenericModel {
     }
 
     protected String secretType;
-    protected Long limit;
-    protected Long offset;
+    protected String id;
+    protected List<String> locks;
 
     /**
      * Builder.
      */
     public static class Builder {
         private String secretType;
-        private Long limit;
-        private Long offset;
+        private String id;
+        private List<String> locks;
 
-        private Builder(ListSecretsOptions listSecretsOptions) {
-            this.secretType = listSecretsOptions.secretType;
-            this.limit = listSecretsOptions.limit;
-            this.offset = listSecretsOptions.offset;
+        private Builder(UnlockSecretOptions unlockSecretOptions) {
+            this.secretType = unlockSecretOptions.secretType;
+            this.id = unlockSecretOptions.id;
+            this.locks = unlockSecretOptions.locks;
         }
 
         /**
@@ -81,25 +84,43 @@ public class ListSecretsOptions extends GenericModel {
          * Instantiates a new builder with required properties.
          *
          * @param secretType the secretType
+         * @param id         the id
          */
-        public Builder(String secretType) {
+        public Builder(String secretType, String id) {
             this.secretType = secretType;
+            this.id = id;
         }
 
         /**
-         * Builds a ListSecretsOptions.
+         * Builds a UnlockSecretOptions.
          *
-         * @return the new ListSecretsOptions instance
+         * @return the new UnlockSecretOptions instance
          */
-        public ListSecretsOptions build() {
-            return new ListSecretsOptions(this);
+        public UnlockSecretOptions build() {
+            return new UnlockSecretOptions(this);
+        }
+
+        /**
+         * Adds an locks to locks.
+         *
+         * @param locks the new locks
+         * @return the UnlockSecretOptions builder
+         */
+        public Builder addLocks(String locks) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(locks,
+                    "locks cannot be null");
+            if (this.locks == null) {
+                this.locks = new ArrayList<String>();
+            }
+            this.locks.add(locks);
+            return this;
         }
 
         /**
          * Set the secretType.
          *
          * @param secretType the secretType
-         * @return the ListSecretsOptions builder
+         * @return the UnlockSecretOptions builder
          */
         public Builder secretType(String secretType) {
             this.secretType = secretType;
@@ -107,40 +128,43 @@ public class ListSecretsOptions extends GenericModel {
         }
 
         /**
-         * Set the limit.
+         * Set the id.
          *
-         * @param limit the limit
-         * @return the ListSecretsOptions builder
+         * @param id the id
+         * @return the UnlockSecretOptions builder
          */
-        public Builder limit(long limit) {
-            this.limit = limit;
+        public Builder id(String id) {
+            this.id = id;
             return this;
         }
 
         /**
-         * Set the offset.
+         * Set the locks.
+         * Existing locks will be replaced.
          *
-         * @param offset the offset
-         * @return the ListSecretsOptions builder
+         * @param locks the locks
+         * @return the UnlockSecretOptions builder
          */
-        public Builder offset(long offset) {
-            this.offset = offset;
+        public Builder locks(List<String> locks) {
+            this.locks = locks;
             return this;
         }
     }
 
-    protected ListSecretsOptions(Builder builder) {
+    protected UnlockSecretOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
         secretType = builder.secretType;
-        limit = builder.limit;
-        offset = builder.offset;
+        id = builder.id;
+        locks = builder.locks;
     }
 
     /**
      * New builder.
      *
-     * @return a ListSecretsOptions builder
+     * @return a UnlockSecretOptions builder
      */
     public Builder newBuilder() {
         return new Builder(this);
@@ -158,33 +182,25 @@ public class ListSecretsOptions extends GenericModel {
     }
 
     /**
-     * Gets the limit.
+     * Gets the id.
      * <p>
-     * The number of secrets to retrieve. By default, list operations return the first 200 items. To retrieve a different
-     * set of items, use `limit` with `offset` to page through your available resources.
-     * <p>
-     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 secrets, use
-     * `../secrets/{secret_type}?limit=5`.
+     * The v4 UUID that uniquely identifies the secret.
      *
-     * @return the limit
+     * @return the id
      */
-    public Long limit() {
-        return limit;
+    public String id() {
+        return id;
     }
 
     /**
-     * Gets the offset.
+     * Gets the locks.
      * <p>
-     * The number of secrets to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset`
-     * value. Use `offset` with `limit` to page through your available resources.
-     * <p>
-     * **Usage:** If you have 100 secrets in your instance, and you want to retrieve secrets 26 through 50, use
-     * `..?offset=25&amp;limit=25`.
+     * A comma-separated list of locks to delete.
      *
-     * @return the offset
+     * @return the locks
      */
-    public Long offset() {
-        return offset;
+    public List<String> locks() {
+        return locks;
     }
 }
 

@@ -18,43 +18,13 @@ import java.util.List;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * The listAllSecrets options.
+ * The listInstanceSecretsLocks options.
  */
-public class ListAllSecretsOptions extends GenericModel {
-
-    /**
-     * Sort a list of secrets by the specified field.
-     * <p>
-     * **Usage:** To sort a list of secrets by their creation date, use
-     * `../secrets/{secret_type}?sort_by=creation_date`.
-     */
-    public interface SortBy {
-        /**
-         * id.
-         */
-        String ID = "id";
-        /**
-         * creation_date.
-         */
-        String CREATION_DATE = "creation_date";
-        /**
-         * expiration_date.
-         */
-        String EXPIRATION_DATE = "expiration_date";
-        /**
-         * secret_type.
-         */
-        String SECRET_TYPE = "secret_type";
-        /**
-         * name.
-         */
-        String NAME = "name";
-    }
+public class ListInstanceSecretsLocksOptions extends GenericModel {
 
     protected Long limit;
     protected Long offset;
     protected String search;
-    protected String sortBy;
     protected List<String> groups;
 
     /**
@@ -64,15 +34,13 @@ public class ListAllSecretsOptions extends GenericModel {
         private Long limit;
         private Long offset;
         private String search;
-        private String sortBy;
         private List<String> groups;
 
-        private Builder(ListAllSecretsOptions listAllSecretsOptions) {
-            this.limit = listAllSecretsOptions.limit;
-            this.offset = listAllSecretsOptions.offset;
-            this.search = listAllSecretsOptions.search;
-            this.sortBy = listAllSecretsOptions.sortBy;
-            this.groups = listAllSecretsOptions.groups;
+        private Builder(ListInstanceSecretsLocksOptions listInstanceSecretsLocksOptions) {
+            this.limit = listInstanceSecretsLocksOptions.limit;
+            this.offset = listInstanceSecretsLocksOptions.offset;
+            this.search = listInstanceSecretsLocksOptions.search;
+            this.groups = listInstanceSecretsLocksOptions.groups;
         }
 
         /**
@@ -82,19 +50,19 @@ public class ListAllSecretsOptions extends GenericModel {
         }
 
         /**
-         * Builds a ListAllSecretsOptions.
+         * Builds a ListInstanceSecretsLocksOptions.
          *
-         * @return the new ListAllSecretsOptions instance
+         * @return the new ListInstanceSecretsLocksOptions instance
          */
-        public ListAllSecretsOptions build() {
-            return new ListAllSecretsOptions(this);
+        public ListInstanceSecretsLocksOptions build() {
+            return new ListInstanceSecretsLocksOptions(this);
         }
 
         /**
          * Adds an groups to groups.
          *
          * @param groups the new groups
-         * @return the ListAllSecretsOptions builder
+         * @return the ListInstanceSecretsLocksOptions builder
          */
         public Builder addGroups(String groups) {
             com.ibm.cloud.sdk.core.util.Validator.notNull(groups,
@@ -110,7 +78,7 @@ public class ListAllSecretsOptions extends GenericModel {
          * Set the limit.
          *
          * @param limit the limit
-         * @return the ListAllSecretsOptions builder
+         * @return the ListInstanceSecretsLocksOptions builder
          */
         public Builder limit(long limit) {
             this.limit = limit;
@@ -121,7 +89,7 @@ public class ListAllSecretsOptions extends GenericModel {
          * Set the offset.
          *
          * @param offset the offset
-         * @return the ListAllSecretsOptions builder
+         * @return the ListInstanceSecretsLocksOptions builder
          */
         public Builder offset(long offset) {
             this.offset = offset;
@@ -132,21 +100,10 @@ public class ListAllSecretsOptions extends GenericModel {
          * Set the search.
          *
          * @param search the search
-         * @return the ListAllSecretsOptions builder
+         * @return the ListInstanceSecretsLocksOptions builder
          */
         public Builder search(String search) {
             this.search = search;
-            return this;
-        }
-
-        /**
-         * Set the sortBy.
-         *
-         * @param sortBy the sortBy
-         * @return the ListAllSecretsOptions builder
-         */
-        public Builder sortBy(String sortBy) {
-            this.sortBy = sortBy;
             return this;
         }
 
@@ -155,7 +112,7 @@ public class ListAllSecretsOptions extends GenericModel {
          * Existing groups will be replaced.
          *
          * @param groups the groups
-         * @return the ListAllSecretsOptions builder
+         * @return the ListInstanceSecretsLocksOptions builder
          */
         public Builder groups(List<String> groups) {
             this.groups = groups;
@@ -163,18 +120,17 @@ public class ListAllSecretsOptions extends GenericModel {
         }
     }
 
-    protected ListAllSecretsOptions(Builder builder) {
+    protected ListInstanceSecretsLocksOptions(Builder builder) {
         limit = builder.limit;
         offset = builder.offset;
         search = builder.search;
-        sortBy = builder.sortBy;
         groups = builder.groups;
     }
 
     /**
      * New builder.
      *
-     * @return a ListAllSecretsOptions builder
+     * @return a ListInstanceSecretsLocksOptions builder
      */
     public Builder newBuilder() {
         return new Builder(this);
@@ -183,11 +139,11 @@ public class ListAllSecretsOptions extends GenericModel {
     /**
      * Gets the limit.
      * <p>
-     * The number of secrets to retrieve. By default, list operations return the first 200 items. To retrieve a different
-     * set of items, use `limit` with `offset` to page through your available resources.
+     * The number of secrets with locks to retrieve. By default, list operations return the first 25 items. To retrieve a
+     * different set of items, use `limit` with `offset` to page through your available resources.
      * <p>
-     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 secrets, use
-     * `../secrets/{secret_type}?limit=5`.
+     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 with locks, use
+     * `..?limit=5`.
      *
      * @return the limit
      */
@@ -213,30 +169,15 @@ public class ListAllSecretsOptions extends GenericModel {
     /**
      * Gets the search.
      * <p>
-     * Filter secrets that contain the specified string. The fields that are searched include: id, name, description,
-     * labels, secret_type.
+     * Filter locks that contain the specified string in the field "name".
      * <p>
-     * **Usage:** If you want to list only the secrets that contain the string "text", use
-     * `../secrets/{secret_type}?search=text`.
+     * **Usage:** If you want to list only the locks that contain the string "text" in the field "name", use
+     * `..?search=text`.
      *
      * @return the search
      */
     public String search() {
         return search;
-    }
-
-    /**
-     * Gets the sortBy.
-     * <p>
-     * Sort a list of secrets by the specified field.
-     * <p>
-     * **Usage:** To sort a list of secrets by their creation date, use
-     * `../secrets/{secret_type}?sort_by=creation_date`.
-     *
-     * @return the sortBy
-     */
-    public String sortBy() {
-        return sortBy;
     }
 
     /**

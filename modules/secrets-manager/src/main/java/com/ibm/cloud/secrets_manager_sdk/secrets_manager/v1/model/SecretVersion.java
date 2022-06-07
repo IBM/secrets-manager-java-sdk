@@ -37,6 +37,8 @@ public class SecretVersion extends GenericModel {
     protected Date creationDate;
     @SerializedName("created_by")
     protected String createdBy;
+    @SerializedName("locks_total")
+    protected Long locksTotal;
     @SerializedName("secret_data")
     protected Map<String, Object> secretData;
     @SerializedName("auto_rotated")
@@ -99,6 +101,17 @@ public class SecretVersion extends GenericModel {
      */
     public String getCreatedBy() {
         return createdBy;
+    }
+
+    /**
+     * Gets the locksTotal.
+     * <p>
+     * The number of locks that are associated with a secret version.
+     *
+     * @return the locksTotal
+     */
+    public Long getLocksTotal() {
+        return locksTotal;
     }
 
     /**

@@ -116,6 +116,8 @@ public class SecretResource extends GenericModel {
     @SerializedName("versions_total")
     protected Long versionsTotal;
     protected List<Map<String, Object>> versions;
+    @SerializedName("locks_total")
+    protected Long locksTotal;
     @SerializedName("expiration_date")
     protected Date expirationDate;
     protected Object payload;
@@ -352,6 +354,17 @@ public class SecretResource extends GenericModel {
      */
     public List<Map<String, Object>> versions() {
         return versions;
+    }
+
+    /**
+     * Gets the locksTotal.
+     * <p>
+     * The number of locks that are associated with a secret.
+     *
+     * @return the locksTotal
+     */
+    public Long locksTotal() {
+        return locksTotal;
     }
 
     /**

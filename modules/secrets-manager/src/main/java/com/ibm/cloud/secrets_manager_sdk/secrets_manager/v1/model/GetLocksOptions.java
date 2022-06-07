@@ -15,9 +15,9 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * The listSecrets options.
+ * The getLocks options.
  */
-public class ListSecretsOptions extends GenericModel {
+public class GetLocksOptions extends GenericModel {
 
     /**
      * The secret type.
@@ -54,21 +54,27 @@ public class ListSecretsOptions extends GenericModel {
     }
 
     protected String secretType;
+    protected String id;
     protected Long limit;
     protected Long offset;
+    protected String search;
 
     /**
      * Builder.
      */
     public static class Builder {
         private String secretType;
+        private String id;
         private Long limit;
         private Long offset;
+        private String search;
 
-        private Builder(ListSecretsOptions listSecretsOptions) {
-            this.secretType = listSecretsOptions.secretType;
-            this.limit = listSecretsOptions.limit;
-            this.offset = listSecretsOptions.offset;
+        private Builder(GetLocksOptions getLocksOptions) {
+            this.secretType = getLocksOptions.secretType;
+            this.id = getLocksOptions.id;
+            this.limit = getLocksOptions.limit;
+            this.offset = getLocksOptions.offset;
+            this.search = getLocksOptions.search;
         }
 
         /**
@@ -81,25 +87,27 @@ public class ListSecretsOptions extends GenericModel {
          * Instantiates a new builder with required properties.
          *
          * @param secretType the secretType
+         * @param id         the id
          */
-        public Builder(String secretType) {
+        public Builder(String secretType, String id) {
             this.secretType = secretType;
+            this.id = id;
         }
 
         /**
-         * Builds a ListSecretsOptions.
+         * Builds a GetLocksOptions.
          *
-         * @return the new ListSecretsOptions instance
+         * @return the new GetLocksOptions instance
          */
-        public ListSecretsOptions build() {
-            return new ListSecretsOptions(this);
+        public GetLocksOptions build() {
+            return new GetLocksOptions(this);
         }
 
         /**
          * Set the secretType.
          *
          * @param secretType the secretType
-         * @return the ListSecretsOptions builder
+         * @return the GetLocksOptions builder
          */
         public Builder secretType(String secretType) {
             this.secretType = secretType;
@@ -107,10 +115,21 @@ public class ListSecretsOptions extends GenericModel {
         }
 
         /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the GetLocksOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
          * Set the limit.
          *
          * @param limit the limit
-         * @return the ListSecretsOptions builder
+         * @return the GetLocksOptions builder
          */
         public Builder limit(long limit) {
             this.limit = limit;
@@ -121,26 +140,41 @@ public class ListSecretsOptions extends GenericModel {
          * Set the offset.
          *
          * @param offset the offset
-         * @return the ListSecretsOptions builder
+         * @return the GetLocksOptions builder
          */
         public Builder offset(long offset) {
             this.offset = offset;
             return this;
         }
+
+        /**
+         * Set the search.
+         *
+         * @param search the search
+         * @return the GetLocksOptions builder
+         */
+        public Builder search(String search) {
+            this.search = search;
+            return this;
+        }
     }
 
-    protected ListSecretsOptions(Builder builder) {
+    protected GetLocksOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
         secretType = builder.secretType;
+        id = builder.id;
         limit = builder.limit;
         offset = builder.offset;
+        search = builder.search;
     }
 
     /**
      * New builder.
      *
-     * @return a ListSecretsOptions builder
+     * @return a GetLocksOptions builder
      */
     public Builder newBuilder() {
         return new Builder(this);
@@ -158,13 +192,24 @@ public class ListSecretsOptions extends GenericModel {
     }
 
     /**
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret.
+     *
+     * @return the id
+     */
+    public String id() {
+        return id;
+    }
+
+    /**
      * Gets the limit.
      * <p>
-     * The number of secrets to retrieve. By default, list operations return the first 200 items. To retrieve a different
-     * set of items, use `limit` with `offset` to page through your available resources.
+     * The number of secrets with locks to retrieve. By default, list operations return the first 25 items. To retrieve a
+     * different set of items, use `limit` with `offset` to page through your available resources.
      * <p>
-     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 secrets, use
-     * `../secrets/{secret_type}?limit=5`.
+     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 with locks, use
+     * `..?limit=5`.
      *
      * @return the limit
      */
@@ -185,6 +230,20 @@ public class ListSecretsOptions extends GenericModel {
      */
     public Long offset() {
         return offset;
+    }
+
+    /**
+     * Gets the search.
+     * <p>
+     * Filter locks that contain the specified string in the field "name".
+     * <p>
+     * **Usage:** If you want to list only the locks that contain the string "text" in the field "name", use
+     * `..?search=text`.
+     *
+     * @return the search
+     */
+    public String search() {
+        return search;
     }
 }
 
