@@ -554,7 +554,6 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .build();
         ArbitrarySecretResource secretResource = new ArbitrarySecretResource.Builder()
                 .name(generateName())
-                .description("Integration test generated")
                 .expirationDate(generateExpirationDate())
                 .payload("secret-data")
                 .build();
@@ -590,8 +589,6 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
             secretsManager.deleteSecret(deleteSecretOptions).execute();
         } catch (ConflictException e) {
             assertEquals(e.getStatusCode(), 412);
-        }  catch (Exception e) {
-            System.out.println(e.getMessage());
         }
 
         // Unlock secret
