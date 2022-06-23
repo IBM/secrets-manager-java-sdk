@@ -3,6 +3,8 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
 import com.ibm.cloud.sdk.core.http.Response;
 import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 import com.ibm.cloud.sdk.core.service.exception.ConflictException;
+import com.ibm.cloud.sdk.core.service.exception.InternalServerErrorException;
+import com.ibm.cloud.sdk.core.service.exception.ServiceResponseException;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.sdk.core.util.EnvironmentUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.*;
@@ -587,7 +589,7 @@ public class SecretsManagerIntegrationTest extends PowerMockTestCase {
                 .build();
         try {
             secretsManager.deleteSecret(deleteSecretOptions).execute();
-        } catch (ConflictException e) {
+        } catch (ServiceResponseException e) {
             assertEquals(e.getStatusCode(), 412);
         }
 
