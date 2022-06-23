@@ -62,6 +62,9 @@ public class IssuanceInfo extends GenericModel {
         }
     }
 
+    protected IssuanceInfo() {
+    }
+
     protected IssuanceInfo(Builder builder) {
     }
 

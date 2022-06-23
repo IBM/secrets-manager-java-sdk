@@ -184,6 +184,9 @@ public class LockSecretOptions extends GenericModel {
         }
     }
 
+    protected LockSecretOptions() {
+    }
+
     protected LockSecretOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

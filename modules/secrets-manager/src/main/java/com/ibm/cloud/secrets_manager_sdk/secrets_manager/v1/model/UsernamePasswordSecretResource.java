@@ -197,6 +197,9 @@ public class UsernamePasswordSecretResource extends SecretResource {
         }
     }
 
+    protected UsernamePasswordSecretResource() {
+    }
+
     protected UsernamePasswordSecretResource(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

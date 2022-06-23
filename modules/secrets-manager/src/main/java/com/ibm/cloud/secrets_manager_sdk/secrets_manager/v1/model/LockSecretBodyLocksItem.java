@@ -101,6 +101,9 @@ public class LockSecretBodyLocksItem extends GenericModel {
         }
     }
 
+    protected LockSecretBodyLocksItem() {
+    }
+
     protected LockSecretBodyLocksItem(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");
@@ -125,7 +128,7 @@ public class LockSecretBodyLocksItem extends GenericModel {
     /**
      * Gets the name.
      * <p>
-     * A human-readable name to assign to your secret lock.
+     * A human-readable name to assign to the lock. The lock name must be unique per secret version.
      * <p>
      * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret lock.
      *
@@ -138,7 +141,7 @@ public class LockSecretBodyLocksItem extends GenericModel {
     /**
      * Gets the description.
      * <p>
-     * An extended description of your secret lock.
+     * An extended description of the lock.
      * <p>
      * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
      * lock.

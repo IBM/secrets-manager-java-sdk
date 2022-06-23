@@ -805,6 +805,9 @@ public class CertificateTemplateConfig extends ConfigElementDefConfig {
         }
     }
 
+    protected CertificateTemplateConfig() {
+    }
+
     protected CertificateTemplateConfig(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.certificateAuthority,
                 "certificateAuthority cannot be null");

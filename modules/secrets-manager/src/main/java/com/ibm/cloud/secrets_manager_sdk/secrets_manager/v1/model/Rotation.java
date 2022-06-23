@@ -119,6 +119,9 @@ public class Rotation extends GenericModel {
         }
     }
 
+    protected Rotation() {
+    }
+
     protected Rotation(Builder builder) {
         autoRotate = builder.autoRotate;
         rotateKeys = builder.rotateKeys;

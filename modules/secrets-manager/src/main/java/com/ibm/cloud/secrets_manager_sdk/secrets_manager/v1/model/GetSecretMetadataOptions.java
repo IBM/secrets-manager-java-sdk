@@ -117,6 +117,9 @@ public class GetSecretMetadataOptions extends GenericModel {
         }
     }
 
+    protected GetSecretMetadataOptions() {
+    }
+
     protected GetSecretMetadataOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

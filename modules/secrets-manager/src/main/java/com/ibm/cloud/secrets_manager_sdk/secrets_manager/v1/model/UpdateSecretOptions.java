@@ -169,6 +169,9 @@ public class UpdateSecretOptions extends GenericModel {
         }
     }
 
+    protected UpdateSecretOptions() {
+    }
+
     protected UpdateSecretOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

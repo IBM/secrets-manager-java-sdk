@@ -133,6 +133,9 @@ public class ConfigElementDef extends GenericModel {
         }
     }
 
+    protected ConfigElementDef() {
+    }
+
     protected ConfigElementDef(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

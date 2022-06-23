@@ -481,6 +481,9 @@ public class SignCsrAction extends ConfigAction {
         }
     }
 
+    protected SignCsrAction() {
+    }
+
     protected SignCsrAction(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.csr,
                 "csr cannot be null");

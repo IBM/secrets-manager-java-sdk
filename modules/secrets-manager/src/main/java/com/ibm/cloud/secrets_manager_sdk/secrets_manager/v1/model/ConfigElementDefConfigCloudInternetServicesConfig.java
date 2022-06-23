@@ -77,6 +77,9 @@ public class ConfigElementDefConfigCloudInternetServicesConfig extends ConfigEle
         }
     }
 
+    protected ConfigElementDefConfigCloudInternetServicesConfig() {
+    }
+
     protected ConfigElementDefConfigCloudInternetServicesConfig(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.cisCrn,
                 "cisCrn cannot be null");

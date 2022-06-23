@@ -67,6 +67,9 @@ public class DeleteSecretGroupOptions extends GenericModel {
         }
     }
 
+    protected DeleteSecretGroupOptions() {
+    }
+
     protected DeleteSecretGroupOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
                 "id cannot be empty");

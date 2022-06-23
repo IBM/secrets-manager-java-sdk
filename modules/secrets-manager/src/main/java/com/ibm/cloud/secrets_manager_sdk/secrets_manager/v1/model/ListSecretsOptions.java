@@ -129,6 +129,9 @@ public class ListSecretsOptions extends GenericModel {
         }
     }
 
+    protected ListSecretsOptions() {
+    }
+
     protected ListSecretsOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

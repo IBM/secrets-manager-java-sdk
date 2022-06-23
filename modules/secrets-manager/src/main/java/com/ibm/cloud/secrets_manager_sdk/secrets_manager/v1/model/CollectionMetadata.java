@@ -120,6 +120,9 @@ public class CollectionMetadata extends GenericModel {
         }
     }
 
+    protected CollectionMetadata() {
+    }
+
     protected CollectionMetadata(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.collectionType,
                 "collectionType cannot be null");

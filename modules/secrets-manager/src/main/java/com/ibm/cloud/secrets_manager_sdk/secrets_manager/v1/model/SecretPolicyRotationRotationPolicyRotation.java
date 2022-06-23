@@ -93,6 +93,9 @@ public class SecretPolicyRotationRotationPolicyRotation extends SecretPolicyRota
         }
     }
 
+    protected SecretPolicyRotationRotationPolicyRotation() {
+    }
+
     protected SecretPolicyRotationRotationPolicyRotation(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.interval,
                 "interval cannot be null");

@@ -163,6 +163,9 @@ public class ListAllSecretsOptions extends GenericModel {
         }
     }
 
+    protected ListAllSecretsOptions() {
+    }
+
     protected ListAllSecretsOptions(Builder builder) {
         limit = builder.limit;
         offset = builder.offset;

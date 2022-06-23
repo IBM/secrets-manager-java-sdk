@@ -93,6 +93,9 @@ public class SecretPolicyRotation extends GenericModel {
         }
     }
 
+    protected SecretPolicyRotation() {
+    }
+
     protected SecretPolicyRotation(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
                 "type cannot be null");

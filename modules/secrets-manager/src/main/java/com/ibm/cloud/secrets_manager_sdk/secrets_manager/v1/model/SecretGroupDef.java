@@ -103,6 +103,9 @@ public class SecretGroupDef extends GenericModel {
         }
     }
 
+    protected SecretGroupDef() {
+    }
+
     protected SecretGroupDef(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
                 "metadata cannot be null");

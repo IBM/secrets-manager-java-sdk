@@ -64,6 +64,9 @@ public class RestoreIAMCredentialsSecretBody extends SecretAction {
         }
     }
 
+    protected RestoreIAMCredentialsSecretBody() {
+    }
+
     protected RestoreIAMCredentialsSecretBody(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.versionId,
                 "versionId cannot be null");

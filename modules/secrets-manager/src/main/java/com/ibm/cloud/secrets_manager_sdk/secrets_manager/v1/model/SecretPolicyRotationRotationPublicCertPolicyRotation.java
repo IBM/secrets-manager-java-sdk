@@ -79,6 +79,9 @@ public class SecretPolicyRotationRotationPublicCertPolicyRotation extends Secret
         }
     }
 
+    protected SecretPolicyRotationRotationPublicCertPolicyRotation() {
+    }
+
     protected SecretPolicyRotationRotationPublicCertPolicyRotation(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.autoRotate,
                 "autoRotate cannot be null");

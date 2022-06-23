@@ -64,6 +64,9 @@ public class RevokeAction extends ConfigAction {
         }
     }
 
+    protected RevokeAction() {
+    }
+
     protected RevokeAction(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.serialNumber,
                 "serialNumber cannot be null");

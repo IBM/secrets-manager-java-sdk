@@ -139,6 +139,9 @@ public class GetConfigElementOptions extends GenericModel {
         }
     }
 
+    protected GetConfigElementOptions() {
+    }
+
     protected GetConfigElementOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

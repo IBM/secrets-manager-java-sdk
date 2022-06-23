@@ -158,6 +158,9 @@ public class ArbitrarySecretMetadata extends SecretMetadata {
         }
     }
 
+    protected ArbitrarySecretMetadata() {
+    }
+
     protected ArbitrarySecretMetadata(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

@@ -77,6 +77,9 @@ public class CertificateValidity extends GenericModel {
         }
     }
 
+    protected CertificateValidity() {
+    }
+
     protected CertificateValidity(Builder builder) {
         notBefore = builder.notBefore;
         notAfter = builder.notAfter;

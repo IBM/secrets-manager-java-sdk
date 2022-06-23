@@ -144,6 +144,9 @@ public class KvSecretMetadata extends SecretMetadata {
         }
     }
 
+    protected KvSecretMetadata() {
+    }
+
     protected KvSecretMetadata(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

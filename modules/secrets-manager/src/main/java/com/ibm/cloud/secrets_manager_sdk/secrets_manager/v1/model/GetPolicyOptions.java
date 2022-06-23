@@ -125,6 +125,9 @@ public class GetPolicyOptions extends GenericModel {
         }
     }
 
+    protected GetPolicyOptions() {
+    }
+
     protected GetPolicyOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

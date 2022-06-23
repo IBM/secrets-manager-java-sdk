@@ -64,6 +64,9 @@ public class RotateKvSecretBody extends SecretAction {
         }
     }
 
+    protected RotateKvSecretBody() {
+    }
+
     protected RotateKvSecretBody(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.payload,
                 "payload cannot be null");

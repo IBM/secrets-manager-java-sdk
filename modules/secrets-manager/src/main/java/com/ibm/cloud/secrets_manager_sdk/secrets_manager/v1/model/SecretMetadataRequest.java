@@ -103,6 +103,9 @@ public class SecretMetadataRequest extends GenericModel {
         }
     }
 
+    protected SecretMetadataRequest() {
+    }
+
     protected SecretMetadataRequest(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
                 "metadata cannot be null");

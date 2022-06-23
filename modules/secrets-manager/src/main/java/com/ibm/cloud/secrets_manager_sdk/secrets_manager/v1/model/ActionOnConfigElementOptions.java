@@ -179,6 +179,9 @@ public class ActionOnConfigElementOptions extends GenericModel {
         }
     }
 
+    protected ActionOnConfigElementOptions() {
+    }
+
     protected ActionOnConfigElementOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

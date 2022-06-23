@@ -610,6 +610,9 @@ public class IntermediateCertificateAuthorityConfig extends ConfigElementDefConf
         }
     }
 
+    protected IntermediateCertificateAuthorityConfig() {
+    }
+
     protected IntermediateCertificateAuthorityConfig(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.maxTtl,
                 "maxTtl cannot be null");

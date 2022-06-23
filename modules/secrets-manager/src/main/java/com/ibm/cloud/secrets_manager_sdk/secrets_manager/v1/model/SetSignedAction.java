@@ -64,6 +64,9 @@ public class SetSignedAction extends ConfigAction {
         }
     }
 
+    protected SetSignedAction() {
+    }
+
     protected SetSignedAction(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.certificate,
                 "certificate cannot be null");

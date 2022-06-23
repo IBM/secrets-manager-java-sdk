@@ -103,6 +103,9 @@ public class CreateSecret extends GenericModel {
         }
     }
 
+    protected CreateSecret() {
+    }
+
     protected CreateSecret(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
                 "metadata cannot be null");

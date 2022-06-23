@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.50.0-af9e48c4-20220523-163800
+ * IBM OpenAPI SDK Code Generator Version: 3.51.0-5b8b699d-20220613-200818
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -746,14 +746,14 @@ public class SecretsManager extends BaseService {
     /**
      * Unlock a secret.
      * <p>
-     * Delete one or more locks that are associated with a secret.
+     * Delete one or more locks that are associated with the current version of a secret.
      * <p>
      * A successful request deletes the locks that you specify. To remove all locks, you can pass `{"locks": ["*"]}` in in
      * the request body. Otherwise, specify the names of the locks that you want to delete. For example, `{"locks":
      * ["lock1", "lock2"]}`.
      * <p>
-     * **Note:** A secret is considered unlocked and able to be rotated or deleted only after all of its locks are
-     * removed. To understand whether a secret contains locks, check the `total_locks` field that is returned as part of
+     * **Note:** A secret is considered unlocked and able to be revoked or deleted only after all of its locks are
+     * removed. To understand whether a secret contains locks, check the `locks_total` field that is returned as part of
      * the metadata of your secret.
      *
      * @param unlockSecretOptions the {@link UnlockSecretOptions} containing the options for the call
@@ -874,8 +874,8 @@ public class SecretsManager extends BaseService {
      * the request body. Otherwise, specify the names of the locks that you want to delete. For example, `{"locks":
      * ["lock-1", "lock-2"]}`.
      * <p>
-     * **Note:** A secret is considered unlocked and able to be rotated or deleted only after all of its locks are
-     * removed. To understand whether a secret contains locks, check the `total_locks` field that is returned as part of
+     * **Note:** A secret is considered unlocked and able to be revoked or deleted only after all of its locks are
+     * removed. To understand whether a secret contains locks, check the `locks_total` field that is returned as part of
      * the metadata of your secret.
      *
      * @param unlockSecretVersionOptions the {@link UnlockSecretVersionOptions} containing the options for the call
@@ -906,9 +906,9 @@ public class SecretsManager extends BaseService {
     }
 
     /**
-     * List all locks.
+     * List all secrets and locks.
      * <p>
-     * List all of the locks that are associated with the secrets in your Secrets Manager instance.
+     * List the lock details that are associated with all secrets in your Secrets Manager instance.
      *
      * @param listInstanceSecretsLocksOptions the {@link ListInstanceSecretsLocksOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetInstanceLocks}
@@ -942,9 +942,9 @@ public class SecretsManager extends BaseService {
     }
 
     /**
-     * List all locks.
+     * List all secrets and locks.
      * <p>
-     * List all of the locks that are associated with the secrets in your Secrets Manager instance.
+     * List the lock details that are associated with all secrets in your Secrets Manager instance.
      *
      * @return a {@link ServiceCall} with a result of type {@link GetInstanceLocks}
      */

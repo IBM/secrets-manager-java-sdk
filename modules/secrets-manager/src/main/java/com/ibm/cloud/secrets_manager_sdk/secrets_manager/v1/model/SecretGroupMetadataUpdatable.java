@@ -72,6 +72,9 @@ public class SecretGroupMetadataUpdatable extends GenericModel {
         }
     }
 
+    protected SecretGroupMetadataUpdatable() {
+    }
+
     protected SecretGroupMetadataUpdatable(Builder builder) {
         name = builder.name;
         description = builder.description;

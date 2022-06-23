@@ -621,6 +621,9 @@ public class RootCertificateAuthorityConfig extends ConfigElementDefConfig {
         }
     }
 
+    protected RootCertificateAuthorityConfig() {
+    }
+
     protected RootCertificateAuthorityConfig(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.maxTtl,
                 "maxTtl cannot be null");

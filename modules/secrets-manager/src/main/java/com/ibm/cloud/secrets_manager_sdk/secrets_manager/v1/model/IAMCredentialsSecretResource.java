@@ -226,6 +226,9 @@ public class IAMCredentialsSecretResource extends SecretResource {
         }
     }
 
+    protected IAMCredentialsSecretResource() {
+    }
+
     protected IAMCredentialsSecretResource(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

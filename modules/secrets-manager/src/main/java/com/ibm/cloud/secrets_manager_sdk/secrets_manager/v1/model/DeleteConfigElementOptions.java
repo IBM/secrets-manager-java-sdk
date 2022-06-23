@@ -139,6 +139,9 @@ public class DeleteConfigElementOptions extends GenericModel {
         }
     }
 
+    protected DeleteConfigElementOptions() {
+    }
+
     protected DeleteConfigElementOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

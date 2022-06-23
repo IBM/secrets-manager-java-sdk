@@ -120,6 +120,9 @@ public class ListInstanceSecretsLocksOptions extends GenericModel {
         }
     }
 
+    protected ListInstanceSecretsLocksOptions() {
+    }
+
     protected ListInstanceSecretsLocksOptions(Builder builder) {
         limit = builder.limit;
         offset = builder.offset;

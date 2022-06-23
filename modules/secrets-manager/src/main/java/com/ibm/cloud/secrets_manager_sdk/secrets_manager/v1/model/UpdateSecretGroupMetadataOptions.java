@@ -119,6 +119,9 @@ public class UpdateSecretGroupMetadataOptions extends GenericModel {
         }
     }
 
+    protected UpdateSecretGroupMetadataOptions() {
+    }
+
     protected UpdateSecretGroupMetadataOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
                 "id cannot be empty");
