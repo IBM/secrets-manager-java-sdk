@@ -184,6 +184,9 @@ public class ArbitrarySecretResource extends SecretResource {
         }
     }
 
+    protected ArbitrarySecretResource() {
+    }
+
     protected ArbitrarySecretResource(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

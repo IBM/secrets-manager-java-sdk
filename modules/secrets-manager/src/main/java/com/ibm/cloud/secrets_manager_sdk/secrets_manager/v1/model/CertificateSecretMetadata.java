@@ -157,6 +157,9 @@ public class CertificateSecretMetadata extends SecretMetadata {
         }
     }
 
+    protected CertificateSecretMetadata() {
+    }
+
     protected CertificateSecretMetadata(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

@@ -117,6 +117,9 @@ public class DeleteSecretOptions extends GenericModel {
         }
     }
 
+    protected DeleteSecretOptions() {
+    }
+
     protected DeleteSecretOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

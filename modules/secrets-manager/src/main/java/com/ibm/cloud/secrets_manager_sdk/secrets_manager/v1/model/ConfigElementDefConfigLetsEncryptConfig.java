@@ -64,6 +64,9 @@ public class ConfigElementDefConfigLetsEncryptConfig extends ConfigElementDefCon
         }
     }
 
+    protected ConfigElementDefConfigLetsEncryptConfig() {
+    }
+
     protected ConfigElementDefConfigLetsEncryptConfig(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.privateKey,
                 "privateKey cannot be null");

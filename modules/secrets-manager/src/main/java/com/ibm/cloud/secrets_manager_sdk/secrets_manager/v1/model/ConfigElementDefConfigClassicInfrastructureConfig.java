@@ -79,6 +79,9 @@ public class ConfigElementDefConfigClassicInfrastructureConfig extends ConfigEle
         }
     }
 
+    protected ConfigElementDefConfigClassicInfrastructureConfig() {
+    }
+
     protected ConfigElementDefConfigClassicInfrastructureConfig(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.classicInfrastructureUsername,
                 "classicInfrastructureUsername cannot be null");

@@ -67,6 +67,9 @@ public class GetSecretGroupOptions extends GenericModel {
         }
     }
 
+    protected GetSecretGroupOptions() {
+    }
+
     protected GetSecretGroupOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
                 "id cannot be empty");

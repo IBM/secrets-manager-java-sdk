@@ -68,6 +68,9 @@ public class DeleteCredentialsForIAMCredentialsSecret extends SecretAction {
         }
     }
 
+    protected DeleteCredentialsForIAMCredentialsSecret() {
+    }
+
     protected DeleteCredentialsForIAMCredentialsSecret(Builder builder) {
         apiKeyId = builder.apiKeyId;
         serviceId = builder.serviceId;

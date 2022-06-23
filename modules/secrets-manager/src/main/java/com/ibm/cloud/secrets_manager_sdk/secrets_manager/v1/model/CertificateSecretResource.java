@@ -222,6 +222,9 @@ public class CertificateSecretResource extends SecretResource {
         }
     }
 
+    protected CertificateSecretResource() {
+    }
+
     protected CertificateSecretResource(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

@@ -218,6 +218,9 @@ public class CreateConfigElementOptions extends GenericModel {
         }
     }
 
+    protected CreateConfigElementOptions() {
+    }
+
     protected CreateConfigElementOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");

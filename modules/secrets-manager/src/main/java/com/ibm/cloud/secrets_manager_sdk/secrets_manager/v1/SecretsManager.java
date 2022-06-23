@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.48.0-e80b60a1-20220414-145125
+ * IBM OpenAPI SDK Code Generator Version: 3.51.0-5b8b699d-20220613-200818
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -43,30 +43,40 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigEleme
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElements;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetInstanceLocks;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetNotificationsSettings;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretGroupOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretLocks;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretPolicies;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSingleConfigElement;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListAllSecretsOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListInstanceSecretsLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretGroupsOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretLocks;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVersions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretsOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.LockSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.LockSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutConfigOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PutPolicyOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretGroupDef;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretMetadataRequest;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SendTestNotificationOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UnlockSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UnlockSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigElementOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
@@ -650,6 +660,296 @@ public class SecretsManager extends BaseService {
                 ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<SecretMetadataRequest>() {
                 }.getType());
         return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * List secret locks.
+     * <p>
+     * List the locks that are associated with a specified secret.
+     *
+     * @param getLocksOptions the {@link GetLocksOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link ListSecretLocks}
+     */
+    public ServiceCall<ListSecretLocks> getLocks(GetLocksOptions getLocksOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(getLocksOptions,
+                "getLocksOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", getLocksOptions.secretType());
+        pathParamsMap.put("id", getLocksOptions.id());
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/locks/{secret_type}/{id}", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "getLocks");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        if (getLocksOptions.limit() != null) {
+            builder.query("limit", String.valueOf(getLocksOptions.limit()));
+        }
+        if (getLocksOptions.offset() != null) {
+            builder.query("offset", String.valueOf(getLocksOptions.offset()));
+        }
+        if (getLocksOptions.search() != null) {
+            builder.query("search", String.valueOf(getLocksOptions.search()));
+        }
+        ResponseConverter<ListSecretLocks> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ListSecretLocks>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Lock a secret.
+     * <p>
+     * Create a lock on the current version of a secret.
+     * <p>
+     * A lock can be used to prevent a secret from being deleted or modified while it's in use by your applications. A
+     * successful request attaches a new lock to your secret, or replaces a lock of the same name if it already exists.
+     * Additionally, you can use this method to clear any matching locks on a secret by using one of the following
+     * optional lock modes:
+     * <p>
+     * - `exclusive`: Removes any other locks with matching names if they are found in the previous version of the secret.
+     * - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the data of the previous secret version if
+     * it doesn't have any locks.
+     * <p>
+     * For more information about locking secrets, check out the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-locks).
+     *
+     * @param lockSecretOptions the {@link LockSecretOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretLocks}
+     */
+    public ServiceCall<GetSecretLocks> lockSecret(LockSecretOptions lockSecretOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(lockSecretOptions,
+                "lockSecretOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", lockSecretOptions.secretType());
+        pathParamsMap.put("id", lockSecretOptions.id());
+        RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/locks/{secret_type}/{id}/lock", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "lockSecret");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        if (lockSecretOptions.mode() != null) {
+            builder.query("mode", String.valueOf(lockSecretOptions.mode()));
+        }
+        final JsonObject contentJson = new JsonObject();
+        if (lockSecretOptions.locks() != null) {
+            contentJson.add("locks", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(lockSecretOptions.locks()));
+        }
+        builder.bodyJson(contentJson);
+        ResponseConverter<GetSecretLocks> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretLocks>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Unlock a secret.
+     * <p>
+     * Delete one or more locks that are associated with the current version of a secret.
+     * <p>
+     * A successful request deletes the locks that you specify. To remove all locks, you can pass `{"locks": ["*"]}` in in
+     * the request body. Otherwise, specify the names of the locks that you want to delete. For example, `{"locks":
+     * ["lock1", "lock2"]}`.
+     * <p>
+     * **Note:** A secret is considered unlocked and able to be revoked or deleted only after all of its locks are
+     * removed. To understand whether a secret contains locks, check the `locks_total` field that is returned as part of
+     * the metadata of your secret.
+     *
+     * @param unlockSecretOptions the {@link UnlockSecretOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretLocks}
+     */
+    public ServiceCall<GetSecretLocks> unlockSecret(UnlockSecretOptions unlockSecretOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(unlockSecretOptions,
+                "unlockSecretOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", unlockSecretOptions.secretType());
+        pathParamsMap.put("id", unlockSecretOptions.id());
+        RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/locks/{secret_type}/{id}/unlock", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "unlockSecret");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        final JsonObject contentJson = new JsonObject();
+        if (unlockSecretOptions.locks() != null) {
+            contentJson.add("locks", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(unlockSecretOptions.locks()));
+        }
+        builder.bodyJson(contentJson);
+        ResponseConverter<GetSecretLocks> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretLocks>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * List secret version locks.
+     * <p>
+     * List the locks that are associated with a specified secret version.
+     *
+     * @param getSecretVersionLocksOptions the {@link GetSecretVersionLocksOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link ListSecretLocks}
+     */
+    public ServiceCall<ListSecretLocks> getSecretVersionLocks(GetSecretVersionLocksOptions getSecretVersionLocksOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(getSecretVersionLocksOptions,
+                "getSecretVersionLocksOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", getSecretVersionLocksOptions.secretType());
+        pathParamsMap.put("id", getSecretVersionLocksOptions.id());
+        pathParamsMap.put("version_id", getSecretVersionLocksOptions.versionId());
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/locks/{secret_type}/{id}/versions/{version_id}", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "getSecretVersionLocks");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        if (getSecretVersionLocksOptions.limit() != null) {
+            builder.query("limit", String.valueOf(getSecretVersionLocksOptions.limit()));
+        }
+        if (getSecretVersionLocksOptions.offset() != null) {
+            builder.query("offset", String.valueOf(getSecretVersionLocksOptions.offset()));
+        }
+        if (getSecretVersionLocksOptions.search() != null) {
+            builder.query("search", String.valueOf(getSecretVersionLocksOptions.search()));
+        }
+        ResponseConverter<ListSecretLocks> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ListSecretLocks>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Lock a secret version.
+     * <p>
+     * Create a lock on the specified version of a secret.
+     * <p>
+     * A lock can be used to prevent a secret from being deleted or modified while it's in use by your applications. A
+     * successful request attaches a new lock to the specified version, or replaces a lock of the same name if it already
+     * exists. Additionally, you can use this method to clear any matching locks on a secret version by using one of the
+     * following optional lock modes:
+     * <p>
+     * - `exclusive`: Removes any other locks with matching names if they are found in the previous version of the secret.
+     * - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the data of the previous secret version if
+     * it doesn't have any locks.
+     * <p>
+     * For more information about locking secrets, check out the
+     * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-locks).
+     *
+     * @param lockSecretVersionOptions the {@link LockSecretVersionOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretLocks}
+     */
+    public ServiceCall<GetSecretLocks> lockSecretVersion(LockSecretVersionOptions lockSecretVersionOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(lockSecretVersionOptions,
+                "lockSecretVersionOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", lockSecretVersionOptions.secretType());
+        pathParamsMap.put("id", lockSecretVersionOptions.id());
+        pathParamsMap.put("version_id", lockSecretVersionOptions.versionId());
+        RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/locks/{secret_type}/{id}/versions/{version_id}/lock", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "lockSecretVersion");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        if (lockSecretVersionOptions.mode() != null) {
+            builder.query("mode", String.valueOf(lockSecretVersionOptions.mode()));
+        }
+        final JsonObject contentJson = new JsonObject();
+        if (lockSecretVersionOptions.locks() != null) {
+            contentJson.add("locks", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(lockSecretVersionOptions.locks()));
+        }
+        builder.bodyJson(contentJson);
+        ResponseConverter<GetSecretLocks> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretLocks>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Unlock a secret version.
+     * <p>
+     * Delete one or more locks that are associated with the specified secret version.
+     * <p>
+     * A successful request deletes the locks that you specify. To remove all locks, you can pass `{"locks": ["*"]}` in in
+     * the request body. Otherwise, specify the names of the locks that you want to delete. For example, `{"locks":
+     * ["lock-1", "lock-2"]}`.
+     * <p>
+     * **Note:** A secret is considered unlocked and able to be revoked or deleted only after all of its locks are
+     * removed. To understand whether a secret contains locks, check the `locks_total` field that is returned as part of
+     * the metadata of your secret.
+     *
+     * @param unlockSecretVersionOptions the {@link UnlockSecretVersionOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretLocks}
+     */
+    public ServiceCall<GetSecretLocks> unlockSecretVersion(UnlockSecretVersionOptions unlockSecretVersionOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(unlockSecretVersionOptions,
+                "unlockSecretVersionOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", unlockSecretVersionOptions.secretType());
+        pathParamsMap.put("id", unlockSecretVersionOptions.id());
+        pathParamsMap.put("version_id", unlockSecretVersionOptions.versionId());
+        RequestBuilder builder = RequestBuilder.post(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/locks/{secret_type}/{id}/versions/{version_id}/unlock", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "unlockSecretVersion");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        final JsonObject contentJson = new JsonObject();
+        if (unlockSecretVersionOptions.locks() != null) {
+            contentJson.add("locks", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(unlockSecretVersionOptions.locks()));
+        }
+        builder.bodyJson(contentJson);
+        ResponseConverter<GetSecretLocks> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretLocks>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * List all secrets and locks.
+     * <p>
+     * List the lock details that are associated with all secrets in your Secrets Manager instance.
+     *
+     * @param listInstanceSecretsLocksOptions the {@link ListInstanceSecretsLocksOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetInstanceLocks}
+     */
+    public ServiceCall<GetInstanceLocks> listInstanceSecretsLocks(ListInstanceSecretsLocksOptions listInstanceSecretsLocksOptions) {
+        if (listInstanceSecretsLocksOptions == null) {
+            listInstanceSecretsLocksOptions = new ListInstanceSecretsLocksOptions.Builder().build();
+        }
+        RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/locks"));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "listInstanceSecretsLocks");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        if (listInstanceSecretsLocksOptions.limit() != null) {
+            builder.query("limit", String.valueOf(listInstanceSecretsLocksOptions.limit()));
+        }
+        if (listInstanceSecretsLocksOptions.offset() != null) {
+            builder.query("offset", String.valueOf(listInstanceSecretsLocksOptions.offset()));
+        }
+        if (listInstanceSecretsLocksOptions.search() != null) {
+            builder.query("search", String.valueOf(listInstanceSecretsLocksOptions.search()));
+        }
+        if (listInstanceSecretsLocksOptions.groups() != null) {
+            builder.query("groups", RequestUtils.join(listInstanceSecretsLocksOptions.groups(), ","));
+        }
+        ResponseConverter<GetInstanceLocks> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetInstanceLocks>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * List all secrets and locks.
+     * <p>
+     * List the lock details that are associated with all secrets in your Secrets Manager instance.
+     *
+     * @return a {@link ServiceCall} with a result of type {@link GetInstanceLocks}
+     */
+    public ServiceCall<GetInstanceLocks> listInstanceSecretsLocks() {
+        return listInstanceSecretsLocks(null);
     }
 
     /**

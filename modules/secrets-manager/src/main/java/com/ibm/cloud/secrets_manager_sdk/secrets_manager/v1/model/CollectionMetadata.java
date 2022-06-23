@@ -45,6 +45,10 @@ public class CollectionMetadata extends GenericModel {
          */
         String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_GROUP_JSON = "application/vnd.ibm.secrets-manager.secret.group+json";
         /**
+         * application/vnd.ibm.secrets-manager.secret.lock+json.
+         */
+        String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_LOCK_JSON = "application/vnd.ibm.secrets-manager.secret.lock+json";
+        /**
          * application/vnd.ibm.secrets-manager.error+json.
          */
         String APPLICATION_VND_IBM_SECRETS_MANAGER_ERROR_JSON = "application/vnd.ibm.secrets-manager.error+json";
@@ -114,6 +118,9 @@ public class CollectionMetadata extends GenericModel {
             this.collectionTotal = collectionTotal;
             return this;
         }
+    }
+
+    protected CollectionMetadata() {
     }
 
     protected CollectionMetadata(Builder builder) {

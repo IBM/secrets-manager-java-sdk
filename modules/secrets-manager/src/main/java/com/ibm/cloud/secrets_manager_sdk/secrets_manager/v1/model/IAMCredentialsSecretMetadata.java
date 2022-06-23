@@ -213,6 +213,9 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
         }
     }
 
+    protected IAMCredentialsSecretMetadata() {
+    }
+
     protected IAMCredentialsSecretMetadata(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

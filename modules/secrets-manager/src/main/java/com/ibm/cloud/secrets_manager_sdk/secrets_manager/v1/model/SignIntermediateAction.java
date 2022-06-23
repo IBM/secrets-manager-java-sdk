@@ -481,6 +481,9 @@ public class SignIntermediateAction extends ConfigAction {
         }
     }
 
+    protected SignIntermediateAction() {
+    }
+
     protected SignIntermediateAction(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.intermediateCertificateAuthority,
                 "intermediateCertificateAuthority cannot be null");

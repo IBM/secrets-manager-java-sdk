@@ -184,6 +184,9 @@ public class KvSecretResource extends SecretResource {
         }
     }
 
+    protected KvSecretResource() {
+    }
+
     protected KvSecretResource(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

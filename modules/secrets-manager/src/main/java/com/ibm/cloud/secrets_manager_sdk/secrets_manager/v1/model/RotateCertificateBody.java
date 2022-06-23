@@ -90,6 +90,9 @@ public class RotateCertificateBody extends SecretAction {
         }
     }
 
+    protected RotateCertificateBody() {
+    }
+
     protected RotateCertificateBody(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.certificate,
                 "certificate cannot be null");

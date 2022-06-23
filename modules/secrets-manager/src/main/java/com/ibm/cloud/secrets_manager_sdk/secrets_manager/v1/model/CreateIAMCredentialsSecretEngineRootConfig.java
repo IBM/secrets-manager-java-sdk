@@ -64,6 +64,9 @@ public class CreateIAMCredentialsSecretEngineRootConfig extends EngineConfig {
         }
     }
 
+    protected CreateIAMCredentialsSecretEngineRootConfig() {
+    }
+
     protected CreateIAMCredentialsSecretEngineRootConfig(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.apiKey,
                 "apiKey cannot be null");

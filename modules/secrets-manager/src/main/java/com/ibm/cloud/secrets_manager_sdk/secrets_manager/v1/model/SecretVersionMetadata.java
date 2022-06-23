@@ -39,6 +39,8 @@ public class SecretVersionMetadata extends GenericModel {
     @SerializedName("payload_available")
     protected Boolean payloadAvailable;
     protected Boolean downloaded;
+    @SerializedName("locks_total")
+    protected Long locksTotal;
     @SerializedName("auto_rotated")
     protected Boolean autoRotated;
     @SerializedName("serial_number")
@@ -122,6 +124,17 @@ public class SecretVersionMetadata extends GenericModel {
      */
     public Boolean isDownloaded() {
         return downloaded;
+    }
+
+    /**
+     * Gets the locksTotal.
+     * <p>
+     * The number of locks that are associated with a secret version.
+     *
+     * @return the locksTotal
+     */
+    public Long getLocksTotal() {
+        return locksTotal;
     }
 
     /**

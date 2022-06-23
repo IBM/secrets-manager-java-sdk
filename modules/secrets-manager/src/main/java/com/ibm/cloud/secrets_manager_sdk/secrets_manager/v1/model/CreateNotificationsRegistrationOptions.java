@@ -97,6 +97,9 @@ public class CreateNotificationsRegistrationOptions extends GenericModel {
         }
     }
 
+    protected CreateNotificationsRegistrationOptions() {
+    }
+
     protected CreateNotificationsRegistrationOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.eventNotificationsInstanceCrn,
                 "eventNotificationsInstanceCrn cannot be null");

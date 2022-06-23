@@ -26,7 +26,7 @@ public class ListAllSecretsOptions extends GenericModel {
      * Sort a list of secrets by the specified field.
      * <p>
      * **Usage:** To sort a list of secrets by their creation date, use
-     * `../secrets/{secret-type}?sort_by=creation_date`.
+     * `../secrets/{secret_type}?sort_by=creation_date`.
      */
     public interface SortBy {
         /**
@@ -163,6 +163,9 @@ public class ListAllSecretsOptions extends GenericModel {
         }
     }
 
+    protected ListAllSecretsOptions() {
+    }
+
     protected ListAllSecretsOptions(Builder builder) {
         limit = builder.limit;
         offset = builder.offset;
@@ -187,7 +190,7 @@ public class ListAllSecretsOptions extends GenericModel {
      * set of items, use `limit` with `offset` to page through your available resources.
      * <p>
      * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 secrets, use
-     * `../secrets/{secret-type}?limit=5`.
+     * `../secrets/{secret_type}?limit=5`.
      *
      * @return the limit
      */
@@ -202,7 +205,7 @@ public class ListAllSecretsOptions extends GenericModel {
      * value. Use `offset` with `limit` to page through your available resources.
      * <p>
      * **Usage:** If you have 100 secrets in your instance, and you want to retrieve secrets 26 through 50, use
-     * `../secrets/{secret-type}?offset=25&amp;limit=25`.
+     * `..?offset=25&amp;limit=25`.
      *
      * @return the offset
      */
@@ -217,7 +220,7 @@ public class ListAllSecretsOptions extends GenericModel {
      * labels, secret_type.
      * <p>
      * **Usage:** If you want to list only the secrets that contain the string "text", use
-     * `../secrets/{secret-type}?search=text`.
+     * `../secrets/{secret_type}?search=text`.
      *
      * @return the search
      */
@@ -231,7 +234,7 @@ public class ListAllSecretsOptions extends GenericModel {
      * Sort a list of secrets by the specified field.
      * <p>
      * **Usage:** To sort a list of secrets by their creation date, use
-     * `../secrets/{secret-type}?sort_by=creation_date`.
+     * `../secrets/{secret_type}?sort_by=creation_date`.
      *
      * @return the sortBy
      */
@@ -248,7 +251,7 @@ public class ListAllSecretsOptions extends GenericModel {
      * that are in the default secret group, use the `default` keyword.
      * <p>
      * **Usage:** To retrieve a list of secrets that are associated with an existing secret group or the default group,
-     * use `../secrets?groups={secret_group_ID},default`.
+     * use `..?groups={secret_group_ID},default`.
      *
      * @return the groups
      */

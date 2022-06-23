@@ -64,6 +64,9 @@ public class RotateUsernamePasswordSecretBody extends SecretAction {
         }
     }
 
+    protected RotateUsernamePasswordSecretBody() {
+    }
+
     protected RotateUsernamePasswordSecretBody(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.password,
                 "password cannot be null");

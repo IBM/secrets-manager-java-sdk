@@ -158,6 +158,9 @@ public class UsernamePasswordSecretMetadata extends SecretMetadata {
         }
     }
 
+    protected UsernamePasswordSecretMetadata() {
+    }
+
     protected UsernamePasswordSecretMetadata(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");

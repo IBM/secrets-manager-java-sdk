@@ -129,6 +129,9 @@ public class ListSecretsOptions extends GenericModel {
         }
     }
 
+    protected ListSecretsOptions() {
+    }
+
     protected ListSecretsOptions(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
                 "secretType cannot be empty");
@@ -164,7 +167,7 @@ public class ListSecretsOptions extends GenericModel {
      * set of items, use `limit` with `offset` to page through your available resources.
      * <p>
      * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 secrets, use
-     * `../secrets/{secret-type}?limit=5`.
+     * `../secrets/{secret_type}?limit=5`.
      *
      * @return the limit
      */
@@ -179,7 +182,7 @@ public class ListSecretsOptions extends GenericModel {
      * value. Use `offset` with `limit` to page through your available resources.
      * <p>
      * **Usage:** If you have 100 secrets in your instance, and you want to retrieve secrets 26 through 50, use
-     * `../secrets/{secret-type}?offset=25&amp;limit=25`.
+     * `..?offset=25&amp;limit=25`.
      *
      * @return the offset
      */
