@@ -3,7 +3,7 @@
     <parent>
         <artifactId>secrets-manager-sdk</artifactId>
         <groupId>com.ibm.cloud</groupId>
-        <version>1.0.42</version>
+        <version>1.0.43</version>
         <relativePath>../..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
