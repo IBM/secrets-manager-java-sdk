@@ -57,6 +57,9 @@ public class IntermediateCertificateAuthoritiesConfigItem extends GenericModel {
     protected String type;
     protected IntermediateCertificateAuthorityConfig config;
 
+    protected IntermediateCertificateAuthoritiesConfigItem() {
+    }
+
     /**
      * Gets the name.
      * <p>

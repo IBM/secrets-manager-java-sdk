@@ -29,6 +29,11 @@ public class SecretGroupMetadataUpdatable extends GenericModel {
         private String name;
         private String description;
 
+        /**
+         * Instantiates a new Builder from an existing SecretGroupMetadataUpdatable instance.
+         *
+         * @param secretGroupMetadataUpdatable the instance to initialize the Builder with
+         */
         private Builder(SecretGroupMetadataUpdatable secretGroupMetadataUpdatable) {
             this.name = secretGroupMetadataUpdatable.name;
             this.description = secretGroupMetadataUpdatable.description;

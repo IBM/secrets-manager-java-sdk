@@ -19,8 +19,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecre
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,14 +40,34 @@ public class ArbitrarySecretResourceTest {
                 .name("testString")
                 .description("testString")
                 .secretGroupId("testString")
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .labels(java.util.Arrays.asList("testString"))
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .payload("testString")
                 .build();
         assertEquals(arbitrarySecretResourceModel.name(), "testString");
         assertEquals(arbitrarySecretResourceModel.description(), "testString");
         assertEquals(arbitrarySecretResourceModel.secretGroupId(), "testString");
-        assertEquals(arbitrarySecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(arbitrarySecretResourceModel.labels(), java.util.Arrays.asList("testString"));
+        assertEquals(arbitrarySecretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
+        assertEquals(arbitrarySecretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
         assertEquals(arbitrarySecretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(arbitrarySecretResourceModel.payload(), "testString");
 
@@ -60,6 +78,16 @@ public class ArbitrarySecretResourceTest {
         assertEquals(arbitrarySecretResourceModelNew.name(), "testString");
         assertEquals(arbitrarySecretResourceModelNew.description(), "testString");
         assertEquals(arbitrarySecretResourceModelNew.secretGroupId(), "testString");
+        assertEquals(arbitrarySecretResourceModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
+        assertEquals(arbitrarySecretResourceModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
         assertEquals(arbitrarySecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(arbitrarySecretResourceModelNew.payload(), "testString");
     }

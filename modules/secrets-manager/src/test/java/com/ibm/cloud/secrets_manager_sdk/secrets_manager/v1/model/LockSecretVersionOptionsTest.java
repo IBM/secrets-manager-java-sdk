@@ -19,8 +19,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.LockSecretVers
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,13 +56,13 @@ public class LockSecretVersionOptionsTest {
                 .secretType("arbitrary")
                 .id("testString")
                 .versionId("testString")
-                .locks(new java.util.ArrayList<LockSecretBodyLocksItem>(java.util.Arrays.asList(lockSecretBodyLocksItemModel)))
+                .locks(java.util.Arrays.asList(lockSecretBodyLocksItemModel))
                 .mode("exclusive")
                 .build();
         assertEquals(lockSecretVersionOptionsModel.secretType(), "arbitrary");
         assertEquals(lockSecretVersionOptionsModel.id(), "testString");
         assertEquals(lockSecretVersionOptionsModel.versionId(), "testString");
-        assertEquals(lockSecretVersionOptionsModel.locks(), new java.util.ArrayList<LockSecretBodyLocksItem>(java.util.Arrays.asList(lockSecretBodyLocksItemModel)));
+        assertEquals(lockSecretVersionOptionsModel.locks(), java.util.Arrays.asList(lockSecretBodyLocksItemModel));
         assertEquals(lockSecretVersionOptionsModel.mode(), "exclusive");
     }
 

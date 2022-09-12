@@ -18,8 +18,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementD
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 

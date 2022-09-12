@@ -14,6 +14,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Metadata properties that describe a certificate secret.
@@ -62,12 +63,19 @@ public class CertificateSecretMetadata extends SecretMetadata {
         private List<String> labels;
         private String name;
         private String description;
+        private Map<String, Object> customMetadata;
         private CertificateValidity validity;
 
+        /**
+         * Instantiates a new Builder from an existing CertificateSecretMetadata instance.
+         *
+         * @param certificateSecretMetadata the instance to initialize the Builder with
+         */
         public Builder(SecretMetadata certificateSecretMetadata) {
             this.labels = certificateSecretMetadata.labels;
             this.name = certificateSecretMetadata.name;
             this.description = certificateSecretMetadata.description;
+            this.customMetadata = certificateSecretMetadata.customMetadata;
             this.validity = certificateSecretMetadata.validity;
         }
 
@@ -146,6 +154,17 @@ public class CertificateSecretMetadata extends SecretMetadata {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the CertificateSecretMetadata builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
          * Set the validity.
          *
          * @param validity the validity
@@ -166,6 +185,7 @@ public class CertificateSecretMetadata extends SecretMetadata {
         labels = builder.labels;
         name = builder.name;
         description = builder.description;
+        customMetadata = builder.customMetadata;
         validity = builder.validity;
     }
 

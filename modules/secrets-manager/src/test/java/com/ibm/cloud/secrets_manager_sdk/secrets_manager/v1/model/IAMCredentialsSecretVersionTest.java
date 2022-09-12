@@ -35,6 +35,8 @@ public class IAMCredentialsSecretVersionTest {
     @Test
     public void testIAMCredentialsSecretVersion() throws Throwable {
         IAMCredentialsSecretVersion iamCredentialsSecretVersionModel = new IAMCredentialsSecretVersion();
+        assertNull(iamCredentialsSecretVersionModel.getVersionCustomMetadata());
+        assertNull(iamCredentialsSecretVersionModel.isAutoRotated());
         assertNull(iamCredentialsSecretVersionModel.getSecretData());
     }
 }

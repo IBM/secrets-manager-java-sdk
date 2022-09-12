@@ -20,8 +20,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretGroupRes
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,10 +54,10 @@ public class CreateSecretGroupOptionsTest {
 
         CreateSecretGroupOptions createSecretGroupOptionsModel = new CreateSecretGroupOptions.Builder()
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretGroupResource>(java.util.Arrays.asList(secretGroupResourceModel)))
+                .resources(java.util.Arrays.asList(secretGroupResourceModel))
                 .build();
         assertEquals(createSecretGroupOptionsModel.metadata(), collectionMetadataModel);
-        assertEquals(createSecretGroupOptionsModel.resources(), new java.util.ArrayList<SecretGroupResource>(java.util.Arrays.asList(secretGroupResourceModel)));
+        assertEquals(createSecretGroupOptionsModel.resources(), java.util.Arrays.asList(secretGroupResourceModel));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

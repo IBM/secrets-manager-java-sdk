@@ -31,6 +31,11 @@ public class CreateNotificationsRegistrationOptions extends GenericModel {
         private String eventNotificationsSourceName;
         private String eventNotificationsSourceDescription;
 
+        /**
+         * Instantiates a new Builder from an existing CreateNotificationsRegistrationOptions instance.
+         *
+         * @param createNotificationsRegistrationOptions the instance to initialize the Builder with
+         */
         private Builder(CreateNotificationsRegistrationOptions createNotificationsRegistrationOptions) {
             this.eventNotificationsInstanceCrn = createNotificationsRegistrationOptions.eventNotificationsInstanceCrn;
             this.eventNotificationsSourceName = createNotificationsRegistrationOptions.eventNotificationsSourceName;

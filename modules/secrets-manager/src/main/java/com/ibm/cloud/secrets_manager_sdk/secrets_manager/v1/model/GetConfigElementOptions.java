@@ -71,6 +71,11 @@ public class GetConfigElementOptions extends GenericModel {
         private String configElement;
         private String configName;
 
+        /**
+         * Instantiates a new Builder from an existing GetConfigElementOptions instance.
+         *
+         * @param getConfigElementOptions the instance to initialize the Builder with
+         */
         private Builder(GetConfigElementOptions getConfigElementOptions) {
             this.secretType = getConfigElementOptions.secretType;
             this.configElement = getConfigElementOptions.configElement;

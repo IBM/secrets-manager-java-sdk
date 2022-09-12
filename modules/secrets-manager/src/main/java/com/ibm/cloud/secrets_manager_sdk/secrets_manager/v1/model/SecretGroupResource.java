@@ -51,6 +51,11 @@ public class SecretGroupResource extends DynamicModel<Object> {
         private String description;
         private Map<String, Object> dynamicProperties;
 
+        /**
+         * Instantiates a new Builder from an existing SecretGroupResource instance.
+         *
+         * @param secretGroupResource the instance to initialize the Builder with
+         */
         private Builder(SecretGroupResource secretGroupResource) {
             this.name = secretGroupResource.name;
             this.description = secretGroupResource.description;

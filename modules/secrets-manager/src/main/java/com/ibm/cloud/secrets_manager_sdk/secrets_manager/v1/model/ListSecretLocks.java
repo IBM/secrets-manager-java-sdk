@@ -24,6 +24,9 @@ public class ListSecretLocks extends GenericModel {
     protected CollectionMetadata metadata;
     protected List<SecretLockData> resources;
 
+    protected ListSecretLocks() {
+    }
+
     /**
      * Gets the metadata.
      * <p>

@@ -21,8 +21,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,13 +60,23 @@ public class PrivateCertificateSecretResourceTest {
                 .name("testString")
                 .description("testString")
                 .secretGroupId("testString")
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .labels(java.util.Arrays.asList("testString"))
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .certificateTemplate("cert-template-1")
                 .commonName("example.com")
                 .altNames("testString")
                 .ipSans("testString")
                 .uriSans("testString")
-                .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .otherSans(java.util.Arrays.asList("testString"))
                 .ttl("12h")
                 .format("pem")
                 .privateKeyFormat("der")
@@ -79,13 +87,23 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModel.name(), "testString");
         assertEquals(privateCertificateSecretResourceModel.description(), "testString");
         assertEquals(privateCertificateSecretResourceModel.secretGroupId(), "testString");
-        assertEquals(privateCertificateSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(privateCertificateSecretResourceModel.labels(), java.util.Arrays.asList("testString"));
+        assertEquals(privateCertificateSecretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
+        assertEquals(privateCertificateSecretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
         assertEquals(privateCertificateSecretResourceModel.certificateTemplate(), "cert-template-1");
         assertEquals(privateCertificateSecretResourceModel.commonName(), "example.com");
         assertEquals(privateCertificateSecretResourceModel.altNames(), "testString");
         assertEquals(privateCertificateSecretResourceModel.ipSans(), "testString");
         assertEquals(privateCertificateSecretResourceModel.uriSans(), "testString");
-        assertEquals(privateCertificateSecretResourceModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(privateCertificateSecretResourceModel.otherSans(), java.util.Arrays.asList("testString"));
         assertEquals(privateCertificateSecretResourceModel.ttl(), "12h");
         assertEquals(privateCertificateSecretResourceModel.format(), "pem");
         assertEquals(privateCertificateSecretResourceModel.privateKeyFormat(), "der");
@@ -100,6 +118,16 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModelNew.name(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.description(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.secretGroupId(), "testString");
+        assertEquals(privateCertificateSecretResourceModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
+        assertEquals(privateCertificateSecretResourceModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
         assertEquals(privateCertificateSecretResourceModelNew.certificateTemplate(), "cert-template-1");
         assertEquals(privateCertificateSecretResourceModelNew.commonName(), "example.com");
         assertEquals(privateCertificateSecretResourceModelNew.altNames(), "testString");

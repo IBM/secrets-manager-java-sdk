@@ -53,6 +53,11 @@ public class UpdateSecretVersionOptions extends GenericModel {
         private String versionId;
         private String action;
 
+        /**
+         * Instantiates a new Builder from an existing UpdateSecretVersionOptions instance.
+         *
+         * @param updateSecretVersionOptions the instance to initialize the Builder with
+         */
         private Builder(UpdateSecretVersionOptions updateSecretVersionOptions) {
             this.secretType = updateSecretVersionOptions.secretType;
             this.id = updateSecretVersionOptions.id;

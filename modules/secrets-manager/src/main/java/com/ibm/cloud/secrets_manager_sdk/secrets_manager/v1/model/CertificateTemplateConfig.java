@@ -83,6 +83,11 @@ public class CertificateTemplateConfig extends ConfigElementDefConfig {
         private Boolean basicConstraintsValidForNonCa;
         private Object notBeforeDuration;
 
+        /**
+         * Instantiates a new Builder from an existing CertificateTemplateConfig instance.
+         *
+         * @param certificateTemplateConfig the instance to initialize the Builder with
+         */
         public Builder(ConfigElementDefConfig certificateTemplateConfig) {
             this.certificateAuthority = certificateTemplateConfig.certificateAuthority;
             this.allowedSecretGroups = certificateTemplateConfig.allowedSecretGroups;

@@ -18,8 +18,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateTem
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,7 +40,7 @@ public class CertificateTemplateConfigTest {
                 .maxTtl("8760h")
                 .ttl("12h")
                 .allowLocalhost(true)
-                .allowedDomains(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .allowedDomains(java.util.Arrays.asList("testString"))
                 .allowedDomainsTemplate(false)
                 .allowBareDomains(false)
                 .allowSubdomains(false)
@@ -50,29 +48,29 @@ public class CertificateTemplateConfigTest {
                 .allowAnyName(false)
                 .enforceHostnames(true)
                 .allowIpSans(true)
-                .allowedUriSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .allowedOtherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .allowedUriSans(java.util.Arrays.asList("testString"))
+                .allowedOtherSans(java.util.Arrays.asList("testString"))
                 .serverFlag(true)
                 .clientFlag(true)
                 .codeSigningFlag(false)
                 .emailProtectionFlag(false)
                 .keyType("rsa")
                 .keyBits(Long.valueOf("26"))
-                .keyUsage(new java.util.ArrayList<String>(java.util.Arrays.asList("DigitalSignature", "KeyAgreement", "KeyEncipherment")))
-                .extKeyUsage(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .extKeyUsageOids(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .keyUsage(java.util.Arrays.asList("DigitalSignature", "KeyAgreement", "KeyEncipherment"))
+                .extKeyUsage(java.util.Arrays.asList("testString"))
+                .extKeyUsageOids(java.util.Arrays.asList("testString"))
                 .useCsrCommonName(true)
                 .useCsrSans(true)
-                .ou(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .organization(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .country(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .locality(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .province(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .streetAddress(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .postalCode(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .ou(java.util.Arrays.asList("testString"))
+                .organization(java.util.Arrays.asList("testString"))
+                .country(java.util.Arrays.asList("testString"))
+                .locality(java.util.Arrays.asList("testString"))
+                .province(java.util.Arrays.asList("testString"))
+                .streetAddress(java.util.Arrays.asList("testString"))
+                .postalCode(java.util.Arrays.asList("testString"))
                 .serialNumber("d9:be:fe:35:ba:09:42:b5")
                 .requireCn(true)
-                .policyIdentifiers(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .policyIdentifiers(java.util.Arrays.asList("testString"))
                 .basicConstraintsValidForNonCa(true)
                 .notBeforeDuration("30s")
                 .build();
@@ -81,7 +79,7 @@ public class CertificateTemplateConfigTest {
         assertEquals(certificateTemplateConfigModel.maxTtl(), "8760h");
         assertEquals(certificateTemplateConfigModel.ttl(), "12h");
         assertEquals(certificateTemplateConfigModel.allowLocalhost(), Boolean.valueOf(true));
-        assertEquals(certificateTemplateConfigModel.allowedDomains(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(certificateTemplateConfigModel.allowedDomains(), java.util.Arrays.asList("testString"));
         assertEquals(certificateTemplateConfigModel.allowedDomainsTemplate(), Boolean.valueOf(false));
         assertEquals(certificateTemplateConfigModel.allowBareDomains(), Boolean.valueOf(false));
         assertEquals(certificateTemplateConfigModel.allowSubdomains(), Boolean.valueOf(false));
@@ -89,29 +87,29 @@ public class CertificateTemplateConfigTest {
         assertEquals(certificateTemplateConfigModel.allowAnyName(), Boolean.valueOf(false));
         assertEquals(certificateTemplateConfigModel.enforceHostnames(), Boolean.valueOf(true));
         assertEquals(certificateTemplateConfigModel.allowIpSans(), Boolean.valueOf(true));
-        assertEquals(certificateTemplateConfigModel.allowedUriSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(certificateTemplateConfigModel.allowedOtherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(certificateTemplateConfigModel.allowedUriSans(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateTemplateConfigModel.allowedOtherSans(), java.util.Arrays.asList("testString"));
         assertEquals(certificateTemplateConfigModel.serverFlag(), Boolean.valueOf(true));
         assertEquals(certificateTemplateConfigModel.clientFlag(), Boolean.valueOf(true));
         assertEquals(certificateTemplateConfigModel.codeSigningFlag(), Boolean.valueOf(false));
         assertEquals(certificateTemplateConfigModel.emailProtectionFlag(), Boolean.valueOf(false));
         assertEquals(certificateTemplateConfigModel.keyType(), "rsa");
         assertEquals(certificateTemplateConfigModel.keyBits(), Long.valueOf("26"));
-        assertEquals(certificateTemplateConfigModel.keyUsage(), new java.util.ArrayList<String>(java.util.Arrays.asList("DigitalSignature", "KeyAgreement", "KeyEncipherment")));
-        assertEquals(certificateTemplateConfigModel.extKeyUsage(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(certificateTemplateConfigModel.extKeyUsageOids(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(certificateTemplateConfigModel.keyUsage(), java.util.Arrays.asList("DigitalSignature", "KeyAgreement", "KeyEncipherment"));
+        assertEquals(certificateTemplateConfigModel.extKeyUsage(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateTemplateConfigModel.extKeyUsageOids(), java.util.Arrays.asList("testString"));
         assertEquals(certificateTemplateConfigModel.useCsrCommonName(), Boolean.valueOf(true));
         assertEquals(certificateTemplateConfigModel.useCsrSans(), Boolean.valueOf(true));
-        assertEquals(certificateTemplateConfigModel.ou(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(certificateTemplateConfigModel.organization(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(certificateTemplateConfigModel.country(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(certificateTemplateConfigModel.locality(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(certificateTemplateConfigModel.province(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(certificateTemplateConfigModel.streetAddress(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(certificateTemplateConfigModel.postalCode(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(certificateTemplateConfigModel.ou(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateTemplateConfigModel.organization(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateTemplateConfigModel.country(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateTemplateConfigModel.locality(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateTemplateConfigModel.province(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateTemplateConfigModel.streetAddress(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateTemplateConfigModel.postalCode(), java.util.Arrays.asList("testString"));
         assertEquals(certificateTemplateConfigModel.serialNumber(), "d9:be:fe:35:ba:09:42:b5");
         assertEquals(certificateTemplateConfigModel.requireCn(), Boolean.valueOf(true));
-        assertEquals(certificateTemplateConfigModel.policyIdentifiers(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(certificateTemplateConfigModel.policyIdentifiers(), java.util.Arrays.asList("testString"));
         assertEquals(certificateTemplateConfigModel.basicConstraintsValidForNonCa(), Boolean.valueOf(true));
         assertEquals(certificateTemplateConfigModel.notBeforeDuration(), "30s");
 

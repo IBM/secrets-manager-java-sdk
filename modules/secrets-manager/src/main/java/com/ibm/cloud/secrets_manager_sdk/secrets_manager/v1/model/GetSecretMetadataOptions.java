@@ -63,6 +63,11 @@ public class GetSecretMetadataOptions extends GenericModel {
         private String secretType;
         private String id;
 
+        /**
+         * Instantiates a new Builder from an existing GetSecretMetadataOptions instance.
+         *
+         * @param getSecretMetadataOptions the instance to initialize the Builder with
+         */
         private Builder(GetSecretMetadataOptions getSecretMetadataOptions) {
             this.secretType = getSecretMetadataOptions.secretType;
             this.id = getSecretMetadataOptions.id;

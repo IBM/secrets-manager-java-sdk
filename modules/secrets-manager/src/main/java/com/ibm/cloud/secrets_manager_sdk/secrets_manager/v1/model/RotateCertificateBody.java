@@ -12,6 +12,8 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.Map;
+
 /**
  * The request body of a rotate certificate action.
  */
@@ -25,11 +27,20 @@ public class RotateCertificateBody extends SecretAction {
         private String certificate;
         private String privateKey;
         private String intermediate;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
 
+        /**
+         * Instantiates a new Builder from an existing RotateCertificateBody instance.
+         *
+         * @param rotateCertificateBody the instance to initialize the Builder with
+         */
         public Builder(SecretAction rotateCertificateBody) {
             this.certificate = rotateCertificateBody.certificate;
             this.privateKey = rotateCertificateBody.privateKey;
             this.intermediate = rotateCertificateBody.intermediate;
+            this.customMetadata = rotateCertificateBody.customMetadata;
+            this.versionCustomMetadata = rotateCertificateBody.versionCustomMetadata;
         }
 
         /**
@@ -88,6 +99,28 @@ public class RotateCertificateBody extends SecretAction {
             this.intermediate = intermediate;
             return this;
         }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RotateCertificateBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RotateCertificateBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
     }
 
     protected RotateCertificateBody() {
@@ -99,6 +132,8 @@ public class RotateCertificateBody extends SecretAction {
         certificate = builder.certificate;
         privateKey = builder.privateKey;
         intermediate = builder.intermediate;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
     }
 
     /**

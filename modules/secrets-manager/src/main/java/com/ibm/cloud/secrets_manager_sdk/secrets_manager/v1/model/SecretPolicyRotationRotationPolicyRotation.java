@@ -39,6 +39,11 @@ public class SecretPolicyRotationRotationPolicyRotation extends SecretPolicyRota
         private Long interval;
         private String unit;
 
+        /**
+         * Instantiates a new Builder from an existing SecretPolicyRotationRotationPolicyRotation instance.
+         *
+         * @param secretPolicyRotationRotationPolicyRotation the instance to initialize the Builder with
+         */
         public Builder(SecretPolicyRotationRotation secretPolicyRotationRotationPolicyRotation) {
             this.interval = secretPolicyRotationRotationPolicyRotation.interval;
             this.unit = secretPolicyRotationRotationPolicyRotation.unit;

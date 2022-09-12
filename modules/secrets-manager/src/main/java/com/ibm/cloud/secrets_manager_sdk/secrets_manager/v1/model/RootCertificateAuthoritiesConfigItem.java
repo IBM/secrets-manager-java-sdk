@@ -57,6 +57,9 @@ public class RootCertificateAuthoritiesConfigItem extends GenericModel {
     protected String type;
     protected RootCertificateAuthorityConfig config;
 
+    protected RootCertificateAuthoritiesConfigItem() {
+    }
+
     /**
      * Gets the name.
      * <p>

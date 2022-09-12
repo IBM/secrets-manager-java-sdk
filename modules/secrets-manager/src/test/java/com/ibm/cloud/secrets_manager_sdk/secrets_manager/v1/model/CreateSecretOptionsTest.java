@@ -21,8 +21,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateSecretOp
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,25 +49,45 @@ public class CreateSecretOptionsTest {
                 .name("testString")
                 .description("testString")
                 .secretGroupId("testString")
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .labels(java.util.Arrays.asList("testString"))
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .payload("testString")
                 .build();
         assertEquals(secretResourceModel.name(), "testString");
         assertEquals(secretResourceModel.description(), "testString");
         assertEquals(secretResourceModel.secretGroupId(), "testString");
-        assertEquals(secretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(secretResourceModel.labels(), java.util.Arrays.asList("testString"));
+        assertEquals(secretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
+        assertEquals(secretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
         assertEquals(secretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(secretResourceModel.payload(), "testString");
 
         CreateSecretOptions createSecretOptionsModel = new CreateSecretOptions.Builder()
                 .secretType("arbitrary")
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretResource>(java.util.Arrays.asList(secretResourceModel)))
+                .resources(java.util.Arrays.asList(secretResourceModel))
                 .build();
         assertEquals(createSecretOptionsModel.secretType(), "arbitrary");
         assertEquals(createSecretOptionsModel.metadata(), collectionMetadataModel);
-        assertEquals(createSecretOptionsModel.resources(), new java.util.ArrayList<SecretResource>(java.util.Arrays.asList(secretResourceModel)));
+        assertEquals(createSecretOptionsModel.resources(), java.util.Arrays.asList(secretResourceModel));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

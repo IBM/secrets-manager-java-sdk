@@ -67,6 +67,11 @@ public class ListAllSecretsOptions extends GenericModel {
         private String sortBy;
         private List<String> groups;
 
+        /**
+         * Instantiates a new Builder from an existing ListAllSecretsOptions instance.
+         *
+         * @param listAllSecretsOptions the instance to initialize the Builder with
+         */
         private Builder(ListAllSecretsOptions listAllSecretsOptions) {
             this.limit = listAllSecretsOptions.limit;
             this.offset = listAllSecretsOptions.offset;

@@ -25,6 +25,11 @@ public class ConfigElementDefConfigClassicInfrastructureConfig extends ConfigEle
         private String classicInfrastructureUsername;
         private String classicInfrastructurePassword;
 
+        /**
+         * Instantiates a new Builder from an existing ConfigElementDefConfigClassicInfrastructureConfig instance.
+         *
+         * @param configElementDefConfigClassicInfrastructureConfig the instance to initialize the Builder with
+         */
         public Builder(ConfigElementDefConfig configElementDefConfigClassicInfrastructureConfig) {
             this.classicInfrastructureUsername = configElementDefConfigClassicInfrastructureConfig.classicInfrastructureUsername;
             this.classicInfrastructurePassword = configElementDefConfigClassicInfrastructureConfig.classicInfrastructurePassword;

@@ -14,6 +14,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Metadata properties that describe a private certificate secret.
@@ -62,13 +63,20 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
         private List<String> labels;
         private String name;
         private String description;
+        private Map<String, Object> customMetadata;
         private Rotation rotation;
         private CertificateValidity validity;
 
+        /**
+         * Instantiates a new Builder from an existing PrivateCertificateSecretMetadata instance.
+         *
+         * @param privateCertificateSecretMetadata the instance to initialize the Builder with
+         */
         public Builder(SecretMetadata privateCertificateSecretMetadata) {
             this.labels = privateCertificateSecretMetadata.labels;
             this.name = privateCertificateSecretMetadata.name;
             this.description = privateCertificateSecretMetadata.description;
+            this.customMetadata = privateCertificateSecretMetadata.customMetadata;
             this.rotation = privateCertificateSecretMetadata.rotation;
             this.validity = privateCertificateSecretMetadata.validity;
         }
@@ -148,6 +156,17 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the PrivateCertificateSecretMetadata builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
          * Set the rotation.
          *
          * @param rotation the rotation
@@ -179,6 +198,7 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
         labels = builder.labels;
         name = builder.name;
         description = builder.description;
+        customMetadata = builder.customMetadata;
         rotation = builder.rotation;
         validity = builder.validity;
     }

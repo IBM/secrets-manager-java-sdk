@@ -39,6 +39,8 @@ public class SecretVersion extends GenericModel {
     protected String createdBy;
     @SerializedName("locks_total")
     protected Long locksTotal;
+    @SerializedName("version_custom_metadata")
+    protected Map<String, Object> versionCustomMetadata;
     @SerializedName("secret_data")
     protected Map<String, Object> secretData;
     @SerializedName("auto_rotated")
@@ -112,6 +114,17 @@ public class SecretVersion extends GenericModel {
      */
     public Long getLocksTotal() {
         return locksTotal;
+    }
+
+    /**
+     * Gets the versionCustomMetadata.
+     * <p>
+     * The secret version metadata that a user can customize.
+     *
+     * @return the versionCustomMetadata
+     */
+    public Map<String, Object> getVersionCustomMetadata() {
+        return versionCustomMetadata;
     }
 
     /**

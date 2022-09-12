@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.51.0-5b8b699d-20220613-200818
+ * IBM OpenAPI SDK Code Generator Version: 3.55.1-b24c7487-20220831-201343
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -81,6 +81,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigEl
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretVersionOptions;
 
 import java.util.HashMap;
@@ -97,8 +98,10 @@ import java.util.Map.Entry;
  */
 public class SecretsManager extends BaseService {
 
+    /**
+     * Default service name used when configuring the `SecretsManager` client.
+     */
     public static final String DEFAULT_SERVICE_NAME = "secrets_manager";
-
 
     /**
      * Class method which constructs an instance of the `SecretsManager` client.
@@ -434,6 +437,7 @@ public class SecretsManager extends BaseService {
      * - `restore`: Restore a previous version of an `iam_credentials` secret.
      * - `revoke`: Revoke a private certificate.
      * - `delete_credentials`: Delete the API key that is associated with an `iam_credentials` secret.
+     * - `validate_dns_challenge`: Validate challenge for public certificate order with manual dns provider.
      *
      * @param updateSecretOptions the {@link UpdateSecretOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSecret}
@@ -572,7 +576,7 @@ public class SecretsManager extends BaseService {
     }
 
     /**
-     * Get secret version metadata.
+     * Get the metadata of a secret version.
      * <p>
      * Get the metadata of a secret version by specifying the ID of the version or the alias `previous`.
      * <p>
@@ -601,7 +605,38 @@ public class SecretsManager extends BaseService {
     }
 
     /**
-     * Get secret metadata.
+     * Update the metadata of a secret version.
+     * <p>
+     * Update the metadata of a secret version, such as `version_custom_metadata`.
+     *
+     * @param updateSecretVersionMetadataOptions the {@link UpdateSecretVersionMetadataOptions} containing the options for the call
+     * @return a {@link ServiceCall} with a result of type {@link GetSecretVersionMetadata}
+     */
+    public ServiceCall<GetSecretVersionMetadata> updateSecretVersionMetadata(UpdateSecretVersionMetadataOptions updateSecretVersionMetadataOptions) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(updateSecretVersionMetadataOptions,
+                "updateSecretVersionMetadataOptions cannot be null");
+        Map<String, String> pathParamsMap = new HashMap<String, String>();
+        pathParamsMap.put("secret_type", updateSecretVersionMetadataOptions.secretType());
+        pathParamsMap.put("id", updateSecretVersionMetadataOptions.id());
+        pathParamsMap.put("version_id", updateSecretVersionMetadataOptions.versionId());
+        RequestBuilder builder = RequestBuilder.put(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v1/secrets/{secret_type}/{id}/versions/{version_id}/metadata", pathParamsMap));
+        Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v1", "updateSecretVersionMetadata");
+        for (Entry<String, String> header : sdkHeaders.entrySet()) {
+            builder.header(header.getKey(), header.getValue());
+        }
+        builder.header("Accept", "application/json");
+        final JsonObject contentJson = new JsonObject();
+        contentJson.add("metadata", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(updateSecretVersionMetadataOptions.metadata()));
+        contentJson.add("resources", com.ibm.cloud.sdk.core.util.GsonSingleton.getGson().toJsonTree(updateSecretVersionMetadataOptions.resources()));
+        builder.bodyJson(contentJson);
+        ResponseConverter<GetSecretVersionMetadata> responseConverter =
+                ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<GetSecretVersionMetadata>() {
+                }.getType());
+        return createServiceCall(builder.build(), responseConverter);
+    }
+
+    /**
+     * Get the metadata of a secret.
      * <p>
      * Get the details of a secret by specifying its ID.
      * <p>

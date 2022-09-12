@@ -12,6 +12,8 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.Map;
+
 import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
@@ -23,6 +25,8 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - RotatePublicCertBody
  * - RotateUsernamePasswordSecretBody
  * - RotateCertificateBody
+ * - RotatePrivateCertBody
+ * - RotatePrivateCertBodyWithVersionCustomMetadata
  * - RestoreIAMCredentialsSecretBody
  * - DeleteCredentialsForIAMCredentialsSecret
  * - RotateKvSecretBody
@@ -30,6 +34,10 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class SecretAction extends GenericModel {
 
     protected Object payload;
+    @SerializedName("custom_metadata")
+    protected Map<String, Object> customMetadata;
+    @SerializedName("version_custom_metadata")
+    protected Map<String, Object> versionCustomMetadata;
     @SerializedName("rotate_keys")
     protected Boolean rotateKeys;
     protected String password;
@@ -56,6 +64,28 @@ public class SecretAction extends GenericModel {
      */
     public Object payload() {
         return payload;
+    }
+
+    /**
+     * Gets the customMetadata.
+     * <p>
+     * The secret metadata that a user can customize.
+     *
+     * @return the customMetadata
+     */
+    public Map<String, Object> customMetadata() {
+        return customMetadata;
+    }
+
+    /**
+     * Gets the versionCustomMetadata.
+     * <p>
+     * The secret version metadata that a user can customize.
+     *
+     * @return the versionCustomMetadata
+     */
+    public Map<String, Object> versionCustomMetadata() {
+        return versionCustomMetadata;
     }
 
     /**

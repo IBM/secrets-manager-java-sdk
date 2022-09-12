@@ -24,6 +24,11 @@ public class ConfigElementDefConfigLetsEncryptConfig extends ConfigElementDefCon
     public static class Builder {
         private String privateKey;
 
+        /**
+         * Instantiates a new Builder from an existing ConfigElementDefConfigLetsEncryptConfig instance.
+         *
+         * @param configElementDefConfigLetsEncryptConfig the instance to initialize the Builder with
+         */
         public Builder(ConfigElementDefConfig configElementDefConfigLetsEncryptConfig) {
             this.privateKey = configElementDefConfigLetsEncryptConfig.privateKey;
         }

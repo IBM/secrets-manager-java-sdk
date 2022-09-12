@@ -14,6 +14,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties that describe a secret.
@@ -63,16 +64,25 @@ public class IAMCredentialsSecretResource extends SecretResource {
         private String description;
         private String secretGroupId;
         private List<String> labels;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
         private Object ttl;
         private List<String> accessGroups;
         private String serviceId;
         private Boolean reuseApiKey;
 
+        /**
+         * Instantiates a new Builder from an existing IAMCredentialsSecretResource instance.
+         *
+         * @param iamCredentialsSecretResource the instance to initialize the Builder with
+         */
         public Builder(SecretResource iamCredentialsSecretResource) {
             this.name = iamCredentialsSecretResource.name;
             this.description = iamCredentialsSecretResource.description;
             this.secretGroupId = iamCredentialsSecretResource.secretGroupId;
             this.labels = iamCredentialsSecretResource.labels;
+            this.customMetadata = iamCredentialsSecretResource.customMetadata;
+            this.versionCustomMetadata = iamCredentialsSecretResource.versionCustomMetadata;
             this.ttl = iamCredentialsSecretResource.ttl;
             this.accessGroups = iamCredentialsSecretResource.accessGroups;
             this.serviceId = iamCredentialsSecretResource.serviceId;
@@ -181,6 +191,28 @@ public class IAMCredentialsSecretResource extends SecretResource {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the IAMCredentialsSecretResource builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the IAMCredentialsSecretResource builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+
+        /**
          * Set the ttl.
          *
          * @param ttl the ttl
@@ -236,6 +268,8 @@ public class IAMCredentialsSecretResource extends SecretResource {
         description = builder.description;
         secretGroupId = builder.secretGroupId;
         labels = builder.labels;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
         ttl = builder.ttl;
         accessGroups = builder.accessGroups;
         serviceId = builder.serviceId;

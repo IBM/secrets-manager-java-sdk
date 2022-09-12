@@ -14,6 +14,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Metadata properties that describe a public certificate secret.
@@ -85,6 +86,7 @@ public class PublicCertificateSecretMetadata extends SecretMetadata {
         private List<String> labels;
         private String name;
         private String description;
+        private Map<String, Object> customMetadata;
         private Boolean bundleCerts;
         private String keyAlgorithm;
         private List<String> altNames;
@@ -93,10 +95,16 @@ public class PublicCertificateSecretMetadata extends SecretMetadata {
         private IssuanceInfo issuanceInfo;
         private CertificateValidity validity;
 
+        /**
+         * Instantiates a new Builder from an existing PublicCertificateSecretMetadata instance.
+         *
+         * @param publicCertificateSecretMetadata the instance to initialize the Builder with
+         */
         public Builder(SecretMetadata publicCertificateSecretMetadata) {
             this.labels = publicCertificateSecretMetadata.labels;
             this.name = publicCertificateSecretMetadata.name;
             this.description = publicCertificateSecretMetadata.description;
+            this.customMetadata = publicCertificateSecretMetadata.customMetadata;
             this.bundleCerts = publicCertificateSecretMetadata.bundleCerts;
             this.keyAlgorithm = publicCertificateSecretMetadata.keyAlgorithm;
             this.altNames = publicCertificateSecretMetadata.altNames;
@@ -197,6 +205,17 @@ public class PublicCertificateSecretMetadata extends SecretMetadata {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the PublicCertificateSecretMetadata builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
          * Set the bundleCerts.
          *
          * @param bundleCerts the bundleCerts
@@ -284,6 +303,7 @@ public class PublicCertificateSecretMetadata extends SecretMetadata {
         labels = builder.labels;
         name = builder.name;
         description = builder.description;
+        customMetadata = builder.customMetadata;
         bundleCerts = builder.bundleCerts;
         keyAlgorithm = builder.keyAlgorithm;
         altNames = builder.altNames;

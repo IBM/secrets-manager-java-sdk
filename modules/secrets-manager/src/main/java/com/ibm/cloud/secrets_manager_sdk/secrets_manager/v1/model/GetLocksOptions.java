@@ -69,6 +69,11 @@ public class GetLocksOptions extends GenericModel {
         private Long offset;
         private String search;
 
+        /**
+         * Instantiates a new Builder from an existing GetLocksOptions instance.
+         *
+         * @param getLocksOptions the instance to initialize the Builder with
+         */
         private Builder(GetLocksOptions getLocksOptions) {
             this.secretType = getLocksOptions.secretType;
             this.id = getLocksOptions.id;
@@ -208,10 +213,10 @@ public class GetLocksOptions extends GenericModel {
     /**
      * Gets the limit.
      * <p>
-     * The number of secrets with locks to retrieve. By default, list operations return the first 25 items. To retrieve a
-     * different set of items, use `limit` with `offset` to page through your available resources.
+     * The number of locks to retrieve. By default, list operations return the first 25 items. To retrieve a different set
+     * of items, use `limit` with `offset` to page through your available resources.
      * <p>
-     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 with locks, use
+     * **Usage:** If you have 20 locks associated with your secret, and you want to retrieve only the first 5 locks, use
      * `..?limit=5`.
      *
      * @return the limit
@@ -223,10 +228,10 @@ public class GetLocksOptions extends GenericModel {
     /**
      * Gets the offset.
      * <p>
-     * The number of secrets to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset`
+     * The number of locks to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset`
      * value. Use `offset` with `limit` to page through your available resources.
      * <p>
-     * **Usage:** If you have 100 secrets in your instance, and you want to retrieve secrets 26 through 50, use
+     * **Usage:** If you have 100 locks on your secret, and you want to retrieve locks 26 through 50, use
      * `..?offset=25&amp;limit=25`.
      *
      * @return the offset

@@ -56,6 +56,9 @@ public class ConfigElementMetadata extends GenericModel {
     protected String name;
     protected String type;
 
+    protected ConfigElementMetadata() {
+    }
+
     /**
      * Gets the name.
      * <p>

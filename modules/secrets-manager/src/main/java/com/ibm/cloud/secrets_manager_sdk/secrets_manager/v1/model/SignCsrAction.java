@@ -60,6 +60,11 @@ public class SignCsrAction extends ConfigAction {
         private String serialNumber;
         private String csr;
 
+        /**
+         * Instantiates a new Builder from an existing SignCsrAction instance.
+         *
+         * @param signCsrAction the instance to initialize the Builder with
+         */
         public Builder(ConfigAction signCsrAction) {
             this.commonName = signCsrAction.commonName;
             this.altNames = signCsrAction.altNames;

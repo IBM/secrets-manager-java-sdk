@@ -38,6 +38,7 @@ public class CertificateSecretVersionMetadataTest {
     public void testCertificateSecretVersionMetadata() throws Throwable {
         CertificateSecretVersionMetadata certificateSecretVersionMetadataModel = new CertificateSecretVersionMetadata();
         assertNull(certificateSecretVersionMetadataModel.getId());
+        assertNull(certificateSecretVersionMetadataModel.getVersionCustomMetadata());
         assertNull(certificateSecretVersionMetadataModel.getValidity());
     }
 }

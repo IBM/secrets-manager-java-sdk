@@ -15,6 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Metadata properties that describe a username_password secret.
@@ -63,12 +64,19 @@ public class UsernamePasswordSecretMetadata extends SecretMetadata {
         private List<String> labels;
         private String name;
         private String description;
+        private Map<String, Object> customMetadata;
         private Date expirationDate;
 
+        /**
+         * Instantiates a new Builder from an existing UsernamePasswordSecretMetadata instance.
+         *
+         * @param usernamePasswordSecretMetadata the instance to initialize the Builder with
+         */
         public Builder(SecretMetadata usernamePasswordSecretMetadata) {
             this.labels = usernamePasswordSecretMetadata.labels;
             this.name = usernamePasswordSecretMetadata.name;
             this.description = usernamePasswordSecretMetadata.description;
+            this.customMetadata = usernamePasswordSecretMetadata.customMetadata;
             this.expirationDate = usernamePasswordSecretMetadata.expirationDate;
         }
 
@@ -147,6 +155,17 @@ public class UsernamePasswordSecretMetadata extends SecretMetadata {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the UsernamePasswordSecretMetadata builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
          * Set the expirationDate.
          *
          * @param expirationDate the expirationDate
@@ -167,6 +186,7 @@ public class UsernamePasswordSecretMetadata extends SecretMetadata {
         labels = builder.labels;
         name = builder.name;
         description = builder.description;
+        customMetadata = builder.customMetadata;
         expirationDate = builder.expirationDate;
     }
 

@@ -21,8 +21,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,15 +56,25 @@ public class PrivateCertificateSecretMetadataTest {
         assertEquals(certificateValidityModel.notAfter(), DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"));
 
         PrivateCertificateSecretMetadata privateCertificateSecretMetadataModel = new PrivateCertificateSecretMetadata.Builder()
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
+                .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("example-secret")
                 .description("Extended description for this secret.")
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .rotation(rotationModel)
                 .validity(certificateValidityModel)
                 .build();
-        assertEquals(privateCertificateSecretMetadataModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")));
+        assertEquals(privateCertificateSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
         assertEquals(privateCertificateSecretMetadataModel.name(), "example-secret");
         assertEquals(privateCertificateSecretMetadataModel.description(), "Extended description for this secret.");
+        assertEquals(privateCertificateSecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
         assertEquals(privateCertificateSecretMetadataModel.rotation(), rotationModel);
         assertEquals(privateCertificateSecretMetadataModel.validity(), certificateValidityModel);
 
@@ -76,6 +84,11 @@ public class PrivateCertificateSecretMetadataTest {
         assertTrue(privateCertificateSecretMetadataModelNew instanceof PrivateCertificateSecretMetadata);
         assertEquals(privateCertificateSecretMetadataModelNew.name(), "example-secret");
         assertEquals(privateCertificateSecretMetadataModelNew.description(), "Extended description for this secret.");
+        assertEquals(privateCertificateSecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
         assertEquals(privateCertificateSecretMetadataModelNew.rotation().toString(), rotationModel.toString());
         assertEquals(privateCertificateSecretMetadataModelNew.validity().toString(), certificateValidityModel.toString());
     }

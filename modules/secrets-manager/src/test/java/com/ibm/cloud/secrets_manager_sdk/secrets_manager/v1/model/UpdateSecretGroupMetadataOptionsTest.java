@@ -20,8 +20,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGr
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,11 +53,11 @@ public class UpdateSecretGroupMetadataOptionsTest {
         UpdateSecretGroupMetadataOptions updateSecretGroupMetadataOptionsModel = new UpdateSecretGroupMetadataOptions.Builder()
                 .id("testString")
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretGroupMetadataUpdatable>(java.util.Arrays.asList(secretGroupMetadataUpdatableModel)))
+                .resources(java.util.Arrays.asList(secretGroupMetadataUpdatableModel))
                 .build();
         assertEquals(updateSecretGroupMetadataOptionsModel.id(), "testString");
         assertEquals(updateSecretGroupMetadataOptionsModel.metadata(), collectionMetadataModel);
-        assertEquals(updateSecretGroupMetadataOptionsModel.resources(), new java.util.ArrayList<SecretGroupMetadataUpdatable>(java.util.Arrays.asList(secretGroupMetadataUpdatableModel)));
+        assertEquals(updateSecretGroupMetadataOptionsModel.resources(), java.util.Arrays.asList(secretGroupMetadataUpdatableModel));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

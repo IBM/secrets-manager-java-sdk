@@ -21,8 +21,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretPolicyRo
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -64,13 +62,13 @@ public class PutPolicyOptionsTest {
                 .secretType("username_password")
                 .id("testString")
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)))
+                .resources(java.util.Arrays.asList(secretPolicyRotationModel))
                 .policy("rotation")
                 .build();
         assertEquals(putPolicyOptionsModel.secretType(), "username_password");
         assertEquals(putPolicyOptionsModel.id(), "testString");
         assertEquals(putPolicyOptionsModel.metadata(), collectionMetadataModel);
-        assertEquals(putPolicyOptionsModel.resources(), new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)));
+        assertEquals(putPolicyOptionsModel.resources(), java.util.Arrays.asList(secretPolicyRotationModel));
         assertEquals(putPolicyOptionsModel.policy(), "rotation");
     }
 

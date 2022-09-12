@@ -12,6 +12,8 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.Map;
+
 /**
  * The request body of a `rotate` action.
  */
@@ -23,9 +25,18 @@ public class RotateArbitrarySecretBody extends SecretAction {
      */
     public static class Builder {
         private Object payload;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
 
+        /**
+         * Instantiates a new Builder from an existing RotateArbitrarySecretBody instance.
+         *
+         * @param rotateArbitrarySecretBody the instance to initialize the Builder with
+         */
         public Builder(SecretAction rotateArbitrarySecretBody) {
             this.payload = rotateArbitrarySecretBody.payload;
+            this.customMetadata = rotateArbitrarySecretBody.customMetadata;
+            this.versionCustomMetadata = rotateArbitrarySecretBody.versionCustomMetadata;
         }
 
         /**
@@ -62,6 +73,28 @@ public class RotateArbitrarySecretBody extends SecretAction {
             this.payload = payload;
             return this;
         }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RotateArbitrarySecretBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RotateArbitrarySecretBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
     }
 
     protected RotateArbitrarySecretBody() {
@@ -71,6 +104,8 @@ public class RotateArbitrarySecretBody extends SecretAction {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.payload,
                 "payload cannot be null");
         payload = builder.payload;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
     }
 
     /**

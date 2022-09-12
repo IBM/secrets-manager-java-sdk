@@ -38,6 +38,7 @@ public class PrivateCertificateSecretVersionTest {
     @Test
     public void testPrivateCertificateSecretVersion() throws Throwable {
         PrivateCertificateSecretVersion privateCertificateSecretVersionModel = new PrivateCertificateSecretVersion();
+        assertNull(privateCertificateSecretVersionModel.getVersionCustomMetadata());
         assertNull(privateCertificateSecretVersionModel.getValidity());
         assertNull(privateCertificateSecretVersionModel.getSecretData());
         assertNull(privateCertificateSecretVersionModel.isAutoRotated());

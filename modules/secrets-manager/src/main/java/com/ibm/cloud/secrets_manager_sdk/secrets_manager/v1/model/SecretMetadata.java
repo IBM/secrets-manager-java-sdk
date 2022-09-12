@@ -14,6 +14,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
@@ -88,6 +89,8 @@ public class SecretMetadata extends GenericModel {
     protected Long versionsTotal;
     @SerializedName("locks_total")
     protected Long locksTotal;
+    @SerializedName("custom_metadata")
+    protected Map<String, Object> customMetadata;
     @SerializedName("expiration_date")
     protected Date expirationDate;
     protected String ttl;
@@ -295,6 +298,17 @@ public class SecretMetadata extends GenericModel {
      */
     public Long locksTotal() {
         return locksTotal;
+    }
+
+    /**
+     * Gets the customMetadata.
+     * <p>
+     * The secret metadata that a user can customize.
+     *
+     * @return the customMetadata
+     */
+    public Map<String, Object> customMetadata() {
+        return customMetadata;
     }
 
     /**

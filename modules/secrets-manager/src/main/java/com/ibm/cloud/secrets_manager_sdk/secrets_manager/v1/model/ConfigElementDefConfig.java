@@ -476,7 +476,8 @@ public class ConfigElementDefConfig extends GenericModel {
      * <p>
      * The time-to-live (TTL) to assign to this CA certificate.
      * <p>
-     * The value can be supplied as a string representation of a duration, such as `12h`. The value can't exceed the
+     * The value can be supplied as a string representation of a duration, such as `12h`. The value can be supplied in
+     * seconds (suffix `s`), minutes (suffix `m`), hours (suffix `h`) or days (suffix `d`). The value can't exceed the
      * `max_ttl` that is defined in the associated certificate template. In the API response, this value is returned in
      * seconds (integer).
      *

@@ -36,6 +36,7 @@ public class UsernamePasswordSecretVersionMetadataTest {
     public void testUsernamePasswordSecretVersionMetadata() throws Throwable {
         UsernamePasswordSecretVersionMetadata usernamePasswordSecretVersionMetadataModel = new UsernamePasswordSecretVersionMetadata();
         assertNull(usernamePasswordSecretVersionMetadataModel.getId());
+        assertNull(usernamePasswordSecretVersionMetadataModel.getVersionCustomMetadata());
         assertNull(usernamePasswordSecretVersionMetadataModel.isAutoRotated());
     }
 }

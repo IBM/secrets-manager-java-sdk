@@ -15,6 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties that describe a secret.
@@ -64,15 +65,24 @@ public class UsernamePasswordSecretResource extends SecretResource {
         private String description;
         private String secretGroupId;
         private List<String> labels;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
         private String username;
         private String password;
         private Date expirationDate;
 
+        /**
+         * Instantiates a new Builder from an existing UsernamePasswordSecretResource instance.
+         *
+         * @param usernamePasswordSecretResource the instance to initialize the Builder with
+         */
         public Builder(SecretResource usernamePasswordSecretResource) {
             this.name = usernamePasswordSecretResource.name;
             this.description = usernamePasswordSecretResource.description;
             this.secretGroupId = usernamePasswordSecretResource.secretGroupId;
             this.labels = usernamePasswordSecretResource.labels;
+            this.customMetadata = usernamePasswordSecretResource.customMetadata;
+            this.versionCustomMetadata = usernamePasswordSecretResource.versionCustomMetadata;
             this.username = usernamePasswordSecretResource.username;
             this.password = usernamePasswordSecretResource.password;
             this.expirationDate = usernamePasswordSecretResource.expirationDate;
@@ -164,6 +174,28 @@ public class UsernamePasswordSecretResource extends SecretResource {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the UsernamePasswordSecretResource builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the UsernamePasswordSecretResource builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+
+        /**
          * Set the username.
          *
          * @param username the username
@@ -207,6 +239,8 @@ public class UsernamePasswordSecretResource extends SecretResource {
         description = builder.description;
         secretGroupId = builder.secretGroupId;
         labels = builder.labels;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
         username = builder.username;
         password = builder.password;
         expirationDate = builder.expirationDate;

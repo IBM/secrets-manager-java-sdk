@@ -34,6 +34,11 @@ public class CertificateValidity extends GenericModel {
         private Date notBefore;
         private Date notAfter;
 
+        /**
+         * Instantiates a new Builder from an existing CertificateValidity instance.
+         *
+         * @param certificateValidity the instance to initialize the Builder with
+         */
         private Builder(CertificateValidity certificateValidity) {
             this.notBefore = certificateValidity.notBefore;
             this.notAfter = certificateValidity.notAfter;

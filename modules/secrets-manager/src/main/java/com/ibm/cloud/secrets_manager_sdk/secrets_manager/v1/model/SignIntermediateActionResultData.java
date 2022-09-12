@@ -31,6 +31,9 @@ public class SignIntermediateActionResultData extends GenericModel {
     protected List<String> caChain;
     protected Long expiration;
 
+    protected SignIntermediateActionResultData() {
+    }
+
     /**
      * Gets the certificate.
      * <p>

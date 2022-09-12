@@ -32,6 +32,11 @@ public class SecretMetadataRequest extends GenericModel {
         private CollectionMetadata metadata;
         private List<SecretMetadata> resources;
 
+        /**
+         * Instantiates a new Builder from an existing SecretMetadataRequest instance.
+         *
+         * @param secretMetadataRequest the instance to initialize the Builder with
+         */
         private Builder(SecretMetadataRequest secretMetadataRequest) {
             this.metadata = secretMetadataRequest.metadata;
             this.resources = secretMetadataRequest.resources;

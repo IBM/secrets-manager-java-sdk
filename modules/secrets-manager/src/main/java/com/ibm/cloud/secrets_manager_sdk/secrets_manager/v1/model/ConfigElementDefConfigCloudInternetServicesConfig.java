@@ -25,6 +25,11 @@ public class ConfigElementDefConfigCloudInternetServicesConfig extends ConfigEle
         private String cisCrn;
         private String cisApikey;
 
+        /**
+         * Instantiates a new Builder from an existing ConfigElementDefConfigCloudInternetServicesConfig instance.
+         *
+         * @param configElementDefConfigCloudInternetServicesConfig the instance to initialize the Builder with
+         */
         public Builder(ConfigElementDefConfig configElementDefConfigCloudInternetServicesConfig) {
             this.cisCrn = configElementDefConfigCloudInternetServicesConfig.cisCrn;
             this.cisApikey = configElementDefConfigCloudInternetServicesConfig.cisApikey;

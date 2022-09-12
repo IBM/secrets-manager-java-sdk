@@ -37,6 +37,7 @@ public class CertificateSecretVersionInfoTest {
     @Test
     public void testCertificateSecretVersionInfo() throws Throwable {
         CertificateSecretVersionInfo certificateSecretVersionInfoModel = new CertificateSecretVersionInfo();
+        assertNull(certificateSecretVersionInfoModel.getVersionCustomMetadata());
         assertNull(certificateSecretVersionInfoModel.getValidity());
     }
 }

@@ -38,10 +38,30 @@ public class RotateCertificateBodyTest {
                 .certificate("testString")
                 .privateKey("testString")
                 .intermediate("testString")
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .build();
         assertEquals(rotateCertificateBodyModel.certificate(), "testString");
         assertEquals(rotateCertificateBodyModel.privateKey(), "testString");
         assertEquals(rotateCertificateBodyModel.intermediate(), "testString");
+        assertEquals(rotateCertificateBodyModel.customMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
+        assertEquals(rotateCertificateBodyModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
 
         String json = TestUtilities.serialize(rotateCertificateBodyModel);
 
@@ -50,6 +70,16 @@ public class RotateCertificateBodyTest {
         assertEquals(rotateCertificateBodyModelNew.certificate(), "testString");
         assertEquals(rotateCertificateBodyModelNew.privateKey(), "testString");
         assertEquals(rotateCertificateBodyModelNew.intermediate(), "testString");
+        assertEquals(rotateCertificateBodyModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
+        assertEquals(rotateCertificateBodyModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

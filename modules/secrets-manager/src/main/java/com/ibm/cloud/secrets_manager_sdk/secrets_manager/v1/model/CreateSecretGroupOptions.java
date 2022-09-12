@@ -32,6 +32,11 @@ public class CreateSecretGroupOptions extends GenericModel {
         private CollectionMetadata metadata;
         private List<SecretGroupResource> resources;
 
+        /**
+         * Instantiates a new Builder from an existing CreateSecretGroupOptions instance.
+         *
+         * @param createSecretGroupOptions the instance to initialize the Builder with
+         */
         private Builder(CreateSecretGroupOptions createSecretGroupOptions) {
             this.metadata = createSecretGroupOptions.metadata;
             this.resources = createSecretGroupOptions.resources;

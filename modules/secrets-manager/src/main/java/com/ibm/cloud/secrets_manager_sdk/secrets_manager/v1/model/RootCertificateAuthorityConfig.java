@@ -126,6 +126,11 @@ public class RootCertificateAuthorityConfig extends ConfigElementDefConfig {
         private List<String> postalCode;
         private String serialNumber;
 
+        /**
+         * Instantiates a new Builder from an existing RootCertificateAuthorityConfig instance.
+         *
+         * @param rootCertificateAuthorityConfig the instance to initialize the Builder with
+         */
         public Builder(ConfigElementDefConfig rootCertificateAuthorityConfig) {
             this.maxTtl = rootCertificateAuthorityConfig.maxTtl;
             this.crlExpiry = rootCertificateAuthorityConfig.crlExpiry;

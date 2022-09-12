@@ -63,6 +63,11 @@ public class DeleteSecretOptions extends GenericModel {
         private String secretType;
         private String id;
 
+        /**
+         * Instantiates a new Builder from an existing DeleteSecretOptions instance.
+         *
+         * @param deleteSecretOptions the instance to initialize the Builder with
+         */
         private Builder(DeleteSecretOptions deleteSecretOptions) {
             this.secretType = deleteSecretOptions.secretType;
             this.id = deleteSecretOptions.id;

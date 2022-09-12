@@ -15,6 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties that describe a secret.
@@ -64,14 +65,23 @@ public class ArbitrarySecretResource extends SecretResource {
         private String description;
         private String secretGroupId;
         private List<String> labels;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
         private Date expirationDate;
         private Object payload;
 
+        /**
+         * Instantiates a new Builder from an existing ArbitrarySecretResource instance.
+         *
+         * @param arbitrarySecretResource the instance to initialize the Builder with
+         */
         public Builder(SecretResource arbitrarySecretResource) {
             this.name = arbitrarySecretResource.name;
             this.description = arbitrarySecretResource.description;
             this.secretGroupId = arbitrarySecretResource.secretGroupId;
             this.labels = arbitrarySecretResource.labels;
+            this.customMetadata = arbitrarySecretResource.customMetadata;
+            this.versionCustomMetadata = arbitrarySecretResource.versionCustomMetadata;
             this.expirationDate = arbitrarySecretResource.expirationDate;
             this.payload = arbitrarySecretResource.payload;
         }
@@ -162,6 +172,28 @@ public class ArbitrarySecretResource extends SecretResource {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the ArbitrarySecretResource builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the ArbitrarySecretResource builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+
+        /**
          * Set the expirationDate.
          *
          * @param expirationDate the expirationDate
@@ -194,6 +226,8 @@ public class ArbitrarySecretResource extends SecretResource {
         description = builder.description;
         secretGroupId = builder.secretGroupId;
         labels = builder.labels;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
         expirationDate = builder.expirationDate;
         payload = builder.payload;
     }

@@ -25,6 +25,11 @@ public class SecretPolicyRotationRotationPublicCertPolicyRotation extends Secret
         private Boolean autoRotate;
         private Boolean rotateKeys;
 
+        /**
+         * Instantiates a new Builder from an existing SecretPolicyRotationRotationPublicCertPolicyRotation instance.
+         *
+         * @param secretPolicyRotationRotationPublicCertPolicyRotation the instance to initialize the Builder with
+         */
         public Builder(SecretPolicyRotationRotation secretPolicyRotationRotationPublicCertPolicyRotation) {
             this.autoRotate = secretPolicyRotationRotationPublicCertPolicyRotation.autoRotate;
             this.rotateKeys = secretPolicyRotationRotationPublicCertPolicyRotation.rotateKeys;

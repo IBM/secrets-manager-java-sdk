@@ -24,6 +24,9 @@ public class ConfigElementActionResult extends GenericModel {
     protected CollectionMetadata metadata;
     protected List<ConfigElementActionData> resources;
 
+    protected ConfigElementActionResult() {
+    }
+
     /**
      * Gets the metadata.
      * <p>

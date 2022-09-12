@@ -73,6 +73,10 @@ public class UpdateSecretOptions extends GenericModel {
          * delete_credentials.
          */
         String DELETE_CREDENTIALS = "delete_credentials";
+        /**
+         * validate_dns_challenge.
+         */
+        String VALIDATE_DNS_CHALLENGE = "validate_dns_challenge";
     }
 
     protected String secretType;
@@ -89,6 +93,11 @@ public class UpdateSecretOptions extends GenericModel {
         private String action;
         private SecretAction secretAction;
 
+        /**
+         * Instantiates a new Builder from an existing UpdateSecretOptions instance.
+         *
+         * @param updateSecretOptions the instance to initialize the Builder with
+         */
         private Builder(UpdateSecretOptions updateSecretOptions) {
             this.secretType = updateSecretOptions.secretType;
             this.id = updateSecretOptions.id;

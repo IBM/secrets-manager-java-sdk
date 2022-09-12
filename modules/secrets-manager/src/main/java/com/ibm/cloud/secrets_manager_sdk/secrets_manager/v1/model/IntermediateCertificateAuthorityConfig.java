@@ -142,6 +142,11 @@ public class IntermediateCertificateAuthorityConfig extends ConfigElementDefConf
         private List<String> postalCode;
         private String serialNumber;
 
+        /**
+         * Instantiates a new Builder from an existing IntermediateCertificateAuthorityConfig instance.
+         *
+         * @param intermediateCertificateAuthorityConfig the instance to initialize the Builder with
+         */
         public Builder(ConfigElementDefConfig intermediateCertificateAuthorityConfig) {
             this.maxTtl = intermediateCertificateAuthorityConfig.maxTtl;
             this.signingMethod = intermediateCertificateAuthorityConfig.signingMethod;

@@ -31,6 +31,9 @@ public class SignActionResultData extends GenericModel {
     protected List<String> caChain;
     protected Long expiration;
 
+    protected SignActionResultData() {
+    }
+
     /**
      * Gets the certificate.
      * <p>

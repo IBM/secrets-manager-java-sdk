@@ -65,6 +65,11 @@ public class ConfigElementDef extends GenericModel {
         private String type;
         private ConfigElementDefConfig config;
 
+        /**
+         * Instantiates a new Builder from an existing ConfigElementDef instance.
+         *
+         * @param configElementDef the instance to initialize the Builder with
+         */
         private Builder(ConfigElementDef configElementDef) {
             this.name = configElementDef.name;
             this.type = configElementDef.type;

@@ -18,8 +18,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IntermediateCe
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,19 +46,19 @@ public class IntermediateCertificateAuthorityConfigTest {
                 .altNames("testString")
                 .ipSans("testString")
                 .uriSans("testString")
-                .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .otherSans(java.util.Arrays.asList("testString"))
                 .format("pem")
                 .privateKeyFormat("der")
                 .keyType("rsa")
                 .keyBits(Long.valueOf("26"))
                 .excludeCnFromSans(false)
-                .ou(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .organization(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .country(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .locality(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .province(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .streetAddress(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .postalCode(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .ou(java.util.Arrays.asList("testString"))
+                .organization(java.util.Arrays.asList("testString"))
+                .country(java.util.Arrays.asList("testString"))
+                .locality(java.util.Arrays.asList("testString"))
+                .province(java.util.Arrays.asList("testString"))
+                .streetAddress(java.util.Arrays.asList("testString"))
+                .postalCode(java.util.Arrays.asList("testString"))
                 .serialNumber("d9:be:fe:35:ba:09:42:b5")
                 .build();
         assertEquals(intermediateCertificateAuthorityConfigModel.maxTtl(), "8760h");
@@ -74,19 +72,19 @@ public class IntermediateCertificateAuthorityConfigTest {
         assertEquals(intermediateCertificateAuthorityConfigModel.altNames(), "testString");
         assertEquals(intermediateCertificateAuthorityConfigModel.ipSans(), "testString");
         assertEquals(intermediateCertificateAuthorityConfigModel.uriSans(), "testString");
-        assertEquals(intermediateCertificateAuthorityConfigModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(intermediateCertificateAuthorityConfigModel.otherSans(), java.util.Arrays.asList("testString"));
         assertEquals(intermediateCertificateAuthorityConfigModel.format(), "pem");
         assertEquals(intermediateCertificateAuthorityConfigModel.privateKeyFormat(), "der");
         assertEquals(intermediateCertificateAuthorityConfigModel.keyType(), "rsa");
         assertEquals(intermediateCertificateAuthorityConfigModel.keyBits(), Long.valueOf("26"));
         assertEquals(intermediateCertificateAuthorityConfigModel.excludeCnFromSans(), Boolean.valueOf(false));
-        assertEquals(intermediateCertificateAuthorityConfigModel.ou(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(intermediateCertificateAuthorityConfigModel.organization(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(intermediateCertificateAuthorityConfigModel.country(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(intermediateCertificateAuthorityConfigModel.locality(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(intermediateCertificateAuthorityConfigModel.province(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(intermediateCertificateAuthorityConfigModel.streetAddress(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(intermediateCertificateAuthorityConfigModel.postalCode(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(intermediateCertificateAuthorityConfigModel.ou(), java.util.Arrays.asList("testString"));
+        assertEquals(intermediateCertificateAuthorityConfigModel.organization(), java.util.Arrays.asList("testString"));
+        assertEquals(intermediateCertificateAuthorityConfigModel.country(), java.util.Arrays.asList("testString"));
+        assertEquals(intermediateCertificateAuthorityConfigModel.locality(), java.util.Arrays.asList("testString"));
+        assertEquals(intermediateCertificateAuthorityConfigModel.province(), java.util.Arrays.asList("testString"));
+        assertEquals(intermediateCertificateAuthorityConfigModel.streetAddress(), java.util.Arrays.asList("testString"));
+        assertEquals(intermediateCertificateAuthorityConfigModel.postalCode(), java.util.Arrays.asList("testString"));
         assertEquals(intermediateCertificateAuthorityConfigModel.serialNumber(), "d9:be:fe:35:ba:09:42:b5");
 
         String json = TestUtilities.serialize(intermediateCertificateAuthorityConfigModel);
