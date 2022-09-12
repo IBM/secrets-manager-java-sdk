@@ -52,6 +52,11 @@ public class Rotation extends GenericModel {
         private Long interval;
         private String unit;
 
+        /**
+         * Instantiates a new Builder from an existing Rotation instance.
+         *
+         * @param rotation the instance to initialize the Builder with
+         */
         private Builder(Rotation rotation) {
             this.autoRotate = rotation.autoRotate;
             this.rotateKeys = rotation.rotateKeys;

@@ -20,8 +20,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateVal
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +48,17 @@ public class CertificateSecretResourceTest {
                 .name("testString")
                 .description("testString")
                 .secretGroupId("testString")
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .labels(java.util.Arrays.asList("testString"))
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .certificate("testString")
                 .privateKey("testString")
                 .intermediate("testString")
@@ -60,7 +68,17 @@ public class CertificateSecretResourceTest {
         assertEquals(certificateSecretResourceModel.name(), "testString");
         assertEquals(certificateSecretResourceModel.description(), "testString");
         assertEquals(certificateSecretResourceModel.secretGroupId(), "testString");
-        assertEquals(certificateSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(certificateSecretResourceModel.labels(), java.util.Arrays.asList("testString"));
+        assertEquals(certificateSecretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
+        assertEquals(certificateSecretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
         assertEquals(certificateSecretResourceModel.certificate(), "testString");
         assertEquals(certificateSecretResourceModel.privateKey(), "testString");
         assertEquals(certificateSecretResourceModel.intermediate(), "testString");
@@ -74,6 +92,16 @@ public class CertificateSecretResourceTest {
         assertEquals(certificateSecretResourceModelNew.name(), "testString");
         assertEquals(certificateSecretResourceModelNew.description(), "testString");
         assertEquals(certificateSecretResourceModelNew.secretGroupId(), "testString");
+        assertEquals(certificateSecretResourceModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
+        assertEquals(certificateSecretResourceModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
         assertEquals(certificateSecretResourceModelNew.certificate(), "testString");
         assertEquals(certificateSecretResourceModelNew.privateKey(), "testString");
         assertEquals(certificateSecretResourceModelNew.intermediate(), "testString");

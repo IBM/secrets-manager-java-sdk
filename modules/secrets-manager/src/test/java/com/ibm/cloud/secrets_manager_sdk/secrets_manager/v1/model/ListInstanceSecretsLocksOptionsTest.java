@@ -18,8 +18,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListInstanceSe
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,11 +38,11 @@ public class ListInstanceSecretsLocksOptionsTest {
                 .limit(Long.valueOf("1"))
                 .offset(Long.valueOf("0"))
                 .search("testString")
-                .groups(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .groups(java.util.Arrays.asList("testString"))
                 .build();
         assertEquals(listInstanceSecretsLocksOptionsModel.limit(), Long.valueOf("1"));
         assertEquals(listInstanceSecretsLocksOptionsModel.offset(), Long.valueOf("0"));
         assertEquals(listInstanceSecretsLocksOptionsModel.search(), "testString");
-        assertEquals(listInstanceSecretsLocksOptionsModel.groups(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(listInstanceSecretsLocksOptionsModel.groups(), java.util.Arrays.asList("testString"));
     }
 }

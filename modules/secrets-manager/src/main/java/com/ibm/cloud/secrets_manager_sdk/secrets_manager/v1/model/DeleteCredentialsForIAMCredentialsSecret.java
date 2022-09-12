@@ -25,6 +25,11 @@ public class DeleteCredentialsForIAMCredentialsSecret extends SecretAction {
         private String apiKeyId;
         private String serviceId;
 
+        /**
+         * Instantiates a new Builder from an existing DeleteCredentialsForIAMCredentialsSecret instance.
+         *
+         * @param deleteCredentialsForIamCredentialsSecret the instance to initialize the Builder with
+         */
         public Builder(SecretAction deleteCredentialsForIamCredentialsSecret) {
             this.apiKeyId = deleteCredentialsForIamCredentialsSecret.apiKeyId;
             this.serviceId = deleteCredentialsForIamCredentialsSecret.serviceId;

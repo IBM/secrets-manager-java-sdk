@@ -57,6 +57,9 @@ public class CertificateTemplatesConfigItem extends GenericModel {
     protected String type;
     protected CertificateTemplateConfig config;
 
+    protected CertificateTemplatesConfigItem() {
+    }
+
     /**
      * Gets the name.
      * <p>

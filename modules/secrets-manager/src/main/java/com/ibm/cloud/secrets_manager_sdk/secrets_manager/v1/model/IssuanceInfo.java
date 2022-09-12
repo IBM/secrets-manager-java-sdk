@@ -43,6 +43,11 @@ public class IssuanceInfo extends GenericModel {
      */
     public static class Builder {
 
+        /**
+         * Instantiates a new Builder from an existing IssuanceInfo instance.
+         *
+         * @param issuanceInfo the instance to initialize the Builder with
+         */
         private Builder(IssuanceInfo issuanceInfo) {
         }
 

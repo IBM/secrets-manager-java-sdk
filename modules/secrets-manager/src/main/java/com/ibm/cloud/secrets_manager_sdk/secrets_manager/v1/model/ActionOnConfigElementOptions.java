@@ -85,6 +85,11 @@ public class ActionOnConfigElementOptions extends GenericModel {
         private String action;
         private ConfigAction config;
 
+        /**
+         * Instantiates a new Builder from an existing ActionOnConfigElementOptions instance.
+         *
+         * @param actionOnConfigElementOptions the instance to initialize the Builder with
+         */
         private Builder(ActionOnConfigElementOptions actionOnConfigElementOptions) {
             this.secretType = actionOnConfigElementOptions.secretType;
             this.configElement = actionOnConfigElementOptions.configElement;

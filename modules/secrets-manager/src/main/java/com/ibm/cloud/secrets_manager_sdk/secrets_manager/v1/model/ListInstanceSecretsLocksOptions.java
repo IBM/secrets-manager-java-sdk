@@ -36,6 +36,11 @@ public class ListInstanceSecretsLocksOptions extends GenericModel {
         private String search;
         private List<String> groups;
 
+        /**
+         * Instantiates a new Builder from an existing ListInstanceSecretsLocksOptions instance.
+         *
+         * @param listInstanceSecretsLocksOptions the instance to initialize the Builder with
+         */
         private Builder(ListInstanceSecretsLocksOptions listInstanceSecretsLocksOptions) {
             this.limit = listInstanceSecretsLocksOptions.limit;
             this.offset = listInstanceSecretsLocksOptions.offset;
@@ -142,10 +147,10 @@ public class ListInstanceSecretsLocksOptions extends GenericModel {
     /**
      * Gets the limit.
      * <p>
-     * The number of secrets with locks to retrieve. By default, list operations return the first 25 items. To retrieve a
-     * different set of items, use `limit` with `offset` to page through your available resources.
+     * The number of secrets with associated locks to retrieve. By default, list operations return the first 25 items. To
+     * retrieve a different set of items, use `limit` with `offset` to page through your available resources.
      * <p>
-     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5 with locks, use
+     * **Usage:** If you have 20 secrets in your instance, and you want to retrieve only the first 5, use
      * `..?limit=5`.
      *
      * @return the limit

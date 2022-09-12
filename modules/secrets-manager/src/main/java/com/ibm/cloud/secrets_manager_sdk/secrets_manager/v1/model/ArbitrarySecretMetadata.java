@@ -15,6 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Metadata properties that describe an arbitrary secret.
@@ -63,12 +64,19 @@ public class ArbitrarySecretMetadata extends SecretMetadata {
         private List<String> labels;
         private String name;
         private String description;
+        private Map<String, Object> customMetadata;
         private Date expirationDate;
 
+        /**
+         * Instantiates a new Builder from an existing ArbitrarySecretMetadata instance.
+         *
+         * @param arbitrarySecretMetadata the instance to initialize the Builder with
+         */
         public Builder(SecretMetadata arbitrarySecretMetadata) {
             this.labels = arbitrarySecretMetadata.labels;
             this.name = arbitrarySecretMetadata.name;
             this.description = arbitrarySecretMetadata.description;
+            this.customMetadata = arbitrarySecretMetadata.customMetadata;
             this.expirationDate = arbitrarySecretMetadata.expirationDate;
         }
 
@@ -147,6 +155,17 @@ public class ArbitrarySecretMetadata extends SecretMetadata {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the ArbitrarySecretMetadata builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
          * Set the expirationDate.
          *
          * @param expirationDate the expirationDate
@@ -167,6 +186,7 @@ public class ArbitrarySecretMetadata extends SecretMetadata {
         labels = builder.labels;
         name = builder.name;
         description = builder.description;
+        customMetadata = builder.customMetadata;
         expirationDate = builder.expirationDate;
     }
 

@@ -32,6 +32,11 @@ public class CreateSecret extends GenericModel {
         private CollectionMetadata metadata;
         private List<SecretResource> resources;
 
+        /**
+         * Instantiates a new Builder from an existing CreateSecret instance.
+         *
+         * @param createSecret the instance to initialize the Builder with
+         */
         private Builder(CreateSecret createSecret) {
             this.metadata = createSecret.metadata;
             this.resources = createSecret.resources;

@@ -45,6 +45,11 @@ public class GetConfigOptions extends GenericModel {
     public static class Builder {
         private String secretType;
 
+        /**
+         * Instantiates a new Builder from an existing GetConfigOptions instance.
+         *
+         * @param getConfigOptions the instance to initialize the Builder with
+         */
         private Builder(GetConfigOptions getConfigOptions) {
             this.secretType = getConfigOptions.secretType;
         }

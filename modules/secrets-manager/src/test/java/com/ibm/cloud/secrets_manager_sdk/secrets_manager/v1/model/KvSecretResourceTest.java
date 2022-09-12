@@ -38,14 +38,34 @@ public class KvSecretResourceTest {
                 .name("testString")
                 .description("testString")
                 .secretGroupId("testString")
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .labels(java.util.Arrays.asList("testString"))
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .payload(Collections.singletonMap("foo", "testString"))
                 .build();
         assertEquals(kvSecretResourceModel.name(), "testString");
         assertEquals(kvSecretResourceModel.description(), "testString");
         assertEquals(kvSecretResourceModel.secretGroupId(), "testString");
-        assertEquals(kvSecretResourceModel.labels(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(kvSecretResourceModel.labels(), java.util.Arrays.asList("testString"));
+        assertEquals(kvSecretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
+        assertEquals(kvSecretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
         assertEquals(kvSecretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(kvSecretResourceModel.payload(), Collections.singletonMap("foo", "testString"));
 
@@ -56,6 +76,16 @@ public class KvSecretResourceTest {
         assertEquals(kvSecretResourceModelNew.name(), "testString");
         assertEquals(kvSecretResourceModelNew.description(), "testString");
         assertEquals(kvSecretResourceModelNew.secretGroupId(), "testString");
+        assertEquals(kvSecretResourceModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
+        assertEquals(kvSecretResourceModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
         assertEquals(kvSecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(kvSecretResourceModelNew.payload(), Collections.singletonMap("foo", "testString"));
     }

@@ -66,6 +66,11 @@ public class CollectionMetadata extends GenericModel {
         private String collectionType;
         private Long collectionTotal;
 
+        /**
+         * Instantiates a new Builder from an existing CollectionMetadata instance.
+         *
+         * @param collectionMetadata the instance to initialize the Builder with
+         */
         private Builder(CollectionMetadata collectionMetadata) {
             this.collectionType = collectionMetadata.collectionType;
             this.collectionTotal = collectionMetadata.collectionTotal;

@@ -24,6 +24,9 @@ public class GetNotificationsSettings extends GenericModel {
     protected CollectionMetadata metadata;
     protected List<NotificationsSettings> resources;
 
+    protected GetNotificationsSettings() {
+    }
+
     /**
      * Gets the metadata.
      * <p>

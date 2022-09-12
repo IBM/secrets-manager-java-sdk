@@ -24,6 +24,9 @@ public class ListSecretVersions extends GenericModel {
     protected CollectionMetadata metadata;
     protected List<SecretVersionInfo> resources;
 
+    protected ListSecretVersions() {
+    }
+
     /**
      * Gets the metadata.
      * <p>

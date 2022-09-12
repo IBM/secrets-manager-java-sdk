@@ -12,6 +12,8 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.Map;
+
 /**
  * The request body of a `restore` action.
  */
@@ -23,9 +25,18 @@ public class RestoreIAMCredentialsSecretBody extends SecretAction {
      */
     public static class Builder {
         private String versionId;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
 
+        /**
+         * Instantiates a new Builder from an existing RestoreIAMCredentialsSecretBody instance.
+         *
+         * @param restoreIamCredentialsSecretBody the instance to initialize the Builder with
+         */
         public Builder(SecretAction restoreIamCredentialsSecretBody) {
             this.versionId = restoreIamCredentialsSecretBody.versionId;
+            this.customMetadata = restoreIamCredentialsSecretBody.customMetadata;
+            this.versionCustomMetadata = restoreIamCredentialsSecretBody.versionCustomMetadata;
         }
 
         /**
@@ -62,6 +73,28 @@ public class RestoreIAMCredentialsSecretBody extends SecretAction {
             this.versionId = versionId;
             return this;
         }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RestoreIAMCredentialsSecretBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RestoreIAMCredentialsSecretBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
     }
 
     protected RestoreIAMCredentialsSecretBody() {
@@ -71,6 +104,8 @@ public class RestoreIAMCredentialsSecretBody extends SecretAction {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.versionId,
                 "versionId cannot be null");
         versionId = builder.versionId;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
     }
 
     /**

@@ -31,5 +31,8 @@ public class SignCsrActionResult extends ConfigElementActionResultConfig {
         String PEM_BUNDLE = "pem_bundle";
     }
 
+
+    protected SignCsrActionResult() {
+    }
 }
 

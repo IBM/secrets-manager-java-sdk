@@ -18,8 +18,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignCsrAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,20 +39,20 @@ public class SignCsrActionTest {
                 .altNames("testString")
                 .ipSans("testString")
                 .uriSans("testString")
-                .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .otherSans(java.util.Arrays.asList("testString"))
                 .ttl("12h")
                 .format("pem")
                 .maxPathLength(Long.valueOf("26"))
                 .excludeCnFromSans(false)
-                .permittedDnsDomains(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .permittedDnsDomains(java.util.Arrays.asList("testString"))
                 .useCsrValues(false)
-                .ou(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .organization(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .country(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .locality(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .province(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .streetAddress(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .postalCode(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .ou(java.util.Arrays.asList("testString"))
+                .organization(java.util.Arrays.asList("testString"))
+                .country(java.util.Arrays.asList("testString"))
+                .locality(java.util.Arrays.asList("testString"))
+                .province(java.util.Arrays.asList("testString"))
+                .streetAddress(java.util.Arrays.asList("testString"))
+                .postalCode(java.util.Arrays.asList("testString"))
                 .serialNumber("d9:be:fe:35:ba:09:42:b5")
                 .csr("testString")
                 .build();
@@ -62,20 +60,20 @@ public class SignCsrActionTest {
         assertEquals(signCsrActionModel.altNames(), "testString");
         assertEquals(signCsrActionModel.ipSans(), "testString");
         assertEquals(signCsrActionModel.uriSans(), "testString");
-        assertEquals(signCsrActionModel.otherSans(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(signCsrActionModel.otherSans(), java.util.Arrays.asList("testString"));
         assertEquals(signCsrActionModel.ttl(), "12h");
         assertEquals(signCsrActionModel.format(), "pem");
         assertEquals(signCsrActionModel.maxPathLength(), Long.valueOf("26"));
         assertEquals(signCsrActionModel.excludeCnFromSans(), Boolean.valueOf(false));
-        assertEquals(signCsrActionModel.permittedDnsDomains(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(signCsrActionModel.permittedDnsDomains(), java.util.Arrays.asList("testString"));
         assertEquals(signCsrActionModel.useCsrValues(), Boolean.valueOf(false));
-        assertEquals(signCsrActionModel.ou(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(signCsrActionModel.organization(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(signCsrActionModel.country(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(signCsrActionModel.locality(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(signCsrActionModel.province(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(signCsrActionModel.streetAddress(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
-        assertEquals(signCsrActionModel.postalCode(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(signCsrActionModel.ou(), java.util.Arrays.asList("testString"));
+        assertEquals(signCsrActionModel.organization(), java.util.Arrays.asList("testString"));
+        assertEquals(signCsrActionModel.country(), java.util.Arrays.asList("testString"));
+        assertEquals(signCsrActionModel.locality(), java.util.Arrays.asList("testString"));
+        assertEquals(signCsrActionModel.province(), java.util.Arrays.asList("testString"));
+        assertEquals(signCsrActionModel.streetAddress(), java.util.Arrays.asList("testString"));
+        assertEquals(signCsrActionModel.postalCode(), java.util.Arrays.asList("testString"));
         assertEquals(signCsrActionModel.serialNumber(), "d9:be:fe:35:ba:09:42:b5");
         assertEquals(signCsrActionModel.csr(), "testString");
 

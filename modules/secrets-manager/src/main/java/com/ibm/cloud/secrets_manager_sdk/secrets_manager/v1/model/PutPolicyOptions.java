@@ -31,6 +31,10 @@ public class PutPolicyOptions extends GenericModel {
          */
         String USERNAME_PASSWORD = "username_password";
         /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
@@ -66,6 +70,11 @@ public class PutPolicyOptions extends GenericModel {
         private List<SecretPolicyRotation> resources;
         private String policy;
 
+        /**
+         * Instantiates a new Builder from an existing PutPolicyOptions instance.
+         *
+         * @param putPolicyOptions the instance to initialize the Builder with
+         */
         private Builder(PutPolicyOptions putPolicyOptions) {
             this.secretType = putPolicyOptions.secretType;
             this.id = putPolicyOptions.id;

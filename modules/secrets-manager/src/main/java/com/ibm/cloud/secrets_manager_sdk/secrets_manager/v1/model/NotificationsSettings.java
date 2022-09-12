@@ -23,6 +23,9 @@ public class NotificationsSettings extends GenericModel {
     @SerializedName("event_notifications_instance_crn")
     protected String eventNotificationsInstanceCrn;
 
+    protected NotificationsSettings() {
+    }
+
     /**
      * Gets the eventNotificationsInstanceCrn.
      * <p>

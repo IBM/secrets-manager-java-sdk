@@ -60,6 +60,11 @@ public class SignIntermediateAction extends ConfigAction {
         private String serialNumber;
         private String intermediateCertificateAuthority;
 
+        /**
+         * Instantiates a new Builder from an existing SignIntermediateAction instance.
+         *
+         * @param signIntermediateAction the instance to initialize the Builder with
+         */
         public Builder(ConfigAction signIntermediateAction) {
             this.commonName = signIntermediateAction.commonName;
             this.altNames = signIntermediateAction.altNames;

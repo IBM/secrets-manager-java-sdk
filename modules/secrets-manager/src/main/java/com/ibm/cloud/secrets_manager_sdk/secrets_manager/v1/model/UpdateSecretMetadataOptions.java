@@ -70,6 +70,11 @@ public class UpdateSecretMetadataOptions extends GenericModel {
         private CollectionMetadata metadata;
         private List<SecretMetadata> resources;
 
+        /**
+         * Instantiates a new Builder from an existing UpdateSecretMetadataOptions instance.
+         *
+         * @param updateSecretMetadataOptions the instance to initialize the Builder with
+         */
         private Builder(UpdateSecretMetadataOptions updateSecretMetadataOptions) {
             this.secretType = updateSecretMetadataOptions.secretType;
             this.id = updateSecretMetadataOptions.id;

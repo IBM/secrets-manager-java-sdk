@@ -13,6 +13,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.Date;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
@@ -37,6 +38,8 @@ public class SecretVersionInfo extends GenericModel {
     @SerializedName("payload_available")
     protected Boolean payloadAvailable;
     protected Boolean downloaded;
+    @SerializedName("version_custom_metadata")
+    protected Map<String, Object> versionCustomMetadata;
     @SerializedName("auto_rotated")
     protected Boolean autoRotated;
     @SerializedName("serial_number")
@@ -109,6 +112,17 @@ public class SecretVersionInfo extends GenericModel {
      */
     public Boolean isDownloaded() {
         return downloaded;
+    }
+
+    /**
+     * Gets the versionCustomMetadata.
+     * <p>
+     * The secret version metadata that a user can customize.
+     *
+     * @return the versionCustomMetadata
+     */
+    public Map<String, Object> getVersionCustomMetadata() {
+        return versionCustomMetadata;
     }
 
     /**

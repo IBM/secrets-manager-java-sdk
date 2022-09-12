@@ -24,6 +24,11 @@ public class RevokeAction extends ConfigAction {
     public static class Builder {
         private String serialNumber;
 
+        /**
+         * Instantiates a new Builder from an existing RevokeAction instance.
+         *
+         * @param revokeAction the instance to initialize the Builder with
+         */
         public Builder(ConfigAction revokeAction) {
             this.serialNumber = revokeAction.serialNumber;
         }

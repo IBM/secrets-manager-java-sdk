@@ -24,6 +24,11 @@ public class CreateIAMCredentialsSecretEngineRootConfig extends EngineConfig {
     public static class Builder {
         private String apiKey;
 
+        /**
+         * Instantiates a new Builder from an existing CreateIAMCredentialsSecretEngineRootConfig instance.
+         *
+         * @param createIamCredentialsSecretEngineRootConfig the instance to initialize the Builder with
+         */
         public Builder(EngineConfig createIamCredentialsSecretEngineRootConfig) {
             this.apiKey = createIamCredentialsSecretEngineRootConfig.apiKey;
         }

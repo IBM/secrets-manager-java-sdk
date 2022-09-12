@@ -33,6 +33,11 @@ public class LockSecretBodyLocksItem extends GenericModel {
         private String description;
         private Map<String, Object> attributes;
 
+        /**
+         * Instantiates a new Builder from an existing LockSecretBodyLocksItem instance.
+         *
+         * @param lockSecretBodyLocksItem the instance to initialize the Builder with
+         */
         private Builder(LockSecretBodyLocksItem lockSecretBodyLocksItem) {
             this.name = lockSecretBodyLocksItem.name;
             this.description = lockSecretBodyLocksItem.description;

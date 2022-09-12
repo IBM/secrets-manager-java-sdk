@@ -32,6 +32,11 @@ public class SecretGroupDef extends GenericModel {
         private CollectionMetadata metadata;
         private List<SecretGroupResource> resources;
 
+        /**
+         * Instantiates a new Builder from an existing SecretGroupDef instance.
+         *
+         * @param secretGroupDef the instance to initialize the Builder with
+         */
         private Builder(SecretGroupDef secretGroupDef) {
             this.metadata = secretGroupDef.metadata;
             this.resources = secretGroupDef.resources;

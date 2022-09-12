@@ -39,6 +39,11 @@ public class PutConfigOptions extends GenericModel {
         private String secretType;
         private EngineConfig engineConfig;
 
+        /**
+         * Instantiates a new Builder from an existing PutConfigOptions instance.
+         *
+         * @param putConfigOptions the instance to initialize the Builder with
+         */
         private Builder(PutConfigOptions putConfigOptions) {
             this.secretType = putConfigOptions.secretType;
             this.engineConfig = putConfigOptions.engineConfig;

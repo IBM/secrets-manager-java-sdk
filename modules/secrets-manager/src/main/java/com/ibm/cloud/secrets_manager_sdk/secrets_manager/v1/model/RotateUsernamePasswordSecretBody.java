@@ -12,6 +12,8 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.Map;
+
 /**
  * The request body of a `rotate` action.
  */
@@ -23,9 +25,18 @@ public class RotateUsernamePasswordSecretBody extends SecretAction {
      */
     public static class Builder {
         private String password;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
 
+        /**
+         * Instantiates a new Builder from an existing RotateUsernamePasswordSecretBody instance.
+         *
+         * @param rotateUsernamePasswordSecretBody the instance to initialize the Builder with
+         */
         public Builder(SecretAction rotateUsernamePasswordSecretBody) {
             this.password = rotateUsernamePasswordSecretBody.password;
+            this.customMetadata = rotateUsernamePasswordSecretBody.customMetadata;
+            this.versionCustomMetadata = rotateUsernamePasswordSecretBody.versionCustomMetadata;
         }
 
         /**
@@ -62,6 +73,28 @@ public class RotateUsernamePasswordSecretBody extends SecretAction {
             this.password = password;
             return this;
         }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RotateUsernamePasswordSecretBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RotateUsernamePasswordSecretBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
     }
 
     protected RotateUsernamePasswordSecretBody() {
@@ -71,6 +104,8 @@ public class RotateUsernamePasswordSecretBody extends SecretAction {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.password,
                 "password cannot be null");
         password = builder.password;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
     }
 
     /**

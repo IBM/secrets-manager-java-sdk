@@ -24,6 +24,9 @@ public class GetInstanceLocks extends GenericModel {
     protected CollectionMetadata metadata;
     protected List<InstanceSecretsLocks> resources;
 
+    protected GetInstanceLocks() {
+    }
+
     /**
      * Gets the metadata.
      * <p>

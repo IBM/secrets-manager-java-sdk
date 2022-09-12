@@ -24,6 +24,9 @@ public class GetConfigElements extends GenericModel {
     protected CollectionMetadata metadata;
     protected List<GetConfigElementsResourcesItem> resources;
 
+    protected GetConfigElements() {
+    }
+
     /**
      * Gets the metadata.
      * <p>

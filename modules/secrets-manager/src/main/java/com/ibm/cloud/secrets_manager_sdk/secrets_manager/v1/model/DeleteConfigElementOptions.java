@@ -71,6 +71,11 @@ public class DeleteConfigElementOptions extends GenericModel {
         private String configElement;
         private String configName;
 
+        /**
+         * Instantiates a new Builder from an existing DeleteConfigElementOptions instance.
+         *
+         * @param deleteConfigElementOptions the instance to initialize the Builder with
+         */
         private Builder(DeleteConfigElementOptions deleteConfigElementOptions) {
             this.secretType = deleteConfigElementOptions.secretType;
             this.configElement = deleteConfigElementOptions.configElement;

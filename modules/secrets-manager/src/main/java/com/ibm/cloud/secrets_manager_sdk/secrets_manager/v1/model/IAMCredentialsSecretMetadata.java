@@ -14,6 +14,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Metadata properties that describe an `iam_credentials` secret.
@@ -62,15 +63,22 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
         private List<String> labels;
         private String name;
         private String description;
+        private Map<String, Object> customMetadata;
         private String ttl;
         private Boolean serviceIdIsStatic;
         private String serviceId;
         private List<String> accessGroups;
 
+        /**
+         * Instantiates a new Builder from an existing IAMCredentialsSecretMetadata instance.
+         *
+         * @param iamCredentialsSecretMetadata the instance to initialize the Builder with
+         */
         public Builder(SecretMetadata iamCredentialsSecretMetadata) {
             this.labels = iamCredentialsSecretMetadata.labels;
             this.name = iamCredentialsSecretMetadata.name;
             this.description = iamCredentialsSecretMetadata.description;
+            this.customMetadata = iamCredentialsSecretMetadata.customMetadata;
             this.ttl = iamCredentialsSecretMetadata.ttl;
             this.serviceIdIsStatic = iamCredentialsSecretMetadata.serviceIdIsStatic;
             this.serviceId = iamCredentialsSecretMetadata.serviceId;
@@ -168,6 +176,17 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the IAMCredentialsSecretMetadata builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
          * Set the ttl.
          *
          * @param ttl the ttl
@@ -222,6 +241,7 @@ public class IAMCredentialsSecretMetadata extends SecretMetadata {
         labels = builder.labels;
         name = builder.name;
         description = builder.description;
+        customMetadata = builder.customMetadata;
         ttl = builder.ttl;
         serviceIdIsStatic = builder.serviceIdIsStatic;
         serviceId = builder.serviceId;

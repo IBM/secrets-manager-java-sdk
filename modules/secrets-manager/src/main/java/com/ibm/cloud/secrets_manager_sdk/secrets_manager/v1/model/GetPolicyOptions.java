@@ -28,6 +28,10 @@ public class GetPolicyOptions extends GenericModel {
          */
         String USERNAME_PASSWORD = "username_password";
         /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
          * public_cert.
          */
         String PUBLIC_CERT = "public_cert";
@@ -59,6 +63,11 @@ public class GetPolicyOptions extends GenericModel {
         private String id;
         private String policy;
 
+        /**
+         * Instantiates a new Builder from an existing GetPolicyOptions instance.
+         *
+         * @param getPolicyOptions the instance to initialize the Builder with
+         */
         private Builder(GetPolicyOptions getPolicyOptions) {
             this.secretType = getPolicyOptions.secretType;
             this.id = getPolicyOptions.id;

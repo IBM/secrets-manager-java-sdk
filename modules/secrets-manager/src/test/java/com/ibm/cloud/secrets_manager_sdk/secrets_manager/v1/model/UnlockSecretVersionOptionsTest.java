@@ -18,8 +18,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UnlockSecretVe
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,12 +38,12 @@ public class UnlockSecretVersionOptionsTest {
                 .secretType("arbitrary")
                 .id("testString")
                 .versionId("testString")
-                .locks(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .locks(java.util.Arrays.asList("testString"))
                 .build();
         assertEquals(unlockSecretVersionOptionsModel.secretType(), "arbitrary");
         assertEquals(unlockSecretVersionOptionsModel.id(), "testString");
         assertEquals(unlockSecretVersionOptionsModel.versionId(), "testString");
-        assertEquals(unlockSecretVersionOptionsModel.locks(), new java.util.ArrayList<String>(java.util.Arrays.asList("testString")));
+        assertEquals(unlockSecretVersionOptionsModel.locks(), java.util.Arrays.asList("testString"));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

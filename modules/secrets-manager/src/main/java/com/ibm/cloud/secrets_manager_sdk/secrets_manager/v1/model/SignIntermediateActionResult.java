@@ -31,5 +31,8 @@ public class SignIntermediateActionResult extends ConfigElementActionResultConfi
         String PEM_BUNDLE = "pem_bundle";
     }
 
+
+    protected SignIntermediateActionResult() {
+    }
 }
 

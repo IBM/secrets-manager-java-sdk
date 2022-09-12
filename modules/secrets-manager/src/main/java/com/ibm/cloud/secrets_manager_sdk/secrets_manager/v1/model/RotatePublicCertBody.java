@@ -12,6 +12,8 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
+import java.util.Map;
+
 /**
  * The request body of a `rotate` action.
  */
@@ -23,9 +25,18 @@ public class RotatePublicCertBody extends SecretAction {
      */
     public static class Builder {
         private Boolean rotateKeys;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
 
+        /**
+         * Instantiates a new Builder from an existing RotatePublicCertBody instance.
+         *
+         * @param rotatePublicCertBody the instance to initialize the Builder with
+         */
         public Builder(SecretAction rotatePublicCertBody) {
             this.rotateKeys = rotatePublicCertBody.rotateKeys;
+            this.customMetadata = rotatePublicCertBody.customMetadata;
+            this.versionCustomMetadata = rotatePublicCertBody.versionCustomMetadata;
         }
 
         /**
@@ -62,6 +73,28 @@ public class RotatePublicCertBody extends SecretAction {
             this.rotateKeys = rotateKeys;
             return this;
         }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RotatePublicCertBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RotatePublicCertBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
     }
 
     protected RotatePublicCertBody() {
@@ -71,6 +104,8 @@ public class RotatePublicCertBody extends SecretAction {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.rotateKeys,
                 "rotateKeys cannot be null");
         rotateKeys = builder.rotateKeys;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
     }
 
     /**

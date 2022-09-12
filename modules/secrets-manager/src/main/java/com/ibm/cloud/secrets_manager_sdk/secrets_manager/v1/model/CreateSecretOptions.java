@@ -68,6 +68,11 @@ public class CreateSecretOptions extends GenericModel {
         private CollectionMetadata metadata;
         private List<SecretResource> resources;
 
+        /**
+         * Instantiates a new Builder from an existing CreateSecretOptions instance.
+         *
+         * @param createSecretOptions the instance to initialize the Builder with
+         */
         private Builder(CreateSecretOptions createSecretOptions) {
             this.secretType = createSecretOptions.secretType;
             this.metadata = createSecretOptions.metadata;

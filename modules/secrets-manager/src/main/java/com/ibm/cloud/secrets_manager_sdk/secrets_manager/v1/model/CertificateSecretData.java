@@ -23,5 +23,8 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CertificateSecretData extends GenericModel {
 
+
+    protected CertificateSecretData() {
+    }
 }
 

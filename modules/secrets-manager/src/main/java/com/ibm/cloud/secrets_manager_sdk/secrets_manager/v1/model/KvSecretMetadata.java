@@ -14,6 +14,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Metadata properties that describe a key-value secret.
@@ -62,11 +63,18 @@ public class KvSecretMetadata extends SecretMetadata {
         private List<String> labels;
         private String name;
         private String description;
+        private Map<String, Object> customMetadata;
 
+        /**
+         * Instantiates a new Builder from an existing KvSecretMetadata instance.
+         *
+         * @param kvSecretMetadata the instance to initialize the Builder with
+         */
         public Builder(SecretMetadata kvSecretMetadata) {
             this.labels = kvSecretMetadata.labels;
             this.name = kvSecretMetadata.name;
             this.description = kvSecretMetadata.description;
+            this.customMetadata = kvSecretMetadata.customMetadata;
         }
 
         /**
@@ -142,6 +150,17 @@ public class KvSecretMetadata extends SecretMetadata {
             this.description = description;
             return this;
         }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the KvSecretMetadata builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
     }
 
     protected KvSecretMetadata() {
@@ -153,6 +172,7 @@ public class KvSecretMetadata extends SecretMetadata {
         labels = builder.labels;
         name = builder.name;
         description = builder.description;
+        customMetadata = builder.customMetadata;
     }
 
     /**

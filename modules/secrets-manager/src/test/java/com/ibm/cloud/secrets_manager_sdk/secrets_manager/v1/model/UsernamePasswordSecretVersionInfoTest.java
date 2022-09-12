@@ -35,6 +35,7 @@ public class UsernamePasswordSecretVersionInfoTest {
     @Test
     public void testUsernamePasswordSecretVersionInfo() throws Throwable {
         UsernamePasswordSecretVersionInfo usernamePasswordSecretVersionInfoModel = new UsernamePasswordSecretVersionInfo();
+        assertNull(usernamePasswordSecretVersionInfoModel.getVersionCustomMetadata());
         assertNull(usernamePasswordSecretVersionInfoModel.isAutoRotated());
     }
 }

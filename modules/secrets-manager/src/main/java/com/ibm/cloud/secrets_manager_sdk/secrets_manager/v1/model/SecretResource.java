@@ -118,6 +118,10 @@ public class SecretResource extends GenericModel {
     protected List<Map<String, Object>> versions;
     @SerializedName("locks_total")
     protected Long locksTotal;
+    @SerializedName("custom_metadata")
+    protected Map<String, Object> customMetadata;
+    @SerializedName("version_custom_metadata")
+    protected Map<String, Object> versionCustomMetadata;
     @SerializedName("expiration_date")
     protected Date expirationDate;
     protected Object payload;
@@ -365,6 +369,28 @@ public class SecretResource extends GenericModel {
      */
     public Long locksTotal() {
         return locksTotal;
+    }
+
+    /**
+     * Gets the customMetadata.
+     * <p>
+     * The secret metadata that a user can customize.
+     *
+     * @return the customMetadata
+     */
+    public Map<String, Object> customMetadata() {
+        return customMetadata;
+    }
+
+    /**
+     * Gets the versionCustomMetadata.
+     * <p>
+     * The secret version metadata that a user can customize.
+     *
+     * @return the versionCustomMetadata
+     */
+    public Map<String, Object> versionCustomMetadata() {
+        return versionCustomMetadata;
     }
 
     /**

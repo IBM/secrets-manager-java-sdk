@@ -17,5 +17,8 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
  */
 public class UsernamePasswordSecretVersion extends SecretVersion {
 
+
+    protected UsernamePasswordSecretVersion() {
+    }
 }
 

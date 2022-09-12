@@ -65,6 +65,11 @@ public class ListSecretsOptions extends GenericModel {
         private Long limit;
         private Long offset;
 
+        /**
+         * Instantiates a new Builder from an existing ListSecretsOptions instance.
+         *
+         * @param listSecretsOptions the instance to initialize the Builder with
+         */
         private Builder(ListSecretsOptions listSecretsOptions) {
             this.secretType = listSecretsOptions.secretType;
             this.limit = listSecretsOptions.limit;

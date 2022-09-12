@@ -111,6 +111,11 @@ public class UpdateConfigElementOptions extends GenericModel {
         private String type;
         private Map<String, Object> config;
 
+        /**
+         * Instantiates a new Builder from an existing UpdateConfigElementOptions instance.
+         *
+         * @param updateConfigElementOptions the instance to initialize the Builder with
+         */
         private Builder(UpdateConfigElementOptions updateConfigElementOptions) {
             this.secretType = updateConfigElementOptions.secretType;
             this.configElement = updateConfigElementOptions.configElement;

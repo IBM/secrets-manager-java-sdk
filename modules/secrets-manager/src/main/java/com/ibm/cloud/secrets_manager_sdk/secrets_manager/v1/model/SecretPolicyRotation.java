@@ -39,6 +39,11 @@ public class SecretPolicyRotation extends GenericModel {
         private String type;
         private SecretPolicyRotationRotation rotation;
 
+        /**
+         * Instantiates a new Builder from an existing SecretPolicyRotation instance.
+         *
+         * @param secretPolicyRotation the instance to initialize the Builder with
+         */
         private Builder(SecretPolicyRotation secretPolicyRotation) {
             this.type = secretPolicyRotation.type;
             this.rotation = secretPolicyRotation.rotation;

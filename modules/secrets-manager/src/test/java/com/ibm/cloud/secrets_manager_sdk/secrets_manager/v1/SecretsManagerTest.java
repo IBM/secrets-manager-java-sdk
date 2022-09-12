@@ -133,6 +133,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateArbitrar
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCertificateBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCrlActionResult;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateKvSecretBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePrivateCertBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePrivateCertBodyWithVersionCustomMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePublicCertBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateUsernamePasswordSecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
@@ -168,6 +170,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateConfigEl
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretGroupMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UsernamePasswordSecretResource;
@@ -178,8 +182,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -244,7 +246,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         // Construct an instance of the CreateSecretGroupOptions model
         CreateSecretGroupOptions createSecretGroupOptionsModel = new CreateSecretGroupOptions.Builder()
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretGroupResource>(java.util.Arrays.asList(secretGroupResourceModel)))
+                .resources(java.util.Arrays.asList(secretGroupResourceModel))
                 .build();
 
         // Invoke createSecretGroup() with a valid options model and verify the result
@@ -402,7 +404,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         UpdateSecretGroupMetadataOptions updateSecretGroupMetadataOptionsModel = new UpdateSecretGroupMetadataOptions.Builder()
                 .id("testString")
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretGroupMetadataUpdatable>(java.util.Arrays.asList(secretGroupMetadataUpdatableModel)))
+                .resources(java.util.Arrays.asList(secretGroupMetadataUpdatableModel))
                 .build();
 
         // Invoke updateSecretGroupMetadata() with a valid options model and verify the result
@@ -494,7 +496,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testCreateSecretWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"custom_metadata\": {\"mapKey\": \"anyValue\"}, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String createSecretPath = "/api/v1/secrets/arbitrary";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -512,7 +514,17 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .name("example-arbitrary-secret")
                 .description("Extended description for this secret.")
                 .secretGroupId("bc656587-8fda-4d05-9ad8-b1de1ec7e712")
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
+                .labels(java.util.Arrays.asList("dev", "us-south"))
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .expirationDate(DateUtils.parseAsDateTime("2030-01-01T00:00:00Z"))
                 .payload("secret-data")
                 .build();
@@ -521,7 +533,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         CreateSecretOptions createSecretOptionsModel = new CreateSecretOptions.Builder()
                 .secretType("arbitrary")
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretResource>(java.util.Arrays.asList(secretResourceModel)))
+                .resources(java.util.Arrays.asList(secretResourceModel))
                 .build();
 
         // Invoke createSecret() with a valid options model and verify the result
@@ -563,7 +575,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testListSecretsWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"custom_metadata\": {\"mapKey\": \"anyValue\"}, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String listSecretsPath = "/api/v1/secrets/arbitrary";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -618,7 +630,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testListAllSecretsWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"custom_metadata\": {\"mapKey\": \"anyValue\"}, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String listAllSecretsPath = "/api/v1/secrets";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -631,7 +643,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .offset(Long.valueOf("0"))
                 .search("testString")
                 .sortBy("id")
-                .groups(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .groups(java.util.Arrays.asList("testString"))
                 .build();
 
         // Invoke listAllSecrets() with a valid options model and verify the result
@@ -654,7 +666,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(Long.valueOf(query.get("offset")), Long.valueOf("0"));
         assertEquals(query.get("search"), "testString");
         assertEquals(query.get("sort_by"), "id");
-        assertEquals(query.get("groups"), RequestUtils.join(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")), ","));
+        assertEquals(query.get("groups"), RequestUtils.join(java.util.Arrays.asList("testString"), ","));
     }
 
     // Test the listAllSecrets operation with and without retries enabled
@@ -671,7 +683,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetSecretWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"custom_metadata\": {\"mapKey\": \"anyValue\"}, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String getSecretPath = "/api/v1/secrets/arbitrary/testString";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -723,7 +735,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testUpdateSecretWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"custom_metadata\": {\"mapKey\": \"anyValue\"}, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String updateSecretPath = "/api/v1/secrets/arbitrary/testString";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -733,6 +745,16 @@ public class SecretsManagerTest extends PowerMockTestCase {
         // Construct an instance of the RotateArbitrarySecretBody model
         RotateArbitrarySecretBody secretActionModel = new RotateArbitrarySecretBody.Builder()
                 .payload("testString")
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .build();
 
         // Construct an instance of the UpdateSecretOptions model
@@ -834,7 +856,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testListSecretVersionsWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"payload_available\": true, \"downloaded\": true}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"payload_available\": true, \"downloaded\": true, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}}]}";
         String listSecretVersionsPath = "/api/v1/secrets/arbitrary/testString/versions";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -886,7 +908,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetSecretVersionWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"locks_total\": 1, \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"locks_total\": 1, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}, \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String getSecretVersionPath = "/api/v1/secrets/arbitrary/testString/versions/testString";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -939,7 +961,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testUpdateSecretVersionWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"name\": \"name\", \"description\": \"description\", \"secret_group_id\": \"secretGroupId\", \"labels\": [\"labels\"], \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"createdBy\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"versions\": [{\"mapKey\": \"anyValue\"}], \"locks_total\": 1, \"custom_metadata\": {\"mapKey\": \"anyValue\"}, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}, \"expiration_date\": \"2030-04-01T09:30:00.000Z\", \"payload\": \"payload\", \"secret_data\": {\"mapKey\": \"anyValue\"}}]}";
         String updateSecretVersionPath = "/api/v1/secrets/private_cert/testString/versions/testString";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -994,7 +1016,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testGetSecretVersionMetadataWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"payload_available\": true, \"downloaded\": true, \"locks_total\": 1}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"payload_available\": true, \"downloaded\": true, \"locks_total\": 1, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}}]}";
         String getSecretVersionMetadataPath = "/api/v1/secrets/arbitrary/testString/versions/testString/metadata";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -1043,11 +1065,81 @@ public class SecretsManagerTest extends PowerMockTestCase {
         secretsManagerService.getSecretVersionMetadata(null).execute();
     }
 
+    // Test the updateSecretVersionMetadata operation with a valid options model parameter
+    @Test
+    public void testUpdateSecretVersionMetadataWOptions() throws Throwable {
+        // Register a mock response
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"id\", \"version_id\": \"4a0225e9-17a0-46c1-ace7-f25bcf4237d4\", \"creation_date\": \"2019-01-01T12:00:00.000Z\", \"created_by\": \"createdBy\", \"payload_available\": true, \"downloaded\": true, \"locks_total\": 1, \"version_custom_metadata\": {\"mapKey\": \"anyValue\"}}]}";
+        String updateSecretVersionMetadataPath = "/api/v1/secrets/arbitrary/testString/versions/testString/metadata";
+        server.enqueue(new MockResponse()
+                .setHeader("Content-type", "application/json")
+                .setResponseCode(200)
+                .setBody(mockResponseBody));
+
+        // Construct an instance of the CollectionMetadata model
+        CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
+                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
+                .collectionTotal(Long.valueOf("1"))
+                .build();
+
+        // Construct an instance of the UpdateSecretVersionMetadata model
+        UpdateSecretVersionMetadata updateSecretVersionMetadataModel = new UpdateSecretVersionMetadata.Builder()
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .build();
+
+        // Construct an instance of the UpdateSecretVersionMetadataOptions model
+        UpdateSecretVersionMetadataOptions updateSecretVersionMetadataOptionsModel = new UpdateSecretVersionMetadataOptions.Builder()
+                .secretType("arbitrary")
+                .id("testString")
+                .versionId("testString")
+                .metadata(collectionMetadataModel)
+                .resources(java.util.Arrays.asList(updateSecretVersionMetadataModel))
+                .build();
+
+        // Invoke updateSecretVersionMetadata() with a valid options model and verify the result
+        Response<GetSecretVersionMetadata> response = secretsManagerService.updateSecretVersionMetadata(updateSecretVersionMetadataOptionsModel).execute();
+        assertNotNull(response);
+        GetSecretVersionMetadata responseObj = response.getResult();
+        assertNotNull(responseObj);
+
+        // Verify the contents of the request sent to the mock server
+        RecordedRequest request = server.takeRequest();
+        assertNotNull(request);
+        assertEquals(request.getMethod(), "PUT");
+        // Verify request path
+        String parsedPath = TestUtilities.parseReqPath(request);
+        assertEquals(parsedPath, updateSecretVersionMetadataPath);
+        // Verify that there is no query string
+        Map<String, String> query = TestUtilities.parseQueryString(request);
+        assertNull(query);
+    }
+
+    // Test the updateSecretVersionMetadata operation with and without retries enabled
+    @Test
+    public void testUpdateSecretVersionMetadataWRetries() throws Throwable {
+        secretsManagerService.enableRetries(4, 30);
+        testUpdateSecretVersionMetadataWOptions();
+
+        secretsManagerService.disableRetries();
+        testUpdateSecretVersionMetadataWOptions();
+    }
+
+    // Test the updateSecretVersionMetadata operation with a null options model (negative test)
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testUpdateSecretVersionMetadataNoOptions() throws Throwable {
+        server.enqueue(new MockResponse());
+        secretsManagerService.updateSecretVersionMetadata(null).execute();
+    }
+
     // Test the getSecretMetadata operation with a valid options model parameter
     @Test
     public void testGetSecretMetadataWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"locks_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"locks_total\": 1, \"custom_metadata\": {\"mapKey\": \"anyValue\"}, \"expiration_date\": \"2030-04-01T09:30:00.000Z\"}]}";
         String getSecretMetadataPath = "/api/v1/secrets/arbitrary/testString/metadata";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -1099,7 +1191,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
     @Test
     public void testUpdateSecretMetadataWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"locks_total\": 1, \"expiration_date\": \"2030-04-01T09:30:00.000Z\"}]}";
+        String mockResponseBody = "{\"metadata\": {\"collection_type\": \"application/vnd.ibm.secrets-manager.config+json\", \"collection_total\": 1}, \"resources\": [{\"id\": \"b0283d74-0894-830b-f81d-1f115f67729f\", \"labels\": [\"labels\"], \"name\": \"example-secret\", \"description\": \"Extended description for this secret.\", \"secret_group_id\": \"f5283d74-9024-230a-b72c-1f115f61290f\", \"state\": 0, \"state_description\": \"Active\", \"secret_type\": \"arbitrary\", \"crn\": \"crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>\", \"creation_date\": \"2018-04-12T23:20:50.520Z\", \"created_by\": \"ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976\", \"last_update_date\": \"2018-04-12T23:20:50.520Z\", \"versions_total\": 1, \"locks_total\": 1, \"custom_metadata\": {\"mapKey\": \"anyValue\"}, \"expiration_date\": \"2030-04-01T09:30:00.000Z\"}]}";
         String updateSecretMetadataPath = "/api/v1/secrets/arbitrary/testString/metadata";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -1114,9 +1206,14 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the ArbitrarySecretMetadata model
         ArbitrarySecretMetadata secretMetadataModel = new ArbitrarySecretMetadata.Builder()
-                .labels(new java.util.ArrayList<String>(java.util.Arrays.asList("dev", "us-south")))
+                .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("updated-secret-name")
                 .description("Updated description for this secret.")
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00Z"))
                 .build();
 
@@ -1125,7 +1222,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .secretType("arbitrary")
                 .id("testString")
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretMetadata>(java.util.Arrays.asList(secretMetadataModel)))
+                .resources(java.util.Arrays.asList(secretMetadataModel))
                 .build();
 
         // Invoke updateSecretMetadata() with a valid options model and verify the result
@@ -1247,7 +1344,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         LockSecretOptions lockSecretOptionsModel = new LockSecretOptions.Builder()
                 .secretType("arbitrary")
                 .id("testString")
-                .locks(new java.util.ArrayList<LockSecretBodyLocksItem>(java.util.Arrays.asList(lockSecretBodyLocksItemModel)))
+                .locks(java.util.Arrays.asList(lockSecretBodyLocksItemModel))
                 .mode("exclusive")
                 .build();
 
@@ -1302,7 +1399,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         UnlockSecretOptions unlockSecretOptionsModel = new UnlockSecretOptions.Builder()
                 .secretType("arbitrary")
                 .id("testString")
-                .locks(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .locks(java.util.Arrays.asList("testString"))
                 .build();
 
         // Invoke unlockSecret() with a valid options model and verify the result
@@ -1426,7 +1523,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .secretType("arbitrary")
                 .id("testString")
                 .versionId("testString")
-                .locks(new java.util.ArrayList<LockSecretBodyLocksItem>(java.util.Arrays.asList(lockSecretBodyLocksItemModel)))
+                .locks(java.util.Arrays.asList(lockSecretBodyLocksItemModel))
                 .mode("exclusive")
                 .build();
 
@@ -1482,7 +1579,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .secretType("arbitrary")
                 .id("testString")
                 .versionId("testString")
-                .locks(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .locks(java.util.Arrays.asList("testString"))
                 .build();
 
         // Invoke unlockSecretVersion() with a valid options model and verify the result
@@ -1536,7 +1633,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .limit(Long.valueOf("1"))
                 .offset(Long.valueOf("0"))
                 .search("testString")
-                .groups(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .groups(java.util.Arrays.asList("testString"))
                 .build();
 
         // Invoke listInstanceSecretsLocks() with a valid options model and verify the result
@@ -1558,7 +1655,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertEquals(Long.valueOf(query.get("limit")), Long.valueOf("1"));
         assertEquals(Long.valueOf(query.get("offset")), Long.valueOf("0"));
         assertEquals(query.get("search"), "testString");
-        assertEquals(query.get("groups"), RequestUtils.join(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")), ","));
+        assertEquals(query.get("groups"), RequestUtils.join(java.util.Arrays.asList("testString"), ","));
     }
 
     // Test the listInstanceSecretsLocks operation with and without retries enabled
@@ -1605,7 +1702,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .secretType("username_password")
                 .id("testString")
                 .metadata(collectionMetadataModel)
-                .resources(new java.util.ArrayList<SecretPolicyRotation>(java.util.Arrays.asList(secretPolicyRotationModel)))
+                .resources(java.util.Arrays.asList(secretPolicyRotationModel))
                 .policy("rotation")
                 .build();
 
@@ -2048,20 +2145,20 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .altNames("testString")
                 .ipSans("testString")
                 .uriSans("testString")
-                .otherSans(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .otherSans(java.util.Arrays.asList("testString"))
                 .ttl("12h")
                 .format("pem")
                 .maxPathLength(Long.valueOf("26"))
                 .excludeCnFromSans(false)
-                .permittedDnsDomains(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .permittedDnsDomains(java.util.Arrays.asList("testString"))
                 .useCsrValues(false)
-                .ou(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .organization(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .country(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .locality(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .province(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .streetAddress(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
-                .postalCode(new java.util.ArrayList<String>(java.util.Arrays.asList("testString")))
+                .ou(java.util.Arrays.asList("testString"))
+                .organization(java.util.Arrays.asList("testString"))
+                .country(java.util.Arrays.asList("testString"))
+                .locality(java.util.Arrays.asList("testString"))
+                .province(java.util.Arrays.asList("testString"))
+                .streetAddress(java.util.Arrays.asList("testString"))
+                .postalCode(java.util.Arrays.asList("testString"))
                 .serialNumber("d9:be:fe:35:ba:09:42:b5")
                 .csr("testString")
                 .build();

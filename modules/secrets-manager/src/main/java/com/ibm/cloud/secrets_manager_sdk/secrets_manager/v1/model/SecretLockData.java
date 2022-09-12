@@ -41,6 +41,9 @@ public class SecretLockData extends GenericModel {
     @SerializedName("secret_version_alias")
     protected String secretVersionAlias;
 
+    protected SecretLockData() {
+    }
+
     /**
      * Gets the name.
      * <p>

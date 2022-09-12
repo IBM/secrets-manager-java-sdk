@@ -40,6 +40,11 @@ public class PrivateCertPolicyRotation extends SecretPolicyRotationRotation {
         private Long interval;
         private String unit;
 
+        /**
+         * Instantiates a new Builder from an existing PrivateCertPolicyRotation instance.
+         *
+         * @param privateCertPolicyRotation the instance to initialize the Builder with
+         */
         public Builder(SecretPolicyRotationRotation privateCertPolicyRotation) {
             this.autoRotate = privateCertPolicyRotation.autoRotate;
             this.interval = privateCertPolicyRotation.interval;

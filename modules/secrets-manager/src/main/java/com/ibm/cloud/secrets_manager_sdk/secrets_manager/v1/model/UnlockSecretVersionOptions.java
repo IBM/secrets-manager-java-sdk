@@ -70,6 +70,11 @@ public class UnlockSecretVersionOptions extends GenericModel {
         private String versionId;
         private List<String> locks;
 
+        /**
+         * Instantiates a new Builder from an existing UnlockSecretVersionOptions instance.
+         *
+         * @param unlockSecretVersionOptions the instance to initialize the Builder with
+         */
         private Builder(UnlockSecretVersionOptions unlockSecretVersionOptions) {
             this.secretType = unlockSecretVersionOptions.secretType;
             this.id = unlockSecretVersionOptions.id;

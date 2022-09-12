@@ -58,7 +58,7 @@ public class LockSecretOptions extends GenericModel {
 
     /**
      * An optional lock mode. At lock creation, you can set one of the following modes to clear any matching locks on a
-     * secret version.
+     * secret version. Note: When you are locking the `previous` version, the mode parameter is ignored.
      * <p>
      * - `exclusive`: Removes any other locks with matching names if they are found in the previous version of the secret.
      * - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the data of the previous secret version if
@@ -89,6 +89,11 @@ public class LockSecretOptions extends GenericModel {
         private List<LockSecretBodyLocksItem> locks;
         private String mode;
 
+        /**
+         * Instantiates a new Builder from an existing LockSecretOptions instance.
+         *
+         * @param lockSecretOptions the instance to initialize the Builder with
+         */
         private Builder(LockSecretOptions lockSecretOptions) {
             this.secretType = lockSecretOptions.secretType;
             this.id = lockSecretOptions.id;
@@ -244,7 +249,7 @@ public class LockSecretOptions extends GenericModel {
      * Gets the mode.
      * <p>
      * An optional lock mode. At lock creation, you can set one of the following modes to clear any matching locks on a
-     * secret version.
+     * secret version. Note: When you are locking the `previous` version, the mode parameter is ignored.
      * <p>
      * - `exclusive`: Removes any other locks with matching names if they are found in the previous version of the secret.
      * - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the data of the previous secret version if

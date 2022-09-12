@@ -19,5 +19,10 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class DeleteNotificationsRegistrationOptions extends GenericModel {
 
+    /**
+     * Construct a new instance of DeleteNotificationsRegistrationOptions.
+     */
+    public DeleteNotificationsRegistrationOptions() {
+    }
 }
 

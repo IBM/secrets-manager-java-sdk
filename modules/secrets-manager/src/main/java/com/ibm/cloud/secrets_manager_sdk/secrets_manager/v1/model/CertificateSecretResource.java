@@ -14,6 +14,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Properties that describe a secret.
@@ -63,17 +64,26 @@ public class CertificateSecretResource extends SecretResource {
         private String description;
         private String secretGroupId;
         private List<String> labels;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
         private String certificate;
         private String privateKey;
         private String intermediate;
         private CertificateValidity validity;
         private Object altNames;
 
+        /**
+         * Instantiates a new Builder from an existing CertificateSecretResource instance.
+         *
+         * @param certificateSecretResource the instance to initialize the Builder with
+         */
         public Builder(SecretResource certificateSecretResource) {
             this.name = certificateSecretResource.name;
             this.description = certificateSecretResource.description;
             this.secretGroupId = certificateSecretResource.secretGroupId;
             this.labels = certificateSecretResource.labels;
+            this.customMetadata = certificateSecretResource.customMetadata;
+            this.versionCustomMetadata = certificateSecretResource.versionCustomMetadata;
             this.certificate = certificateSecretResource.certificate;
             this.privateKey = certificateSecretResource.privateKey;
             this.intermediate = certificateSecretResource.intermediate;
@@ -167,6 +177,28 @@ public class CertificateSecretResource extends SecretResource {
         }
 
         /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the CertificateSecretResource builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the CertificateSecretResource builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+
+        /**
          * Set the certificate.
          *
          * @param certificate the certificate
@@ -232,6 +264,8 @@ public class CertificateSecretResource extends SecretResource {
         description = builder.description;
         secretGroupId = builder.secretGroupId;
         labels = builder.labels;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
         certificate = builder.certificate;
         privateKey = builder.privateKey;
         intermediate = builder.intermediate;

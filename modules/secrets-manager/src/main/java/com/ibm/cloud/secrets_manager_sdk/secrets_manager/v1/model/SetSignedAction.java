@@ -24,6 +24,11 @@ public class SetSignedAction extends ConfigAction {
     public static class Builder {
         private String certificate;
 
+        /**
+         * Instantiates a new Builder from an existing SetSignedAction instance.
+         *
+         * @param setSignedAction the instance to initialize the Builder with
+         */
         public Builder(ConfigAction setSignedAction) {
             this.certificate = setSignedAction.certificate;
         }

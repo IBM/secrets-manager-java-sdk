@@ -36,14 +36,44 @@ public class RestoreIAMCredentialsSecretBodyTest {
     public void testRestoreIAMCredentialsSecretBody() throws Throwable {
         RestoreIAMCredentialsSecretBody restoreIamCredentialsSecretBodyModel = new RestoreIAMCredentialsSecretBody.Builder()
                 .versionId("testString")
+                .customMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
+                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
+                    {
+                        put("foo", "testString");
+                    }
+                })
                 .build();
         assertEquals(restoreIamCredentialsSecretBodyModel.versionId(), "testString");
+        assertEquals(restoreIamCredentialsSecretBodyModel.customMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
+        assertEquals(restoreIamCredentialsSecretBodyModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        });
 
         String json = TestUtilities.serialize(restoreIamCredentialsSecretBodyModel);
 
         RestoreIAMCredentialsSecretBody restoreIamCredentialsSecretBodyModelNew = TestUtilities.deserialize(json, RestoreIAMCredentialsSecretBody.class);
         assertTrue(restoreIamCredentialsSecretBodyModelNew instanceof RestoreIAMCredentialsSecretBody);
         assertEquals(restoreIamCredentialsSecretBodyModelNew.versionId(), "testString");
+        assertEquals(restoreIamCredentialsSecretBodyModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
+        assertEquals(restoreIamCredentialsSecretBodyModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
+            {
+                put("foo", "testString");
+            }
+        }.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

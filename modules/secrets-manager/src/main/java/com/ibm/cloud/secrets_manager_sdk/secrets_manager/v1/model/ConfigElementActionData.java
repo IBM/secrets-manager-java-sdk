@@ -57,6 +57,9 @@ public class ConfigElementActionData extends GenericModel {
     protected String type;
     protected ConfigElementActionResultConfig config;
 
+    protected ConfigElementActionData() {
+    }
+
     /**
      * Gets the name.
      * <p>

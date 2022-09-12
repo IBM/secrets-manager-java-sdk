@@ -35,6 +35,7 @@ public class ArbitrarySecretVersionTest {
     @Test
     public void testArbitrarySecretVersion() throws Throwable {
         ArbitrarySecretVersion arbitrarySecretVersionModel = new ArbitrarySecretVersion();
+        assertNull(arbitrarySecretVersionModel.getVersionCustomMetadata());
         assertNull(arbitrarySecretVersionModel.getSecretData());
     }
 }
