@@ -16,30 +16,33 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListInstanceSecretsLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ListInstanceSecretsLocksOptions model.
  */
 public class ListInstanceSecretsLocksOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testListInstanceSecretsLocksOptions() throws Throwable {
-    ListInstanceSecretsLocksOptions listInstanceSecretsLocksOptionsModel = new ListInstanceSecretsLocksOptions.Builder()
-      .limit(Long.valueOf("1"))
-      .offset(Long.valueOf("0"))
-      .search("testString")
-      .groups(java.util.Arrays.asList("testString"))
-      .build();
-    assertEquals(listInstanceSecretsLocksOptionsModel.limit(), Long.valueOf("1"));
-    assertEquals(listInstanceSecretsLocksOptionsModel.offset(), Long.valueOf("0"));
-    assertEquals(listInstanceSecretsLocksOptionsModel.search(), "testString");
-    assertEquals(listInstanceSecretsLocksOptionsModel.groups(), java.util.Arrays.asList("testString"));
-  }
+    @Test
+    public void testListInstanceSecretsLocksOptions() throws Throwable {
+        ListInstanceSecretsLocksOptions listInstanceSecretsLocksOptionsModel = new ListInstanceSecretsLocksOptions.Builder()
+                .limit(Long.valueOf("1"))
+                .offset(Long.valueOf("0"))
+                .search("testString")
+                .groups(java.util.Arrays.asList("testString"))
+                .build();
+        assertEquals(listInstanceSecretsLocksOptionsModel.limit(), Long.valueOf("1"));
+        assertEquals(listInstanceSecretsLocksOptionsModel.offset(), Long.valueOf("0"));
+        assertEquals(listInstanceSecretsLocksOptionsModel.search(), "testString");
+        assertEquals(listInstanceSecretsLocksOptionsModel.groups(), java.util.Arrays.asList("testString"));
+    }
 }

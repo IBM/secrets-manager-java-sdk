@@ -19,7 +19,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * SecretAction.
- *
+ * <p>
  * Classes which extend this class:
  * - RotateArbitrarySecretBody
  * - RotatePublicCertBody
@@ -33,152 +33,153 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretAction extends GenericModel {
 
-  protected Object payload;
-  @SerializedName("custom_metadata")
-  protected Map<String, Object> customMetadata;
-  @SerializedName("version_custom_metadata")
-  protected Map<String, Object> versionCustomMetadata;
-  @SerializedName("rotate_keys")
-  protected Boolean rotateKeys;
-  protected String password;
-  protected String certificate;
-  @SerializedName("private_key")
-  protected String privateKey;
-  protected String intermediate;
-  @SerializedName("version_id")
-  protected String versionId;
-  @SerializedName("api_key_id")
-  protected String apiKeyId;
-  @SerializedName("service_id")
-  protected String serviceId;
+    protected Object payload;
+    @SerializedName("custom_metadata")
+    protected Map<String, Object> customMetadata;
+    @SerializedName("version_custom_metadata")
+    protected Map<String, Object> versionCustomMetadata;
+    @SerializedName("rotate_keys")
+    protected Boolean rotateKeys;
+    protected String password;
+    protected String certificate;
+    @SerializedName("private_key")
+    protected String privateKey;
+    protected String intermediate;
+    @SerializedName("version_id")
+    protected String versionId;
+    @SerializedName("api_key_id")
+    protected String apiKeyId;
+    @SerializedName("service_id")
+    protected String serviceId;
 
-  protected SecretAction() { }
+    protected SecretAction() {
+    }
 
-  /**
-   * Gets the payload.
-   *
-   * The new secret data to assign to an `arbitrary` secret.
-   *
-   * @return the payload
-   */
-  public Object payload() {
-    return payload;
-  }
+    /**
+     * Gets the payload.
+     * <p>
+     * The new secret data to assign to an `arbitrary` secret.
+     *
+     * @return the payload
+     */
+    public Object payload() {
+        return payload;
+    }
 
-  /**
-   * Gets the customMetadata.
-   *
-   * The secret metadata that a user can customize.
-   *
-   * @return the customMetadata
-   */
-  public Map<String, Object> customMetadata() {
-    return customMetadata;
-  }
+    /**
+     * Gets the customMetadata.
+     * <p>
+     * The secret metadata that a user can customize.
+     *
+     * @return the customMetadata
+     */
+    public Map<String, Object> customMetadata() {
+        return customMetadata;
+    }
 
-  /**
-   * Gets the versionCustomMetadata.
-   *
-   * The secret version metadata that a user can customize.
-   *
-   * @return the versionCustomMetadata
-   */
-  public Map<String, Object> versionCustomMetadata() {
-    return versionCustomMetadata;
-  }
+    /**
+     * Gets the versionCustomMetadata.
+     * <p>
+     * The secret version metadata that a user can customize.
+     *
+     * @return the versionCustomMetadata
+     */
+    public Map<String, Object> versionCustomMetadata() {
+        return versionCustomMetadata;
+    }
 
-  /**
-   * Gets the rotateKeys.
-   *
-   * Determine whether keys must be rotated.
-   *
-   * @return the rotateKeys
-   */
-  public Boolean rotateKeys() {
-    return rotateKeys;
-  }
+    /**
+     * Gets the rotateKeys.
+     * <p>
+     * Determine whether keys must be rotated.
+     *
+     * @return the rotateKeys
+     */
+    public Boolean rotateKeys() {
+        return rotateKeys;
+    }
 
-  /**
-   * Gets the password.
-   *
-   * The new password to assign to a `username_password` secret.
-   *
-   * @return the password
-   */
-  public String password() {
-    return password;
-  }
+    /**
+     * Gets the password.
+     * <p>
+     * The new password to assign to a `username_password` secret.
+     *
+     * @return the password
+     */
+    public String password() {
+        return password;
+    }
 
-  /**
-   * Gets the certificate.
-   *
-   * The new data to associate with the certificate.
-   *
-   * @return the certificate
-   */
-  public String certificate() {
-    return certificate;
-  }
+    /**
+     * Gets the certificate.
+     * <p>
+     * The new data to associate with the certificate.
+     *
+     * @return the certificate
+     */
+    public String certificate() {
+        return certificate;
+    }
 
-  /**
-   * Gets the privateKey.
-   *
-   * The new private key to associate with the certificate.
-   *
-   * @return the privateKey
-   */
-  public String privateKey() {
-    return privateKey;
-  }
+    /**
+     * Gets the privateKey.
+     * <p>
+     * The new private key to associate with the certificate.
+     *
+     * @return the privateKey
+     */
+    public String privateKey() {
+        return privateKey;
+    }
 
-  /**
-   * Gets the intermediate.
-   *
-   * The new intermediate certificate to associate with the certificate.
-   *
-   * @return the intermediate
-   */
-  public String intermediate() {
-    return intermediate;
-  }
+    /**
+     * Gets the intermediate.
+     * <p>
+     * The new intermediate certificate to associate with the certificate.
+     *
+     * @return the intermediate
+     */
+    public String intermediate() {
+        return intermediate;
+    }
 
-  /**
-   * Gets the versionId.
-   *
-   * The ID of the target version or the alias `previous`.
-   *
-   * @return the versionId
-   */
-  public String versionId() {
-    return versionId;
-  }
+    /**
+     * Gets the versionId.
+     * <p>
+     * The ID of the target version or the alias `previous`.
+     *
+     * @return the versionId
+     */
+    public String versionId() {
+        return versionId;
+    }
 
-  /**
-   * Gets the apiKeyId.
-   *
-   * The ID of the API key that you want to delete. If the secret was created with a static service ID, only the API key
-   * is deleted. Otherwise, the service ID is deleted together with its API key.
-   *
-   * @return the apiKeyId
-   */
-  public String apiKeyId() {
-    return apiKeyId;
-  }
+    /**
+     * Gets the apiKeyId.
+     * <p>
+     * The ID of the API key that you want to delete. If the secret was created with a static service ID, only the API key
+     * is deleted. Otherwise, the service ID is deleted together with its API key.
+     *
+     * @return the apiKeyId
+     */
+    public String apiKeyId() {
+        return apiKeyId;
+    }
 
-  /**
-   * Gets the serviceId.
-   *
-   * The service ID that you want to delete. This property can be used instead of the `api_key_id` field, but only for
-   * secrets that were created with a service ID that was generated by Secrets Manager.
-   *
-   * **Deprecated.** Use the `api_key_id` field instead.
-   *
-   * @return the serviceId
-   * @deprecated this method is deprecated and may be removed in a future release
-   */
-  @Deprecated
-  public String serviceId() {
-    return serviceId;
-  }
+    /**
+     * Gets the serviceId.
+     * <p>
+     * The service ID that you want to delete. This property can be used instead of the `api_key_id` field, but only for
+     * secrets that were created with a service ID that was generated by Secrets Manager.
+     * <p>
+     * **Deprecated.** Use the `api_key_id` field instead.
+     *
+     * @return the serviceId
+     * @deprecated this method is deprecated and may be removed in a future release
+     */
+    @Deprecated
+    public String serviceId() {
+        return serviceId;
+    }
 }
 

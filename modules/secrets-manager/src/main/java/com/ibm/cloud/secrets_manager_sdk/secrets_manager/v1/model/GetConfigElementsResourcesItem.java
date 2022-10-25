@@ -19,7 +19,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * GetConfigElementsResourcesItem.
- *
+ * <p>
  * Classes which extend this class:
  * - GetConfigElementsResourcesItemCertificateAuthoritiesConfig
  * - GetConfigElementsResourcesItemDnsProvidersConfig
@@ -29,62 +29,63 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetConfigElementsResourcesItem extends GenericModel {
 
-  @SerializedName("certificate_authorities")
-  protected List<ConfigElementMetadata> certificateAuthorities;
-  @SerializedName("dns_providers")
-  protected List<ConfigElementMetadata> dnsProviders;
-  @SerializedName("root_certificate_authorities")
-  protected List<RootCertificateAuthoritiesConfigItem> rootCertificateAuthorities;
-  @SerializedName("intermediate_certificate_authorities")
-  protected List<IntermediateCertificateAuthoritiesConfigItem> intermediateCertificateAuthorities;
-  @SerializedName("certificate_templates")
-  protected List<CertificateTemplatesConfigItem> certificateTemplates;
+    @SerializedName("certificate_authorities")
+    protected List<ConfigElementMetadata> certificateAuthorities;
+    @SerializedName("dns_providers")
+    protected List<ConfigElementMetadata> dnsProviders;
+    @SerializedName("root_certificate_authorities")
+    protected List<RootCertificateAuthoritiesConfigItem> rootCertificateAuthorities;
+    @SerializedName("intermediate_certificate_authorities")
+    protected List<IntermediateCertificateAuthoritiesConfigItem> intermediateCertificateAuthorities;
+    @SerializedName("certificate_templates")
+    protected List<CertificateTemplatesConfigItem> certificateTemplates;
 
-  protected GetConfigElementsResourcesItem() { }
+    protected GetConfigElementsResourcesItem() {
+    }
 
-  /**
-   * Gets the certificateAuthorities.
-   *
-   * @return the certificateAuthorities
-   */
-  public List<ConfigElementMetadata> getCertificateAuthorities() {
-    return certificateAuthorities;
-  }
+    /**
+     * Gets the certificateAuthorities.
+     *
+     * @return the certificateAuthorities
+     */
+    public List<ConfigElementMetadata> getCertificateAuthorities() {
+        return certificateAuthorities;
+    }
 
-  /**
-   * Gets the dnsProviders.
-   *
-   * @return the dnsProviders
-   */
-  public List<ConfigElementMetadata> getDnsProviders() {
-    return dnsProviders;
-  }
+    /**
+     * Gets the dnsProviders.
+     *
+     * @return the dnsProviders
+     */
+    public List<ConfigElementMetadata> getDnsProviders() {
+        return dnsProviders;
+    }
 
-  /**
-   * Gets the rootCertificateAuthorities.
-   *
-   * @return the rootCertificateAuthorities
-   */
-  public List<RootCertificateAuthoritiesConfigItem> getRootCertificateAuthorities() {
-    return rootCertificateAuthorities;
-  }
+    /**
+     * Gets the rootCertificateAuthorities.
+     *
+     * @return the rootCertificateAuthorities
+     */
+    public List<RootCertificateAuthoritiesConfigItem> getRootCertificateAuthorities() {
+        return rootCertificateAuthorities;
+    }
 
-  /**
-   * Gets the intermediateCertificateAuthorities.
-   *
-   * @return the intermediateCertificateAuthorities
-   */
-  public List<IntermediateCertificateAuthoritiesConfigItem> getIntermediateCertificateAuthorities() {
-    return intermediateCertificateAuthorities;
-  }
+    /**
+     * Gets the intermediateCertificateAuthorities.
+     *
+     * @return the intermediateCertificateAuthorities
+     */
+    public List<IntermediateCertificateAuthoritiesConfigItem> getIntermediateCertificateAuthorities() {
+        return intermediateCertificateAuthorities;
+    }
 
-  /**
-   * Gets the certificateTemplates.
-   *
-   * @return the certificateTemplates
-   */
-  public List<CertificateTemplatesConfigItem> getCertificateTemplates() {
-    return certificateTemplates;
-  }
+    /**
+     * Gets the certificateTemplates.
+     *
+     * @return the certificateTemplates
+     */
+    public List<CertificateTemplatesConfigItem> getCertificateTemplates() {
+        return certificateTemplates;
+    }
 }
 

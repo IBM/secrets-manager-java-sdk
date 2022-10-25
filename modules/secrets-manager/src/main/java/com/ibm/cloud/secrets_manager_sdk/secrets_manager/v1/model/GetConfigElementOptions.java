@@ -19,171 +19,186 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetConfigElementOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-  }
-
-  /**
-   * The configuration element to define or manage.
-   */
-  public interface ConfigElement {
-    /** certificate_authorities. */
-    String CERTIFICATE_AUTHORITIES = "certificate_authorities";
-    /** dns_providers. */
-    String DNS_PROVIDERS = "dns_providers";
-    /** root_certificate_authorities. */
-    String ROOT_CERTIFICATE_AUTHORITIES = "root_certificate_authorities";
-    /** intermediate_certificate_authorities. */
-    String INTERMEDIATE_CERTIFICATE_AUTHORITIES = "intermediate_certificate_authorities";
-    /** certificate_templates. */
-    String CERTIFICATE_TEMPLATES = "certificate_templates";
-  }
-
-  protected String secretType;
-  protected String configElement;
-  protected String configName;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private String configElement;
-    private String configName;
+    /**
+     * The secret type.
+     */
+    public interface SecretType {
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+    }
 
     /**
-     * Instantiates a new Builder from an existing GetConfigElementOptions instance.
+     * The configuration element to define or manage.
+     */
+    public interface ConfigElement {
+        /**
+         * certificate_authorities.
+         */
+        String CERTIFICATE_AUTHORITIES = "certificate_authorities";
+        /**
+         * dns_providers.
+         */
+        String DNS_PROVIDERS = "dns_providers";
+        /**
+         * root_certificate_authorities.
+         */
+        String ROOT_CERTIFICATE_AUTHORITIES = "root_certificate_authorities";
+        /**
+         * intermediate_certificate_authorities.
+         */
+        String INTERMEDIATE_CERTIFICATE_AUTHORITIES = "intermediate_certificate_authorities";
+        /**
+         * certificate_templates.
+         */
+        String CERTIFICATE_TEMPLATES = "certificate_templates";
+    }
+
+    protected String secretType;
+    protected String configElement;
+    protected String configName;
+
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private String configElement;
+        private String configName;
+
+        /**
+         * Instantiates a new Builder from an existing GetConfigElementOptions instance.
+         *
+         * @param getConfigElementOptions the instance to initialize the Builder with
+         */
+        private Builder(GetConfigElementOptions getConfigElementOptions) {
+            this.secretType = getConfigElementOptions.secretType;
+            this.configElement = getConfigElementOptions.configElement;
+            this.configName = getConfigElementOptions.configName;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType    the secretType
+         * @param configElement the configElement
+         * @param configName    the configName
+         */
+        public Builder(String secretType, String configElement, String configName) {
+            this.secretType = secretType;
+            this.configElement = configElement;
+            this.configName = configName;
+        }
+
+        /**
+         * Builds a GetConfigElementOptions.
+         *
+         * @return the new GetConfigElementOptions instance
+         */
+        public GetConfigElementOptions build() {
+            return new GetConfigElementOptions(this);
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the GetConfigElementOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the configElement.
+         *
+         * @param configElement the configElement
+         * @return the GetConfigElementOptions builder
+         */
+        public Builder configElement(String configElement) {
+            this.configElement = configElement;
+            return this;
+        }
+
+        /**
+         * Set the configName.
+         *
+         * @param configName the configName
+         * @return the GetConfigElementOptions builder
+         */
+        public Builder configName(String configName) {
+            this.configName = configName;
+            return this;
+        }
+    }
+
+    protected GetConfigElementOptions() {
+    }
+
+    protected GetConfigElementOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configElement,
+                "configElement cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configName,
+                "configName cannot be empty");
+        secretType = builder.secretType;
+        configElement = builder.configElement;
+        configName = builder.configName;
+    }
+
+    /**
+     * New builder.
      *
-     * @param getConfigElementOptions the instance to initialize the Builder with
+     * @return a GetConfigElementOptions builder
      */
-    private Builder(GetConfigElementOptions getConfigElementOptions) {
-      this.secretType = getConfigElementOptions.secretType;
-      this.configElement = getConfigElementOptions.configElement;
-      this.configName = getConfigElementOptions.configName;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @param secretType the secretType
-     * @param configElement the configElement
-     * @param configName the configName
+     * @return the secretType
      */
-    public Builder(String secretType, String configElement, String configName) {
-      this.secretType = secretType;
-      this.configElement = configElement;
-      this.configName = configName;
+    public String secretType() {
+        return secretType;
     }
 
     /**
-     * Builds a GetConfigElementOptions.
+     * Gets the configElement.
+     * <p>
+     * The configuration element to define or manage.
      *
-     * @return the new GetConfigElementOptions instance
+     * @return the configElement
      */
-    public GetConfigElementOptions build() {
-      return new GetConfigElementOptions(this);
+    public String configElement() {
+        return configElement;
     }
 
     /**
-     * Set the secretType.
+     * Gets the configName.
+     * <p>
+     * The name of your configuration.
      *
-     * @param secretType the secretType
-     * @return the GetConfigElementOptions builder
+     * @return the configName
      */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
+    public String configName() {
+        return configName;
     }
-
-    /**
-     * Set the configElement.
-     *
-     * @param configElement the configElement
-     * @return the GetConfigElementOptions builder
-     */
-    public Builder configElement(String configElement) {
-      this.configElement = configElement;
-      return this;
-    }
-
-    /**
-     * Set the configName.
-     *
-     * @param configName the configName
-     * @return the GetConfigElementOptions builder
-     */
-    public Builder configName(String configName) {
-      this.configName = configName;
-      return this;
-    }
-  }
-
-  protected GetConfigElementOptions() { }
-
-  protected GetConfigElementOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configElement,
-      "configElement cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.configName,
-      "configName cannot be empty");
-    secretType = builder.secretType;
-    configElement = builder.configElement;
-    configName = builder.configName;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a GetConfigElementOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
-
-  /**
-   * Gets the configElement.
-   *
-   * The configuration element to define or manage.
-   *
-   * @return the configElement
-   */
-  public String configElement() {
-    return configElement;
-  }
-
-  /**
-   * Gets the configName.
-   *
-   * The name of your configuration.
-   *
-   * @return the configName
-   */
-  public String configName() {
-    return configName;
-  }
 }
 

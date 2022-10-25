@@ -22,132 +22,133 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretGroupDef extends GenericModel {
 
-  protected CollectionMetadata metadata;
-  protected List<SecretGroupResource> resources;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private CollectionMetadata metadata;
-    private List<SecretGroupResource> resources;
+    protected CollectionMetadata metadata;
+    protected List<SecretGroupResource> resources;
 
     /**
-     * Instantiates a new Builder from an existing SecretGroupDef instance.
+     * Builder.
+     */
+    public static class Builder {
+        private CollectionMetadata metadata;
+        private List<SecretGroupResource> resources;
+
+        /**
+         * Instantiates a new Builder from an existing SecretGroupDef instance.
+         *
+         * @param secretGroupDef the instance to initialize the Builder with
+         */
+        private Builder(SecretGroupDef secretGroupDef) {
+            this.metadata = secretGroupDef.metadata;
+            this.resources = secretGroupDef.resources;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param metadata  the metadata
+         * @param resources the resources
+         */
+        public Builder(CollectionMetadata metadata, List<SecretGroupResource> resources) {
+            this.metadata = metadata;
+            this.resources = resources;
+        }
+
+        /**
+         * Builds a SecretGroupDef.
+         *
+         * @return the new SecretGroupDef instance
+         */
+        public SecretGroupDef build() {
+            return new SecretGroupDef(this);
+        }
+
+        /**
+         * Adds an resources to resources.
+         *
+         * @param resources the new resources
+         * @return the SecretGroupDef builder
+         */
+        public Builder addResources(SecretGroupResource resources) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
+                    "resources cannot be null");
+            if (this.resources == null) {
+                this.resources = new ArrayList<SecretGroupResource>();
+            }
+            this.resources.add(resources);
+            return this;
+        }
+
+        /**
+         * Set the metadata.
+         *
+         * @param metadata the metadata
+         * @return the SecretGroupDef builder
+         */
+        public Builder metadata(CollectionMetadata metadata) {
+            this.metadata = metadata;
+            return this;
+        }
+
+        /**
+         * Set the resources.
+         * Existing resources will be replaced.
+         *
+         * @param resources the resources
+         * @return the SecretGroupDef builder
+         */
+        public Builder resources(List<SecretGroupResource> resources) {
+            this.resources = resources;
+            return this;
+        }
+    }
+
+    protected SecretGroupDef() {
+    }
+
+    protected SecretGroupDef(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
+                "metadata cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
+                "resources cannot be null");
+        metadata = builder.metadata;
+        resources = builder.resources;
+    }
+
+    /**
+     * New builder.
      *
-     * @param secretGroupDef the instance to initialize the Builder with
+     * @return a SecretGroupDef builder
      */
-    private Builder(SecretGroupDef secretGroupDef) {
-      this.metadata = secretGroupDef.metadata;
-      this.resources = secretGroupDef.resources;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the metadata.
+     * <p>
+     * The metadata that describes the resource array.
      *
-     * @param metadata the metadata
-     * @param resources the resources
+     * @return the metadata
      */
-    public Builder(CollectionMetadata metadata, List<SecretGroupResource> resources) {
-      this.metadata = metadata;
-      this.resources = resources;
+    public CollectionMetadata metadata() {
+        return metadata;
     }
 
     /**
-     * Builds a SecretGroupDef.
+     * Gets the resources.
+     * <p>
+     * A collection of resources.
      *
-     * @return the new SecretGroupDef instance
+     * @return the resources
      */
-    public SecretGroupDef build() {
-      return new SecretGroupDef(this);
+    public List<SecretGroupResource> resources() {
+        return resources;
     }
-
-    /**
-     * Adds an resources to resources.
-     *
-     * @param resources the new resources
-     * @return the SecretGroupDef builder
-     */
-    public Builder addResources(SecretGroupResource resources) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
-        "resources cannot be null");
-      if (this.resources == null) {
-        this.resources = new ArrayList<SecretGroupResource>();
-      }
-      this.resources.add(resources);
-      return this;
-    }
-
-    /**
-     * Set the metadata.
-     *
-     * @param metadata the metadata
-     * @return the SecretGroupDef builder
-     */
-    public Builder metadata(CollectionMetadata metadata) {
-      this.metadata = metadata;
-      return this;
-    }
-
-    /**
-     * Set the resources.
-     * Existing resources will be replaced.
-     *
-     * @param resources the resources
-     * @return the SecretGroupDef builder
-     */
-    public Builder resources(List<SecretGroupResource> resources) {
-      this.resources = resources;
-      return this;
-    }
-  }
-
-  protected SecretGroupDef() { }
-
-  protected SecretGroupDef(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
-      "metadata cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
-      "resources cannot be null");
-    metadata = builder.metadata;
-    resources = builder.resources;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a SecretGroupDef builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the metadata.
-   *
-   * The metadata that describes the resource array.
-   *
-   * @return the metadata
-   */
-  public CollectionMetadata metadata() {
-    return metadata;
-  }
-
-  /**
-   * Gets the resources.
-   *
-   * A collection of resources.
-   *
-   * @return the resources
-   */
-  public List<SecretGroupResource> resources() {
-    return resources;
-  }
 }
 

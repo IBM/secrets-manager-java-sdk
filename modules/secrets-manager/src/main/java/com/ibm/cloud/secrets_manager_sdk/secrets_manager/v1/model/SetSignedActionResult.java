@@ -18,6 +18,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class SetSignedActionResult extends ConfigElementActionResultConfig {
 
 
-  protected SetSignedActionResult() { }
+    protected SetSignedActionResult() {
+    }
 }
 

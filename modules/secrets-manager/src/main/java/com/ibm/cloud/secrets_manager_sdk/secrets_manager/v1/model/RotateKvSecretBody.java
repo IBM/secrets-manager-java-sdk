@@ -19,100 +19,100 @@ import java.util.Map;
  */
 public class RotateKvSecretBody extends SecretAction {
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Object payload;
-    private Map<String, Object> customMetadata;
-    private Map<String, Object> versionCustomMetadata;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private Object payload;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
+
+        /**
+         * Instantiates a new Builder from an existing RotateKvSecretBody instance.
+         *
+         * @param rotateKvSecretBody the instance to initialize the Builder with
+         */
+        public Builder(SecretAction rotateKvSecretBody) {
+            this.payload = rotateKvSecretBody.payload;
+            this.customMetadata = rotateKvSecretBody.customMetadata;
+            this.versionCustomMetadata = rotateKvSecretBody.versionCustomMetadata;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param payload the payload
+         */
+        public Builder(Object payload) {
+            this.payload = payload;
+        }
+
+        /**
+         * Builds a RotateKvSecretBody.
+         *
+         * @return the new RotateKvSecretBody instance
+         */
+        public RotateKvSecretBody build() {
+            return new RotateKvSecretBody(this);
+        }
+
+        /**
+         * Set the payload.
+         *
+         * @param payload the payload
+         * @return the RotateKvSecretBody builder
+         */
+        public Builder payload(Object payload) {
+            this.payload = payload;
+            return this;
+        }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RotateKvSecretBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RotateKvSecretBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+    }
+
+    protected RotateKvSecretBody() {
+    }
+
+    protected RotateKvSecretBody(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.payload,
+                "payload cannot be null");
+        payload = builder.payload;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
+    }
 
     /**
-     * Instantiates a new Builder from an existing RotateKvSecretBody instance.
+     * New builder.
      *
-     * @param rotateKvSecretBody the instance to initialize the Builder with
+     * @return a RotateKvSecretBody builder
      */
-    public Builder(SecretAction rotateKvSecretBody) {
-      this.payload = rotateKvSecretBody.payload;
-      this.customMetadata = rotateKvSecretBody.customMetadata;
-      this.versionCustomMetadata = rotateKvSecretBody.versionCustomMetadata;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param payload the payload
-     */
-    public Builder(Object payload) {
-      this.payload = payload;
-    }
-
-    /**
-     * Builds a RotateKvSecretBody.
-     *
-     * @return the new RotateKvSecretBody instance
-     */
-    public RotateKvSecretBody build() {
-      return new RotateKvSecretBody(this);
-    }
-
-    /**
-     * Set the payload.
-     *
-     * @param payload the payload
-     * @return the RotateKvSecretBody builder
-     */
-    public Builder payload(Object payload) {
-      this.payload = payload;
-      return this;
-    }
-
-    /**
-     * Set the customMetadata.
-     *
-     * @param customMetadata the customMetadata
-     * @return the RotateKvSecretBody builder
-     */
-    public Builder customMetadata(Map<String, Object> customMetadata) {
-      this.customMetadata = customMetadata;
-      return this;
-    }
-
-    /**
-     * Set the versionCustomMetadata.
-     *
-     * @param versionCustomMetadata the versionCustomMetadata
-     * @return the RotateKvSecretBody builder
-     */
-    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-      this.versionCustomMetadata = versionCustomMetadata;
-      return this;
-    }
-  }
-
-  protected RotateKvSecretBody() {
-  }
-
-  protected RotateKvSecretBody(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.payload,
-        "payload cannot be null");
-    payload = builder.payload;
-    customMetadata = builder.customMetadata;
-    versionCustomMetadata = builder.versionCustomMetadata;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a RotateKvSecretBody builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }

@@ -19,135 +19,150 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListSecretVersionsOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-    /** kv. */
-    String KV = "kv";
-  }
+    /**
+     * The secret type.
+     */
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * kv.
+         */
+        String KV = "kv";
+    }
 
-  protected String secretType;
-  protected String id;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private String id;
+    protected String secretType;
+    protected String id;
 
     /**
-     * Instantiates a new Builder from an existing ListSecretVersionsOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private String id;
+
+        /**
+         * Instantiates a new Builder from an existing ListSecretVersionsOptions instance.
+         *
+         * @param listSecretVersionsOptions the instance to initialize the Builder with
+         */
+        private Builder(ListSecretVersionsOptions listSecretVersionsOptions) {
+            this.secretType = listSecretVersionsOptions.secretType;
+            this.id = listSecretVersionsOptions.id;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType the secretType
+         * @param id         the id
+         */
+        public Builder(String secretType, String id) {
+            this.secretType = secretType;
+            this.id = id;
+        }
+
+        /**
+         * Builds a ListSecretVersionsOptions.
+         *
+         * @return the new ListSecretVersionsOptions instance
+         */
+        public ListSecretVersionsOptions build() {
+            return new ListSecretVersionsOptions(this);
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the ListSecretVersionsOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the ListSecretVersionsOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+    }
+
+    protected ListSecretVersionsOptions() {
+    }
+
+    protected ListSecretVersionsOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        secretType = builder.secretType;
+        id = builder.id;
+    }
+
+    /**
+     * New builder.
      *
-     * @param listSecretVersionsOptions the instance to initialize the Builder with
+     * @return a ListSecretVersionsOptions builder
      */
-    private Builder(ListSecretVersionsOptions listSecretVersionsOptions) {
-      this.secretType = listSecretVersionsOptions.secretType;
-      this.id = listSecretVersionsOptions.id;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @param secretType the secretType
-     * @param id the id
+     * @return the secretType
      */
-    public Builder(String secretType, String id) {
-      this.secretType = secretType;
-      this.id = id;
+    public String secretType() {
+        return secretType;
     }
 
     /**
-     * Builds a ListSecretVersionsOptions.
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret.
      *
-     * @return the new ListSecretVersionsOptions instance
+     * @return the id
      */
-    public ListSecretVersionsOptions build() {
-      return new ListSecretVersionsOptions(this);
+    public String id() {
+        return id;
     }
-
-    /**
-     * Set the secretType.
-     *
-     * @param secretType the secretType
-     * @return the ListSecretVersionsOptions builder
-     */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
-    }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the ListSecretVersionsOptions builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-  }
-
-  protected ListSecretVersionsOptions() { }
-
-  protected ListSecretVersionsOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    secretType = builder.secretType;
-    id = builder.id;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ListSecretVersionsOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
 }
 

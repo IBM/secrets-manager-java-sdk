@@ -16,40 +16,43 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersionLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSecretVersionLocksOptions model.
  */
 public class GetSecretVersionLocksOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetSecretVersionLocksOptions() throws Throwable {
-    GetSecretVersionLocksOptions getSecretVersionLocksOptionsModel = new GetSecretVersionLocksOptions.Builder()
-      .secretType("arbitrary")
-      .id("testString")
-      .versionId("testString")
-      .limit(Long.valueOf("1"))
-      .offset(Long.valueOf("0"))
-      .search("testString")
-      .build();
-    assertEquals(getSecretVersionLocksOptionsModel.secretType(), "arbitrary");
-    assertEquals(getSecretVersionLocksOptionsModel.id(), "testString");
-    assertEquals(getSecretVersionLocksOptionsModel.versionId(), "testString");
-    assertEquals(getSecretVersionLocksOptionsModel.limit(), Long.valueOf("1"));
-    assertEquals(getSecretVersionLocksOptionsModel.offset(), Long.valueOf("0"));
-    assertEquals(getSecretVersionLocksOptionsModel.search(), "testString");
-  }
+    @Test
+    public void testGetSecretVersionLocksOptions() throws Throwable {
+        GetSecretVersionLocksOptions getSecretVersionLocksOptionsModel = new GetSecretVersionLocksOptions.Builder()
+                .secretType("arbitrary")
+                .id("testString")
+                .versionId("testString")
+                .limit(Long.valueOf("1"))
+                .offset(Long.valueOf("0"))
+                .search("testString")
+                .build();
+        assertEquals(getSecretVersionLocksOptionsModel.secretType(), "arbitrary");
+        assertEquals(getSecretVersionLocksOptionsModel.id(), "testString");
+        assertEquals(getSecretVersionLocksOptionsModel.versionId(), "testString");
+        assertEquals(getSecretVersionLocksOptionsModel.limit(), Long.valueOf("1"));
+        assertEquals(getSecretVersionLocksOptionsModel.offset(), Long.valueOf("0"));
+        assertEquals(getSecretVersionLocksOptionsModel.search(), "testString");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testGetSecretVersionLocksOptionsError() throws Throwable {
-    new GetSecretVersionLocksOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetSecretVersionLocksOptionsError() throws Throwable {
+        new GetSecretVersionLocksOptions.Builder().build();
+    }
 
 }

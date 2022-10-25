@@ -20,100 +20,101 @@ import java.util.Map;
 public class RestoreIAMCredentialsSecretBody extends SecretAction {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String versionId;
-    private Map<String, Object> customMetadata;
-    private Map<String, Object> versionCustomMetadata;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String versionId;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
+
+        /**
+         * Instantiates a new Builder from an existing RestoreIAMCredentialsSecretBody instance.
+         *
+         * @param restoreIamCredentialsSecretBody the instance to initialize the Builder with
+         */
+        public Builder(SecretAction restoreIamCredentialsSecretBody) {
+            this.versionId = restoreIamCredentialsSecretBody.versionId;
+            this.customMetadata = restoreIamCredentialsSecretBody.customMetadata;
+            this.versionCustomMetadata = restoreIamCredentialsSecretBody.versionCustomMetadata;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param versionId the versionId
+         */
+        public Builder(String versionId) {
+            this.versionId = versionId;
+        }
+
+        /**
+         * Builds a RestoreIAMCredentialsSecretBody.
+         *
+         * @return the new RestoreIAMCredentialsSecretBody instance
+         */
+        public RestoreIAMCredentialsSecretBody build() {
+            return new RestoreIAMCredentialsSecretBody(this);
+        }
+
+        /**
+         * Set the versionId.
+         *
+         * @param versionId the versionId
+         * @return the RestoreIAMCredentialsSecretBody builder
+         */
+        public Builder versionId(String versionId) {
+            this.versionId = versionId;
+            return this;
+        }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RestoreIAMCredentialsSecretBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RestoreIAMCredentialsSecretBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+    }
+
+    protected RestoreIAMCredentialsSecretBody() {
+    }
+
+    protected RestoreIAMCredentialsSecretBody(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.versionId,
+                "versionId cannot be null");
+        versionId = builder.versionId;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
+    }
 
     /**
-     * Instantiates a new Builder from an existing RestoreIAMCredentialsSecretBody instance.
+     * New builder.
      *
-     * @param restoreIamCredentialsSecretBody the instance to initialize the Builder with
+     * @return a RestoreIAMCredentialsSecretBody builder
      */
-    public Builder(SecretAction restoreIamCredentialsSecretBody) {
-      this.versionId = restoreIamCredentialsSecretBody.versionId;
-      this.customMetadata = restoreIamCredentialsSecretBody.customMetadata;
-      this.versionCustomMetadata = restoreIamCredentialsSecretBody.versionCustomMetadata;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param versionId the versionId
-     */
-    public Builder(String versionId) {
-      this.versionId = versionId;
-    }
-
-    /**
-     * Builds a RestoreIAMCredentialsSecretBody.
-     *
-     * @return the new RestoreIAMCredentialsSecretBody instance
-     */
-    public RestoreIAMCredentialsSecretBody build() {
-      return new RestoreIAMCredentialsSecretBody(this);
-    }
-
-    /**
-     * Set the versionId.
-     *
-     * @param versionId the versionId
-     * @return the RestoreIAMCredentialsSecretBody builder
-     */
-    public Builder versionId(String versionId) {
-      this.versionId = versionId;
-      return this;
-    }
-
-    /**
-     * Set the customMetadata.
-     *
-     * @param customMetadata the customMetadata
-     * @return the RestoreIAMCredentialsSecretBody builder
-     */
-    public Builder customMetadata(Map<String, Object> customMetadata) {
-      this.customMetadata = customMetadata;
-      return this;
-    }
-
-    /**
-     * Set the versionCustomMetadata.
-     *
-     * @param versionCustomMetadata the versionCustomMetadata
-     * @return the RestoreIAMCredentialsSecretBody builder
-     */
-    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-      this.versionCustomMetadata = versionCustomMetadata;
-      return this;
-    }
-  }
-
-  protected RestoreIAMCredentialsSecretBody() { }
-
-  protected RestoreIAMCredentialsSecretBody(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.versionId,
-      "versionId cannot be null");
-    versionId = builder.versionId;
-    customMetadata = builder.customMetadata;
-    versionCustomMetadata = builder.versionCustomMetadata;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a RestoreIAMCredentialsSecretBody builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

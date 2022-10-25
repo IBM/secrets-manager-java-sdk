@@ -21,31 +21,32 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListSecretLocks extends GenericModel {
 
-  protected CollectionMetadata metadata;
-  protected List<SecretLockData> resources;
+    protected CollectionMetadata metadata;
+    protected List<SecretLockData> resources;
 
-  protected ListSecretLocks() { }
+    protected ListSecretLocks() {
+    }
 
-  /**
-   * Gets the metadata.
-   *
-   * The metadata that describes the resource array.
-   *
-   * @return the metadata
-   */
-  public CollectionMetadata getMetadata() {
-    return metadata;
-  }
+    /**
+     * Gets the metadata.
+     * <p>
+     * The metadata that describes the resource array.
+     *
+     * @return the metadata
+     */
+    public CollectionMetadata getMetadata() {
+        return metadata;
+    }
 
-  /**
-   * Gets the resources.
-   *
-   * A collection of resources.
-   *
-   * @return the resources
-   */
-  public List<SecretLockData> getResources() {
-    return resources;
-  }
+    /**
+     * Gets the resources.
+     * <p>
+     * A collection of resources.
+     *
+     * @return the resources
+     */
+    public List<SecretLockData> getResources() {
+        return resources;
+    }
 }
 

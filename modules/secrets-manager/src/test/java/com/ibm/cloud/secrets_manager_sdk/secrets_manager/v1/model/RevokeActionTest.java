@@ -16,36 +16,39 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RevokeAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the RevokeAction model.
  */
 public class RevokeActionTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testRevokeAction() throws Throwable {
-    RevokeAction revokeActionModel = new RevokeAction.Builder()
-      .serialNumber("testString")
-      .build();
-    assertEquals(revokeActionModel.serialNumber(), "testString");
+    @Test
+    public void testRevokeAction() throws Throwable {
+        RevokeAction revokeActionModel = new RevokeAction.Builder()
+                .serialNumber("testString")
+                .build();
+        assertEquals(revokeActionModel.serialNumber(), "testString");
 
-    String json = TestUtilities.serialize(revokeActionModel);
+        String json = TestUtilities.serialize(revokeActionModel);
 
-    RevokeAction revokeActionModelNew = TestUtilities.deserialize(json, RevokeAction.class);
-    assertTrue(revokeActionModelNew instanceof RevokeAction);
-    assertEquals(revokeActionModelNew.serialNumber(), "testString");
-  }
+        RevokeAction revokeActionModelNew = TestUtilities.deserialize(json, RevokeAction.class);
+        assertTrue(revokeActionModelNew instanceof RevokeAction);
+        assertEquals(revokeActionModelNew.serialNumber(), "testString");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testRevokeActionError() throws Throwable {
-    new RevokeAction.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testRevokeActionError() throws Throwable {
+        new RevokeAction.Builder().build();
+    }
 
 }

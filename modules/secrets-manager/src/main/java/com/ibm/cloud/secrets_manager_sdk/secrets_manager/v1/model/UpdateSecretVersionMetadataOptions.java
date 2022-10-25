@@ -22,246 +22,261 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class UpdateSecretVersionMetadataOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-    /** kv. */
-    String KV = "kv";
-  }
+    /**
+     * The secret type.
+     */
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * kv.
+         */
+        String KV = "kv";
+    }
 
-  protected String secretType;
-  protected String id;
-  protected String versionId;
-  protected CollectionMetadata metadata;
-  protected List<UpdateSecretVersionMetadata> resources;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private String id;
-    private String versionId;
-    private CollectionMetadata metadata;
-    private List<UpdateSecretVersionMetadata> resources;
+    protected String secretType;
+    protected String id;
+    protected String versionId;
+    protected CollectionMetadata metadata;
+    protected List<UpdateSecretVersionMetadata> resources;
 
     /**
-     * Instantiates a new Builder from an existing UpdateSecretVersionMetadataOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private String id;
+        private String versionId;
+        private CollectionMetadata metadata;
+        private List<UpdateSecretVersionMetadata> resources;
+
+        /**
+         * Instantiates a new Builder from an existing UpdateSecretVersionMetadataOptions instance.
+         *
+         * @param updateSecretVersionMetadataOptions the instance to initialize the Builder with
+         */
+        private Builder(UpdateSecretVersionMetadataOptions updateSecretVersionMetadataOptions) {
+            this.secretType = updateSecretVersionMetadataOptions.secretType;
+            this.id = updateSecretVersionMetadataOptions.id;
+            this.versionId = updateSecretVersionMetadataOptions.versionId;
+            this.metadata = updateSecretVersionMetadataOptions.metadata;
+            this.resources = updateSecretVersionMetadataOptions.resources;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType the secretType
+         * @param id         the id
+         * @param versionId  the versionId
+         * @param metadata   the metadata
+         * @param resources  the resources
+         */
+        public Builder(String secretType, String id, String versionId, CollectionMetadata metadata, List<UpdateSecretVersionMetadata> resources) {
+            this.secretType = secretType;
+            this.id = id;
+            this.versionId = versionId;
+            this.metadata = metadata;
+            this.resources = resources;
+        }
+
+        /**
+         * Builds a UpdateSecretVersionMetadataOptions.
+         *
+         * @return the new UpdateSecretVersionMetadataOptions instance
+         */
+        public UpdateSecretVersionMetadataOptions build() {
+            return new UpdateSecretVersionMetadataOptions(this);
+        }
+
+        /**
+         * Adds an resources to resources.
+         *
+         * @param resources the new resources
+         * @return the UpdateSecretVersionMetadataOptions builder
+         */
+        public Builder addResources(UpdateSecretVersionMetadata resources) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
+                    "resources cannot be null");
+            if (this.resources == null) {
+                this.resources = new ArrayList<UpdateSecretVersionMetadata>();
+            }
+            this.resources.add(resources);
+            return this;
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the UpdateSecretVersionMetadataOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the UpdateSecretVersionMetadataOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Set the versionId.
+         *
+         * @param versionId the versionId
+         * @return the UpdateSecretVersionMetadataOptions builder
+         */
+        public Builder versionId(String versionId) {
+            this.versionId = versionId;
+            return this;
+        }
+
+        /**
+         * Set the metadata.
+         *
+         * @param metadata the metadata
+         * @return the UpdateSecretVersionMetadataOptions builder
+         */
+        public Builder metadata(CollectionMetadata metadata) {
+            this.metadata = metadata;
+            return this;
+        }
+
+        /**
+         * Set the resources.
+         * Existing resources will be replaced.
+         *
+         * @param resources the resources
+         * @return the UpdateSecretVersionMetadataOptions builder
+         */
+        public Builder resources(List<UpdateSecretVersionMetadata> resources) {
+            this.resources = resources;
+            return this;
+        }
+    }
+
+    protected UpdateSecretVersionMetadataOptions() {
+    }
+
+    protected UpdateSecretVersionMetadataOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.versionId,
+                "versionId cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
+                "metadata cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
+                "resources cannot be null");
+        secretType = builder.secretType;
+        id = builder.id;
+        versionId = builder.versionId;
+        metadata = builder.metadata;
+        resources = builder.resources;
+    }
+
+    /**
+     * New builder.
      *
-     * @param updateSecretVersionMetadataOptions the instance to initialize the Builder with
+     * @return a UpdateSecretVersionMetadataOptions builder
      */
-    private Builder(UpdateSecretVersionMetadataOptions updateSecretVersionMetadataOptions) {
-      this.secretType = updateSecretVersionMetadataOptions.secretType;
-      this.id = updateSecretVersionMetadataOptions.id;
-      this.versionId = updateSecretVersionMetadataOptions.versionId;
-      this.metadata = updateSecretVersionMetadataOptions.metadata;
-      this.resources = updateSecretVersionMetadataOptions.resources;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @param secretType the secretType
-     * @param id the id
-     * @param versionId the versionId
-     * @param metadata the metadata
-     * @param resources the resources
+     * @return the secretType
      */
-    public Builder(String secretType, String id, String versionId, CollectionMetadata metadata, List<UpdateSecretVersionMetadata> resources) {
-      this.secretType = secretType;
-      this.id = id;
-      this.versionId = versionId;
-      this.metadata = metadata;
-      this.resources = resources;
+    public String secretType() {
+        return secretType;
     }
 
     /**
-     * Builds a UpdateSecretVersionMetadataOptions.
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret.
      *
-     * @return the new UpdateSecretVersionMetadataOptions instance
+     * @return the id
      */
-    public UpdateSecretVersionMetadataOptions build() {
-      return new UpdateSecretVersionMetadataOptions(this);
+    public String id() {
+        return id;
     }
 
     /**
-     * Adds an resources to resources.
+     * Gets the versionId.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret version. You can also use `previous` to retrieve the previous
+     * version.
+     * <p>
+     * **Note:** To find the version ID of a secret, use the [Get secret metadata](#get-secret-metadata) method and check
+     * the response details.
      *
-     * @param resources the new resources
-     * @return the UpdateSecretVersionMetadataOptions builder
+     * @return the versionId
      */
-    public Builder addResources(UpdateSecretVersionMetadata resources) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
-        "resources cannot be null");
-      if (this.resources == null) {
-        this.resources = new ArrayList<UpdateSecretVersionMetadata>();
-      }
-      this.resources.add(resources);
-      return this;
+    public String versionId() {
+        return versionId;
     }
 
     /**
-     * Set the secretType.
+     * Gets the metadata.
+     * <p>
+     * The metadata that describes the resource array.
      *
-     * @param secretType the secretType
-     * @return the UpdateSecretVersionMetadataOptions builder
+     * @return the metadata
      */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
+    public CollectionMetadata metadata() {
+        return metadata;
     }
 
     /**
-     * Set the id.
+     * Gets the resources.
+     * <p>
+     * A collection of resources.
      *
-     * @param id the id
-     * @return the UpdateSecretVersionMetadataOptions builder
+     * @return the resources
      */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
+    public List<UpdateSecretVersionMetadata> resources() {
+        return resources;
     }
-
-    /**
-     * Set the versionId.
-     *
-     * @param versionId the versionId
-     * @return the UpdateSecretVersionMetadataOptions builder
-     */
-    public Builder versionId(String versionId) {
-      this.versionId = versionId;
-      return this;
-    }
-
-    /**
-     * Set the metadata.
-     *
-     * @param metadata the metadata
-     * @return the UpdateSecretVersionMetadataOptions builder
-     */
-    public Builder metadata(CollectionMetadata metadata) {
-      this.metadata = metadata;
-      return this;
-    }
-
-    /**
-     * Set the resources.
-     * Existing resources will be replaced.
-     *
-     * @param resources the resources
-     * @return the UpdateSecretVersionMetadataOptions builder
-     */
-    public Builder resources(List<UpdateSecretVersionMetadata> resources) {
-      this.resources = resources;
-      return this;
-    }
-  }
-
-  protected UpdateSecretVersionMetadataOptions() { }
-
-  protected UpdateSecretVersionMetadataOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.versionId,
-      "versionId cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
-      "metadata cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
-      "resources cannot be null");
-    secretType = builder.secretType;
-    id = builder.id;
-    versionId = builder.versionId;
-    metadata = builder.metadata;
-    resources = builder.resources;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a UpdateSecretVersionMetadataOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
-
-  /**
-   * Gets the versionId.
-   *
-   * The v4 UUID that uniquely identifies the secret version. You can also use `previous` to retrieve the previous
-   * version.
-   *
-   * **Note:** To find the version ID of a secret, use the [Get secret metadata](#get-secret-metadata) method and check
-   * the response details.
-   *
-   * @return the versionId
-   */
-  public String versionId() {
-    return versionId;
-  }
-
-  /**
-   * Gets the metadata.
-   *
-   * The metadata that describes the resource array.
-   *
-   * @return the metadata
-   */
-  public CollectionMetadata metadata() {
-    return metadata;
-  }
-
-  /**
-   * Gets the resources.
-   *
-   * A collection of resources.
-   *
-   * @return the resources
-   */
-  public List<UpdateSecretVersionMetadata> resources() {
-    return resources;
-  }
 }
 

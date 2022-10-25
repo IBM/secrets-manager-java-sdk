@@ -21,142 +21,143 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class LockSecretBodyLocksItem extends GenericModel {
 
-  protected String name;
-  protected String description;
-  protected Map<String, Object> attributes;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String name;
-    private String description;
-    private Map<String, Object> attributes;
+    protected String name;
+    protected String description;
+    protected Map<String, Object> attributes;
 
     /**
-     * Instantiates a new Builder from an existing LockSecretBodyLocksItem instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String name;
+        private String description;
+        private Map<String, Object> attributes;
+
+        /**
+         * Instantiates a new Builder from an existing LockSecretBodyLocksItem instance.
+         *
+         * @param lockSecretBodyLocksItem the instance to initialize the Builder with
+         */
+        private Builder(LockSecretBodyLocksItem lockSecretBodyLocksItem) {
+            this.name = lockSecretBodyLocksItem.name;
+            this.description = lockSecretBodyLocksItem.description;
+            this.attributes = lockSecretBodyLocksItem.attributes;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param name the name
+         */
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Builds a LockSecretBodyLocksItem.
+         *
+         * @return the new LockSecretBodyLocksItem instance
+         */
+        public LockSecretBodyLocksItem build() {
+            return new LockSecretBodyLocksItem(this);
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the LockSecretBodyLocksItem builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the description.
+         *
+         * @param description the description
+         * @return the LockSecretBodyLocksItem builder
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        /**
+         * Set the attributes.
+         *
+         * @param attributes the attributes
+         * @return the LockSecretBodyLocksItem builder
+         */
+        public Builder attributes(Map<String, Object> attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+    }
+
+    protected LockSecretBodyLocksItem() {
+    }
+
+    protected LockSecretBodyLocksItem(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+                "name cannot be null");
+        name = builder.name;
+        description = builder.description;
+        attributes = builder.attributes;
+    }
+
+    /**
+     * New builder.
      *
-     * @param lockSecretBodyLocksItem the instance to initialize the Builder with
+     * @return a LockSecretBodyLocksItem builder
      */
-    private Builder(LockSecretBodyLocksItem lockSecretBodyLocksItem) {
-      this.name = lockSecretBodyLocksItem.name;
-      this.description = lockSecretBodyLocksItem.description;
-      this.attributes = lockSecretBodyLocksItem.attributes;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the name.
+     * <p>
+     * A human-readable name to assign to the lock. The lock name must be unique per secret version.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret lock.
      *
-     * @param name the name
+     * @return the name
      */
-    public Builder(String name) {
-      this.name = name;
+    public String name() {
+        return name;
     }
 
     /**
-     * Builds a LockSecretBodyLocksItem.
+     * Gets the description.
+     * <p>
+     * An extended description of the lock.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+     * lock.
      *
-     * @return the new LockSecretBodyLocksItem instance
+     * @return the description
      */
-    public LockSecretBodyLocksItem build() {
-      return new LockSecretBodyLocksItem(this);
+    public String description() {
+        return description;
     }
 
     /**
-     * Set the name.
+     * Gets the attributes.
+     * <p>
+     * Optional information to associate with a lock, such as resources CRNs to be used by automation.
      *
-     * @param name the name
-     * @return the LockSecretBodyLocksItem builder
+     * @return the attributes
      */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
+    public Map<String, Object> attributes() {
+        return attributes;
     }
-
-    /**
-     * Set the description.
-     *
-     * @param description the description
-     * @return the LockSecretBodyLocksItem builder
-     */
-    public Builder description(String description) {
-      this.description = description;
-      return this;
-    }
-
-    /**
-     * Set the attributes.
-     *
-     * @param attributes the attributes
-     * @return the LockSecretBodyLocksItem builder
-     */
-    public Builder attributes(Map<String, Object> attributes) {
-      this.attributes = attributes;
-      return this;
-    }
-  }
-
-  protected LockSecretBodyLocksItem() { }
-
-  protected LockSecretBodyLocksItem(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
-      "name cannot be null");
-    name = builder.name;
-    description = builder.description;
-    attributes = builder.attributes;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a LockSecretBodyLocksItem builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the name.
-   *
-   * A human-readable name to assign to the lock. The lock name must be unique per secret version.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret lock.
-   *
-   * @return the name
-   */
-  public String name() {
-    return name;
-  }
-
-  /**
-   * Gets the description.
-   *
-   * An extended description of the lock.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
-   * lock.
-   *
-   * @return the description
-   */
-  public String description() {
-    return description;
-  }
-
-  /**
-   * Gets the attributes.
-   *
-   * Optional information to associate with a lock, such as resources CRNs to be used by automation.
-   *
-   * @return the attributes
-   */
-  public Map<String, Object> attributes() {
-    return attributes;
-  }
 }
 

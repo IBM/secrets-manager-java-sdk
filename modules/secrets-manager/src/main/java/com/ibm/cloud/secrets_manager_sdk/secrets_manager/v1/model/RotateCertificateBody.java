@@ -20,128 +20,129 @@ import java.util.Map;
 public class RotateCertificateBody extends SecretAction {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String certificate;
-    private String privateKey;
-    private String intermediate;
-    private Map<String, Object> customMetadata;
-    private Map<String, Object> versionCustomMetadata;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String certificate;
+        private String privateKey;
+        private String intermediate;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
+
+        /**
+         * Instantiates a new Builder from an existing RotateCertificateBody instance.
+         *
+         * @param rotateCertificateBody the instance to initialize the Builder with
+         */
+        public Builder(SecretAction rotateCertificateBody) {
+            this.certificate = rotateCertificateBody.certificate;
+            this.privateKey = rotateCertificateBody.privateKey;
+            this.intermediate = rotateCertificateBody.intermediate;
+            this.customMetadata = rotateCertificateBody.customMetadata;
+            this.versionCustomMetadata = rotateCertificateBody.versionCustomMetadata;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param certificate the certificate
+         */
+        public Builder(String certificate) {
+            this.certificate = certificate;
+        }
+
+        /**
+         * Builds a RotateCertificateBody.
+         *
+         * @return the new RotateCertificateBody instance
+         */
+        public RotateCertificateBody build() {
+            return new RotateCertificateBody(this);
+        }
+
+        /**
+         * Set the certificate.
+         *
+         * @param certificate the certificate
+         * @return the RotateCertificateBody builder
+         */
+        public Builder certificate(String certificate) {
+            this.certificate = certificate;
+            return this;
+        }
+
+        /**
+         * Set the privateKey.
+         *
+         * @param privateKey the privateKey
+         * @return the RotateCertificateBody builder
+         */
+        public Builder privateKey(String privateKey) {
+            this.privateKey = privateKey;
+            return this;
+        }
+
+        /**
+         * Set the intermediate.
+         *
+         * @param intermediate the intermediate
+         * @return the RotateCertificateBody builder
+         */
+        public Builder intermediate(String intermediate) {
+            this.intermediate = intermediate;
+            return this;
+        }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RotateCertificateBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RotateCertificateBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+    }
+
+    protected RotateCertificateBody() {
+    }
+
+    protected RotateCertificateBody(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.certificate,
+                "certificate cannot be null");
+        certificate = builder.certificate;
+        privateKey = builder.privateKey;
+        intermediate = builder.intermediate;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
+    }
 
     /**
-     * Instantiates a new Builder from an existing RotateCertificateBody instance.
+     * New builder.
      *
-     * @param rotateCertificateBody the instance to initialize the Builder with
+     * @return a RotateCertificateBody builder
      */
-    public Builder(SecretAction rotateCertificateBody) {
-      this.certificate = rotateCertificateBody.certificate;
-      this.privateKey = rotateCertificateBody.privateKey;
-      this.intermediate = rotateCertificateBody.intermediate;
-      this.customMetadata = rotateCertificateBody.customMetadata;
-      this.versionCustomMetadata = rotateCertificateBody.versionCustomMetadata;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param certificate the certificate
-     */
-    public Builder(String certificate) {
-      this.certificate = certificate;
-    }
-
-    /**
-     * Builds a RotateCertificateBody.
-     *
-     * @return the new RotateCertificateBody instance
-     */
-    public RotateCertificateBody build() {
-      return new RotateCertificateBody(this);
-    }
-
-    /**
-     * Set the certificate.
-     *
-     * @param certificate the certificate
-     * @return the RotateCertificateBody builder
-     */
-    public Builder certificate(String certificate) {
-      this.certificate = certificate;
-      return this;
-    }
-
-    /**
-     * Set the privateKey.
-     *
-     * @param privateKey the privateKey
-     * @return the RotateCertificateBody builder
-     */
-    public Builder privateKey(String privateKey) {
-      this.privateKey = privateKey;
-      return this;
-    }
-
-    /**
-     * Set the intermediate.
-     *
-     * @param intermediate the intermediate
-     * @return the RotateCertificateBody builder
-     */
-    public Builder intermediate(String intermediate) {
-      this.intermediate = intermediate;
-      return this;
-    }
-
-    /**
-     * Set the customMetadata.
-     *
-     * @param customMetadata the customMetadata
-     * @return the RotateCertificateBody builder
-     */
-    public Builder customMetadata(Map<String, Object> customMetadata) {
-      this.customMetadata = customMetadata;
-      return this;
-    }
-
-    /**
-     * Set the versionCustomMetadata.
-     *
-     * @param versionCustomMetadata the versionCustomMetadata
-     * @return the RotateCertificateBody builder
-     */
-    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-      this.versionCustomMetadata = versionCustomMetadata;
-      return this;
-    }
-  }
-
-  protected RotateCertificateBody() { }
-
-  protected RotateCertificateBody(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.certificate,
-      "certificate cannot be null");
-    certificate = builder.certificate;
-    privateKey = builder.privateKey;
-    intermediate = builder.intermediate;
-    customMetadata = builder.customMetadata;
-    versionCustomMetadata = builder.versionCustomMetadata;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a RotateCertificateBody builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

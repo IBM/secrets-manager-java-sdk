@@ -20,100 +20,101 @@ import java.util.Map;
 public class RotatePublicCertBody extends SecretAction {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Boolean rotateKeys;
-    private Map<String, Object> customMetadata;
-    private Map<String, Object> versionCustomMetadata;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private Boolean rotateKeys;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
+
+        /**
+         * Instantiates a new Builder from an existing RotatePublicCertBody instance.
+         *
+         * @param rotatePublicCertBody the instance to initialize the Builder with
+         */
+        public Builder(SecretAction rotatePublicCertBody) {
+            this.rotateKeys = rotatePublicCertBody.rotateKeys;
+            this.customMetadata = rotatePublicCertBody.customMetadata;
+            this.versionCustomMetadata = rotatePublicCertBody.versionCustomMetadata;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param rotateKeys the rotateKeys
+         */
+        public Builder(Boolean rotateKeys) {
+            this.rotateKeys = rotateKeys;
+        }
+
+        /**
+         * Builds a RotatePublicCertBody.
+         *
+         * @return the new RotatePublicCertBody instance
+         */
+        public RotatePublicCertBody build() {
+            return new RotatePublicCertBody(this);
+        }
+
+        /**
+         * Set the rotateKeys.
+         *
+         * @param rotateKeys the rotateKeys
+         * @return the RotatePublicCertBody builder
+         */
+        public Builder rotateKeys(Boolean rotateKeys) {
+            this.rotateKeys = rotateKeys;
+            return this;
+        }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the RotatePublicCertBody builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the RotatePublicCertBody builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+    }
+
+    protected RotatePublicCertBody() {
+    }
+
+    protected RotatePublicCertBody(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.rotateKeys,
+                "rotateKeys cannot be null");
+        rotateKeys = builder.rotateKeys;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
+    }
 
     /**
-     * Instantiates a new Builder from an existing RotatePublicCertBody instance.
+     * New builder.
      *
-     * @param rotatePublicCertBody the instance to initialize the Builder with
+     * @return a RotatePublicCertBody builder
      */
-    public Builder(SecretAction rotatePublicCertBody) {
-      this.rotateKeys = rotatePublicCertBody.rotateKeys;
-      this.customMetadata = rotatePublicCertBody.customMetadata;
-      this.versionCustomMetadata = rotatePublicCertBody.versionCustomMetadata;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param rotateKeys the rotateKeys
-     */
-    public Builder(Boolean rotateKeys) {
-      this.rotateKeys = rotateKeys;
-    }
-
-    /**
-     * Builds a RotatePublicCertBody.
-     *
-     * @return the new RotatePublicCertBody instance
-     */
-    public RotatePublicCertBody build() {
-      return new RotatePublicCertBody(this);
-    }
-
-    /**
-     * Set the rotateKeys.
-     *
-     * @param rotateKeys the rotateKeys
-     * @return the RotatePublicCertBody builder
-     */
-    public Builder rotateKeys(Boolean rotateKeys) {
-      this.rotateKeys = rotateKeys;
-      return this;
-    }
-
-    /**
-     * Set the customMetadata.
-     *
-     * @param customMetadata the customMetadata
-     * @return the RotatePublicCertBody builder
-     */
-    public Builder customMetadata(Map<String, Object> customMetadata) {
-      this.customMetadata = customMetadata;
-      return this;
-    }
-
-    /**
-     * Set the versionCustomMetadata.
-     *
-     * @param versionCustomMetadata the versionCustomMetadata
-     * @return the RotatePublicCertBody builder
-     */
-    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-      this.versionCustomMetadata = versionCustomMetadata;
-      return this;
-    }
-  }
-
-  protected RotatePublicCertBody() { }
-
-  protected RotatePublicCertBody(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.rotateKeys,
-      "rotateKeys cannot be null");
-    rotateKeys = builder.rotateKeys;
-    customMetadata = builder.customMetadata;
-    versionCustomMetadata = builder.versionCustomMetadata;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a RotatePublicCertBody builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

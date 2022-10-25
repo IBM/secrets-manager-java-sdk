@@ -18,23 +18,26 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecre
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSecretVersion model.
  */
 public class GetSecretVersionTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetSecretVersion() throws Throwable {
-    GetSecretVersion getSecretVersionModel = new GetSecretVersion();
-    assertNull(getSecretVersionModel.getMetadata());
-    assertNull(getSecretVersionModel.getResources());
-  }
+    @Test
+    public void testGetSecretVersion() throws Throwable {
+        GetSecretVersion getSecretVersionModel = new GetSecretVersion();
+        assertNull(getSecretVersionModel.getMetadata());
+        assertNull(getSecretVersionModel.getResources());
+    }
 }

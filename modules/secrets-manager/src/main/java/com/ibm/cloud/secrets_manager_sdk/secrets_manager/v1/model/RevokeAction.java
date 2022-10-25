@@ -18,72 +18,73 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class RevokeAction extends ConfigAction {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String serialNumber;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String serialNumber;
+
+        /**
+         * Instantiates a new Builder from an existing RevokeAction instance.
+         *
+         * @param revokeAction the instance to initialize the Builder with
+         */
+        public Builder(ConfigAction revokeAction) {
+            this.serialNumber = revokeAction.serialNumber;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param serialNumber the serialNumber
+         */
+        public Builder(String serialNumber) {
+            this.serialNumber = serialNumber;
+        }
+
+        /**
+         * Builds a RevokeAction.
+         *
+         * @return the new RevokeAction instance
+         */
+        public RevokeAction build() {
+            return new RevokeAction(this);
+        }
+
+        /**
+         * Set the serialNumber.
+         *
+         * @param serialNumber the serialNumber
+         * @return the RevokeAction builder
+         */
+        public Builder serialNumber(String serialNumber) {
+            this.serialNumber = serialNumber;
+            return this;
+        }
+    }
+
+    protected RevokeAction() {
+    }
+
+    protected RevokeAction(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.serialNumber,
+                "serialNumber cannot be null");
+        serialNumber = builder.serialNumber;
+    }
 
     /**
-     * Instantiates a new Builder from an existing RevokeAction instance.
+     * New builder.
      *
-     * @param revokeAction the instance to initialize the Builder with
+     * @return a RevokeAction builder
      */
-    public Builder(ConfigAction revokeAction) {
-      this.serialNumber = revokeAction.serialNumber;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param serialNumber the serialNumber
-     */
-    public Builder(String serialNumber) {
-      this.serialNumber = serialNumber;
-    }
-
-    /**
-     * Builds a RevokeAction.
-     *
-     * @return the new RevokeAction instance
-     */
-    public RevokeAction build() {
-      return new RevokeAction(this);
-    }
-
-    /**
-     * Set the serialNumber.
-     *
-     * @param serialNumber the serialNumber
-     * @return the RevokeAction builder
-     */
-    public Builder serialNumber(String serialNumber) {
-      this.serialNumber = serialNumber;
-      return this;
-    }
-  }
-
-  protected RevokeAction() { }
-
-  protected RevokeAction(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.serialNumber,
-      "serialNumber cannot be null");
-    serialNumber = builder.serialNumber;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a RevokeAction builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

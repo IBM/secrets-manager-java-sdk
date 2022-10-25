@@ -25,198 +25,200 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
  */
 public class SecretGroupResource extends DynamicModel<Object> {
 
-  @SerializedName("id")
-  protected String id;
-  @SerializedName("name")
-  protected String name;
-  @SerializedName("description")
-  protected String description;
-  @SerializedName("creation_date")
-  protected Date creationDate;
-  @SerializedName("last_update_date")
-  protected Date lastUpdateDate;
-  @SerializedName("type")
-  protected String type;
+    @SerializedName("id")
+    protected String id;
+    @SerializedName("name")
+    protected String name;
+    @SerializedName("description")
+    protected String description;
+    @SerializedName("creation_date")
+    protected Date creationDate;
+    @SerializedName("last_update_date")
+    protected Date lastUpdateDate;
+    @SerializedName("type")
+    protected String type;
 
-  public SecretGroupResource() {
-    super(new TypeToken<Object>() { });
-  }
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String name;
-    private String description;
-    private Map<String, Object> dynamicProperties;
+    public SecretGroupResource() {
+        super(new TypeToken<Object>() {
+        });
+    }
 
     /**
-     * Instantiates a new Builder from an existing SecretGroupResource instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String name;
+        private String description;
+        private Map<String, Object> dynamicProperties;
+
+        /**
+         * Instantiates a new Builder from an existing SecretGroupResource instance.
+         *
+         * @param secretGroupResource the instance to initialize the Builder with
+         */
+        private Builder(SecretGroupResource secretGroupResource) {
+            this.name = secretGroupResource.name;
+            this.description = secretGroupResource.description;
+            this.dynamicProperties = secretGroupResource.getProperties();
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a SecretGroupResource.
+         *
+         * @return the new SecretGroupResource instance
+         */
+        public SecretGroupResource build() {
+            return new SecretGroupResource(this);
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the SecretGroupResource builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the description.
+         *
+         * @param description the description
+         * @return the SecretGroupResource builder
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        /**
+         * Add an arbitrary property.
+         *
+         * @param name  the name of the property to add
+         * @param value the value of the property to add
+         * @return the SecretGroupResource builder
+         */
+        public Builder add(String name, Object value) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(name, "name cannot be null");
+            if (this.dynamicProperties == null) {
+                this.dynamicProperties = new HashMap<String, Object>();
+            }
+            this.dynamicProperties.put(name, value);
+            return this;
+        }
+    }
+
+    protected SecretGroupResource(Builder builder) {
+        super(new TypeToken<Object>() {
+        });
+        name = builder.name;
+        description = builder.description;
+        this.setProperties(builder.dynamicProperties);
+    }
+
+    /**
+     * New builder.
      *
-     * @param secretGroupResource the instance to initialize the Builder with
+     * @return a SecretGroupResource builder
      */
-    private Builder(SecretGroupResource secretGroupResource) {
-      this.name = secretGroupResource.name;
-      this.description = secretGroupResource.description;
-      this.dynamicProperties = secretGroupResource.getProperties();
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a SecretGroupResource.
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret group.
      *
-     * @return the new SecretGroupResource instance
+     * @return the id
      */
-    public SecretGroupResource build() {
-      return new SecretGroupResource(this);
+    public String getId() {
+        return this.id;
     }
 
     /**
-     * Set the name.
+     * Gets the name.
+     * <p>
+     * A human-readable name to assign to your secret group.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret group.
      *
-     * @param name the name
-     * @return the SecretGroupResource builder
+     * @return the name
      */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
+    public String getName() {
+        return this.name;
     }
 
     /**
-     * Set the description.
+     * Sets the name.
      *
-     * @param description the description
-     * @return the SecretGroupResource builder
+     * @param name the new name
      */
-    public Builder description(String description) {
-      this.description = description;
-      return this;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     /**
-     * Add an arbitrary property.
+     * Gets the description.
+     * <p>
+     * An extended description of your secret group.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+     * group.
      *
-     * @param name the name of the property to add
-     * @param value the value of the property to add
-     * @return the SecretGroupResource builder
+     * @return the description
      */
-    public Builder add(String name, Object value) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(name, "name cannot be null");
-      if (this.dynamicProperties == null) {
-        this.dynamicProperties = new HashMap<String, Object>();
-      }
-      this.dynamicProperties.put(name, value);
-      return this;
+    public String getDescription() {
+        return this.description;
     }
-  }
 
-  protected SecretGroupResource(Builder builder) {
-    super(new TypeToken<Object>() { });
-    name = builder.name;
-    description = builder.description;
-    this.setProperties(builder.dynamicProperties);
-  }
+    /**
+     * Sets the description.
+     *
+     * @param description the new description
+     */
+    public void setDescription(final String description) {
+        this.description = description;
+    }
 
-  /**
-   * New builder.
-   *
-   * @return a SecretGroupResource builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
+    /**
+     * Gets the creationDate.
+     * <p>
+     * The date the secret group was created. The date format follows RFC 3339.
+     *
+     * @return the creationDate
+     */
+    public Date getCreationDate() {
+        return this.creationDate;
+    }
 
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret group.
-   *
-   * @return the id
-   */
-  public String getId() {
-    return this.id;
-  }
+    /**
+     * Gets the lastUpdateDate.
+     * <p>
+     * Updates when the metadata of the secret group is modified. The date format follows RFC 3339.
+     *
+     * @return the lastUpdateDate
+     */
+    public Date getLastUpdateDate() {
+        return this.lastUpdateDate;
+    }
 
-  /**
-   * Gets the name.
-   *
-   * A human-readable name to assign to your secret group.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret group.
-   *
-   * @return the name
-   */
-  public String getName() {
-    return this.name;
-  }
-
-  /**
-   * Sets the name.
-   *
-   * @param name the new name
-   */
-  public void setName(final String name) {
-    this.name = name;
-  }
-
-  /**
-   * Gets the description.
-   *
-   * An extended description of your secret group.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
-   * group.
-   *
-   * @return the description
-   */
-  public String getDescription() {
-    return this.description;
-  }
-
-  /**
-   * Sets the description.
-   *
-   * @param description the new description
-   */
-  public void setDescription(final String description) {
-    this.description = description;
-  }
-
-  /**
-   * Gets the creationDate.
-   *
-   * The date the secret group was created. The date format follows RFC 3339.
-   *
-   * @return the creationDate
-   */
-  public Date getCreationDate() {
-    return this.creationDate;
-  }
-
-  /**
-   * Gets the lastUpdateDate.
-   *
-   * Updates when the metadata of the secret group is modified. The date format follows RFC 3339.
-   *
-   * @return the lastUpdateDate
-   */
-  public Date getLastUpdateDate() {
-    return this.lastUpdateDate;
-  }
-
-  /**
-   * Gets the type.
-   *
-   * The MIME type that represents the secret group.
-   *
-   * @return the type
-   */
-  public String getType() {
-    return this.type;
-  }
+    /**
+     * Gets the type.
+     * <p>
+     * The MIME type that represents the secret group.
+     *
+     * @return the type
+     */
+    public String getType() {
+        return this.type;
+    }
 }

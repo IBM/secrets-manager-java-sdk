@@ -19,37 +19,38 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * GetSecretPolicies.
- *
+ * <p>
  * Classes which extend this class:
  * - GetSecretPolicyRotation
  */
 public class GetSecretPolicies extends GenericModel {
 
-  protected CollectionMetadata metadata;
-  protected List<Map<String, Object>> resources;
+    protected CollectionMetadata metadata;
+    protected List<Map<String, Object>> resources;
 
-  protected GetSecretPolicies() { }
+    protected GetSecretPolicies() {
+    }
 
-  /**
-   * Gets the metadata.
-   *
-   * The metadata that describes the resource array.
-   *
-   * @return the metadata
-   */
-  public CollectionMetadata getMetadata() {
-    return metadata;
-  }
+    /**
+     * Gets the metadata.
+     * <p>
+     * The metadata that describes the resource array.
+     *
+     * @return the metadata
+     */
+    public CollectionMetadata getMetadata() {
+        return metadata;
+    }
 
-  /**
-   * Gets the resources.
-   *
-   * A collection of resources.
-   *
-   * @return the resources
-   */
-  public List<Map<String, Object>> getResources() {
-    return resources;
-  }
+    /**
+     * Gets the resources.
+     * <p>
+     * A collection of resources.
+     *
+     * @return the resources
+     */
+    public List<Map<String, Object>> getResources() {
+        return resources;
+    }
 }
 

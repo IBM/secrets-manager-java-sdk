@@ -19,56 +19,59 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecre
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the UpdateSecretMetadataOptions model.
  */
 public class UpdateSecretMetadataOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testUpdateSecretMetadataOptions() throws Throwable {
-    CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
-      .collectionType("application/vnd.ibm.secrets-manager.config+json")
-      .collectionTotal(Long.valueOf("1"))
-      .build();
-    assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.config+json");
-    assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
+    @Test
+    public void testUpdateSecretMetadataOptions() throws Throwable {
+        CollectionMetadata collectionMetadataModel = new CollectionMetadata.Builder()
+                .collectionType("application/vnd.ibm.secrets-manager.config+json")
+                .collectionTotal(Long.valueOf("1"))
+                .build();
+        assertEquals(collectionMetadataModel.collectionType(), "application/vnd.ibm.secrets-manager.config+json");
+        assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
-    ArbitrarySecretMetadata secretMetadataModel = new ArbitrarySecretMetadata.Builder()
-      .labels(java.util.Arrays.asList("dev", "us-south"))
-      .name("example-secret")
-      .description("Extended description for this secret.")
-      .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-      .build();
-    assertEquals(secretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
-    assertEquals(secretMetadataModel.name(), "example-secret");
-    assertEquals(secretMetadataModel.description(), "Extended description for this secret.");
-    assertEquals(secretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
-    assertEquals(secretMetadataModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
+        ArbitrarySecretMetadata secretMetadataModel = new ArbitrarySecretMetadata.Builder()
+                .labels(java.util.Arrays.asList("dev", "us-south"))
+                .name("example-secret")
+                .description("Extended description for this secret.")
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
+                .build();
+        assertEquals(secretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
+        assertEquals(secretMetadataModel.name(), "example-secret");
+        assertEquals(secretMetadataModel.description(), "Extended description for this secret.");
+        assertEquals(secretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(secretMetadataModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
 
-    UpdateSecretMetadataOptions updateSecretMetadataOptionsModel = new UpdateSecretMetadataOptions.Builder()
-      .secretType("arbitrary")
-      .id("testString")
-      .metadata(collectionMetadataModel)
-      .resources(java.util.Arrays.asList(secretMetadataModel))
-      .build();
-    assertEquals(updateSecretMetadataOptionsModel.secretType(), "arbitrary");
-    assertEquals(updateSecretMetadataOptionsModel.id(), "testString");
-    assertEquals(updateSecretMetadataOptionsModel.metadata(), collectionMetadataModel);
-    assertEquals(updateSecretMetadataOptionsModel.resources(), java.util.Arrays.asList(secretMetadataModel));
-  }
+        UpdateSecretMetadataOptions updateSecretMetadataOptionsModel = new UpdateSecretMetadataOptions.Builder()
+                .secretType("arbitrary")
+                .id("testString")
+                .metadata(collectionMetadataModel)
+                .resources(java.util.Arrays.asList(secretMetadataModel))
+                .build();
+        assertEquals(updateSecretMetadataOptionsModel.secretType(), "arbitrary");
+        assertEquals(updateSecretMetadataOptionsModel.id(), "testString");
+        assertEquals(updateSecretMetadataOptionsModel.metadata(), collectionMetadataModel);
+        assertEquals(updateSecretMetadataOptionsModel.resources(), java.util.Arrays.asList(secretMetadataModel));
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testUpdateSecretMetadataOptionsError() throws Throwable {
-    new UpdateSecretMetadataOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testUpdateSecretMetadataOptionsError() throws Throwable {
+        new UpdateSecretMetadataOptions.Builder().build();
+    }
 
 }

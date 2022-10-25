@@ -16,32 +16,35 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSecretMetadataOptions model.
  */
 public class GetSecretMetadataOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetSecretMetadataOptions() throws Throwable {
-    GetSecretMetadataOptions getSecretMetadataOptionsModel = new GetSecretMetadataOptions.Builder()
-      .secretType("arbitrary")
-      .id("testString")
-      .build();
-    assertEquals(getSecretMetadataOptionsModel.secretType(), "arbitrary");
-    assertEquals(getSecretMetadataOptionsModel.id(), "testString");
-  }
+    @Test
+    public void testGetSecretMetadataOptions() throws Throwable {
+        GetSecretMetadataOptions getSecretMetadataOptionsModel = new GetSecretMetadataOptions.Builder()
+                .secretType("arbitrary")
+                .id("testString")
+                .build();
+        assertEquals(getSecretMetadataOptionsModel.secretType(), "arbitrary");
+        assertEquals(getSecretMetadataOptionsModel.id(), "testString");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testGetSecretMetadataOptionsError() throws Throwable {
-    new GetSecretMetadataOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testGetSecretMetadataOptionsError() throws Throwable {
+        new GetSecretMetadataOptions.Builder().build();
+    }
 
 }

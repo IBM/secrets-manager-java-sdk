@@ -18,23 +18,26 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMeta
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetNotificationsSettings;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.NotificationsSettings;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetNotificationsSettings model.
  */
 public class GetNotificationsSettingsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetNotificationsSettings() throws Throwable {
-    GetNotificationsSettings getNotificationsSettingsModel = new GetNotificationsSettings();
-    assertNull(getNotificationsSettingsModel.getMetadata());
-    assertNull(getNotificationsSettingsModel.getResources());
-  }
+    @Test
+    public void testGetNotificationsSettings() throws Throwable {
+        GetNotificationsSettings getNotificationsSettingsModel = new GetNotificationsSettings();
+        assertNull(getNotificationsSettingsModel.getMetadata());
+        assertNull(getNotificationsSettingsModel.getResources());
+    }
 }

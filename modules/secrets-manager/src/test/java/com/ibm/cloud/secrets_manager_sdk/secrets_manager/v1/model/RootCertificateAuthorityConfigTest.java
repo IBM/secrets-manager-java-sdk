@@ -16,102 +16,105 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RootCertificateAuthorityConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the RootCertificateAuthorityConfig model.
  */
 public class RootCertificateAuthorityConfigTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testRootCertificateAuthorityConfig() throws Throwable {
-    RootCertificateAuthorityConfig rootCertificateAuthorityConfigModel = new RootCertificateAuthorityConfig.Builder()
-      .maxTtl("8760h")
-      .crlExpiry("72h")
-      .crlDisable(false)
-      .crlDistributionPointsEncoded(false)
-      .issuingCertificatesUrlsEncoded(false)
-      .commonName("example.com")
-      .altNames("testString")
-      .ipSans("testString")
-      .uriSans("testString")
-      .otherSans(java.util.Arrays.asList("testString"))
-      .ttl("testString")
-      .format("pem")
-      .privateKeyFormat("der")
-      .keyType("rsa")
-      .keyBits(Long.valueOf("26"))
-      .maxPathLength(Long.valueOf("26"))
-      .excludeCnFromSans(false)
-      .permittedDnsDomains(java.util.Arrays.asList("testString"))
-      .ou(java.util.Arrays.asList("testString"))
-      .organization(java.util.Arrays.asList("testString"))
-      .country(java.util.Arrays.asList("testString"))
-      .locality(java.util.Arrays.asList("testString"))
-      .province(java.util.Arrays.asList("testString"))
-      .streetAddress(java.util.Arrays.asList("testString"))
-      .postalCode(java.util.Arrays.asList("testString"))
-      .serialNumber("d9:be:fe:35:ba:09:42:b5")
-      .build();
-    assertEquals(rootCertificateAuthorityConfigModel.maxTtl(), "8760h");
-    assertEquals(rootCertificateAuthorityConfigModel.crlExpiry(), "72h");
-    assertEquals(rootCertificateAuthorityConfigModel.crlDisable(), Boolean.valueOf(false));
-    assertEquals(rootCertificateAuthorityConfigModel.crlDistributionPointsEncoded(), Boolean.valueOf(false));
-    assertEquals(rootCertificateAuthorityConfigModel.issuingCertificatesUrlsEncoded(), Boolean.valueOf(false));
-    assertEquals(rootCertificateAuthorityConfigModel.commonName(), "example.com");
-    assertEquals(rootCertificateAuthorityConfigModel.altNames(), "testString");
-    assertEquals(rootCertificateAuthorityConfigModel.ipSans(), "testString");
-    assertEquals(rootCertificateAuthorityConfigModel.uriSans(), "testString");
-    assertEquals(rootCertificateAuthorityConfigModel.otherSans(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.ttl(), "testString");
-    assertEquals(rootCertificateAuthorityConfigModel.format(), "pem");
-    assertEquals(rootCertificateAuthorityConfigModel.privateKeyFormat(), "der");
-    assertEquals(rootCertificateAuthorityConfigModel.keyType(), "rsa");
-    assertEquals(rootCertificateAuthorityConfigModel.keyBits(), Long.valueOf("26"));
-    assertEquals(rootCertificateAuthorityConfigModel.maxPathLength(), Long.valueOf("26"));
-    assertEquals(rootCertificateAuthorityConfigModel.excludeCnFromSans(), Boolean.valueOf(false));
-    assertEquals(rootCertificateAuthorityConfigModel.permittedDnsDomains(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.ou(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.organization(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.country(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.locality(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.province(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.streetAddress(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.postalCode(), java.util.Arrays.asList("testString"));
-    assertEquals(rootCertificateAuthorityConfigModel.serialNumber(), "d9:be:fe:35:ba:09:42:b5");
+    @Test
+    public void testRootCertificateAuthorityConfig() throws Throwable {
+        RootCertificateAuthorityConfig rootCertificateAuthorityConfigModel = new RootCertificateAuthorityConfig.Builder()
+                .maxTtl("8760h")
+                .crlExpiry("72h")
+                .crlDisable(false)
+                .crlDistributionPointsEncoded(false)
+                .issuingCertificatesUrlsEncoded(false)
+                .commonName("example.com")
+                .altNames("testString")
+                .ipSans("testString")
+                .uriSans("testString")
+                .otherSans(java.util.Arrays.asList("testString"))
+                .ttl("testString")
+                .format("pem")
+                .privateKeyFormat("der")
+                .keyType("rsa")
+                .keyBits(Long.valueOf("26"))
+                .maxPathLength(Long.valueOf("26"))
+                .excludeCnFromSans(false)
+                .permittedDnsDomains(java.util.Arrays.asList("testString"))
+                .ou(java.util.Arrays.asList("testString"))
+                .organization(java.util.Arrays.asList("testString"))
+                .country(java.util.Arrays.asList("testString"))
+                .locality(java.util.Arrays.asList("testString"))
+                .province(java.util.Arrays.asList("testString"))
+                .streetAddress(java.util.Arrays.asList("testString"))
+                .postalCode(java.util.Arrays.asList("testString"))
+                .serialNumber("d9:be:fe:35:ba:09:42:b5")
+                .build();
+        assertEquals(rootCertificateAuthorityConfigModel.maxTtl(), "8760h");
+        assertEquals(rootCertificateAuthorityConfigModel.crlExpiry(), "72h");
+        assertEquals(rootCertificateAuthorityConfigModel.crlDisable(), Boolean.valueOf(false));
+        assertEquals(rootCertificateAuthorityConfigModel.crlDistributionPointsEncoded(), Boolean.valueOf(false));
+        assertEquals(rootCertificateAuthorityConfigModel.issuingCertificatesUrlsEncoded(), Boolean.valueOf(false));
+        assertEquals(rootCertificateAuthorityConfigModel.commonName(), "example.com");
+        assertEquals(rootCertificateAuthorityConfigModel.altNames(), "testString");
+        assertEquals(rootCertificateAuthorityConfigModel.ipSans(), "testString");
+        assertEquals(rootCertificateAuthorityConfigModel.uriSans(), "testString");
+        assertEquals(rootCertificateAuthorityConfigModel.otherSans(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.ttl(), "testString");
+        assertEquals(rootCertificateAuthorityConfigModel.format(), "pem");
+        assertEquals(rootCertificateAuthorityConfigModel.privateKeyFormat(), "der");
+        assertEquals(rootCertificateAuthorityConfigModel.keyType(), "rsa");
+        assertEquals(rootCertificateAuthorityConfigModel.keyBits(), Long.valueOf("26"));
+        assertEquals(rootCertificateAuthorityConfigModel.maxPathLength(), Long.valueOf("26"));
+        assertEquals(rootCertificateAuthorityConfigModel.excludeCnFromSans(), Boolean.valueOf(false));
+        assertEquals(rootCertificateAuthorityConfigModel.permittedDnsDomains(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.ou(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.organization(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.country(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.locality(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.province(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.streetAddress(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.postalCode(), java.util.Arrays.asList("testString"));
+        assertEquals(rootCertificateAuthorityConfigModel.serialNumber(), "d9:be:fe:35:ba:09:42:b5");
 
-    String json = TestUtilities.serialize(rootCertificateAuthorityConfigModel);
+        String json = TestUtilities.serialize(rootCertificateAuthorityConfigModel);
 
-    RootCertificateAuthorityConfig rootCertificateAuthorityConfigModelNew = TestUtilities.deserialize(json, RootCertificateAuthorityConfig.class);
-    assertTrue(rootCertificateAuthorityConfigModelNew instanceof RootCertificateAuthorityConfig);
-    assertEquals(rootCertificateAuthorityConfigModelNew.maxTtl(), "8760h");
-    assertEquals(rootCertificateAuthorityConfigModelNew.crlExpiry(), "72h");
-    assertEquals(rootCertificateAuthorityConfigModelNew.crlDisable(), Boolean.valueOf(false));
-    assertEquals(rootCertificateAuthorityConfigModelNew.crlDistributionPointsEncoded(), Boolean.valueOf(false));
-    assertEquals(rootCertificateAuthorityConfigModelNew.issuingCertificatesUrlsEncoded(), Boolean.valueOf(false));
-    assertEquals(rootCertificateAuthorityConfigModelNew.commonName(), "example.com");
-    assertEquals(rootCertificateAuthorityConfigModelNew.altNames(), "testString");
-    assertEquals(rootCertificateAuthorityConfigModelNew.ipSans(), "testString");
-    assertEquals(rootCertificateAuthorityConfigModelNew.uriSans(), "testString");
-    assertEquals(rootCertificateAuthorityConfigModelNew.ttl(), "testString");
-    assertEquals(rootCertificateAuthorityConfigModelNew.format(), "pem");
-    assertEquals(rootCertificateAuthorityConfigModelNew.privateKeyFormat(), "der");
-    assertEquals(rootCertificateAuthorityConfigModelNew.keyType(), "rsa");
-    assertEquals(rootCertificateAuthorityConfigModelNew.keyBits(), Long.valueOf("26"));
-    assertEquals(rootCertificateAuthorityConfigModelNew.maxPathLength(), Long.valueOf("26"));
-    assertEquals(rootCertificateAuthorityConfigModelNew.excludeCnFromSans(), Boolean.valueOf(false));
-    assertEquals(rootCertificateAuthorityConfigModelNew.serialNumber(), "d9:be:fe:35:ba:09:42:b5");
-  }
+        RootCertificateAuthorityConfig rootCertificateAuthorityConfigModelNew = TestUtilities.deserialize(json, RootCertificateAuthorityConfig.class);
+        assertTrue(rootCertificateAuthorityConfigModelNew instanceof RootCertificateAuthorityConfig);
+        assertEquals(rootCertificateAuthorityConfigModelNew.maxTtl(), "8760h");
+        assertEquals(rootCertificateAuthorityConfigModelNew.crlExpiry(), "72h");
+        assertEquals(rootCertificateAuthorityConfigModelNew.crlDisable(), Boolean.valueOf(false));
+        assertEquals(rootCertificateAuthorityConfigModelNew.crlDistributionPointsEncoded(), Boolean.valueOf(false));
+        assertEquals(rootCertificateAuthorityConfigModelNew.issuingCertificatesUrlsEncoded(), Boolean.valueOf(false));
+        assertEquals(rootCertificateAuthorityConfigModelNew.commonName(), "example.com");
+        assertEquals(rootCertificateAuthorityConfigModelNew.altNames(), "testString");
+        assertEquals(rootCertificateAuthorityConfigModelNew.ipSans(), "testString");
+        assertEquals(rootCertificateAuthorityConfigModelNew.uriSans(), "testString");
+        assertEquals(rootCertificateAuthorityConfigModelNew.ttl(), "testString");
+        assertEquals(rootCertificateAuthorityConfigModelNew.format(), "pem");
+        assertEquals(rootCertificateAuthorityConfigModelNew.privateKeyFormat(), "der");
+        assertEquals(rootCertificateAuthorityConfigModelNew.keyType(), "rsa");
+        assertEquals(rootCertificateAuthorityConfigModelNew.keyBits(), Long.valueOf("26"));
+        assertEquals(rootCertificateAuthorityConfigModelNew.maxPathLength(), Long.valueOf("26"));
+        assertEquals(rootCertificateAuthorityConfigModelNew.excludeCnFromSans(), Boolean.valueOf(false));
+        assertEquals(rootCertificateAuthorityConfigModelNew.serialNumber(), "d9:be:fe:35:ba:09:42:b5");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testRootCertificateAuthorityConfigError() throws Throwable {
-    new RootCertificateAuthorityConfig.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testRootCertificateAuthorityConfigError() throws Throwable {
+        new RootCertificateAuthorityConfig.Builder().build();
+    }
 
 }

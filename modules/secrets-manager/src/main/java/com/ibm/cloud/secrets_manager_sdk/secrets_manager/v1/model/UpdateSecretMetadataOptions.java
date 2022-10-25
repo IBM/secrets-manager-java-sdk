@@ -22,224 +22,239 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class UpdateSecretMetadataOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-    /** kv. */
-    String KV = "kv";
-  }
+    /**
+     * The secret type.
+     */
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * kv.
+         */
+        String KV = "kv";
+    }
 
-  protected String secretType;
-  protected String id;
-  protected CollectionMetadata metadata;
-  protected List<SecretMetadata> resources;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private String id;
-    private CollectionMetadata metadata;
-    private List<SecretMetadata> resources;
+    protected String secretType;
+    protected String id;
+    protected CollectionMetadata metadata;
+    protected List<SecretMetadata> resources;
 
     /**
-     * Instantiates a new Builder from an existing UpdateSecretMetadataOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private String id;
+        private CollectionMetadata metadata;
+        private List<SecretMetadata> resources;
+
+        /**
+         * Instantiates a new Builder from an existing UpdateSecretMetadataOptions instance.
+         *
+         * @param updateSecretMetadataOptions the instance to initialize the Builder with
+         */
+        private Builder(UpdateSecretMetadataOptions updateSecretMetadataOptions) {
+            this.secretType = updateSecretMetadataOptions.secretType;
+            this.id = updateSecretMetadataOptions.id;
+            this.metadata = updateSecretMetadataOptions.metadata;
+            this.resources = updateSecretMetadataOptions.resources;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType the secretType
+         * @param id         the id
+         * @param metadata   the metadata
+         * @param resources  the resources
+         */
+        public Builder(String secretType, String id, CollectionMetadata metadata, List<SecretMetadata> resources) {
+            this.secretType = secretType;
+            this.id = id;
+            this.metadata = metadata;
+            this.resources = resources;
+        }
+
+        /**
+         * Builds a UpdateSecretMetadataOptions.
+         *
+         * @return the new UpdateSecretMetadataOptions instance
+         */
+        public UpdateSecretMetadataOptions build() {
+            return new UpdateSecretMetadataOptions(this);
+        }
+
+        /**
+         * Adds an resources to resources.
+         *
+         * @param resources the new resources
+         * @return the UpdateSecretMetadataOptions builder
+         */
+        public Builder addResources(SecretMetadata resources) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
+                    "resources cannot be null");
+            if (this.resources == null) {
+                this.resources = new ArrayList<SecretMetadata>();
+            }
+            this.resources.add(resources);
+            return this;
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the UpdateSecretMetadataOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the UpdateSecretMetadataOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Set the metadata.
+         *
+         * @param metadata the metadata
+         * @return the UpdateSecretMetadataOptions builder
+         */
+        public Builder metadata(CollectionMetadata metadata) {
+            this.metadata = metadata;
+            return this;
+        }
+
+        /**
+         * Set the resources.
+         * Existing resources will be replaced.
+         *
+         * @param resources the resources
+         * @return the UpdateSecretMetadataOptions builder
+         */
+        public Builder resources(List<SecretMetadata> resources) {
+            this.resources = resources;
+            return this;
+        }
+
+        /**
+         * Set the secretMetadataRequest.
+         *
+         * @param secretMetadataRequest the secretMetadataRequest
+         * @return the UpdateSecretMetadataOptions builder
+         */
+        public Builder secretMetadataRequest(SecretMetadataRequest secretMetadataRequest) {
+            this.metadata = secretMetadataRequest.metadata();
+            this.resources = secretMetadataRequest.resources();
+            return this;
+        }
+    }
+
+    protected UpdateSecretMetadataOptions() {
+    }
+
+    protected UpdateSecretMetadataOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
+                "metadata cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
+                "resources cannot be null");
+        secretType = builder.secretType;
+        id = builder.id;
+        metadata = builder.metadata;
+        resources = builder.resources;
+    }
+
+    /**
+     * New builder.
      *
-     * @param updateSecretMetadataOptions the instance to initialize the Builder with
+     * @return a UpdateSecretMetadataOptions builder
      */
-    private Builder(UpdateSecretMetadataOptions updateSecretMetadataOptions) {
-      this.secretType = updateSecretMetadataOptions.secretType;
-      this.id = updateSecretMetadataOptions.id;
-      this.metadata = updateSecretMetadataOptions.metadata;
-      this.resources = updateSecretMetadataOptions.resources;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @param secretType the secretType
-     * @param id the id
-     * @param metadata the metadata
-     * @param resources the resources
+     * @return the secretType
      */
-    public Builder(String secretType, String id, CollectionMetadata metadata, List<SecretMetadata> resources) {
-      this.secretType = secretType;
-      this.id = id;
-      this.metadata = metadata;
-      this.resources = resources;
+    public String secretType() {
+        return secretType;
     }
 
     /**
-     * Builds a UpdateSecretMetadataOptions.
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret.
      *
-     * @return the new UpdateSecretMetadataOptions instance
+     * @return the id
      */
-    public UpdateSecretMetadataOptions build() {
-      return new UpdateSecretMetadataOptions(this);
+    public String id() {
+        return id;
     }
 
     /**
-     * Adds an resources to resources.
+     * Gets the metadata.
+     * <p>
+     * The metadata that describes the resource array.
      *
-     * @param resources the new resources
-     * @return the UpdateSecretMetadataOptions builder
+     * @return the metadata
      */
-    public Builder addResources(SecretMetadata resources) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(resources,
-        "resources cannot be null");
-      if (this.resources == null) {
-        this.resources = new ArrayList<SecretMetadata>();
-      }
-      this.resources.add(resources);
-      return this;
+    public CollectionMetadata metadata() {
+        return metadata;
     }
 
     /**
-     * Set the secretType.
+     * Gets the resources.
+     * <p>
+     * A collection of resources.
      *
-     * @param secretType the secretType
-     * @return the UpdateSecretMetadataOptions builder
+     * @return the resources
      */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
+    public List<SecretMetadata> resources() {
+        return resources;
     }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the UpdateSecretMetadataOptions builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-
-    /**
-     * Set the metadata.
-     *
-     * @param metadata the metadata
-     * @return the UpdateSecretMetadataOptions builder
-     */
-    public Builder metadata(CollectionMetadata metadata) {
-      this.metadata = metadata;
-      return this;
-    }
-
-    /**
-     * Set the resources.
-     * Existing resources will be replaced.
-     *
-     * @param resources the resources
-     * @return the UpdateSecretMetadataOptions builder
-     */
-    public Builder resources(List<SecretMetadata> resources) {
-      this.resources = resources;
-      return this;
-    }
-
-    /**
-     * Set the secretMetadataRequest.
-     *
-     * @param secretMetadataRequest the secretMetadataRequest
-     * @return the UpdateSecretMetadataOptions builder
-     */
-    public Builder secretMetadataRequest(SecretMetadataRequest secretMetadataRequest) {
-      this.metadata = secretMetadataRequest.metadata();
-      this.resources = secretMetadataRequest.resources();
-      return this;
-    }
-  }
-
-  protected UpdateSecretMetadataOptions() { }
-
-  protected UpdateSecretMetadataOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.metadata,
-      "metadata cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.resources,
-      "resources cannot be null");
-    secretType = builder.secretType;
-    id = builder.id;
-    metadata = builder.metadata;
-    resources = builder.resources;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a UpdateSecretMetadataOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
-
-  /**
-   * Gets the metadata.
-   *
-   * The metadata that describes the resource array.
-   *
-   * @return the metadata
-   */
-  public CollectionMetadata metadata() {
-    return metadata;
-  }
-
-  /**
-   * Gets the resources.
-   *
-   * A collection of resources.
-   *
-   * @return the resources
-   */
-  public List<SecretMetadata> resources() {
-    return resources;
-  }
 }
 

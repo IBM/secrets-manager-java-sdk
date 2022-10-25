@@ -21,31 +21,32 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetNotificationsSettings extends GenericModel {
 
-  protected CollectionMetadata metadata;
-  protected List<NotificationsSettings> resources;
+    protected CollectionMetadata metadata;
+    protected List<NotificationsSettings> resources;
 
-  protected GetNotificationsSettings() { }
+    protected GetNotificationsSettings() {
+    }
 
-  /**
-   * Gets the metadata.
-   *
-   * The metadata that describes the resource array.
-   *
-   * @return the metadata
-   */
-  public CollectionMetadata getMetadata() {
-    return metadata;
-  }
+    /**
+     * Gets the metadata.
+     * <p>
+     * The metadata that describes the resource array.
+     *
+     * @return the metadata
+     */
+    public CollectionMetadata getMetadata() {
+        return metadata;
+    }
 
-  /**
-   * Gets the resources.
-   *
-   * A collection of resources.
-   *
-   * @return the resources
-   */
-  public List<NotificationsSettings> getResources() {
-    return resources;
-  }
+    /**
+     * Gets the resources.
+     * <p>
+     * A collection of resources.
+     *
+     * @return the resources
+     */
+    public List<NotificationsSettings> getResources() {
+        return resources;
+    }
 }
 

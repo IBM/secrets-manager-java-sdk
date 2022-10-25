@@ -19,23 +19,26 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementM
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElements;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetConfigElementsResourcesItemCertificateAuthoritiesConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetConfigElements model.
  */
 public class GetConfigElementsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testGetConfigElements() throws Throwable {
-    GetConfigElements getConfigElementsModel = new GetConfigElements();
-    assertNull(getConfigElementsModel.getMetadata());
-    assertNull(getConfigElementsModel.getResources());
-  }
+    @Test
+    public void testGetConfigElements() throws Throwable {
+        GetConfigElements getConfigElementsModel = new GetConfigElements();
+        assertNull(getConfigElementsModel.getMetadata());
+        assertNull(getConfigElementsModel.getResources());
+    }
 }

@@ -18,77 +18,78 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class DeleteCredentialsForIAMCredentialsSecret extends SecretAction {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String apiKeyId;
-    private String serviceId;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String apiKeyId;
+        private String serviceId;
+
+        /**
+         * Instantiates a new Builder from an existing DeleteCredentialsForIAMCredentialsSecret instance.
+         *
+         * @param deleteCredentialsForIamCredentialsSecret the instance to initialize the Builder with
+         */
+        public Builder(SecretAction deleteCredentialsForIamCredentialsSecret) {
+            this.apiKeyId = deleteCredentialsForIamCredentialsSecret.apiKeyId;
+            this.serviceId = deleteCredentialsForIamCredentialsSecret.serviceId;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a DeleteCredentialsForIAMCredentialsSecret.
+         *
+         * @return the new DeleteCredentialsForIAMCredentialsSecret instance
+         */
+        public DeleteCredentialsForIAMCredentialsSecret build() {
+            return new DeleteCredentialsForIAMCredentialsSecret(this);
+        }
+
+        /**
+         * Set the apiKeyId.
+         *
+         * @param apiKeyId the apiKeyId
+         * @return the DeleteCredentialsForIAMCredentialsSecret builder
+         */
+        public Builder apiKeyId(String apiKeyId) {
+            this.apiKeyId = apiKeyId;
+            return this;
+        }
+
+        /**
+         * Set the serviceId.
+         *
+         * @param serviceId the serviceId
+         * @return the DeleteCredentialsForIAMCredentialsSecret builder
+         * @deprecated this method is deprecated and may be removed in a future release
+         */
+        @Deprecated
+        public Builder serviceId(String serviceId) {
+            this.serviceId = serviceId;
+            return this;
+        }
+    }
+
+    protected DeleteCredentialsForIAMCredentialsSecret() {
+    }
+
+    protected DeleteCredentialsForIAMCredentialsSecret(Builder builder) {
+        apiKeyId = builder.apiKeyId;
+        serviceId = builder.serviceId;
+    }
 
     /**
-     * Instantiates a new Builder from an existing DeleteCredentialsForIAMCredentialsSecret instance.
+     * New builder.
      *
-     * @param deleteCredentialsForIamCredentialsSecret the instance to initialize the Builder with
+     * @return a DeleteCredentialsForIAMCredentialsSecret builder
      */
-    public Builder(SecretAction deleteCredentialsForIamCredentialsSecret) {
-      this.apiKeyId = deleteCredentialsForIamCredentialsSecret.apiKeyId;
-      this.serviceId = deleteCredentialsForIamCredentialsSecret.serviceId;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a DeleteCredentialsForIAMCredentialsSecret.
-     *
-     * @return the new DeleteCredentialsForIAMCredentialsSecret instance
-     */
-    public DeleteCredentialsForIAMCredentialsSecret build() {
-      return new DeleteCredentialsForIAMCredentialsSecret(this);
-    }
-
-    /**
-     * Set the apiKeyId.
-     *
-     * @param apiKeyId the apiKeyId
-     * @return the DeleteCredentialsForIAMCredentialsSecret builder
-     */
-    public Builder apiKeyId(String apiKeyId) {
-      this.apiKeyId = apiKeyId;
-      return this;
-    }
-
-    /**
-     * Set the serviceId.
-     *
-     * @param serviceId the serviceId
-     * @return the DeleteCredentialsForIAMCredentialsSecret builder
-     * @deprecated this method is deprecated and may be removed in a future release
-     */
-    @Deprecated
-    public Builder serviceId(String serviceId) {
-      this.serviceId = serviceId;
-      return this;
-    }
-  }
-
-  protected DeleteCredentialsForIAMCredentialsSecret() { }
-
-  protected DeleteCredentialsForIAMCredentialsSecret(Builder builder) {
-    apiKeyId = builder.apiKeyId;
-    serviceId = builder.serviceId;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a DeleteCredentialsForIAMCredentialsSecret builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

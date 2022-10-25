@@ -16,42 +16,45 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.LockSecretBodyLocksItem;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the LockSecretBodyLocksItem model.
  */
 public class LockSecretBodyLocksItemTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testLockSecretBodyLocksItem() throws Throwable {
-    LockSecretBodyLocksItem lockSecretBodyLocksItemModel = new LockSecretBodyLocksItem.Builder()
-      .name("testString")
-      .description("testString")
-      .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .build();
-    assertEquals(lockSecretBodyLocksItemModel.name(), "testString");
-    assertEquals(lockSecretBodyLocksItemModel.description(), "testString");
-    assertEquals(lockSecretBodyLocksItemModel.attributes(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    @Test
+    public void testLockSecretBodyLocksItem() throws Throwable {
+        LockSecretBodyLocksItem lockSecretBodyLocksItemModel = new LockSecretBodyLocksItem.Builder()
+                .name("testString")
+                .description("testString")
+                .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .build();
+        assertEquals(lockSecretBodyLocksItemModel.name(), "testString");
+        assertEquals(lockSecretBodyLocksItemModel.description(), "testString");
+        assertEquals(lockSecretBodyLocksItemModel.attributes(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
-    String json = TestUtilities.serialize(lockSecretBodyLocksItemModel);
+        String json = TestUtilities.serialize(lockSecretBodyLocksItemModel);
 
-    LockSecretBodyLocksItem lockSecretBodyLocksItemModelNew = TestUtilities.deserialize(json, LockSecretBodyLocksItem.class);
-    assertTrue(lockSecretBodyLocksItemModelNew instanceof LockSecretBodyLocksItem);
-    assertEquals(lockSecretBodyLocksItemModelNew.name(), "testString");
-    assertEquals(lockSecretBodyLocksItemModelNew.description(), "testString");
-    assertEquals(lockSecretBodyLocksItemModelNew.attributes().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
-  }
+        LockSecretBodyLocksItem lockSecretBodyLocksItemModelNew = TestUtilities.deserialize(json, LockSecretBodyLocksItem.class);
+        assertTrue(lockSecretBodyLocksItemModelNew instanceof LockSecretBodyLocksItem);
+        assertEquals(lockSecretBodyLocksItemModelNew.name(), "testString");
+        assertEquals(lockSecretBodyLocksItemModelNew.description(), "testString");
+        assertEquals(lockSecretBodyLocksItemModelNew.attributes().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testLockSecretBodyLocksItemError() throws Throwable {
-    new LockSecretBodyLocksItem.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testLockSecretBodyLocksItemError() throws Throwable {
+        new LockSecretBodyLocksItem.Builder().build();
+    }
 
 }

@@ -16,36 +16,39 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretGroupResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretGroupResource model.
  */
 public class SecretGroupResourceTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testSecretGroupResource() throws Throwable {
-    SecretGroupResource secretGroupResourceModel = new SecretGroupResource.Builder()
-      .name("my-secret-group")
-      .description("Extended description for this group.")
-      .add("foo", "testString")
-      .build();
-    assertEquals(secretGroupResourceModel.getName(), "my-secret-group");
-    assertEquals(secretGroupResourceModel.getDescription(), "Extended description for this group.");
-    assertEquals(secretGroupResourceModel.get("foo"), "testString");
+    @Test
+    public void testSecretGroupResource() throws Throwable {
+        SecretGroupResource secretGroupResourceModel = new SecretGroupResource.Builder()
+                .name("my-secret-group")
+                .description("Extended description for this group.")
+                .add("foo", "testString")
+                .build();
+        assertEquals(secretGroupResourceModel.getName(), "my-secret-group");
+        assertEquals(secretGroupResourceModel.getDescription(), "Extended description for this group.");
+        assertEquals(secretGroupResourceModel.get("foo"), "testString");
 
-    String json = TestUtilities.serialize(secretGroupResourceModel);
+        String json = TestUtilities.serialize(secretGroupResourceModel);
 
-    SecretGroupResource secretGroupResourceModelNew = TestUtilities.deserialize(json, SecretGroupResource.class);
-    assertTrue(secretGroupResourceModelNew instanceof SecretGroupResource);
-    assertEquals(secretGroupResourceModelNew.getName(), "my-secret-group");
-    assertEquals(secretGroupResourceModelNew.getDescription(), "Extended description for this group.");
-    assertEquals(secretGroupResourceModelNew.get("foo"), "testString");
-  }
+        SecretGroupResource secretGroupResourceModelNew = TestUtilities.deserialize(json, SecretGroupResource.class);
+        assertTrue(secretGroupResourceModelNew instanceof SecretGroupResource);
+        assertEquals(secretGroupResourceModelNew.getName(), "my-secret-group");
+        assertEquals(secretGroupResourceModelNew.getDescription(), "Extended description for this group.");
+        assertEquals(secretGroupResourceModelNew.get("foo"), "testString");
+    }
 }

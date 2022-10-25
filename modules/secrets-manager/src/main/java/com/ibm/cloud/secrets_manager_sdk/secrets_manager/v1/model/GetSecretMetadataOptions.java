@@ -19,135 +19,150 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetSecretMetadataOptions extends GenericModel {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-    /** kv. */
-    String KV = "kv";
-  }
+    /**
+     * The secret type.
+     */
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * kv.
+         */
+        String KV = "kv";
+    }
 
-  protected String secretType;
-  protected String id;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private String id;
+    protected String secretType;
+    protected String id;
 
     /**
-     * Instantiates a new Builder from an existing GetSecretMetadataOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private String id;
+
+        /**
+         * Instantiates a new Builder from an existing GetSecretMetadataOptions instance.
+         *
+         * @param getSecretMetadataOptions the instance to initialize the Builder with
+         */
+        private Builder(GetSecretMetadataOptions getSecretMetadataOptions) {
+            this.secretType = getSecretMetadataOptions.secretType;
+            this.id = getSecretMetadataOptions.id;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType the secretType
+         * @param id         the id
+         */
+        public Builder(String secretType, String id) {
+            this.secretType = secretType;
+            this.id = id;
+        }
+
+        /**
+         * Builds a GetSecretMetadataOptions.
+         *
+         * @return the new GetSecretMetadataOptions instance
+         */
+        public GetSecretMetadataOptions build() {
+            return new GetSecretMetadataOptions(this);
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the GetSecretMetadataOptions builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the GetSecretMetadataOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+    }
+
+    protected GetSecretMetadataOptions() {
+    }
+
+    protected GetSecretMetadataOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+                "secretType cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        secretType = builder.secretType;
+        id = builder.id;
+    }
+
+    /**
+     * New builder.
      *
-     * @param getSecretMetadataOptions the instance to initialize the Builder with
+     * @return a GetSecretMetadataOptions builder
      */
-    private Builder(GetSecretMetadataOptions getSecretMetadataOptions) {
-      this.secretType = getSecretMetadataOptions.secretType;
-      this.id = getSecretMetadataOptions.id;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretType.
+     * <p>
+     * The secret type.
      *
-     * @param secretType the secretType
-     * @param id the id
+     * @return the secretType
      */
-    public Builder(String secretType, String id) {
-      this.secretType = secretType;
-      this.id = id;
+    public String secretType() {
+        return secretType;
     }
 
     /**
-     * Builds a GetSecretMetadataOptions.
+     * Gets the id.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret.
      *
-     * @return the new GetSecretMetadataOptions instance
+     * @return the id
      */
-    public GetSecretMetadataOptions build() {
-      return new GetSecretMetadataOptions(this);
+    public String id() {
+        return id;
     }
-
-    /**
-     * Set the secretType.
-     *
-     * @param secretType the secretType
-     * @return the GetSecretMetadataOptions builder
-     */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
-    }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the GetSecretMetadataOptions builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-  }
-
-  protected GetSecretMetadataOptions() { }
-
-  protected GetSecretMetadataOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-      "secretType cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    secretType = builder.secretType;
-    id = builder.id;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a GetSecretMetadataOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String secretType() {
-    return secretType;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies the secret.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
 }
 

@@ -21,31 +21,32 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListSecretVersions extends GenericModel {
 
-  protected CollectionMetadata metadata;
-  protected List<SecretVersionInfo> resources;
+    protected CollectionMetadata metadata;
+    protected List<SecretVersionInfo> resources;
 
-  protected ListSecretVersions() { }
+    protected ListSecretVersions() {
+    }
 
-  /**
-   * Gets the metadata.
-   *
-   * The metadata that describes the resource array.
-   *
-   * @return the metadata
-   */
-  public CollectionMetadata getMetadata() {
-    return metadata;
-  }
+    /**
+     * Gets the metadata.
+     * <p>
+     * The metadata that describes the resource array.
+     *
+     * @return the metadata
+     */
+    public CollectionMetadata getMetadata() {
+        return metadata;
+    }
 
-  /**
-   * Gets the resources.
-   *
-   * A collection of resources.
-   *
-   * @return the resources
-   */
-  public List<SecretVersionInfo> getResources() {
-    return resources;
-  }
+    /**
+     * Gets the resources.
+     * <p>
+     * A collection of resources.
+     *
+     * @return the resources
+     */
+    public List<SecretVersionInfo> getResources() {
+        return resources;
+    }
 }
 

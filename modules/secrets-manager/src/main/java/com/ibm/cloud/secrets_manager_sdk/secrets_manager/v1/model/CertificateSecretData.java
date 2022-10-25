@@ -17,7 +17,7 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
 
 /**
  * The data that is associated with the secret version. The data object contains the following fields:
- *
+ * <p>
  * - `certificate`: The contents of the certificate.
  * - `private_key`: The private key that is associated with the certificate.
  * - `intermediate`: The intermediate certificate that is associated with the certificate.
@@ -25,7 +25,8 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
 public class CertificateSecretData extends DynamicModel<Object> {
 
 
-  public CertificateSecretData() {
-    super(new TypeToken<Object>() { });
-  }
+    public CertificateSecretData() {
+        super(new TypeToken<Object>() {
+        });
+    }
 }

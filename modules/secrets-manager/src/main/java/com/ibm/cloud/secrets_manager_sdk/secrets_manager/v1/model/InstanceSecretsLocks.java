@@ -23,82 +23,97 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
  */
 public class InstanceSecretsLocks extends DynamicModel<Object> {
 
-  /**
-   * The secret type.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-    /** kv. */
-    String KV = "kv";
-  }
+    /**
+     * The secret type.
+     */
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
+         * kv.
+         */
+        String KV = "kv";
+    }
 
-  @SerializedName("secret_id")
-  protected String secretId;
-  @SerializedName("secret_group_id")
-  protected String secretGroupId;
-  @SerializedName("secret_type")
-  protected String secretType;
-  @SerializedName("versions")
-  protected List<SecretLockVersion> versions;
+    @SerializedName("secret_id")
+    protected String secretId;
+    @SerializedName("secret_group_id")
+    protected String secretGroupId;
+    @SerializedName("secret_type")
+    protected String secretType;
+    @SerializedName("versions")
+    protected List<SecretLockVersion> versions;
 
-  public InstanceSecretsLocks() {
-    super(new TypeToken<Object>() { });
-  }
+    public InstanceSecretsLocks() {
+        super(new TypeToken<Object>() {
+        });
+    }
 
-  /**
-   * Gets the secretId.
-   *
-   * The unique ID of the secret.
-   *
-   * @return the secretId
-   */
-  public String getSecretId() {
-    return this.secretId;
-  }
+    /**
+     * Gets the secretId.
+     * <p>
+     * The unique ID of the secret.
+     *
+     * @return the secretId
+     */
+    public String getSecretId() {
+        return this.secretId;
+    }
 
-  /**
-   * Gets the secretGroupId.
-   *
-   * The v4 UUID that uniquely identifies the secret group to assign to this secret.
-   *
-   * If you omit this parameter, your secret is assigned to the `default` secret group.
-   *
-   * @return the secretGroupId
-   */
-  public String getSecretGroupId() {
-    return this.secretGroupId;
-  }
+    /**
+     * Gets the secretGroupId.
+     * <p>
+     * The v4 UUID that uniquely identifies the secret group to assign to this secret.
+     * <p>
+     * If you omit this parameter, your secret is assigned to the `default` secret group.
+     *
+     * @return the secretGroupId
+     */
+    public String getSecretGroupId() {
+        return this.secretGroupId;
+    }
 
-  /**
-   * Gets the secretType.
-   *
-   * The secret type.
-   *
-   * @return the secretType
-   */
-  public String getSecretType() {
-    return this.secretType;
-  }
+    /**
+     * Gets the secretType.
+     * <p>
+     * The secret type.
+     *
+     * @return the secretType
+     */
+    public String getSecretType() {
+        return this.secretType;
+    }
 
-  /**
-   * Gets the versions.
-   *
-   * A collection of locks that are attached to a secret version.
-   *
-   * @return the versions
-   */
-  public List<SecretLockVersion> getVersions() {
-    return this.versions;
-  }
+    /**
+     * Gets the versions.
+     * <p>
+     * A collection of locks that are attached to a secret version.
+     *
+     * @return the versions
+     */
+    public List<SecretLockVersion> getVersions() {
+        return this.versions;
+    }
 }
