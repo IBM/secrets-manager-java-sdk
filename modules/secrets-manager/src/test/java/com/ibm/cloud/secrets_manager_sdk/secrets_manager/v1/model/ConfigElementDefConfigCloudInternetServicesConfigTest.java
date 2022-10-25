@@ -16,42 +16,39 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigCloudInternetServicesConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ConfigElementDefConfigCloudInternetServicesConfig model.
  */
 public class ConfigElementDefConfigCloudInternetServicesConfigTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testConfigElementDefConfigCloudInternetServicesConfig() throws Throwable {
-        ConfigElementDefConfigCloudInternetServicesConfig configElementDefConfigCloudInternetServicesConfigModel = new ConfigElementDefConfigCloudInternetServicesConfig.Builder()
-                .cisCrn("crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::")
-                .cisApikey("testString")
-                .build();
-        assertEquals(configElementDefConfigCloudInternetServicesConfigModel.cisCrn(), "crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::");
-        assertEquals(configElementDefConfigCloudInternetServicesConfigModel.cisApikey(), "testString");
+  @Test
+  public void testConfigElementDefConfigCloudInternetServicesConfig() throws Throwable {
+    ConfigElementDefConfigCloudInternetServicesConfig configElementDefConfigCloudInternetServicesConfigModel = new ConfigElementDefConfigCloudInternetServicesConfig.Builder()
+      .cisCrn("crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::")
+      .cisApikey("testString")
+      .build();
+    assertEquals(configElementDefConfigCloudInternetServicesConfigModel.cisCrn(), "crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::");
+    assertEquals(configElementDefConfigCloudInternetServicesConfigModel.cisApikey(), "testString");
 
-        String json = TestUtilities.serialize(configElementDefConfigCloudInternetServicesConfigModel);
+    String json = TestUtilities.serialize(configElementDefConfigCloudInternetServicesConfigModel);
 
-        ConfigElementDefConfigCloudInternetServicesConfig configElementDefConfigCloudInternetServicesConfigModelNew = TestUtilities.deserialize(json, ConfigElementDefConfigCloudInternetServicesConfig.class);
-        assertTrue(configElementDefConfigCloudInternetServicesConfigModelNew instanceof ConfigElementDefConfigCloudInternetServicesConfig);
-        assertEquals(configElementDefConfigCloudInternetServicesConfigModelNew.cisCrn(), "crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::");
-        assertEquals(configElementDefConfigCloudInternetServicesConfigModelNew.cisApikey(), "testString");
-    }
+    ConfigElementDefConfigCloudInternetServicesConfig configElementDefConfigCloudInternetServicesConfigModelNew = TestUtilities.deserialize(json, ConfigElementDefConfigCloudInternetServicesConfig.class);
+    assertTrue(configElementDefConfigCloudInternetServicesConfigModelNew instanceof ConfigElementDefConfigCloudInternetServicesConfig);
+    assertEquals(configElementDefConfigCloudInternetServicesConfigModelNew.cisCrn(), "crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::");
+    assertEquals(configElementDefConfigCloudInternetServicesConfigModelNew.cisApikey(), "testString");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testConfigElementDefConfigCloudInternetServicesConfigError() throws Throwable {
-        new ConfigElementDefConfigCloudInternetServicesConfig.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testConfigElementDefConfigCloudInternetServicesConfigError() throws Throwable {
+    new ConfigElementDefConfigCloudInternetServicesConfig.Builder().build();
+  }
 
 }

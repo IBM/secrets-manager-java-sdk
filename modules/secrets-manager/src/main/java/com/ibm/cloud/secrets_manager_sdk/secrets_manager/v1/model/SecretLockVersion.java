@@ -23,77 +23,72 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
  */
 public class SecretLockVersion extends DynamicModel<Object> {
 
-    /**
-     * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
-     * for version `n-1`.
-     */
-    public interface Alias {
-        /**
-         * current.
-         */
-        String CURRENT = "current";
-        /**
-         * previous.
-         */
-        String PREVIOUS = "previous";
-    }
+  /**
+   * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
+   * for version `n-1`.
+   */
+  public interface Alias {
+    /** current. */
+    String CURRENT = "current";
+    /** previous. */
+    String PREVIOUS = "previous";
+  }
 
-    @SerializedName("id")
-    protected String id;
-    @SerializedName("alias")
-    protected String alias;
-    @SerializedName("locks")
-    protected List<String> locks;
-    @SerializedName("payload_available")
-    protected Boolean payloadAvailable;
+  @SerializedName("id")
+  protected String id;
+  @SerializedName("alias")
+  protected String alias;
+  @SerializedName("locks")
+  protected List<String> locks;
+  @SerializedName("payload_available")
+  protected Boolean payloadAvailable;
 
-    public SecretLockVersion() {
-        super(new TypeToken<Object>() {
-        });
-    }
+  public SecretLockVersion() {
+    super(new TypeToken<Object>() { });
+  }
 
-    /**
-     * Gets the id.
-     * <p>
-     * The v4 UUID that uniquely identifies the lock.
-     *
-     * @return the id
-     */
-    public String getId() {
-        return this.id;
-    }
+  /**
+   * Gets the id.
+   *
+   * The v4 UUID that uniquely identifies the lock.
+   *
+   * @return the id
+   */
+  public String getId() {
+    return this.id;
+  }
 
-    /**
-     * Gets the alias.
-     * <p>
-     * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
-     * for version `n-1`.
-     *
-     * @return the alias
-     */
-    public String getAlias() {
-        return this.alias;
-    }
+  /**
+   * Gets the alias.
+   *
+   * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
+   * for version `n-1`.
+   *
+   * @return the alias
+   */
+  public String getAlias() {
+    return this.alias;
+  }
 
-    /**
-     * Gets the locks.
-     * <p>
-     * The names of all locks that are associated with this secret.
-     *
-     * @return the locks
-     */
-    public List<String> getLocks() {
-        return this.locks;
-    }
+  /**
+   * Gets the locks.
+   *
+   * The names of all locks that are associated with this secret.
+   *
+   * @return the locks
+   */
+  public List<String> getLocks() {
+    return this.locks;
+  }
 
-    /**
-     * Gets the payloadAvailable.
-     * <p>
-     * Indicates whether the payload for the secret version is stored and available.
-     *
-     * @return the payloadAvailable
-     */
-    public Boolean isPayloadAvailable() {
-        return this.payloadAvailable;
-    }
+  /**
+   * Gets the payloadAvailable.
+   *
+   * Indicates whether the payload for the secret version is stored and available.
+   *
+   * @return the payloadAvailable
+   */
+  public Boolean isPayloadAvailable() {
+    return this.payloadAvailable;
+  }
 }

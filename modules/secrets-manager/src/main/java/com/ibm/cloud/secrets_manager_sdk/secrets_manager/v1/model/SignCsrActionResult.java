@@ -17,22 +17,17 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
  */
 public class SignCsrActionResult extends ConfigElementActionResultConfig {
 
-    /**
-     * The format of the returned data.
-     */
-    public interface Format {
-        /**
-         * pem.
-         */
-        String PEM = "pem";
-        /**
-         * pem_bundle.
-         */
-        String PEM_BUNDLE = "pem_bundle";
-    }
+  /**
+   * The format of the returned data.
+   */
+  public interface Format {
+    /** pem. */
+    String PEM = "pem";
+    /** pem_bundle. */
+    String PEM_BUNDLE = "pem_bundle";
+  }
 
 
-    protected SignCsrActionResult() {
-    }
+  protected SignCsrActionResult() { }
 }
 

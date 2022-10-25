@@ -19,26 +19,23 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementD
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementDefConfigLetsEncryptConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetSingleConfigElement;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetSingleConfigElement model.
  */
 public class GetSingleConfigElementTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testGetSingleConfigElement() throws Throwable {
-        GetSingleConfigElement getSingleConfigElementModel = new GetSingleConfigElement();
-        assertNull(getSingleConfigElementModel.getMetadata());
-        assertNull(getSingleConfigElementModel.getResources());
-    }
+  @Test
+  public void testGetSingleConfigElement() throws Throwable {
+    GetSingleConfigElement getSingleConfigElementModel = new GetSingleConfigElement();
+    assertNull(getSingleConfigElementModel.getMetadata());
+    assertNull(getSingleConfigElementModel.getResources());
+  }
 }

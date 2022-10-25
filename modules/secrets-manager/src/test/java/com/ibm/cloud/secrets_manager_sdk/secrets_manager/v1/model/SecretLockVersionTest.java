@@ -16,26 +16,23 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretLockVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretLockVersion model.
  */
 public class SecretLockVersionTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testSecretLockVersion() throws Throwable {
-        SecretLockVersion secretLockVersionModel = new SecretLockVersion();
-        assertNull(secretLockVersionModel.getAlias());
-        assertNull(secretLockVersionModel.getLocks());
-    }
+  @Test
+  public void testSecretLockVersion() throws Throwable {
+    SecretLockVersion secretLockVersionModel = new SecretLockVersion();
+    assertNull(secretLockVersionModel.getAlias());
+    assertNull(secretLockVersionModel.getLocks());
+  }
 }

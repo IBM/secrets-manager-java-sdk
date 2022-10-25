@@ -19,104 +19,97 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetConfigOptions extends GenericModel {
 
-    /**
-     * The secret type.
-     */
-    public interface SecretType {
-        /**
-         * iam_credentials.
-         */
-        String IAM_CREDENTIALS = "iam_credentials";
-        /**
-         * public_cert.
-         */
-        String PUBLIC_CERT = "public_cert";
-        /**
-         * private_cert.
-         */
-        String PRIVATE_CERT = "private_cert";
-    }
+  /**
+   * The secret type.
+   */
+  public interface SecretType {
+    /** iam_credentials. */
+    String IAM_CREDENTIALS = "iam_credentials";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** private_cert. */
+    String PRIVATE_CERT = "private_cert";
+  }
 
-    protected String secretType;
+  protected String secretType;
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private String secretType;
-
-        /**
-         * Instantiates a new Builder from an existing GetConfigOptions instance.
-         *
-         * @param getConfigOptions the instance to initialize the Builder with
-         */
-        private Builder(GetConfigOptions getConfigOptions) {
-            this.secretType = getConfigOptions.secretType;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param secretType the secretType
-         */
-        public Builder(String secretType) {
-            this.secretType = secretType;
-        }
-
-        /**
-         * Builds a GetConfigOptions.
-         *
-         * @return the new GetConfigOptions instance
-         */
-        public GetConfigOptions build() {
-            return new GetConfigOptions(this);
-        }
-
-        /**
-         * Set the secretType.
-         *
-         * @param secretType the secretType
-         * @return the GetConfigOptions builder
-         */
-        public Builder secretType(String secretType) {
-            this.secretType = secretType;
-            return this;
-        }
-    }
-
-    protected GetConfigOptions() {
-    }
-
-    protected GetConfigOptions(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
-                "secretType cannot be empty");
-        secretType = builder.secretType;
-    }
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String secretType;
 
     /**
-     * New builder.
+     * Instantiates a new Builder from an existing GetConfigOptions instance.
      *
-     * @return a GetConfigOptions builder
+     * @param getConfigOptions the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    private Builder(GetConfigOptions getConfigOptions) {
+      this.secretType = getConfigOptions.secretType;
     }
 
     /**
-     * Gets the secretType.
-     * <p>
-     * The secret type.
-     *
-     * @return the secretType
+     * Instantiates a new builder.
      */
-    public String secretType() {
-        return secretType;
+    public Builder() {
     }
+
+    /**
+     * Instantiates a new builder with required properties.
+     *
+     * @param secretType the secretType
+     */
+    public Builder(String secretType) {
+      this.secretType = secretType;
+    }
+
+    /**
+     * Builds a GetConfigOptions.
+     *
+     * @return the new GetConfigOptions instance
+     */
+    public GetConfigOptions build() {
+      return new GetConfigOptions(this);
+    }
+
+    /**
+     * Set the secretType.
+     *
+     * @param secretType the secretType
+     * @return the GetConfigOptions builder
+     */
+    public Builder secretType(String secretType) {
+      this.secretType = secretType;
+      return this;
+    }
+  }
+
+  protected GetConfigOptions() { }
+
+  protected GetConfigOptions(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretType,
+      "secretType cannot be empty");
+    secretType = builder.secretType;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a GetConfigOptions builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the secretType.
+   *
+   * The secret type.
+   *
+   * @return the secretType
+   */
+  public String secretType() {
+    return secretType;
+  }
 }
 

@@ -22,76 +22,75 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class UpdateSecretVersionMetadata extends GenericModel {
 
-    @SerializedName("version_custom_metadata")
-    protected Map<String, Object> versionCustomMetadata;
+  @SerializedName("version_custom_metadata")
+  protected Map<String, Object> versionCustomMetadata;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Map<String, Object> versionCustomMetadata;
 
     /**
-     * Builder.
-     */
-    public static class Builder {
-        private Map<String, Object> versionCustomMetadata;
-
-        /**
-         * Instantiates a new Builder from an existing UpdateSecretVersionMetadata instance.
-         *
-         * @param updateSecretVersionMetadata the instance to initialize the Builder with
-         */
-        private Builder(UpdateSecretVersionMetadata updateSecretVersionMetadata) {
-            this.versionCustomMetadata = updateSecretVersionMetadata.versionCustomMetadata;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Builds a UpdateSecretVersionMetadata.
-         *
-         * @return the new UpdateSecretVersionMetadata instance
-         */
-        public UpdateSecretVersionMetadata build() {
-            return new UpdateSecretVersionMetadata(this);
-        }
-
-        /**
-         * Set the versionCustomMetadata.
-         *
-         * @param versionCustomMetadata the versionCustomMetadata
-         * @return the UpdateSecretVersionMetadata builder
-         */
-        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-            this.versionCustomMetadata = versionCustomMetadata;
-            return this;
-        }
-    }
-
-    protected UpdateSecretVersionMetadata() {
-    }
-
-    protected UpdateSecretVersionMetadata(Builder builder) {
-        versionCustomMetadata = builder.versionCustomMetadata;
-    }
-
-    /**
-     * New builder.
+     * Instantiates a new Builder from an existing UpdateSecretVersionMetadata instance.
      *
-     * @return a UpdateSecretVersionMetadata builder
+     * @param updateSecretVersionMetadata the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    private Builder(UpdateSecretVersionMetadata updateSecretVersionMetadata) {
+      this.versionCustomMetadata = updateSecretVersionMetadata.versionCustomMetadata;
     }
 
     /**
-     * Gets the versionCustomMetadata.
-     * <p>
-     * The secret version metadata that a user can customize.
-     *
-     * @return the versionCustomMetadata
+     * Instantiates a new builder.
      */
-    public Map<String, Object> versionCustomMetadata() {
-        return versionCustomMetadata;
+    public Builder() {
     }
+
+    /**
+     * Builds a UpdateSecretVersionMetadata.
+     *
+     * @return the new UpdateSecretVersionMetadata instance
+     */
+    public UpdateSecretVersionMetadata build() {
+      return new UpdateSecretVersionMetadata(this);
+    }
+
+    /**
+     * Set the versionCustomMetadata.
+     *
+     * @param versionCustomMetadata the versionCustomMetadata
+     * @return the UpdateSecretVersionMetadata builder
+     */
+    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+      this.versionCustomMetadata = versionCustomMetadata;
+      return this;
+    }
+  }
+
+  protected UpdateSecretVersionMetadata() { }
+
+  protected UpdateSecretVersionMetadata(Builder builder) {
+    versionCustomMetadata = builder.versionCustomMetadata;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a UpdateSecretVersionMetadata builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the versionCustomMetadata.
+   *
+   * The secret version metadata that a user can customize.
+   *
+   * @return the versionCustomMetadata
+   */
+  public Map<String, Object> versionCustomMetadata() {
+    return versionCustomMetadata;
+  }
 }
 

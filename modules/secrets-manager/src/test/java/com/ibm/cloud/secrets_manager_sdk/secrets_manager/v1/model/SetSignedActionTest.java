@@ -16,39 +16,36 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SetSignedAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SetSignedAction model.
  */
 public class SetSignedActionTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testSetSignedAction() throws Throwable {
-        SetSignedAction setSignedActionModel = new SetSignedAction.Builder()
-                .certificate("testString")
-                .build();
-        assertEquals(setSignedActionModel.certificate(), "testString");
+  @Test
+  public void testSetSignedAction() throws Throwable {
+    SetSignedAction setSignedActionModel = new SetSignedAction.Builder()
+      .certificate("testString")
+      .build();
+    assertEquals(setSignedActionModel.certificate(), "testString");
 
-        String json = TestUtilities.serialize(setSignedActionModel);
+    String json = TestUtilities.serialize(setSignedActionModel);
 
-        SetSignedAction setSignedActionModelNew = TestUtilities.deserialize(json, SetSignedAction.class);
-        assertTrue(setSignedActionModelNew instanceof SetSignedAction);
-        assertEquals(setSignedActionModelNew.certificate(), "testString");
-    }
+    SetSignedAction setSignedActionModelNew = TestUtilities.deserialize(json, SetSignedAction.class);
+    assertTrue(setSignedActionModelNew instanceof SetSignedAction);
+    assertEquals(setSignedActionModelNew.certificate(), "testString");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testSetSignedActionError() throws Throwable {
-        new SetSignedAction.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testSetSignedActionError() throws Throwable {
+    new SetSignedAction.Builder().build();
+  }
 
 }

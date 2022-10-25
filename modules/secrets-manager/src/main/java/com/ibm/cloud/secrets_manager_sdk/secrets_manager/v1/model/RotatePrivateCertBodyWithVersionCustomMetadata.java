@@ -20,73 +20,72 @@ import java.util.Map;
 public class RotatePrivateCertBodyWithVersionCustomMetadata extends SecretAction {
 
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private Map<String, Object> versionCustomMetadata;
-
-        /**
-         * Instantiates a new Builder from an existing RotatePrivateCertBodyWithVersionCustomMetadata instance.
-         *
-         * @param rotatePrivateCertBodyWithVersionCustomMetadata the instance to initialize the Builder with
-         */
-        public Builder(SecretAction rotatePrivateCertBodyWithVersionCustomMetadata) {
-            this.versionCustomMetadata = rotatePrivateCertBodyWithVersionCustomMetadata.versionCustomMetadata;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param versionCustomMetadata the versionCustomMetadata
-         */
-        public Builder(Map<String, Object> versionCustomMetadata) {
-            this.versionCustomMetadata = versionCustomMetadata;
-        }
-
-        /**
-         * Builds a RotatePrivateCertBodyWithVersionCustomMetadata.
-         *
-         * @return the new RotatePrivateCertBodyWithVersionCustomMetadata instance
-         */
-        public RotatePrivateCertBodyWithVersionCustomMetadata build() {
-            return new RotatePrivateCertBodyWithVersionCustomMetadata(this);
-        }
-
-        /**
-         * Set the versionCustomMetadata.
-         *
-         * @param versionCustomMetadata the versionCustomMetadata
-         * @return the RotatePrivateCertBodyWithVersionCustomMetadata builder
-         */
-        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-            this.versionCustomMetadata = versionCustomMetadata;
-            return this;
-        }
-    }
-
-    protected RotatePrivateCertBodyWithVersionCustomMetadata() {
-    }
-
-    protected RotatePrivateCertBodyWithVersionCustomMetadata(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.versionCustomMetadata,
-                "versionCustomMetadata cannot be null");
-        versionCustomMetadata = builder.versionCustomMetadata;
-    }
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Map<String, Object> versionCustomMetadata;
 
     /**
-     * New builder.
+     * Instantiates a new Builder from an existing RotatePrivateCertBodyWithVersionCustomMetadata instance.
      *
-     * @return a RotatePrivateCertBodyWithVersionCustomMetadata builder
+     * @param rotatePrivateCertBodyWithVersionCustomMetadata the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(SecretAction rotatePrivateCertBodyWithVersionCustomMetadata) {
+      this.versionCustomMetadata = rotatePrivateCertBodyWithVersionCustomMetadata.versionCustomMetadata;
     }
+
+    /**
+     * Instantiates a new builder.
+     */
+    public Builder() {
+    }
+
+    /**
+     * Instantiates a new builder with required properties.
+     *
+     * @param versionCustomMetadata the versionCustomMetadata
+     */
+    public Builder(Map<String, Object> versionCustomMetadata) {
+      this.versionCustomMetadata = versionCustomMetadata;
+    }
+
+    /**
+     * Builds a RotatePrivateCertBodyWithVersionCustomMetadata.
+     *
+     * @return the new RotatePrivateCertBodyWithVersionCustomMetadata instance
+     */
+    public RotatePrivateCertBodyWithVersionCustomMetadata build() {
+      return new RotatePrivateCertBodyWithVersionCustomMetadata(this);
+    }
+
+    /**
+     * Set the versionCustomMetadata.
+     *
+     * @param versionCustomMetadata the versionCustomMetadata
+     * @return the RotatePrivateCertBodyWithVersionCustomMetadata builder
+     */
+    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+      this.versionCustomMetadata = versionCustomMetadata;
+      return this;
+    }
+  }
+
+  protected RotatePrivateCertBodyWithVersionCustomMetadata() { }
+
+  protected RotatePrivateCertBodyWithVersionCustomMetadata(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.versionCustomMetadata,
+      "versionCustomMetadata cannot be null");
+    versionCustomMetadata = builder.versionCustomMetadata;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a RotatePrivateCertBodyWithVersionCustomMetadata builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 

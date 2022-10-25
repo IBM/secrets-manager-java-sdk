@@ -22,71 +22,70 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SignIntermediateActionResultData extends GenericModel {
 
-    protected String certificate;
-    @SerializedName("serial_number")
-    protected String serialNumber;
-    @SerializedName("issuing_ca")
-    protected String issuingCa;
-    @SerializedName("ca_chain")
-    protected List<String> caChain;
-    protected Long expiration;
+  protected String certificate;
+  @SerializedName("serial_number")
+  protected String serialNumber;
+  @SerializedName("issuing_ca")
+  protected String issuingCa;
+  @SerializedName("ca_chain")
+  protected List<String> caChain;
+  protected Long expiration;
 
-    protected SignIntermediateActionResultData() {
-    }
+  protected SignIntermediateActionResultData() { }
 
-    /**
-     * Gets the certificate.
-     * <p>
-     * The PEM-encoded certificate.
-     *
-     * @return the certificate
-     */
-    public String getCertificate() {
-        return certificate;
-    }
+  /**
+   * Gets the certificate.
+   *
+   * The PEM-encoded certificate.
+   *
+   * @return the certificate
+   */
+  public String getCertificate() {
+    return certificate;
+  }
 
-    /**
-     * Gets the serialNumber.
-     * <p>
-     * The unique serial number that was assigned to the certificate by the issuing certificate authority.
-     *
-     * @return the serialNumber
-     */
-    public String getSerialNumber() {
-        return serialNumber;
-    }
+  /**
+   * Gets the serialNumber.
+   *
+   * The unique serial number that was assigned to the certificate by the issuing certificate authority.
+   *
+   * @return the serialNumber
+   */
+  public String getSerialNumber() {
+    return serialNumber;
+  }
 
-    /**
-     * Gets the issuingCa.
-     * <p>
-     * The PEM-encoded certificate of the certificate authority that signed and issued this certificate.
-     *
-     * @return the issuingCa
-     */
-    public String getIssuingCa() {
-        return issuingCa;
-    }
+  /**
+   * Gets the issuingCa.
+   *
+   * The PEM-encoded certificate of the certificate authority that signed and issued this certificate.
+   *
+   * @return the issuingCa
+   */
+  public String getIssuingCa() {
+    return issuingCa;
+  }
 
-    /**
-     * Gets the caChain.
-     * <p>
-     * The chain of certificate authorities that are associated with the certificate.
-     *
-     * @return the caChain
-     */
-    public List<String> getCaChain() {
-        return caChain;
-    }
+  /**
+   * Gets the caChain.
+   *
+   * The chain of certificate authorities that are associated with the certificate.
+   *
+   * @return the caChain
+   */
+  public List<String> getCaChain() {
+    return caChain;
+  }
 
-    /**
-     * Gets the expiration.
-     * <p>
-     * The time until the certificate expires.
-     *
-     * @return the expiration
-     */
-    public Long getExpiration() {
-        return expiration;
-    }
+  /**
+   * Gets the expiration.
+   *
+   * The time until the certificate expires.
+   *
+   * @return the expiration
+   */
+  public Long getExpiration() {
+    return expiration;
+  }
 }
 

@@ -20,87 +20,86 @@ import java.util.Map;
 public class RotatePrivateCertBody extends SecretAction {
 
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private Map<String, Object> customMetadata;
-        private Map<String, Object> versionCustomMetadata;
-
-        /**
-         * Instantiates a new Builder from an existing RotatePrivateCertBody instance.
-         *
-         * @param rotatePrivateCertBody the instance to initialize the Builder with
-         */
-        public Builder(SecretAction rotatePrivateCertBody) {
-            this.customMetadata = rotatePrivateCertBody.customMetadata;
-            this.versionCustomMetadata = rotatePrivateCertBody.versionCustomMetadata;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param customMetadata the customMetadata
-         */
-        public Builder(Map<String, Object> customMetadata) {
-            this.customMetadata = customMetadata;
-        }
-
-        /**
-         * Builds a RotatePrivateCertBody.
-         *
-         * @return the new RotatePrivateCertBody instance
-         */
-        public RotatePrivateCertBody build() {
-            return new RotatePrivateCertBody(this);
-        }
-
-        /**
-         * Set the customMetadata.
-         *
-         * @param customMetadata the customMetadata
-         * @return the RotatePrivateCertBody builder
-         */
-        public Builder customMetadata(Map<String, Object> customMetadata) {
-            this.customMetadata = customMetadata;
-            return this;
-        }
-
-        /**
-         * Set the versionCustomMetadata.
-         *
-         * @param versionCustomMetadata the versionCustomMetadata
-         * @return the RotatePrivateCertBody builder
-         */
-        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-            this.versionCustomMetadata = versionCustomMetadata;
-            return this;
-        }
-    }
-
-    protected RotatePrivateCertBody() {
-    }
-
-    protected RotatePrivateCertBody(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.customMetadata,
-                "customMetadata cannot be null");
-        customMetadata = builder.customMetadata;
-        versionCustomMetadata = builder.versionCustomMetadata;
-    }
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Map<String, Object> customMetadata;
+    private Map<String, Object> versionCustomMetadata;
 
     /**
-     * New builder.
+     * Instantiates a new Builder from an existing RotatePrivateCertBody instance.
      *
-     * @return a RotatePrivateCertBody builder
+     * @param rotatePrivateCertBody the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(SecretAction rotatePrivateCertBody) {
+      this.customMetadata = rotatePrivateCertBody.customMetadata;
+      this.versionCustomMetadata = rotatePrivateCertBody.versionCustomMetadata;
     }
+
+    /**
+     * Instantiates a new builder.
+     */
+    public Builder() {
+    }
+
+    /**
+     * Instantiates a new builder with required properties.
+     *
+     * @param customMetadata the customMetadata
+     */
+    public Builder(Map<String, Object> customMetadata) {
+      this.customMetadata = customMetadata;
+    }
+
+    /**
+     * Builds a RotatePrivateCertBody.
+     *
+     * @return the new RotatePrivateCertBody instance
+     */
+    public RotatePrivateCertBody build() {
+      return new RotatePrivateCertBody(this);
+    }
+
+    /**
+     * Set the customMetadata.
+     *
+     * @param customMetadata the customMetadata
+     * @return the RotatePrivateCertBody builder
+     */
+    public Builder customMetadata(Map<String, Object> customMetadata) {
+      this.customMetadata = customMetadata;
+      return this;
+    }
+
+    /**
+     * Set the versionCustomMetadata.
+     *
+     * @param versionCustomMetadata the versionCustomMetadata
+     * @return the RotatePrivateCertBody builder
+     */
+    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+      this.versionCustomMetadata = versionCustomMetadata;
+      return this;
+    }
+  }
+
+  protected RotatePrivateCertBody() { }
+
+  protected RotatePrivateCertBody(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.customMetadata,
+      "customMetadata cannot be null");
+    customMetadata = builder.customMetadata;
+    versionCustomMetadata = builder.versionCustomMetadata;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a RotatePrivateCertBody builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 

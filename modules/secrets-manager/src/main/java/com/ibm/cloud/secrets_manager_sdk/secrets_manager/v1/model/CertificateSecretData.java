@@ -12,19 +12,20 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
-import com.ibm.cloud.sdk.core.service.model.GenericModel;
+import com.google.gson.reflect.TypeToken;
+import com.ibm.cloud.sdk.core.service.model.DynamicModel;
 
 /**
  * The data that is associated with the secret version. The data object contains the following fields:
- * <p>
+ *
  * - `certificate`: The contents of the certificate.
  * - `private_key`: The private key that is associated with the certificate.
  * - `intermediate`: The intermediate certificate that is associated with the certificate.
  */
-public class CertificateSecretData extends GenericModel {
+public class CertificateSecretData extends DynamicModel<Object> {
 
 
-    protected CertificateSecretData() {
-    }
+  public CertificateSecretData() {
+    super(new TypeToken<Object>() { });
+  }
 }
-

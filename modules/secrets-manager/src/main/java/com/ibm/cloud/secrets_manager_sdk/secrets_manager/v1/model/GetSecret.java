@@ -21,32 +21,31 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetSecret extends GenericModel {
 
-    protected CollectionMetadata metadata;
-    protected List<SecretResource> resources;
+  protected CollectionMetadata metadata;
+  protected List<SecretResource> resources;
 
-    protected GetSecret() {
-    }
+  protected GetSecret() { }
 
-    /**
-     * Gets the metadata.
-     * <p>
-     * The metadata that describes the resource array.
-     *
-     * @return the metadata
-     */
-    public CollectionMetadata getMetadata() {
-        return metadata;
-    }
+  /**
+   * Gets the metadata.
+   *
+   * The metadata that describes the resource array.
+   *
+   * @return the metadata
+   */
+  public CollectionMetadata getMetadata() {
+    return metadata;
+  }
 
-    /**
-     * Gets the resources.
-     * <p>
-     * A collection of resources.
-     *
-     * @return the resources
-     */
-    public List<SecretResource> getResources() {
-        return resources;
-    }
+  /**
+   * Gets the resources.
+   *
+   * A collection of resources.
+   *
+   * @return the resources
+   */
+  public List<SecretResource> getResources() {
+    return resources;
+  }
 }
 

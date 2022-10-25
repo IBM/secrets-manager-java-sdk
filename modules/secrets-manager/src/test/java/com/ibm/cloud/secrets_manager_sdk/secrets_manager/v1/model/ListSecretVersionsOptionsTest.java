@@ -16,35 +16,32 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ListSecretVersionsOptions model.
  */
 public class ListSecretVersionsOptionsTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testListSecretVersionsOptions() throws Throwable {
-        ListSecretVersionsOptions listSecretVersionsOptionsModel = new ListSecretVersionsOptions.Builder()
-                .secretType("arbitrary")
-                .id("testString")
-                .build();
-        assertEquals(listSecretVersionsOptionsModel.secretType(), "arbitrary");
-        assertEquals(listSecretVersionsOptionsModel.id(), "testString");
-    }
+  @Test
+  public void testListSecretVersionsOptions() throws Throwable {
+    ListSecretVersionsOptions listSecretVersionsOptionsModel = new ListSecretVersionsOptions.Builder()
+      .secretType("arbitrary")
+      .id("testString")
+      .build();
+    assertEquals(listSecretVersionsOptionsModel.secretType(), "arbitrary");
+    assertEquals(listSecretVersionsOptionsModel.id(), "testString");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testListSecretVersionsOptionsError() throws Throwable {
-        new ListSecretVersionsOptions.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testListSecretVersionsOptionsError() throws Throwable {
+    new ListSecretVersionsOptions.Builder().build();
+  }
 
 }

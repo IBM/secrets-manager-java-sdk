@@ -18,7 +18,6 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class ArbitrarySecretVersion extends SecretVersion {
 
 
-    protected ArbitrarySecretVersion() {
-    }
+  protected ArbitrarySecretVersion() { }
 }
 

@@ -28,7 +28,7 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 
 /**
- * A class used by the unit tests containing utility functions.
+ *  A class used by the unit tests containing utility functions.
  */
 public class TestUtilities {
     public static Map<String, Object> createMockMap() {
@@ -39,9 +39,7 @@ public class TestUtilities {
 
     public static HashMap<String, InputStream> createMockStreamMap() {
         return new HashMap<String, InputStream>() {
-            {
-                put("key1", createMockStream("This is a mock file."));
-            }
+            { put("key1", createMockStream("This is a mock file.")); }
         };
     }
 

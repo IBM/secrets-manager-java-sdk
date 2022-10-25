@@ -22,223 +22,207 @@ import java.util.Map;
  */
 public class KvSecretResource extends SecretResource {
 
-    /**
-     * The secret type.
-     */
-    public interface SecretType {
-        /**
-         * arbitrary.
-         */
-        String ARBITRARY = "arbitrary";
-        /**
-         * username_password.
-         */
-        String USERNAME_PASSWORD = "username_password";
-        /**
-         * iam_credentials.
-         */
-        String IAM_CREDENTIALS = "iam_credentials";
-        /**
-         * imported_cert.
-         */
-        String IMPORTED_CERT = "imported_cert";
-        /**
-         * public_cert.
-         */
-        String PUBLIC_CERT = "public_cert";
-        /**
-         * private_cert.
-         */
-        String PRIVATE_CERT = "private_cert";
-        /**
-         * kv.
-         */
-        String KV = "kv";
-    }
+  /**
+   * The secret type.
+   */
+  public interface SecretType {
+    /** arbitrary. */
+    String ARBITRARY = "arbitrary";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
+    /** iam_credentials. */
+    String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** private_cert. */
+    String PRIVATE_CERT = "private_cert";
+    /** kv. */
+    String KV = "kv";
+  }
 
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String name;
+    private String description;
+    private String secretGroupId;
+    private List<String> labels;
+    private Map<String, Object> customMetadata;
+    private Map<String, Object> versionCustomMetadata;
+    private Date expirationDate;
+    private Object payload;
 
     /**
-     * Builder.
-     */
-    public static class Builder {
-        private String name;
-        private String description;
-        private String secretGroupId;
-        private List<String> labels;
-        private Map<String, Object> customMetadata;
-        private Map<String, Object> versionCustomMetadata;
-        private Date expirationDate;
-        private Object payload;
-
-        /**
-         * Instantiates a new Builder from an existing KvSecretResource instance.
-         *
-         * @param kvSecretResource the instance to initialize the Builder with
-         */
-        public Builder(SecretResource kvSecretResource) {
-            this.name = kvSecretResource.name;
-            this.description = kvSecretResource.description;
-            this.secretGroupId = kvSecretResource.secretGroupId;
-            this.labels = kvSecretResource.labels;
-            this.customMetadata = kvSecretResource.customMetadata;
-            this.versionCustomMetadata = kvSecretResource.versionCustomMetadata;
-            this.expirationDate = kvSecretResource.expirationDate;
-            this.payload = kvSecretResource.payload;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param name the name
-         */
-        public Builder(String name) {
-            this.name = name;
-        }
-
-        /**
-         * Builds a KvSecretResource.
-         *
-         * @return the new KvSecretResource instance
-         */
-        public KvSecretResource build() {
-            return new KvSecretResource(this);
-        }
-
-        /**
-         * Adds an labels to labels.
-         *
-         * @param labels the new labels
-         * @return the KvSecretResource builder
-         */
-        public Builder addLabels(String labels) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
-                    "labels cannot be null");
-            if (this.labels == null) {
-                this.labels = new ArrayList<String>();
-            }
-            this.labels.add(labels);
-            return this;
-        }
-
-        /**
-         * Set the name.
-         *
-         * @param name the name
-         * @return the KvSecretResource builder
-         */
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        /**
-         * Set the description.
-         *
-         * @param description the description
-         * @return the KvSecretResource builder
-         */
-        public Builder description(String description) {
-            this.description = description;
-            return this;
-        }
-
-        /**
-         * Set the secretGroupId.
-         *
-         * @param secretGroupId the secretGroupId
-         * @return the KvSecretResource builder
-         */
-        public Builder secretGroupId(String secretGroupId) {
-            this.secretGroupId = secretGroupId;
-            return this;
-        }
-
-        /**
-         * Set the labels.
-         * Existing labels will be replaced.
-         *
-         * @param labels the labels
-         * @return the KvSecretResource builder
-         */
-        public Builder labels(List<String> labels) {
-            this.labels = labels;
-            return this;
-        }
-
-        /**
-         * Set the customMetadata.
-         *
-         * @param customMetadata the customMetadata
-         * @return the KvSecretResource builder
-         */
-        public Builder customMetadata(Map<String, Object> customMetadata) {
-            this.customMetadata = customMetadata;
-            return this;
-        }
-
-        /**
-         * Set the versionCustomMetadata.
-         *
-         * @param versionCustomMetadata the versionCustomMetadata
-         * @return the KvSecretResource builder
-         */
-        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-            this.versionCustomMetadata = versionCustomMetadata;
-            return this;
-        }
-
-        /**
-         * Set the expirationDate.
-         *
-         * @param expirationDate the expirationDate
-         * @return the KvSecretResource builder
-         */
-        public Builder expirationDate(Date expirationDate) {
-            this.expirationDate = expirationDate;
-            return this;
-        }
-
-        /**
-         * Set the payload.
-         *
-         * @param payload the payload
-         * @return the KvSecretResource builder
-         */
-        public Builder payload(Object payload) {
-            this.payload = payload;
-            return this;
-        }
-    }
-
-    protected KvSecretResource() {
-    }
-
-    protected KvSecretResource(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
-                "name cannot be null");
-        name = builder.name;
-        description = builder.description;
-        secretGroupId = builder.secretGroupId;
-        labels = builder.labels;
-        customMetadata = builder.customMetadata;
-        versionCustomMetadata = builder.versionCustomMetadata;
-        expirationDate = builder.expirationDate;
-        payload = builder.payload;
-    }
-
-    /**
-     * New builder.
+     * Instantiates a new Builder from an existing KvSecretResource instance.
      *
-     * @return a KvSecretResource builder
+     * @param kvSecretResource the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(SecretResource kvSecretResource) {
+      this.name = kvSecretResource.name;
+      this.description = kvSecretResource.description;
+      this.secretGroupId = kvSecretResource.secretGroupId;
+      this.labels = kvSecretResource.labels;
+      this.customMetadata = kvSecretResource.customMetadata;
+      this.versionCustomMetadata = kvSecretResource.versionCustomMetadata;
+      this.expirationDate = kvSecretResource.expirationDate;
+      this.payload = kvSecretResource.payload;
     }
-}
 
+    /**
+     * Instantiates a new builder.
+     */
+    public Builder() {
+    }
+
+    /**
+     * Instantiates a new builder with required properties.
+     *
+     * @param name the name
+     */
+    public Builder(String name) {
+      this.name = name;
+    }
+
+    /**
+     * Builds a KvSecretResource.
+     *
+     * @return the new KvSecretResource instance
+     */
+    public KvSecretResource build() {
+      return new KvSecretResource(this);
+    }
+
+    /**
+     * Adds an labels to labels.
+     *
+     * @param labels the new labels
+     * @return the KvSecretResource builder
+     */
+    public Builder addLabels(String labels) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
+          "labels cannot be null");
+      if (this.labels == null) {
+        this.labels = new ArrayList<String>();
+      }
+      this.labels.add(labels);
+      return this;
+    }
+
+    /**
+     * Set the name.
+     *
+     * @param name the name
+     * @return the KvSecretResource builder
+     */
+    public Builder name(String name) {
+      this.name = name;
+      return this;
+    }
+
+    /**
+     * Set the description.
+     *
+     * @param description the description
+     * @return the KvSecretResource builder
+     */
+    public Builder description(String description) {
+      this.description = description;
+      return this;
+    }
+
+    /**
+     * Set the secretGroupId.
+     *
+     * @param secretGroupId the secretGroupId
+     * @return the KvSecretResource builder
+     */
+    public Builder secretGroupId(String secretGroupId) {
+      this.secretGroupId = secretGroupId;
+      return this;
+    }
+
+    /**
+     * Set the labels.
+     * Existing labels will be replaced.
+     *
+     * @param labels the labels
+     * @return the KvSecretResource builder
+     */
+    public Builder labels(List<String> labels) {
+      this.labels = labels;
+      return this;
+    }
+
+    /**
+     * Set the customMetadata.
+     *
+     * @param customMetadata the customMetadata
+     * @return the KvSecretResource builder
+     */
+    public Builder customMetadata(Map<String, Object> customMetadata) {
+      this.customMetadata = customMetadata;
+      return this;
+    }
+
+    /**
+     * Set the versionCustomMetadata.
+     *
+     * @param versionCustomMetadata the versionCustomMetadata
+     * @return the KvSecretResource builder
+     */
+    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+      this.versionCustomMetadata = versionCustomMetadata;
+      return this;
+    }
+
+    /**
+     * Set the expirationDate.
+     *
+     * @param expirationDate the expirationDate
+     * @return the KvSecretResource builder
+     */
+    public Builder expirationDate(Date expirationDate) {
+      this.expirationDate = expirationDate;
+      return this;
+    }
+
+    /**
+     * Set the payload.
+     *
+     * @param payload the payload
+     * @return the KvSecretResource builder
+     */
+    public Builder payload(Object payload) {
+      this.payload = payload;
+      return this;
+    }
+  }
+
+  protected KvSecretResource() {
+  }
+
+  protected KvSecretResource(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+        "name cannot be null");
+    name = builder.name;
+    description = builder.description;
+    secretGroupId = builder.secretGroupId;
+    labels = builder.labels;
+    customMetadata = builder.customMetadata;
+    versionCustomMetadata = builder.versionCustomMetadata;
+    expirationDate = builder.expirationDate;
+    payload = builder.payload;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a KvSecretResource builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+}

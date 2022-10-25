@@ -17,7 +17,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * SecretPolicyRotationRotation.
- * <p>
+ *
  * Classes which extend this class:
  * - SecretPolicyRotationRotationPolicyRotation
  * - SecretPolicyRotationRotationPublicCertPolicyRotation
@@ -25,68 +25,63 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretPolicyRotationRotation extends GenericModel {
 
-    /**
-     * The units for the secret rotation time interval.
-     */
-    public interface Unit {
-        /**
-         * day.
-         */
-        String DAY = "day";
-        /**
-         * month.
-         */
-        String MONTH = "month";
-    }
+  /**
+   * The units for the secret rotation time interval.
+   */
+  public interface Unit {
+    /** day. */
+    String DAY = "day";
+    /** month. */
+    String MONTH = "month";
+  }
 
-    protected Long interval;
-    protected String unit;
-    @SerializedName("auto_rotate")
-    protected Boolean autoRotate;
-    @SerializedName("rotate_keys")
-    protected Boolean rotateKeys;
+  protected Long interval;
+  protected String unit;
+  @SerializedName("auto_rotate")
+  protected Boolean autoRotate;
+  @SerializedName("rotate_keys")
+  protected Boolean rotateKeys;
 
-    protected SecretPolicyRotationRotation() {
-    }
+  protected SecretPolicyRotationRotation() { }
 
-    /**
-     * Gets the interval.
-     * <p>
-     * The length of the secret rotation time interval.
-     *
-     * @return the interval
-     */
-    public Long interval() {
-        return interval;
-    }
+  /**
+   * Gets the interval.
+   *
+   * The length of the secret rotation time interval.
+   *
+   * @return the interval
+   */
+  public Long interval() {
+    return interval;
+  }
 
-    /**
-     * Gets the unit.
-     * <p>
-     * The units for the secret rotation time interval.
-     *
-     * @return the unit
-     */
-    public String unit() {
-        return unit;
-    }
+  /**
+   * Gets the unit.
+   *
+   * The units for the secret rotation time interval.
+   *
+   * @return the unit
+   */
+  public String unit() {
+    return unit;
+  }
 
-    /**
-     * Gets the autoRotate.
-     *
-     * @return the autoRotate
-     */
-    public Boolean autoRotate() {
-        return autoRotate;
-    }
+  /**
+   * Gets the autoRotate.
+   *
+   * @return the autoRotate
+   */
+  public Boolean autoRotate() {
+    return autoRotate;
+  }
 
-    /**
-     * Gets the rotateKeys.
-     *
-     * @return the rotateKeys
-     */
-    public Boolean rotateKeys() {
-        return rotateKeys;
-    }
+  /**
+   * Gets the rotateKeys.
+   *
+   * @return the rotateKeys
+   */
+  public Boolean rotateKeys() {
+    return rotateKeys;
+  }
 }
 

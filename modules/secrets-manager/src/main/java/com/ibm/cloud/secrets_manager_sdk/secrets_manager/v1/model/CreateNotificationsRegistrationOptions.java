@@ -19,142 +19,141 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateNotificationsRegistrationOptions extends GenericModel {
 
-    protected String eventNotificationsInstanceCrn;
-    protected String eventNotificationsSourceName;
-    protected String eventNotificationsSourceDescription;
+  protected String eventNotificationsInstanceCrn;
+  protected String eventNotificationsSourceName;
+  protected String eventNotificationsSourceDescription;
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String eventNotificationsInstanceCrn;
+    private String eventNotificationsSourceName;
+    private String eventNotificationsSourceDescription;
 
     /**
-     * Builder.
-     */
-    public static class Builder {
-        private String eventNotificationsInstanceCrn;
-        private String eventNotificationsSourceName;
-        private String eventNotificationsSourceDescription;
-
-        /**
-         * Instantiates a new Builder from an existing CreateNotificationsRegistrationOptions instance.
-         *
-         * @param createNotificationsRegistrationOptions the instance to initialize the Builder with
-         */
-        private Builder(CreateNotificationsRegistrationOptions createNotificationsRegistrationOptions) {
-            this.eventNotificationsInstanceCrn = createNotificationsRegistrationOptions.eventNotificationsInstanceCrn;
-            this.eventNotificationsSourceName = createNotificationsRegistrationOptions.eventNotificationsSourceName;
-            this.eventNotificationsSourceDescription = createNotificationsRegistrationOptions.eventNotificationsSourceDescription;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param eventNotificationsInstanceCrn the eventNotificationsInstanceCrn
-         * @param eventNotificationsSourceName  the eventNotificationsSourceName
-         */
-        public Builder(String eventNotificationsInstanceCrn, String eventNotificationsSourceName) {
-            this.eventNotificationsInstanceCrn = eventNotificationsInstanceCrn;
-            this.eventNotificationsSourceName = eventNotificationsSourceName;
-        }
-
-        /**
-         * Builds a CreateNotificationsRegistrationOptions.
-         *
-         * @return the new CreateNotificationsRegistrationOptions instance
-         */
-        public CreateNotificationsRegistrationOptions build() {
-            return new CreateNotificationsRegistrationOptions(this);
-        }
-
-        /**
-         * Set the eventNotificationsInstanceCrn.
-         *
-         * @param eventNotificationsInstanceCrn the eventNotificationsInstanceCrn
-         * @return the CreateNotificationsRegistrationOptions builder
-         */
-        public Builder eventNotificationsInstanceCrn(String eventNotificationsInstanceCrn) {
-            this.eventNotificationsInstanceCrn = eventNotificationsInstanceCrn;
-            return this;
-        }
-
-        /**
-         * Set the eventNotificationsSourceName.
-         *
-         * @param eventNotificationsSourceName the eventNotificationsSourceName
-         * @return the CreateNotificationsRegistrationOptions builder
-         */
-        public Builder eventNotificationsSourceName(String eventNotificationsSourceName) {
-            this.eventNotificationsSourceName = eventNotificationsSourceName;
-            return this;
-        }
-
-        /**
-         * Set the eventNotificationsSourceDescription.
-         *
-         * @param eventNotificationsSourceDescription the eventNotificationsSourceDescription
-         * @return the CreateNotificationsRegistrationOptions builder
-         */
-        public Builder eventNotificationsSourceDescription(String eventNotificationsSourceDescription) {
-            this.eventNotificationsSourceDescription = eventNotificationsSourceDescription;
-            return this;
-        }
-    }
-
-    protected CreateNotificationsRegistrationOptions() {
-    }
-
-    protected CreateNotificationsRegistrationOptions(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.eventNotificationsInstanceCrn,
-                "eventNotificationsInstanceCrn cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.eventNotificationsSourceName,
-                "eventNotificationsSourceName cannot be null");
-        eventNotificationsInstanceCrn = builder.eventNotificationsInstanceCrn;
-        eventNotificationsSourceName = builder.eventNotificationsSourceName;
-        eventNotificationsSourceDescription = builder.eventNotificationsSourceDescription;
-    }
-
-    /**
-     * New builder.
+     * Instantiates a new Builder from an existing CreateNotificationsRegistrationOptions instance.
      *
-     * @return a CreateNotificationsRegistrationOptions builder
+     * @param createNotificationsRegistrationOptions the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    private Builder(CreateNotificationsRegistrationOptions createNotificationsRegistrationOptions) {
+      this.eventNotificationsInstanceCrn = createNotificationsRegistrationOptions.eventNotificationsInstanceCrn;
+      this.eventNotificationsSourceName = createNotificationsRegistrationOptions.eventNotificationsSourceName;
+      this.eventNotificationsSourceDescription = createNotificationsRegistrationOptions.eventNotificationsSourceDescription;
     }
 
     /**
-     * Gets the eventNotificationsInstanceCrn.
-     * <p>
-     * The Cloud Resource Name (CRN) of the connected Event Notifications instance.
-     *
-     * @return the eventNotificationsInstanceCrn
+     * Instantiates a new builder.
      */
-    public String eventNotificationsInstanceCrn() {
-        return eventNotificationsInstanceCrn;
+    public Builder() {
     }
 
     /**
-     * Gets the eventNotificationsSourceName.
-     * <p>
-     * The name that is displayed as a source in your Event Notifications instance.
+     * Instantiates a new builder with required properties.
      *
-     * @return the eventNotificationsSourceName
+     * @param eventNotificationsInstanceCrn the eventNotificationsInstanceCrn
+     * @param eventNotificationsSourceName the eventNotificationsSourceName
      */
-    public String eventNotificationsSourceName() {
-        return eventNotificationsSourceName;
+    public Builder(String eventNotificationsInstanceCrn, String eventNotificationsSourceName) {
+      this.eventNotificationsInstanceCrn = eventNotificationsInstanceCrn;
+      this.eventNotificationsSourceName = eventNotificationsSourceName;
     }
 
     /**
-     * Gets the eventNotificationsSourceDescription.
-     * <p>
-     * An optional description for the source in your Event Notifications instance.
+     * Builds a CreateNotificationsRegistrationOptions.
      *
-     * @return the eventNotificationsSourceDescription
+     * @return the new CreateNotificationsRegistrationOptions instance
      */
-    public String eventNotificationsSourceDescription() {
-        return eventNotificationsSourceDescription;
+    public CreateNotificationsRegistrationOptions build() {
+      return new CreateNotificationsRegistrationOptions(this);
     }
+
+    /**
+     * Set the eventNotificationsInstanceCrn.
+     *
+     * @param eventNotificationsInstanceCrn the eventNotificationsInstanceCrn
+     * @return the CreateNotificationsRegistrationOptions builder
+     */
+    public Builder eventNotificationsInstanceCrn(String eventNotificationsInstanceCrn) {
+      this.eventNotificationsInstanceCrn = eventNotificationsInstanceCrn;
+      return this;
+    }
+
+    /**
+     * Set the eventNotificationsSourceName.
+     *
+     * @param eventNotificationsSourceName the eventNotificationsSourceName
+     * @return the CreateNotificationsRegistrationOptions builder
+     */
+    public Builder eventNotificationsSourceName(String eventNotificationsSourceName) {
+      this.eventNotificationsSourceName = eventNotificationsSourceName;
+      return this;
+    }
+
+    /**
+     * Set the eventNotificationsSourceDescription.
+     *
+     * @param eventNotificationsSourceDescription the eventNotificationsSourceDescription
+     * @return the CreateNotificationsRegistrationOptions builder
+     */
+    public Builder eventNotificationsSourceDescription(String eventNotificationsSourceDescription) {
+      this.eventNotificationsSourceDescription = eventNotificationsSourceDescription;
+      return this;
+    }
+  }
+
+  protected CreateNotificationsRegistrationOptions() { }
+
+  protected CreateNotificationsRegistrationOptions(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.eventNotificationsInstanceCrn,
+      "eventNotificationsInstanceCrn cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.eventNotificationsSourceName,
+      "eventNotificationsSourceName cannot be null");
+    eventNotificationsInstanceCrn = builder.eventNotificationsInstanceCrn;
+    eventNotificationsSourceName = builder.eventNotificationsSourceName;
+    eventNotificationsSourceDescription = builder.eventNotificationsSourceDescription;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a CreateNotificationsRegistrationOptions builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the eventNotificationsInstanceCrn.
+   *
+   * The Cloud Resource Name (CRN) of the connected Event Notifications instance.
+   *
+   * @return the eventNotificationsInstanceCrn
+   */
+  public String eventNotificationsInstanceCrn() {
+    return eventNotificationsInstanceCrn;
+  }
+
+  /**
+   * Gets the eventNotificationsSourceName.
+   *
+   * The name that is displayed as a source in your Event Notifications instance.
+   *
+   * @return the eventNotificationsSourceName
+   */
+  public String eventNotificationsSourceName() {
+    return eventNotificationsSourceName;
+  }
+
+  /**
+   * Gets the eventNotificationsSourceDescription.
+   *
+   * An optional description for the source in your Event Notifications instance.
+   *
+   * @return the eventNotificationsSourceDescription
+   */
+  public String eventNotificationsSourceDescription() {
+    return eventNotificationsSourceDescription;
+  }
 }
 

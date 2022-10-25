@@ -17,116 +17,111 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
  */
 public class PrivateCertPolicyRotation extends SecretPolicyRotationRotation {
 
-    /**
-     * The units for the secret rotation time interval.
-     */
-    public interface Unit {
-        /**
-         * day.
-         */
-        String DAY = "day";
-        /**
-         * month.
-         */
-        String MONTH = "month";
-    }
+  /**
+   * The units for the secret rotation time interval.
+   */
+  public interface Unit {
+    /** day. */
+    String DAY = "day";
+    /** month. */
+    String MONTH = "month";
+  }
 
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private Boolean autoRotate;
-        private Long interval;
-        private String unit;
-
-        /**
-         * Instantiates a new Builder from an existing PrivateCertPolicyRotation instance.
-         *
-         * @param privateCertPolicyRotation the instance to initialize the Builder with
-         */
-        public Builder(SecretPolicyRotationRotation privateCertPolicyRotation) {
-            this.autoRotate = privateCertPolicyRotation.autoRotate;
-            this.interval = privateCertPolicyRotation.interval;
-            this.unit = privateCertPolicyRotation.unit;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param autoRotate the autoRotate
-         */
-        public Builder(Boolean autoRotate) {
-            this.autoRotate = autoRotate;
-        }
-
-        /**
-         * Builds a PrivateCertPolicyRotation.
-         *
-         * @return the new PrivateCertPolicyRotation instance
-         */
-        public PrivateCertPolicyRotation build() {
-            return new PrivateCertPolicyRotation(this);
-        }
-
-        /**
-         * Set the autoRotate.
-         *
-         * @param autoRotate the autoRotate
-         * @return the PrivateCertPolicyRotation builder
-         */
-        public Builder autoRotate(Boolean autoRotate) {
-            this.autoRotate = autoRotate;
-            return this;
-        }
-
-        /**
-         * Set the interval.
-         *
-         * @param interval the interval
-         * @return the PrivateCertPolicyRotation builder
-         */
-        public Builder interval(long interval) {
-            this.interval = interval;
-            return this;
-        }
-
-        /**
-         * Set the unit.
-         *
-         * @param unit the unit
-         * @return the PrivateCertPolicyRotation builder
-         */
-        public Builder unit(String unit) {
-            this.unit = unit;
-            return this;
-        }
-    }
-
-    protected PrivateCertPolicyRotation() {
-    }
-
-    protected PrivateCertPolicyRotation(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.autoRotate,
-                "autoRotate cannot be null");
-        autoRotate = builder.autoRotate;
-        interval = builder.interval;
-        unit = builder.unit;
-    }
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Boolean autoRotate;
+    private Long interval;
+    private String unit;
 
     /**
-     * New builder.
+     * Instantiates a new Builder from an existing PrivateCertPolicyRotation instance.
      *
-     * @return a PrivateCertPolicyRotation builder
+     * @param privateCertPolicyRotation the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(SecretPolicyRotationRotation privateCertPolicyRotation) {
+      this.autoRotate = privateCertPolicyRotation.autoRotate;
+      this.interval = privateCertPolicyRotation.interval;
+      this.unit = privateCertPolicyRotation.unit;
     }
+
+    /**
+     * Instantiates a new builder.
+     */
+    public Builder() {
+    }
+
+    /**
+     * Instantiates a new builder with required properties.
+     *
+     * @param autoRotate the autoRotate
+     */
+    public Builder(Boolean autoRotate) {
+      this.autoRotate = autoRotate;
+    }
+
+    /**
+     * Builds a PrivateCertPolicyRotation.
+     *
+     * @return the new PrivateCertPolicyRotation instance
+     */
+    public PrivateCertPolicyRotation build() {
+      return new PrivateCertPolicyRotation(this);
+    }
+
+    /**
+     * Set the autoRotate.
+     *
+     * @param autoRotate the autoRotate
+     * @return the PrivateCertPolicyRotation builder
+     */
+    public Builder autoRotate(Boolean autoRotate) {
+      this.autoRotate = autoRotate;
+      return this;
+    }
+
+    /**
+     * Set the interval.
+     *
+     * @param interval the interval
+     * @return the PrivateCertPolicyRotation builder
+     */
+    public Builder interval(long interval) {
+      this.interval = interval;
+      return this;
+    }
+
+    /**
+     * Set the unit.
+     *
+     * @param unit the unit
+     * @return the PrivateCertPolicyRotation builder
+     */
+    public Builder unit(String unit) {
+      this.unit = unit;
+      return this;
+    }
+  }
+
+  protected PrivateCertPolicyRotation() { }
+
+  protected PrivateCertPolicyRotation(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.autoRotate,
+      "autoRotate cannot be null");
+    autoRotate = builder.autoRotate;
+    interval = builder.interval;
+    unit = builder.unit;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a PrivateCertPolicyRotation builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 

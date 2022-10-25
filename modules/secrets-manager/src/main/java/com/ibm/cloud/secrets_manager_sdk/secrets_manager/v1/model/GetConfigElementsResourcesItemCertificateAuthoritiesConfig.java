@@ -18,7 +18,6 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class GetConfigElementsResourcesItemCertificateAuthoritiesConfig extends GetConfigElementsResourcesItem {
 
 
-    protected GetConfigElementsResourcesItemCertificateAuthoritiesConfig() {
-    }
+  protected GetConfigElementsResourcesItemCertificateAuthoritiesConfig() { }
 }
 

@@ -19,124 +19,121 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretPolicyRotation extends GenericModel {
 
-    /**
-     * The MIME type that represents the policy. Currently, only the default is supported.
-     */
-    public interface Type {
-        /**
-         * application/vnd.ibm.secrets-manager.secret.policy+json.
-         */
-        String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = "application/vnd.ibm.secrets-manager.secret.policy+json";
-    }
+  /**
+   * The MIME type that represents the policy. Currently, only the default is supported.
+   */
+  public interface Type {
+    /** application/vnd.ibm.secrets-manager.secret.policy+json. */
+    String APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = "application/vnd.ibm.secrets-manager.secret.policy+json";
+  }
 
-    protected String type;
-    protected SecretPolicyRotationRotation rotation;
+  protected String type;
+  protected SecretPolicyRotationRotation rotation;
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private String type;
-        private SecretPolicyRotationRotation rotation;
-
-        /**
-         * Instantiates a new Builder from an existing SecretPolicyRotation instance.
-         *
-         * @param secretPolicyRotation the instance to initialize the Builder with
-         */
-        private Builder(SecretPolicyRotation secretPolicyRotation) {
-            this.type = secretPolicyRotation.type;
-            this.rotation = secretPolicyRotation.rotation;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param type     the type
-         * @param rotation the rotation
-         */
-        public Builder(String type, SecretPolicyRotationRotation rotation) {
-            this.type = type;
-            this.rotation = rotation;
-        }
-
-        /**
-         * Builds a SecretPolicyRotation.
-         *
-         * @return the new SecretPolicyRotation instance
-         */
-        public SecretPolicyRotation build() {
-            return new SecretPolicyRotation(this);
-        }
-
-        /**
-         * Set the type.
-         *
-         * @param type the type
-         * @return the SecretPolicyRotation builder
-         */
-        public Builder type(String type) {
-            this.type = type;
-            return this;
-        }
-
-        /**
-         * Set the rotation.
-         *
-         * @param rotation the rotation
-         * @return the SecretPolicyRotation builder
-         */
-        public Builder rotation(SecretPolicyRotationRotation rotation) {
-            this.rotation = rotation;
-            return this;
-        }
-    }
-
-    protected SecretPolicyRotation() {
-    }
-
-    protected SecretPolicyRotation(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
-                "type cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.rotation,
-                "rotation cannot be null");
-        type = builder.type;
-        rotation = builder.rotation;
-    }
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String type;
+    private SecretPolicyRotationRotation rotation;
 
     /**
-     * New builder.
+     * Instantiates a new Builder from an existing SecretPolicyRotation instance.
      *
-     * @return a SecretPolicyRotation builder
+     * @param secretPolicyRotation the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    private Builder(SecretPolicyRotation secretPolicyRotation) {
+      this.type = secretPolicyRotation.type;
+      this.rotation = secretPolicyRotation.rotation;
     }
 
     /**
-     * Gets the type.
-     * <p>
-     * The MIME type that represents the policy. Currently, only the default is supported.
-     *
-     * @return the type
+     * Instantiates a new builder.
      */
-    public String type() {
-        return type;
+    public Builder() {
     }
 
     /**
-     * Gets the rotation.
+     * Instantiates a new builder with required properties.
      *
-     * @return the rotation
+     * @param type the type
+     * @param rotation the rotation
      */
-    public SecretPolicyRotationRotation rotation() {
-        return rotation;
+    public Builder(String type, SecretPolicyRotationRotation rotation) {
+      this.type = type;
+      this.rotation = rotation;
     }
+
+    /**
+     * Builds a SecretPolicyRotation.
+     *
+     * @return the new SecretPolicyRotation instance
+     */
+    public SecretPolicyRotation build() {
+      return new SecretPolicyRotation(this);
+    }
+
+    /**
+     * Set the type.
+     *
+     * @param type the type
+     * @return the SecretPolicyRotation builder
+     */
+    public Builder type(String type) {
+      this.type = type;
+      return this;
+    }
+
+    /**
+     * Set the rotation.
+     *
+     * @param rotation the rotation
+     * @return the SecretPolicyRotation builder
+     */
+    public Builder rotation(SecretPolicyRotationRotation rotation) {
+      this.rotation = rotation;
+      return this;
+    }
+  }
+
+  protected SecretPolicyRotation() { }
+
+  protected SecretPolicyRotation(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.type,
+      "type cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.rotation,
+      "rotation cannot be null");
+    type = builder.type;
+    rotation = builder.rotation;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a SecretPolicyRotation builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the type.
+   *
+   * The MIME type that represents the policy. Currently, only the default is supported.
+   *
+   * @return the type
+   */
+  public String type() {
+    return type;
+  }
+
+  /**
+   * Gets the rotation.
+   *
+   * @return the rotation
+   */
+  public SecretPolicyRotationRotation rotation() {
+    return rotation;
+  }
 }
 

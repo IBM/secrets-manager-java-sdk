@@ -18,73 +18,72 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 public class SetSignedAction extends ConfigAction {
 
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private String certificate;
-
-        /**
-         * Instantiates a new Builder from an existing SetSignedAction instance.
-         *
-         * @param setSignedAction the instance to initialize the Builder with
-         */
-        public Builder(ConfigAction setSignedAction) {
-            this.certificate = setSignedAction.certificate;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param certificate the certificate
-         */
-        public Builder(String certificate) {
-            this.certificate = certificate;
-        }
-
-        /**
-         * Builds a SetSignedAction.
-         *
-         * @return the new SetSignedAction instance
-         */
-        public SetSignedAction build() {
-            return new SetSignedAction(this);
-        }
-
-        /**
-         * Set the certificate.
-         *
-         * @param certificate the certificate
-         * @return the SetSignedAction builder
-         */
-        public Builder certificate(String certificate) {
-            this.certificate = certificate;
-            return this;
-        }
-    }
-
-    protected SetSignedAction() {
-    }
-
-    protected SetSignedAction(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.certificate,
-                "certificate cannot be null");
-        certificate = builder.certificate;
-    }
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private String certificate;
 
     /**
-     * New builder.
+     * Instantiates a new Builder from an existing SetSignedAction instance.
      *
-     * @return a SetSignedAction builder
+     * @param setSignedAction the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(ConfigAction setSignedAction) {
+      this.certificate = setSignedAction.certificate;
     }
+
+    /**
+     * Instantiates a new builder.
+     */
+    public Builder() {
+    }
+
+    /**
+     * Instantiates a new builder with required properties.
+     *
+     * @param certificate the certificate
+     */
+    public Builder(String certificate) {
+      this.certificate = certificate;
+    }
+
+    /**
+     * Builds a SetSignedAction.
+     *
+     * @return the new SetSignedAction instance
+     */
+    public SetSignedAction build() {
+      return new SetSignedAction(this);
+    }
+
+    /**
+     * Set the certificate.
+     *
+     * @param certificate the certificate
+     * @return the SetSignedAction builder
+     */
+    public Builder certificate(String certificate) {
+      this.certificate = certificate;
+      return this;
+    }
+  }
+
+  protected SetSignedAction() { }
+
+  protected SetSignedAction(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.certificate,
+      "certificate cannot be null");
+    certificate = builder.certificate;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a SetSignedAction builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 

@@ -15,47 +15,42 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignIntermediateActionResult;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignIntermediateActionResultData;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SignIntermediateActionResult model.
  */
 public class SignIntermediateActionResultTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testSignIntermediateActionResult() throws Throwable {
-        SignIntermediateActionResult signIntermediateActionResultModel = new SignIntermediateActionResult();
-        assertNull(signIntermediateActionResultModel.getCommonName());
-        assertNull(signIntermediateActionResultModel.getAltNames());
-        assertNull(signIntermediateActionResultModel.getIpSans());
-        assertNull(signIntermediateActionResultModel.getUriSans());
-        assertNull(signIntermediateActionResultModel.getOtherSans());
-        assertNull(signIntermediateActionResultModel.getTtl());
-        assertNull(signIntermediateActionResultModel.getFormat());
-        assertNull(signIntermediateActionResultModel.getMaxPathLength());
-        assertNull(signIntermediateActionResultModel.isExcludeCnFromSans());
-        assertNull(signIntermediateActionResultModel.getPermittedDnsDomains());
-        assertNull(signIntermediateActionResultModel.isUseCsrValues());
-        assertNull(signIntermediateActionResultModel.getOu());
-        assertNull(signIntermediateActionResultModel.getOrganization());
-        assertNull(signIntermediateActionResultModel.getCountry());
-        assertNull(signIntermediateActionResultModel.getLocality());
-        assertNull(signIntermediateActionResultModel.getProvince());
-        assertNull(signIntermediateActionResultModel.getStreetAddress());
-        assertNull(signIntermediateActionResultModel.getPostalCode());
-        assertNull(signIntermediateActionResultModel.getSerialNumber());
-        assertNull(signIntermediateActionResultModel.getData());
-        assertNull(signIntermediateActionResultModel.getIntermediateCertificateAuthority());
-    }
+  @Test
+  public void testSignIntermediateActionResult() throws Throwable {
+    SignIntermediateActionResult signIntermediateActionResultModel = new SignIntermediateActionResult();
+    assertNull(signIntermediateActionResultModel.getCommonName());
+    assertNull(signIntermediateActionResultModel.getAltNames());
+    assertNull(signIntermediateActionResultModel.getIpSans());
+    assertNull(signIntermediateActionResultModel.getUriSans());
+    assertNull(signIntermediateActionResultModel.getOtherSans());
+    assertNull(signIntermediateActionResultModel.getTtl());
+    assertNull(signIntermediateActionResultModel.getFormat());
+    assertNull(signIntermediateActionResultModel.getMaxPathLength());
+    assertNull(signIntermediateActionResultModel.isExcludeCnFromSans());
+    assertNull(signIntermediateActionResultModel.getPermittedDnsDomains());
+    assertNull(signIntermediateActionResultModel.isUseCsrValues());
+    assertNull(signIntermediateActionResultModel.getOu());
+    assertNull(signIntermediateActionResultModel.getOrganization());
+    assertNull(signIntermediateActionResultModel.getCountry());
+    assertNull(signIntermediateActionResultModel.getLocality());
+    assertNull(signIntermediateActionResultModel.getProvince());
+    assertNull(signIntermediateActionResultModel.getStreetAddress());
+    assertNull(signIntermediateActionResultModel.getPostalCode());
+    assertNull(signIntermediateActionResultModel.getSerialNumber());
+    assertNull(signIntermediateActionResultModel.getIntermediateCertificateAuthority());
+  }
 }

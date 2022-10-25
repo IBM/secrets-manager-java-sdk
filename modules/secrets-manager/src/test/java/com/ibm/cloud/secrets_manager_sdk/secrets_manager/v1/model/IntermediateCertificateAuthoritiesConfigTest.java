@@ -18,25 +18,22 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IntermediateCe
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IntermediateCertificateAuthoritiesConfigItem;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IntermediateCertificateAuthorityConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the IntermediateCertificateAuthoritiesConfig model.
  */
 public class IntermediateCertificateAuthoritiesConfigTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testIntermediateCertificateAuthoritiesConfig() throws Throwable {
-        IntermediateCertificateAuthoritiesConfig intermediateCertificateAuthoritiesConfigModel = new IntermediateCertificateAuthoritiesConfig();
-        assertNull(intermediateCertificateAuthoritiesConfigModel.getIntermediateCertificateAuthorities());
-    }
+  @Test
+  public void testIntermediateCertificateAuthoritiesConfig() throws Throwable {
+    IntermediateCertificateAuthoritiesConfig intermediateCertificateAuthoritiesConfigModel = new IntermediateCertificateAuthoritiesConfig();
+    assertNull(intermediateCertificateAuthoritiesConfigModel.getIntermediateCertificateAuthorities());
+  }
 }

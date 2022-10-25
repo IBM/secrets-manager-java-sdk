@@ -16,59 +16,44 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.KvSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the KvSecretMetadata model.
  */
 public class KvSecretMetadataTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testKvSecretMetadata() throws Throwable {
-        KvSecretMetadata kvSecretMetadataModel = new KvSecretMetadata.Builder()
-                .labels(java.util.Arrays.asList("dev", "us-south"))
-                .name("example-secret")
-                .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .build();
-        assertEquals(kvSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
-        assertEquals(kvSecretMetadataModel.name(), "example-secret");
-        assertEquals(kvSecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(kvSecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+  @Test
+  public void testKvSecretMetadata() throws Throwable {
+    KvSecretMetadata kvSecretMetadataModel = new KvSecretMetadata.Builder()
+      .labels(java.util.Arrays.asList("dev", "us-south"))
+      .name("example-secret")
+      .description("Extended description for this secret.")
+      .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .build();
+    assertEquals(kvSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
+    assertEquals(kvSecretMetadataModel.name(), "example-secret");
+    assertEquals(kvSecretMetadataModel.description(), "Extended description for this secret.");
+    assertEquals(kvSecretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
-        String json = TestUtilities.serialize(kvSecretMetadataModel);
+    String json = TestUtilities.serialize(kvSecretMetadataModel);
 
-        KvSecretMetadata kvSecretMetadataModelNew = TestUtilities.deserialize(json, KvSecretMetadata.class);
-        assertTrue(kvSecretMetadataModelNew instanceof KvSecretMetadata);
-        assertEquals(kvSecretMetadataModelNew.name(), "example-secret");
-        assertEquals(kvSecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(kvSecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-    }
+    KvSecretMetadata kvSecretMetadataModelNew = TestUtilities.deserialize(json, KvSecretMetadata.class);
+    assertTrue(kvSecretMetadataModelNew instanceof KvSecretMetadata);
+    assertEquals(kvSecretMetadataModelNew.name(), "example-secret");
+    assertEquals(kvSecretMetadataModelNew.description(), "Extended description for this secret.");
+    assertEquals(kvSecretMetadataModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testKvSecretMetadataError() throws Throwable {
-        new KvSecretMetadata.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testKvSecretMetadataError() throws Throwable {
+    new KvSecretMetadata.Builder().build();
+  }
 
 }

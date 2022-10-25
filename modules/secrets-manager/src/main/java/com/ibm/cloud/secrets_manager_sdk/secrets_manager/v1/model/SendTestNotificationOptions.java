@@ -19,10 +19,10 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SendTestNotificationOptions extends GenericModel {
 
-    /**
-     * Construct a new instance of SendTestNotificationOptions.
-     */
-    public SendTestNotificationOptions() {
-    }
+  /**
+   * Construct a new instance of SendTestNotificationOptions.
+   */
+  public SendTestNotificationOptions() {
+  }
 }
 

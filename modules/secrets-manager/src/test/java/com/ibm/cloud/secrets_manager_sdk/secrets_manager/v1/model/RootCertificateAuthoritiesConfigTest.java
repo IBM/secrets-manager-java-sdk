@@ -18,25 +18,22 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RootCertificat
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RootCertificateAuthoritiesConfigItem;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RootCertificateAuthorityConfig;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the RootCertificateAuthoritiesConfig model.
  */
 public class RootCertificateAuthoritiesConfigTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testRootCertificateAuthoritiesConfig() throws Throwable {
-        RootCertificateAuthoritiesConfig rootCertificateAuthoritiesConfigModel = new RootCertificateAuthoritiesConfig();
-        assertNull(rootCertificateAuthoritiesConfigModel.getRootCertificateAuthorities());
-    }
+  @Test
+  public void testRootCertificateAuthoritiesConfig() throws Throwable {
+    RootCertificateAuthoritiesConfig rootCertificateAuthoritiesConfigModel = new RootCertificateAuthoritiesConfig();
+    assertNull(rootCertificateAuthoritiesConfigModel.getRootCertificateAuthorities());
+  }
 }

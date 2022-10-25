@@ -21,167 +21,152 @@ import java.util.Map;
  */
 public class KvSecretMetadata extends SecretMetadata {
 
-    /**
-     * The secret type.
-     */
-    public interface SecretType {
-        /**
-         * arbitrary.
-         */
-        String ARBITRARY = "arbitrary";
-        /**
-         * username_password.
-         */
-        String USERNAME_PASSWORD = "username_password";
-        /**
-         * iam_credentials.
-         */
-        String IAM_CREDENTIALS = "iam_credentials";
-        /**
-         * imported_cert.
-         */
-        String IMPORTED_CERT = "imported_cert";
-        /**
-         * public_cert.
-         */
-        String PUBLIC_CERT = "public_cert";
-        /**
-         * private_cert.
-         */
-        String PRIVATE_CERT = "private_cert";
-        /**
-         * kv.
-         */
-        String KV = "kv";
-    }
+  /**
+   * The secret type.
+   */
+  public interface SecretType {
+    /** arbitrary. */
+    String ARBITRARY = "arbitrary";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
+    /** iam_credentials. */
+    String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** private_cert. */
+    String PRIVATE_CERT = "private_cert";
+    /** kv. */
+    String KV = "kv";
+  }
 
+
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private List<String> labels;
+    private String name;
+    private String description;
+    private Map<String, Object> customMetadata;
 
     /**
-     * Builder.
-     */
-    public static class Builder {
-        private List<String> labels;
-        private String name;
-        private String description;
-        private Map<String, Object> customMetadata;
-
-        /**
-         * Instantiates a new Builder from an existing KvSecretMetadata instance.
-         *
-         * @param kvSecretMetadata the instance to initialize the Builder with
-         */
-        public Builder(SecretMetadata kvSecretMetadata) {
-            this.labels = kvSecretMetadata.labels;
-            this.name = kvSecretMetadata.name;
-            this.description = kvSecretMetadata.description;
-            this.customMetadata = kvSecretMetadata.customMetadata;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Instantiates a new builder with required properties.
-         *
-         * @param name the name
-         */
-        public Builder(String name) {
-            this.name = name;
-        }
-
-        /**
-         * Builds a KvSecretMetadata.
-         *
-         * @return the new KvSecretMetadata instance
-         */
-        public KvSecretMetadata build() {
-            return new KvSecretMetadata(this);
-        }
-
-        /**
-         * Adds an labels to labels.
-         *
-         * @param labels the new labels
-         * @return the KvSecretMetadata builder
-         */
-        public Builder addLabels(String labels) {
-            com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
-                    "labels cannot be null");
-            if (this.labels == null) {
-                this.labels = new ArrayList<String>();
-            }
-            this.labels.add(labels);
-            return this;
-        }
-
-        /**
-         * Set the labels.
-         * Existing labels will be replaced.
-         *
-         * @param labels the labels
-         * @return the KvSecretMetadata builder
-         */
-        public Builder labels(List<String> labels) {
-            this.labels = labels;
-            return this;
-        }
-
-        /**
-         * Set the name.
-         *
-         * @param name the name
-         * @return the KvSecretMetadata builder
-         */
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        /**
-         * Set the description.
-         *
-         * @param description the description
-         * @return the KvSecretMetadata builder
-         */
-        public Builder description(String description) {
-            this.description = description;
-            return this;
-        }
-
-        /**
-         * Set the customMetadata.
-         *
-         * @param customMetadata the customMetadata
-         * @return the KvSecretMetadata builder
-         */
-        public Builder customMetadata(Map<String, Object> customMetadata) {
-            this.customMetadata = customMetadata;
-            return this;
-        }
-    }
-
-    protected KvSecretMetadata() {
-    }
-
-    protected KvSecretMetadata(Builder builder) {
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
-                "name cannot be null");
-        labels = builder.labels;
-        name = builder.name;
-        description = builder.description;
-        customMetadata = builder.customMetadata;
-    }
-
-    /**
-     * New builder.
+     * Instantiates a new Builder from an existing KvSecretMetadata instance.
      *
-     * @return a KvSecretMetadata builder
+     * @param kvSecretMetadata the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    public Builder(SecretMetadata kvSecretMetadata) {
+      this.labels = kvSecretMetadata.labels;
+      this.name = kvSecretMetadata.name;
+      this.description = kvSecretMetadata.description;
+      this.customMetadata = kvSecretMetadata.customMetadata;
     }
+
+    /**
+     * Instantiates a new builder.
+     */
+    public Builder() {
+    }
+
+    /**
+     * Instantiates a new builder with required properties.
+     *
+     * @param name the name
+     */
+    public Builder(String name) {
+      this.name = name;
+    }
+
+    /**
+     * Builds a KvSecretMetadata.
+     *
+     * @return the new KvSecretMetadata instance
+     */
+    public KvSecretMetadata build() {
+      return new KvSecretMetadata(this);
+    }
+
+    /**
+     * Adds an labels to labels.
+     *
+     * @param labels the new labels
+     * @return the KvSecretMetadata builder
+     */
+    public Builder addLabels(String labels) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
+        "labels cannot be null");
+      if (this.labels == null) {
+        this.labels = new ArrayList<String>();
+      }
+      this.labels.add(labels);
+      return this;
+    }
+
+    /**
+     * Set the labels.
+     * Existing labels will be replaced.
+     *
+     * @param labels the labels
+     * @return the KvSecretMetadata builder
+     */
+    public Builder labels(List<String> labels) {
+      this.labels = labels;
+      return this;
+    }
+
+    /**
+     * Set the name.
+     *
+     * @param name the name
+     * @return the KvSecretMetadata builder
+     */
+    public Builder name(String name) {
+      this.name = name;
+      return this;
+    }
+
+    /**
+     * Set the description.
+     *
+     * @param description the description
+     * @return the KvSecretMetadata builder
+     */
+    public Builder description(String description) {
+      this.description = description;
+      return this;
+    }
+
+    /**
+     * Set the customMetadata.
+     *
+     * @param customMetadata the customMetadata
+     * @return the KvSecretMetadata builder
+     */
+    public Builder customMetadata(Map<String, Object> customMetadata) {
+      this.customMetadata = customMetadata;
+      return this;
+    }
+  }
+
+  protected KvSecretMetadata() { }
+
+  protected KvSecretMetadata(Builder builder) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+      "name cannot be null");
+    labels = builder.labels;
+    name = builder.name;
+    description = builder.description;
+    customMetadata = builder.customMetadata;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a KvSecretMetadata builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
 }
 

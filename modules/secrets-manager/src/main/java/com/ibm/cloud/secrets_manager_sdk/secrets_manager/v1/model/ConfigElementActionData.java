@@ -19,76 +19,61 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ConfigElementActionData extends GenericModel {
 
-    /**
-     * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
-     */
-    public interface Type {
-        /**
-         * letsencrypt.
-         */
-        String LETSENCRYPT = "letsencrypt";
-        /**
-         * letsencrypt-stage.
-         */
-        String LETSENCRYPT_STAGE = "letsencrypt-stage";
-        /**
-         * cis.
-         */
-        String CIS = "cis";
-        /**
-         * classic_infrastructure.
-         */
-        String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
-        /**
-         * root_certificate_authority.
-         */
-        String ROOT_CERTIFICATE_AUTHORITY = "root_certificate_authority";
-        /**
-         * intermediate_certificate_authority.
-         */
-        String INTERMEDIATE_CERTIFICATE_AUTHORITY = "intermediate_certificate_authority";
-        /**
-         * certificate_template.
-         */
-        String CERTIFICATE_TEMPLATE = "certificate_template";
-    }
+  /**
+   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
+   */
+  public interface Type {
+    /** letsencrypt. */
+    String LETSENCRYPT = "letsencrypt";
+    /** letsencrypt-stage. */
+    String LETSENCRYPT_STAGE = "letsencrypt-stage";
+    /** cis. */
+    String CIS = "cis";
+    /** classic_infrastructure. */
+    String CLASSIC_INFRASTRUCTURE = "classic_infrastructure";
+    /** root_certificate_authority. */
+    String ROOT_CERTIFICATE_AUTHORITY = "root_certificate_authority";
+    /** intermediate_certificate_authority. */
+    String INTERMEDIATE_CERTIFICATE_AUTHORITY = "intermediate_certificate_authority";
+    /** certificate_template. */
+    String CERTIFICATE_TEMPLATE = "certificate_template";
+  }
 
-    protected String name;
-    protected String type;
-    protected ConfigElementActionResultConfig config;
+  protected String name;
+  protected String type;
+  protected ConfigElementActionResultConfig config;
 
-    protected ConfigElementActionData() {
-    }
+  protected ConfigElementActionData() { }
 
-    /**
-     * Gets the name.
-     * <p>
-     * The human-readable name to assign to your configuration.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Gets the name.
+   *
+   * The human-readable name to assign to your configuration.
+   *
+   * @return the name
+   */
+  public String getName() {
+    return name;
+  }
 
-    /**
-     * Gets the type.
-     * <p>
-     * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
-     *
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
+  /**
+   * Gets the type.
+   *
+   * The type of configuration. Value options differ depending on the `config_element` property that you want to define.
+   *
+   * @return the type
+   */
+  public String getType() {
+    return type;
+  }
 
-    /**
-     * Gets the config.
-     *
-     * @return the config
-     */
-    public ConfigElementActionResultConfig getConfig() {
-        return config;
-    }
+  /**
+   * Gets the config.
+   *
+   * @return the config
+   */
+  public ConfigElementActionResultConfig getConfig() {
+    return config;
+  }
 }
 

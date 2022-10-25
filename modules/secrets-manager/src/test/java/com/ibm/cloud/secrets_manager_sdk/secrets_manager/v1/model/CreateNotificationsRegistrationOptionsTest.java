@@ -16,37 +16,34 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CreateNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the CreateNotificationsRegistrationOptions model.
  */
 public class CreateNotificationsRegistrationOptionsTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testCreateNotificationsRegistrationOptions() throws Throwable {
-        CreateNotificationsRegistrationOptions createNotificationsRegistrationOptionsModel = new CreateNotificationsRegistrationOptions.Builder()
-                .eventNotificationsInstanceCrn("crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::")
-                .eventNotificationsSourceName("My Secrets Manager")
-                .eventNotificationsSourceDescription("Sends notification lifecycle events.")
-                .build();
-        assertEquals(createNotificationsRegistrationOptionsModel.eventNotificationsInstanceCrn(), "crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::");
-        assertEquals(createNotificationsRegistrationOptionsModel.eventNotificationsSourceName(), "My Secrets Manager");
-        assertEquals(createNotificationsRegistrationOptionsModel.eventNotificationsSourceDescription(), "Sends notification lifecycle events.");
-    }
+  @Test
+  public void testCreateNotificationsRegistrationOptions() throws Throwable {
+    CreateNotificationsRegistrationOptions createNotificationsRegistrationOptionsModel = new CreateNotificationsRegistrationOptions.Builder()
+      .eventNotificationsInstanceCrn("crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::")
+      .eventNotificationsSourceName("My Secrets Manager")
+      .eventNotificationsSourceDescription("Sends notification lifecycle events.")
+      .build();
+    assertEquals(createNotificationsRegistrationOptionsModel.eventNotificationsInstanceCrn(), "crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::");
+    assertEquals(createNotificationsRegistrationOptionsModel.eventNotificationsSourceName(), "My Secrets Manager");
+    assertEquals(createNotificationsRegistrationOptionsModel.eventNotificationsSourceDescription(), "Sends notification lifecycle events.");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testCreateNotificationsRegistrationOptionsError() throws Throwable {
-        new CreateNotificationsRegistrationOptions.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testCreateNotificationsRegistrationOptionsError() throws Throwable {
+    new CreateNotificationsRegistrationOptions.Builder().build();
+  }
 
 }

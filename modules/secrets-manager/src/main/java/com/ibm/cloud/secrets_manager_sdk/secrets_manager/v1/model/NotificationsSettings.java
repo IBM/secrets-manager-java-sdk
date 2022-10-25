@@ -20,21 +20,20 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class NotificationsSettings extends GenericModel {
 
-    @SerializedName("event_notifications_instance_crn")
-    protected String eventNotificationsInstanceCrn;
+  @SerializedName("event_notifications_instance_crn")
+  protected String eventNotificationsInstanceCrn;
 
-    protected NotificationsSettings() {
-    }
+  protected NotificationsSettings() { }
 
-    /**
-     * Gets the eventNotificationsInstanceCrn.
-     * <p>
-     * The Cloud Resource Name (CRN) of the connected Event Notifications instance.
-     *
-     * @return the eventNotificationsInstanceCrn
-     */
-    public String getEventNotificationsInstanceCrn() {
-        return eventNotificationsInstanceCrn;
-    }
+  /**
+   * Gets the eventNotificationsInstanceCrn.
+   *
+   * The Cloud Resource Name (CRN) of the connected Event Notifications instance.
+   *
+   * @return the eventNotificationsInstanceCrn
+   */
+  public String getEventNotificationsInstanceCrn() {
+    return eventNotificationsInstanceCrn;
+  }
 }
 

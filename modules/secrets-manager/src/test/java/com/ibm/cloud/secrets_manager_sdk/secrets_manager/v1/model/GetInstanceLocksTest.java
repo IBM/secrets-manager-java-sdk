@@ -19,26 +19,23 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetInstanceLoc
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.InstanceSecretsLocks;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretLockVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetInstanceLocks model.
  */
 public class GetInstanceLocksTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testGetInstanceLocks() throws Throwable {
-        GetInstanceLocks getInstanceLocksModel = new GetInstanceLocks();
-        assertNull(getInstanceLocksModel.getMetadata());
-        assertNull(getInstanceLocksModel.getResources());
-    }
+  @Test
+  public void testGetInstanceLocks() throws Throwable {
+    GetInstanceLocks getInstanceLocksModel = new GetInstanceLocks();
+    assertNull(getInstanceLocksModel.getMetadata());
+    assertNull(getInstanceLocksModel.getResources());
+  }
 }

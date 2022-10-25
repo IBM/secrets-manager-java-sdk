@@ -14,31 +14,25 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.sdk.core.util.DateUtils;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretVersionInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the PrivateCertificateSecretVersionInfo model.
  */
 public class PrivateCertificateSecretVersionInfoTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testPrivateCertificateSecretVersionInfo() throws Throwable {
-        PrivateCertificateSecretVersionInfo privateCertificateSecretVersionInfoModel = new PrivateCertificateSecretVersionInfo();
-        assertNull(privateCertificateSecretVersionInfoModel.getVersionCustomMetadata());
-        assertNull(privateCertificateSecretVersionInfoModel.getValidity());
-        assertNull(privateCertificateSecretVersionInfoModel.isAutoRotated());
-    }
+  @Test
+  public void testPrivateCertificateSecretVersionInfo() throws Throwable {
+    PrivateCertificateSecretVersionInfo privateCertificateSecretVersionInfoModel = new PrivateCertificateSecretVersionInfo();
+    assertNull(privateCertificateSecretVersionInfoModel.getVersionCustomMetadata());
+    assertNull(privateCertificateSecretVersionInfoModel.isAutoRotated());
+  }
 }

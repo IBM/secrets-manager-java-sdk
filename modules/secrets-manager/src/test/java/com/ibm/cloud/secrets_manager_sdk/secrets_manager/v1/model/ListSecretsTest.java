@@ -19,27 +19,23 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ArbitrarySecre
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CollectionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ListSecrets;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ListSecrets model.
  */
 public class ListSecretsTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testListSecrets() throws Throwable {
-        ListSecrets listSecretsModel = new ListSecrets();
-        assertNull(listSecretsModel.getMetadata());
-        assertNull(listSecretsModel.getResources());
-    }
+  @Test
+  public void testListSecrets() throws Throwable {
+    ListSecrets listSecretsModel = new ListSecrets();
+    assertNull(listSecretsModel.getMetadata());
+    assertNull(listSecretsModel.getResources());
+  }
 }

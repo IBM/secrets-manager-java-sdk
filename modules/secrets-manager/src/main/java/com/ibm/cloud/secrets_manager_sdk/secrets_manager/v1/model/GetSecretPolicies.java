@@ -13,43 +13,43 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * GetSecretPolicies.
- * <p>
+ *
  * Classes which extend this class:
  * - GetSecretPolicyRotation
  */
 public class GetSecretPolicies extends GenericModel {
 
-    protected CollectionMetadata metadata;
-    protected List<Object> resources;
+  protected CollectionMetadata metadata;
+  protected List<Map<String, Object>> resources;
 
-    protected GetSecretPolicies() {
-    }
+  protected GetSecretPolicies() { }
 
-    /**
-     * Gets the metadata.
-     * <p>
-     * The metadata that describes the resource array.
-     *
-     * @return the metadata
-     */
-    public CollectionMetadata getMetadata() {
-        return metadata;
-    }
+  /**
+   * Gets the metadata.
+   *
+   * The metadata that describes the resource array.
+   *
+   * @return the metadata
+   */
+  public CollectionMetadata getMetadata() {
+    return metadata;
+  }
 
-    /**
-     * Gets the resources.
-     * <p>
-     * A collection of resources.
-     *
-     * @return the resources
-     */
-    public List<Object> getResources() {
-        return resources;
-    }
+  /**
+   * Gets the resources.
+   *
+   * A collection of resources.
+   *
+   * @return the resources
+   */
+  public List<Map<String, Object>> getResources() {
+    return resources;
+  }
 }
 

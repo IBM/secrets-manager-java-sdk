@@ -44,7 +44,7 @@ Service name | Imported class name
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager</artifactId>
-    <version>1.0.43</version>
+    <version>1.0.44</version>
 </dependency>
 ```
 

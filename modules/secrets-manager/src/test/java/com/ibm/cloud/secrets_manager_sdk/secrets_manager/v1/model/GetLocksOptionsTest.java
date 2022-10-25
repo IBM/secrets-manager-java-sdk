@@ -16,41 +16,38 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.GetLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the GetLocksOptions model.
  */
 public class GetLocksOptionsTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testGetLocksOptions() throws Throwable {
-        GetLocksOptions getLocksOptionsModel = new GetLocksOptions.Builder()
-                .secretType("arbitrary")
-                .id("testString")
-                .limit(Long.valueOf("1"))
-                .offset(Long.valueOf("0"))
-                .search("testString")
-                .build();
-        assertEquals(getLocksOptionsModel.secretType(), "arbitrary");
-        assertEquals(getLocksOptionsModel.id(), "testString");
-        assertEquals(getLocksOptionsModel.limit(), Long.valueOf("1"));
-        assertEquals(getLocksOptionsModel.offset(), Long.valueOf("0"));
-        assertEquals(getLocksOptionsModel.search(), "testString");
-    }
+  @Test
+  public void testGetLocksOptions() throws Throwable {
+    GetLocksOptions getLocksOptionsModel = new GetLocksOptions.Builder()
+      .secretType("arbitrary")
+      .id("testString")
+      .limit(Long.valueOf("1"))
+      .offset(Long.valueOf("0"))
+      .search("testString")
+      .build();
+    assertEquals(getLocksOptionsModel.secretType(), "arbitrary");
+    assertEquals(getLocksOptionsModel.id(), "testString");
+    assertEquals(getLocksOptionsModel.limit(), Long.valueOf("1"));
+    assertEquals(getLocksOptionsModel.offset(), Long.valueOf("0"));
+    assertEquals(getLocksOptionsModel.search(), "testString");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testGetLocksOptionsError() throws Throwable {
-        new GetLocksOptions.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testGetLocksOptionsError() throws Throwable {
+    new GetLocksOptions.Builder().build();
+  }
 
 }

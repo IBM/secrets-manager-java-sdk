@@ -19,10 +19,10 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListSecretGroupsOptions extends GenericModel {
 
-    /**
-     * Construct a new instance of ListSecretGroupsOptions.
-     */
-    public ListSecretGroupsOptions() {
-    }
+  /**
+   * Construct a new instance of ListSecretGroupsOptions.
+   */
+  public ListSecretGroupsOptions() {
+  }
 }
 

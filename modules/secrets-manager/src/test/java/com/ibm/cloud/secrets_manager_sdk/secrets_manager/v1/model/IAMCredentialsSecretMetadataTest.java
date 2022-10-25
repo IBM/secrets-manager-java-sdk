@@ -16,70 +16,55 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IAMCredentialsSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the IAMCredentialsSecretMetadata model.
  */
 public class IAMCredentialsSecretMetadataTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testIAMCredentialsSecretMetadata() throws Throwable {
-        IAMCredentialsSecretMetadata iamCredentialsSecretMetadataModel = new IAMCredentialsSecretMetadata.Builder()
-                .labels(java.util.Arrays.asList("dev", "us-south"))
-                .name("example-secret")
-                .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .ttl("12h")
-                .serviceIdIsStatic(true)
-                .serviceId("testString")
-                .accessGroups(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0"))
-                .build();
-        assertEquals(iamCredentialsSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
-        assertEquals(iamCredentialsSecretMetadataModel.name(), "example-secret");
-        assertEquals(iamCredentialsSecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(iamCredentialsSecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(iamCredentialsSecretMetadataModel.ttl(), "12h");
-        assertEquals(iamCredentialsSecretMetadataModel.serviceIdIsStatic(), Boolean.valueOf(true));
-        assertEquals(iamCredentialsSecretMetadataModel.serviceId(), "testString");
-        assertEquals(iamCredentialsSecretMetadataModel.accessGroups(), java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0"));
+  @Test
+  public void testIAMCredentialsSecretMetadata() throws Throwable {
+    IAMCredentialsSecretMetadata iamCredentialsSecretMetadataModel = new IAMCredentialsSecretMetadata.Builder()
+      .labels(java.util.Arrays.asList("dev", "us-south"))
+      .name("example-secret")
+      .description("Extended description for this secret.")
+      .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .ttl("12h")
+      .serviceIdIsStatic(true)
+      .serviceId("testString")
+      .accessGroups(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0"))
+      .build();
+    assertEquals(iamCredentialsSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
+    assertEquals(iamCredentialsSecretMetadataModel.name(), "example-secret");
+    assertEquals(iamCredentialsSecretMetadataModel.description(), "Extended description for this secret.");
+    assertEquals(iamCredentialsSecretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(iamCredentialsSecretMetadataModel.ttl(), "12h");
+    assertEquals(iamCredentialsSecretMetadataModel.serviceIdIsStatic(), Boolean.valueOf(true));
+    assertEquals(iamCredentialsSecretMetadataModel.serviceId(), "testString");
+    assertEquals(iamCredentialsSecretMetadataModel.accessGroups(), java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0"));
 
-        String json = TestUtilities.serialize(iamCredentialsSecretMetadataModel);
+    String json = TestUtilities.serialize(iamCredentialsSecretMetadataModel);
 
-        IAMCredentialsSecretMetadata iamCredentialsSecretMetadataModelNew = TestUtilities.deserialize(json, IAMCredentialsSecretMetadata.class);
-        assertTrue(iamCredentialsSecretMetadataModelNew instanceof IAMCredentialsSecretMetadata);
-        assertEquals(iamCredentialsSecretMetadataModelNew.name(), "example-secret");
-        assertEquals(iamCredentialsSecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(iamCredentialsSecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-        assertEquals(iamCredentialsSecretMetadataModelNew.ttl(), "12h");
-        assertEquals(iamCredentialsSecretMetadataModelNew.serviceIdIsStatic(), Boolean.valueOf(true));
-        assertEquals(iamCredentialsSecretMetadataModelNew.serviceId(), "testString");
-    }
+    IAMCredentialsSecretMetadata iamCredentialsSecretMetadataModelNew = TestUtilities.deserialize(json, IAMCredentialsSecretMetadata.class);
+    assertTrue(iamCredentialsSecretMetadataModelNew instanceof IAMCredentialsSecretMetadata);
+    assertEquals(iamCredentialsSecretMetadataModelNew.name(), "example-secret");
+    assertEquals(iamCredentialsSecretMetadataModelNew.description(), "Extended description for this secret.");
+    assertEquals(iamCredentialsSecretMetadataModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+    assertEquals(iamCredentialsSecretMetadataModelNew.ttl(), "12h");
+    assertEquals(iamCredentialsSecretMetadataModelNew.serviceIdIsStatic(), Boolean.valueOf(true));
+    assertEquals(iamCredentialsSecretMetadataModelNew.serviceId(), "testString");
+  }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testIAMCredentialsSecretMetadataError() throws Throwable {
-        new IAMCredentialsSecretMetadata.Builder().build();
-    }
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testIAMCredentialsSecretMetadataError() throws Throwable {
+    new IAMCredentialsSecretMetadata.Builder().build();
+  }
 
 }

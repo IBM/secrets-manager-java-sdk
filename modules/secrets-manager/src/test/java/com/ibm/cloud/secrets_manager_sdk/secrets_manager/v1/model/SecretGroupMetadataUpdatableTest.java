@@ -16,36 +16,33 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SecretGroupMetadataUpdatable;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretGroupMetadataUpdatable model.
  */
 public class SecretGroupMetadataUpdatableTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testSecretGroupMetadataUpdatable() throws Throwable {
-        SecretGroupMetadataUpdatable secretGroupMetadataUpdatableModel = new SecretGroupMetadataUpdatable.Builder()
-                .name("testString")
-                .description("testString")
-                .build();
-        assertEquals(secretGroupMetadataUpdatableModel.name(), "testString");
-        assertEquals(secretGroupMetadataUpdatableModel.description(), "testString");
+  @Test
+  public void testSecretGroupMetadataUpdatable() throws Throwable {
+    SecretGroupMetadataUpdatable secretGroupMetadataUpdatableModel = new SecretGroupMetadataUpdatable.Builder()
+      .name("testString")
+      .description("testString")
+      .build();
+    assertEquals(secretGroupMetadataUpdatableModel.name(), "testString");
+    assertEquals(secretGroupMetadataUpdatableModel.description(), "testString");
 
-        String json = TestUtilities.serialize(secretGroupMetadataUpdatableModel);
+    String json = TestUtilities.serialize(secretGroupMetadataUpdatableModel);
 
-        SecretGroupMetadataUpdatable secretGroupMetadataUpdatableModelNew = TestUtilities.deserialize(json, SecretGroupMetadataUpdatable.class);
-        assertTrue(secretGroupMetadataUpdatableModelNew instanceof SecretGroupMetadataUpdatable);
-        assertEquals(secretGroupMetadataUpdatableModelNew.name(), "testString");
-        assertEquals(secretGroupMetadataUpdatableModelNew.description(), "testString");
-    }
+    SecretGroupMetadataUpdatable secretGroupMetadataUpdatableModelNew = TestUtilities.deserialize(json, SecretGroupMetadataUpdatable.class);
+    assertTrue(secretGroupMetadataUpdatableModelNew instanceof SecretGroupMetadataUpdatable);
+    assertEquals(secretGroupMetadataUpdatableModelNew.name(), "testString");
+    assertEquals(secretGroupMetadataUpdatableModelNew.description(), "testString");
+  }
 }

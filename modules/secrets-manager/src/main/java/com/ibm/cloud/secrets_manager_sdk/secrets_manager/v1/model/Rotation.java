@@ -20,187 +20,182 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class Rotation extends GenericModel {
 
-    /**
-     * The time unit of the rotation interval.
-     * <p>
-     * **Note:** Use this field only for private certificates. It is ignored for public certificates.
-     */
-    public interface Unit {
-        /**
-         * day.
-         */
-        String DAY = "day";
-        /**
-         * month.
-         */
-        String MONTH = "month";
-    }
+  /**
+   * The time unit of the rotation interval.
+   *
+   * **Note:** Use this field only for private certificates. It is ignored for public certificates.
+   */
+  public interface Unit {
+    /** day. */
+    String DAY = "day";
+    /** month. */
+    String MONTH = "month";
+  }
 
-    @SerializedName("auto_rotate")
-    protected Boolean autoRotate;
-    @SerializedName("rotate_keys")
-    protected Boolean rotateKeys;
-    protected Long interval;
-    protected String unit;
+  @SerializedName("auto_rotate")
+  protected Boolean autoRotate;
+  @SerializedName("rotate_keys")
+  protected Boolean rotateKeys;
+  protected Long interval;
+  protected String unit;
 
-    /**
-     * Builder.
-     */
-    public static class Builder {
-        private Boolean autoRotate;
-        private Boolean rotateKeys;
-        private Long interval;
-        private String unit;
-
-        /**
-         * Instantiates a new Builder from an existing Rotation instance.
-         *
-         * @param rotation the instance to initialize the Builder with
-         */
-        private Builder(Rotation rotation) {
-            this.autoRotate = rotation.autoRotate;
-            this.rotateKeys = rotation.rotateKeys;
-            this.interval = rotation.interval;
-            this.unit = rotation.unit;
-        }
-
-        /**
-         * Instantiates a new builder.
-         */
-        public Builder() {
-        }
-
-        /**
-         * Builds a Rotation.
-         *
-         * @return the new Rotation instance
-         */
-        public Rotation build() {
-            return new Rotation(this);
-        }
-
-        /**
-         * Set the autoRotate.
-         *
-         * @param autoRotate the autoRotate
-         * @return the Rotation builder
-         */
-        public Builder autoRotate(Boolean autoRotate) {
-            this.autoRotate = autoRotate;
-            return this;
-        }
-
-        /**
-         * Set the rotateKeys.
-         *
-         * @param rotateKeys the rotateKeys
-         * @return the Rotation builder
-         */
-        public Builder rotateKeys(Boolean rotateKeys) {
-            this.rotateKeys = rotateKeys;
-            return this;
-        }
-
-        /**
-         * Set the interval.
-         *
-         * @param interval the interval
-         * @return the Rotation builder
-         */
-        public Builder interval(long interval) {
-            this.interval = interval;
-            return this;
-        }
-
-        /**
-         * Set the unit.
-         *
-         * @param unit the unit
-         * @return the Rotation builder
-         */
-        public Builder unit(String unit) {
-            this.unit = unit;
-            return this;
-        }
-    }
-
-    protected Rotation() {
-    }
-
-    protected Rotation(Builder builder) {
-        autoRotate = builder.autoRotate;
-        rotateKeys = builder.rotateKeys;
-        interval = builder.interval;
-        unit = builder.unit;
-    }
+  /**
+   * Builder.
+   */
+  public static class Builder {
+    private Boolean autoRotate;
+    private Boolean rotateKeys;
+    private Long interval;
+    private String unit;
 
     /**
-     * New builder.
+     * Instantiates a new Builder from an existing Rotation instance.
      *
-     * @return a Rotation builder
+     * @param rotation the instance to initialize the Builder with
      */
-    public Builder newBuilder() {
-        return new Builder(this);
+    private Builder(Rotation rotation) {
+      this.autoRotate = rotation.autoRotate;
+      this.rotateKeys = rotation.rotateKeys;
+      this.interval = rotation.interval;
+      this.unit = rotation.unit;
     }
 
     /**
-     * Gets the autoRotate.
-     * <p>
-     * Determines whether Secrets Manager rotates your certificate automatically.
-     * <p>
-     * For public certificates, if `auto_rotate` is set to `true` the service reorders your certificate 31 days before it
-     * expires. For private certificates, the certificate is rotated according to the time interval specified in the
-     * `interval` and `unit` fields.
-     * <p>
-     * To access the previous version of the certificate, you can use the
-     * [Get a version of a secret](#get-secret-version) method.
-     *
-     * @return the autoRotate
+     * Instantiates a new builder.
      */
-    public Boolean autoRotate() {
-        return autoRotate;
+    public Builder() {
     }
 
     /**
-     * Gets the rotateKeys.
-     * <p>
-     * Determines whether Secrets Manager rotates the private key for your certificate automatically.
-     * <p>
-     * If set to `true`, the service generates and stores a new private key for your rotated certificate.
-     * <p>
-     * **Note:** Use this field only for public certificates. It is ignored for private certificates.
+     * Builds a Rotation.
      *
-     * @return the rotateKeys
+     * @return the new Rotation instance
      */
-    public Boolean rotateKeys() {
-        return rotateKeys;
+    public Rotation build() {
+      return new Rotation(this);
     }
 
     /**
-     * Gets the interval.
-     * <p>
-     * Used together with the `unit` field to specify the rotation interval. The minimum interval is one day, and the
-     * maximum interval is 3 years (1095 days). Required in case `auto_rotate` is set to `true`.
-     * <p>
-     * **Note:** Use this field only for private certificates. It is ignored for public certificates.
+     * Set the autoRotate.
      *
-     * @return the interval
+     * @param autoRotate the autoRotate
+     * @return the Rotation builder
      */
-    public Long interval() {
-        return interval;
+    public Builder autoRotate(Boolean autoRotate) {
+      this.autoRotate = autoRotate;
+      return this;
     }
 
     /**
-     * Gets the unit.
-     * <p>
-     * The time unit of the rotation interval.
-     * <p>
-     * **Note:** Use this field only for private certificates. It is ignored for public certificates.
+     * Set the rotateKeys.
      *
-     * @return the unit
+     * @param rotateKeys the rotateKeys
+     * @return the Rotation builder
      */
-    public String unit() {
-        return unit;
+    public Builder rotateKeys(Boolean rotateKeys) {
+      this.rotateKeys = rotateKeys;
+      return this;
     }
+
+    /**
+     * Set the interval.
+     *
+     * @param interval the interval
+     * @return the Rotation builder
+     */
+    public Builder interval(long interval) {
+      this.interval = interval;
+      return this;
+    }
+
+    /**
+     * Set the unit.
+     *
+     * @param unit the unit
+     * @return the Rotation builder
+     */
+    public Builder unit(String unit) {
+      this.unit = unit;
+      return this;
+    }
+  }
+
+  protected Rotation() { }
+
+  protected Rotation(Builder builder) {
+    autoRotate = builder.autoRotate;
+    rotateKeys = builder.rotateKeys;
+    interval = builder.interval;
+    unit = builder.unit;
+  }
+
+  /**
+   * New builder.
+   *
+   * @return a Rotation builder
+   */
+  public Builder newBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Gets the autoRotate.
+   *
+   * Determines whether Secrets Manager rotates your certificate automatically.
+   *
+   * For public certificates, if `auto_rotate` is set to `true` the service reorders your certificate 31 days before it
+   * expires. For private certificates, the certificate is rotated according to the time interval specified in the
+   * `interval` and `unit` fields.
+   *
+   * To access the previous version of the certificate, you can use the
+   * [Get a version of a secret](#get-secret-version) method.
+   *
+   * @return the autoRotate
+   */
+  public Boolean autoRotate() {
+    return autoRotate;
+  }
+
+  /**
+   * Gets the rotateKeys.
+   *
+   * Determines whether Secrets Manager rotates the private key for your certificate automatically.
+   *
+   * If set to `true`, the service generates and stores a new private key for your rotated certificate.
+   *
+   * **Note:** Use this field only for public certificates. It is ignored for private certificates.
+   *
+   * @return the rotateKeys
+   */
+  public Boolean rotateKeys() {
+    return rotateKeys;
+  }
+
+  /**
+   * Gets the interval.
+   *
+   * Used together with the `unit` field to specify the rotation interval. The minimum interval is one day, and the
+   * maximum interval is 3 years (1095 days). Required in case `auto_rotate` is set to `true`.
+   *
+   * **Note:** Use this field only for private certificates. It is ignored for public certificates.
+   *
+   * @return the interval
+   */
+  public Long interval() {
+    return interval;
+  }
+
+  /**
+   * Gets the unit.
+   *
+   * The time unit of the rotation interval.
+   *
+   * **Note:** Use this field only for private certificates. It is ignored for public certificates.
+   *
+   * @return the unit
+   */
+  public String unit() {
+    return unit;
+  }
 }
 
