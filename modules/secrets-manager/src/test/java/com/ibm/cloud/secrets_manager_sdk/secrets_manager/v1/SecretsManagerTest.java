@@ -251,8 +251,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke createSecretGroup() with a valid options model and verify the result
-        Response<SecretGroupDef> response = secretsManagerService.createSecretGroup(createSecretGroupOptionsModel)
-                .execute();
+        Response<SecretGroupDef> response = secretsManagerService.createSecretGroup(createSecretGroupOptionsModel).execute();
         assertNotNull(response);
         SecretGroupDef responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -279,8 +278,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testCreateSecretGroupWOptions();
     }
 
-    // Test the createSecretGroup operation with a null options model (negative
-    // test)
+    // Test the createSecretGroup operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testCreateSecretGroupNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -380,8 +378,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         secretsManagerService.getSecretGroup(null).execute();
     }
 
-    // Test the updateSecretGroupMetadata operation with a valid options model
-    // parameter
+    // Test the updateSecretGroupMetadata operation with a valid options model parameter
     @Test
     public void testUpdateSecretGroupMetadataWOptions() throws Throwable {
         // Register a mock response
@@ -411,10 +408,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .resources(java.util.Arrays.asList(secretGroupMetadataUpdatableModel))
                 .build();
 
-        // Invoke updateSecretGroupMetadata() with a valid options model and verify the
-        // result
-        Response<SecretGroupDef> response = secretsManagerService
-                .updateSecretGroupMetadata(updateSecretGroupMetadataOptionsModel).execute();
+        // Invoke updateSecretGroupMetadata() with a valid options model and verify the result
+        Response<SecretGroupDef> response = secretsManagerService.updateSecretGroupMetadata(updateSecretGroupMetadataOptionsModel).execute();
         assertNotNull(response);
         SecretGroupDef responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -441,8 +436,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testUpdateSecretGroupMetadataWOptions();
     }
 
-    // Test the updateSecretGroupMetadata operation with a null options model
-    // (negative test)
+    // Test the updateSecretGroupMetadata operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUpdateSecretGroupMetadataNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -492,8 +486,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testDeleteSecretGroupWOptions();
     }
 
-    // Test the deleteSecretGroup operation with a null options model (negative
-    // test)
+    // Test the deleteSecretGroup operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testDeleteSecretGroupNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -862,8 +855,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke listSecretVersions() with a valid options model and verify the result
-        Response<ListSecretVersions> response = secretsManagerService.listSecretVersions(listSecretVersionsOptionsModel)
-                .execute();
+        Response<ListSecretVersions> response = secretsManagerService.listSecretVersions(listSecretVersionsOptionsModel).execute();
         assertNotNull(response);
         ListSecretVersions responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -890,8 +882,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testListSecretVersionsWOptions();
     }
 
-    // Test the listSecretVersions operation with a null options model (negative
-    // test)
+    // Test the listSecretVersions operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testListSecretVersionsNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -917,8 +908,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke getSecretVersion() with a valid options model and verify the result
-        Response<GetSecretVersion> response = secretsManagerService.getSecretVersion(getSecretVersionOptionsModel)
-                .execute();
+        Response<GetSecretVersion> response = secretsManagerService.getSecretVersion(getSecretVersionOptionsModel).execute();
         assertNotNull(response);
         GetSecretVersion responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1000,16 +990,14 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testUpdateSecretVersionWOptions();
     }
 
-    // Test the updateSecretVersion operation with a null options model (negative
-    // test)
+    // Test the updateSecretVersion operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUpdateSecretVersionNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
         secretsManagerService.updateSecretVersion(null).execute();
     }
 
-    // Test the getSecretVersionMetadata operation with a valid options model
-    // parameter
+    // Test the getSecretVersionMetadata operation with a valid options model parameter
     @Test
     public void testGetSecretVersionMetadataWOptions() throws Throwable {
         // Register a mock response
@@ -1027,10 +1015,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .versionId("testString")
                 .build();
 
-        // Invoke getSecretVersionMetadata() with a valid options model and verify the
-        // result
-        Response<GetSecretVersionMetadata> response = secretsManagerService
-                .getSecretVersionMetadata(getSecretVersionMetadataOptionsModel).execute();
+        // Invoke getSecretVersionMetadata() with a valid options model and verify the result
+        Response<GetSecretVersionMetadata> response = secretsManagerService.getSecretVersionMetadata(getSecretVersionMetadataOptionsModel).execute();
         assertNotNull(response);
         GetSecretVersionMetadata responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1057,16 +1043,14 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testGetSecretVersionMetadataWOptions();
     }
 
-    // Test the getSecretVersionMetadata operation with a null options model
-    // (negative test)
+    // Test the getSecretVersionMetadata operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetSecretVersionMetadataNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
         secretsManagerService.getSecretVersionMetadata(null).execute();
     }
 
-    // Test the updateSecretVersionMetadata operation with a valid options model
-    // parameter
+    // Test the updateSecretVersionMetadata operation with a valid options model parameter
     @Test
     public void testUpdateSecretVersionMetadataWOptions() throws Throwable {
         // Register a mock response
@@ -1097,10 +1081,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .resources(java.util.Arrays.asList(updateSecretVersionMetadataModel))
                 .build();
 
-        // Invoke updateSecretVersionMetadata() with a valid options model and verify
-        // the result
-        Response<GetSecretVersionMetadata> response = secretsManagerService
-                .updateSecretVersionMetadata(updateSecretVersionMetadataOptionsModel).execute();
+        // Invoke updateSecretVersionMetadata() with a valid options model and verify the result
+        Response<GetSecretVersionMetadata> response = secretsManagerService.updateSecretVersionMetadata(updateSecretVersionMetadataOptionsModel).execute();
         assertNotNull(response);
         GetSecretVersionMetadata responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1117,8 +1099,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertNull(query);
     }
 
-    // Test the updateSecretVersionMetadata operation with and without retries
-    // enabled
+    // Test the updateSecretVersionMetadata operation with and without retries enabled
     @Test
     public void testUpdateSecretVersionMetadataWRetries() throws Throwable {
         secretsManagerService.enableRetries(4, 30);
@@ -1128,8 +1109,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testUpdateSecretVersionMetadataWOptions();
     }
 
-    // Test the updateSecretVersionMetadata operation with a null options model
-    // (negative test)
+    // Test the updateSecretVersionMetadata operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUpdateSecretVersionMetadataNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -1154,8 +1134,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke getSecretMetadata() with a valid options model and verify the result
-        Response<SecretMetadataRequest> response = secretsManagerService.getSecretMetadata(getSecretMetadataOptionsModel)
-                .execute();
+        Response<SecretMetadataRequest> response = secretsManagerService.getSecretMetadata(getSecretMetadataOptionsModel).execute();
         assertNotNull(response);
         SecretMetadataRequest responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1182,8 +1161,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testGetSecretMetadataWOptions();
     }
 
-    // Test the getSecretMetadata operation with a null options model (negative
-    // test)
+    // Test the getSecretMetadata operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetSecretMetadataNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -1224,10 +1202,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .resources(java.util.Arrays.asList(secretMetadataModel))
                 .build();
 
-        // Invoke updateSecretMetadata() with a valid options model and verify the
-        // result
-        Response<SecretMetadataRequest> response = secretsManagerService
-                .updateSecretMetadata(updateSecretMetadataOptionsModel).execute();
+        // Invoke updateSecretMetadata() with a valid options model and verify the result
+        Response<SecretMetadataRequest> response = secretsManagerService.updateSecretMetadata(updateSecretMetadataOptionsModel).execute();
         assertNotNull(response);
         SecretMetadataRequest responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1254,8 +1230,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testUpdateSecretMetadataWOptions();
     }
 
-    // Test the updateSecretMetadata operation with a null options model (negative
-    // test)
+    // Test the updateSecretMetadata operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUpdateSecretMetadataNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -1456,10 +1431,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .search("testString")
                 .build();
 
-        // Invoke getSecretVersionLocks() with a valid options model and verify the
-        // result
-        Response<ListSecretLocks> response = secretsManagerService.getSecretVersionLocks(getSecretVersionLocksOptionsModel)
-                .execute();
+        // Invoke getSecretVersionLocks() with a valid options model and verify the result
+        Response<ListSecretLocks> response = secretsManagerService.getSecretVersionLocks(getSecretVersionLocksOptionsModel).execute();
         assertNotNull(response);
         ListSecretLocks responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1489,8 +1462,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testGetSecretVersionLocksWOptions();
     }
 
-    // Test the getSecretVersionLocks operation with a null options model (negative
-    // test)
+    // Test the getSecretVersionLocks operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetSecretVersionLocksNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -1525,8 +1497,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke lockSecretVersion() with a valid options model and verify the result
-        Response<GetSecretLocks> response = secretsManagerService.lockSecretVersion(lockSecretVersionOptionsModel)
-                .execute();
+        Response<GetSecretLocks> response = secretsManagerService.lockSecretVersion(lockSecretVersionOptionsModel).execute();
         assertNotNull(response);
         GetSecretLocks responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1554,8 +1525,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testLockSecretVersionWOptions();
     }
 
-    // Test the lockSecretVersion operation with a null options model (negative
-    // test)
+    // Test the lockSecretVersion operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testLockSecretVersionNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -1582,8 +1552,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke unlockSecretVersion() with a valid options model and verify the result
-        Response<GetSecretLocks> response = secretsManagerService.unlockSecretVersion(unlockSecretVersionOptionsModel)
-                .execute();
+        Response<GetSecretLocks> response = secretsManagerService.unlockSecretVersion(unlockSecretVersionOptionsModel).execute();
         assertNotNull(response);
         GetSecretLocks responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1610,16 +1579,14 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testUnlockSecretVersionWOptions();
     }
 
-    // Test the unlockSecretVersion operation with a null options model (negative
-    // test)
+    // Test the unlockSecretVersion operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUnlockSecretVersionNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
         secretsManagerService.unlockSecretVersion(null).execute();
     }
 
-    // Test the listInstanceSecretsLocks operation with a valid options model
-    // parameter
+    // Test the listInstanceSecretsLocks operation with a valid options model parameter
     @Test
     public void testListInstanceSecretsLocksWOptions() throws Throwable {
         // Register a mock response
@@ -1638,10 +1605,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .groups(java.util.Arrays.asList("testString"))
                 .build();
 
-        // Invoke listInstanceSecretsLocks() with a valid options model and verify the
-        // result
-        Response<GetInstanceLocks> response = secretsManagerService
-                .listInstanceSecretsLocks(listInstanceSecretsLocksOptionsModel).execute();
+        // Invoke listInstanceSecretsLocks() with a valid options model and verify the result
+        Response<GetInstanceLocks> response = secretsManagerService.listInstanceSecretsLocks(listInstanceSecretsLocksOptionsModel).execute();
         assertNotNull(response);
         GetInstanceLocks responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1918,8 +1883,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .setResponseCode(201)
                 .setBody(mockResponseBody));
 
-        // Construct an instance of the
-        // ConfigElementDefConfigCloudInternetServicesConfig model
+        // Construct an instance of the ConfigElementDefConfigCloudInternetServicesConfig model
         ConfigElementDefConfigCloudInternetServicesConfig configElementDefConfigModel = new ConfigElementDefConfigCloudInternetServicesConfig.Builder()
                 .cisCrn("crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::")
                 .cisApikey("cis_apikey_value")
@@ -1935,8 +1899,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke createConfigElement() with a valid options model and verify the result
-        Response<GetSingleConfigElement> response = secretsManagerService
-                .createConfigElement(createConfigElementOptionsModel).execute();
+        Response<GetSingleConfigElement> response = secretsManagerService.createConfigElement(createConfigElementOptionsModel).execute();
         assertNotNull(response);
         GetSingleConfigElement responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -1963,8 +1926,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testCreateConfigElementWOptions();
     }
 
-    // Test the createConfigElement operation with a null options model (negative
-    // test)
+    // Test the createConfigElement operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testCreateConfigElementNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -1989,8 +1951,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke getConfigElements() with a valid options model and verify the result
-        Response<GetConfigElements> response = secretsManagerService.getConfigElements(getConfigElementsOptionsModel)
-                .execute();
+        Response<GetConfigElements> response = secretsManagerService.getConfigElements(getConfigElementsOptionsModel).execute();
         assertNotNull(response);
         GetConfigElements responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -2017,8 +1978,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testGetConfigElementsWOptions();
     }
 
-    // Test the getConfigElements operation with a null options model (negative
-    // test)
+    // Test the getConfigElements operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testGetConfigElementsNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -2044,8 +2004,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke getConfigElement() with a valid options model and verify the result
-        Response<GetSingleConfigElement> response = secretsManagerService.getConfigElement(getConfigElementOptionsModel)
-                .execute();
+        Response<GetSingleConfigElement> response = secretsManagerService.getConfigElement(getConfigElementOptionsModel).execute();
         assertNotNull(response);
         GetSingleConfigElement responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -2100,8 +2059,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .build();
 
         // Invoke updateConfigElement() with a valid options model and verify the result
-        Response<GetSingleConfigElement> response = secretsManagerService
-                .updateConfigElement(updateConfigElementOptionsModel).execute();
+        Response<GetSingleConfigElement> response = secretsManagerService.updateConfigElement(updateConfigElementOptionsModel).execute();
         assertNotNull(response);
         GetSingleConfigElement responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -2128,8 +2086,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testUpdateConfigElementWOptions();
     }
 
-    // Test the updateConfigElement operation with a null options model (negative
-    // test)
+    // Test the updateConfigElement operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testUpdateConfigElementNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -2180,10 +2137,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
                 .config(configActionModel)
                 .build();
 
-        // Invoke actionOnConfigElement() with a valid options model and verify the
-        // result
-        Response<ConfigElementActionResult> response = secretsManagerService
-                .actionOnConfigElement(actionOnConfigElementOptionsModel).execute();
+        // Invoke actionOnConfigElement() with a valid options model and verify the result
+        Response<ConfigElementActionResult> response = secretsManagerService.actionOnConfigElement(actionOnConfigElementOptionsModel).execute();
         assertNotNull(response);
         ConfigElementActionResult responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -2211,8 +2166,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testActionOnConfigElementWOptions();
     }
 
-    // Test the actionOnConfigElement operation with a null options model (negative
-    // test)
+    // Test the actionOnConfigElement operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testActionOnConfigElementNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
@@ -2264,16 +2218,14 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testDeleteConfigElementWOptions();
     }
 
-    // Test the deleteConfigElement operation with a null options model (negative
-    // test)
+    // Test the deleteConfigElement operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testDeleteConfigElementNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
         secretsManagerService.deleteConfigElement(null).execute();
     }
 
-    // Test the createNotificationsRegistration operation with a valid options model
-    // parameter
+    // Test the createNotificationsRegistration operation with a valid options model parameter
     @Test
     public void testCreateNotificationsRegistrationWOptions() throws Throwable {
         // Register a mock response
@@ -2286,16 +2238,13 @@ public class SecretsManagerTest extends PowerMockTestCase {
 
         // Construct an instance of the CreateNotificationsRegistrationOptions model
         CreateNotificationsRegistrationOptions createNotificationsRegistrationOptionsModel = new CreateNotificationsRegistrationOptions.Builder()
-                .eventNotificationsInstanceCrn(
-                        "crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::")
+                .eventNotificationsInstanceCrn("crn:v1:bluemix:public:event-notifications:us-south:a/<account-id>:<service-instance>::")
                 .eventNotificationsSourceName("My Secrets Manager")
                 .eventNotificationsSourceDescription("Optional description of this source in an Event Notifications instance.")
                 .build();
 
-        // Invoke createNotificationsRegistration() with a valid options model and
-        // verify the result
-        Response<GetNotificationsSettings> response = secretsManagerService
-                .createNotificationsRegistration(createNotificationsRegistrationOptionsModel).execute();
+        // Invoke createNotificationsRegistration() with a valid options model and verify the result
+        Response<GetNotificationsSettings> response = secretsManagerService.createNotificationsRegistration(createNotificationsRegistrationOptionsModel).execute();
         assertNotNull(response);
         GetNotificationsSettings responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -2312,8 +2261,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertNull(query);
     }
 
-    // Test the createNotificationsRegistration operation with and without retries
-    // enabled
+    // Test the createNotificationsRegistration operation with and without retries enabled
     @Test
     public void testCreateNotificationsRegistrationWRetries() throws Throwable {
         secretsManagerService.enableRetries(4, 30);
@@ -2323,16 +2271,14 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testCreateNotificationsRegistrationWOptions();
     }
 
-    // Test the createNotificationsRegistration operation with a null options model
-    // (negative test)
+    // Test the createNotificationsRegistration operation with a null options model (negative test)
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testCreateNotificationsRegistrationNoOptions() throws Throwable {
         server.enqueue(new MockResponse());
         secretsManagerService.createNotificationsRegistration(null).execute();
     }
 
-    // Test the getNotificationsRegistration operation with a valid options model
-    // parameter
+    // Test the getNotificationsRegistration operation with a valid options model parameter
     @Test
     public void testGetNotificationsRegistrationWOptions() throws Throwable {
         // Register a mock response
@@ -2346,10 +2292,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
         // Construct an instance of the GetNotificationsRegistrationOptions model
         GetNotificationsRegistrationOptions getNotificationsRegistrationOptionsModel = new GetNotificationsRegistrationOptions();
 
-        // Invoke getNotificationsRegistration() with a valid options model and verify
-        // the result
-        Response<GetNotificationsSettings> response = secretsManagerService
-                .getNotificationsRegistration(getNotificationsRegistrationOptionsModel).execute();
+        // Invoke getNotificationsRegistration() with a valid options model and verify the result
+        Response<GetNotificationsSettings> response = secretsManagerService.getNotificationsRegistration(getNotificationsRegistrationOptionsModel).execute();
         assertNotNull(response);
         GetNotificationsSettings responseObj = response.getResult();
         assertNotNull(responseObj);
@@ -2366,8 +2310,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertNull(query);
     }
 
-    // Test the getNotificationsRegistration operation with and without retries
-    // enabled
+    // Test the getNotificationsRegistration operation with and without retries enabled
     @Test
     public void testGetNotificationsRegistrationWRetries() throws Throwable {
         secretsManagerService.enableRetries(4, 30);
@@ -2377,8 +2320,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         testGetNotificationsRegistrationWOptions();
     }
 
-    // Test the deleteNotificationsRegistration operation with a valid options model
-    // parameter
+    // Test the deleteNotificationsRegistration operation with a valid options model parameter
     @Test
     public void testDeleteNotificationsRegistrationWOptions() throws Throwable {
         // Register a mock response
@@ -2391,10 +2333,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
         // Construct an instance of the DeleteNotificationsRegistrationOptions model
         DeleteNotificationsRegistrationOptions deleteNotificationsRegistrationOptionsModel = new DeleteNotificationsRegistrationOptions();
 
-        // Invoke deleteNotificationsRegistration() with a valid options model and
-        // verify the result
-        Response<Void> response = secretsManagerService
-                .deleteNotificationsRegistration(deleteNotificationsRegistrationOptionsModel).execute();
+        // Invoke deleteNotificationsRegistration() with a valid options model and verify the result
+        Response<Void> response = secretsManagerService.deleteNotificationsRegistration(deleteNotificationsRegistrationOptionsModel).execute();
         assertNotNull(response);
         Void responseObj = response.getResult();
         assertNull(responseObj);
@@ -2411,8 +2351,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         assertNull(query);
     }
 
-    // Test the deleteNotificationsRegistration operation with and without retries
-    // enabled
+    // Test the deleteNotificationsRegistration operation with and without retries enabled
     @Test
     public void testDeleteNotificationsRegistrationWRetries() throws Throwable {
         secretsManagerService.enableRetries(4, 30);
@@ -2435,8 +2374,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         // Construct an instance of the SendTestNotificationOptions model
         SendTestNotificationOptions sendTestNotificationOptionsModel = new SendTestNotificationOptions();
 
-        // Invoke sendTestNotification() with a valid options model and verify the
-        // result
+        // Invoke sendTestNotification() with a valid options model and verify the result
         Response<Void> response = secretsManagerService.sendTestNotification(sendTestNotificationOptionsModel).execute();
         assertNotNull(response);
         Void responseObj = response.getResult();
@@ -2486,8 +2424,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
         secretsManagerService = null;
     }
 
-    // Creates a mock set of environment variables that are returned by
-    // EnvironmentUtils.getenv()
+    // Creates a mock set of environment variables that are returned by EnvironmentUtils.getenv()
     private Map<String, String> getTestProcessEnvironment() {
         Map<String, String> env = new HashMap<>();
         env.put("TESTSERVICE_AUTH_TYPE", "noAuth");

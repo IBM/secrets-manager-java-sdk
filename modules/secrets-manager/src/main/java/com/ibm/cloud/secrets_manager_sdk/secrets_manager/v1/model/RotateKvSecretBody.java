@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class RotateKvSecretBody extends SecretAction {
 
+
     /**
      * Builder.
      */
@@ -116,3 +117,4 @@ public class RotateKvSecretBody extends SecretAction {
         return new Builder(this);
     }
 }
+
