@@ -65,7 +65,6 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
         private String description;
         private Map<String, Object> customMetadata;
         private Rotation rotation;
-        private CertificateValidity validity;
 
         /**
          * Instantiates a new Builder from an existing PrivateCertificateSecretMetadata instance.
@@ -78,7 +77,6 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
             this.description = privateCertificateSecretMetadata.description;
             this.customMetadata = privateCertificateSecretMetadata.customMetadata;
             this.rotation = privateCertificateSecretMetadata.rotation;
-            this.validity = privateCertificateSecretMetadata.validity;
         }
 
         /**
@@ -176,17 +174,6 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
             this.rotation = rotation;
             return this;
         }
-
-        /**
-         * Set the validity.
-         *
-         * @param validity the validity
-         * @return the PrivateCertificateSecretMetadata builder
-         */
-        public Builder validity(CertificateValidity validity) {
-            this.validity = validity;
-            return this;
-        }
     }
 
     protected PrivateCertificateSecretMetadata() {
@@ -200,7 +187,6 @@ public class PrivateCertificateSecretMetadata extends SecretMetadata {
         description = builder.description;
         customMetadata = builder.customMetadata;
         rotation = builder.rotation;
-        validity = builder.validity;
     }
 
     /**

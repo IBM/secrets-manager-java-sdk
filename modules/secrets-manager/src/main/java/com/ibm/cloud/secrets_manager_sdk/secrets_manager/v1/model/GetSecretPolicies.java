@@ -13,6 +13,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
@@ -25,7 +26,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class GetSecretPolicies extends GenericModel {
 
     protected CollectionMetadata metadata;
-    protected List<Object> resources;
+    protected List<Map<String, Object>> resources;
 
     protected GetSecretPolicies() {
     }
@@ -48,7 +49,7 @@ public class GetSecretPolicies extends GenericModel {
      *
      * @return the resources
      */
-    public List<Object> getResources() {
+    public List<Map<String, Object>> getResources() {
         return resources;
     }
 }

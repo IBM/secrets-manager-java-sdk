@@ -92,8 +92,6 @@ public class PublicCertificateSecretMetadata extends SecretMetadata {
         private List<String> altNames;
         private String commonName;
         private Rotation rotation;
-        private IssuanceInfo issuanceInfo;
-        private CertificateValidity validity;
 
         /**
          * Instantiates a new Builder from an existing PublicCertificateSecretMetadata instance.
@@ -110,8 +108,6 @@ public class PublicCertificateSecretMetadata extends SecretMetadata {
             this.altNames = publicCertificateSecretMetadata.altNames;
             this.commonName = publicCertificateSecretMetadata.commonName;
             this.rotation = publicCertificateSecretMetadata.rotation;
-            this.issuanceInfo = publicCertificateSecretMetadata.issuanceInfo;
-            this.validity = publicCertificateSecretMetadata.validity;
         }
 
         /**
@@ -270,28 +266,6 @@ public class PublicCertificateSecretMetadata extends SecretMetadata {
             this.rotation = rotation;
             return this;
         }
-
-        /**
-         * Set the issuanceInfo.
-         *
-         * @param issuanceInfo the issuanceInfo
-         * @return the PublicCertificateSecretMetadata builder
-         */
-        public Builder issuanceInfo(IssuanceInfo issuanceInfo) {
-            this.issuanceInfo = issuanceInfo;
-            return this;
-        }
-
-        /**
-         * Set the validity.
-         *
-         * @param validity the validity
-         * @return the PublicCertificateSecretMetadata builder
-         */
-        public Builder validity(CertificateValidity validity) {
-            this.validity = validity;
-            return this;
-        }
     }
 
     protected PublicCertificateSecretMetadata() {
@@ -309,8 +283,6 @@ public class PublicCertificateSecretMetadata extends SecretMetadata {
         altNames = builder.altNames;
         commonName = builder.commonName;
         rotation = builder.rotation;
-        issuanceInfo = builder.issuanceInfo;
-        validity = builder.validity;
     }
 
     /**

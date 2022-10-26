@@ -13,6 +13,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
@@ -37,6 +38,9 @@ public class IssuanceInfo extends GenericModel {
     protected Boolean autoRotated;
     protected String ca;
     protected String dns;
+    protected List<ChallengeResource> challenges;
+    @SerializedName("dns_challenge_validation_time")
+    protected Date dnsChallengeValidationTime;
 
     /**
      * Builder.
@@ -183,6 +187,28 @@ public class IssuanceInfo extends GenericModel {
      */
     public String dns() {
         return dns;
+    }
+
+    /**
+     * Gets the challenges.
+     * <p>
+     * The set of challenges, will be returned only when ordering public certificate using manual DNS configuration.
+     *
+     * @return the challenges
+     */
+    public List<ChallengeResource> challenges() {
+        return challenges;
+    }
+
+    /**
+     * Gets the dnsChallengeValidationTime.
+     * <p>
+     * The date a user called "validate dns challenges" for "manual" DNS provider. The date format follows RFC 3339.
+     *
+     * @return the dnsChallengeValidationTime
+     */
+    public Date dnsChallengeValidationTime() {
+        return dnsChallengeValidationTime;
     }
 }
 

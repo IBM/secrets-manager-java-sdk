@@ -14,9 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
@@ -36,33 +34,16 @@ public class CertificateSecretMetadataTest {
 
     @Test
     public void testCertificateSecretMetadata() throws Throwable {
-        CertificateValidity certificateValidityModel = new CertificateValidity.Builder()
-                .notBefore(DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"))
-                .notAfter(DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"))
-                .build();
-        assertEquals(certificateValidityModel.notBefore(), DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"));
-        assertEquals(certificateValidityModel.notAfter(), DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"));
-
         CertificateSecretMetadata certificateSecretMetadataModel = new CertificateSecretMetadata.Builder()
                 .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("example-secret")
                 .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .validity(certificateValidityModel)
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(certificateSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
         assertEquals(certificateSecretMetadataModel.name(), "example-secret");
         assertEquals(certificateSecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(certificateSecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(certificateSecretMetadataModel.validity(), certificateValidityModel);
+        assertEquals(certificateSecretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         String json = TestUtilities.serialize(certificateSecretMetadataModel);
 
@@ -70,12 +51,7 @@ public class CertificateSecretMetadataTest {
         assertTrue(certificateSecretMetadataModelNew instanceof CertificateSecretMetadata);
         assertEquals(certificateSecretMetadataModelNew.name(), "example-secret");
         assertEquals(certificateSecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(certificateSecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-        assertEquals(certificateSecretMetadataModelNew.validity().toString(), certificateValidityModel.toString());
+        assertEquals(certificateSecretMetadataModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

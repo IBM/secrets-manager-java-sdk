@@ -14,8 +14,6 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.sdk.core.util.DateUtils;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
@@ -48,35 +46,18 @@ public class PrivateCertificateSecretMetadataTest {
         assertEquals(rotationModel.interval(), Long.valueOf("26"));
         assertEquals(rotationModel.unit(), "day");
 
-        CertificateValidity certificateValidityModel = new CertificateValidity.Builder()
-                .notBefore(DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"))
-                .notAfter(DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"))
-                .build();
-        assertEquals(certificateValidityModel.notBefore(), DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"));
-        assertEquals(certificateValidityModel.notAfter(), DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"));
-
         PrivateCertificateSecretMetadata privateCertificateSecretMetadataModel = new PrivateCertificateSecretMetadata.Builder()
                 .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("example-secret")
                 .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .rotation(rotationModel)
-                .validity(certificateValidityModel)
                 .build();
         assertEquals(privateCertificateSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
         assertEquals(privateCertificateSecretMetadataModel.name(), "example-secret");
         assertEquals(privateCertificateSecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(privateCertificateSecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(privateCertificateSecretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(privateCertificateSecretMetadataModel.rotation(), rotationModel);
-        assertEquals(privateCertificateSecretMetadataModel.validity(), certificateValidityModel);
 
         String json = TestUtilities.serialize(privateCertificateSecretMetadataModel);
 
@@ -84,13 +65,8 @@ public class PrivateCertificateSecretMetadataTest {
         assertTrue(privateCertificateSecretMetadataModelNew instanceof PrivateCertificateSecretMetadata);
         assertEquals(privateCertificateSecretMetadataModelNew.name(), "example-secret");
         assertEquals(privateCertificateSecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(privateCertificateSecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(privateCertificateSecretMetadataModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(privateCertificateSecretMetadataModelNew.rotation().toString(), rotationModel.toString());
-        assertEquals(privateCertificateSecretMetadataModelNew.validity().toString(), certificateValidityModel.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

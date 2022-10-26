@@ -15,7 +15,6 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignIntermediateActionResult;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignIntermediateActionResultData;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
@@ -55,7 +54,6 @@ public class SignIntermediateActionResultTest {
         assertNull(signIntermediateActionResultModel.getStreetAddress());
         assertNull(signIntermediateActionResultModel.getPostalCode());
         assertNull(signIntermediateActionResultModel.getSerialNumber());
-        assertNull(signIntermediateActionResultModel.getData());
         assertNull(signIntermediateActionResultModel.getIntermediateCertificateAuthority());
     }
 }

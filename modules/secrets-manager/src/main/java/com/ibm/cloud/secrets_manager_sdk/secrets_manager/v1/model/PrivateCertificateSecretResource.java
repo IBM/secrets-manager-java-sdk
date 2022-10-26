@@ -105,7 +105,6 @@ public class PrivateCertificateSecretResource extends SecretResource {
         private String privateKeyFormat;
         private Boolean excludeCnFromSans;
         private Rotation rotation;
-        private CertificateValidity validity;
 
         /**
          * Instantiates a new Builder from an existing PrivateCertificateSecretResource instance.
@@ -130,7 +129,6 @@ public class PrivateCertificateSecretResource extends SecretResource {
             this.privateKeyFormat = privateCertificateSecretResource.privateKeyFormat;
             this.excludeCnFromSans = privateCertificateSecretResource.excludeCnFromSans;
             this.rotation = privateCertificateSecretResource.rotation;
-            this.validity = privateCertificateSecretResource.validity;
         }
 
         /**
@@ -381,17 +379,6 @@ public class PrivateCertificateSecretResource extends SecretResource {
             this.rotation = rotation;
             return this;
         }
-
-        /**
-         * Set the validity.
-         *
-         * @param validity the validity
-         * @return the PrivateCertificateSecretResource builder
-         */
-        public Builder validity(CertificateValidity validity) {
-            this.validity = validity;
-            return this;
-        }
     }
 
     protected PrivateCertificateSecretResource() {
@@ -421,7 +408,6 @@ public class PrivateCertificateSecretResource extends SecretResource {
         privateKeyFormat = builder.privateKeyFormat;
         excludeCnFromSans = builder.excludeCnFromSans;
         rotation = builder.rotation;
-        validity = builder.validity;
     }
 
     /**

@@ -36,44 +36,20 @@ public class RotatePublicCertBodyTest {
     public void testRotatePublicCertBody() throws Throwable {
         RotatePublicCertBody rotatePublicCertBodyModel = new RotatePublicCertBody.Builder()
                 .rotateKeys(true)
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(rotatePublicCertBodyModel.rotateKeys(), Boolean.valueOf(true));
-        assertEquals(rotatePublicCertBodyModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(rotatePublicCertBodyModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(rotatePublicCertBodyModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(rotatePublicCertBodyModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         String json = TestUtilities.serialize(rotatePublicCertBodyModel);
 
         RotatePublicCertBody rotatePublicCertBodyModelNew = TestUtilities.deserialize(json, RotatePublicCertBody.class);
         assertTrue(rotatePublicCertBodyModelNew instanceof RotatePublicCertBody);
         assertEquals(rotatePublicCertBodyModelNew.rotateKeys(), Boolean.valueOf(true));
-        assertEquals(rotatePublicCertBodyModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-        assertEquals(rotatePublicCertBodyModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(rotatePublicCertBodyModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+        assertEquals(rotatePublicCertBodyModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

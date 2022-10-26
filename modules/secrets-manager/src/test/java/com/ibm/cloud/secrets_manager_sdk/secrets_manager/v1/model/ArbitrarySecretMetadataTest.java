@@ -39,21 +39,13 @@ public class ArbitrarySecretMetadataTest {
                 .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("example-secret")
                 .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .build();
         assertEquals(arbitrarySecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
         assertEquals(arbitrarySecretMetadataModel.name(), "example-secret");
         assertEquals(arbitrarySecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(arbitrarySecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(arbitrarySecretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(arbitrarySecretMetadataModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
 
         String json = TestUtilities.serialize(arbitrarySecretMetadataModel);
@@ -62,11 +54,7 @@ public class ArbitrarySecretMetadataTest {
         assertTrue(arbitrarySecretMetadataModelNew instanceof ArbitrarySecretMetadata);
         assertEquals(arbitrarySecretMetadataModelNew.name(), "example-secret");
         assertEquals(arbitrarySecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(arbitrarySecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(arbitrarySecretMetadataModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(arbitrarySecretMetadataModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
     }
 

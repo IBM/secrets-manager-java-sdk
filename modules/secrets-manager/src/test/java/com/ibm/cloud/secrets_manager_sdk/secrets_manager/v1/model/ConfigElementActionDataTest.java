@@ -15,7 +15,6 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ConfigElementActionData;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignActionResultData;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.SignCsrActionResult;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 

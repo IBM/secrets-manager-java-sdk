@@ -19,7 +19,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.KvSecretResour
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
 
 import org.testng.annotations.Test;
 
@@ -39,35 +40,19 @@ public class KvSecretResourceTest {
                 .description("testString")
                 .secretGroupId("testString")
                 .labels(java.util.Arrays.asList("testString"))
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
-                .payload(Collections.singletonMap("foo", "testString"))
+                .payload(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(kvSecretResourceModel.name(), "testString");
         assertEquals(kvSecretResourceModel.description(), "testString");
         assertEquals(kvSecretResourceModel.secretGroupId(), "testString");
         assertEquals(kvSecretResourceModel.labels(), java.util.Arrays.asList("testString"));
-        assertEquals(kvSecretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(kvSecretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(kvSecretResourceModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(kvSecretResourceModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(kvSecretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-        assertEquals(kvSecretResourceModel.payload(), Collections.singletonMap("foo", "testString"));
+        assertEquals(kvSecretResourceModel.payload(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         String json = TestUtilities.serialize(kvSecretResourceModel);
 
@@ -76,18 +61,10 @@ public class KvSecretResourceTest {
         assertEquals(kvSecretResourceModelNew.name(), "testString");
         assertEquals(kvSecretResourceModelNew.description(), "testString");
         assertEquals(kvSecretResourceModelNew.secretGroupId(), "testString");
-        assertEquals(kvSecretResourceModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-        assertEquals(kvSecretResourceModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(kvSecretResourceModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+        assertEquals(kvSecretResourceModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(kvSecretResourceModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
-        assertEquals(kvSecretResourceModelNew.payload(), Collections.singletonMap("foo", "testString"));
+        assertEquals(kvSecretResourceModelNew.payload().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

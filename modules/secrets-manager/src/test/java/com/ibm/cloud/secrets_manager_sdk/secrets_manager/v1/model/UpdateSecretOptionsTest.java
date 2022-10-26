@@ -37,28 +37,12 @@ public class UpdateSecretOptionsTest {
     public void testUpdateSecretOptions() throws Throwable {
         RotateArbitrarySecretBody secretActionModel = new RotateArbitrarySecretBody.Builder()
                 .payload("testString")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(secretActionModel.payload(), "testString");
-        assertEquals(secretActionModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(secretActionModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(secretActionModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(secretActionModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         UpdateSecretOptions updateSecretOptionsModel = new UpdateSecretOptions.Builder()
                 .secretType("arbitrary")

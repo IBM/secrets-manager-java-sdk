@@ -37,19 +37,11 @@ public class LockSecretBodyLocksItemTest {
         LockSecretBodyLocksItem lockSecretBodyLocksItemModel = new LockSecretBodyLocksItem.Builder()
                 .name("testString")
                 .description("testString")
-                .attributes(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(lockSecretBodyLocksItemModel.name(), "testString");
         assertEquals(lockSecretBodyLocksItemModel.description(), "testString");
-        assertEquals(lockSecretBodyLocksItemModel.attributes(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(lockSecretBodyLocksItemModel.attributes(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         String json = TestUtilities.serialize(lockSecretBodyLocksItemModel);
 
@@ -57,11 +49,7 @@ public class LockSecretBodyLocksItemTest {
         assertTrue(lockSecretBodyLocksItemModelNew instanceof LockSecretBodyLocksItem);
         assertEquals(lockSecretBodyLocksItemModelNew.name(), "testString");
         assertEquals(lockSecretBodyLocksItemModelNew.description(), "testString");
-        assertEquals(lockSecretBodyLocksItemModelNew.attributes().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(lockSecretBodyLocksItemModelNew.attributes().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

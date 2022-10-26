@@ -64,7 +64,6 @@ public class CertificateSecretMetadata extends SecretMetadata {
         private String name;
         private String description;
         private Map<String, Object> customMetadata;
-        private CertificateValidity validity;
 
         /**
          * Instantiates a new Builder from an existing CertificateSecretMetadata instance.
@@ -76,7 +75,6 @@ public class CertificateSecretMetadata extends SecretMetadata {
             this.name = certificateSecretMetadata.name;
             this.description = certificateSecretMetadata.description;
             this.customMetadata = certificateSecretMetadata.customMetadata;
-            this.validity = certificateSecretMetadata.validity;
         }
 
         /**
@@ -163,17 +161,6 @@ public class CertificateSecretMetadata extends SecretMetadata {
             this.customMetadata = customMetadata;
             return this;
         }
-
-        /**
-         * Set the validity.
-         *
-         * @param validity the validity
-         * @return the CertificateSecretMetadata builder
-         */
-        public Builder validity(CertificateValidity validity) {
-            this.validity = validity;
-            return this;
-        }
     }
 
     protected CertificateSecretMetadata() {
@@ -186,7 +173,6 @@ public class CertificateSecretMetadata extends SecretMetadata {
         name = builder.name;
         description = builder.description;
         customMetadata = builder.customMetadata;
-        validity = builder.validity;
     }
 
     /**

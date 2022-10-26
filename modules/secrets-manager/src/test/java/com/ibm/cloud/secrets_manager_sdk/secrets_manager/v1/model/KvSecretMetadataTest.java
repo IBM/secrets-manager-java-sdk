@@ -38,20 +38,12 @@ public class KvSecretMetadataTest {
                 .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("example-secret")
                 .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(kvSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
         assertEquals(kvSecretMetadataModel.name(), "example-secret");
         assertEquals(kvSecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(kvSecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(kvSecretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         String json = TestUtilities.serialize(kvSecretMetadataModel);
 
@@ -59,11 +51,7 @@ public class KvSecretMetadataTest {
         assertTrue(kvSecretMetadataModelNew instanceof KvSecretMetadata);
         assertEquals(kvSecretMetadataModelNew.name(), "example-secret");
         assertEquals(kvSecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(kvSecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(kvSecretMetadataModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

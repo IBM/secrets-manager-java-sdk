@@ -14,10 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.sdk.core.util.DateUtils;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretData;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretVersion;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
@@ -39,7 +36,5 @@ public class CertificateSecretVersionTest {
     public void testCertificateSecretVersion() throws Throwable {
         CertificateSecretVersion certificateSecretVersionModel = new CertificateSecretVersion();
         assertNull(certificateSecretVersionModel.getVersionCustomMetadata());
-        assertNull(certificateSecretVersionModel.getValidity());
-        assertNull(certificateSecretVersionModel.getSecretData());
     }
 }

@@ -69,7 +69,6 @@ public class CertificateSecretResource extends SecretResource {
         private String certificate;
         private String privateKey;
         private String intermediate;
-        private CertificateValidity validity;
         private Object altNames;
 
         /**
@@ -87,7 +86,6 @@ public class CertificateSecretResource extends SecretResource {
             this.certificate = certificateSecretResource.certificate;
             this.privateKey = certificateSecretResource.privateKey;
             this.intermediate = certificateSecretResource.intermediate;
-            this.validity = certificateSecretResource.validity;
             this.altNames = certificateSecretResource.altNames;
         }
 
@@ -232,17 +230,6 @@ public class CertificateSecretResource extends SecretResource {
         }
 
         /**
-         * Set the validity.
-         *
-         * @param validity the validity
-         * @return the CertificateSecretResource builder
-         */
-        public Builder validity(CertificateValidity validity) {
-            this.validity = validity;
-            return this;
-        }
-
-        /**
          * Set the altNames.
          *
          * @param altNames the altNames
@@ -269,7 +256,6 @@ public class CertificateSecretResource extends SecretResource {
         certificate = builder.certificate;
         privateKey = builder.privateKey;
         intermediate = builder.intermediate;
-        validity = builder.validity;
         altNames = builder.altNames;
     }
 

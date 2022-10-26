@@ -100,8 +100,6 @@ public class PublicCertificateSecretResource extends SecretResource {
         private Object altNames;
         private String commonName;
         private Rotation rotation;
-        private IssuanceInfo issuanceInfo;
-        private CertificateValidity validity;
 
         /**
          * Instantiates a new Builder from an existing PublicCertificateSecretResource instance.
@@ -122,8 +120,6 @@ public class PublicCertificateSecretResource extends SecretResource {
             this.altNames = publicCertificateSecretResource.altNames;
             this.commonName = publicCertificateSecretResource.commonName;
             this.rotation = publicCertificateSecretResource.rotation;
-            this.issuanceInfo = publicCertificateSecretResource.issuanceInfo;
-            this.validity = publicCertificateSecretResource.validity;
         }
 
         /**
@@ -309,28 +305,6 @@ public class PublicCertificateSecretResource extends SecretResource {
             this.rotation = rotation;
             return this;
         }
-
-        /**
-         * Set the issuanceInfo.
-         *
-         * @param issuanceInfo the issuanceInfo
-         * @return the PublicCertificateSecretResource builder
-         */
-        public Builder issuanceInfo(IssuanceInfo issuanceInfo) {
-            this.issuanceInfo = issuanceInfo;
-            return this;
-        }
-
-        /**
-         * Set the validity.
-         *
-         * @param validity the validity
-         * @return the PublicCertificateSecretResource builder
-         */
-        public Builder validity(CertificateValidity validity) {
-            this.validity = validity;
-            return this;
-        }
     }
 
     protected PublicCertificateSecretResource() {
@@ -352,8 +326,6 @@ public class PublicCertificateSecretResource extends SecretResource {
         altNames = builder.altNames;
         commonName = builder.commonName;
         rotation = builder.rotation;
-        issuanceInfo = builder.issuanceInfo;
-        validity = builder.validity;
     }
 
     /**

@@ -48,21 +48,13 @@ public class UpdateSecretMetadataOptionsTest {
                 .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("example-secret")
                 .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .build();
         assertEquals(secretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
         assertEquals(secretMetadataModel.name(), "example-secret");
         assertEquals(secretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(secretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(secretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(secretMetadataModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
 
         UpdateSecretMetadataOptions updateSecretMetadataOptionsModel = new UpdateSecretMetadataOptions.Builder()

@@ -38,11 +38,7 @@ public class IAMCredentialsSecretMetadataTest {
                 .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("example-secret")
                 .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .ttl("12h")
                 .serviceIdIsStatic(true)
                 .serviceId("testString")
@@ -51,11 +47,7 @@ public class IAMCredentialsSecretMetadataTest {
         assertEquals(iamCredentialsSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
         assertEquals(iamCredentialsSecretMetadataModel.name(), "example-secret");
         assertEquals(iamCredentialsSecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(iamCredentialsSecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(iamCredentialsSecretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(iamCredentialsSecretMetadataModel.ttl(), "12h");
         assertEquals(iamCredentialsSecretMetadataModel.serviceIdIsStatic(), Boolean.valueOf(true));
         assertEquals(iamCredentialsSecretMetadataModel.serviceId(), "testString");
@@ -67,11 +59,7 @@ public class IAMCredentialsSecretMetadataTest {
         assertTrue(iamCredentialsSecretMetadataModelNew instanceof IAMCredentialsSecretMetadata);
         assertEquals(iamCredentialsSecretMetadataModelNew.name(), "example-secret");
         assertEquals(iamCredentialsSecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(iamCredentialsSecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(iamCredentialsSecretMetadataModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(iamCredentialsSecretMetadataModelNew.ttl(), "12h");
         assertEquals(iamCredentialsSecretMetadataModelNew.serviceIdIsStatic(), Boolean.valueOf(true));
         assertEquals(iamCredentialsSecretMetadataModelNew.serviceId(), "testString");

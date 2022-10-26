@@ -53,14 +53,10 @@ public class LockSecretBodyLocksItem extends GenericModel {
         /**
          * Instantiates a new builder with required properties.
          *
-         * @param name        the name
-         * @param description the description
-         * @param attributes  the attributes
+         * @param name the name
          */
-        public Builder(String name, String description, Map<String, Object> attributes) {
+        public Builder(String name) {
             this.name = name;
-            this.description = description;
-            this.attributes = attributes;
         }
 
         /**
@@ -112,10 +108,6 @@ public class LockSecretBodyLocksItem extends GenericModel {
     protected LockSecretBodyLocksItem(Builder builder) {
         com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
                 "name cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.description,
-                "description cannot be null");
-        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.attributes,
-                "attributes cannot be null");
         name = builder.name;
         description = builder.description;
         attributes = builder.attributes;

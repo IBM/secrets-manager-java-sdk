@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.55.1-b24c7487-20220831-201343
+ * IBM OpenAPI SDK Code Generator Version: 3.60.0-13f6e1ba-20221019-164457
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1;
@@ -437,7 +437,8 @@ public class SecretsManager extends BaseService {
      * - `restore`: Restore a previous version of an `iam_credentials` secret.
      * - `revoke`: Revoke a private certificate.
      * - `delete_credentials`: Delete the API key that is associated with an `iam_credentials` secret.
-     * - `validate_dns_challenge`: Validate challenge for public certificate order with manual dns provider.
+     * - `validate_dns_challenge`: Validate challenges for a public certificate that is ordered with a manual DNS
+     * provider.
      *
      * @param updateSecretOptions the {@link UpdateSecretOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSecret}
@@ -992,7 +993,7 @@ public class SecretsManager extends BaseService {
      * <p>
      * Create or update one or more policies, such as an [automatic rotation
      * policy](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-automatic-rotation), for the specified
-     * secret.
+     * secret. To remove a policy, keep the resources block empty.
      *
      * @param putPolicyOptions the {@link PutPolicyOptions} containing the options for the call
      * @return a {@link ServiceCall} with a result of type {@link GetSecretPolicies}

@@ -36,44 +36,20 @@ public class RotateArbitrarySecretBodyTest {
     public void testRotateArbitrarySecretBody() throws Throwable {
         RotateArbitrarySecretBody rotateArbitrarySecretBodyModel = new RotateArbitrarySecretBody.Builder()
                 .payload("testString")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(rotateArbitrarySecretBodyModel.payload(), "testString");
-        assertEquals(rotateArbitrarySecretBodyModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(rotateArbitrarySecretBodyModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(rotateArbitrarySecretBodyModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(rotateArbitrarySecretBodyModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         String json = TestUtilities.serialize(rotateArbitrarySecretBodyModel);
 
         RotateArbitrarySecretBody rotateArbitrarySecretBodyModelNew = TestUtilities.deserialize(json, RotateArbitrarySecretBody.class);
         assertTrue(rotateArbitrarySecretBodyModelNew instanceof RotateArbitrarySecretBody);
         assertEquals(rotateArbitrarySecretBodyModelNew.payload(), "testString");
-        assertEquals(rotateArbitrarySecretBodyModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-        assertEquals(rotateArbitrarySecretBodyModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(rotateArbitrarySecretBodyModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+        assertEquals(rotateArbitrarySecretBodyModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

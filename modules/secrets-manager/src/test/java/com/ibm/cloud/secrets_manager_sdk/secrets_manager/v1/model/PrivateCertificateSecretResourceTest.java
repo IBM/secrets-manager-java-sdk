@@ -14,8 +14,6 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.sdk.core.util.DateUtils;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
@@ -23,7 +21,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.testng.annotations.Test;
 
@@ -49,28 +46,13 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(rotationModel.interval(), Long.valueOf("26"));
         assertEquals(rotationModel.unit(), "day");
 
-        CertificateValidity certificateValidityModel = new CertificateValidity.Builder()
-                .notBefore(DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"))
-                .notAfter(DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"))
-                .build();
-        assertEquals(certificateValidityModel.notBefore(), DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"));
-        assertEquals(certificateValidityModel.notAfter(), DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"));
-
         PrivateCertificateSecretResource privateCertificateSecretResourceModel = new PrivateCertificateSecretResource.Builder()
                 .name("testString")
                 .description("testString")
                 .secretGroupId("testString")
                 .labels(java.util.Arrays.asList("testString"))
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .certificateTemplate("cert-template-1")
                 .commonName("example.com")
                 .altNames("testString")
@@ -82,22 +64,13 @@ public class PrivateCertificateSecretResourceTest {
                 .privateKeyFormat("der")
                 .excludeCnFromSans(false)
                 .rotation(rotationModel)
-                .validity(certificateValidityModel)
                 .build();
         assertEquals(privateCertificateSecretResourceModel.name(), "testString");
         assertEquals(privateCertificateSecretResourceModel.description(), "testString");
         assertEquals(privateCertificateSecretResourceModel.secretGroupId(), "testString");
         assertEquals(privateCertificateSecretResourceModel.labels(), java.util.Arrays.asList("testString"));
-        assertEquals(privateCertificateSecretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(privateCertificateSecretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(privateCertificateSecretResourceModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(privateCertificateSecretResourceModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(privateCertificateSecretResourceModel.certificateTemplate(), "cert-template-1");
         assertEquals(privateCertificateSecretResourceModel.commonName(), "example.com");
         assertEquals(privateCertificateSecretResourceModel.altNames(), "testString");
@@ -109,7 +82,6 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModel.privateKeyFormat(), "der");
         assertEquals(privateCertificateSecretResourceModel.excludeCnFromSans(), Boolean.valueOf(false));
         assertEquals(privateCertificateSecretResourceModel.rotation(), rotationModel);
-        assertEquals(privateCertificateSecretResourceModel.validity(), certificateValidityModel);
 
         String json = TestUtilities.serialize(privateCertificateSecretResourceModel);
 
@@ -118,16 +90,8 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModelNew.name(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.description(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.secretGroupId(), "testString");
-        assertEquals(privateCertificateSecretResourceModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-        assertEquals(privateCertificateSecretResourceModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(privateCertificateSecretResourceModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+        assertEquals(privateCertificateSecretResourceModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(privateCertificateSecretResourceModelNew.certificateTemplate(), "cert-template-1");
         assertEquals(privateCertificateSecretResourceModelNew.commonName(), "example.com");
         assertEquals(privateCertificateSecretResourceModelNew.altNames(), "testString");
@@ -138,7 +102,6 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModelNew.privateKeyFormat(), "der");
         assertEquals(privateCertificateSecretResourceModelNew.excludeCnFromSans(), Boolean.valueOf(false));
         assertEquals(privateCertificateSecretResourceModelNew.rotation().toString(), rotationModel.toString());
-        assertEquals(privateCertificateSecretResourceModelNew.validity().toString(), certificateValidityModel.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

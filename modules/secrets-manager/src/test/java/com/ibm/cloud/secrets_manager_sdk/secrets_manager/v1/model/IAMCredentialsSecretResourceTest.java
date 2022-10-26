@@ -20,7 +20,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.testng.annotations.Test;
 
@@ -40,16 +39,8 @@ public class IAMCredentialsSecretResourceTest {
                 .description("testString")
                 .secretGroupId("testString")
                 .labels(java.util.Arrays.asList("testString"))
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .ttl("24h")
                 .accessGroups(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0"))
                 .serviceId("testString")
@@ -59,16 +50,8 @@ public class IAMCredentialsSecretResourceTest {
         assertEquals(iamCredentialsSecretResourceModel.description(), "testString");
         assertEquals(iamCredentialsSecretResourceModel.secretGroupId(), "testString");
         assertEquals(iamCredentialsSecretResourceModel.labels(), java.util.Arrays.asList("testString"));
-        assertEquals(iamCredentialsSecretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(iamCredentialsSecretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(iamCredentialsSecretResourceModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(iamCredentialsSecretResourceModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(iamCredentialsSecretResourceModel.ttl(), "24h");
         assertEquals(iamCredentialsSecretResourceModel.accessGroups(), java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699", "AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0"));
         assertEquals(iamCredentialsSecretResourceModel.serviceId(), "testString");
@@ -81,16 +64,8 @@ public class IAMCredentialsSecretResourceTest {
         assertEquals(iamCredentialsSecretResourceModelNew.name(), "testString");
         assertEquals(iamCredentialsSecretResourceModelNew.description(), "testString");
         assertEquals(iamCredentialsSecretResourceModelNew.secretGroupId(), "testString");
-        assertEquals(iamCredentialsSecretResourceModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-        assertEquals(iamCredentialsSecretResourceModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(iamCredentialsSecretResourceModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+        assertEquals(iamCredentialsSecretResourceModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(iamCredentialsSecretResourceModelNew.ttl(), "24h");
         assertEquals(iamCredentialsSecretResourceModelNew.serviceId(), "testString");
         assertEquals(iamCredentialsSecretResourceModelNew.reuseApiKey(), Boolean.valueOf(false));

@@ -35,27 +35,15 @@ public class RotatePrivateCertBodyWithVersionCustomMetadataTest {
     @Test
     public void testRotatePrivateCertBodyWithVersionCustomMetadata() throws Throwable {
         RotatePrivateCertBodyWithVersionCustomMetadata rotatePrivateCertBodyWithVersionCustomMetadataModel = new RotatePrivateCertBodyWithVersionCustomMetadata.Builder()
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
-        assertEquals(rotatePrivateCertBodyWithVersionCustomMetadataModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(rotatePrivateCertBodyWithVersionCustomMetadataModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         String json = TestUtilities.serialize(rotatePrivateCertBodyWithVersionCustomMetadataModel);
 
         RotatePrivateCertBodyWithVersionCustomMetadata rotatePrivateCertBodyWithVersionCustomMetadataModelNew = TestUtilities.deserialize(json, RotatePrivateCertBodyWithVersionCustomMetadata.class);
         assertTrue(rotatePrivateCertBodyWithVersionCustomMetadataModelNew instanceof RotatePrivateCertBodyWithVersionCustomMetadata);
-        assertEquals(rotatePrivateCertBodyWithVersionCustomMetadataModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(rotatePrivateCertBodyWithVersionCustomMetadataModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

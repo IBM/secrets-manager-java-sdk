@@ -23,7 +23,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.testng.annotations.Test;
 
@@ -50,16 +49,8 @@ public class CreateSecretOptionsTest {
                 .description("testString")
                 .secretGroupId("testString")
                 .labels(java.util.Arrays.asList("testString"))
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .payload("testString")
                 .build();
@@ -67,16 +58,8 @@ public class CreateSecretOptionsTest {
         assertEquals(secretResourceModel.description(), "testString");
         assertEquals(secretResourceModel.secretGroupId(), "testString");
         assertEquals(secretResourceModel.labels(), java.util.Arrays.asList("testString"));
-        assertEquals(secretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(secretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(secretResourceModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(secretResourceModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(secretResourceModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
         assertEquals(secretResourceModel.payload(), "testString");
 

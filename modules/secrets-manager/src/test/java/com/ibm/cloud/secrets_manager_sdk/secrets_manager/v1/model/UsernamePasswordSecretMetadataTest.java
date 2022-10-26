@@ -39,21 +39,13 @@ public class UsernamePasswordSecretMetadataTest {
                 .labels(java.util.Arrays.asList("dev", "us-south"))
                 .name("example-secret")
                 .description("Extended description for this secret.")
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .expirationDate(DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"))
                 .build();
         assertEquals(usernamePasswordSecretMetadataModel.labels(), java.util.Arrays.asList("dev", "us-south"));
         assertEquals(usernamePasswordSecretMetadataModel.name(), "example-secret");
         assertEquals(usernamePasswordSecretMetadataModel.description(), "Extended description for this secret.");
-        assertEquals(usernamePasswordSecretMetadataModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(usernamePasswordSecretMetadataModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(usernamePasswordSecretMetadataModel.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
 
         String json = TestUtilities.serialize(usernamePasswordSecretMetadataModel);
@@ -62,11 +54,7 @@ public class UsernamePasswordSecretMetadataTest {
         assertTrue(usernamePasswordSecretMetadataModelNew instanceof UsernamePasswordSecretMetadata);
         assertEquals(usernamePasswordSecretMetadataModelNew.name(), "example-secret");
         assertEquals(usernamePasswordSecretMetadataModelNew.description(), "Extended description for this secret.");
-        assertEquals(usernamePasswordSecretMetadataModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(usernamePasswordSecretMetadataModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(usernamePasswordSecretMetadataModelNew.expirationDate(), DateUtils.parseAsDateTime("2030-04-01T09:30:00.000Z"));
     }
 

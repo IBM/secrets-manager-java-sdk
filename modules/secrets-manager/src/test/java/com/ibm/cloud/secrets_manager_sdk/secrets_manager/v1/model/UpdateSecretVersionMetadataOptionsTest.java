@@ -44,17 +44,9 @@ public class UpdateSecretVersionMetadataOptionsTest {
         assertEquals(collectionMetadataModel.collectionTotal(), Long.valueOf("1"));
 
         UpdateSecretVersionMetadata updateSecretVersionMetadataModel = new UpdateSecretVersionMetadata.Builder()
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
-        assertEquals(updateSecretVersionMetadataModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(updateSecretVersionMetadataModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         UpdateSecretVersionMetadataOptions updateSecretVersionMetadataOptionsModel = new UpdateSecretVersionMetadataOptions.Builder()
                 .secretType("arbitrary")

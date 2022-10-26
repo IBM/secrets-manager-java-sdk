@@ -14,9 +14,6 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.sdk.core.util.DateUtils;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateSecretData;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PrivateCertificateSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
@@ -39,8 +36,6 @@ public class PrivateCertificateSecretVersionTest {
     public void testPrivateCertificateSecretVersion() throws Throwable {
         PrivateCertificateSecretVersion privateCertificateSecretVersionModel = new PrivateCertificateSecretVersion();
         assertNull(privateCertificateSecretVersionModel.getVersionCustomMetadata());
-        assertNull(privateCertificateSecretVersionModel.getValidity());
-        assertNull(privateCertificateSecretVersionModel.getSecretData());
         assertNull(privateCertificateSecretVersionModel.isAutoRotated());
     }
 }

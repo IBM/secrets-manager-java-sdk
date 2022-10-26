@@ -66,7 +66,9 @@ public class DeleteCredentialsForIAMCredentialsSecret extends SecretAction {
          *
          * @param serviceId the serviceId
          * @return the DeleteCredentialsForIAMCredentialsSecret builder
+         * @deprecated this method is deprecated and may be removed in a future release
          */
+        @Deprecated
         public Builder serviceId(String serviceId) {
             this.serviceId = serviceId;
             return this;

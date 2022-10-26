@@ -14,9 +14,6 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.sdk.core.util.DateUtils;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.CertificateValidity;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.IssuanceInfo;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.PublicCertificateSecretResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.Rotation;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
@@ -24,7 +21,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.testng.annotations.Test;
 
@@ -50,31 +46,13 @@ public class PublicCertificateSecretResourceTest {
         assertEquals(rotationModel.interval(), Long.valueOf("26"));
         assertEquals(rotationModel.unit(), "day");
 
-        IssuanceInfo issuanceInfoModel = new IssuanceInfo.Builder()
-                .build();
-
-        CertificateValidity certificateValidityModel = new CertificateValidity.Builder()
-                .notBefore(DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"))
-                .notAfter(DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"))
-                .build();
-        assertEquals(certificateValidityModel.notBefore(), DateUtils.parseAsDateTime("2020-10-05T21:33:11.000Z"));
-        assertEquals(certificateValidityModel.notAfter(), DateUtils.parseAsDateTime("2021-01-01T00:00:00.000Z"));
-
         PublicCertificateSecretResource publicCertificateSecretResourceModel = new PublicCertificateSecretResource.Builder()
                 .name("testString")
                 .description("testString")
                 .secretGroupId("testString")
                 .labels(java.util.Arrays.asList("testString"))
-                .customMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
-                .versionCustomMetadata(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .bundleCerts(true)
                 .ca("testString")
                 .dns("testString")
@@ -82,23 +60,13 @@ public class PublicCertificateSecretResourceTest {
                 .altNames("testString")
                 .commonName("example.com")
                 .rotation(rotationModel)
-                .issuanceInfo(issuanceInfoModel)
-                .validity(certificateValidityModel)
                 .build();
         assertEquals(publicCertificateSecretResourceModel.name(), "testString");
         assertEquals(publicCertificateSecretResourceModel.description(), "testString");
         assertEquals(publicCertificateSecretResourceModel.secretGroupId(), "testString");
         assertEquals(publicCertificateSecretResourceModel.labels(), java.util.Arrays.asList("testString"));
-        assertEquals(publicCertificateSecretResourceModel.customMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
-        assertEquals(publicCertificateSecretResourceModel.versionCustomMetadata(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(publicCertificateSecretResourceModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(publicCertificateSecretResourceModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(publicCertificateSecretResourceModel.bundleCerts(), Boolean.valueOf(true));
         assertEquals(publicCertificateSecretResourceModel.ca(), "testString");
         assertEquals(publicCertificateSecretResourceModel.dns(), "testString");
@@ -106,8 +74,6 @@ public class PublicCertificateSecretResourceTest {
         assertEquals(publicCertificateSecretResourceModel.altNames(), "testString");
         assertEquals(publicCertificateSecretResourceModel.commonName(), "example.com");
         assertEquals(publicCertificateSecretResourceModel.rotation(), rotationModel);
-        assertEquals(publicCertificateSecretResourceModel.issuanceInfo(), issuanceInfoModel);
-        assertEquals(publicCertificateSecretResourceModel.validity(), certificateValidityModel);
 
         String json = TestUtilities.serialize(publicCertificateSecretResourceModel);
 
@@ -116,16 +82,8 @@ public class PublicCertificateSecretResourceTest {
         assertEquals(publicCertificateSecretResourceModelNew.name(), "testString");
         assertEquals(publicCertificateSecretResourceModelNew.description(), "testString");
         assertEquals(publicCertificateSecretResourceModelNew.secretGroupId(), "testString");
-        assertEquals(publicCertificateSecretResourceModelNew.customMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
-        assertEquals(publicCertificateSecretResourceModelNew.versionCustomMetadata().toString(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        }.toString());
+        assertEquals(publicCertificateSecretResourceModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+        assertEquals(publicCertificateSecretResourceModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(publicCertificateSecretResourceModelNew.bundleCerts(), Boolean.valueOf(true));
         assertEquals(publicCertificateSecretResourceModelNew.ca(), "testString");
         assertEquals(publicCertificateSecretResourceModelNew.dns(), "testString");
@@ -133,8 +91,6 @@ public class PublicCertificateSecretResourceTest {
         assertEquals(publicCertificateSecretResourceModelNew.altNames(), "testString");
         assertEquals(publicCertificateSecretResourceModelNew.commonName(), "example.com");
         assertEquals(publicCertificateSecretResourceModelNew.rotation().toString(), rotationModel.toString());
-        assertEquals(publicCertificateSecretResourceModelNew.issuanceInfo().toString(), issuanceInfoModel.toString());
-        assertEquals(publicCertificateSecretResourceModelNew.validity().toString(), certificateValidityModel.toString());
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

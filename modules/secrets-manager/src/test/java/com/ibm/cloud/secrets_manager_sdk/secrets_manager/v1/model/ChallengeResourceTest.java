@@ -14,7 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.UpdateSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.ChallengeResource;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.utils.TestUtilities;
 
 import java.io.InputStream;
@@ -26,23 +26,20 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 /**
- * Unit test class for the UpdateSecretVersionMetadata model.
+ * Unit test class for the ChallengeResource model.
  */
-public class UpdateSecretVersionMetadataTest {
+public class ChallengeResourceTest {
     final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
     final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
     @Test
-    public void testUpdateSecretVersionMetadata() throws Throwable {
-        UpdateSecretVersionMetadata updateSecretVersionMetadataModel = new UpdateSecretVersionMetadata.Builder()
-                .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+    public void testChallengeResource() throws Throwable {
+        ChallengeResource challengeResourceModel = new ChallengeResource.Builder()
                 .build();
-        assertEquals(updateSecretVersionMetadataModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
-        String json = TestUtilities.serialize(updateSecretVersionMetadataModel);
+        String json = TestUtilities.serialize(challengeResourceModel);
 
-        UpdateSecretVersionMetadata updateSecretVersionMetadataModelNew = TestUtilities.deserialize(json, UpdateSecretVersionMetadata.class);
-        assertTrue(updateSecretVersionMetadataModelNew instanceof UpdateSecretVersionMetadata);
-        assertEquals(updateSecretVersionMetadataModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+        ChallengeResource challengeResourceModelNew = TestUtilities.deserialize(json, ChallengeResource.class);
+        assertTrue(challengeResourceModelNew instanceof ChallengeResource);
     }
 }

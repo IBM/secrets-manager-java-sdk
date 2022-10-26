@@ -39,21 +39,13 @@ public class UpdateConfigElementOptionsTest {
                 .configElement("certificate_authorities")
                 .configName("testString")
                 .type("letsencrypt")
-                .config(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .config(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(updateConfigElementOptionsModel.secretType(), "public_cert");
         assertEquals(updateConfigElementOptionsModel.configElement(), "certificate_authorities");
         assertEquals(updateConfigElementOptionsModel.configName(), "testString");
         assertEquals(updateConfigElementOptionsModel.type(), "letsencrypt");
-        assertEquals(updateConfigElementOptionsModel.config(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(updateConfigElementOptionsModel.config(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

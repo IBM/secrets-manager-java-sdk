@@ -38,19 +38,11 @@ public class LockSecretOptionsTest {
         LockSecretBodyLocksItem lockSecretBodyLocksItemModel = new LockSecretBodyLocksItem.Builder()
                 .name("testString")
                 .description("testString")
-                .attributes(new java.util.HashMap<String, Object>() {
-                    {
-                        put("foo", "testString");
-                    }
-                })
+                .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .build();
         assertEquals(lockSecretBodyLocksItemModel.name(), "testString");
         assertEquals(lockSecretBodyLocksItemModel.description(), "testString");
-        assertEquals(lockSecretBodyLocksItemModel.attributes(), new java.util.HashMap<String, Object>() {
-            {
-                put("foo", "testString");
-            }
-        });
+        assertEquals(lockSecretBodyLocksItemModel.attributes(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
         LockSecretOptions lockSecretOptionsModel = new LockSecretOptions.Builder()
                 .secretType("arbitrary")

@@ -175,7 +175,9 @@ public class SecretAction extends GenericModel {
      * **Deprecated.** Use the `api_key_id` field instead.
      *
      * @return the serviceId
+     * @deprecated this method is deprecated and may be removed in a future release
      */
+    @Deprecated
     public String serviceId() {
         return serviceId;
     }
