@@ -135,6 +135,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCertific
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateCrlActionResult;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateKvSecretBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePrivateCertBody;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePrivateCertBodyWithCsr;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePrivateCertBodyWithVersionCustomMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotatePublicCertBody;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.RotateUsernamePasswordSecretBody;

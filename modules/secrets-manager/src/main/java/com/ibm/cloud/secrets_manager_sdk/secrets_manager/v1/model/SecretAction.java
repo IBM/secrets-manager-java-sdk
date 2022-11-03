@@ -26,6 +26,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - RotateUsernamePasswordSecretBody
  * - RotateCertificateBody
  * - RotatePrivateCertBody
+ * - RotatePrivateCertBodyWithCsr
  * - RotatePrivateCertBodyWithVersionCustomMetadata
  * - RestoreIAMCredentialsSecretBody
  * - DeleteCredentialsForIAMCredentialsSecret
@@ -45,6 +46,7 @@ public class SecretAction extends GenericModel {
     @SerializedName("private_key")
     protected String privateKey;
     protected String intermediate;
+    protected String csr;
     @SerializedName("version_id")
     protected String versionId;
     @SerializedName("api_key_id")
@@ -141,6 +143,20 @@ public class SecretAction extends GenericModel {
      */
     public String intermediate() {
         return intermediate;
+    }
+
+    /**
+     * Gets the csr.
+     * <p>
+     * The certificate signing request. If you provide a CSR, it is used for auto rotation and manual rotation requests
+     * that do not include a CSR. If you don't include the CSR, the certificate is generated with the last CSR that you
+     * provided to create the private certificate, or on a previous request to rotate the certificate. If no CSR was
+     * provided in the past, the certificate is generated with a CSR that is created internally.
+     *
+     * @return the csr
+     */
+    public String csr() {
+        return csr;
     }
 
     /**
