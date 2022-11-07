@@ -174,6 +174,7 @@ public class SecretResource extends GenericModel {
     protected String certificateTemplate;
     @SerializedName("certificate_authority")
     protected String certificateAuthority;
+    protected String csr;
     @SerializedName("ip_sans")
     protected String ipSans;
     @SerializedName("uri_sans")
@@ -795,6 +796,19 @@ public class SecretResource extends GenericModel {
      */
     public String certificateAuthority() {
         return certificateAuthority;
+    }
+
+    /**
+     * Gets the csr.
+     * <p>
+     * The certificate signing request. If you don't include this parameter, the CSR that is used to generate the
+     * certificate is created internally. If you provide a CSR, it is used also for auto rotation and manual rotation,
+     * unless you provide another CSR in the manual rotation request.
+     *
+     * @return the csr
+     */
+    public String csr() {
+        return csr;
     }
 
     /**

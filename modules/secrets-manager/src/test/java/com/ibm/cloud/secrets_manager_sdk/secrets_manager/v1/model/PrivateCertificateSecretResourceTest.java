@@ -54,6 +54,7 @@ public class PrivateCertificateSecretResourceTest {
                 .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
                 .certificateTemplate("cert-template-1")
+                .csr("testString")
                 .commonName("example.com")
                 .altNames("testString")
                 .ipSans("testString")
@@ -72,6 +73,7 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(privateCertificateSecretResourceModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
         assertEquals(privateCertificateSecretResourceModel.certificateTemplate(), "cert-template-1");
+        assertEquals(privateCertificateSecretResourceModel.csr(), "testString");
         assertEquals(privateCertificateSecretResourceModel.commonName(), "example.com");
         assertEquals(privateCertificateSecretResourceModel.altNames(), "testString");
         assertEquals(privateCertificateSecretResourceModel.ipSans(), "testString");
@@ -93,6 +95,7 @@ public class PrivateCertificateSecretResourceTest {
         assertEquals(privateCertificateSecretResourceModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(privateCertificateSecretResourceModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
         assertEquals(privateCertificateSecretResourceModelNew.certificateTemplate(), "cert-template-1");
+        assertEquals(privateCertificateSecretResourceModelNew.csr(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.commonName(), "example.com");
         assertEquals(privateCertificateSecretResourceModelNew.altNames(), "testString");
         assertEquals(privateCertificateSecretResourceModelNew.ipSans(), "testString");

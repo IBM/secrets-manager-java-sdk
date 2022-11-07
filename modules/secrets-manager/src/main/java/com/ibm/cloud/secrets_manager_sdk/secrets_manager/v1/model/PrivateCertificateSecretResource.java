@@ -95,6 +95,7 @@ public class PrivateCertificateSecretResource extends SecretResource {
         private Map<String, Object> customMetadata;
         private Map<String, Object> versionCustomMetadata;
         private String certificateTemplate;
+        private String csr;
         private String commonName;
         private Object altNames;
         private String ipSans;
@@ -119,6 +120,7 @@ public class PrivateCertificateSecretResource extends SecretResource {
             this.customMetadata = privateCertificateSecretResource.customMetadata;
             this.versionCustomMetadata = privateCertificateSecretResource.versionCustomMetadata;
             this.certificateTemplate = privateCertificateSecretResource.certificateTemplate;
+            this.csr = privateCertificateSecretResource.csr;
             this.commonName = privateCertificateSecretResource.commonName;
             this.altNames = privateCertificateSecretResource.altNames;
             this.ipSans = privateCertificateSecretResource.ipSans;
@@ -270,6 +272,17 @@ public class PrivateCertificateSecretResource extends SecretResource {
         }
 
         /**
+         * Set the csr.
+         *
+         * @param csr the csr
+         * @return the PrivateCertificateSecretResource builder
+         */
+        public Builder csr(String csr) {
+            this.csr = csr;
+            return this;
+        }
+
+        /**
          * Set the commonName.
          *
          * @param commonName the commonName
@@ -398,6 +411,7 @@ public class PrivateCertificateSecretResource extends SecretResource {
         customMetadata = builder.customMetadata;
         versionCustomMetadata = builder.versionCustomMetadata;
         certificateTemplate = builder.certificateTemplate;
+        csr = builder.csr;
         commonName = builder.commonName;
         altNames = builder.altNames;
         ipSans = builder.ipSans;
