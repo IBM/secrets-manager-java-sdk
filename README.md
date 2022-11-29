@@ -23,9 +23,9 @@ the [IBM Cloud® Secrets Manager APIs](https://cloud.ibm.com/apidocs/secrets-man
 The IBM Cloud Secrets Manager Java SDK allows developers to programmatically interact with the following IBM Cloud
 services:
 
-Service name | Imported class name
---- | ---
-[Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManager
+| Service name                                                     | Imported class name |
+|------------------------------------------------------------------|---------------------|
+| [Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManager      |
 
 ## Prerequisites
 
@@ -44,14 +44,14 @@ Service name | Imported class name
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager</artifactId>
-    <version>1.0.45</version>
+    <version>1.0.46</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager:1.0.45'
+'com.ibm.cloud:secrets-manager:1.0.46'
 ```
 
 ## Authentication
