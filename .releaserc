@@ -5,7 +5,7 @@
     "@semantic-release/commit-analyzer",{
         "preset": "angular",
         "releaseRules": [
-            {"type: "release","release": "patch"}
+            {"type": "release","release": "patch"}
     ]}
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
