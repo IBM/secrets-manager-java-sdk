@@ -5,7 +5,7 @@ name: publish artifact
 on:
   workflow_dispatch:
   release:
-    types: [publish]
+    types: [published]
 
 jobs:
   publish:
