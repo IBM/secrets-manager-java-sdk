@@ -4,6 +4,7 @@
 name: Publish a new release
 on:
   workflow_dispatch:
+  release:
   push:
     branches:
       - main
@@ -43,7 +44,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: [release]
-    if: "github.event_name == 'push' && contains(github.ref, 'refs/tags')"
+    if: "github.event_name == 'release' && contains(github.ref, 'refs/tags')"
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
