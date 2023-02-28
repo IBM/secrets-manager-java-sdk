@@ -33,6 +33,7 @@ public class PublicCertificateConfigurationDNSCloudInternetServicesMetadataTest 
   public void testPublicCertificateConfigurationDNSCloudInternetServicesMetadata() throws Throwable {
     PublicCertificateConfigurationDNSCloudInternetServicesMetadata publicCertificateConfigurationDnsCloudInternetServicesMetadataModel = new PublicCertificateConfigurationDNSCloudInternetServicesMetadata();
     assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getConfigType());
+    assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getName());
     assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getSecretType());
     assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getCreatedBy());
     assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getCreatedAt());

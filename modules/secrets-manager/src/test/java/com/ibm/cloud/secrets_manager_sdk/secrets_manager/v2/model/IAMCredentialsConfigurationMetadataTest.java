@@ -33,6 +33,7 @@ public class IAMCredentialsConfigurationMetadataTest {
   public void testIAMCredentialsConfigurationMetadata() throws Throwable {
     IAMCredentialsConfigurationMetadata iamCredentialsConfigurationMetadataModel = new IAMCredentialsConfigurationMetadata();
     assertNull(iamCredentialsConfigurationMetadataModel.getConfigType());
+    assertNull(iamCredentialsConfigurationMetadataModel.getName());
     assertNull(iamCredentialsConfigurationMetadataModel.getSecretType());
     assertNull(iamCredentialsConfigurationMetadataModel.getCreatedBy());
     assertNull(iamCredentialsConfigurationMetadataModel.getCreatedAt());

@@ -52,6 +52,7 @@ public class PrivateCertificateConfigurationActionSignIntermediatePrototypeTest 
       .postalCode(java.util.Arrays.asList("testString"))
       .serialNumber("d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5")
       .actionType("private_cert_configuration_action_sign_intermediate")
+      .intermediateCertificateAuthority("my-secret-engine-config")
       .build();
     assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.commonName(), "localhost");
     assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.altNames(), java.util.Arrays.asList("s1.example.com", "*.s2.example.com"));
@@ -73,6 +74,7 @@ public class PrivateCertificateConfigurationActionSignIntermediatePrototypeTest 
     assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.postalCode(), java.util.Arrays.asList("testString"));
     assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.serialNumber(), "d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5");
     assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.actionType(), "private_cert_configuration_action_sign_intermediate");
+    assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.intermediateCertificateAuthority(), "my-secret-engine-config");
 
     String json = TestUtilities.serialize(privateCertificateConfigurationActionSignIntermediatePrototypeModel);
 
@@ -88,6 +90,7 @@ public class PrivateCertificateConfigurationActionSignIntermediatePrototypeTest 
     assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.useCsrValues(), Boolean.valueOf(true));
     assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.serialNumber(), "d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5");
     assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.actionType(), "private_cert_configuration_action_sign_intermediate");
+    assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.intermediateCertificateAuthority(), "my-secret-engine-config");
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

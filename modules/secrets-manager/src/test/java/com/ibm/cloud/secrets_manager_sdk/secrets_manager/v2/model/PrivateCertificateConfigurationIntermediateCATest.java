@@ -34,6 +34,7 @@ public class PrivateCertificateConfigurationIntermediateCATest {
   public void testPrivateCertificateConfigurationIntermediateCA() throws Throwable {
     PrivateCertificateConfigurationIntermediateCA privateCertificateConfigurationIntermediateCaModel = new PrivateCertificateConfigurationIntermediateCA();
     assertNull(privateCertificateConfigurationIntermediateCaModel.getConfigType());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.getName());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getSecretType());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getCreatedBy());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getCreatedAt());

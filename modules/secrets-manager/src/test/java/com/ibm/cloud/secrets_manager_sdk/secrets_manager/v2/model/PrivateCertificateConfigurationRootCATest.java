@@ -34,6 +34,7 @@ public class PrivateCertificateConfigurationRootCATest {
   public void testPrivateCertificateConfigurationRootCA() throws Throwable {
     PrivateCertificateConfigurationRootCA privateCertificateConfigurationRootCaModel = new PrivateCertificateConfigurationRootCA();
     assertNull(privateCertificateConfigurationRootCaModel.getConfigType());
+    assertNull(privateCertificateConfigurationRootCaModel.getName());
     assertNull(privateCertificateConfigurationRootCaModel.getSecretType());
     assertNull(privateCertificateConfigurationRootCaModel.getCreatedBy());
     assertNull(privateCertificateConfigurationRootCaModel.getCreatedAt());
@@ -46,7 +47,6 @@ public class PrivateCertificateConfigurationRootCATest {
     assertNull(privateCertificateConfigurationRootCaModel.getIpSans());
     assertNull(privateCertificateConfigurationRootCaModel.getUriSans());
     assertNull(privateCertificateConfigurationRootCaModel.getOtherSans());
-    assertNull(privateCertificateConfigurationRootCaModel.getTtl());
     assertNull(privateCertificateConfigurationRootCaModel.getFormat());
     assertNull(privateCertificateConfigurationRootCaModel.getPrivateKeyFormat());
     assertNull(privateCertificateConfigurationRootCaModel.getKeyType());

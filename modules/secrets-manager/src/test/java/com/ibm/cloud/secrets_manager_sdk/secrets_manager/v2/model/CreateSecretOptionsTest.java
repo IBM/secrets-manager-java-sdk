@@ -36,7 +36,7 @@ public class CreateSecretOptionsTest {
     ArbitrarySecretPrototype secretPrototypeModel = new ArbitrarySecretPrototype.Builder()
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .description("Extended description for this secret.")
-      .expirationDate(DateUtils.parseAsDateTime("2022-04-12T23:20:50.520Z"))
+      .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
       .labels(java.util.Arrays.asList("my-label"))
       .name("my-secret-example")
       .secretGroupId("default")
@@ -46,7 +46,7 @@ public class CreateSecretOptionsTest {
       .build();
     assertEquals(secretPrototypeModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(secretPrototypeModel.description(), "Extended description for this secret.");
-    assertEquals(secretPrototypeModel.expirationDate(), DateUtils.parseAsDateTime("2022-04-12T23:20:50.520Z"));
+    assertEquals(secretPrototypeModel.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
     assertEquals(secretPrototypeModel.labels(), java.util.Arrays.asList("my-label"));
     assertEquals(secretPrototypeModel.name(), "my-secret-example");
     assertEquals(secretPrototypeModel.secretGroupId(), "default");

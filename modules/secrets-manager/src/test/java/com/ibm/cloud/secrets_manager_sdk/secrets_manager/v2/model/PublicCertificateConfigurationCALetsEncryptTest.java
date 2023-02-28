@@ -33,6 +33,7 @@ public class PublicCertificateConfigurationCALetsEncryptTest {
   public void testPublicCertificateConfigurationCALetsEncrypt() throws Throwable {
     PublicCertificateConfigurationCALetsEncrypt publicCertificateConfigurationCaLetsEncryptModel = new PublicCertificateConfigurationCALetsEncrypt();
     assertNull(publicCertificateConfigurationCaLetsEncryptModel.getConfigType());
+    assertNull(publicCertificateConfigurationCaLetsEncryptModel.getName());
     assertNull(publicCertificateConfigurationCaLetsEncryptModel.getSecretType());
     assertNull(publicCertificateConfigurationCaLetsEncryptModel.getCreatedBy());
     assertNull(publicCertificateConfigurationCaLetsEncryptModel.getCreatedAt());

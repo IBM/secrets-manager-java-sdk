@@ -33,6 +33,7 @@ public class PrivateCertificateConfigurationTemplateTest {
   public void testPrivateCertificateConfigurationTemplate() throws Throwable {
     PrivateCertificateConfigurationTemplate privateCertificateConfigurationTemplateModel = new PrivateCertificateConfigurationTemplate();
     assertNull(privateCertificateConfigurationTemplateModel.getConfigType());
+    assertNull(privateCertificateConfigurationTemplateModel.getName());
     assertNull(privateCertificateConfigurationTemplateModel.getSecretType());
     assertNull(privateCertificateConfigurationTemplateModel.getCreatedBy());
     assertNull(privateCertificateConfigurationTemplateModel.getCreatedAt());

@@ -240,12 +240,29 @@ public class SecretsManagerTest extends PowerMockTestCase {
     new SecretsManager(serviceName, null);
   }
 
+  // Construct the service URL using the default server variable values
+  @Test
+  public void testConstructServiceURLwithDefaultValues() throws Throwable {
+    String defaultFormattedUrl = "https://provide-here-your-smgr-instanceuuid.us-south.secrets-manager.appdomain.cloud";
+    String constructedUrl = SecretsManager.constructServiceUrl(null);
+    assertEquals(constructedUrl, defaultFormattedUrl);
+  }
+
+  // Construct the service URL with an invalid server variable name (negative test)
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testConstructServiceURLWithInvalidVariable() throws Throwable {
+    Map<String, String> variables = new HashMap<>();
+    variables.put("invalid_variable_name", "value");
+
+    SecretsManager.constructServiceUrl(variables);
+  }
+
   // Test the createSecretGroup operation with a valid options model parameter
   @Test
   public void testCreateSecretGroupWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
-    String createSecretGroupPath = "/v2/secret_groups";
+    String createSecretGroupPath = "/api/v2/secret_groups";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -297,7 +314,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testListSecretGroupsWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"secret_groups\": [{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}], \"total_count\": 0}";
-    String listSecretGroupsPath = "/v2/secret_groups";
+    String listSecretGroupsPath = "/api/v2/secret_groups";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -339,7 +356,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testGetSecretGroupWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
-    String getSecretGroupPath = "/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76";
+    String getSecretGroupPath = "/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -390,7 +407,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testUpdateSecretGroupWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
-    String updateSecretGroupPath = "/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76";
+    String updateSecretGroupPath = "/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -449,7 +466,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testDeleteSecretGroupWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String deleteSecretGroupPath = "/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76";
+    String deleteSecretGroupPath = "/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));
@@ -498,8 +515,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testCreateSecretWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"expiration_date\": \"2022-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
-    String createSecretPath = "/v2/secrets";
+    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
+    String createSecretPath = "/api/v2/secrets";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -562,8 +579,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testListSecretsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"secrets\": [{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2022-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}]}";
-    String listSecretsPath = "/v2/secrets";
+    String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"secrets\": [{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}]}";
+    String listSecretsPath = "/api/v2/secrets";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -615,8 +632,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testListSecretsWithPagerGetNext() throws Throwable {
     // Set up the two-page mock response.
-    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2022-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
-    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2022-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
+    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2033-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
+    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2033-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -651,8 +668,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testListSecretsWithPagerGetAll() throws Throwable {
     // Set up the two-page mock response.
-    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2022-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
-    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2022-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
+    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2033-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
+    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2033-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -683,8 +700,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testGetSecretWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"expiration_date\": \"2022-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
-    String getSecretPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46";
+    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
+    String getSecretPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -735,7 +752,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testDeleteSecretWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String deleteSecretPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46";
+    String deleteSecretPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));
@@ -784,8 +801,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testGetSecretMetadataWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2022-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}";
-    String getSecretMetadataPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata";
+    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}";
+    String getSecretMetadataPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -835,8 +852,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testUpdateSecretMetadataWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2022-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}";
-    String updateSecretMetadataPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata";
+    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}";
+    String updateSecretMetadataPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -848,6 +865,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
       .description("updated Arbitrary Secret description")
       .labels(java.util.Arrays.asList("dev", "us-south"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
       .build();
     Map<String, Object> secretMetadataPatchModelAsPatch = secretMetadataPatchModel.asPatch();
 
@@ -897,7 +915,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testCreateSecretActionWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"action_type\": \"public_cert_action_validate_dns_challenge\"}";
-    String createSecretActionPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/actions";
+    String createSecretActionPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/actions";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -953,8 +971,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testCreateSecretVersionWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2022-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
-    String createSecretVersionPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions";
+    String mockResponseBody = "{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
+    String createSecretVersionPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -1012,8 +1030,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testListSecretVersionsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"versions\": [{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2022-04-12T23:20:50.520Z\"}], \"total_count\": 0}";
-    String listSecretVersionsPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions";
+    String mockResponseBody = "{\"versions\": [{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\"}], \"total_count\": 0}";
+    String listSecretVersionsPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1063,8 +1081,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testGetSecretVersionWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2022-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
-    String getSecretVersionPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535";
+    String mockResponseBody = "{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
+    String getSecretVersionPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1116,7 +1134,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testDeleteSecretVersionDataWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String deleteSecretVersionDataPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/secret_data";
+    String deleteSecretVersionDataPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/secret_data";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));
@@ -1166,8 +1184,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testGetSecretVersionMetadataWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2022-04-12T23:20:50.520Z\"}";
-    String getSecretVersionMetadataPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/metadata";
+    String mockResponseBody = "{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\"}";
+    String getSecretVersionMetadataPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/metadata";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1218,8 +1236,8 @@ public class SecretsManagerTest extends PowerMockTestCase {
   @Test
   public void testUpdateSecretVersionMetadataWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2022-04-12T23:20:50.520Z\"}";
-    String updateSecretVersionMetadataPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/metadata";
+    String mockResponseBody = "{\"auto_rotated\": false, \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_name\": \"my-secret\", \"secret_type\": \"arbitrary\", \"secret_group_id\": \"default\", \"payload_available\": true, \"alias\": \"current\", \"version_custom_metadata\": {\"anyKey\": \"anyValue\"}, \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\"}";
+    String updateSecretVersionMetadataPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/metadata";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1278,7 +1296,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testCreateSecretVersionActionWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"action_type\": \"private_cert_action_revoke_certificate\", \"revocation_time_seconds\": 21}";
-    String createSecretVersionActionPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/actions";
+    String createSecretVersionActionPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/actions";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -1336,7 +1354,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testListSecretsLocksWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"secrets_locks\": [{\"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"secret_name\": \"my-secret\", \"versions\": [{\"version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"version_alias\": \"current\", \"locks\": [\"lock-example\"], \"payload_available\": true}]}]}";
-    String listSecretsLocksPath = "/v2/secrets_locks";
+    String listSecretsLocksPath = "/api/v2/secrets_locks";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1453,7 +1471,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testListSecretLocksWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"locks\": [{\"name\": \"lock-example\", \"description\": \"description\", \"attributes\": {\"anyKey\": \"anyValue\"}, \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"secret_group_id\": \"default\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_alias\": \"current\"}]}";
-    String listSecretLocksPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks";
+    String listSecretLocksPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1580,7 +1598,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testCreateSecretLocksBulkWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"secret_name\": \"my-secret\", \"versions\": [{\"version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"version_alias\": \"current\", \"locks\": [\"lock-example\"], \"payload_available\": true}]}";
-    String createSecretLocksBulkPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk";
+    String createSecretLocksBulkPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -1641,7 +1659,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testDeleteSecretLocksBulkWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"secret_name\": \"my-secret\", \"versions\": [{\"version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"version_alias\": \"current\", \"locks\": [\"lock-example\"], \"payload_available\": true}]}";
-    String deleteSecretLocksBulkPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk";
+    String deleteSecretLocksBulkPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1694,7 +1712,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testListSecretVersionLocksWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"locks\": [{\"name\": \"lock-example\", \"description\": \"description\", \"attributes\": {\"anyKey\": \"anyValue\"}, \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"secret_group_id\": \"default\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_alias\": \"current\"}]}";
-    String listSecretVersionLocksPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks";
+    String listSecretVersionLocksPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1824,7 +1842,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testCreateSecretVersionLocksBulkWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"secret_name\": \"my-secret\", \"versions\": [{\"version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"version_alias\": \"current\", \"locks\": [\"lock-example\"], \"payload_available\": true}]}";
-    String createSecretVersionLocksBulkPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk";
+    String createSecretVersionLocksBulkPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -1886,7 +1904,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testDeleteSecretVersionLocksBulkWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"secret_name\": \"my-secret\", \"versions\": [{\"version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"version_alias\": \"current\", \"locks\": [\"lock-example\"], \"payload_available\": true}]}";
-    String deleteSecretVersionLocksBulkPath = "/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk";
+    String deleteSecretVersionLocksBulkPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -1940,7 +1958,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testCreateConfigurationWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\"}";
-    String createConfigurationPath = "/v2/configurations";
+    String createConfigurationPath = "/api/v2/configurations";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -2023,7 +2041,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testListConfigurationsWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"configurations\": [{\"config_type\": \"iam_credentials_configuration\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}]}";
-    String listConfigurationsPath = "/v2/configurations";
+    String listConfigurationsPath = "/api/v2/configurations";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -2140,7 +2158,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testGetConfigurationWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\"}";
-    String getConfigurationPath = "/v2/configurations/configuration-name";
+    String getConfigurationPath = "/api/v2/configurations/configuration-name";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -2192,7 +2210,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testUpdateConfigurationWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\"}";
-    String updateConfigurationPath = "/v2/configurations/configuration-name";
+    String updateConfigurationPath = "/api/v2/configurations/configuration-name";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -2251,7 +2269,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testDeleteConfigurationWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String deleteConfigurationPath = "/v2/configurations/configuration-name";
+    String deleteConfigurationPath = "/api/v2/configurations/configuration-name";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));
@@ -2302,7 +2320,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testCreateConfigurationActionWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"action_type\": \"private_cert_configuration_action_revoke_ca_certificate\", \"revocation_time_seconds\": 21}";
-    String createConfigurationActionPath = "/v2/configurations/configuration-name/actions";
+    String createConfigurationActionPath = "/api/v2/configurations/configuration-name/actions";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -2360,7 +2378,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testCreateNotificationsRegistrationWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"event_notifications_instance_crn\": \"eventNotificationsInstanceCrn\"}";
-    String createNotificationsRegistrationPath = "/v2/notifications/registration";
+    String createNotificationsRegistrationPath = "/api/v2/notifications/registration";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(201)
@@ -2413,7 +2431,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testGetNotificationsRegistrationWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "{\"event_notifications_instance_crn\": \"eventNotificationsInstanceCrn\"}";
-    String getNotificationsRegistrationPath = "/v2/notifications/registration";
+    String getNotificationsRegistrationPath = "/api/v2/notifications/registration";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -2455,7 +2473,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testDeleteNotificationsRegistrationWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String deleteNotificationsRegistrationPath = "/v2/notifications/registration";
+    String deleteNotificationsRegistrationPath = "/api/v2/notifications/registration";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));
@@ -2496,7 +2514,7 @@ public class SecretsManagerTest extends PowerMockTestCase {
   public void testGetNotificationsRegistrationTestWOptions() throws Throwable {
     // Register a mock response
     String mockResponseBody = "";
-    String getNotificationsRegistrationTestPath = "/v2/notifications/registration/test";
+    String getNotificationsRegistrationTestPath = "/api/v2/notifications/registration/test";
     server.enqueue(new MockResponse()
       .setResponseCode(204)
       .setBody(mockResponseBody));

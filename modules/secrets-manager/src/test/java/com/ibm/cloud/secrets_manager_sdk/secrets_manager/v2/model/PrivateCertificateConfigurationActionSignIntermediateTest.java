@@ -52,5 +52,6 @@ public class PrivateCertificateConfigurationActionSignIntermediateTest {
     assertNull(privateCertificateConfigurationActionSignIntermediateModel.getPostalCode());
     assertNull(privateCertificateConfigurationActionSignIntermediateModel.getSerialNumber());
     assertNull(privateCertificateConfigurationActionSignIntermediateModel.getActionType());
+    assertNull(privateCertificateConfigurationActionSignIntermediateModel.getIntermediateCertificateAuthority());
   }
 }

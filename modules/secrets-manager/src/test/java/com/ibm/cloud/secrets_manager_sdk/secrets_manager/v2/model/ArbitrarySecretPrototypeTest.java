@@ -35,7 +35,7 @@ public class ArbitrarySecretPrototypeTest {
     ArbitrarySecretPrototype arbitrarySecretPrototypeModel = new ArbitrarySecretPrototype.Builder()
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .description("Extended description for this secret.")
-      .expirationDate(DateUtils.parseAsDateTime("2022-04-12T23:20:50.520Z"))
+      .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
       .labels(java.util.Arrays.asList("my-label"))
       .name("my-secret-example")
       .secretGroupId("default")
@@ -45,7 +45,7 @@ public class ArbitrarySecretPrototypeTest {
       .build();
     assertEquals(arbitrarySecretPrototypeModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(arbitrarySecretPrototypeModel.description(), "Extended description for this secret.");
-    assertEquals(arbitrarySecretPrototypeModel.expirationDate(), DateUtils.parseAsDateTime("2022-04-12T23:20:50.520Z"));
+    assertEquals(arbitrarySecretPrototypeModel.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
     assertEquals(arbitrarySecretPrototypeModel.labels(), java.util.Arrays.asList("my-label"));
     assertEquals(arbitrarySecretPrototypeModel.name(), "my-secret-example");
     assertEquals(arbitrarySecretPrototypeModel.secretGroupId(), "default");
@@ -59,7 +59,7 @@ public class ArbitrarySecretPrototypeTest {
     assertTrue(arbitrarySecretPrototypeModelNew instanceof ArbitrarySecretPrototype);
     assertEquals(arbitrarySecretPrototypeModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(arbitrarySecretPrototypeModelNew.description(), "Extended description for this secret.");
-    assertEquals(arbitrarySecretPrototypeModelNew.expirationDate(), DateUtils.parseAsDateTime("2022-04-12T23:20:50.520Z"));
+    assertEquals(arbitrarySecretPrototypeModelNew.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
     assertEquals(arbitrarySecretPrototypeModelNew.name(), "my-secret-example");
     assertEquals(arbitrarySecretPrototypeModelNew.secretGroupId(), "default");
     assertEquals(arbitrarySecretPrototypeModelNew.secretType(), "arbitrary");

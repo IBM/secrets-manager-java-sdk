@@ -50,7 +50,7 @@ public class UsernamePasswordSecretPrototypeTest {
       .labels(java.util.Arrays.asList("my-label"))
       .username("testString")
       .password("testString")
-      .expirationDate(DateUtils.parseAsDateTime("2022-04-12T23:20:50.520Z"))
+      .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .rotation(rotationPolicyModel)
@@ -62,7 +62,7 @@ public class UsernamePasswordSecretPrototypeTest {
     assertEquals(usernamePasswordSecretPrototypeModel.labels(), java.util.Arrays.asList("my-label"));
     assertEquals(usernamePasswordSecretPrototypeModel.username(), "testString");
     assertEquals(usernamePasswordSecretPrototypeModel.password(), "testString");
-    assertEquals(usernamePasswordSecretPrototypeModel.expirationDate(), DateUtils.parseAsDateTime("2022-04-12T23:20:50.520Z"));
+    assertEquals(usernamePasswordSecretPrototypeModel.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
     assertEquals(usernamePasswordSecretPrototypeModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(usernamePasswordSecretPrototypeModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(usernamePasswordSecretPrototypeModel.rotation(), rotationPolicyModel);
@@ -77,7 +77,7 @@ public class UsernamePasswordSecretPrototypeTest {
     assertEquals(usernamePasswordSecretPrototypeModelNew.secretGroupId(), "default");
     assertEquals(usernamePasswordSecretPrototypeModelNew.username(), "testString");
     assertEquals(usernamePasswordSecretPrototypeModelNew.password(), "testString");
-    assertEquals(usernamePasswordSecretPrototypeModelNew.expirationDate(), DateUtils.parseAsDateTime("2022-04-12T23:20:50.520Z"));
+    assertEquals(usernamePasswordSecretPrototypeModelNew.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
     assertEquals(usernamePasswordSecretPrototypeModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(usernamePasswordSecretPrototypeModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(usernamePasswordSecretPrototypeModelNew.rotation().toString(), rotationPolicyModel.toString());

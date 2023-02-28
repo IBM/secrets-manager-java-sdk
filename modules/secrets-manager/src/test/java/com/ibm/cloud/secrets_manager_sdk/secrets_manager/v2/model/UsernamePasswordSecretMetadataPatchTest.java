@@ -14,6 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CommonRotationPolicy;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.UsernamePasswordSecretMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
@@ -48,12 +49,14 @@ public class UsernamePasswordSecretMetadataPatchTest {
       .labels(java.util.Arrays.asList("my-label"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .rotation(rotationPolicyModel)
+      .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
       .build();
     assertEquals(usernamePasswordSecretMetadataPatchModel.name(), "my-secret-example");
     assertEquals(usernamePasswordSecretMetadataPatchModel.description(), "Extended description for this secret.");
     assertEquals(usernamePasswordSecretMetadataPatchModel.labels(), java.util.Arrays.asList("my-label"));
     assertEquals(usernamePasswordSecretMetadataPatchModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(usernamePasswordSecretMetadataPatchModel.rotation(), rotationPolicyModel);
+    assertEquals(usernamePasswordSecretMetadataPatchModel.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
 
     String json = TestUtilities.serialize(usernamePasswordSecretMetadataPatchModel);
 
@@ -63,6 +66,7 @@ public class UsernamePasswordSecretMetadataPatchTest {
     assertEquals(usernamePasswordSecretMetadataPatchModelNew.description(), "Extended description for this secret.");
     assertEquals(usernamePasswordSecretMetadataPatchModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(usernamePasswordSecretMetadataPatchModelNew.rotation().toString(), rotationPolicyModel.toString());
+    assertEquals(usernamePasswordSecretMetadataPatchModelNew.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
   }
   @Test
   public void testUsernamePasswordSecretMetadataPatchAsPatch() throws Throwable {
@@ -78,6 +82,7 @@ public class UsernamePasswordSecretMetadataPatchTest {
       .labels(java.util.Arrays.asList("my-label"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .rotation(rotationPolicyModel)
+      .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
       .build();
 
     Map<String, Object> mergePatch = usernamePasswordSecretMetadataPatchModel.asPatch();
@@ -87,6 +92,7 @@ public class UsernamePasswordSecretMetadataPatchTest {
     assertTrue(mergePatch.containsKey("labels"));
     assertTrue(mergePatch.containsKey("custom_metadata"));
     assertTrue(mergePatch.containsKey("rotation"));
+    assertTrue(mergePatch.containsKey("expiration_date"));
   }
 
 }

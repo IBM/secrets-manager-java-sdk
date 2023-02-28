@@ -33,6 +33,7 @@ public class PublicCertificateConfigurationDNSClassicInfrastructureTest {
   public void testPublicCertificateConfigurationDNSClassicInfrastructure() throws Throwable {
     PublicCertificateConfigurationDNSClassicInfrastructure publicCertificateConfigurationDnsClassicInfrastructureModel = new PublicCertificateConfigurationDNSClassicInfrastructure();
     assertNull(publicCertificateConfigurationDnsClassicInfrastructureModel.getConfigType());
+    assertNull(publicCertificateConfigurationDnsClassicInfrastructureModel.getName());
     assertNull(publicCertificateConfigurationDnsClassicInfrastructureModel.getSecretType());
     assertNull(publicCertificateConfigurationDnsClassicInfrastructureModel.getCreatedBy());
     assertNull(publicCertificateConfigurationDnsClassicInfrastructureModel.getCreatedAt());

@@ -625,6 +625,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .description("updated Arbitrary Secret description")
         .labels(java.util.Arrays.asList("dev", "us-south"))
         .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
         .build();
       Map<String, Object> secretMetadataPatchModelAsPatch = secretMetadataPatchModel.asPatch();
 

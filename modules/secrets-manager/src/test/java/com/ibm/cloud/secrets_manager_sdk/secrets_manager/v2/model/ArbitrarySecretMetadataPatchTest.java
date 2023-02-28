@@ -14,6 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ArbitrarySecretMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
@@ -37,11 +38,13 @@ public class ArbitrarySecretMetadataPatchTest {
       .description("Extended description for this secret.")
       .labels(java.util.Arrays.asList("my-label"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
       .build();
     assertEquals(arbitrarySecretMetadataPatchModel.name(), "my-secret-example");
     assertEquals(arbitrarySecretMetadataPatchModel.description(), "Extended description for this secret.");
     assertEquals(arbitrarySecretMetadataPatchModel.labels(), java.util.Arrays.asList("my-label"));
     assertEquals(arbitrarySecretMetadataPatchModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+    assertEquals(arbitrarySecretMetadataPatchModel.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
 
     String json = TestUtilities.serialize(arbitrarySecretMetadataPatchModel);
 
@@ -50,6 +53,7 @@ public class ArbitrarySecretMetadataPatchTest {
     assertEquals(arbitrarySecretMetadataPatchModelNew.name(), "my-secret-example");
     assertEquals(arbitrarySecretMetadataPatchModelNew.description(), "Extended description for this secret.");
     assertEquals(arbitrarySecretMetadataPatchModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+    assertEquals(arbitrarySecretMetadataPatchModelNew.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
   }
   @Test
   public void testArbitrarySecretMetadataPatchAsPatch() throws Throwable {
@@ -58,6 +62,7 @@ public class ArbitrarySecretMetadataPatchTest {
       .description("Extended description for this secret.")
       .labels(java.util.Arrays.asList("my-label"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
       .build();
 
     Map<String, Object> mergePatch = arbitrarySecretMetadataPatchModel.asPatch();
@@ -66,6 +71,7 @@ public class ArbitrarySecretMetadataPatchTest {
     assertEquals(mergePatch.get("description"), "Extended description for this secret.");
     assertTrue(mergePatch.containsKey("labels"));
     assertTrue(mergePatch.containsKey("custom_metadata"));
+    assertTrue(mergePatch.containsKey("expiration_date"));
   }
 
 }

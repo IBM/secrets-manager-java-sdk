@@ -33,6 +33,7 @@ public class PrivateCertificateConfigurationIntermediateCAMetadataTest {
   public void testPrivateCertificateConfigurationIntermediateCAMetadata() throws Throwable {
     PrivateCertificateConfigurationIntermediateCAMetadata privateCertificateConfigurationIntermediateCaMetadataModel = new PrivateCertificateConfigurationIntermediateCAMetadata();
     assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getConfigType());
+    assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getName());
     assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getSecretType());
     assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getCreatedBy());
     assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getCreatedAt());
