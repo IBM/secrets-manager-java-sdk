@@ -9,7 +9,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import static org.testng.Assert.*;
 
@@ -241,15 +244,19 @@ public class SecretsManagerManualTests extends SdkIntegrationTestBase {
         CreateConfigurationOptions createInterConfigurationOptions = new CreateConfigurationOptions.Builder()
                 .configurationPrototype(intermediateCAPrototype)
                 .build();
-
-        // Invoke operation
-        Response<Configuration> response = service.createConfiguration(createInterConfigurationOptions).execute();
-        // Validate response
-        assertNotNull(response);
-        assertEquals(response.getStatusCode(), 201);
+        try {
+            // Invoke operation
+            Response<Configuration> response = service.createConfiguration(createInterConfigurationOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
+        } catch (Exception ex) {
+            String errMessage = ex.getMessage();
+            assertTrue((errMessage.contains("already exists") || errMessage.contains("reached the maximum")), "Config creation failed");
+        }
     }
 
-    private void deleteConfiguration(String configName, String configType){
+    private void deleteConfiguration(String configName, String configType) {
         DeleteConfigurationOptions deleteConfigurationOptions = new DeleteConfigurationOptions.Builder()
                 .name(configName)
                 .xSmAcceptConfigurationType(configType)
@@ -262,7 +269,7 @@ public class SecretsManagerManualTests extends SdkIntegrationTestBase {
         assertEquals(response.getStatusCode(), 204);
     }
 
-    private void deleteSecret(String secretId){
+    private void deleteSecret(String secretId) {
         DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
                 .id(secretId)
                 .build();
