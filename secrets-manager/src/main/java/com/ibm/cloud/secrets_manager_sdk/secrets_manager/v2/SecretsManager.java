@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.60.2-95dc7721-20221102-203229
+ * IBM OpenAPI SDK Code Generator Version: 3.68.0-c188a613-20230301-190553
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2;
@@ -599,7 +599,7 @@ public class SecretsManager extends BaseService {
    *
    * Delete the data of a secret version by specifying the ID of the version.
    *
-   * This operation is available for secret type: iam_credentials.
+   * This operation is available for secret type: iam_credentials current version.
    *
    * @param deleteSecretVersionDataOptions the {@link DeleteSecretVersionDataOptions} containing the options for the call
    * @return a {@link ServiceCall} with a void result

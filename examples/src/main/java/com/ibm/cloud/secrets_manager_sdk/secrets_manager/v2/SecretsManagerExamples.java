@@ -572,6 +572,29 @@ public class SecretsManagerExamples {
     }
 
     try {
+      System.out.println("createSecretVersionLocksBulk() result:");
+      // begin-create_secret_version_locks_bulk
+      SecretLockPrototype secretLockPrototypeModel = new SecretLockPrototype.Builder()
+        .name("lock-example-1")
+        .description("lock for consumer 1")
+        .build();
+      CreateSecretVersionLocksBulkOptions createSecretVersionLocksBulkOptions = new CreateSecretVersionLocksBulkOptions.Builder()
+        .secretId(secretIdForCreateSecretVersionLocksLink)
+        .id(secretVersionIdForCreateSecretVersionLocksLink)
+        .locks(java.util.Arrays.asList(secretLockPrototypeModel))
+        .build();
+
+      Response<SecretLocks> response = secretsManagerService.createSecretVersionLocksBulk(createSecretVersionLocksBulkOptions).execute();
+      SecretLocks secretLocks = response.getResult();
+
+      System.out.println(secretLocks);
+      // end-create_secret_version_locks_bulk
+    } catch (ServiceResponseException e) {
+        logger.error(String.format("Service returned status code %s: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
+    }
+
+    try {
       System.out.println("listSecretVersionLocks() result:");
       // begin-list_secret_version_locks
       ListSecretVersionLocksOptions listSecretVersionLocksOptions = new ListSecretVersionLocksOptions.Builder()
@@ -591,29 +614,6 @@ public class SecretsManagerExamples {
 
       System.out.println(GsonSingleton.getGson().toJson(allResults));
       // end-list_secret_version_locks
-    } catch (ServiceResponseException e) {
-        logger.error(String.format("Service returned status code %s: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
-    }
-
-    try {
-      System.out.println("createSecretVersionLocksBulk() result:");
-      // begin-create_secret_version_locks_bulk
-      SecretLockPrototype secretLockPrototypeModel = new SecretLockPrototype.Builder()
-        .name("lock-example-1")
-        .description("lock for consumer 1")
-        .build();
-      CreateSecretVersionLocksBulkOptions createSecretVersionLocksBulkOptions = new CreateSecretVersionLocksBulkOptions.Builder()
-        .secretId(secretIdForCreateSecretVersionLocksLink)
-        .id(secretVersionIdForCreateSecretVersionLocksLink)
-        .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-        .build();
-
-      Response<SecretLocks> response = secretsManagerService.createSecretVersionLocksBulk(createSecretVersionLocksBulkOptions).execute();
-      SecretLocks secretLocks = response.getResult();
-
-      System.out.println(secretLocks);
-      // end-create_secret_version_locks_bulk
     } catch (ServiceResponseException e) {
         logger.error(String.format("Service returned status code %s: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);

@@ -649,32 +649,10 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test(dependsOnMethods = { "testUpdateSecretMetadata" })
-  public void testCreateSecretAction() throws Exception {
-    try {
-      PublicCertificateActionValidateManualDNSPrototype secretActionPrototypeModel = new PublicCertificateActionValidateManualDNSPrototype.Builder()
-        .actionType("private_cert_action_revoke_certificate")
-        .build();
-
-      CreateSecretActionOptions createSecretActionOptions = new CreateSecretActionOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .secretActionPrototype(secretActionPrototypeModel)
-        .build();
-
-      // Invoke operation
-      Response<SecretAction> response = service.createSecretAction(createSecretActionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      SecretAction secretActionResult = response.getResult();
-
-      assertNotNull(secretActionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
+  // The integration test for createSecretAction has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testCreateSecretAction() throws Exception {}
 
   @Test(dependsOnMethods = { "testCreateSecretAction" })
   public void testCreateSecretVersion() throws Exception {
@@ -780,33 +758,10 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test(dependsOnMethods = { "testUpdateSecretVersionMetadata" })
-  public void testCreateSecretVersionAction() throws Exception {
-    try {
-      PrivateCertificateVersionActionRevokePrototype secretVersionActionPrototypeModel = new PrivateCertificateVersionActionRevokePrototype.Builder()
-        .actionType("private_cert_action_revoke_certificate")
-        .build();
-
-      CreateSecretVersionActionOptions createSecretVersionActionOptions = new CreateSecretVersionActionOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretIdForGetSecretLink)
-        .secretVersionActionPrototype(secretVersionActionPrototypeModel)
-        .build();
-
-      // Invoke operation
-      Response<VersionAction> response = service.createSecretVersionAction(createSecretVersionActionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      VersionAction versionActionResult = response.getResult();
-
-      assertNotNull(versionActionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
+  // The integration test for createSecretVersionAction has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testCreateSecretVersionAction() throws Exception {}
 
   @Test(dependsOnMethods = { "testCreateSecretVersionAction" })
   public void testListSecretsLocks() throws Exception {
@@ -927,6 +882,37 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   }
 
   @Test(dependsOnMethods = { "testListSecretLocks" })
+  public void testCreateSecretVersionLocksBulk() throws Exception {
+    try {
+      SecretLockPrototype secretLockPrototypeModel = new SecretLockPrototype.Builder()
+        .name("lock-example-1")
+        .description("lock for consumer 1")
+        .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .build();
+
+      CreateSecretVersionLocksBulkOptions createSecretVersionLocksBulkOptions = new CreateSecretVersionLocksBulkOptions.Builder()
+        .secretId(secretIdForCreateSecretVersionLocksLink)
+        .id(secretVersionIdForCreateSecretVersionLocksLink)
+        .locks(java.util.Arrays.asList(secretLockPrototypeModel))
+        .mode("exclusive")
+        .build();
+
+      // Invoke operation
+      Response<SecretLocks> response = service.createSecretVersionLocksBulk(createSecretVersionLocksBulkOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 201);
+
+      SecretLocks secretLocksResult = response.getResult();
+
+      assertNotNull(secretLocksResult);
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testCreateSecretVersionLocksBulk" })
   public void testListSecretVersionLocks() throws Exception {
     try {
       ListSecretVersionLocksOptions listSecretVersionLocksOptions = new ListSecretVersionLocksOptions.Builder()
@@ -989,37 +975,6 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   }
 
   @Test(dependsOnMethods = { "testListSecretVersionLocks" })
-  public void testCreateSecretVersionLocksBulk() throws Exception {
-    try {
-      SecretLockPrototype secretLockPrototypeModel = new SecretLockPrototype.Builder()
-        .name("lock-example-1")
-        .description("lock for consumer 1")
-        .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .build();
-
-      CreateSecretVersionLocksBulkOptions createSecretVersionLocksBulkOptions = new CreateSecretVersionLocksBulkOptions.Builder()
-        .secretId(secretIdForCreateSecretVersionLocksLink)
-        .id(secretVersionIdForCreateSecretVersionLocksLink)
-        .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-        .mode("exclusive")
-        .build();
-
-      // Invoke operation
-      Response<SecretLocks> response = service.createSecretVersionLocksBulk(createSecretVersionLocksBulkOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      SecretLocks secretLocksResult = response.getResult();
-
-      assertNotNull(secretLocksResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testCreateSecretVersionLocksBulk" })
   public void testListConfigurations() throws Exception {
     try {
       ListConfigurationsOptions listConfigurationsOptions = new ListConfigurationsOptions.Builder()
@@ -1201,21 +1156,10 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test(dependsOnMethods = { "testGetNotificationsRegistration" })
-  public void testGetNotificationsRegistrationTest() throws Exception {
-    try {
-      GetNotificationsRegistrationTestOptions getNotificationsRegistrationTestOptions = new GetNotificationsRegistrationTestOptions();
-
-      // Invoke operation
-      Response<Void> response = service.getNotificationsRegistrationTest(getNotificationsRegistrationTestOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
+  // The integration test for getNotificationsRegistrationTest has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testGetNotificationsRegistrationTest() throws Exception {}
 
   @Test(dependsOnMethods = { "testGetNotificationsRegistrationTest" })
   public void testDeleteSecretGroup() throws Exception {
@@ -1235,24 +1179,10 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test(dependsOnMethods = { "testDeleteSecretGroup" })
-  public void testDeleteSecretVersionData() throws Exception {
-    try {
-      DeleteSecretVersionDataOptions deleteSecretVersionDataOptions = new DeleteSecretVersionDataOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretIdForGetSecretLink)
-        .build();
-
-      // Invoke operation
-      Response<Void> response = service.deleteSecretVersionData(deleteSecretVersionDataOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
+  // The integration test for deleteSecretVersionData has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testDeleteSecretVersionData() throws Exception {}
 
   @Test(dependsOnMethods = { "testDeleteSecretVersionData" })
   public void testDeleteSecretLocksBulk() throws Exception {
