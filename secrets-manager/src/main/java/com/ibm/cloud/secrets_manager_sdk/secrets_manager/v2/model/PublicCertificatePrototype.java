@@ -58,7 +58,7 @@ public class PublicCertificatePrototype extends SecretPrototype {
     private String ca;
     private String dns;
     private Boolean bundleCerts;
-    private RotationPolicy rotation;
+    private PublicCertificateRotationPolicy rotation;
     private Map<String, Object> customMetadata;
     private Map<String, Object> versionCustomMetadata;
 
@@ -277,7 +277,7 @@ public class PublicCertificatePrototype extends SecretPrototype {
      * @param rotation the rotation
      * @return the PublicCertificatePrototype builder
      */
-    public Builder rotation(RotationPolicy rotation) {
+    public Builder rotation(PublicCertificateRotationPolicy rotation) {
       this.rotation = rotation;
       return this;
     }

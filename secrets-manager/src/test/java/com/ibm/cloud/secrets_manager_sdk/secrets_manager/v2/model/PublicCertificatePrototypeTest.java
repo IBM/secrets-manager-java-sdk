@@ -14,8 +14,8 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CommonRotationPolicy;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificatePrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateRotationPolicy;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -32,14 +32,12 @@ public class PublicCertificatePrototypeTest {
 
   @Test
   public void testPublicCertificatePrototype() throws Throwable {
-    CommonRotationPolicy rotationPolicyModel = new CommonRotationPolicy.Builder()
+    PublicCertificateRotationPolicy publicCertificateRotationPolicyModel = new PublicCertificateRotationPolicy.Builder()
       .autoRotate(true)
-      .interval(Long.valueOf("1"))
-      .unit("day")
+      .rotateKeys(true)
       .build();
-    assertEquals(rotationPolicyModel.autoRotate(), Boolean.valueOf(true));
-    assertEquals(rotationPolicyModel.interval(), Long.valueOf("1"));
-    assertEquals(rotationPolicyModel.unit(), "day");
+    assertEquals(publicCertificateRotationPolicyModel.autoRotate(), Boolean.valueOf(true));
+    assertEquals(publicCertificateRotationPolicyModel.rotateKeys(), Boolean.valueOf(true));
 
     PublicCertificatePrototype publicCertificatePrototypeModel = new PublicCertificatePrototype.Builder()
       .secretType("public_cert")
@@ -53,7 +51,7 @@ public class PublicCertificatePrototypeTest {
       .ca("my-example-engine-config")
       .dns("my-example-engine-config")
       .bundleCerts(true)
-      .rotation(rotationPolicyModel)
+      .rotation(publicCertificateRotationPolicyModel)
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .build();
@@ -68,7 +66,7 @@ public class PublicCertificatePrototypeTest {
     assertEquals(publicCertificatePrototypeModel.ca(), "my-example-engine-config");
     assertEquals(publicCertificatePrototypeModel.dns(), "my-example-engine-config");
     assertEquals(publicCertificatePrototypeModel.bundleCerts(), Boolean.valueOf(true));
-    assertEquals(publicCertificatePrototypeModel.rotation(), rotationPolicyModel);
+    assertEquals(publicCertificatePrototypeModel.rotation(), publicCertificateRotationPolicyModel);
     assertEquals(publicCertificatePrototypeModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(publicCertificatePrototypeModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
 
@@ -85,7 +83,7 @@ public class PublicCertificatePrototypeTest {
     assertEquals(publicCertificatePrototypeModelNew.ca(), "my-example-engine-config");
     assertEquals(publicCertificatePrototypeModelNew.dns(), "my-example-engine-config");
     assertEquals(publicCertificatePrototypeModelNew.bundleCerts(), Boolean.valueOf(true));
-    assertEquals(publicCertificatePrototypeModelNew.rotation().toString(), rotationPolicyModel.toString());
+    assertEquals(publicCertificatePrototypeModelNew.rotation().toString(), publicCertificateRotationPolicyModel.toString());
     assertEquals(publicCertificatePrototypeModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(publicCertificatePrototypeModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
   }
