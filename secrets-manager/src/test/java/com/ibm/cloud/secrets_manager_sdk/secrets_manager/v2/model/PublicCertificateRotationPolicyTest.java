@@ -33,13 +33,9 @@ public class PublicCertificateRotationPolicyTest {
   public void testPublicCertificateRotationPolicy() throws Throwable {
     PublicCertificateRotationPolicy publicCertificateRotationPolicyModel = new PublicCertificateRotationPolicy.Builder()
       .autoRotate(true)
-      .interval(Long.valueOf("1"))
-      .unit("day")
       .rotateKeys(true)
       .build();
     assertEquals(publicCertificateRotationPolicyModel.autoRotate(), Boolean.valueOf(true));
-    assertEquals(publicCertificateRotationPolicyModel.interval(), Long.valueOf("1"));
-    assertEquals(publicCertificateRotationPolicyModel.unit(), "day");
     assertEquals(publicCertificateRotationPolicyModel.rotateKeys(), Boolean.valueOf(true));
 
     String json = TestUtilities.serialize(publicCertificateRotationPolicyModel);
@@ -47,8 +43,6 @@ public class PublicCertificateRotationPolicyTest {
     PublicCertificateRotationPolicy publicCertificateRotationPolicyModelNew = TestUtilities.deserialize(json, PublicCertificateRotationPolicy.class);
     assertTrue(publicCertificateRotationPolicyModelNew instanceof PublicCertificateRotationPolicy);
     assertEquals(publicCertificateRotationPolicyModelNew.autoRotate(), Boolean.valueOf(true));
-    assertEquals(publicCertificateRotationPolicyModelNew.interval(), Long.valueOf("1"));
-    assertEquals(publicCertificateRotationPolicyModelNew.unit(), "day");
     assertEquals(publicCertificateRotationPolicyModelNew.rotateKeys(), Boolean.valueOf(true));
   }
 
