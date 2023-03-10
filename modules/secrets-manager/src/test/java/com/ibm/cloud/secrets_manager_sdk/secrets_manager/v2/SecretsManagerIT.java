@@ -654,7 +654,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   // @Test
   // public void testCreateSecretAction() throws Exception {}
 
-  @Test(dependsOnMethods = { "testCreateSecretAction" })
+  @Test(dependsOnMethods = { "testUpdateSecretMetadata" })
   public void testCreateSecretVersion() throws Exception {
     try {
       ArbitrarySecretVersionPrototype secretVersionPrototypeModel = new ArbitrarySecretVersionPrototype.Builder()
@@ -763,7 +763,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   // @Test
   // public void testCreateSecretVersionAction() throws Exception {}
 
-  @Test(dependsOnMethods = { "testCreateSecretVersionAction" })
+  @Test(dependsOnMethods = { "testUpdateSecretVersionMetadata" })
   public void testListSecretsLocks() throws Exception {
     try {
       ListSecretsLocksOptions listSecretsLocksOptions = new ListSecretsLocksOptions.Builder()
@@ -1161,7 +1161,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   // @Test
   // public void testGetNotificationsRegistrationTest() throws Exception {}
 
-  @Test(dependsOnMethods = { "testGetNotificationsRegistrationTest" })
+  @Test(dependsOnMethods = { "testGetNotificationsRegistration" })
   public void testDeleteSecretGroup() throws Exception {
     try {
       DeleteSecretGroupOptions deleteSecretGroupOptions = new DeleteSecretGroupOptions.Builder()
@@ -1184,7 +1184,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   // @Test
   // public void testDeleteSecretVersionData() throws Exception {}
 
-  @Test(dependsOnMethods = { "testDeleteSecretVersionData" })
+  @Test(dependsOnMethods = { "testDeleteSecretGroup" })
   public void testDeleteSecretLocksBulk() throws Exception {
     try {
       DeleteSecretLocksBulkOptions deleteSecretLocksBulkOptions = new DeleteSecretLocksBulkOptions.Builder()

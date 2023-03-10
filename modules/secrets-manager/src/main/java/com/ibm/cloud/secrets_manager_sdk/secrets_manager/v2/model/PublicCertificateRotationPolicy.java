@@ -20,24 +20,12 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
  */
 public class PublicCertificateRotationPolicy extends RotationPolicy {
 
-  /**
-   * The units for the secret rotation time interval.
-   */
-  public interface Unit {
-    /** day. */
-    String DAY = "day";
-    /** month. */
-    String MONTH = "month";
-  }
-
 
   /**
    * Builder.
    */
   public static class Builder {
     private Boolean autoRotate;
-    private Long interval;
-    private String unit;
     private Boolean rotateKeys;
 
     /**
@@ -47,8 +35,6 @@ public class PublicCertificateRotationPolicy extends RotationPolicy {
      */
     public Builder(RotationPolicy publicCertificateRotationPolicy) {
       this.autoRotate = publicCertificateRotationPolicy.autoRotate;
-      this.interval = publicCertificateRotationPolicy.interval;
-      this.unit = publicCertificateRotationPolicy.unit;
       this.rotateKeys = publicCertificateRotationPolicy.rotateKeys;
     }
 
@@ -62,9 +48,11 @@ public class PublicCertificateRotationPolicy extends RotationPolicy {
      * Instantiates a new builder with required properties.
      *
      * @param autoRotate the autoRotate
+     * @param rotateKeys the rotateKeys
      */
-    public Builder(Boolean autoRotate) {
+    public Builder(Boolean autoRotate, Boolean rotateKeys) {
       this.autoRotate = autoRotate;
+      this.rotateKeys = rotateKeys;
     }
 
     /**
@@ -88,28 +76,6 @@ public class PublicCertificateRotationPolicy extends RotationPolicy {
     }
 
     /**
-     * Set the interval.
-     *
-     * @param interval the interval
-     * @return the PublicCertificateRotationPolicy builder
-     */
-    public Builder interval(long interval) {
-      this.interval = interval;
-      return this;
-    }
-
-    /**
-     * Set the unit.
-     *
-     * @param unit the unit
-     * @return the PublicCertificateRotationPolicy builder
-     */
-    public Builder unit(String unit) {
-      this.unit = unit;
-      return this;
-    }
-
-    /**
      * Set the rotateKeys.
      *
      * @param rotateKeys the rotateKeys
@@ -126,9 +92,9 @@ public class PublicCertificateRotationPolicy extends RotationPolicy {
   protected PublicCertificateRotationPolicy(Builder builder) {
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.autoRotate,
       "autoRotate cannot be null");
+    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.rotateKeys,
+      "rotateKeys cannot be null");
     autoRotate = builder.autoRotate;
-    interval = builder.interval;
-    unit = builder.unit;
     rotateKeys = builder.rotateKeys;
   }
 

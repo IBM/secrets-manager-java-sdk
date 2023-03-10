@@ -33,7 +33,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class SecretVersionMetadata extends GenericModel {
   @SuppressWarnings("unused")
   protected static String discriminatorPropertyName = "secret_type";
-  protected static Map<String, Class<?>> discriminatorMapping;
+  protected static java.util.Map<String, Class<?>> discriminatorMapping;
   static {
     discriminatorMapping = new java.util.HashMap<>();
     discriminatorMapping.put("arbitrary", ArbitrarySecretVersionMetadata.class);
