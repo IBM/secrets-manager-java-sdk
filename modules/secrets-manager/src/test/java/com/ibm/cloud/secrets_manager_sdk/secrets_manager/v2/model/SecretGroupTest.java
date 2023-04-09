@@ -35,6 +35,7 @@ public class SecretGroupTest {
     assertNull(secretGroupModel.getId());
     assertNull(secretGroupModel.getDescription());
     assertNull(secretGroupModel.getCreatedAt());
+    assertNull(secretGroupModel.getCreatedBy());
     assertNull(secretGroupModel.getUpdatedAt());
   }
 }

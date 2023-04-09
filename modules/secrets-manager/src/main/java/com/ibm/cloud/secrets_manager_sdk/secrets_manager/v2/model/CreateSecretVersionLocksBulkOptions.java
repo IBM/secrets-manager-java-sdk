@@ -25,15 +25,15 @@ public class CreateSecretVersionLocksBulkOptions extends GenericModel {
   /**
    * An optional lock mode. When you create a lock, you can set one of the following modes to clear any matching locks
    * on a secret version.
-   * - `exclusive`: Removes any other locks with matching names if they are found in the previous version of the secret.
-   * - `exclusive_delete`: Completes the same action as `exclusive`, but also permanently deletes the data of the
-   * previous secret version if it doesn't have any locks.
+   * - `remove_previous`: Removes any other locks with matching names if they are found in the previous version of the
+   * secret. - `remove_previous_and_delete`: Completes the same action as `remove_previous`, but also permanently
+   * deletes the data of the previous secret version if it doesn't have any locks.
    */
   public interface Mode {
-    /** exclusive. */
-    String EXCLUSIVE = "exclusive";
-    /** exclusive_delete. */
-    String EXCLUSIVE_DELETE = "exclusive_delete";
+    /** remove_previous. */
+    String REMOVE_PREVIOUS = "remove_previous";
+    /** remove_previous_and_delete. */
+    String REMOVE_PREVIOUS_AND_DELETE = "remove_previous_and_delete";
   }
 
   protected String secretId;
@@ -215,9 +215,9 @@ public class CreateSecretVersionLocksBulkOptions extends GenericModel {
    *
    * An optional lock mode. When you create a lock, you can set one of the following modes to clear any matching locks
    * on a secret version.
-   * - `exclusive`: Removes any other locks with matching names if they are found in the previous version of the secret.
-   * - `exclusive_delete`: Completes the same action as `exclusive`, but also permanently deletes the data of the
-   * previous secret version if it doesn't have any locks.
+   * - `remove_previous`: Removes any other locks with matching names if they are found in the previous version of the
+   * secret. - `remove_previous_and_delete`: Completes the same action as `remove_previous`, but also permanently
+   * deletes the data of the previous secret version if it doesn't have any locks.
    *
    * @return the mode
    */

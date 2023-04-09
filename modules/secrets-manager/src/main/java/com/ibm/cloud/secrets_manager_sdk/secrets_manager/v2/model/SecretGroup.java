@@ -27,6 +27,8 @@ public class SecretGroup extends GenericModel {
   protected String description;
   @SerializedName("created_at")
   protected Date createdAt;
+  @SerializedName("created_by")
+  protected String createdBy;
   @SerializedName("updated_at")
   protected Date updatedAt;
 
@@ -77,6 +79,17 @@ public class SecretGroup extends GenericModel {
    */
   public Date getCreatedAt() {
     return createdAt;
+  }
+
+  /**
+   * Gets the createdBy.
+   *
+   * The unique identifier that is associated with the entity that created the secret.
+   *
+   * @return the createdBy
+   */
+  public String getCreatedBy() {
+    return createdBy;
   }
 
   /**

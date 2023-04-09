@@ -58,6 +58,16 @@ public class PublicCertificateConfigurationCALetsEncryptMetadata extends Configu
     String PRIVATE_CERT = "private_cert";
   }
 
+  /**
+   * The configuration of the Let's Encrypt CA environment.
+   */
+  public interface LetsEncryptEnvironment {
+    /** production. */
+    String PRODUCTION = "production";
+    /** staging. */
+    String STAGING = "staging";
+  }
+
 
   protected PublicCertificateConfigurationCALetsEncryptMetadata() { }
 }

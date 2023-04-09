@@ -59,6 +59,16 @@ public class PrivateCertificateConfigurationIntermediateCA extends Configuration
   }
 
   /**
+   * The type of private key to generate.
+   */
+  public interface KeyType {
+    /** rsa. */
+    String RSA = "rsa";
+    /** ec. */
+    String EC = "ec";
+  }
+
+  /**
    * The signing method to use with this certificate authority to generate private certificates.
    *
    * You can choose between internal or externally signed options. For more information, see the
@@ -69,36 +79,6 @@ public class PrivateCertificateConfigurationIntermediateCA extends Configuration
     String INTERNAL = "internal";
     /** external. */
     String EXTERNAL = "external";
-  }
-
-  /**
-   * The format of the returned data.
-   */
-  public interface Format {
-    /** pem. */
-    String PEM = "pem";
-    /** pem_bundle. */
-    String PEM_BUNDLE = "pem_bundle";
-  }
-
-  /**
-   * The format of the generated private key.
-   */
-  public interface PrivateKeyFormat {
-    /** der. */
-    String DER = "der";
-    /** pkcs8. */
-    String PKCS8 = "pkcs8";
-  }
-
-  /**
-   * The type of private key to generate.
-   */
-  public interface KeyType {
-    /** rsa. */
-    String RSA = "rsa";
-    /** ec. */
-    String EC = "ec";
   }
 
   /**
@@ -119,6 +99,26 @@ public class PrivateCertificateConfigurationIntermediateCA extends Configuration
     String EXPIRED = "expired";
     /** revoked. */
     String REVOKED = "revoked";
+  }
+
+  /**
+   * The format of the returned data.
+   */
+  public interface Format {
+    /** pem. */
+    String PEM = "pem";
+    /** pem_bundle. */
+    String PEM_BUNDLE = "pem_bundle";
+  }
+
+  /**
+   * The format of the generated private key.
+   */
+  public interface PrivateKeyFormat {
+    /** der. */
+    String DER = "der";
+    /** pkcs8. */
+    String PKCS8 = "pkcs8";
   }
 
 

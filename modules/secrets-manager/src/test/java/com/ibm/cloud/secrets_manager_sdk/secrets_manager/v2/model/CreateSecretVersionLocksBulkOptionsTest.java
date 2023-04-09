@@ -45,12 +45,12 @@ public class CreateSecretVersionLocksBulkOptionsTest {
       .secretId("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
       .id("eb4cf24d-9cae-424b-945e-159788a5f535")
       .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-      .mode("exclusive")
+      .mode("remove_previous")
       .build();
     assertEquals(createSecretVersionLocksBulkOptionsModel.secretId(), "0b5571f7-21e6-42b7-91c5-3f5ac9793a46");
     assertEquals(createSecretVersionLocksBulkOptionsModel.id(), "eb4cf24d-9cae-424b-945e-159788a5f535");
     assertEquals(createSecretVersionLocksBulkOptionsModel.locks(), java.util.Arrays.asList(secretLockPrototypeModel));
-    assertEquals(createSecretVersionLocksBulkOptionsModel.mode(), "exclusive");
+    assertEquals(createSecretVersionLocksBulkOptionsModel.mode(), "remove_previous");
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

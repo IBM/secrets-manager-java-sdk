@@ -59,26 +59,6 @@ public class PrivateCertificateConfigurationRootCA extends Configuration {
   }
 
   /**
-   * The format of the returned data.
-   */
-  public interface Format {
-    /** pem. */
-    String PEM = "pem";
-    /** pem_bundle. */
-    String PEM_BUNDLE = "pem_bundle";
-  }
-
-  /**
-   * The format of the generated private key.
-   */
-  public interface PrivateKeyFormat {
-    /** der. */
-    String DER = "der";
-    /** pkcs8. */
-    String PKCS8 = "pkcs8";
-  }
-
-  /**
    * The type of private key to generate.
    */
   public interface KeyType {
@@ -106,6 +86,26 @@ public class PrivateCertificateConfigurationRootCA extends Configuration {
     String EXPIRED = "expired";
     /** revoked. */
     String REVOKED = "revoked";
+  }
+
+  /**
+   * The format of the returned data.
+   */
+  public interface Format {
+    /** pem. */
+    String PEM = "pem";
+    /** pem_bundle. */
+    String PEM_BUNDLE = "pem_bundle";
+  }
+
+  /**
+   * The format of the generated private key.
+   */
+  public interface PrivateKeyFormat {
+    /** der. */
+    String DER = "der";
+    /** pkcs8. */
+    String PKCS8 = "pkcs8";
   }
 
 

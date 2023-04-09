@@ -39,20 +39,21 @@ public class PrivateCertificateConfigurationIntermediateCATest {
     assertNull(privateCertificateConfigurationIntermediateCaModel.getCreatedBy());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getCreatedAt());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getUpdatedAt());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.getSigningMethod());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.getIssuer());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.isCrlDisable());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.isCrlDistributionPointsEncoded());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.isIssuingCertificatesUrlsEncoded());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getCommonName());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.isCrlDistributionPointsEncoded());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.getExpirationDate());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.getIssuer());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.getKeyType());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.getKeyBits());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.getSigningMethod());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.isCrlDisable());
+    assertNull(privateCertificateConfigurationIntermediateCaModel.isIssuingCertificatesUrlsEncoded());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getAltNames());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getIpSans());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getUriSans());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getOtherSans());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getFormat());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getPrivateKeyFormat());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.getKeyType());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.getKeyBits());
     assertNull(privateCertificateConfigurationIntermediateCaModel.isExcludeCnFromSans());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getOu());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getOrganization());
@@ -62,7 +63,6 @@ public class PrivateCertificateConfigurationIntermediateCATest {
     assertNull(privateCertificateConfigurationIntermediateCaModel.getStreetAddress());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getPostalCode());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getSerialNumber());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.getExpirationDate());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getData());
   }
 }

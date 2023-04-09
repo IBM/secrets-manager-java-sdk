@@ -38,5 +38,12 @@ public class PrivateCertificateConfigurationIntermediateCAMetadataTest {
     assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getCreatedBy());
     assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getCreatedAt());
     assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getUpdatedAt());
+    assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getCommonName());
+    assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.isCrlDistributionPointsEncoded());
+    assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getExpirationDate());
+    assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getIssuer());
+    assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getKeyType());
+    assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getKeyBits());
+    assertNull(privateCertificateConfigurationIntermediateCaMetadataModel.getSigningMethod());
   }
 }

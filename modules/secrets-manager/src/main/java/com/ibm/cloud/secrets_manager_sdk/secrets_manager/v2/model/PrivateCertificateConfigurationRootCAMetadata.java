@@ -58,6 +58,36 @@ public class PrivateCertificateConfigurationRootCAMetadata extends Configuration
     String PRIVATE_CERT = "private_cert";
   }
 
+  /**
+   * The type of private key to generate.
+   */
+  public interface KeyType {
+    /** rsa. */
+    String RSA = "rsa";
+    /** ec. */
+    String EC = "ec";
+  }
+
+  /**
+   * The status of the certificate authority. The status of a root certificate authority is either `configured` or
+   * `expired`. For intermediate certificate authorities, possible statuses include `signing_required`,
+   * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked`.
+   */
+  public interface Status {
+    /** signing_required. */
+    String SIGNING_REQUIRED = "signing_required";
+    /** signed_certificate_required. */
+    String SIGNED_CERTIFICATE_REQUIRED = "signed_certificate_required";
+    /** certificate_template_required. */
+    String CERTIFICATE_TEMPLATE_REQUIRED = "certificate_template_required";
+    /** configured. */
+    String CONFIGURED = "configured";
+    /** expired. */
+    String EXPIRED = "expired";
+    /** revoked. */
+    String REVOKED = "revoked";
+  }
+
 
   protected PrivateCertificateConfigurationRootCAMetadata() { }
 }

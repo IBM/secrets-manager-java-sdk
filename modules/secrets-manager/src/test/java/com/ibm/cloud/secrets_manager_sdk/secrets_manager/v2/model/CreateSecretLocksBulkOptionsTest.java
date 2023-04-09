@@ -44,11 +44,11 @@ public class CreateSecretLocksBulkOptionsTest {
     CreateSecretLocksBulkOptions createSecretLocksBulkOptionsModel = new CreateSecretLocksBulkOptions.Builder()
       .id("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
       .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-      .mode("exclusive")
+      .mode("remove_previous")
       .build();
     assertEquals(createSecretLocksBulkOptionsModel.id(), "0b5571f7-21e6-42b7-91c5-3f5ac9793a46");
     assertEquals(createSecretLocksBulkOptionsModel.locks(), java.util.Arrays.asList(secretLockPrototypeModel));
-    assertEquals(createSecretLocksBulkOptionsModel.mode(), "exclusive");
+    assertEquals(createSecretLocksBulkOptionsModel.mode(), "remove_previous");
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

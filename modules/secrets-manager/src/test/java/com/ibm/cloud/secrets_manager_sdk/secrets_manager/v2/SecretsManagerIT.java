@@ -367,7 +367,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       CreateSecretLocksBulkOptions createSecretLocksBulkOptions = new CreateSecretLocksBulkOptions.Builder()
         .id(secretIdForGetSecretLink)
         .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-        .mode("exclusive")
+        .mode("remove_previous")
         .build();
 
       // Invoke operation
@@ -894,7 +894,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .secretId(secretIdForCreateSecretVersionLocksLink)
         .id(secretVersionIdForCreateSecretVersionLocksLink)
         .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-        .mode("exclusive")
+        .mode("remove_previous")
         .build();
 
       // Invoke operation

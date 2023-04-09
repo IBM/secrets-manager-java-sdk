@@ -97,26 +97,6 @@ public class Configuration extends GenericModel {
   }
 
   /**
-   * The format of the returned data.
-   */
-  public interface Format {
-    /** pem. */
-    String PEM = "pem";
-    /** pem_bundle. */
-    String PEM_BUNDLE = "pem_bundle";
-  }
-
-  /**
-   * The format of the generated private key.
-   */
-  public interface PrivateKeyFormat {
-    /** der. */
-    String DER = "der";
-    /** pkcs8. */
-    String PKCS8 = "pkcs8";
-  }
-
-  /**
    * The type of private key to generate.
    */
   public interface KeyType {
@@ -147,6 +127,26 @@ public class Configuration extends GenericModel {
   }
 
   /**
+   * The format of the returned data.
+   */
+  public interface Format {
+    /** pem. */
+    String PEM = "pem";
+    /** pem_bundle. */
+    String PEM_BUNDLE = "pem_bundle";
+  }
+
+  /**
+   * The format of the generated private key.
+   */
+  public interface PrivateKeyFormat {
+    /** der. */
+    String DER = "der";
+    /** pkcs8. */
+    String PKCS8 = "pkcs8";
+  }
+
+  /**
    * The signing method to use with this certificate authority to generate private certificates.
    *
    * You can choose between internal or externally signed options. For more information, see the
@@ -172,10 +172,10 @@ public class Configuration extends GenericModel {
   protected Date updatedAt;
   @SerializedName("lets_encrypt_environment")
   protected String letsEncryptEnvironment;
-  @SerializedName("lets_encrypt_private_key")
-  protected String letsEncryptPrivateKey;
   @SerializedName("lets_encrypt_preferred_chain")
   protected String letsEncryptPreferredChain;
+  @SerializedName("lets_encrypt_private_key")
+  protected String letsEncryptPrivateKey;
   @SerializedName("cloud_internet_services_apikey")
   protected String cloudInternetServicesApikey;
   @SerializedName("cloud_internet_services_crn")
@@ -186,18 +186,25 @@ public class Configuration extends GenericModel {
   protected String classicInfrastructurePassword;
   @SerializedName("api_key")
   protected String apiKey;
+  @SerializedName("common_name")
+  protected String commonName;
+  @SerializedName("crl_distribution_points_encoded")
+  protected Boolean crlDistributionPointsEncoded;
+  @SerializedName("expiration_date")
+  protected Date expirationDate;
+  @SerializedName("key_type")
+  protected String keyType;
+  @SerializedName("key_bits")
+  protected Long keyBits;
+  protected String status;
   @SerializedName("max_ttl_seconds")
   protected Long maxTtlSeconds;
   @SerializedName("crl_expiry_seconds")
   protected Long crlExpirySeconds;
   @SerializedName("crl_disable")
   protected Boolean crlDisable;
-  @SerializedName("crl_distribution_points_encoded")
-  protected Boolean crlDistributionPointsEncoded;
   @SerializedName("issuing_certificates_urls_encoded")
   protected Boolean issuingCertificatesUrlsEncoded;
-  @SerializedName("common_name")
-  protected String commonName;
   @SerializedName("alt_names")
   protected List<String> altNames;
   @SerializedName("ip_sans")
@@ -211,10 +218,6 @@ public class Configuration extends GenericModel {
   protected String format;
   @SerializedName("private_key_format")
   protected String privateKeyFormat;
-  @SerializedName("key_type")
-  protected String keyType;
-  @SerializedName("key_bits")
-  protected Long keyBits;
   @SerializedName("max_path_length")
   protected Long maxPathLength;
   @SerializedName("exclude_cn_from_sans")
@@ -232,13 +235,10 @@ public class Configuration extends GenericModel {
   protected List<String> postalCode;
   @SerializedName("serial_number")
   protected String serialNumber;
-  protected String status;
-  @SerializedName("expiration_date")
-  protected Date expirationDate;
   protected PrivateCertificateCAData data;
+  protected String issuer;
   @SerializedName("signing_method")
   protected String signingMethod;
-  protected String issuer;
   @SerializedName("certificate_authority")
   protected String certificateAuthority;
   @SerializedName("allowed_secret_groups")
@@ -373,18 +373,6 @@ public class Configuration extends GenericModel {
   }
 
   /**
-   * Gets the letsEncryptPrivateKey.
-   *
-   * The PEM-encoded private key of your Let's Encrypt account. The data must be formatted on a single line with
-   * embedded newline characters.
-   *
-   * @return the letsEncryptPrivateKey
-   */
-  public String getLetsEncryptPrivateKey() {
-    return letsEncryptPrivateKey;
-  }
-
-  /**
    * Gets the letsEncryptPreferredChain.
    *
    * If the CA offers multiple certificate chains, prefer the chain with an issuer matching this Subject Common Name. If
@@ -394,6 +382,18 @@ public class Configuration extends GenericModel {
    */
   public String getLetsEncryptPreferredChain() {
     return letsEncryptPreferredChain;
+  }
+
+  /**
+   * Gets the letsEncryptPrivateKey.
+   *
+   * The PEM-encoded private key of your Let's Encrypt account. The data must be formatted on a single line with
+   * embedded newline characters.
+   *
+   * @return the letsEncryptPrivateKey
+   */
+  public String getLetsEncryptPrivateKey() {
+    return letsEncryptPrivateKey;
   }
 
   /**
@@ -470,6 +470,78 @@ public class Configuration extends GenericModel {
   }
 
   /**
+   * Gets the commonName.
+   *
+   * The Common Name (CN) represents the server name that is protected by the SSL certificate.
+   *
+   * @return the commonName
+   */
+  public String getCommonName() {
+    return commonName;
+  }
+
+  /**
+   * Gets the crlDistributionPointsEncoded.
+   *
+   * This field determines whether to encode the certificate revocation list (CRL) distribution points in the
+   * certificates that are issued by this certificate authority.
+   *
+   * @return the crlDistributionPointsEncoded
+   */
+  public Boolean isCrlDistributionPointsEncoded() {
+    return crlDistributionPointsEncoded;
+  }
+
+  /**
+   * Gets the expirationDate.
+   *
+   * The date when the secret material expires. The date format follows the `RFC 3339` format.
+   *
+   * @return the expirationDate
+   */
+  public Date getExpirationDate() {
+    return expirationDate;
+  }
+
+  /**
+   * Gets the keyType.
+   *
+   * The type of private key to generate.
+   *
+   * @return the keyType
+   */
+  public String getKeyType() {
+    return keyType;
+  }
+
+  /**
+   * Gets the keyBits.
+   *
+   * The number of bits to use to generate the private key.
+   *
+   * Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC keys are: `224`, `256`, `384`, and
+   * `521`. The default for RSA keys is `2048`. The default for EC keys is `256`.
+   *
+   * @return the keyBits
+   */
+  public Long getKeyBits() {
+    return keyBits;
+  }
+
+  /**
+   * Gets the status.
+   *
+   * The status of the certificate authority. The status of a root certificate authority is either `configured` or
+   * `expired`. For intermediate certificate authorities, possible statuses include `signing_required`,
+   * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked`.
+   *
+   * @return the status
+   */
+  public String getStatus() {
+    return status;
+  }
+
+  /**
    * Gets the maxTtlSeconds.
    *
    * The maximum time-to-live (TTL) for certificates that are created by this CA in seconds.
@@ -506,18 +578,6 @@ public class Configuration extends GenericModel {
   }
 
   /**
-   * Gets the crlDistributionPointsEncoded.
-   *
-   * This field determines whether to encode the certificate revocation list (CRL) distribution points in the
-   * certificates that are issued by this certificate authority.
-   *
-   * @return the crlDistributionPointsEncoded
-   */
-  public Boolean isCrlDistributionPointsEncoded() {
-    return crlDistributionPointsEncoded;
-  }
-
-  /**
    * Gets the issuingCertificatesUrlsEncoded.
    *
    * This field determines whether to encode the URL of the issuing certificate in the certificates that are issued by
@@ -527,17 +587,6 @@ public class Configuration extends GenericModel {
    */
   public Boolean isIssuingCertificatesUrlsEncoded() {
     return issuingCertificatesUrlsEncoded;
-  }
-
-  /**
-   * Gets the commonName.
-   *
-   * The Common Name (CN) represents the server name that is protected by the SSL certificate.
-   *
-   * @return the commonName
-   */
-  public String getCommonName() {
-    return commonName;
   }
 
   /**
@@ -620,31 +669,6 @@ public class Configuration extends GenericModel {
    */
   public String getPrivateKeyFormat() {
     return privateKeyFormat;
-  }
-
-  /**
-   * Gets the keyType.
-   *
-   * The type of private key to generate.
-   *
-   * @return the keyType
-   */
-  public String getKeyType() {
-    return keyType;
-  }
-
-  /**
-   * Gets the keyBits.
-   *
-   * The number of bits to use to generate the private key.
-   *
-   * Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC keys are: `224`, `256`, `384`, and
-   * `521`. The default for RSA keys is `2048`. The default for EC keys is `256`.
-   *
-   * @return the keyBits
-   */
-  public Long getKeyBits() {
-    return keyBits;
   }
 
   /**
@@ -776,30 +800,6 @@ public class Configuration extends GenericModel {
   }
 
   /**
-   * Gets the status.
-   *
-   * The status of the certificate authority. The status of a root certificate authority is either `configured` or
-   * `expired`. For intermediate certificate authorities, possible statuses include `signing_required`,
-   * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked`.
-   *
-   * @return the status
-   */
-  public String getStatus() {
-    return status;
-  }
-
-  /**
-   * Gets the expirationDate.
-   *
-   * The date when the secret material expires. The date format follows the `RFC 3339` format.
-   *
-   * @return the expirationDate
-   */
-  public Date getExpirationDate() {
-    return expirationDate;
-  }
-
-  /**
    * Gets the data.
    *
    * The configuration data of your Private Certificate.
@@ -808,6 +808,17 @@ public class Configuration extends GenericModel {
    */
   public PrivateCertificateCAData getData() {
     return data;
+  }
+
+  /**
+   * Gets the issuer.
+   *
+   * The distinguished name that identifies the entity that signed and issued the certificate.
+   *
+   * @return the issuer
+   */
+  public String getIssuer() {
+    return issuer;
   }
 
   /**
@@ -822,17 +833,6 @@ public class Configuration extends GenericModel {
    */
   public String getSigningMethod() {
     return signingMethod;
-  }
-
-  /**
-   * Gets the issuer.
-   *
-   * The distinguished name that identifies the entity that signed and issued the certificate.
-   *
-   * @return the issuer
-   */
-  public String getIssuer() {
-    return issuer;
   }
 
   /**

@@ -39,18 +39,19 @@ public class PrivateCertificateConfigurationRootCATest {
     assertNull(privateCertificateConfigurationRootCaModel.getCreatedBy());
     assertNull(privateCertificateConfigurationRootCaModel.getCreatedAt());
     assertNull(privateCertificateConfigurationRootCaModel.getUpdatedAt());
-    assertNull(privateCertificateConfigurationRootCaModel.isCrlDisable());
-    assertNull(privateCertificateConfigurationRootCaModel.isCrlDistributionPointsEncoded());
-    assertNull(privateCertificateConfigurationRootCaModel.isIssuingCertificatesUrlsEncoded());
     assertNull(privateCertificateConfigurationRootCaModel.getCommonName());
+    assertNull(privateCertificateConfigurationRootCaModel.isCrlDistributionPointsEncoded());
+    assertNull(privateCertificateConfigurationRootCaModel.getExpirationDate());
+    assertNull(privateCertificateConfigurationRootCaModel.getKeyType());
+    assertNull(privateCertificateConfigurationRootCaModel.getKeyBits());
+    assertNull(privateCertificateConfigurationRootCaModel.isCrlDisable());
+    assertNull(privateCertificateConfigurationRootCaModel.isIssuingCertificatesUrlsEncoded());
     assertNull(privateCertificateConfigurationRootCaModel.getAltNames());
     assertNull(privateCertificateConfigurationRootCaModel.getIpSans());
     assertNull(privateCertificateConfigurationRootCaModel.getUriSans());
     assertNull(privateCertificateConfigurationRootCaModel.getOtherSans());
     assertNull(privateCertificateConfigurationRootCaModel.getFormat());
     assertNull(privateCertificateConfigurationRootCaModel.getPrivateKeyFormat());
-    assertNull(privateCertificateConfigurationRootCaModel.getKeyType());
-    assertNull(privateCertificateConfigurationRootCaModel.getKeyBits());
     assertNull(privateCertificateConfigurationRootCaModel.getMaxPathLength());
     assertNull(privateCertificateConfigurationRootCaModel.isExcludeCnFromSans());
     assertNull(privateCertificateConfigurationRootCaModel.getPermittedDnsDomains());
@@ -62,7 +63,6 @@ public class PrivateCertificateConfigurationRootCATest {
     assertNull(privateCertificateConfigurationRootCaModel.getStreetAddress());
     assertNull(privateCertificateConfigurationRootCaModel.getPostalCode());
     assertNull(privateCertificateConfigurationRootCaModel.getSerialNumber());
-    assertNull(privateCertificateConfigurationRootCaModel.getExpirationDate());
     assertNull(privateCertificateConfigurationRootCaModel.getData());
   }
 }

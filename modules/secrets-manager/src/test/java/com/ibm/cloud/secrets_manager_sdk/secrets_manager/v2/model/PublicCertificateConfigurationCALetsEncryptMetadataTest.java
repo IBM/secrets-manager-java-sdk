@@ -38,5 +38,7 @@ public class PublicCertificateConfigurationCALetsEncryptMetadataTest {
     assertNull(publicCertificateConfigurationCaLetsEncryptMetadataModel.getCreatedBy());
     assertNull(publicCertificateConfigurationCaLetsEncryptMetadataModel.getCreatedAt());
     assertNull(publicCertificateConfigurationCaLetsEncryptMetadataModel.getUpdatedAt());
+    assertNull(publicCertificateConfigurationCaLetsEncryptMetadataModel.getLetsEncryptEnvironment());
+    assertNull(publicCertificateConfigurationCaLetsEncryptMetadataModel.getLetsEncryptPreferredChain());
   }
 }

@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.68.1-a0d93f2c-20230308-204643
+ * IBM OpenAPI SDK Code Generator Version: 3.68.2-ac7def68-20230310-195410
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2;
@@ -793,10 +793,10 @@ public class SecretsManager extends BaseService {
    * Additionally, you can use this operation to clear any matching locks on a secret by using one of the following
    * optional lock modes:
    *
-   * - `exclusive`: Removes any other locks with matching names if they are found in the previous version of the
+   * - `remove_previous`: Removes any other locks with matching names if they are found in the previous version of the
    * secret.\n
-   * - `exclusive_delete`: Carries out the same function as `exclusive`, but also permanently deletes the data of the
-   * previous secret version if it doesn't have any locks.
+   * - `remove_previous_and_delete`: Carries out the same function as `remove_previous`, but also permanently deletes
+   * the data of the previous secret version if it doesn't have any locks.
    *
    * @param createSecretLocksBulkOptions the {@link CreateSecretLocksBulkOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link SecretLocks}
@@ -905,9 +905,10 @@ public class SecretsManager extends BaseService {
    * Additionally, you can use this operation to clear any matching locks on a secret by using one of the following
    * optional lock modes:
    *
-   * - `exclusive`: Removes any other locks with matching names if they are found in the previous version of the secret.
-   * - `exclusive_delete`: Carries out the same function as `exclusive`, but also permanently deletes the data of the
-   * previous secret version if it doesn't have any locks.
+   * - `remove_previous`: Removes any other locks with matching names if they are found in the previous version of the
+   * secret.
+   * - `remove_previous_and_delete`: Carries out the same function as `remove_previous`, but also permanently deletes
+   * the data of the previous secret version if it doesn't have any locks.
    *
    * @param createSecretVersionLocksBulkOptions the {@link CreateSecretVersionLocksBulkOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link SecretLocks}

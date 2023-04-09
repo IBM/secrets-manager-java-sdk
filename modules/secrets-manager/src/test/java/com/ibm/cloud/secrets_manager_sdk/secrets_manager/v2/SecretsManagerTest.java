@@ -254,7 +254,7 @@ public class SecretsManagerTest {
   @Test
   public void testCreateSecretGroupWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
+    String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
     String createSecretGroupPath = "/api/v2/secret_groups";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -306,7 +306,7 @@ public class SecretsManagerTest {
   @Test
   public void testListSecretGroupsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"secret_groups\": [{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}], \"total_count\": 0}";
+    String mockResponseBody = "{\"secret_groups\": [{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}], \"total_count\": 0}";
     String listSecretGroupsPath = "/api/v2/secret_groups";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -348,7 +348,7 @@ public class SecretsManagerTest {
   @Test
   public void testGetSecretGroupWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
+    String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
     String getSecretGroupPath = "/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -399,7 +399,7 @@ public class SecretsManagerTest {
   @Test
   public void testUpdateSecretGroupWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
+    String mockResponseBody = "{\"id\": \"default\", \"name\": \"my-secret-group\", \"description\": \"Extended description for this group.\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}";
     String updateSecretGroupPath = "/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1608,7 +1608,7 @@ public class SecretsManagerTest {
     CreateSecretLocksBulkOptions createSecretLocksBulkOptionsModel = new CreateSecretLocksBulkOptions.Builder()
       .id("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
       .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-      .mode("exclusive")
+      .mode("remove_previous")
       .build();
 
     // Invoke createSecretLocksBulk() with a valid options model and verify the result
@@ -1627,7 +1627,7 @@ public class SecretsManagerTest {
     // Verify query params
     Map<String, String> query = TestUtilities.parseQueryString(request);
     assertNotNull(query);
-    assertEquals(query.get("mode"), "exclusive");
+    assertEquals(query.get("mode"), "remove_previous");
   }
 
   // Test the createSecretLocksBulk operation with and without retries enabled
@@ -1853,7 +1853,7 @@ public class SecretsManagerTest {
       .secretId("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
       .id("eb4cf24d-9cae-424b-945e-159788a5f535")
       .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-      .mode("exclusive")
+      .mode("remove_previous")
       .build();
 
     // Invoke createSecretVersionLocksBulk() with a valid options model and verify the result
@@ -1872,7 +1872,7 @@ public class SecretsManagerTest {
     // Verify query params
     Map<String, String> query = TestUtilities.parseQueryString(request);
     assertNotNull(query);
-    assertEquals(query.get("mode"), "exclusive");
+    assertEquals(query.get("mode"), "remove_previous");
   }
 
   // Test the createSecretVersionLocksBulk operation with and without retries enabled
@@ -1950,7 +1950,7 @@ public class SecretsManagerTest {
   @Test
   public void testCreateConfigurationWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\"}";
+    String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\"}";
     String createConfigurationPath = "/api/v2/configurations";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -2150,7 +2150,7 @@ public class SecretsManagerTest {
   @Test
   public void testGetConfigurationWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\"}";
+    String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\"}";
     String getConfigurationPath = "/api/v2/configurations/configuration-name";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -2202,7 +2202,7 @@ public class SecretsManagerTest {
   @Test
   public void testUpdateConfigurationWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\"}";
+    String mockResponseBody = "{\"config_type\": \"public_cert_configuration_ca_lets_encrypt\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"lets_encrypt_environment\": \"production\", \"lets_encrypt_preferred_chain\": \"letsEncryptPreferredChain\", \"lets_encrypt_private_key\": \"letsEncryptPrivateKey\"}";
     String updateConfigurationPath = "/api/v2/configurations/configuration-name";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")

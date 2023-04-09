@@ -38,5 +38,6 @@ public class PrivateCertificateConfigurationTemplateMetadataTest {
     assertNull(privateCertificateConfigurationTemplateMetadataModel.getCreatedBy());
     assertNull(privateCertificateConfigurationTemplateMetadataModel.getCreatedAt());
     assertNull(privateCertificateConfigurationTemplateMetadataModel.getUpdatedAt());
+    assertNull(privateCertificateConfigurationTemplateMetadataModel.getCertificateAuthority());
   }
 }

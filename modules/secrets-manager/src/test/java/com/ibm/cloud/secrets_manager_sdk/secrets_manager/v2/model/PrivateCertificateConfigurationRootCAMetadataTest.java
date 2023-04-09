@@ -38,5 +38,10 @@ public class PrivateCertificateConfigurationRootCAMetadataTest {
     assertNull(privateCertificateConfigurationRootCaMetadataModel.getCreatedBy());
     assertNull(privateCertificateConfigurationRootCaMetadataModel.getCreatedAt());
     assertNull(privateCertificateConfigurationRootCaMetadataModel.getUpdatedAt());
+    assertNull(privateCertificateConfigurationRootCaMetadataModel.getCommonName());
+    assertNull(privateCertificateConfigurationRootCaMetadataModel.isCrlDistributionPointsEncoded());
+    assertNull(privateCertificateConfigurationRootCaMetadataModel.getExpirationDate());
+    assertNull(privateCertificateConfigurationRootCaMetadataModel.getKeyType());
+    assertNull(privateCertificateConfigurationRootCaMetadataModel.getKeyBits());
   }
 }

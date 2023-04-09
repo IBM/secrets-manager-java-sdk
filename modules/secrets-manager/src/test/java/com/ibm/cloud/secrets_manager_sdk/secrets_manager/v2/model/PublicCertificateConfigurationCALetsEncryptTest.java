@@ -39,7 +39,7 @@ public class PublicCertificateConfigurationCALetsEncryptTest {
     assertNull(publicCertificateConfigurationCaLetsEncryptModel.getCreatedAt());
     assertNull(publicCertificateConfigurationCaLetsEncryptModel.getUpdatedAt());
     assertNull(publicCertificateConfigurationCaLetsEncryptModel.getLetsEncryptEnvironment());
-    assertNull(publicCertificateConfigurationCaLetsEncryptModel.getLetsEncryptPrivateKey());
     assertNull(publicCertificateConfigurationCaLetsEncryptModel.getLetsEncryptPreferredChain());
+    assertNull(publicCertificateConfigurationCaLetsEncryptModel.getLetsEncryptPrivateKey());
   }
 }

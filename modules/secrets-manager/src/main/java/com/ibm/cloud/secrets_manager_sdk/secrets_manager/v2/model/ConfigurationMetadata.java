@@ -85,6 +85,59 @@ public class ConfigurationMetadata extends GenericModel {
     String PRIVATE_CERT = "private_cert";
   }
 
+  /**
+   * The configuration of the Let's Encrypt CA environment.
+   */
+  public interface LetsEncryptEnvironment {
+    /** production. */
+    String PRODUCTION = "production";
+    /** staging. */
+    String STAGING = "staging";
+  }
+
+  /**
+   * The type of private key to generate.
+   */
+  public interface KeyType {
+    /** rsa. */
+    String RSA = "rsa";
+    /** ec. */
+    String EC = "ec";
+  }
+
+  /**
+   * The status of the certificate authority. The status of a root certificate authority is either `configured` or
+   * `expired`. For intermediate certificate authorities, possible statuses include `signing_required`,
+   * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked`.
+   */
+  public interface Status {
+    /** signing_required. */
+    String SIGNING_REQUIRED = "signing_required";
+    /** signed_certificate_required. */
+    String SIGNED_CERTIFICATE_REQUIRED = "signed_certificate_required";
+    /** certificate_template_required. */
+    String CERTIFICATE_TEMPLATE_REQUIRED = "certificate_template_required";
+    /** configured. */
+    String CONFIGURED = "configured";
+    /** expired. */
+    String EXPIRED = "expired";
+    /** revoked. */
+    String REVOKED = "revoked";
+  }
+
+  /**
+   * The signing method to use with this certificate authority to generate private certificates.
+   *
+   * You can choose between internal or externally signed options. For more information, see the
+   * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities).
+   */
+  public interface SigningMethod {
+    /** internal. */
+    String INTERNAL = "internal";
+    /** external. */
+    String EXTERNAL = "external";
+  }
+
   @SerializedName("config_type")
   protected String configType;
   protected String name;
@@ -96,6 +149,26 @@ public class ConfigurationMetadata extends GenericModel {
   protected Date createdAt;
   @SerializedName("updated_at")
   protected Date updatedAt;
+  @SerializedName("lets_encrypt_environment")
+  protected String letsEncryptEnvironment;
+  @SerializedName("lets_encrypt_preferred_chain")
+  protected String letsEncryptPreferredChain;
+  @SerializedName("common_name")
+  protected String commonName;
+  @SerializedName("crl_distribution_points_encoded")
+  protected Boolean crlDistributionPointsEncoded;
+  @SerializedName("expiration_date")
+  protected Date expirationDate;
+  @SerializedName("key_type")
+  protected String keyType;
+  @SerializedName("key_bits")
+  protected Long keyBits;
+  protected String status;
+  protected String issuer;
+  @SerializedName("signing_method")
+  protected String signingMethod;
+  @SerializedName("certificate_authority")
+  protected String certificateAuthority;
 
   protected ConfigurationMetadata() { }
 
@@ -164,6 +237,137 @@ public class ConfigurationMetadata extends GenericModel {
    */
   public Date getUpdatedAt() {
     return updatedAt;
+  }
+
+  /**
+   * Gets the letsEncryptEnvironment.
+   *
+   * The configuration of the Let's Encrypt CA environment.
+   *
+   * @return the letsEncryptEnvironment
+   */
+  public String getLetsEncryptEnvironment() {
+    return letsEncryptEnvironment;
+  }
+
+  /**
+   * Gets the letsEncryptPreferredChain.
+   *
+   * If the CA offers multiple certificate chains, prefer the chain with an issuer matching this Subject Common Name. If
+   * no match, the default offered chain will be used.
+   *
+   * @return the letsEncryptPreferredChain
+   */
+  public String getLetsEncryptPreferredChain() {
+    return letsEncryptPreferredChain;
+  }
+
+  /**
+   * Gets the commonName.
+   *
+   * The Common Name (CN) represents the server name that is protected by the SSL certificate.
+   *
+   * @return the commonName
+   */
+  public String getCommonName() {
+    return commonName;
+  }
+
+  /**
+   * Gets the crlDistributionPointsEncoded.
+   *
+   * This field determines whether to encode the certificate revocation list (CRL) distribution points in the
+   * certificates that are issued by this certificate authority.
+   *
+   * @return the crlDistributionPointsEncoded
+   */
+  public Boolean isCrlDistributionPointsEncoded() {
+    return crlDistributionPointsEncoded;
+  }
+
+  /**
+   * Gets the expirationDate.
+   *
+   * The date when the secret material expires. The date format follows the `RFC 3339` format.
+   *
+   * @return the expirationDate
+   */
+  public Date getExpirationDate() {
+    return expirationDate;
+  }
+
+  /**
+   * Gets the keyType.
+   *
+   * The type of private key to generate.
+   *
+   * @return the keyType
+   */
+  public String getKeyType() {
+    return keyType;
+  }
+
+  /**
+   * Gets the keyBits.
+   *
+   * The number of bits to use to generate the private key.
+   *
+   * Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC keys are: `224`, `256`, `384`, and
+   * `521`. The default for RSA keys is `2048`. The default for EC keys is `256`.
+   *
+   * @return the keyBits
+   */
+  public Long getKeyBits() {
+    return keyBits;
+  }
+
+  /**
+   * Gets the status.
+   *
+   * The status of the certificate authority. The status of a root certificate authority is either `configured` or
+   * `expired`. For intermediate certificate authorities, possible statuses include `signing_required`,
+   * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked`.
+   *
+   * @return the status
+   */
+  public String getStatus() {
+    return status;
+  }
+
+  /**
+   * Gets the issuer.
+   *
+   * The distinguished name that identifies the entity that signed and issued the certificate.
+   *
+   * @return the issuer
+   */
+  public String getIssuer() {
+    return issuer;
+  }
+
+  /**
+   * Gets the signingMethod.
+   *
+   * The signing method to use with this certificate authority to generate private certificates.
+   *
+   * You can choose between internal or externally signed options. For more information, see the
+   * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities).
+   *
+   * @return the signingMethod
+   */
+  public String getSigningMethod() {
+    return signingMethod;
+  }
+
+  /**
+   * Gets the certificateAuthority.
+   *
+   * The name of the intermediate certificate authority.
+   *
+   * @return the certificateAuthority
+   */
+  public String getCertificateAuthority() {
+    return certificateAuthority;
   }
 }
 
