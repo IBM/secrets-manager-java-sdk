@@ -11,7 +11,7 @@
     <url>https://github.com/IBM/secrets-manager-java-sdk</url>
 
     <groupId>com.ibm.cloud</groupId>
-    <version>2.0.0</version>
+    <version>1.0.57</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -21,7 +21,7 @@
 
         <git-repository-name>secrets-manager-java-sdk</git-repository-name>
 
-        <testng-version>7.6.1</testng-version>
+        <testng-version>7.4.0</testng-version>
         <okhttp3-version>4.10.0</okhttp3-version>
         <surefire-version>3.0.0-M7</surefire-version>
         <jacoco-plugin-version>0.8.8</jacoco-plugin-version>
