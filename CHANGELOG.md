@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/IBM/secrets-manager-java-sdk/compare/v2.0.0...v3.0.0) (2023-04-17)
+
+
+### major
+
+* new SM v2 API release ([df1eed1](https://github.com/IBM/secrets-manager-java-sdk/commit/df1eed1f8dbf9672a7012a670f94368742189a1e))
+
+
+### BREAKING CHANGES
+
+* new v2 API.
+
+Signed-off-by: yuval-shlomo-dekel <yuval.shlomo.dekel@ibm.com>
+
 # [2.0.0](https://github.com/IBM/secrets-manager-java-sdk/compare/v1.0.57...v2.0.0) (2023-04-17)
 
 
