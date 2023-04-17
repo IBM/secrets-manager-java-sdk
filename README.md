@@ -44,14 +44,14 @@ services:
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager</artifactId>
-    <version>1.0.57</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager:1.0.57'
+'com.ibm.cloud:secrets-manager:2.0.0'
 ```
 
 ## Authentication
