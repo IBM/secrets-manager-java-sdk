@@ -21,7 +21,7 @@
 
         <git-repository-name>secrets-manager-java-sdk</git-repository-name>
 
-        <testng-version>7.4.0</testng-version>
+        <testng-version>7.7.1</testng-version>
         <okhttp3-version>4.10.0</okhttp3-version>
         <surefire-version>3.0.0-M7</surefire-version>
         <jacoco-plugin-version>0.8.8</jacoco-plugin-version>
@@ -39,8 +39,7 @@
         <maven-reports-plugin-version>3.4.1</maven-reports-plugin-version>
         <maven-failsafe-plugin-version>3.0.0-M7</maven-failsafe-plugin-version>
         <maven-buildnumber-plugin-version>3.0.0</maven-buildnumber-plugin-version>
-        <powermock-version>2.0.9</powermock-version>
-        <slf4j-version>2.0.0</slf4j-version>
+        <slf4j-version>2.0.6</slf4j-version>
         <junit-version>4.13.2</junit-version>
     </properties>
 
@@ -104,6 +103,12 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp3-version}</version>
@@ -115,16 +120,9 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.powermock</groupId>
-                <artifactId>powermock-api-mockito2</artifactId>
-                <version>${powermock-version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.powermock</groupId>
-                <artifactId>powermock-module-testng</artifactId>
-                <version>${powermock-version}</version>
-                <scope>test</scope>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -421,9 +419,6 @@
             <!-- For this profile, we'll get dependencies from maven central -->
             <repositories></repositories>
             <distributionManagement>
-                <snapshotRepository>
-                    <!-- We don't deploy snapshot releases -->
-                </snapshotRepository>
                 <repository>
                     <!-- This is where the nexus staging plugin will publish artifacts -->
                     <id>ossrh</id>
