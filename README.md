@@ -95,8 +95,8 @@ Construct a service client and use it to create and retrieve a secret from your 
 Here's an example `main.java` class file:
 
 ```java
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.SecretsManager;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v1.model.*;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.SecretsManager;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.*;
 import com.ibm.cloud.sdk.core.http.Response;
 import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 
@@ -115,32 +115,26 @@ public class main {
         sm.setServiceUrl("SERVICE_URL");
 
         // create arbitrary secret
-        CollectionMetadata collectionMetadata = new CollectionMetadata.Builder()
-                .collectionType("application/vnd.ibm.secrets-manager.secret+json")
-                .collectionTotal(Long.parseLong("1"))
-                .build();
-      ArbitrarySecretResource arbitrarySecretResource = new ArbitrarySecretResource.Builder()
-                .name("example-arbitrary-secret")
-                .description("Extended description for this secret.")
-                .payload("secret-data")
-                .build();
+        ArbitrarySecretPrototype arbitrarySecretResource = new ArbitrarySecretPrototype.Builder()
+                        .name("example-arbitrary-secret")
+                        .description("Extended description for this secret.")
+                        .payload("secret-data")
+                        .secretType("arbitrary")
+                        .build();
         CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
-                .secretType("arbitrary")
-                .resources(new java.util.ArrayList<>(Collections.singletonList(arbitrarySecretResource)))
-                .metadata(collectionMetadata)
+                .secretPrototype(arbitrarySecretResource)
                 .build();
-        Response<CreateSecret> createResp = sm.createSecret(createSecretOptions).execute();
+        Response<Secret> createResp = sm.createSecret(createSecretOptions).execute();
 
-        String secretId = createResp.getResult().resources().get(0).id();
+        String secretId = createResp.getResult().getId();
 
         // get arbitrary secret
         GetSecretOptions getSecretOptions = new GetSecretOptions.Builder()
-                .secretType("arbitrary")
                 .id(secretId)
                 .build();
-        Response<GetSecret> getResp = sm.getSecret(getSecretOptions).execute();
+        Response<Secret> getResp = sm.getSecret(getSecretOptions).execute();
 
-        String secretPayload = (String) getResp.getResult().getResources().get(0).secretData().get("payload");
+        String secretPayload = (String) getResp.getResult().getPayload();
 
         System.out.println("The arbitrary secret payload is: " + secretPayload);
     }
