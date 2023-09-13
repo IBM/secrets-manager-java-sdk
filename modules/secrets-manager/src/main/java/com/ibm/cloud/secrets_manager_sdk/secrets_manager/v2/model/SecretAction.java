@@ -28,8 +28,8 @@ public class SecretAction extends GenericModel {
   protected static java.util.Map<String, Class<?>> discriminatorMapping;
   static {
     discriminatorMapping = new java.util.HashMap<>();
-    discriminatorMapping.put("public_cert_action_validate_dns_challenge", PublicCertificateActionValidateManualDNS.class);
     discriminatorMapping.put("private_cert_action_revoke_certificate", PrivateCertificateActionRevoke.class);
+    discriminatorMapping.put("public_cert_action_validate_dns_challenge", PublicCertificateActionValidateManualDNS.class);
   }
 
   /**

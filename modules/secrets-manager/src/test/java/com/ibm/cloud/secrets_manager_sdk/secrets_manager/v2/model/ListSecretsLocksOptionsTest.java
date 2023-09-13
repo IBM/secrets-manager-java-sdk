@@ -33,13 +33,13 @@ public class ListSecretsLocksOptionsTest {
   public void testListSecretsLocksOptions() throws Throwable {
     ListSecretsLocksOptions listSecretsLocksOptionsModel = new ListSecretsLocksOptions.Builder()
       .offset(Long.valueOf("0"))
-      .limit(Long.valueOf("1"))
+      .limit(Long.valueOf("200"))
       .search("example")
-      .groups(java.util.Arrays.asList("default"))
+      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
       .build();
     assertEquals(listSecretsLocksOptionsModel.offset(), Long.valueOf("0"));
-    assertEquals(listSecretsLocksOptionsModel.limit(), Long.valueOf("1"));
+    assertEquals(listSecretsLocksOptionsModel.limit(), Long.valueOf("200"));
     assertEquals(listSecretsLocksOptionsModel.search(), "example");
-    assertEquals(listSecretsLocksOptionsModel.groups(), java.util.Arrays.asList("default"));
+    assertEquals(listSecretsLocksOptionsModel.groups(), java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"));
   }
 }

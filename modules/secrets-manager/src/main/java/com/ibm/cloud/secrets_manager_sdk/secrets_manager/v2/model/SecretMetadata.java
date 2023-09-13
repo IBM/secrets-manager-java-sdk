@@ -23,12 +23,12 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * Properties of your secret metadata.
  *
  * Classes which extend this class:
+ * - ArbitrarySecretMetadata
  * - ImportedCertificateMetadata
  * - PublicCertificateMetadata
  * - KVSecretMetadata
  * - UsernamePasswordSecretMetadata
  * - IAMCredentialsSecretMetadata
- * - ArbitrarySecretMetadata
  * - PrivateCertificateMetadata
  */
 public class SecretMetadata extends GenericModel {
@@ -108,14 +108,14 @@ public class SecretMetadata extends GenericModel {
   protected Date updatedAt;
   @SerializedName("versions_total")
   protected Long versionsTotal;
+  @SerializedName("expiration_date")
+  protected Date expirationDate;
   @SerializedName("signing_algorithm")
   protected String signingAlgorithm;
   @SerializedName("alt_names")
   protected List<String> altNames;
   @SerializedName("common_name")
   protected String commonName;
-  @SerializedName("expiration_date")
-  protected Date expirationDate;
   @SerializedName("intermediate_included")
   protected Boolean intermediateIncluded;
   protected String issuer;
@@ -344,6 +344,18 @@ public class SecretMetadata extends GenericModel {
   }
 
   /**
+   * Gets the expirationDate.
+   *
+   * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
+   * Arbitrary, username_password.
+   *
+   * @return the expirationDate
+   */
+  public Date getExpirationDate() {
+    return expirationDate;
+  }
+
+  /**
    * Gets the signingAlgorithm.
    *
    * The identifier for the cryptographic algorithm that is used by the issuing certificate authority to sign a
@@ -376,17 +388,6 @@ public class SecretMetadata extends GenericModel {
    */
   public String getCommonName() {
     return commonName;
-  }
-
-  /**
-   * Gets the expirationDate.
-   *
-   * The date when the secret material expires. The date format follows the `RFC 3339` format.
-   *
-   * @return the expirationDate
-   */
-  public Date getExpirationDate() {
-    return expirationDate;
   }
 
   /**
@@ -470,7 +471,8 @@ public class SecretMetadata extends GenericModel {
   /**
    * Gets the rotation.
    *
-   * This field indicates whether Secrets Manager rotates your secrets automatically.
+   * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
+   * username_password, private_cert, public_cert, iam_credentials.
    *
    * @return the rotation
    */
@@ -492,7 +494,7 @@ public class SecretMetadata extends GenericModel {
   /**
    * Gets the ca.
    *
-   * The name that is assigned to the certificate authority configuration.
+   * The name of the certificate authority configuration.
    *
    * @return the ca
    */
@@ -503,7 +505,7 @@ public class SecretMetadata extends GenericModel {
   /**
    * Gets the dns.
    *
-   * The name that is assigned to the DNS provider configuration.
+   * The name of the DNS provider configuration.
    *
    * @return the dns
    */

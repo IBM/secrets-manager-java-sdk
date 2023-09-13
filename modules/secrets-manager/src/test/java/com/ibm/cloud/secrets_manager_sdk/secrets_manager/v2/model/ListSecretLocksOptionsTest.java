@@ -34,13 +34,13 @@ public class ListSecretLocksOptionsTest {
     ListSecretLocksOptions listSecretLocksOptionsModel = new ListSecretLocksOptions.Builder()
       .id("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
       .offset(Long.valueOf("0"))
-      .limit(Long.valueOf("1"))
+      .limit(Long.valueOf("25"))
       .sort("name")
       .search("example")
       .build();
     assertEquals(listSecretLocksOptionsModel.id(), "0b5571f7-21e6-42b7-91c5-3f5ac9793a46");
     assertEquals(listSecretLocksOptionsModel.offset(), Long.valueOf("0"));
-    assertEquals(listSecretLocksOptionsModel.limit(), Long.valueOf("1"));
+    assertEquals(listSecretLocksOptionsModel.limit(), Long.valueOf("25"));
     assertEquals(listSecretLocksOptionsModel.sort(), "name");
     assertEquals(listSecretLocksOptionsModel.search(), "example");
   }

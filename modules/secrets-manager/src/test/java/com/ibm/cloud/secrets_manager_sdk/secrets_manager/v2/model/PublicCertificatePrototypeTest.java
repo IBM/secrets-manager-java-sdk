@@ -50,8 +50,8 @@ public class PublicCertificatePrototypeTest {
       .commonName("example.com")
       .altNames(java.util.Arrays.asList("s1.example.com", "*.s2.example.com"))
       .keyAlgorithm("RSA2048")
-      .ca("my-example-engine-config")
-      .dns("my-example-engine-config")
+      .ca("my-ca-config")
+      .dns("my-dns-config")
       .bundleCerts(true)
       .rotation(rotationPolicyModel)
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
@@ -65,8 +65,8 @@ public class PublicCertificatePrototypeTest {
     assertEquals(publicCertificatePrototypeModel.commonName(), "example.com");
     assertEquals(publicCertificatePrototypeModel.altNames(), java.util.Arrays.asList("s1.example.com", "*.s2.example.com"));
     assertEquals(publicCertificatePrototypeModel.keyAlgorithm(), "RSA2048");
-    assertEquals(publicCertificatePrototypeModel.ca(), "my-example-engine-config");
-    assertEquals(publicCertificatePrototypeModel.dns(), "my-example-engine-config");
+    assertEquals(publicCertificatePrototypeModel.ca(), "my-ca-config");
+    assertEquals(publicCertificatePrototypeModel.dns(), "my-dns-config");
     assertEquals(publicCertificatePrototypeModel.bundleCerts(), Boolean.valueOf(true));
     assertEquals(publicCertificatePrototypeModel.rotation(), rotationPolicyModel);
     assertEquals(publicCertificatePrototypeModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
@@ -82,8 +82,8 @@ public class PublicCertificatePrototypeTest {
     assertEquals(publicCertificatePrototypeModelNew.secretGroupId(), "default");
     assertEquals(publicCertificatePrototypeModelNew.commonName(), "example.com");
     assertEquals(publicCertificatePrototypeModelNew.keyAlgorithm(), "RSA2048");
-    assertEquals(publicCertificatePrototypeModelNew.ca(), "my-example-engine-config");
-    assertEquals(publicCertificatePrototypeModelNew.dns(), "my-example-engine-config");
+    assertEquals(publicCertificatePrototypeModelNew.ca(), "my-ca-config");
+    assertEquals(publicCertificatePrototypeModelNew.dns(), "my-dns-config");
     assertEquals(publicCertificatePrototypeModelNew.bundleCerts(), Boolean.valueOf(true));
     assertEquals(publicCertificatePrototypeModelNew.rotation().toString(), rotationPolicyModel.toString());
     assertEquals(publicCertificatePrototypeModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());

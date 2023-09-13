@@ -180,7 +180,7 @@ public class ListConfigurationsOptions extends GenericModel {
    * `config_type`, `secret_type`.
    *
    * **Usage:** If you want to list only the configurations that contain the string `text`, use
-   * `../secrets?search=text`.
+   * `../configurations?search=text`.
    *
    * @return the search
    */

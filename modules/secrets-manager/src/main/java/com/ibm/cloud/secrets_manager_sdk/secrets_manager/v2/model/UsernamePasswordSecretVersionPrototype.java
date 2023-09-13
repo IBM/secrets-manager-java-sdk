@@ -46,15 +46,6 @@ public class UsernamePasswordSecretVersionPrototype extends SecretVersionPrototy
     }
 
     /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param password the password
-     */
-    public Builder(String password) {
-      this.password = password;
-    }
-
-    /**
      * Builds a UsernamePasswordSecretVersionPrototype.
      *
      * @return the new UsernamePasswordSecretVersionPrototype instance
@@ -100,8 +91,6 @@ public class UsernamePasswordSecretVersionPrototype extends SecretVersionPrototy
   protected UsernamePasswordSecretVersionPrototype() { }
 
   protected UsernamePasswordSecretVersionPrototype(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.password,
-      "password cannot be null");
     password = builder.password;
     customMetadata = builder.customMetadata;
     versionCustomMetadata = builder.versionCustomMetadata;

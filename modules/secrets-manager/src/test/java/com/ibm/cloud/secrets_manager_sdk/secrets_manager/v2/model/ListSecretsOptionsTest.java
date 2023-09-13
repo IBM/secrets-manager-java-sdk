@@ -33,15 +33,15 @@ public class ListSecretsOptionsTest {
   public void testListSecretsOptions() throws Throwable {
     ListSecretsOptions listSecretsOptionsModel = new ListSecretsOptions.Builder()
       .offset(Long.valueOf("0"))
-      .limit(Long.valueOf("1"))
+      .limit(Long.valueOf("200"))
       .sort("created_at")
       .search("example")
-      .groups(java.util.Arrays.asList("default"))
+      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
       .build();
     assertEquals(listSecretsOptionsModel.offset(), Long.valueOf("0"));
-    assertEquals(listSecretsOptionsModel.limit(), Long.valueOf("1"));
+    assertEquals(listSecretsOptionsModel.limit(), Long.valueOf("200"));
     assertEquals(listSecretsOptionsModel.sort(), "created_at");
     assertEquals(listSecretsOptionsModel.search(), "example");
-    assertEquals(listSecretsOptionsModel.groups(), java.util.Arrays.asList("default"));
+    assertEquals(listSecretsOptionsModel.groups(), java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"));
   }
 }

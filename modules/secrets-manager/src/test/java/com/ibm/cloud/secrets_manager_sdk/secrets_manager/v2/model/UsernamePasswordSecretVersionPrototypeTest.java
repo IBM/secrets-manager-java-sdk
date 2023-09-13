@@ -48,10 +48,4 @@ public class UsernamePasswordSecretVersionPrototypeTest {
     assertEquals(usernamePasswordSecretVersionPrototypeModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(usernamePasswordSecretVersionPrototypeModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
   }
-
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testUsernamePasswordSecretVersionPrototypeError() throws Throwable {
-    new UsernamePasswordSecretVersionPrototype.Builder().build();
-  }
-
 }

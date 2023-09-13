@@ -263,7 +263,8 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the expirationDate.
    *
-   * The date when the secret material expires. The date format follows the `RFC 3339` format.
+   * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
+   * Arbitrary, username_password.
    *
    * @return the expirationDate
    */
