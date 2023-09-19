@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.68.2-ac7def68-20230310-195410
+ * IBM OpenAPI SDK Code Generator Version: 3.77.0-42417df0-20230811-192318
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2;
@@ -50,6 +50,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVe
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetNotificationsRegistrationTestOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretByNameTypeOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretOptions;
@@ -511,6 +512,36 @@ public class SecretsManager extends BaseService {
     builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(createSecretActionOptions.secretActionPrototype()), "application/json");
     ResponseConverter<SecretAction> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<SecretAction>() { }.getType());
+    return createServiceCall(builder.build(), responseConverter);
+  }
+
+  /**
+   * Get a secret by name.
+   *
+   * Get a secret and its details by specifying the Name and Type of the secret.
+   *
+   * A successful request returns the secret data that is associated with your secret, along with other metadata. To
+   * view only the details of a specified secret without retrieving its value, use the [Get secret
+   * metadata](#get-secret-metadata) operation.
+   *
+   * @param getSecretByNameTypeOptions the {@link GetSecretByNameTypeOptions} containing the options for the call
+   * @return a {@link ServiceCall} with a result of type {@link Secret}
+   */
+  public ServiceCall<Secret> getSecretByNameType(GetSecretByNameTypeOptions getSecretByNameTypeOptions) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(getSecretByNameTypeOptions,
+      "getSecretByNameTypeOptions cannot be null");
+    Map<String, String> pathParamsMap = new HashMap<String, String>();
+    pathParamsMap.put("secret_type", getSecretByNameTypeOptions.secretType());
+    pathParamsMap.put("name", getSecretByNameTypeOptions.name());
+    pathParamsMap.put("secret_group_name", getSecretByNameTypeOptions.secretGroupName());
+    RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/secret_groups/{secret_group_name}/secret_types/{secret_type}/secrets/{name}", pathParamsMap));
+    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v2", "getSecretByNameType");
+    for (Entry<String, String> header : sdkHeaders.entrySet()) {
+      builder.header(header.getKey(), header.getValue());
+    }
+    builder.header("Accept", "application/json");
+    ResponseConverter<Secret> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Secret>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
   }
 

@@ -102,7 +102,8 @@ public class SecretMetadataPatch extends GenericModel {
   /**
    * Gets the expirationDate.
    *
-   * The date when the secret material expires. The date format follows the `RFC 3339` format.
+   * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
+   * Arbitrary, username_password.
    *
    * @return the expirationDate
    */
@@ -130,7 +131,8 @@ public class SecretMetadataPatch extends GenericModel {
   /**
    * Gets the rotation.
    *
-   * This field indicates whether Secrets Manager rotates your secrets automatically.
+   * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
+   * username_password, private_cert, public_cert, iam_credentials.
    *
    * @return the rotation
    */

@@ -33,12 +33,12 @@ public class ListConfigurationsOptionsTest {
   public void testListConfigurationsOptions() throws Throwable {
     ListConfigurationsOptions listConfigurationsOptionsModel = new ListConfigurationsOptions.Builder()
       .offset(Long.valueOf("0"))
-      .limit(Long.valueOf("1"))
+      .limit(Long.valueOf("200"))
       .sort("config_type")
       .search("example")
       .build();
     assertEquals(listConfigurationsOptionsModel.offset(), Long.valueOf("0"));
-    assertEquals(listConfigurationsOptionsModel.limit(), Long.valueOf("1"));
+    assertEquals(listConfigurationsOptionsModel.limit(), Long.valueOf("200"));
     assertEquals(listConfigurationsOptionsModel.sort(), "config_type");
     assertEquals(listConfigurationsOptionsModel.search(), "example");
   }

@@ -21,13 +21,13 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * The details of your configuration.
  *
  * Classes which extend this class:
+ * - PrivateCertificateConfigurationRootCAPrototype
+ * - PrivateCertificateConfigurationIntermediateCAPrototype
+ * - PrivateCertificateConfigurationTemplatePrototype
  * - PublicCertificateConfigurationCALetsEncryptPrototype
  * - PublicCertificateConfigurationDNSCloudInternetServicesPrototype
  * - PublicCertificateConfigurationDNSClassicInfrastructurePrototype
  * - IAMCredentialsConfigurationPrototype
- * - PrivateCertificateConfigurationRootCAPrototype
- * - PrivateCertificateConfigurationIntermediateCAPrototype
- * - PrivateCertificateConfigurationTemplatePrototype
  */
 public class ConfigurationPrototype extends GenericModel {
   @SuppressWarnings("unused")
@@ -35,13 +35,13 @@ public class ConfigurationPrototype extends GenericModel {
   protected static java.util.Map<String, Class<?>> discriminatorMapping;
   static {
     discriminatorMapping = new java.util.HashMap<>();
+    discriminatorMapping.put("private_cert_configuration_root_ca", PrivateCertificateConfigurationRootCAPrototype.class);
+    discriminatorMapping.put("private_cert_configuration_intermediate_ca", PrivateCertificateConfigurationIntermediateCAPrototype.class);
+    discriminatorMapping.put("private_cert_configuration_template", PrivateCertificateConfigurationTemplatePrototype.class);
     discriminatorMapping.put("public_cert_configuration_ca_lets_encrypt", PublicCertificateConfigurationCALetsEncryptPrototype.class);
     discriminatorMapping.put("public_cert_configuration_dns_cloud_internet_services", PublicCertificateConfigurationDNSCloudInternetServicesPrototype.class);
     discriminatorMapping.put("public_cert_configuration_dns_classic_infrastructure", PublicCertificateConfigurationDNSClassicInfrastructurePrototype.class);
     discriminatorMapping.put("iam_credentials_configuration", IAMCredentialsConfigurationPrototype.class);
-    discriminatorMapping.put("private_cert_configuration_root_ca", PrivateCertificateConfigurationRootCAPrototype.class);
-    discriminatorMapping.put("private_cert_configuration_intermediate_ca", PrivateCertificateConfigurationIntermediateCAPrototype.class);
-    discriminatorMapping.put("private_cert_configuration_template", PrivateCertificateConfigurationTemplatePrototype.class);
   }
 
   /**
@@ -62,16 +62,6 @@ public class ConfigurationPrototype extends GenericModel {
     String PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = "private_cert_configuration_intermediate_ca";
     /** private_cert_configuration_template. */
     String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
-  }
-
-  /**
-   * The configuration of the Let's Encrypt CA environment.
-   */
-  public interface LetsEncryptEnvironment {
-    /** production. */
-    String PRODUCTION = "production";
-    /** staging. */
-    String STAGING = "staging";
   }
 
   /**
@@ -117,25 +107,19 @@ public class ConfigurationPrototype extends GenericModel {
     String EXTERNAL = "external";
   }
 
+  /**
+   * The configuration of the Let's Encrypt CA environment.
+   */
+  public interface LetsEncryptEnvironment {
+    /** production. */
+    String PRODUCTION = "production";
+    /** staging. */
+    String STAGING = "staging";
+  }
+
   @SerializedName("config_type")
   protected String configType;
   protected String name;
-  @SerializedName("lets_encrypt_environment")
-  protected String letsEncryptEnvironment;
-  @SerializedName("lets_encrypt_private_key")
-  protected String letsEncryptPrivateKey;
-  @SerializedName("lets_encrypt_preferred_chain")
-  protected String letsEncryptPreferredChain;
-  @SerializedName("cloud_internet_services_apikey")
-  protected String cloudInternetServicesApikey;
-  @SerializedName("cloud_internet_services_crn")
-  protected String cloudInternetServicesCrn;
-  @SerializedName("classic_infrastructure_username")
-  protected String classicInfrastructureUsername;
-  @SerializedName("classic_infrastructure_password")
-  protected String classicInfrastructurePassword;
-  @SerializedName("api_key")
-  protected String apiKey;
   @SerializedName("max_ttl")
   protected String maxTtl;
   @SerializedName("crl_expiry")
@@ -238,6 +222,22 @@ public class ConfigurationPrototype extends GenericModel {
   protected Boolean basicConstraintsValidForNonCa;
   @SerializedName("not_before_duration")
   protected String notBeforeDuration;
+  @SerializedName("lets_encrypt_environment")
+  protected String letsEncryptEnvironment;
+  @SerializedName("lets_encrypt_private_key")
+  protected String letsEncryptPrivateKey;
+  @SerializedName("lets_encrypt_preferred_chain")
+  protected String letsEncryptPreferredChain;
+  @SerializedName("cloud_internet_services_apikey")
+  protected String cloudInternetServicesApikey;
+  @SerializedName("cloud_internet_services_crn")
+  protected String cloudInternetServicesCrn;
+  @SerializedName("classic_infrastructure_username")
+  protected String classicInfrastructureUsername;
+  @SerializedName("classic_infrastructure_password")
+  protected String classicInfrastructurePassword;
+  @SerializedName("api_key")
+  protected String apiKey;
 
   protected ConfigurationPrototype() { }
 
@@ -263,114 +263,6 @@ public class ConfigurationPrototype extends GenericModel {
    */
   public String name() {
     return name;
-  }
-
-  /**
-   * Gets the letsEncryptEnvironment.
-   *
-   * The configuration of the Let's Encrypt CA environment.
-   *
-   * @return the letsEncryptEnvironment
-   */
-  public String letsEncryptEnvironment() {
-    return letsEncryptEnvironment;
-  }
-
-  /**
-   * Gets the letsEncryptPrivateKey.
-   *
-   * The PEM-encoded private key of your Let's Encrypt account. The data must be formatted on a single line with
-   * embedded newline characters.
-   *
-   * @return the letsEncryptPrivateKey
-   */
-  public String letsEncryptPrivateKey() {
-    return letsEncryptPrivateKey;
-  }
-
-  /**
-   * Gets the letsEncryptPreferredChain.
-   *
-   * If the CA offers multiple certificate chains, prefer the chain with an issuer matching this Subject Common Name. If
-   * no match, the default offered chain will be used.
-   *
-   * @return the letsEncryptPreferredChain
-   */
-  public String letsEncryptPreferredChain() {
-    return letsEncryptPreferredChain;
-  }
-
-  /**
-   * Gets the cloudInternetServicesApikey.
-   *
-   * An IBM Cloud API key that can to list domains in your Cloud Internet Services instance.
-   *
-   * To grant Secrets Manager the ability to view the Cloud Internet Services instance and all of its domains, the API
-   * key must be assigned the Reader service role on Internet Services (`internet-svcs`).
-   *
-   * If you need to manage specific domains, you can assign the Manager role. For production environments, it is
-   * recommended that you assign the Reader access role, and then use the
-   * [IAM Policy Management API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to control specific
-   * domains. For more information, see the
-   * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
-   *
-   * @return the cloudInternetServicesApikey
-   */
-  public String cloudInternetServicesApikey() {
-    return cloudInternetServicesApikey;
-  }
-
-  /**
-   * Gets the cloudInternetServicesCrn.
-   *
-   * A CRN that uniquely identifies an IBM Cloud resource.
-   *
-   * @return the cloudInternetServicesCrn
-   */
-  public String cloudInternetServicesCrn() {
-    return cloudInternetServicesCrn;
-  }
-
-  /**
-   * Gets the classicInfrastructureUsername.
-   *
-   * The username that is associated with your classic infrastructure account.
-   *
-   * In most cases, your classic infrastructure username is your `&lt;account_id&gt;_&lt;email_address&gt;`. For more
-   * information, see the [docs](https://cloud.ibm.com/docs/account?topic=account-classic_keys).
-   *
-   * @return the classicInfrastructureUsername
-   */
-  public String classicInfrastructureUsername() {
-    return classicInfrastructureUsername;
-  }
-
-  /**
-   * Gets the classicInfrastructurePassword.
-   *
-   * Your classic infrastructure API key.
-   *
-   * For information about viewing and accessing your classic infrastructure API key, see the
-   * [docs](https://cloud.ibm.com/docs/account?topic=account-classic_keys).
-   *
-   * @return the classicInfrastructurePassword
-   */
-  public String classicInfrastructurePassword() {
-    return classicInfrastructurePassword;
-  }
-
-  /**
-   * Gets the apiKey.
-   *
-   * The API key that is generated for this secret.
-   *
-   * After the secret reaches the end of its lease (see the `ttl` field), the API key is deleted automatically. If you
-   * want to continue to use the same API key for future read operations, see the `reuse_api_key` field.
-   *
-   * @return the apiKey
-   */
-  public String apiKey() {
-    return apiKey;
   }
 
   /**
@@ -684,8 +576,11 @@ public class ConfigurationPrototype extends GenericModel {
   /**
    * Gets the serialNumber.
    *
-   * The serial number to assign to the generated certificate. To assign a random serial number, you can omit this
-   * field.
+   * The requested value for the [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31) attribute
+   * that is in the certificate's distinguished name (DN).
+   *
+   * **Note:** This field is not related to the `serial_number` field that is returned in the API response. The
+   * `serial_number` field represents the certificate's randomly assigned serial number.
    *
    * @return the serialNumber
    */
@@ -1070,6 +965,111 @@ public class ConfigurationPrototype extends GenericModel {
    */
   public String notBeforeDuration() {
     return notBeforeDuration;
+  }
+
+  /**
+   * Gets the letsEncryptEnvironment.
+   *
+   * The configuration of the Let's Encrypt CA environment.
+   *
+   * @return the letsEncryptEnvironment
+   */
+  public String letsEncryptEnvironment() {
+    return letsEncryptEnvironment;
+  }
+
+  /**
+   * Gets the letsEncryptPrivateKey.
+   *
+   * The PEM-encoded private key of your Let's Encrypt account. The data must be formatted on a single line with
+   * embedded newline characters.
+   *
+   * @return the letsEncryptPrivateKey
+   */
+  public String letsEncryptPrivateKey() {
+    return letsEncryptPrivateKey;
+  }
+
+  /**
+   * Gets the letsEncryptPreferredChain.
+   *
+   * If the CA offers multiple certificate chains, prefer the chain with an issuer matching this Subject Common Name. If
+   * no match, the default offered chain will be used.
+   *
+   * @return the letsEncryptPreferredChain
+   */
+  public String letsEncryptPreferredChain() {
+    return letsEncryptPreferredChain;
+  }
+
+  /**
+   * Gets the cloudInternetServicesApikey.
+   *
+   * An IBM Cloud API key that can to list domains in your Cloud Internet Services instance.
+   *
+   * To grant Secrets Manager the ability to view the Cloud Internet Services instance and all of its domains, the API
+   * key must be assigned the Reader service role on Internet Services (`internet-svcs`).
+   *
+   * If you need to manage specific domains, you can assign the Manager role. For production environments, it is
+   * recommended that you assign the Reader access role, and then use the
+   * [IAM Policy Management API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to control specific
+   * domains. For more information, see the
+   * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+   *
+   * @return the cloudInternetServicesApikey
+   */
+  public String cloudInternetServicesApikey() {
+    return cloudInternetServicesApikey;
+  }
+
+  /**
+   * Gets the cloudInternetServicesCrn.
+   *
+   * A CRN that uniquely identifies an IBM Cloud resource.
+   *
+   * @return the cloudInternetServicesCrn
+   */
+  public String cloudInternetServicesCrn() {
+    return cloudInternetServicesCrn;
+  }
+
+  /**
+   * Gets the classicInfrastructureUsername.
+   *
+   * The username that is associated with your classic infrastructure account.
+   *
+   * In most cases, your classic infrastructure username is your `&lt;account_id&gt;_&lt;email_address&gt;`. For more
+   * information, see the [docs](https://cloud.ibm.com/docs/account?topic=account-classic_keys).
+   *
+   * @return the classicInfrastructureUsername
+   */
+  public String classicInfrastructureUsername() {
+    return classicInfrastructureUsername;
+  }
+
+  /**
+   * Gets the classicInfrastructurePassword.
+   *
+   * Your classic infrastructure API key.
+   *
+   * For information about viewing and accessing your classic infrastructure API key, see the
+   * [docs](https://cloud.ibm.com/docs/account?topic=account-classic_keys).
+   *
+   * @return the classicInfrastructurePassword
+   */
+  public String classicInfrastructurePassword() {
+    return classicInfrastructurePassword;
+  }
+
+  /**
+   * Gets the apiKey.
+   *
+   * The API key that is used to set the iam_credentials engine.
+   *
+   * @return the apiKey
+   */
+  public String apiKey() {
+    return apiKey;
   }
 }
 

@@ -57,6 +57,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVe
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetNotificationsRegistrationTestOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretByNameTypeOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretOptions;
@@ -229,6 +230,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   String secretIdForGetSecretVersionLink = null;
   String secretIdForListSecretLocksLink = null;
   String secretIdForListSecretVersionLocksLink = null;
+  String secretNameLink = null;
   String secretVersionIdForCreateSecretVersionLocksLink = null;
   String secretVersionIdForDeleteSecretVersionLocksLink = null;
   String secretVersionIdForGetSecretVersionLink = null;
@@ -327,6 +329,39 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   }
 
   @Test(dependsOnMethods = { "testCreateSecret" })
+  public void testUpdateSecretMetadata() throws Exception {
+    try {
+      ArbitrarySecretMetadataPatch secretMetadataPatchModel = new ArbitrarySecretMetadataPatch.Builder()
+        .name("updated-arbitrary-secret-name-example")
+        .description("updated Arbitrary Secret description")
+        .labels(java.util.Arrays.asList("dev", "us-south"))
+        .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+        .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
+        .build();
+      Map<String, Object> secretMetadataPatchModelAsPatch = secretMetadataPatchModel.asPatch();
+
+      UpdateSecretMetadataOptions updateSecretMetadataOptions = new UpdateSecretMetadataOptions.Builder()
+        .id(secretIdForGetSecretLink)
+        .secretMetadataPatch(secretMetadataPatchModelAsPatch)
+        .build();
+
+      // Invoke operation
+      Response<SecretMetadata> response = service.updateSecretMetadata(updateSecretMetadataOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      SecretMetadata secretMetadataResult = response.getResult();
+
+      assertNotNull(secretMetadataResult);
+      secretNameLink = secretMetadataResult.getName();
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testUpdateSecretMetadata" })
   public void testListSecretVersions() throws Exception {
     try {
       ListSecretVersionsOptions listSecretVersionsOptions = new ListSecretVersionsOptions.Builder()
@@ -521,7 +556,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .limit(Long.valueOf("10"))
         .sort("created_at")
         .search("example")
-        .groups(java.util.Arrays.asList("default"))
+        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
         .build();
 
       // Invoke operation
@@ -546,7 +581,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .limit(Long.valueOf("10"))
         .sort("created_at")
         .search("example")
-        .groups(java.util.Arrays.asList("default"))
+        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
         .build();
 
       // Test getNext().
@@ -617,44 +652,36 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     }
   }
 
-  @Test(dependsOnMethods = { "testGetSecretMetadata" })
-  public void testUpdateSecretMetadata() throws Exception {
-    try {
-      ArbitrarySecretMetadataPatch secretMetadataPatchModel = new ArbitrarySecretMetadataPatch.Builder()
-        .name("updated-arbitrary-secret-name")
-        .description("updated Arbitrary Secret description")
-        .labels(java.util.Arrays.asList("dev", "us-south"))
-        .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
-        .build();
-      Map<String, Object> secretMetadataPatchModelAsPatch = secretMetadataPatchModel.asPatch();
+  // The integration test for createSecretAction has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testCreateSecretAction() throws Exception {}
 
-      UpdateSecretMetadataOptions updateSecretMetadataOptions = new UpdateSecretMetadataOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .secretMetadataPatch(secretMetadataPatchModelAsPatch)
+  @Test(dependsOnMethods = { "testGetSecretMetadata" })
+  public void testGetSecretByNameType() throws Exception {
+    try {
+      GetSecretByNameTypeOptions getSecretByNameTypeOptions = new GetSecretByNameTypeOptions.Builder()
+        .secretType("arbitrary")
+        .name(secretNameLink)
+        .secretGroupName("default")
         .build();
 
       // Invoke operation
-      Response<SecretMetadata> response = service.updateSecretMetadata(updateSecretMetadataOptions).execute();
+      Response<Secret> response = service.getSecretByNameType(getSecretByNameTypeOptions).execute();
       // Validate response
       assertNotNull(response);
       assertEquals(response.getStatusCode(), 200);
 
-      SecretMetadata secretMetadataResult = response.getResult();
+      Secret secretResult = response.getResult();
 
-      assertNotNull(secretMetadataResult);
+      assertNotNull(secretResult);
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
     }
   }
 
-  // The integration test for createSecretAction has been explicitly excluded from generation.
-  // A test for this operation must be developed manually.
-  // @Test
-  // public void testCreateSecretAction() throws Exception {}
-
-  @Test(dependsOnMethods = { "testUpdateSecretMetadata" })
+  @Test(dependsOnMethods = { "testGetSecretByNameType" })
   public void testCreateSecretVersion() throws Exception {
     try {
       ArbitrarySecretVersionPrototype secretVersionPrototypeModel = new ArbitrarySecretVersionPrototype.Builder()
@@ -664,7 +691,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .build();
 
       CreateSecretVersionOptions createSecretVersionOptions = new CreateSecretVersionOptions.Builder()
-        .secretId(secretIdForCreateSecretVersionLink)
+        .secretId(secretIdForGetSecretLink)
         .secretVersionPrototype(secretVersionPrototypeModel)
         .build();
 
@@ -687,7 +714,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   public void testGetSecretVersion() throws Exception {
     try {
       GetSecretVersionOptions getSecretVersionOptions = new GetSecretVersionOptions.Builder()
-        .secretId(secretIdForGetSecretVersionLink)
+        .secretId(secretIdForGetSecretLink)
         .id(secretVersionIdForGetSecretVersionLink)
         .build();
 
@@ -711,7 +738,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     try {
       GetSecretVersionMetadataOptions getSecretVersionMetadataOptions = new GetSecretVersionMetadataOptions.Builder()
         .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForGetSecretVersionMetadataLink)
+        .id(secretVersionIdForGetSecretVersionLink)
         .build();
 
       // Invoke operation
@@ -739,7 +766,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
 
       UpdateSecretVersionMetadataOptions updateSecretVersionMetadataOptions = new UpdateSecretVersionMetadataOptions.Builder()
         .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForUpdateSecretVersionMetadataLink)
+        .id(secretVersionIdForGetSecretVersionLink)
         .secretVersionMetadataPatch(secretVersionMetadataPatchModelAsPatch)
         .build();
 
@@ -770,7 +797,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .offset(Long.valueOf("0"))
         .limit(Long.valueOf("10"))
         .search("example")
-        .groups(java.util.Arrays.asList("default"))
+        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
         .build();
 
       // Invoke operation
@@ -794,7 +821,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       ListSecretsLocksOptions options = new ListSecretsLocksOptions.Builder()
         .limit(Long.valueOf("10"))
         .search("example")
-        .groups(java.util.Arrays.asList("default"))
+        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
         .build();
 
       // Test getNext().
@@ -825,7 +852,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   public void testListSecretLocks() throws Exception {
     try {
       ListSecretLocksOptions listSecretLocksOptions = new ListSecretLocksOptions.Builder()
-        .id(secretIdForListSecretLocksLink)
+        .id(secretIdForGetSecretLink)
         .offset(Long.valueOf("0"))
         .limit(Long.valueOf("10"))
         .sort("name")
@@ -851,7 +878,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   public void testListSecretLocksWithPager() throws Exception {
     try {
       ListSecretLocksOptions options = new ListSecretLocksOptions.Builder()
-        .id(secretIdForListSecretLocksLink)
+        .id(secretIdForGetSecretLink)
         .limit(Long.valueOf("10"))
         .sort("name")
         .search("example")
@@ -891,8 +918,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .build();
 
       CreateSecretVersionLocksBulkOptions createSecretVersionLocksBulkOptions = new CreateSecretVersionLocksBulkOptions.Builder()
-        .secretId(secretIdForCreateSecretVersionLocksLink)
-        .id(secretVersionIdForCreateSecretVersionLocksLink)
+        .secretId(secretIdForGetSecretLink)
+        .id(secretVersionIdForGetSecretVersionLink)
         .locks(java.util.Arrays.asList(secretLockPrototypeModel))
         .mode("remove_previous")
         .build();
@@ -916,8 +943,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   public void testListSecretVersionLocks() throws Exception {
     try {
       ListSecretVersionLocksOptions listSecretVersionLocksOptions = new ListSecretVersionLocksOptions.Builder()
-        .secretId(secretIdForListSecretVersionLocksLink)
-        .id(secretVersionIdForListSecretVersionLocksLink)
+        .secretId(secretIdForGetSecretLink)
+        .id(secretVersionIdForGetSecretVersionLink)
         .offset(Long.valueOf("0"))
         .limit(Long.valueOf("10"))
         .sort("name")
@@ -943,8 +970,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   public void testListSecretVersionLocksWithPager() throws Exception {
     try {
       ListSecretVersionLocksOptions options = new ListSecretVersionLocksOptions.Builder()
-        .secretId(secretIdForListSecretVersionLocksLink)
-        .id(secretVersionIdForListSecretVersionLocksLink)
+        .secretId(secretIdForGetSecretLink)
+        .id(secretVersionIdForGetSecretVersionLink)
         .limit(Long.valueOf("10"))
         .sort("name")
         .search("example")
@@ -1212,7 +1239,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     try {
       DeleteSecretVersionLocksBulkOptions deleteSecretVersionLocksBulkOptions = new DeleteSecretVersionLocksBulkOptions.Builder()
         .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForDeleteSecretVersionLocksLink)
+        .id(secretVersionIdForGetSecretVersionLink)
         .name(java.util.Arrays.asList("lock-example-1"))
         .build();
 

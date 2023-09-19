@@ -15,7 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretActionOptions;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateActionValidateManualDNSPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateActionRevokePrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -32,10 +32,10 @@ public class CreateSecretActionOptionsTest {
 
   @Test
   public void testCreateSecretActionOptions() throws Throwable {
-    PublicCertificateActionValidateManualDNSPrototype secretActionPrototypeModel = new PublicCertificateActionValidateManualDNSPrototype.Builder()
-      .actionType("public_cert_action_validate_dns_challenge")
+    PrivateCertificateActionRevokePrototype secretActionPrototypeModel = new PrivateCertificateActionRevokePrototype.Builder()
+      .actionType("private_cert_action_revoke_certificate")
       .build();
-    assertEquals(secretActionPrototypeModel.actionType(), "public_cert_action_validate_dns_challenge");
+    assertEquals(secretActionPrototypeModel.actionType(), "private_cert_action_revoke_certificate");
 
     CreateSecretActionOptions createSecretActionOptionsModel = new CreateSecretActionOptions.Builder()
       .id("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")

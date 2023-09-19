@@ -250,7 +250,7 @@ public class ConfigurationActionPrototype extends GenericModel {
    * 1) Subject information, including names and alternate names, are preserved from the CSR rather than by using the
    * values that are provided in the other parameters to this operation.
    *
-   * 2) Any key usage, for example, nonrepudiation, that is requested in the CSR are added to the basic set of key
+   * 2) Any key usage, for example, non-repudiation, that is requested in the CSR are added to the basic set of key
    * usages used for CA certificates that are signed by the intermediate authority.
    *
    * 3) Extensions that are requested in the CSR are copied into the issued private certificate.
@@ -341,8 +341,11 @@ public class ConfigurationActionPrototype extends GenericModel {
   /**
    * Gets the serialNumber.
    *
-   * The serial number to assign to the generated certificate. To assign a random serial number, you can omit this
-   * field.
+   * The requested value for the [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31) attribute
+   * that is in the certificate's distinguished name (DN).
+   *
+   * **Note:** This field is not related to the `serial_number` field that is returned in the API response. The
+   * `serial_number` field represents the certificate's randomly assigned serial number.
    *
    * @return the serialNumber
    */

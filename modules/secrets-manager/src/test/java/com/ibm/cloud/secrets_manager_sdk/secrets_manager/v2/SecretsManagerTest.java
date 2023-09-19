@@ -58,6 +58,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVe
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetNotificationsRegistrationTestOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretByNameTypeOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretOptions;
@@ -572,7 +573,7 @@ public class SecretsManagerTest {
   @Test
   public void testListSecretsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"secrets\": [{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}]}";
+    String mockResponseBody = "{\"total_count\": 0, \"limit\": 25, \"offset\": 25, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"secrets\": [{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"expiration_date\": \"2033-04-12T23:20:50.520Z\"}]}";
     String listSecretsPath = "/api/v2/secrets";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -585,7 +586,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("created_at")
       .search("example")
-      .groups(java.util.Arrays.asList("default"))
+      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
       .build();
 
     // Invoke listSecrets() with a valid options model and verify the result
@@ -608,7 +609,7 @@ public class SecretsManagerTest {
     assertEquals(Long.valueOf(query.get("limit")), Long.valueOf("10"));
     assertEquals(query.get("sort"), "created_at");
     assertEquals(query.get("search"), "example");
-    assertEquals(query.get("groups"), RequestUtils.join(java.util.Arrays.asList("default"), ","));
+    assertEquals(query.get("groups"), RequestUtils.join(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"), ","));
   }
 
   // Test the listSecrets operation with and without retries enabled
@@ -625,8 +626,8 @@ public class SecretsManagerTest {
   @Test
   public void testListSecretsWithPagerGetNext() throws Throwable {
     // Set up the two-page mock response.
-    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2033-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
-    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2033-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
+    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"arbitrary\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"expiration_date\":\"2033-04-12T23:20:50.520Z\"}]}";
+    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"arbitrary\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"expiration_date\":\"2033-04-12T23:20:50.520Z\"}]}";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -644,7 +645,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("created_at")
       .search("example")
-      .groups(java.util.Arrays.asList("default"))
+      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
       .build();
 
     List<SecretMetadata> allResults = new ArrayList<>();
@@ -661,8 +662,8 @@ public class SecretsManagerTest {
   @Test
   public void testListSecretsWithPagerGetAll() throws Throwable {
     // Set up the two-page mock response.
-    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2033-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
-    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"imported_cert\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"signing_algorithm\":\"SHA256-RSA\",\"alt_names\":[\"altNames\"],\"common_name\":\"example.com\",\"expiration_date\":\"2033-04-12T23:20:50.520Z\",\"intermediate_included\":true,\"issuer\":\"Lets Encrypt\",\"key_algorithm\":\"RSA2048\",\"private_key_included\":true,\"serial_number\":\"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\",\"validity\":{\"not_before\":\"2025-04-12T23:20:50.000Z\",\"not_after\":\"2025-04-12T23:20:50.000Z\"}}]}";
+    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"arbitrary\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"expiration_date\":\"2033-04-12T23:20:50.520Z\"}]}";
+    String mockResponsePage2 = "{\"total_count\":2,\"limit\":1,\"secrets\":[{\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"crn\":\"crn\",\"custom_metadata\":{\"anyKey\":\"anyValue\"},\"description\":\"Extended description for this secret.\",\"downloaded\":true,\"id\":\"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\",\"labels\":[\"my-label\"],\"locks_total\":0,\"name\":\"my-secret\",\"secret_group_id\":\"default\",\"secret_type\":\"arbitrary\",\"state\":0,\"state_description\":\"active\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"versions_total\":0,\"expiration_date\":\"2033-04-12T23:20:50.520Z\"}]}";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -680,7 +681,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("created_at")
       .search("example")
-      .groups(java.util.Arrays.asList("default"))
+      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
       .build();
 
     SecretsPager pager = new SecretsPager(secretsManagerService, listSecretsOptions);
@@ -794,7 +795,7 @@ public class SecretsManagerTest {
   @Test
   public void testGetSecretMetadataWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}";
+    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"expiration_date\": \"2033-04-12T23:20:50.520Z\"}";
     String getSecretMetadataPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -845,7 +846,7 @@ public class SecretsManagerTest {
   @Test
   public void testUpdateSecretMetadataWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"imported_cert\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"signing_algorithm\": \"SHA256-RSA\", \"alt_names\": [\"altNames\"], \"common_name\": \"example.com\", \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"intermediate_included\": true, \"issuer\": \"Lets Encrypt\", \"key_algorithm\": \"RSA2048\", \"private_key_included\": true, \"serial_number\": \"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18\", \"validity\": {\"not_before\": \"2025-04-12T23:20:50.000Z\", \"not_after\": \"2025-04-12T23:20:50.000Z\"}}";
+    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"expiration_date\": \"2033-04-12T23:20:50.520Z\"}";
     String updateSecretMetadataPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -854,7 +855,7 @@ public class SecretsManagerTest {
 
     // Construct an instance of the ArbitrarySecretMetadataPatch model
     ArbitrarySecretMetadataPatch secretMetadataPatchModel = new ArbitrarySecretMetadataPatch.Builder()
-      .name("updated-arbitrary-secret-name")
+      .name("updated-arbitrary-secret-name-example")
       .description("updated Arbitrary Secret description")
       .labels(java.util.Arrays.asList("dev", "us-south"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
@@ -914,9 +915,9 @@ public class SecretsManagerTest {
       .setResponseCode(201)
       .setBody(mockResponseBody));
 
-    // Construct an instance of the PublicCertificateActionValidateManualDNSPrototype model
-    PublicCertificateActionValidateManualDNSPrototype secretActionPrototypeModel = new PublicCertificateActionValidateManualDNSPrototype.Builder()
-      .actionType("public_cert_action_validate_dns_challenge")
+    // Construct an instance of the PrivateCertificateActionRevokePrototype model
+    PrivateCertificateActionRevokePrototype secretActionPrototypeModel = new PrivateCertificateActionRevokePrototype.Builder()
+      .actionType("private_cert_action_revoke_certificate")
       .build();
 
     // Construct an instance of the CreateSecretActionOptions model
@@ -958,6 +959,59 @@ public class SecretsManagerTest {
   public void testCreateSecretActionNoOptions() throws Throwable {
     server.enqueue(new MockResponse());
     secretsManagerService.createSecretAction(null).execute();
+  }
+
+  // Test the getSecretByNameType operation with a valid options model parameter
+  @Test
+  public void testGetSecretByNameTypeWOptions() throws Throwable {
+    // Register a mock response
+    String mockResponseBody = "{\"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"crn\": \"crn\", \"custom_metadata\": {\"anyKey\": \"anyValue\"}, \"description\": \"Extended description for this secret.\", \"downloaded\": true, \"id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"labels\": [\"my-label\"], \"locks_total\": 0, \"name\": \"my-secret\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"state\": 0, \"state_description\": \"active\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"versions_total\": 0, \"expiration_date\": \"2033-04-12T23:20:50.520Z\", \"payload\": \"secret-credentials\"}";
+    String getSecretByNameTypePath = "/api/v2/secret_groups/default/secret_types/arbitrary/secrets/my-secret";
+    server.enqueue(new MockResponse()
+      .setHeader("Content-type", "application/json")
+      .setResponseCode(200)
+      .setBody(mockResponseBody));
+
+    // Construct an instance of the GetSecretByNameTypeOptions model
+    GetSecretByNameTypeOptions getSecretByNameTypeOptionsModel = new GetSecretByNameTypeOptions.Builder()
+      .secretType("arbitrary")
+      .name("my-secret")
+      .secretGroupName("default")
+      .build();
+
+    // Invoke getSecretByNameType() with a valid options model and verify the result
+    Response<Secret> response = secretsManagerService.getSecretByNameType(getSecretByNameTypeOptionsModel).execute();
+    assertNotNull(response);
+    Secret responseObj = response.getResult();
+    assertNotNull(responseObj);
+
+    // Verify the contents of the request sent to the mock server
+    RecordedRequest request = server.takeRequest();
+    assertNotNull(request);
+    assertEquals(request.getMethod(), "GET");
+    // Verify request path
+    String parsedPath = TestUtilities.parseReqPath(request);
+    assertEquals(parsedPath, getSecretByNameTypePath);
+    // Verify that there is no query string
+    Map<String, String> query = TestUtilities.parseQueryString(request);
+    assertNull(query);
+  }
+
+  // Test the getSecretByNameType operation with and without retries enabled
+  @Test
+  public void testGetSecretByNameTypeWRetries() throws Throwable {
+    secretsManagerService.enableRetries(4, 30);
+    testGetSecretByNameTypeWOptions();
+
+    secretsManagerService.disableRetries();
+    testGetSecretByNameTypeWOptions();
+  }
+
+  // Test the getSecretByNameType operation with a null options model (negative test)
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testGetSecretByNameTypeNoOptions() throws Throwable {
+    server.enqueue(new MockResponse());
+    secretsManagerService.getSecretByNameType(null).execute();
   }
 
   // Test the createSecretVersion operation with a valid options model parameter
@@ -1346,7 +1400,7 @@ public class SecretsManagerTest {
   @Test
   public void testListSecretsLocksWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"secrets_locks\": [{\"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"secret_name\": \"my-secret\", \"versions\": [{\"version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"version_alias\": \"current\", \"locks\": [\"lock-example\"], \"payload_available\": true}]}]}";
+    String mockResponseBody = "{\"total_count\": 0, \"limit\": 25, \"offset\": 25, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"secrets_locks\": [{\"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_group_id\": \"default\", \"secret_type\": \"arbitrary\", \"secret_name\": \"my-secret\", \"versions\": [{\"version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"version_alias\": \"current\", \"locks\": [\"lock-example\"], \"payload_available\": true}]}]}";
     String listSecretsLocksPath = "/api/v2/secrets_locks";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1358,7 +1412,7 @@ public class SecretsManagerTest {
       .offset(Long.valueOf("0"))
       .limit(Long.valueOf("10"))
       .search("example")
-      .groups(java.util.Arrays.asList("default"))
+      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
       .build();
 
     // Invoke listSecretsLocks() with a valid options model and verify the result
@@ -1380,7 +1434,7 @@ public class SecretsManagerTest {
     assertEquals(Long.valueOf(query.get("offset")), Long.valueOf("0"));
     assertEquals(Long.valueOf(query.get("limit")), Long.valueOf("10"));
     assertEquals(query.get("search"), "example");
-    assertEquals(query.get("groups"), RequestUtils.join(java.util.Arrays.asList("default"), ","));
+    assertEquals(query.get("groups"), RequestUtils.join(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"), ","));
   }
 
   // Test the listSecretsLocks operation with and without retries enabled
@@ -1415,7 +1469,7 @@ public class SecretsManagerTest {
     ListSecretsLocksOptions listSecretsLocksOptions = new ListSecretsLocksOptions.Builder()
       .limit(Long.valueOf("10"))
       .search("example")
-      .groups(java.util.Arrays.asList("default"))
+      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
       .build();
 
     List<SecretLocks> allResults = new ArrayList<>();
@@ -1450,7 +1504,7 @@ public class SecretsManagerTest {
     ListSecretsLocksOptions listSecretsLocksOptions = new ListSecretsLocksOptions.Builder()
       .limit(Long.valueOf("10"))
       .search("example")
-      .groups(java.util.Arrays.asList("default"))
+      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
       .build();
 
     SecretsLocksPager pager = new SecretsLocksPager(secretsManagerService, listSecretsLocksOptions);
@@ -1463,7 +1517,7 @@ public class SecretsManagerTest {
   @Test
   public void testListSecretLocksWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"locks\": [{\"name\": \"lock-example\", \"description\": \"description\", \"attributes\": {\"anyKey\": \"anyValue\"}, \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"secret_group_id\": \"default\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_alias\": \"current\"}]}";
+    String mockResponseBody = "{\"total_count\": 0, \"limit\": 25, \"offset\": 25, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"locks\": [{\"name\": \"lock-example\", \"description\": \"description\", \"attributes\": {\"anyKey\": \"anyValue\"}, \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"secret_group_id\": \"default\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_alias\": \"current\"}]}";
     String listSecretLocksPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -1704,7 +1758,7 @@ public class SecretsManagerTest {
   @Test
   public void testListSecretVersionLocksWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"locks\": [{\"name\": \"lock-example\", \"description\": \"description\", \"attributes\": {\"anyKey\": \"anyValue\"}, \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"secret_group_id\": \"default\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_alias\": \"current\"}]}";
+    String mockResponseBody = "{\"total_count\": 0, \"limit\": 25, \"offset\": 25, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"locks\": [{\"name\": \"lock-example\", \"description\": \"description\", \"attributes\": {\"anyKey\": \"anyValue\"}, \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"secret_group_id\": \"default\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_alias\": \"current\"}]}";
     String listSecretVersionLocksPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -2033,7 +2087,7 @@ public class SecretsManagerTest {
   @Test
   public void testListConfigurationsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"total_count\": 0, \"limit\": 0, \"offset\": 0, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"configurations\": [{\"config_type\": \"iam_credentials_configuration\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}]}";
+    String mockResponseBody = "{\"total_count\": 0, \"limit\": 25, \"offset\": 25, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"configurations\": [{\"config_type\": \"iam_credentials_configuration\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}]}";
     String listConfigurationsPath = "/api/v2/configurations";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")

@@ -458,10 +458,9 @@ public class Configuration extends GenericModel {
   /**
    * Gets the apiKey.
    *
-   * The API key that is generated for this secret.
-   *
-   * After the secret reaches the end of its lease (see the `ttl` field), the API key is deleted automatically. If you
-   * want to continue to use the same API key for future read operations, see the `reuse_api_key` field.
+   * An IBM Cloud API key that can create and manage service IDs. The API key must be assigned the Editor platform role
+   * on the Access Groups Service and the Operator platform role on the IAM Identity Service.  For more information, see
+   * the [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
    *
    * @return the apiKey
    */
@@ -495,7 +494,8 @@ public class Configuration extends GenericModel {
   /**
    * Gets the expirationDate.
    *
-   * The date when the secret material expires. The date format follows the `RFC 3339` format.
+   * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
+   * Arbitrary, username_password.
    *
    * @return the expirationDate
    */
@@ -790,8 +790,7 @@ public class Configuration extends GenericModel {
   /**
    * Gets the serialNumber.
    *
-   * The serial number to assign to the generated certificate. To assign a random serial number, you can omit this
-   * field.
+   * The unique serial number that was assigned to a certificate by the issuing certificate authority.
    *
    * @return the serialNumber
    */

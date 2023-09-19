@@ -35,14 +35,14 @@ public class ListSecretVersionLocksOptionsTest {
       .secretId("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
       .id("eb4cf24d-9cae-424b-945e-159788a5f535")
       .offset(Long.valueOf("0"))
-      .limit(Long.valueOf("1"))
+      .limit(Long.valueOf("25"))
       .sort("name")
       .search("example")
       .build();
     assertEquals(listSecretVersionLocksOptionsModel.secretId(), "0b5571f7-21e6-42b7-91c5-3f5ac9793a46");
     assertEquals(listSecretVersionLocksOptionsModel.id(), "eb4cf24d-9cae-424b-945e-159788a5f535");
     assertEquals(listSecretVersionLocksOptionsModel.offset(), Long.valueOf("0"));
-    assertEquals(listSecretVersionLocksOptionsModel.limit(), Long.valueOf("1"));
+    assertEquals(listSecretVersionLocksOptionsModel.limit(), Long.valueOf("25"));
     assertEquals(listSecretVersionLocksOptionsModel.sort(), "name");
     assertEquals(listSecretVersionLocksOptionsModel.search(), "example");
   }

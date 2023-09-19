@@ -19,8 +19,8 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * The request body to specify the properties for your secret action.
  *
  * Classes which extend this class:
- * - PublicCertificateActionValidateManualDNSPrototype
  * - PrivateCertificateActionRevokePrototype
+ * - PublicCertificateActionValidateManualDNSPrototype
  */
 public class SecretActionPrototype extends GenericModel {
   @SuppressWarnings("unused")
