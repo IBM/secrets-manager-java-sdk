@@ -154,8 +154,7 @@ You can also check out the [Secrets Manager documentation](https://cloud.ibm.com
 
 ## Issues
 
-If you encounter an issue with the project, you're welcome to submit
-a [bug report](https://github.com/IBM/secrets-manager-java-sdk/issues) to help us improve.
+If you encounter an issue with the project, you're welcome to submit a [bug report](https://github.com/IBM/secrets-manager-java-sdk/issues) to help us improve.
 
 ## Contributing
 
