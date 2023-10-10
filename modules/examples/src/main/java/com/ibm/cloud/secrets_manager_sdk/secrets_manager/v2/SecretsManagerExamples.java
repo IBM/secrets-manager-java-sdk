@@ -166,7 +166,7 @@ public class SecretsManagerExamples {
       // begin-create_secret
       ArbitrarySecretPrototype secretPrototypeModel = new ArbitrarySecretPrototype.Builder()
         .description("Description of my arbitrary secret.")
-        .expirationDate(DateUtils.parseAsDateTime("2023-10-05T11:49:42Z"))
+        .expirationDate(DateUtils.parseAsDateTime("2030-10-05T11:49:42Z"))
         .labels(java.util.Arrays.asList("dev", "us-south"))
         .name("example-arbitrary-secret")
         .secretGroupId("default")
