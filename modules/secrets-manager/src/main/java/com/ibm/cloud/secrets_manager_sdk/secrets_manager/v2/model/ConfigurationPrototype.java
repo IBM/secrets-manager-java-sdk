@@ -45,7 +45,10 @@ public class ConfigurationPrototype extends GenericModel {
   }
 
   /**
-   * The configuration type.
+   * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template.
    */
   public interface ConfigType {
     /** public_cert_configuration_ca_lets_encrypt. */
@@ -244,7 +247,10 @@ public class ConfigurationPrototype extends GenericModel {
   /**
    * Gets the configType.
    *
-   * The configuration type.
+   * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template.
    *
    * @return the configType
    */

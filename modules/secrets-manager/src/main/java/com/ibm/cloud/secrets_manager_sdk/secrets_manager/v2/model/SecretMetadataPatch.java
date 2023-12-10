@@ -30,6 +30,7 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
  * - KVSecretMetadataPatch
  * - PrivateCertificateMetadataPatch
  * - PublicCertificateMetadataPatch
+ * - ServiceCredentialsSecretMetadataPatch
  * - UsernamePasswordSecretMetadataPatch
  */
 public class SecretMetadataPatch extends GenericModel {
@@ -114,13 +115,12 @@ public class SecretMetadataPatch extends GenericModel {
   /**
    * Gets the ttl.
    *
-   * The time-to-live (TTL) or lease duration to assign to credentials that are generated.
-   *
-   * For `iam_credentials` secrets, the TTL defines for how long each generated API key remains valid. The value can be
-   * either an integer that specifies the number of seconds, or the string representation of a duration, such as `120m`
-   * or `24h`.
-   *
-   * The minimum duration is 1 minute. The maximum is 90 days.
+   * The time-to-live (TTL) or lease duration to assign to credentials that are generated. Supported secret types:
+   * iam_credentials, service_credentials. The TTL defines how long generated credentials remain valid. The value can be
+   * either an integer that specifies the number of seconds, or the string  representation of a duration, such as
+   * `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1
+   * minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional. If it is set
+   * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0.
    *
    * @return the ttl
    */

@@ -24,12 +24,13 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  *
  * Classes which extend this class:
  * - ArbitrarySecretVersion
- * - ImportedCertificateVersion
- * - PublicCertificateVersion
- * - KVSecretVersion
- * - UsernamePasswordSecretVersion
  * - IAMCredentialsSecretVersion
+ * - ImportedCertificateVersion
+ * - KVSecretVersion
  * - PrivateCertificateVersion
+ * - PublicCertificateVersion
+ * - ServiceCredentialsSecretVersion
+ * - UsernamePasswordSecretVersion
  */
 public class SecretVersion extends GenericModel {
   @SuppressWarnings("unused")
@@ -38,33 +39,36 @@ public class SecretVersion extends GenericModel {
   static {
     discriminatorMapping = new java.util.HashMap<>();
     discriminatorMapping.put("arbitrary", ArbitrarySecretVersion.class);
-    discriminatorMapping.put("imported_cert", ImportedCertificateVersion.class);
-    discriminatorMapping.put("public_cert", PublicCertificateVersion.class);
-    discriminatorMapping.put("kv", KVSecretVersion.class);
-    discriminatorMapping.put("username_password", UsernamePasswordSecretVersion.class);
     discriminatorMapping.put("iam_credentials", IAMCredentialsSecretVersion.class);
+    discriminatorMapping.put("imported_cert", ImportedCertificateVersion.class);
+    discriminatorMapping.put("kv", KVSecretVersion.class);
     discriminatorMapping.put("private_cert", PrivateCertificateVersion.class);
+    discriminatorMapping.put("public_cert", PublicCertificateVersion.class);
+    discriminatorMapping.put("service_credentials", ServiceCredentialsSecretVersion.class);
+    discriminatorMapping.put("username_password", UsernamePasswordSecretVersion.class);
   }
 
   /**
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    */
   public interface SecretType {
     /** arbitrary. */
     String ARBITRARY = "arbitrary";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
     /** iam_credentials. */
     String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
     /** kv. */
     String KV = "kv";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
     /** private_cert. */
     String PRIVATE_CERT = "private_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** service_credentials. */
+    String SERVICE_CREDENTIALS = "service_credentials";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
   }
 
   /**
@@ -102,6 +106,12 @@ public class SecretVersion extends GenericModel {
   @SerializedName("expiration_date")
   protected Date expirationDate;
   protected String payload;
+  @SerializedName("api_key_id")
+  protected String apiKeyId;
+  @SerializedName("service_id")
+  protected String serviceId;
+  @SerializedName("api_key")
+  protected String apiKey;
   @SerializedName("serial_number")
   protected String serialNumber;
   protected CertificateValidity validity;
@@ -110,18 +120,15 @@ public class SecretVersion extends GenericModel {
   @SerializedName("private_key")
   protected String privateKey;
   protected Map<String, Object> data;
-  protected String username;
-  protected String password;
-  @SerializedName("api_key_id")
-  protected String apiKeyId;
-  @SerializedName("service_id")
-  protected String serviceId;
-  @SerializedName("api_key")
-  protected String apiKey;
   @SerializedName("issuing_ca")
   protected String issuingCa;
   @SerializedName("ca_chain")
   protected List<String> caChain;
+  @SerializedName("resource_key")
+  protected ServiceCredentialsResourceKey resourceKey;
+  protected ServiceCredentialsSecretCredentials credentials;
+  protected String username;
+  protected String password;
 
   protected SecretVersion() { }
 
@@ -195,8 +202,8 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the secretType.
    *
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    *
    * @return the secretType
    */
@@ -284,6 +291,50 @@ public class SecretVersion extends GenericModel {
   }
 
   /**
+   * Gets the apiKeyId.
+   *
+   * The ID of the API key that is generated for this secret.
+   *
+   * @return the apiKeyId
+   */
+  public String getApiKeyId() {
+    return apiKeyId;
+  }
+
+  /**
+   * Gets the serviceId.
+   *
+   * The service ID under which the API key (see the `api_key` field) is created.
+   *
+   * If you omit this parameter, Secrets Manager generates a new service ID for your secret at its creation, and adds it
+   * to the access groups that you assign.
+   *
+   * Optionally, you can use this field to provide your own service ID if you prefer to manage its access directly or
+   * retain the service ID after your secret expires, is rotated, or deleted. If you provide a service ID, do not
+   * include the `access_groups` parameter.
+   *
+   * @return the serviceId
+   */
+  public String getServiceId() {
+    return serviceId;
+  }
+
+  /**
+   * Gets the apiKey.
+   *
+   * The API key that is generated for this secret.
+   *
+   * After the secret reaches the end of its lease, the API key is deleted automatically. See the `time-to-live` field
+   * to understand the duration of the lease. If you want to continue to use the same API key for future read
+   * operations, see the `reuse_api_key` field.
+   *
+   * @return the apiKey
+   */
+  public String getApiKey() {
+    return apiKey;
+  }
+
+  /**
    * Gets the serialNumber.
    *
    * The unique serial number that was assigned to a certificate by the issuing certificate authority.
@@ -352,71 +403,6 @@ public class SecretVersion extends GenericModel {
   }
 
   /**
-   * Gets the username.
-   *
-   * The username that is assigned to an `username_password` secret.
-   *
-   * @return the username
-   */
-  public String getUsername() {
-    return username;
-  }
-
-  /**
-   * Gets the password.
-   *
-   * The password that is assigned to an `username_password` secret.
-   *
-   * @return the password
-   */
-  public String getPassword() {
-    return password;
-  }
-
-  /**
-   * Gets the apiKeyId.
-   *
-   * The ID of the API key that is generated for this secret.
-   *
-   * @return the apiKeyId
-   */
-  public String getApiKeyId() {
-    return apiKeyId;
-  }
-
-  /**
-   * Gets the serviceId.
-   *
-   * The service ID under which the API key (see the `api_key` field) is created.
-   *
-   * If you omit this parameter, Secrets Manager generates a new service ID for your secret at its creation, and adds it
-   * to the access groups that you assign.
-   *
-   * Optionally, you can use this field to provide your own service ID if you prefer to manage its access directly or
-   * retain the service ID after your secret expires, is rotated, or deleted. If you provide a service ID, do not
-   * include the `access_groups` parameter.
-   *
-   * @return the serviceId
-   */
-  public String getServiceId() {
-    return serviceId;
-  }
-
-  /**
-   * Gets the apiKey.
-   *
-   * The API key that is generated for this secret.
-   *
-   * After the secret reaches the end of its lease (see the `ttl` field), the API key is deleted automatically. If you
-   * want to continue to use the same API key for future read operations, see the `reuse_api_key` field.
-   *
-   * @return the apiKey
-   */
-  public String getApiKey() {
-    return apiKey;
-  }
-
-  /**
    * Gets the issuingCa.
    *
    * The PEM-encoded certificate of the certificate authority that signed and issued this certificate.
@@ -436,6 +422,50 @@ public class SecretVersion extends GenericModel {
    */
   public List<String> getCaChain() {
     return caChain;
+  }
+
+  /**
+   * Gets the resourceKey.
+   *
+   * The source service resource key data of the generated service credentials.
+   *
+   * @return the resourceKey
+   */
+  public ServiceCredentialsResourceKey getResourceKey() {
+    return resourceKey;
+  }
+
+  /**
+   * Gets the credentials.
+   *
+   * The properties of the service credentials secret payload.
+   *
+   * @return the credentials
+   */
+  public ServiceCredentialsSecretCredentials getCredentials() {
+    return credentials;
+  }
+
+  /**
+   * Gets the username.
+   *
+   * The username that is assigned to an `username_password` secret.
+   *
+   * @return the username
+   */
+  public String getUsername() {
+    return username;
+  }
+
+  /**
+   * Gets the password.
+   *
+   * The password that is assigned to an `username_password` secret.
+   *
+   * @return the password
+   */
+  public String getPassword() {
+    return password;
   }
 }
 

@@ -28,6 +28,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - KVSecretVersionPrototype
  * - PrivateCertificateVersionPrototype
  * - PublicCertificateVersionPrototype
+ * - ServiceCredentialsSecretVersionPrototype
  * - UsernamePasswordSecretVersionPrototype
  */
 public class SecretVersionPrototype extends GenericModel {
