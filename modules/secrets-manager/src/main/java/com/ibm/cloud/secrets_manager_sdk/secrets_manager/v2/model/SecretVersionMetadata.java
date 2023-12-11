@@ -23,12 +23,13 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  *
  * Classes which extend this class:
  * - ArbitrarySecretVersionMetadata
- * - PublicCertificateVersionMetadata
+ * - IAMCredentialsSecretVersionMetadata
  * - ImportedCertificateVersionMetadata
  * - KVSecretVersionMetadata
- * - UsernamePasswordSecretVersionMetadata
- * - IAMCredentialsSecretVersionMetadata
  * - PrivateCertificateVersionMetadata
+ * - PublicCertificateVersionMetadata
+ * - ServiceCredentialsSecretVersionMetadata
+ * - UsernamePasswordSecretVersionMetadata
  */
 public class SecretVersionMetadata extends GenericModel {
   @SuppressWarnings("unused")
@@ -37,33 +38,36 @@ public class SecretVersionMetadata extends GenericModel {
   static {
     discriminatorMapping = new java.util.HashMap<>();
     discriminatorMapping.put("arbitrary", ArbitrarySecretVersionMetadata.class);
-    discriminatorMapping.put("imported_cert", ImportedCertificateVersionMetadata.class);
-    discriminatorMapping.put("public_cert", PublicCertificateVersionMetadata.class);
-    discriminatorMapping.put("kv", KVSecretVersionMetadata.class);
-    discriminatorMapping.put("username_password", UsernamePasswordSecretVersionMetadata.class);
     discriminatorMapping.put("iam_credentials", IAMCredentialsSecretVersionMetadata.class);
+    discriminatorMapping.put("imported_cert", ImportedCertificateVersionMetadata.class);
+    discriminatorMapping.put("kv", KVSecretVersionMetadata.class);
     discriminatorMapping.put("private_cert", PrivateCertificateVersionMetadata.class);
+    discriminatorMapping.put("public_cert", PublicCertificateVersionMetadata.class);
+    discriminatorMapping.put("service_credentials", ServiceCredentialsSecretVersionMetadata.class);
+    discriminatorMapping.put("username_password", UsernamePasswordSecretVersionMetadata.class);
   }
 
   /**
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    */
   public interface SecretType {
     /** arbitrary. */
     String ARBITRARY = "arbitrary";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
     /** iam_credentials. */
     String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
     /** kv. */
     String KV = "kv";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
     /** private_cert. */
     String PRIVATE_CERT = "private_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** service_credentials. */
+    String SERVICE_CREDENTIALS = "service_credentials";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
   }
 
   /**
@@ -100,13 +104,15 @@ public class SecretVersionMetadata extends GenericModel {
   protected String secretId;
   @SerializedName("expiration_date")
   protected Date expirationDate;
-  @SerializedName("serial_number")
-  protected String serialNumber;
-  protected CertificateValidity validity;
   @SerializedName("api_key_id")
   protected String apiKeyId;
   @SerializedName("service_id")
   protected String serviceId;
+  @SerializedName("serial_number")
+  protected String serialNumber;
+  protected CertificateValidity validity;
+  @SerializedName("resource_key")
+  protected ServiceCredentialsResourceKey resourceKey;
 
   protected SecretVersionMetadata() { }
 
@@ -180,8 +186,8 @@ public class SecretVersionMetadata extends GenericModel {
   /**
    * Gets the secretType.
    *
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    *
    * @return the secretType
    */
@@ -258,28 +264,6 @@ public class SecretVersionMetadata extends GenericModel {
   }
 
   /**
-   * Gets the serialNumber.
-   *
-   * The unique serial number that was assigned to a certificate by the issuing certificate authority.
-   *
-   * @return the serialNumber
-   */
-  public String getSerialNumber() {
-    return serialNumber;
-  }
-
-  /**
-   * Gets the validity.
-   *
-   * The date and time that the certificate validity period begins and ends.
-   *
-   * @return the validity
-   */
-  public CertificateValidity getValidity() {
-    return validity;
-  }
-
-  /**
    * Gets the apiKeyId.
    *
    * The ID of the API key that is generated for this secret.
@@ -306,6 +290,39 @@ public class SecretVersionMetadata extends GenericModel {
    */
   public String getServiceId() {
     return serviceId;
+  }
+
+  /**
+   * Gets the serialNumber.
+   *
+   * The unique serial number that was assigned to a certificate by the issuing certificate authority.
+   *
+   * @return the serialNumber
+   */
+  public String getSerialNumber() {
+    return serialNumber;
+  }
+
+  /**
+   * Gets the validity.
+   *
+   * The date and time that the certificate validity period begins and ends.
+   *
+   * @return the validity
+   */
+  public CertificateValidity getValidity() {
+    return validity;
+  }
+
+  /**
+   * Gets the resourceKey.
+   *
+   * The source service resource key data of the generated service credentials.
+   *
+   * @return the resourceKey
+   */
+  public ServiceCredentialsResourceKey getResourceKey() {
+    return resourceKey;
   }
 }
 

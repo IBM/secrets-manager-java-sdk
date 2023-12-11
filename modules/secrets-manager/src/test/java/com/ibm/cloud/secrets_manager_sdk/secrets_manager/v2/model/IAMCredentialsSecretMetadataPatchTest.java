@@ -47,14 +47,14 @@ public class IAMCredentialsSecretMetadataPatchTest {
       .description("Extended description for this secret.")
       .labels(java.util.Arrays.asList("my-label"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .ttl("30m")
+      .ttl("1d")
       .rotation(rotationPolicyModel)
       .build();
     assertEquals(iamCredentialsSecretMetadataPatchModel.name(), "my-secret-example");
     assertEquals(iamCredentialsSecretMetadataPatchModel.description(), "Extended description for this secret.");
     assertEquals(iamCredentialsSecretMetadataPatchModel.labels(), java.util.Arrays.asList("my-label"));
     assertEquals(iamCredentialsSecretMetadataPatchModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
-    assertEquals(iamCredentialsSecretMetadataPatchModel.ttl(), "30m");
+    assertEquals(iamCredentialsSecretMetadataPatchModel.ttl(), "1d");
     assertEquals(iamCredentialsSecretMetadataPatchModel.rotation(), rotationPolicyModel);
 
     String json = TestUtilities.serialize(iamCredentialsSecretMetadataPatchModel);
@@ -64,7 +64,7 @@ public class IAMCredentialsSecretMetadataPatchTest {
     assertEquals(iamCredentialsSecretMetadataPatchModelNew.name(), "my-secret-example");
     assertEquals(iamCredentialsSecretMetadataPatchModelNew.description(), "Extended description for this secret.");
     assertEquals(iamCredentialsSecretMetadataPatchModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
-    assertEquals(iamCredentialsSecretMetadataPatchModelNew.ttl(), "30m");
+    assertEquals(iamCredentialsSecretMetadataPatchModelNew.ttl(), "1d");
     assertEquals(iamCredentialsSecretMetadataPatchModelNew.rotation().toString(), rotationPolicyModel.toString());
   }
   @Test
@@ -80,7 +80,7 @@ public class IAMCredentialsSecretMetadataPatchTest {
       .description("Extended description for this secret.")
       .labels(java.util.Arrays.asList("my-label"))
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .ttl("30m")
+      .ttl("1d")
       .rotation(rotationPolicyModel)
       .build();
 
@@ -90,7 +90,7 @@ public class IAMCredentialsSecretMetadataPatchTest {
     assertEquals(mergePatch.get("description"), "Extended description for this secret.");
     assertTrue(mergePatch.containsKey("labels"));
     assertTrue(mergePatch.containsKey("custom_metadata"));
-    assertEquals(mergePatch.get("ttl"), "30m");
+    assertEquals(mergePatch.get("ttl"), "1d");
     assertTrue(mergePatch.containsKey("rotation"));
   }
 

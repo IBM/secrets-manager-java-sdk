@@ -24,11 +24,12 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  *
  * Classes which extend this class:
  * - ArbitrarySecret
- * - ImportedCertificate
- * - PublicCertificate
- * - PrivateCertificate
- * - KVSecret
  * - IAMCredentialsSecret
+ * - ImportedCertificate
+ * - KVSecret
+ * - PrivateCertificate
+ * - PublicCertificate
+ * - ServiceCredentialsSecret
  * - UsernamePasswordSecret
  */
 public class Secret extends GenericModel {
@@ -38,33 +39,36 @@ public class Secret extends GenericModel {
   static {
     discriminatorMapping = new java.util.HashMap<>();
     discriminatorMapping.put("arbitrary", ArbitrarySecret.class);
-    discriminatorMapping.put("imported_cert", ImportedCertificate.class);
-    discriminatorMapping.put("public_cert", PublicCertificate.class);
-    discriminatorMapping.put("private_cert", PrivateCertificate.class);
-    discriminatorMapping.put("kv", KVSecret.class);
     discriminatorMapping.put("iam_credentials", IAMCredentialsSecret.class);
+    discriminatorMapping.put("imported_cert", ImportedCertificate.class);
+    discriminatorMapping.put("kv", KVSecret.class);
+    discriminatorMapping.put("private_cert", PrivateCertificate.class);
+    discriminatorMapping.put("public_cert", PublicCertificate.class);
+    discriminatorMapping.put("service_credentials", ServiceCredentialsSecret.class);
     discriminatorMapping.put("username_password", UsernamePasswordSecret.class);
   }
 
   /**
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    */
   public interface SecretType {
     /** arbitrary. */
     String ARBITRARY = "arbitrary";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
     /** iam_credentials. */
     String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
     /** kv. */
     String KV = "kv";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
     /** private_cert. */
     String PRIVATE_CERT = "private_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** service_credentials. */
+    String SERVICE_CREDENTIALS = "service_credentials";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
   }
 
   /**
@@ -111,6 +115,22 @@ public class Secret extends GenericModel {
   @SerializedName("expiration_date")
   protected Date expirationDate;
   protected String payload;
+  protected String ttl;
+  @SerializedName("access_groups")
+  protected List<String> accessGroups;
+  @SerializedName("api_key_id")
+  protected String apiKeyId;
+  @SerializedName("service_id")
+  protected String serviceId;
+  @SerializedName("service_id_is_static")
+  protected Boolean serviceIdIsStatic;
+  @SerializedName("reuse_api_key")
+  protected Boolean reuseApiKey;
+  protected RotationPolicy rotation;
+  @SerializedName("next_rotation_date")
+  protected Date nextRotationDate;
+  @SerializedName("api_key")
+  protected String apiKey;
   @SerializedName("signing_algorithm")
   protected String signingAlgorithm;
   @SerializedName("alt_names")
@@ -131,19 +151,11 @@ public class Secret extends GenericModel {
   protected String intermediate;
   @SerializedName("private_key")
   protected String privateKey;
-  @SerializedName("issuance_info")
-  protected CertificateIssuanceInfo issuanceInfo;
-  protected RotationPolicy rotation;
-  @SerializedName("bundle_certs")
-  protected Boolean bundleCerts;
-  protected String ca;
-  protected String dns;
+  protected Map<String, Object> data;
   @SerializedName("certificate_authority")
   protected String certificateAuthority;
   @SerializedName("certificate_template")
   protected String certificateTemplate;
-  @SerializedName("next_rotation_date")
-  protected Date nextRotationDate;
   @SerializedName("revocation_time_seconds")
   protected Long revocationTimeSeconds;
   @SerializedName("revocation_time_rfc3339")
@@ -152,20 +164,15 @@ public class Secret extends GenericModel {
   protected String issuingCa;
   @SerializedName("ca_chain")
   protected List<String> caChain;
-  protected Map<String, Object> data;
-  protected String ttl;
-  @SerializedName("access_groups")
-  protected List<String> accessGroups;
-  @SerializedName("api_key_id")
-  protected String apiKeyId;
-  @SerializedName("service_id")
-  protected String serviceId;
-  @SerializedName("service_id_is_static")
-  protected Boolean serviceIdIsStatic;
-  @SerializedName("reuse_api_key")
-  protected Boolean reuseApiKey;
-  @SerializedName("api_key")
-  protected String apiKey;
+  @SerializedName("issuance_info")
+  protected CertificateIssuanceInfo issuanceInfo;
+  @SerializedName("bundle_certs")
+  protected Boolean bundleCerts;
+  protected String ca;
+  protected String dns;
+  @SerializedName("source_service")
+  protected ServiceCredentialsSecretSourceService sourceService;
+  protected ServiceCredentialsSecretCredentials credentials;
   protected String username;
   protected String password;
 
@@ -303,8 +310,8 @@ public class Secret extends GenericModel {
   /**
    * Gets the secretType.
    *
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    *
    * @return the secretType
    */
@@ -378,6 +385,133 @@ public class Secret extends GenericModel {
    */
   public String getPayload() {
     return payload;
+  }
+
+  /**
+   * Gets the ttl.
+   *
+   * The time-to-live (TTL) or lease duration to assign to credentials that are generated. Supported secret types:
+   * iam_credentials, service_credentials. The TTL defines how long generated credentials remain valid. The value can be
+   * either an integer that specifies the number of seconds, or the string  representation of a duration, such as
+   * `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1
+   * minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional. If it is set
+   * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0.
+   *
+   * @return the ttl
+   */
+  public String getTtl() {
+    return ttl;
+  }
+
+  /**
+   * Gets the accessGroups.
+   *
+   * Access Groups that you can use for an `iam_credentials` secret.
+   *
+   * Up to 10 Access Groups can be used for each secret.
+   *
+   * @return the accessGroups
+   */
+  public List<String> getAccessGroups() {
+    return accessGroups;
+  }
+
+  /**
+   * Gets the apiKeyId.
+   *
+   * The ID of the API key that is generated for this secret.
+   *
+   * @return the apiKeyId
+   */
+  public String getApiKeyId() {
+    return apiKeyId;
+  }
+
+  /**
+   * Gets the serviceId.
+   *
+   * The service ID under which the API key (see the `api_key` field) is created.
+   *
+   * If you omit this parameter, Secrets Manager generates a new service ID for your secret at its creation, and adds it
+   * to the access groups that you assign.
+   *
+   * Optionally, you can use this field to provide your own service ID if you prefer to manage its access directly or
+   * retain the service ID after your secret expires, is rotated, or deleted. If you provide a service ID, do not
+   * include the `access_groups` parameter.
+   *
+   * @return the serviceId
+   */
+  public String getServiceId() {
+    return serviceId;
+  }
+
+  /**
+   * Gets the serviceIdIsStatic.
+   *
+   * Indicates whether an `iam_credentials` secret was created with a static service ID.
+   *
+   * If it is set to `true`, the service ID for the secret was provided by the user at secret creation. If it is set to
+   * `false`, the service ID was generated by Secrets Manager.
+   *
+   * @return the serviceIdIsStatic
+   */
+  public Boolean isServiceIdIsStatic() {
+    return serviceIdIsStatic;
+  }
+
+  /**
+   * Gets the reuseApiKey.
+   *
+   * (IAM credentials) This parameter indicates whether to reuse the service ID and API key for future read operations.
+   *
+   * If it is set to `true`, the service reuses the current credentials. If it is set to `false`, a new service ID and
+   * API key are generated each time that the secret is read or accessed.
+   *
+   * @return the reuseApiKey
+   */
+  public Boolean isReuseApiKey() {
+    return reuseApiKey;
+  }
+
+  /**
+   * Gets the rotation.
+   *
+   * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
+   * username_password, private_cert, public_cert, iam_credentials.
+   *
+   * @return the rotation
+   */
+  public RotationPolicy getRotation() {
+    return rotation;
+  }
+
+  /**
+   * Gets the nextRotationDate.
+   *
+   * The date that the secret is scheduled for automatic rotation.
+   *
+   * The service automatically creates a new version of the secret on its next rotation date. This field exists only for
+   * secrets that can be auto-rotated and an existing rotation policy.
+   *
+   * @return the nextRotationDate
+   */
+  public Date getNextRotationDate() {
+    return nextRotationDate;
+  }
+
+  /**
+   * Gets the apiKey.
+   *
+   * The API key that is generated for this secret.
+   *
+   * After the secret reaches the end of its lease, the API key is deleted automatically. See the `time-to-live` field
+   * to understand the duration of the lease. If you want to continue to use the same API key for future read
+   * operations, see the `reuse_api_key` field.
+   *
+   * @return the apiKey
+   */
+  public String getApiKey() {
+    return apiKey;
   }
 
   /**
@@ -518,59 +652,14 @@ public class Secret extends GenericModel {
   }
 
   /**
-   * Gets the issuanceInfo.
+   * Gets the data.
    *
-   * Issuance information that is associated with your certificate.
+   * The payload data of a key-value secret.
    *
-   * @return the issuanceInfo
+   * @return the data
    */
-  public CertificateIssuanceInfo getIssuanceInfo() {
-    return issuanceInfo;
-  }
-
-  /**
-   * Gets the rotation.
-   *
-   * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
-   * username_password, private_cert, public_cert, iam_credentials.
-   *
-   * @return the rotation
-   */
-  public RotationPolicy getRotation() {
-    return rotation;
-  }
-
-  /**
-   * Gets the bundleCerts.
-   *
-   * Indicates whether the issued certificate is bundled with intermediate certificates.
-   *
-   * @return the bundleCerts
-   */
-  public Boolean isBundleCerts() {
-    return bundleCerts;
-  }
-
-  /**
-   * Gets the ca.
-   *
-   * The name of the certificate authority configuration.
-   *
-   * @return the ca
-   */
-  public String getCa() {
-    return ca;
-  }
-
-  /**
-   * Gets the dns.
-   *
-   * The name of the DNS provider configuration.
-   *
-   * @return the dns
-   */
-  public String getDns() {
-    return dns;
+  public Map<String, Object> getData() {
+    return data;
   }
 
   /**
@@ -593,20 +682,6 @@ public class Secret extends GenericModel {
    */
   public String getCertificateTemplate() {
     return certificateTemplate;
-  }
-
-  /**
-   * Gets the nextRotationDate.
-   *
-   * The date that the secret is scheduled for automatic rotation.
-   *
-   * The service automatically creates a new version of the secret on its next rotation date. This field exists only for
-   * secrets that can be auto-rotated and an existing rotation policy.
-   *
-   * @return the nextRotationDate
-   */
-  public Date getNextRotationDate() {
-    return nextRotationDate;
   }
 
   /**
@@ -654,115 +729,69 @@ public class Secret extends GenericModel {
   }
 
   /**
-   * Gets the data.
+   * Gets the issuanceInfo.
    *
-   * The payload data of a key-value secret.
+   * Issuance information that is associated with your certificate.
    *
-   * @return the data
+   * @return the issuanceInfo
    */
-  public Map<String, Object> getData() {
-    return data;
+  public CertificateIssuanceInfo getIssuanceInfo() {
+    return issuanceInfo;
   }
 
   /**
-   * Gets the ttl.
+   * Gets the bundleCerts.
    *
-   * The time-to-live (TTL) or lease duration to assign to credentials that are generated.
+   * Indicates whether the issued certificate is bundled with intermediate certificates.
    *
-   * For `iam_credentials` secrets, the TTL defines for how long each generated API key remains valid. The value can be
-   * either an integer that specifies the number of seconds, or the string representation of a duration, such as `120m`
-   * or `24h`.
-   *
-   * The minimum duration is 1 minute. The maximum is 90 days.
-   *
-   * @return the ttl
+   * @return the bundleCerts
    */
-  public String getTtl() {
-    return ttl;
+  public Boolean isBundleCerts() {
+    return bundleCerts;
   }
 
   /**
-   * Gets the accessGroups.
+   * Gets the ca.
    *
-   * Access Groups that you can use for an `iam_credentials` secret.
+   * The name of the certificate authority configuration.
    *
-   * Up to 10 Access Groups can be used for each secret.
-   *
-   * @return the accessGroups
+   * @return the ca
    */
-  public List<String> getAccessGroups() {
-    return accessGroups;
+  public String getCa() {
+    return ca;
   }
 
   /**
-   * Gets the apiKeyId.
+   * Gets the dns.
    *
-   * The ID of the API key that is generated for this secret.
+   * The name of the DNS provider configuration.
    *
-   * @return the apiKeyId
+   * @return the dns
    */
-  public String getApiKeyId() {
-    return apiKeyId;
+  public String getDns() {
+    return dns;
   }
 
   /**
-   * Gets the serviceId.
+   * Gets the sourceService.
    *
-   * The service ID under which the API key (see the `api_key` field) is created.
+   * The properties that are required to create the service credentials for the specified source service instance.
    *
-   * If you omit this parameter, Secrets Manager generates a new service ID for your secret at its creation, and adds it
-   * to the access groups that you assign.
-   *
-   * Optionally, you can use this field to provide your own service ID if you prefer to manage its access directly or
-   * retain the service ID after your secret expires, is rotated, or deleted. If you provide a service ID, do not
-   * include the `access_groups` parameter.
-   *
-   * @return the serviceId
+   * @return the sourceService
    */
-  public String getServiceId() {
-    return serviceId;
+  public ServiceCredentialsSecretSourceService getSourceService() {
+    return sourceService;
   }
 
   /**
-   * Gets the serviceIdIsStatic.
+   * Gets the credentials.
    *
-   * Indicates whether an `iam_credentials` secret was created with a static service ID.
+   * The properties of the service credentials secret payload.
    *
-   * If it is set to `true`, the service ID for the secret was provided by the user at secret creation. If it is set to
-   * `false`, the service ID was generated by Secrets Manager.
-   *
-   * @return the serviceIdIsStatic
+   * @return the credentials
    */
-  public Boolean isServiceIdIsStatic() {
-    return serviceIdIsStatic;
-  }
-
-  /**
-   * Gets the reuseApiKey.
-   *
-   * (IAM credentials) This parameter indicates whether to reuse the service ID and API key for future read operations.
-   *
-   * If it is set to `true`, the service reuses the current credentials. If it is set to `false`, a new service ID and
-   * API key are generated each time that the secret is read or accessed.
-   *
-   * @return the reuseApiKey
-   */
-  public Boolean isReuseApiKey() {
-    return reuseApiKey;
-  }
-
-  /**
-   * Gets the apiKey.
-   *
-   * The API key that is generated for this secret.
-   *
-   * After the secret reaches the end of its lease (see the `ttl` field), the API key is deleted automatically. If you
-   * want to continue to use the same API key for future read operations, see the `reuse_api_key` field.
-   *
-   * @return the apiKey
-   */
-  public String getApiKey() {
-    return apiKey;
+  public ServiceCredentialsSecretCredentials getCredentials() {
+    return credentials;
   }
 
   /**

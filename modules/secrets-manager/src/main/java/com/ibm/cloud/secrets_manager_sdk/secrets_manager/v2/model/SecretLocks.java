@@ -23,24 +23,26 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class SecretLocks extends GenericModel {
 
   /**
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    */
   public interface SecretType {
     /** arbitrary. */
     String ARBITRARY = "arbitrary";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
     /** iam_credentials. */
     String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
     /** kv. */
     String KV = "kv";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
     /** private_cert. */
     String PRIVATE_CERT = "private_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** service_credentials. */
+    String SERVICE_CREDENTIALS = "service_credentials";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
   }
 
   @SerializedName("secret_id")
@@ -80,8 +82,8 @@ public class SecretLocks extends GenericModel {
   /**
    * Gets the secretType.
    *
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    *
    * @return the secretType
    */

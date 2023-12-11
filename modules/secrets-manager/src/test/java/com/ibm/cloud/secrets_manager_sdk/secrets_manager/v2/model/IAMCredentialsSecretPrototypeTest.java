@@ -47,7 +47,7 @@ public class IAMCredentialsSecretPrototypeTest {
       .description("Extended description for this secret.")
       .secretGroupId("default")
       .labels(java.util.Arrays.asList("my-label"))
-      .ttl("30m")
+      .ttl("1d")
       .accessGroups(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699"))
       .serviceId("ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be")
       .reuseApiKey(true)
@@ -60,7 +60,7 @@ public class IAMCredentialsSecretPrototypeTest {
     assertEquals(iamCredentialsSecretPrototypeModel.description(), "Extended description for this secret.");
     assertEquals(iamCredentialsSecretPrototypeModel.secretGroupId(), "default");
     assertEquals(iamCredentialsSecretPrototypeModel.labels(), java.util.Arrays.asList("my-label"));
-    assertEquals(iamCredentialsSecretPrototypeModel.ttl(), "30m");
+    assertEquals(iamCredentialsSecretPrototypeModel.ttl(), "1d");
     assertEquals(iamCredentialsSecretPrototypeModel.accessGroups(), java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699"));
     assertEquals(iamCredentialsSecretPrototypeModel.serviceId(), "ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be");
     assertEquals(iamCredentialsSecretPrototypeModel.reuseApiKey(), Boolean.valueOf(true));
@@ -76,7 +76,7 @@ public class IAMCredentialsSecretPrototypeTest {
     assertEquals(iamCredentialsSecretPrototypeModelNew.name(), "my-secret-example");
     assertEquals(iamCredentialsSecretPrototypeModelNew.description(), "Extended description for this secret.");
     assertEquals(iamCredentialsSecretPrototypeModelNew.secretGroupId(), "default");
-    assertEquals(iamCredentialsSecretPrototypeModelNew.ttl(), "30m");
+    assertEquals(iamCredentialsSecretPrototypeModelNew.ttl(), "1d");
     assertEquals(iamCredentialsSecretPrototypeModelNew.serviceId(), "ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be");
     assertEquals(iamCredentialsSecretPrototypeModelNew.reuseApiKey(), Boolean.valueOf(true));
     assertEquals(iamCredentialsSecretPrototypeModelNew.rotation().toString(), rotationPolicyModel.toString());

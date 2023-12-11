@@ -45,7 +45,10 @@ public class ConfigurationMetadata extends GenericModel {
   }
 
   /**
-   * The configuration type.
+   * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template.
    */
   public interface ConfigType {
     /** public_cert_configuration_ca_lets_encrypt. */
@@ -65,24 +68,26 @@ public class ConfigurationMetadata extends GenericModel {
   }
 
   /**
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    */
   public interface SecretType {
     /** arbitrary. */
     String ARBITRARY = "arbitrary";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
     /** iam_credentials. */
     String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
     /** kv. */
     String KV = "kv";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
     /** private_cert. */
     String PRIVATE_CERT = "private_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** service_credentials. */
+    String SERVICE_CREDENTIALS = "service_credentials";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
   }
 
   /**
@@ -175,7 +180,10 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the configType.
    *
-   * The configuration type.
+   * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template.
    *
    * @return the configType
    */
@@ -197,8 +205,8 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the secretType.
    *
-   * The secret type. Supported types are arbitrary, certificates (imported, public, and private), IAM credentials,
-   * key-value, and user credentials.
+   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password.
    *
    * @return the secretType
    */
