@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -35,6 +35,7 @@ public class UsernamePasswordSecretMetadataPatch extends SecretMetadataPatch {
     private Map<String, Object> customMetadata;
     private RotationPolicy rotation;
     private Date expirationDate;
+    private PasswordGenerationPolicyPatch passwordGenerationPolicy;
 
     /**
      * Instantiates a new Builder from an existing UsernamePasswordSecretMetadataPatch instance.
@@ -48,6 +49,7 @@ public class UsernamePasswordSecretMetadataPatch extends SecretMetadataPatch {
       this.customMetadata = usernamePasswordSecretMetadataPatch.customMetadata;
       this.rotation = usernamePasswordSecretMetadataPatch.rotation;
       this.expirationDate = usernamePasswordSecretMetadataPatch.expirationDate;
+      this.passwordGenerationPolicy = usernamePasswordSecretMetadataPatch.passwordGenerationPolicy;
     }
 
     /**
@@ -66,9 +68,9 @@ public class UsernamePasswordSecretMetadataPatch extends SecretMetadataPatch {
     }
 
     /**
-     * Adds an labels to labels.
+     * Adds a new element to labels.
      *
-     * @param labels the new labels
+     * @param labels the new element to be added
      * @return the UsernamePasswordSecretMetadataPatch builder
      */
     public Builder addLabels(String labels) {
@@ -147,6 +149,17 @@ public class UsernamePasswordSecretMetadataPatch extends SecretMetadataPatch {
       this.expirationDate = expirationDate;
       return this;
     }
+
+    /**
+     * Set the passwordGenerationPolicy.
+     *
+     * @param passwordGenerationPolicy the passwordGenerationPolicy
+     * @return the UsernamePasswordSecretMetadataPatch builder
+     */
+    public Builder passwordGenerationPolicy(PasswordGenerationPolicyPatch passwordGenerationPolicy) {
+      this.passwordGenerationPolicy = passwordGenerationPolicy;
+      return this;
+    }
   }
 
   protected UsernamePasswordSecretMetadataPatch() { }
@@ -158,6 +171,7 @@ public class UsernamePasswordSecretMetadataPatch extends SecretMetadataPatch {
     customMetadata = builder.customMetadata;
     rotation = builder.rotation;
     expirationDate = builder.expirationDate;
+    passwordGenerationPolicy = builder.passwordGenerationPolicy;
   }
 
   /**

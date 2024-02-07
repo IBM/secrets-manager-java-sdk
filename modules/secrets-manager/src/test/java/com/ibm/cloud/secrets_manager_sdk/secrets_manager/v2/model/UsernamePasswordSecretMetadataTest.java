@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -15,6 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CommonRotationPolicy;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicyRO;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.UsernamePasswordSecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
@@ -46,5 +47,6 @@ public class UsernamePasswordSecretMetadataTest {
     assertNull(usernamePasswordSecretMetadataModel.getVersionsTotal());
     assertNull(usernamePasswordSecretMetadataModel.getRotation());
     assertNull(usernamePasswordSecretMetadataModel.getExpirationDate());
+    assertNull(usernamePasswordSecretMetadataModel.getPasswordGenerationPolicy());
   }
 }

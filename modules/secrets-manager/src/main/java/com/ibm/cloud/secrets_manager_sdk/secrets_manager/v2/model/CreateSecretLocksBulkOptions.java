@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -86,9 +86,9 @@ public class CreateSecretLocksBulkOptions extends GenericModel {
     }
 
     /**
-     * Adds an locks to locks.
+     * Adds a new element to locks.
      *
-     * @param locks the new locks
+     * @param locks the new element to be added
      * @return the CreateSecretLocksBulkOptions builder
      */
     public Builder addLocks(SecretLockPrototype locks) {

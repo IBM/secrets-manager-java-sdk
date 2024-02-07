@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -37,7 +37,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ConfigurationM
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ConfigurationPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ConfigurationPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ConfigurationsPager;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CosHmacKeys;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateConfigurationActionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateNotificationsRegistrationOptions;
@@ -102,6 +101,9 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PaginatedColle
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PaginatedCollectionLast;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PaginatedCollectionNext;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PaginatedCollectionPrevious;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicy;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicyPatch;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicyRO;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificate;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateActionRevoke;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateActionRevokePrototype;
@@ -196,6 +198,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredent
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretSourceService;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretSourceServiceRO;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretVersionPrototype;

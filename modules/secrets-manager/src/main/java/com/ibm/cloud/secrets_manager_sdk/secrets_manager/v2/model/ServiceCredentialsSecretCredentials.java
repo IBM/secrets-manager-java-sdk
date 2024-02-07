@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -13,17 +13,16 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.ibm.cloud.sdk.core.service.model.GenericModel;
+import com.google.gson.reflect.TypeToken;
+import com.ibm.cloud.sdk.core.service.model.DynamicModel;
 
 /**
  * The properties of the service credentials secret payload.
  */
-public class ServiceCredentialsSecretCredentials extends GenericModel {
+public class ServiceCredentialsSecretCredentials extends DynamicModel<Object> {
 
+  @SerializedName("apikey")
   protected String apikey;
-  @SerializedName("cos_hmac_keys")
-  protected CosHmacKeys cosHmacKeys;
-  protected String endpoints;
   @SerializedName("iam_apikey_description")
   protected String iamApikeyDescription;
   @SerializedName("iam_apikey_id")
@@ -34,10 +33,10 @@ public class ServiceCredentialsSecretCredentials extends GenericModel {
   protected String iamRoleCrn;
   @SerializedName("iam_serviceid_crn")
   protected String iamServiceidCrn;
-  @SerializedName("resource_instance_id")
-  protected String resourceInstanceId;
 
-  protected ServiceCredentialsSecretCredentials() { }
+  public ServiceCredentialsSecretCredentials() {
+    super(new TypeToken<Object>() { });
+  }
 
   /**
    * Gets the apikey.
@@ -50,29 +49,7 @@ public class ServiceCredentialsSecretCredentials extends GenericModel {
    * @return the apikey
    */
   public String getApikey() {
-    return apikey;
-  }
-
-  /**
-   * Gets the cosHmacKeys.
-   *
-   * The Cloud Object Storage HMAC keys that are returned after you create a service credentials secret.
-   *
-   * @return the cosHmacKeys
-   */
-  public CosHmacKeys getCosHmacKeys() {
-    return cosHmacKeys;
-  }
-
-  /**
-   * Gets the endpoints.
-   *
-   * The endpoints that are returned after you create a service credentials secret.
-   *
-   * @return the endpoints
-   */
-  public String getEndpoints() {
-    return endpoints;
+    return this.apikey;
   }
 
   /**
@@ -83,7 +60,7 @@ public class ServiceCredentialsSecretCredentials extends GenericModel {
    * @return the iamApikeyDescription
    */
   public String getIamApikeyDescription() {
-    return iamApikeyDescription;
+    return this.iamApikeyDescription;
   }
 
   /**
@@ -94,7 +71,7 @@ public class ServiceCredentialsSecretCredentials extends GenericModel {
    * @return the iamApikeyId
    */
   public String getIamApikeyId() {
-    return iamApikeyId;
+    return this.iamApikeyId;
   }
 
   /**
@@ -105,7 +82,7 @@ public class ServiceCredentialsSecretCredentials extends GenericModel {
    * @return the iamApikeyName
    */
   public String getIamApikeyName() {
-    return iamApikeyName;
+    return this.iamApikeyName;
   }
 
   /**
@@ -116,7 +93,7 @@ public class ServiceCredentialsSecretCredentials extends GenericModel {
    * @return the iamRoleCrn
    */
   public String getIamRoleCrn() {
-    return iamRoleCrn;
+    return this.iamRoleCrn;
   }
 
   /**
@@ -127,18 +104,6 @@ public class ServiceCredentialsSecretCredentials extends GenericModel {
    * @return the iamServiceidCrn
    */
   public String getIamServiceidCrn() {
-    return iamServiceidCrn;
-  }
-
-  /**
-   * Gets the resourceInstanceId.
-   *
-   * The resource instance CRN that is returned after you create a service credentials secret.
-   *
-   * @return the resourceInstanceId
-   */
-  public String getResourceInstanceId() {
-    return resourceInstanceId;
+    return this.iamServiceidCrn;
   }
 }
-

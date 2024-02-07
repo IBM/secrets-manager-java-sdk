@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -44,6 +44,8 @@ public class SecretMetadataPatch extends GenericModel {
   protected Date expirationDate;
   protected String ttl;
   protected RotationPolicy rotation;
+  @SerializedName("password_generation_policy")
+  protected PasswordGenerationPolicyPatch passwordGenerationPolicy;
 
   protected SecretMetadataPatch() { }
 
@@ -138,6 +140,18 @@ public class SecretMetadataPatch extends GenericModel {
    */
   public RotationPolicy rotation() {
     return rotation;
+  }
+
+  /**
+   * Gets the passwordGenerationPolicy.
+   *
+   * Policy patch for auto-generated passwords. Policy properties that are included in the patch are updated.
+   * Properties that are not included in the patch remain unchanged.
+   *
+   * @return the passwordGenerationPolicy
+   */
+  public PasswordGenerationPolicyPatch passwordGenerationPolicy() {
+    return passwordGenerationPolicy;
   }
 
   /**

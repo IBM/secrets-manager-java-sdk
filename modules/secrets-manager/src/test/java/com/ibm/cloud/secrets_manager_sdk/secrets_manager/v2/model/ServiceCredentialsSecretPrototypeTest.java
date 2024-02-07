@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -15,13 +15,8 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CommonRotationPolicy;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsResourceKey;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretSourceService;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceIam;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceIamApikey;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceIamRole;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceIamServiceid;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceInstance;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceParameters;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceRole;
@@ -67,39 +62,14 @@ public class ServiceCredentialsSecretPrototypeTest {
       .build();
     assertEquals(serviceCredentialsSourceServiceRoleModel.crn(), "testString");
 
-    ServiceCredentialsSourceServiceIamApikey serviceCredentialsSourceServiceIamApikeyModel = new ServiceCredentialsSourceServiceIamApikey.Builder()
-      .build();
-
-    ServiceCredentialsSourceServiceIamRole serviceCredentialsSourceServiceIamRoleModel = new ServiceCredentialsSourceServiceIamRole.Builder()
-      .build();
-
-    ServiceCredentialsSourceServiceIamServiceid serviceCredentialsSourceServiceIamServiceidModel = new ServiceCredentialsSourceServiceIamServiceid.Builder()
-      .build();
-
-    ServiceCredentialsSourceServiceIam serviceCredentialsSourceServiceIamModel = new ServiceCredentialsSourceServiceIam.Builder()
-      .apikey(serviceCredentialsSourceServiceIamApikeyModel)
-      .role(serviceCredentialsSourceServiceIamRoleModel)
-      .serviceid(serviceCredentialsSourceServiceIamServiceidModel)
-      .build();
-    assertEquals(serviceCredentialsSourceServiceIamModel.apikey(), serviceCredentialsSourceServiceIamApikeyModel);
-    assertEquals(serviceCredentialsSourceServiceIamModel.role(), serviceCredentialsSourceServiceIamRoleModel);
-    assertEquals(serviceCredentialsSourceServiceIamModel.serviceid(), serviceCredentialsSourceServiceIamServiceidModel);
-
-    ServiceCredentialsResourceKey serviceCredentialsResourceKeyModel = new ServiceCredentialsResourceKey.Builder()
-      .build();
-
     ServiceCredentialsSecretSourceService serviceCredentialsSecretSourceServiceModel = new ServiceCredentialsSecretSourceService.Builder()
       .instance(serviceCredentialsSourceServiceInstanceModel)
       .parameters(serviceCredentialsSourceServiceParametersModel)
       .role(serviceCredentialsSourceServiceRoleModel)
-      .iam(serviceCredentialsSourceServiceIamModel)
-      .resourceKey(serviceCredentialsResourceKeyModel)
       .build();
     assertEquals(serviceCredentialsSecretSourceServiceModel.instance(), serviceCredentialsSourceServiceInstanceModel);
     assertEquals(serviceCredentialsSecretSourceServiceModel.parameters(), serviceCredentialsSourceServiceParametersModel);
     assertEquals(serviceCredentialsSecretSourceServiceModel.role(), serviceCredentialsSourceServiceRoleModel);
-    assertEquals(serviceCredentialsSecretSourceServiceModel.iam(), serviceCredentialsSourceServiceIamModel);
-    assertEquals(serviceCredentialsSecretSourceServiceModel.resourceKey(), serviceCredentialsResourceKeyModel);
 
     ServiceCredentialsSecretPrototype serviceCredentialsSecretPrototypeModel = new ServiceCredentialsSecretPrototype.Builder()
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))

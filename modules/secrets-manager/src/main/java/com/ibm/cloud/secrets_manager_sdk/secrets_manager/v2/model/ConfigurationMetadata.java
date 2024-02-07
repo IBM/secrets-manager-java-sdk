@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -261,8 +261,8 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the letsEncryptPreferredChain.
    *
-   * If the CA offers multiple certificate chains, prefer the chain with an issuer matching this Subject Common Name. If
-   * no match, the default offered chain will be used.
+   * This field supports only the chains that Let's Encrypt provides. Keep empty to use the default or supply a valid
+   * Let's Encrypt-provided value. For a list of supported chains, see: https://letsencrypt.org/certificates/.
    *
    * @return the letsEncryptPreferredChain
    */

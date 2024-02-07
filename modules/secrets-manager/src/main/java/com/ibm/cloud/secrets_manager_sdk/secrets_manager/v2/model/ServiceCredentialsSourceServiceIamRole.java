@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -21,48 +21,7 @@ public class ServiceCredentialsSourceServiceIamRole extends GenericModel {
 
   protected String crn;
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-
-    /**
-     * Instantiates a new Builder from an existing ServiceCredentialsSourceServiceIamRole instance.
-     *
-     * @param serviceCredentialsSourceServiceIamRole the instance to initialize the Builder with
-     */
-    private Builder(ServiceCredentialsSourceServiceIamRole serviceCredentialsSourceServiceIamRole) {
-    }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a ServiceCredentialsSourceServiceIamRole.
-     *
-     * @return the new ServiceCredentialsSourceServiceIamRole instance
-     */
-    public ServiceCredentialsSourceServiceIamRole build() {
-      return new ServiceCredentialsSourceServiceIamRole(this);
-    }
-  }
-
   protected ServiceCredentialsSourceServiceIamRole() { }
-
-  protected ServiceCredentialsSourceServiceIamRole(Builder builder) {
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ServiceCredentialsSourceServiceIamRole builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 
   /**
    * Gets the crn.
@@ -71,7 +30,7 @@ public class ServiceCredentialsSourceServiceIamRole extends GenericModel {
    *
    * @return the crn
    */
-  public String crn() {
+  public String getCrn() {
     return crn;
   }
 }
