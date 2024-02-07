@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,90 +23,7 @@ public class ServiceCredentialsSourceServiceIam extends GenericModel {
   protected ServiceCredentialsSourceServiceIamRole role;
   protected ServiceCredentialsSourceServiceIamServiceid serviceid;
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private ServiceCredentialsSourceServiceIamApikey apikey;
-    private ServiceCredentialsSourceServiceIamRole role;
-    private ServiceCredentialsSourceServiceIamServiceid serviceid;
-
-    /**
-     * Instantiates a new Builder from an existing ServiceCredentialsSourceServiceIam instance.
-     *
-     * @param serviceCredentialsSourceServiceIam the instance to initialize the Builder with
-     */
-    private Builder(ServiceCredentialsSourceServiceIam serviceCredentialsSourceServiceIam) {
-      this.apikey = serviceCredentialsSourceServiceIam.apikey;
-      this.role = serviceCredentialsSourceServiceIam.role;
-      this.serviceid = serviceCredentialsSourceServiceIam.serviceid;
-    }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a ServiceCredentialsSourceServiceIam.
-     *
-     * @return the new ServiceCredentialsSourceServiceIam instance
-     */
-    public ServiceCredentialsSourceServiceIam build() {
-      return new ServiceCredentialsSourceServiceIam(this);
-    }
-
-    /**
-     * Set the apikey.
-     *
-     * @param apikey the apikey
-     * @return the ServiceCredentialsSourceServiceIam builder
-     */
-    public Builder apikey(ServiceCredentialsSourceServiceIamApikey apikey) {
-      this.apikey = apikey;
-      return this;
-    }
-
-    /**
-     * Set the role.
-     *
-     * @param role the role
-     * @return the ServiceCredentialsSourceServiceIam builder
-     */
-    public Builder role(ServiceCredentialsSourceServiceIamRole role) {
-      this.role = role;
-      return this;
-    }
-
-    /**
-     * Set the serviceid.
-     *
-     * @param serviceid the serviceid
-     * @return the ServiceCredentialsSourceServiceIam builder
-     */
-    public Builder serviceid(ServiceCredentialsSourceServiceIamServiceid serviceid) {
-      this.serviceid = serviceid;
-      return this;
-    }
-  }
-
   protected ServiceCredentialsSourceServiceIam() { }
-
-  protected ServiceCredentialsSourceServiceIam(Builder builder) {
-    apikey = builder.apikey;
-    role = builder.role;
-    serviceid = builder.serviceid;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ServiceCredentialsSourceServiceIam builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 
   /**
    * Gets the apikey.
@@ -115,7 +32,7 @@ public class ServiceCredentialsSourceServiceIam extends GenericModel {
    *
    * @return the apikey
    */
-  public ServiceCredentialsSourceServiceIamApikey apikey() {
+  public ServiceCredentialsSourceServiceIamApikey getApikey() {
     return apikey;
   }
 
@@ -126,7 +43,7 @@ public class ServiceCredentialsSourceServiceIam extends GenericModel {
    *
    * @return the role
    */
-  public ServiceCredentialsSourceServiceIamRole role() {
+  public ServiceCredentialsSourceServiceIamRole getRole() {
     return role;
   }
 
@@ -137,7 +54,7 @@ public class ServiceCredentialsSourceServiceIam extends GenericModel {
    *
    * @return the serviceid
    */
-  public ServiceCredentialsSourceServiceIamServiceid serviceid() {
+  public ServiceCredentialsSourceServiceIamServiceid getServiceid() {
     return serviceid;
   }
 }

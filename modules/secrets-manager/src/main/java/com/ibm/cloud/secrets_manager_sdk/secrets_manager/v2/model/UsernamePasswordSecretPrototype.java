@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -61,6 +61,7 @@ public class UsernamePasswordSecretPrototype extends SecretPrototype {
     private Map<String, Object> customMetadata;
     private Map<String, Object> versionCustomMetadata;
     private RotationPolicy rotation;
+    private PasswordGenerationPolicy passwordGenerationPolicy;
 
     /**
      * Instantiates a new Builder from an existing UsernamePasswordSecretPrototype instance.
@@ -79,6 +80,7 @@ public class UsernamePasswordSecretPrototype extends SecretPrototype {
       this.customMetadata = usernamePasswordSecretPrototype.customMetadata;
       this.versionCustomMetadata = usernamePasswordSecretPrototype.versionCustomMetadata;
       this.rotation = usernamePasswordSecretPrototype.rotation;
+      this.passwordGenerationPolicy = usernamePasswordSecretPrototype.passwordGenerationPolicy;
     }
 
     /**
@@ -93,13 +95,11 @@ public class UsernamePasswordSecretPrototype extends SecretPrototype {
      * @param secretType the secretType
      * @param name the name
      * @param username the username
-     * @param password the password
      */
-    public Builder(String secretType, String name, String username, String password) {
+    public Builder(String secretType, String name, String username) {
       this.secretType = secretType;
       this.name = name;
       this.username = username;
-      this.password = password;
     }
 
     /**
@@ -112,9 +112,9 @@ public class UsernamePasswordSecretPrototype extends SecretPrototype {
     }
 
     /**
-     * Adds an labels to labels.
+     * Adds a new element to labels.
      *
-     * @param labels the new labels
+     * @param labels the new element to be added
      * @return the UsernamePasswordSecretPrototype builder
      */
     public Builder addLabels(String labels) {
@@ -248,6 +248,17 @@ public class UsernamePasswordSecretPrototype extends SecretPrototype {
       this.rotation = rotation;
       return this;
     }
+
+    /**
+     * Set the passwordGenerationPolicy.
+     *
+     * @param passwordGenerationPolicy the passwordGenerationPolicy
+     * @return the UsernamePasswordSecretPrototype builder
+     */
+    public Builder passwordGenerationPolicy(PasswordGenerationPolicy passwordGenerationPolicy) {
+      this.passwordGenerationPolicy = passwordGenerationPolicy;
+      return this;
+    }
   }
 
   protected UsernamePasswordSecretPrototype() { }
@@ -259,8 +270,6 @@ public class UsernamePasswordSecretPrototype extends SecretPrototype {
       "name cannot be null");
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.username,
       "username cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.password,
-      "password cannot be null");
     secretType = builder.secretType;
     name = builder.name;
     description = builder.description;
@@ -272,6 +281,7 @@ public class UsernamePasswordSecretPrototype extends SecretPrototype {
     customMetadata = builder.customMetadata;
     versionCustomMetadata = builder.versionCustomMetadata;
     rotation = builder.rotation;
+    passwordGenerationPolicy = builder.passwordGenerationPolicy;
   }
 
   /**

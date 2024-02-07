@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -12,7 +12,6 @@
  */
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
-import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
@@ -23,9 +22,6 @@ public class ServiceCredentialsSecretSourceService extends GenericModel {
   protected ServiceCredentialsSourceServiceInstance instance;
   protected ServiceCredentialsSourceServiceParameters parameters;
   protected ServiceCredentialsSourceServiceRole role;
-  protected ServiceCredentialsSourceServiceIam iam;
-  @SerializedName("resource_key")
-  protected ServiceCredentialsResourceKey resourceKey;
 
   /**
    * Builder.
@@ -34,8 +30,6 @@ public class ServiceCredentialsSecretSourceService extends GenericModel {
     private ServiceCredentialsSourceServiceInstance instance;
     private ServiceCredentialsSourceServiceParameters parameters;
     private ServiceCredentialsSourceServiceRole role;
-    private ServiceCredentialsSourceServiceIam iam;
-    private ServiceCredentialsResourceKey resourceKey;
 
     /**
      * Instantiates a new Builder from an existing ServiceCredentialsSecretSourceService instance.
@@ -46,8 +40,6 @@ public class ServiceCredentialsSecretSourceService extends GenericModel {
       this.instance = serviceCredentialsSecretSourceService.instance;
       this.parameters = serviceCredentialsSecretSourceService.parameters;
       this.role = serviceCredentialsSecretSourceService.role;
-      this.iam = serviceCredentialsSecretSourceService.iam;
-      this.resourceKey = serviceCredentialsSecretSourceService.resourceKey;
     }
 
     /**
@@ -106,28 +98,6 @@ public class ServiceCredentialsSecretSourceService extends GenericModel {
       this.role = role;
       return this;
     }
-
-    /**
-     * Set the iam.
-     *
-     * @param iam the iam
-     * @return the ServiceCredentialsSecretSourceService builder
-     */
-    public Builder iam(ServiceCredentialsSourceServiceIam iam) {
-      this.iam = iam;
-      return this;
-    }
-
-    /**
-     * Set the resourceKey.
-     *
-     * @param resourceKey the resourceKey
-     * @return the ServiceCredentialsSecretSourceService builder
-     */
-    public Builder resourceKey(ServiceCredentialsResourceKey resourceKey) {
-      this.resourceKey = resourceKey;
-      return this;
-    }
   }
 
   protected ServiceCredentialsSecretSourceService() { }
@@ -138,8 +108,6 @@ public class ServiceCredentialsSecretSourceService extends GenericModel {
     instance = builder.instance;
     parameters = builder.parameters;
     role = builder.role;
-    iam = builder.iam;
-    resourceKey = builder.resourceKey;
   }
 
   /**
@@ -187,28 +155,6 @@ public class ServiceCredentialsSecretSourceService extends GenericModel {
    */
   public ServiceCredentialsSourceServiceRole role() {
     return role;
-  }
-
-  /**
-   * Gets the iam.
-   *
-   * The source service IAM data is returned in case IAM credentials where created for this secret.
-   *
-   * @return the iam
-   */
-  public ServiceCredentialsSourceServiceIam iam() {
-    return iam;
-  }
-
-  /**
-   * Gets the resourceKey.
-   *
-   * The source service resource key data of the generated service credentials.
-   *
-   * @return the resourceKey
-   */
-  public ServiceCredentialsResourceKey resourceKey() {
-    return resourceKey;
   }
 }
 

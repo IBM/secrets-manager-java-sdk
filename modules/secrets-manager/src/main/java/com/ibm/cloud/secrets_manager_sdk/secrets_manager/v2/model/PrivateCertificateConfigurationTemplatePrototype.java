@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -180,9 +180,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an allowedDomains to allowedDomains.
+     * Adds a new element to allowedDomains.
      *
-     * @param allowedDomains the new allowedDomains
+     * @param allowedDomains the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addAllowedDomains(String allowedDomains) {
@@ -196,9 +196,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an allowedUriSans to allowedUriSans.
+     * Adds a new element to allowedUriSans.
      *
-     * @param allowedUriSans the new allowedUriSans
+     * @param allowedUriSans the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addAllowedUriSans(String allowedUriSans) {
@@ -212,9 +212,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an allowedOtherSans to allowedOtherSans.
+     * Adds a new element to allowedOtherSans.
      *
-     * @param allowedOtherSans the new allowedOtherSans
+     * @param allowedOtherSans the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addAllowedOtherSans(String allowedOtherSans) {
@@ -228,9 +228,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an keyUsage to keyUsage.
+     * Adds a new element to keyUsage.
      *
-     * @param keyUsage the new keyUsage
+     * @param keyUsage the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addKeyUsage(String keyUsage) {
@@ -244,9 +244,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an extKeyUsage to extKeyUsage.
+     * Adds a new element to extKeyUsage.
      *
-     * @param extKeyUsage the new extKeyUsage
+     * @param extKeyUsage the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addExtKeyUsage(String extKeyUsage) {
@@ -260,9 +260,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an extKeyUsageOids to extKeyUsageOids.
+     * Adds a new element to extKeyUsageOids.
      *
-     * @param extKeyUsageOids the new extKeyUsageOids
+     * @param extKeyUsageOids the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addExtKeyUsageOids(String extKeyUsageOids) {
@@ -276,9 +276,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an ou to ou.
+     * Adds a new element to ou.
      *
-     * @param ou the new ou
+     * @param ou the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addOu(String ou) {
@@ -292,9 +292,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an organization to organization.
+     * Adds a new element to organization.
      *
-     * @param organization the new organization
+     * @param organization the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addOrganization(String organization) {
@@ -308,9 +308,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an country to country.
+     * Adds a new element to country.
      *
-     * @param country the new country
+     * @param country the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addCountry(String country) {
@@ -324,9 +324,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an locality to locality.
+     * Adds a new element to locality.
      *
-     * @param locality the new locality
+     * @param locality the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addLocality(String locality) {
@@ -340,9 +340,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an province to province.
+     * Adds a new element to province.
      *
-     * @param province the new province
+     * @param province the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addProvince(String province) {
@@ -356,9 +356,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an streetAddress to streetAddress.
+     * Adds a new element to streetAddress.
      *
-     * @param streetAddress the new streetAddress
+     * @param streetAddress the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addStreetAddress(String streetAddress) {
@@ -372,9 +372,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an postalCode to postalCode.
+     * Adds a new element to postalCode.
      *
-     * @param postalCode the new postalCode
+     * @param postalCode the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addPostalCode(String postalCode) {
@@ -388,9 +388,9 @@ public class PrivateCertificateConfigurationTemplatePrototype extends Configurat
     }
 
     /**
-     * Adds an policyIdentifiers to policyIdentifiers.
+     * Adds a new element to policyIdentifiers.
      *
-     * @param policyIdentifiers the new policyIdentifiers
+     * @param policyIdentifiers the new element to be added
      * @return the PrivateCertificateConfigurationTemplatePrototype builder
      */
     public Builder addPolicyIdentifiers(String policyIdentifiers) {

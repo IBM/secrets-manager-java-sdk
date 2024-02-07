@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,6 +16,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CommonRotationPolicy;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicyPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.UsernamePasswordSecretMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
@@ -43,6 +44,17 @@ public class UsernamePasswordSecretMetadataPatchTest {
     assertEquals(rotationPolicyModel.interval(), Long.valueOf("1"));
     assertEquals(rotationPolicyModel.unit(), "day");
 
+    PasswordGenerationPolicyPatch passwordGenerationPolicyPatchModel = new PasswordGenerationPolicyPatch.Builder()
+      .length(Long.valueOf("12"))
+      .includeDigits(true)
+      .includeSymbols(true)
+      .includeUppercase(true)
+      .build();
+    assertEquals(passwordGenerationPolicyPatchModel.length(), Long.valueOf("12"));
+    assertEquals(passwordGenerationPolicyPatchModel.includeDigits(), Boolean.valueOf(true));
+    assertEquals(passwordGenerationPolicyPatchModel.includeSymbols(), Boolean.valueOf(true));
+    assertEquals(passwordGenerationPolicyPatchModel.includeUppercase(), Boolean.valueOf(true));
+
     UsernamePasswordSecretMetadataPatch usernamePasswordSecretMetadataPatchModel = new UsernamePasswordSecretMetadataPatch.Builder()
       .name("my-secret-example")
       .description("Extended description for this secret.")
@@ -50,6 +62,7 @@ public class UsernamePasswordSecretMetadataPatchTest {
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .rotation(rotationPolicyModel)
       .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
+      .passwordGenerationPolicy(passwordGenerationPolicyPatchModel)
       .build();
     assertEquals(usernamePasswordSecretMetadataPatchModel.name(), "my-secret-example");
     assertEquals(usernamePasswordSecretMetadataPatchModel.description(), "Extended description for this secret.");
@@ -57,6 +70,7 @@ public class UsernamePasswordSecretMetadataPatchTest {
     assertEquals(usernamePasswordSecretMetadataPatchModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(usernamePasswordSecretMetadataPatchModel.rotation(), rotationPolicyModel);
     assertEquals(usernamePasswordSecretMetadataPatchModel.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
+    assertEquals(usernamePasswordSecretMetadataPatchModel.passwordGenerationPolicy(), passwordGenerationPolicyPatchModel);
 
     String json = TestUtilities.serialize(usernamePasswordSecretMetadataPatchModel);
 
@@ -67,6 +81,7 @@ public class UsernamePasswordSecretMetadataPatchTest {
     assertEquals(usernamePasswordSecretMetadataPatchModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(usernamePasswordSecretMetadataPatchModelNew.rotation().toString(), rotationPolicyModel.toString());
     assertEquals(usernamePasswordSecretMetadataPatchModelNew.expirationDate(), DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"));
+    assertEquals(usernamePasswordSecretMetadataPatchModelNew.passwordGenerationPolicy().toString(), passwordGenerationPolicyPatchModel.toString());
   }
   @Test
   public void testUsernamePasswordSecretMetadataPatchAsPatch() throws Throwable {
@@ -76,6 +91,13 @@ public class UsernamePasswordSecretMetadataPatchTest {
       .unit("day")
       .build();
 
+    PasswordGenerationPolicyPatch passwordGenerationPolicyPatchModel = new PasswordGenerationPolicyPatch.Builder()
+      .length(Long.valueOf("12"))
+      .includeDigits(true)
+      .includeSymbols(true)
+      .includeUppercase(true)
+      .build();
+
     UsernamePasswordSecretMetadataPatch usernamePasswordSecretMetadataPatchModel = new UsernamePasswordSecretMetadataPatch.Builder()
       .name("my-secret-example")
       .description("Extended description for this secret.")
@@ -83,6 +105,7 @@ public class UsernamePasswordSecretMetadataPatchTest {
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .rotation(rotationPolicyModel)
       .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
+      .passwordGenerationPolicy(passwordGenerationPolicyPatchModel)
       .build();
 
     Map<String, Object> mergePatch = usernamePasswordSecretMetadataPatchModel.asPatch();
@@ -93,6 +116,7 @@ public class UsernamePasswordSecretMetadataPatchTest {
     assertTrue(mergePatch.containsKey("custom_metadata"));
     assertTrue(mergePatch.containsKey("rotation"));
     assertTrue(mergePatch.containsKey("expiration_date"));
+    assertTrue(mergePatch.containsKey("password_generation_policy"));
   }
 
 }

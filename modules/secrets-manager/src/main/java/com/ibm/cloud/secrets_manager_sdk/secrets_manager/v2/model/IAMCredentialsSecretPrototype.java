@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -113,9 +113,9 @@ public class IAMCredentialsSecretPrototype extends SecretPrototype {
     }
 
     /**
-     * Adds an labels to labels.
+     * Adds a new element to labels.
      *
-     * @param labels the new labels
+     * @param labels the new element to be added
      * @return the IAMCredentialsSecretPrototype builder
      */
     public Builder addLabels(String labels) {
@@ -129,9 +129,9 @@ public class IAMCredentialsSecretPrototype extends SecretPrototype {
     }
 
     /**
-     * Adds an accessGroups to accessGroups.
+     * Adds a new element to accessGroups.
      *
-     * @param accessGroups the new accessGroups
+     * @param accessGroups the new element to be added
      * @return the IAMCredentialsSecretPrototype builder
      */
     public Builder addAccessGroups(String accessGroups) {

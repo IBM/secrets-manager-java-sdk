@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -34,30 +34,9 @@ public class ServiceCredentialsSourceServiceIamTest {
 
   @Test
   public void testServiceCredentialsSourceServiceIam() throws Throwable {
-    ServiceCredentialsSourceServiceIamApikey serviceCredentialsSourceServiceIamApikeyModel = new ServiceCredentialsSourceServiceIamApikey.Builder()
-      .build();
-
-    ServiceCredentialsSourceServiceIamRole serviceCredentialsSourceServiceIamRoleModel = new ServiceCredentialsSourceServiceIamRole.Builder()
-      .build();
-
-    ServiceCredentialsSourceServiceIamServiceid serviceCredentialsSourceServiceIamServiceidModel = new ServiceCredentialsSourceServiceIamServiceid.Builder()
-      .build();
-
-    ServiceCredentialsSourceServiceIam serviceCredentialsSourceServiceIamModel = new ServiceCredentialsSourceServiceIam.Builder()
-      .apikey(serviceCredentialsSourceServiceIamApikeyModel)
-      .role(serviceCredentialsSourceServiceIamRoleModel)
-      .serviceid(serviceCredentialsSourceServiceIamServiceidModel)
-      .build();
-    assertEquals(serviceCredentialsSourceServiceIamModel.apikey(), serviceCredentialsSourceServiceIamApikeyModel);
-    assertEquals(serviceCredentialsSourceServiceIamModel.role(), serviceCredentialsSourceServiceIamRoleModel);
-    assertEquals(serviceCredentialsSourceServiceIamModel.serviceid(), serviceCredentialsSourceServiceIamServiceidModel);
-
-    String json = TestUtilities.serialize(serviceCredentialsSourceServiceIamModel);
-
-    ServiceCredentialsSourceServiceIam serviceCredentialsSourceServiceIamModelNew = TestUtilities.deserialize(json, ServiceCredentialsSourceServiceIam.class);
-    assertTrue(serviceCredentialsSourceServiceIamModelNew instanceof ServiceCredentialsSourceServiceIam);
-    assertEquals(serviceCredentialsSourceServiceIamModelNew.apikey().toString(), serviceCredentialsSourceServiceIamApikeyModel.toString());
-    assertEquals(serviceCredentialsSourceServiceIamModelNew.role().toString(), serviceCredentialsSourceServiceIamRoleModel.toString());
-    assertEquals(serviceCredentialsSourceServiceIamModelNew.serviceid().toString(), serviceCredentialsSourceServiceIamServiceidModel.toString());
+    ServiceCredentialsSourceServiceIam serviceCredentialsSourceServiceIamModel = new ServiceCredentialsSourceServiceIam();
+    assertNull(serviceCredentialsSourceServiceIamModel.getApikey());
+    assertNull(serviceCredentialsSourceServiceIamModel.getRole());
+    assertNull(serviceCredentialsSourceServiceIamModel.getServiceid());
   }
 }
