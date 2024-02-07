@@ -142,8 +142,7 @@ public class main {
 Replace the `IBM_CLOUD_API_KEY` and `SERVICE_URL` values. Then run your application. You should see the payload of the
 arbitrary secret that was created.
 
-For more information and IBM Cloud SDK usage examples for Java, see
-the [IBM Cloud SDK Common documentation](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md).
+For more information and IBM Cloud SDK usage examples for Java, see the [IBM Cloud SDK Common documentation](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md).
 
 ## Questions
 
