@@ -251,7 +251,7 @@ public class SecretMetadata extends GenericModel {
    *
    * Labels that you can use to search secrets in your instance. Only 30 labels can be created.
    *
-   * Label can be between 2-30 characters, including spaces.
+   * Label can be between 2-64 characters, including spaces.
    *
    * To protect your privacy, do not use personal data, such as your name or location, as a label for your secret.
    *

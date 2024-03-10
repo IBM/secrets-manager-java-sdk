@@ -49,5 +49,6 @@ public class IAMCredentialsSecretTest {
     assertNull(iamCredentialsSecretModel.getServiceId());
     assertNull(iamCredentialsSecretModel.isReuseApiKey());
     assertNull(iamCredentialsSecretModel.getRotation());
+    assertNull(iamCredentialsSecretModel.getExpirationDate());
   }
 }
