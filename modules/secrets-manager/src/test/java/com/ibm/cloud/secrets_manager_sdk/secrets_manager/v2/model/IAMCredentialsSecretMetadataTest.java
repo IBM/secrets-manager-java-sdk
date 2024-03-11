@@ -49,5 +49,6 @@ public class IAMCredentialsSecretMetadataTest {
     assertNull(iamCredentialsSecretMetadataModel.getServiceId());
     assertNull(iamCredentialsSecretMetadataModel.isReuseApiKey());
     assertNull(iamCredentialsSecretMetadataModel.getRotation());
+    assertNull(iamCredentialsSecretMetadataModel.getExpirationDate());
   }
 }

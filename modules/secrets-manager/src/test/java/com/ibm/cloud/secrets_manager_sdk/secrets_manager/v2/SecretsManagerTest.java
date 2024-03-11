@@ -608,6 +608,8 @@ public class SecretsManagerTest {
       .sort("created_at")
       .search("example")
       .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+      .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+      .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
       .build();
 
     // Invoke listSecrets() with a valid options model and verify the result
@@ -631,6 +633,8 @@ public class SecretsManagerTest {
     assertEquals(query.get("sort"), "created_at");
     assertEquals(query.get("search"), "example");
     assertEquals(query.get("groups"), RequestUtils.join(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"), ","));
+    assertEquals(query.get("secret_types"), RequestUtils.join(java.util.Arrays.asList("arbitrary", "kv"), ","));
+    assertEquals(query.get("match_all_labels"), RequestUtils.join(java.util.Arrays.asList("dev", "us-south"), ","));
   }
 
   // Test the listSecrets operation with and without retries enabled
@@ -667,6 +671,8 @@ public class SecretsManagerTest {
       .sort("created_at")
       .search("example")
       .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+      .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+      .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
       .build();
 
     List<SecretMetadata> allResults = new ArrayList<>();
@@ -703,6 +709,8 @@ public class SecretsManagerTest {
       .sort("created_at")
       .search("example")
       .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+      .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+      .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
       .build();
 
     SecretsPager pager = new SecretsPager(secretsManagerService, listSecretsOptions);

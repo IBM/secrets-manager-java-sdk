@@ -368,6 +368,8 @@ public class SecretsManagerExamples {
         .sort("created_at")
         .search("example")
         .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+        .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+        .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
         .build();
 
       SecretsPager pager = new SecretsPager(secretsManagerService, listSecretsOptions);
