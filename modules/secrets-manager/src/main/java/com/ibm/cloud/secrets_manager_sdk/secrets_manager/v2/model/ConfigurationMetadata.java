@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import java.util.Date;
@@ -43,7 +44,6 @@ public class ConfigurationMetadata extends GenericModel {
     discriminatorMapping.put("private_cert_configuration_intermediate_ca", PrivateCertificateConfigurationIntermediateCAMetadata.class);
     discriminatorMapping.put("private_cert_configuration_template", PrivateCertificateConfigurationTemplateMetadata.class);
   }
-
   /**
    * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
    * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
