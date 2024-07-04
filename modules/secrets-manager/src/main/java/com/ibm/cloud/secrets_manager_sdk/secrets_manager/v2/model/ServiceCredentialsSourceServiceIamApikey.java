@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,48 +23,7 @@ public class ServiceCredentialsSourceServiceIamApikey extends GenericModel {
   protected String id;
   protected String name;
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-
-    /**
-     * Instantiates a new Builder from an existing ServiceCredentialsSourceServiceIamApikey instance.
-     *
-     * @param serviceCredentialsSourceServiceIamApikey the instance to initialize the Builder with
-     */
-    private Builder(ServiceCredentialsSourceServiceIamApikey serviceCredentialsSourceServiceIamApikey) {
-    }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a ServiceCredentialsSourceServiceIamApikey.
-     *
-     * @return the new ServiceCredentialsSourceServiceIamApikey instance
-     */
-    public ServiceCredentialsSourceServiceIamApikey build() {
-      return new ServiceCredentialsSourceServiceIamApikey(this);
-    }
-  }
-
   protected ServiceCredentialsSourceServiceIamApikey() { }
-
-  protected ServiceCredentialsSourceServiceIamApikey(Builder builder) {
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ServiceCredentialsSourceServiceIamApikey builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 
   /**
    * Gets the description.
@@ -73,7 +32,7 @@ public class ServiceCredentialsSourceServiceIamApikey extends GenericModel {
    *
    * @return the description
    */
-  public String description() {
+  public String getDescription() {
     return description;
   }
 
@@ -84,7 +43,7 @@ public class ServiceCredentialsSourceServiceIamApikey extends GenericModel {
    *
    * @return the id
    */
-  public String id() {
+  public String getId() {
     return id;
   }
 
@@ -95,7 +54,7 @@ public class ServiceCredentialsSourceServiceIamApikey extends GenericModel {
    *
    * @return the name
    */
-  public String name() {
+  public String getName() {
     return name;
   }
 }

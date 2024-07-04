@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -187,9 +187,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an altNames to altNames.
+     * Adds a new element to altNames.
      *
-     * @param altNames the new altNames
+     * @param altNames the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addAltNames(String altNames) {
@@ -203,9 +203,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an otherSans to otherSans.
+     * Adds a new element to otherSans.
      *
-     * @param otherSans the new otherSans
+     * @param otherSans the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addOtherSans(String otherSans) {
@@ -219,9 +219,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an ou to ou.
+     * Adds a new element to ou.
      *
-     * @param ou the new ou
+     * @param ou the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addOu(String ou) {
@@ -235,9 +235,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an organization to organization.
+     * Adds a new element to organization.
      *
-     * @param organization the new organization
+     * @param organization the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addOrganization(String organization) {
@@ -251,9 +251,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an country to country.
+     * Adds a new element to country.
      *
-     * @param country the new country
+     * @param country the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addCountry(String country) {
@@ -267,9 +267,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an locality to locality.
+     * Adds a new element to locality.
      *
-     * @param locality the new locality
+     * @param locality the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addLocality(String locality) {
@@ -283,9 +283,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an province to province.
+     * Adds a new element to province.
      *
-     * @param province the new province
+     * @param province the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addProvince(String province) {
@@ -299,9 +299,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an streetAddress to streetAddress.
+     * Adds a new element to streetAddress.
      *
-     * @param streetAddress the new streetAddress
+     * @param streetAddress the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addStreetAddress(String streetAddress) {
@@ -315,9 +315,9 @@ public class PrivateCertificateConfigurationIntermediateCAPrototype extends Conf
     }
 
     /**
-     * Adds an postalCode to postalCode.
+     * Adds a new element to postalCode.
      *
-     * @param postalCode the new postalCode
+     * @param postalCode the new element to be added
      * @return the PrivateCertificateConfigurationIntermediateCAPrototype builder
      */
     public Builder addPostalCode(String postalCode) {

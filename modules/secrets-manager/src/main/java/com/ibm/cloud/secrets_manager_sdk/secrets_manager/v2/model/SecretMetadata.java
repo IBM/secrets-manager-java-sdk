@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -159,7 +159,9 @@ public class SecretMetadata extends GenericModel {
   protected String ca;
   protected String dns;
   @SerializedName("source_service")
-  protected ServiceCredentialsSecretSourceService sourceService;
+  protected ServiceCredentialsSecretSourceServiceRO sourceService;
+  @SerializedName("password_generation_policy")
+  protected PasswordGenerationPolicyRO passwordGenerationPolicy;
 
   protected SecretMetadata() { }
 
@@ -249,7 +251,7 @@ public class SecretMetadata extends GenericModel {
    *
    * Labels that you can use to search secrets in your instance. Only 30 labels can be created.
    *
-   * Label can be between 2-30 characters, including spaces.
+   * Label can be between 2-64 characters, including spaces.
    *
    * To protect your privacy, do not use personal data, such as your name or location, as a label for your secret.
    *
@@ -666,12 +668,23 @@ public class SecretMetadata extends GenericModel {
   /**
    * Gets the sourceService.
    *
-   * The properties that are required to create the service credentials for the specified source service instance.
+   * The properties of the resource key that was created for this source service instance.
    *
    * @return the sourceService
    */
-  public ServiceCredentialsSecretSourceService getSourceService() {
+  public ServiceCredentialsSecretSourceServiceRO getSourceService() {
     return sourceService;
+  }
+
+  /**
+   * Gets the passwordGenerationPolicy.
+   *
+   * Policy for auto-generated passwords.
+   *
+   * @return the passwordGenerationPolicy
+   */
+  public PasswordGenerationPolicyRO getPasswordGenerationPolicy() {
+    return passwordGenerationPolicy;
   }
 }
 

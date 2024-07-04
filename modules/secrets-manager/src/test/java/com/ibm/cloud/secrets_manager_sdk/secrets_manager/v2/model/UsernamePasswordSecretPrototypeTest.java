@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,6 +16,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CommonRotationPolicy;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicy;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.UsernamePasswordSecretPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
@@ -42,6 +43,17 @@ public class UsernamePasswordSecretPrototypeTest {
     assertEquals(rotationPolicyModel.interval(), Long.valueOf("1"));
     assertEquals(rotationPolicyModel.unit(), "day");
 
+    PasswordGenerationPolicy passwordGenerationPolicyModel = new PasswordGenerationPolicy.Builder()
+      .length(Long.valueOf("32"))
+      .includeDigits(true)
+      .includeSymbols(true)
+      .includeUppercase(true)
+      .build();
+    assertEquals(passwordGenerationPolicyModel.length(), Long.valueOf("32"));
+    assertEquals(passwordGenerationPolicyModel.includeDigits(), Boolean.valueOf(true));
+    assertEquals(passwordGenerationPolicyModel.includeSymbols(), Boolean.valueOf(true));
+    assertEquals(passwordGenerationPolicyModel.includeUppercase(), Boolean.valueOf(true));
+
     UsernamePasswordSecretPrototype usernamePasswordSecretPrototypeModel = new UsernamePasswordSecretPrototype.Builder()
       .secretType("username_password")
       .name("my-secret-example")
@@ -54,6 +66,7 @@ public class UsernamePasswordSecretPrototypeTest {
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
       .rotation(rotationPolicyModel)
+      .passwordGenerationPolicy(passwordGenerationPolicyModel)
       .build();
     assertEquals(usernamePasswordSecretPrototypeModel.secretType(), "username_password");
     assertEquals(usernamePasswordSecretPrototypeModel.name(), "my-secret-example");
@@ -66,6 +79,7 @@ public class UsernamePasswordSecretPrototypeTest {
     assertEquals(usernamePasswordSecretPrototypeModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(usernamePasswordSecretPrototypeModel.versionCustomMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
     assertEquals(usernamePasswordSecretPrototypeModel.rotation(), rotationPolicyModel);
+    assertEquals(usernamePasswordSecretPrototypeModel.passwordGenerationPolicy(), passwordGenerationPolicyModel);
 
     String json = TestUtilities.serialize(usernamePasswordSecretPrototypeModel);
 
@@ -81,6 +95,7 @@ public class UsernamePasswordSecretPrototypeTest {
     assertEquals(usernamePasswordSecretPrototypeModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(usernamePasswordSecretPrototypeModelNew.versionCustomMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
     assertEquals(usernamePasswordSecretPrototypeModelNew.rotation().toString(), rotationPolicyModel.toString());
+    assertEquals(usernamePasswordSecretPrototypeModelNew.passwordGenerationPolicy().toString(), passwordGenerationPolicyModel.toString());
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

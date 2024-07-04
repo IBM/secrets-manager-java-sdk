@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -38,7 +38,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ConfigurationM
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ConfigurationPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ConfigurationPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ConfigurationsPager;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CosHmacKeys;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateConfigurationActionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateNotificationsRegistrationOptions;
@@ -103,6 +102,9 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PaginatedColle
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PaginatedCollectionLast;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PaginatedCollectionNext;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PaginatedCollectionPrevious;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicy;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicyPatch;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PasswordGenerationPolicyRO;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificate;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateActionRevoke;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateActionRevokePrototype;
@@ -197,6 +199,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredent
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretSourceService;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretSourceServiceRO;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretVersionPrototype;
@@ -605,6 +608,8 @@ public class SecretsManagerTest {
       .sort("created_at")
       .search("example")
       .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+      .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+      .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
       .build();
 
     // Invoke listSecrets() with a valid options model and verify the result
@@ -628,6 +633,8 @@ public class SecretsManagerTest {
     assertEquals(query.get("sort"), "created_at");
     assertEquals(query.get("search"), "example");
     assertEquals(query.get("groups"), RequestUtils.join(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"), ","));
+    assertEquals(query.get("secret_types"), RequestUtils.join(java.util.Arrays.asList("arbitrary", "kv"), ","));
+    assertEquals(query.get("match_all_labels"), RequestUtils.join(java.util.Arrays.asList("dev", "us-south"), ","));
   }
 
   // Test the listSecrets operation with and without retries enabled
@@ -664,6 +671,8 @@ public class SecretsManagerTest {
       .sort("created_at")
       .search("example")
       .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+      .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+      .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
       .build();
 
     List<SecretMetadata> allResults = new ArrayList<>();
@@ -700,6 +709,8 @@ public class SecretsManagerTest {
       .sort("created_at")
       .search("example")
       .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+      .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+      .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
       .build();
 
     SecretsPager pager = new SecretsPager(secretsManagerService, listSecretsOptions);

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -383,8 +383,8 @@ public class Configuration extends GenericModel {
   /**
    * Gets the letsEncryptPreferredChain.
    *
-   * If the CA offers multiple certificate chains, prefer the chain with an issuer matching this Subject Common Name. If
-   * no match, the default offered chain will be used.
+   * This field supports only the chains that Let's Encrypt provides. Keep empty to use the default or supply a valid
+   * Let's Encrypt-provided value. For a list of supported chains, see: https://letsencrypt.org/certificates/.
    *
    * @return the letsEncryptPreferredChain
    */
@@ -407,16 +407,22 @@ public class Configuration extends GenericModel {
   /**
    * Gets the cloudInternetServicesApikey.
    *
-   * An IBM Cloud API key that can to list domains in your Cloud Internet Services instance.
+   * An IBM Cloud API key that can list domains in your Cloud Internet Services instance and add DNS records.
    *
    * To grant Secrets Manager the ability to view the Cloud Internet Services instance and all of its domains, the API
-   * key must be assigned the Reader service role on Internet Services (`internet-svcs`).
+   * key must be assigned the Reader service role on Internet Services (`internet-svcs`). In order to add DNS records
+   * you need to assign the Manager role.
    *
-   * If you need to manage specific domains, you can assign the Manager role. For production environments, it is
-   * recommended that you assign the Reader access role, and then use the
+   * If you want to manage specific domains, you can assign the Manager role for this specific domain.  For production
+   * environments, it is recommended that you assign the Reader access role, and then use the
    * [IAM Policy Management API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to control specific
-   * domains. For more information, see the
-   * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+   * domains.
+   *
+   * If an IBM Cloud API key value is empty Secrets Manager tries to access your Cloud Internet Services instance  with
+   * service-to-service authorization.
+   *
+   * For more information, see the
+   * [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-cis).
    *
    * @return the cloudInternetServicesApikey
    */

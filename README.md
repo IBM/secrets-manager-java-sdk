@@ -32,7 +32,7 @@ The IBM Cloud Secrets Manager Java SDK allows developers to programmatically int
 - An [IBM Cloud account](https://cloud.ibm.com/registration).
 - A [Secrets Manager service instance](https://cloud.ibm.com/catalog/services/secrets-manager).
 - An [IBM Cloud API key](https://cloud.ibm.com/iam/apikeys) that allows the SDK to access your account.
-- Java 8
+- Java 11
 
 ## Installation
 
@@ -42,14 +42,14 @@ The IBM Cloud Secrets Manager Java SDK allows developers to programmatically int
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager</artifactId>
-    <version>2.0.7</version>
+    <version>2.0.11</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager:2.0.7'
+'com.ibm.cloud:secrets-manager:2.0.11'
 ```
 
 ## Authentication
@@ -142,8 +142,7 @@ public class main {
 Replace the `IBM_CLOUD_API_KEY` and `SERVICE_URL` values. Then run your application. You should see the payload of the
 arbitrary secret that was created.
 
-For more information and IBM Cloud SDK usage examples for Java, see
-the [IBM Cloud SDK Common documentation](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md).
+For more information and IBM Cloud SDK usage examples for Java, see the [IBM Cloud SDK Common documentation](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md).
 
 ## Questions
 

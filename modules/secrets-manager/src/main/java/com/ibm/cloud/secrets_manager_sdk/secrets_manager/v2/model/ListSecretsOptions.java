@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,11 +22,32 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListSecretsOptions extends GenericModel {
 
+  public interface SecretTypes {
+    /** arbitrary. */
+    String ARBITRARY = "arbitrary";
+    /** iam_credentials. */
+    String IAM_CREDENTIALS = "iam_credentials";
+    /** imported_cert. */
+    String IMPORTED_CERT = "imported_cert";
+    /** kv. */
+    String KV = "kv";
+    /** private_cert. */
+    String PRIVATE_CERT = "private_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+    /** service_credentials. */
+    String SERVICE_CREDENTIALS = "service_credentials";
+    /** username_password. */
+    String USERNAME_PASSWORD = "username_password";
+  }
+
   protected Long offset;
   protected Long limit;
   protected String sort;
   protected String search;
   protected List<String> groups;
+  protected List<String> secretTypes;
+  protected List<String> matchAllLabels;
 
   /**
    * Builder.
@@ -37,6 +58,8 @@ public class ListSecretsOptions extends GenericModel {
     private String sort;
     private String search;
     private List<String> groups;
+    private List<String> secretTypes;
+    private List<String> matchAllLabels;
 
     /**
      * Instantiates a new Builder from an existing ListSecretsOptions instance.
@@ -49,6 +72,8 @@ public class ListSecretsOptions extends GenericModel {
       this.sort = listSecretsOptions.sort;
       this.search = listSecretsOptions.search;
       this.groups = listSecretsOptions.groups;
+      this.secretTypes = listSecretsOptions.secretTypes;
+      this.matchAllLabels = listSecretsOptions.matchAllLabels;
     }
 
     /**
@@ -67,9 +92,9 @@ public class ListSecretsOptions extends GenericModel {
     }
 
     /**
-     * Adds an groups to groups.
+     * Adds a new element to groups.
      *
-     * @param groups the new groups
+     * @param groups the new element to be added
      * @return the ListSecretsOptions builder
      */
     public Builder addGroups(String groups) {
@@ -79,6 +104,38 @@ public class ListSecretsOptions extends GenericModel {
         this.groups = new ArrayList<String>();
       }
       this.groups.add(groups);
+      return this;
+    }
+
+    /**
+     * Adds a new element to secretTypes.
+     *
+     * @param secretTypes the new element to be added
+     * @return the ListSecretsOptions builder
+     */
+    public Builder addSecretTypes(String secretTypes) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(secretTypes,
+        "secretTypes cannot be null");
+      if (this.secretTypes == null) {
+        this.secretTypes = new ArrayList<String>();
+      }
+      this.secretTypes.add(secretTypes);
+      return this;
+    }
+
+    /**
+     * Adds a new element to matchAllLabels.
+     *
+     * @param matchAllLabels the new element to be added
+     * @return the ListSecretsOptions builder
+     */
+    public Builder addMatchAllLabels(String matchAllLabels) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(matchAllLabels,
+        "matchAllLabels cannot be null");
+      if (this.matchAllLabels == null) {
+        this.matchAllLabels = new ArrayList<String>();
+      }
+      this.matchAllLabels.add(matchAllLabels);
       return this;
     }
 
@@ -137,6 +194,30 @@ public class ListSecretsOptions extends GenericModel {
       this.groups = groups;
       return this;
     }
+
+    /**
+     * Set the secretTypes.
+     * Existing secretTypes will be replaced.
+     *
+     * @param secretTypes the secretTypes
+     * @return the ListSecretsOptions builder
+     */
+    public Builder secretTypes(List<String> secretTypes) {
+      this.secretTypes = secretTypes;
+      return this;
+    }
+
+    /**
+     * Set the matchAllLabels.
+     * Existing matchAllLabels will be replaced.
+     *
+     * @param matchAllLabels the matchAllLabels
+     * @return the ListSecretsOptions builder
+     */
+    public Builder matchAllLabels(List<String> matchAllLabels) {
+      this.matchAllLabels = matchAllLabels;
+      return this;
+    }
   }
 
   protected ListSecretsOptions() { }
@@ -147,6 +228,8 @@ public class ListSecretsOptions extends GenericModel {
     sort = builder.sort;
     search = builder.search;
     groups = builder.groups;
+    secretTypes = builder.secretTypes;
+    matchAllLabels = builder.matchAllLabels;
   }
 
   /**
@@ -238,6 +321,38 @@ public class ListSecretsOptions extends GenericModel {
    */
   public List<String> groups() {
     return groups;
+  }
+
+  /**
+   * Gets the secretTypes.
+   *
+   * Filter secrets by types.
+   *
+   * You can apply multiple filters by using a comma-separated list of secret types.
+   *
+   * **Usage:** To retrieve a list of imported certificates and public certificates use
+   * `..?secret_types=imported_cert,public_cert`.
+   *
+   * @return the secretTypes
+   */
+  public List<String> secretTypes() {
+    return secretTypes;
+  }
+
+  /**
+   * Gets the matchAllLabels.
+   *
+   * Filter secrets by labels.
+   *
+   * You can use a comma-separated list of labels to filter secrets that include all of the labels in the list.
+   *
+   * **Usage:** To retrieve a list of secrets that include both the label "dev" and the label "us-south" in their list
+   * of labels, use `..?labels=dev,us-south`.
+   *
+   * @return the matchAllLabels
+   */
+  public List<String> matchAllLabels() {
+    return matchAllLabels;
   }
 }
 

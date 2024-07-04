@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -37,11 +37,15 @@ public class ListSecretsOptionsTest {
       .sort("created_at")
       .search("example")
       .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+      .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+      .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
       .build();
     assertEquals(listSecretsOptionsModel.offset(), Long.valueOf("0"));
     assertEquals(listSecretsOptionsModel.limit(), Long.valueOf("200"));
     assertEquals(listSecretsOptionsModel.sort(), "created_at");
     assertEquals(listSecretsOptionsModel.search(), "example");
     assertEquals(listSecretsOptionsModel.groups(), java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"));
+    assertEquals(listSecretsOptionsModel.secretTypes(), java.util.Arrays.asList("arbitrary", "kv"));
+    assertEquals(listSecretsOptionsModel.matchAllLabels(), java.util.Arrays.asList("dev", "us-south"));
   }
 }

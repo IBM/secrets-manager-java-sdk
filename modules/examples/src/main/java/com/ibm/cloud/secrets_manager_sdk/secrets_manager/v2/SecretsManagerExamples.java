@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -368,6 +368,8 @@ public class SecretsManagerExamples {
         .sort("created_at")
         .search("example")
         .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+        .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+        .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
         .build();
 
       SecretsPager pager = new SecretsPager(secretsManagerService, listSecretsOptions);

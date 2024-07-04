@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -146,6 +146,8 @@ public class SecretPrototype extends GenericModel {
   protected ServiceCredentialsSecretSourceService sourceService;
   protected String username;
   protected String password;
+  @SerializedName("password_generation_policy")
+  protected PasswordGenerationPolicy passwordGenerationPolicy;
 
   protected SecretPrototype() { }
 
@@ -191,7 +193,7 @@ public class SecretPrototype extends GenericModel {
    *
    * Labels that you can use to search secrets in your instance. Only 30 labels can be created.
    *
-   * Label can be between 2-30 characters, including spaces.
+   * Label can be between 2-64 characters, including spaces.
    *
    * To protect your privacy, do not use personal data, such as your name or location, as a label for your secret.
    *
@@ -571,12 +573,24 @@ public class SecretPrototype extends GenericModel {
   /**
    * Gets the password.
    *
-   * The password that is assigned to an `username_password` secret.
+   * The password that is assigned to an `username_password` secret. If you omit this parameter, Secrets Manager
+   * generates a new random password for your secret.
    *
    * @return the password
    */
   public String password() {
     return password;
+  }
+
+  /**
+   * Gets the passwordGenerationPolicy.
+   *
+   * Policy for auto-generated passwords.
+   *
+   * @return the passwordGenerationPolicy
+   */
+  public PasswordGenerationPolicy passwordGenerationPolicy() {
+    return passwordGenerationPolicy;
   }
 }
 

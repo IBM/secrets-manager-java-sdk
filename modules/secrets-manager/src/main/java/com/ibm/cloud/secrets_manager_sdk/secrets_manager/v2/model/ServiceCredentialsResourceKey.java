@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,48 +22,7 @@ public class ServiceCredentialsResourceKey extends GenericModel {
   protected String crn;
   protected String name;
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-
-    /**
-     * Instantiates a new Builder from an existing ServiceCredentialsResourceKey instance.
-     *
-     * @param serviceCredentialsResourceKey the instance to initialize the Builder with
-     */
-    private Builder(ServiceCredentialsResourceKey serviceCredentialsResourceKey) {
-    }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a ServiceCredentialsResourceKey.
-     *
-     * @return the new ServiceCredentialsResourceKey instance
-     */
-    public ServiceCredentialsResourceKey build() {
-      return new ServiceCredentialsResourceKey(this);
-    }
-  }
-
   protected ServiceCredentialsResourceKey() { }
-
-  protected ServiceCredentialsResourceKey(Builder builder) {
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ServiceCredentialsResourceKey builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 
   /**
    * Gets the crn.
@@ -72,7 +31,7 @@ public class ServiceCredentialsResourceKey extends GenericModel {
    *
    * @return the crn
    */
-  public String crn() {
+  public String getCrn() {
     return crn;
   }
 
@@ -83,7 +42,7 @@ public class ServiceCredentialsResourceKey extends GenericModel {
    *
    * @return the name
    */
-  public String name() {
+  public String getName() {
     return name;
   }
 }
