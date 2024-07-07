@@ -40,11 +40,11 @@ public class CreateConfigurationActionOptionsTest {
     CreateConfigurationActionOptions createConfigurationActionOptionsModel = new CreateConfigurationActionOptions.Builder()
       .name("configuration-name")
       .configActionPrototype(configurationActionPrototypeModel)
-      .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+      .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
       .build();
     assertEquals(createConfigurationActionOptionsModel.name(), "configuration-name");
     assertEquals(createConfigurationActionOptionsModel.configActionPrototype(), configurationActionPrototypeModel);
-    assertEquals(createConfigurationActionOptionsModel.xSmAcceptConfigurationType(), "private_cert_configuration_root_ca");
+    assertEquals(createConfigurationActionOptionsModel.xSmAcceptConfigurationType(), "public_cert_configuration_dns_cloud_internet_services");
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

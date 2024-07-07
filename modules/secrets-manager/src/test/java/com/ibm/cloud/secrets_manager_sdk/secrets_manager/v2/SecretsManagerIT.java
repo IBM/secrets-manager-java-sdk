@@ -132,6 +132,9 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertifi
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationTemplateMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationTemplatePatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationTemplatePrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoKey;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoProvider;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoProviderHPCS;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificatePrototype;
@@ -447,35 +450,11 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   @Test(dependsOnMethods = { "testCreateSecretLocksBulk" })
   public void testCreateConfiguration() throws Exception {
     try {
-      PrivateCertificateConfigurationRootCAPrototype configurationPrototypeModel = new PrivateCertificateConfigurationRootCAPrototype.Builder()
-        .configType("private_cert_configuration_root_ca")
-        .name("example-root-CA")
-        .maxTtl("43830h")
-        .crlExpiry("72h")
-        .crlDisable(false)
-        .crlDistributionPointsEncoded(true)
-        .issuingCertificatesUrlsEncoded(true)
-        .commonName("example.com")
-        .altNames(java.util.Arrays.asList("alt-name-1", "alt-name-2"))
-        .ipSans("127.0.0.1")
-        .uriSans("https://www.example.com/test")
-        .otherSans(java.util.Arrays.asList("1.2.3.5.4.3.201.10.4.3;utf8:test@example.com"))
-        .ttl("2190h")
-        .format("pem")
-        .privateKeyFormat("der")
-        .keyType("rsa")
-        .keyBits(Long.valueOf("4096"))
-        .maxPathLength(Long.valueOf("-1"))
-        .excludeCnFromSans(false)
-        .permittedDnsDomains(java.util.Arrays.asList("testString"))
-        .ou(java.util.Arrays.asList("testString"))
-        .organization(java.util.Arrays.asList("testString"))
-        .country(java.util.Arrays.asList("testString"))
-        .locality(java.util.Arrays.asList("testString"))
-        .province(java.util.Arrays.asList("testString"))
-        .streetAddress(java.util.Arrays.asList("testString"))
-        .postalCode(java.util.Arrays.asList("testString"))
-        .serialNumber("d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5")
+      PublicCertificateConfigurationDNSCloudInternetServicesPrototype configurationPrototypeModel = new PublicCertificateConfigurationDNSCloudInternetServicesPrototype.Builder()
+        .configType("public_cert_configuration_dns_cloud_internet_services")
+        .name("example-cloud-internet-services-config")
+        .cloudInternetServicesApikey("5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ")
+        .cloudInternetServicesCrn("crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::")
         .build();
 
       CreateConfigurationOptions createConfigurationOptions = new CreateConfigurationOptions.Builder()
@@ -1089,7 +1068,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     try {
       GetConfigurationOptions getConfigurationOptions = new GetConfigurationOptions.Builder()
         .name(configurationNameForGetConfigurationLink)
-        .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
         .build();
 
       // Invoke operation
@@ -1110,15 +1089,16 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   @Test(dependsOnMethods = { "testGetConfiguration" })
   public void testUpdateConfiguration() throws Exception {
     try {
-      IAMCredentialsConfigurationPatch configurationPatchModel = new IAMCredentialsConfigurationPatch.Builder()
-        .apiKey("RmnPBn6n1dzoo0v3kyznKEpg0WzdTpW9lW7FtKa017_u")
+      PublicCertificateConfigurationDNSCloudInternetServicesPatch configurationPatchModel = new PublicCertificateConfigurationDNSCloudInternetServicesPatch.Builder()
+        .cloudInternetServicesApikey("5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ")
+        .cloudInternetServicesCrn("crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::")
         .build();
       Map<String, Object> configurationPatchModelAsPatch = configurationPatchModel.asPatch();
 
       UpdateConfigurationOptions updateConfigurationOptions = new UpdateConfigurationOptions.Builder()
         .name(configurationNameForGetConfigurationLink)
         .configurationPatch(configurationPatchModelAsPatch)
-        .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
         .build();
 
       // Invoke operation
@@ -1136,35 +1116,12 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     }
   }
 
+  // The integration test for createConfigurationAction has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testCreateConfigurationAction() throws Exception {}
+
   @Test(dependsOnMethods = { "testUpdateConfiguration" })
-  public void testCreateConfigurationAction() throws Exception {
-    try {
-      PrivateCertificateConfigurationActionRotateCRLPrototype configurationActionPrototypeModel = new PrivateCertificateConfigurationActionRotateCRLPrototype.Builder()
-        .actionType("private_cert_configuration_action_rotate_crl")
-        .build();
-
-      CreateConfigurationActionOptions createConfigurationActionOptions = new CreateConfigurationActionOptions.Builder()
-        .name(configurationNameForGetConfigurationLink)
-        .configActionPrototype(configurationActionPrototypeModel)
-        .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
-        .build();
-
-      // Invoke operation
-      Response<ConfigurationAction> response = service.createConfigurationAction(createConfigurationActionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      ConfigurationAction configurationActionResult = response.getResult();
-
-      assertNotNull(configurationActionResult);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testCreateConfigurationAction" })
   public void testCreateNotificationsRegistration() throws Exception {
     try {
       CreateNotificationsRegistrationOptions createNotificationsRegistrationOptions = new CreateNotificationsRegistrationOptions.Builder()
@@ -1306,7 +1263,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     try {
       DeleteConfigurationOptions deleteConfigurationOptions = new DeleteConfigurationOptions.Builder()
         .name(configurationNameForGetConfigurationLink)
-        .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
         .build();
 
       // Invoke operation

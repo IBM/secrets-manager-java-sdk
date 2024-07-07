@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import java.util.ArrayList;
@@ -27,20 +28,20 @@ public class PrivateCertificateConfigurationRootCAPrototype extends Configuratio
    * private_cert_configuration_template.
    */
   public interface ConfigType {
-    /** public_cert_configuration_ca_lets_encrypt. */
-    String PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = "public_cert_configuration_ca_lets_encrypt";
-    /** public_cert_configuration_dns_classic_infrastructure. */
-    String PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = "public_cert_configuration_dns_classic_infrastructure";
     /** public_cert_configuration_dns_cloud_internet_services. */
     String PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = "public_cert_configuration_dns_cloud_internet_services";
-    /** iam_credentials_configuration. */
-    String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
+    /** public_cert_configuration_dns_classic_infrastructure. */
+    String PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = "public_cert_configuration_dns_classic_infrastructure";
+    /** public_cert_configuration_ca_lets_encrypt. */
+    String PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = "public_cert_configuration_ca_lets_encrypt";
     /** private_cert_configuration_root_ca. */
     String PRIVATE_CERT_CONFIGURATION_ROOT_CA = "private_cert_configuration_root_ca";
     /** private_cert_configuration_intermediate_ca. */
     String PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = "private_cert_configuration_intermediate_ca";
     /** private_cert_configuration_template. */
     String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
+    /** iam_credentials_configuration. */
+    String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
   }
 
   /**
@@ -80,6 +81,7 @@ public class PrivateCertificateConfigurationRootCAPrototype extends Configuratio
   public static class Builder {
     private String configType;
     private String name;
+    private PrivateCertificateCryptoKey cryptoKey;
     private String maxTtl;
     private String crlExpiry;
     private Boolean crlDisable;
@@ -115,6 +117,7 @@ public class PrivateCertificateConfigurationRootCAPrototype extends Configuratio
     public Builder(ConfigurationPrototype privateCertificateConfigurationRootCaPrototype) {
       this.configType = privateCertificateConfigurationRootCaPrototype.configType;
       this.name = privateCertificateConfigurationRootCaPrototype.name;
+      this.cryptoKey = privateCertificateConfigurationRootCaPrototype.cryptoKey;
       this.maxTtl = privateCertificateConfigurationRootCaPrototype.maxTtl;
       this.crlExpiry = privateCertificateConfigurationRootCaPrototype.crlExpiry;
       this.crlDisable = privateCertificateConfigurationRootCaPrototype.crlDisable;
@@ -352,6 +355,17 @@ public class PrivateCertificateConfigurationRootCAPrototype extends Configuratio
      */
     public Builder name(String name) {
       this.name = name;
+      return this;
+    }
+
+    /**
+     * Set the cryptoKey.
+     *
+     * @param cryptoKey the cryptoKey
+     * @return the PrivateCertificateConfigurationRootCAPrototype builder
+     */
+    public Builder cryptoKey(PrivateCertificateCryptoKey cryptoKey) {
+      this.cryptoKey = cryptoKey;
       return this;
     }
 
@@ -665,6 +679,7 @@ public class PrivateCertificateConfigurationRootCAPrototype extends Configuratio
       "commonName cannot be null");
     configType = builder.configType;
     name = builder.name;
+    cryptoKey = builder.cryptoKey;
     maxTtl = builder.maxTtl;
     crlExpiry = builder.crlExpiry;
     crlDisable = builder.crlDisable;

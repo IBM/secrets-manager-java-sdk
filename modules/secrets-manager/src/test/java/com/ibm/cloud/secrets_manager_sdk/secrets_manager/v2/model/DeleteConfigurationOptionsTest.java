@@ -33,10 +33,10 @@ public class DeleteConfigurationOptionsTest {
   public void testDeleteConfigurationOptions() throws Throwable {
     DeleteConfigurationOptions deleteConfigurationOptionsModel = new DeleteConfigurationOptions.Builder()
       .name("configuration-name")
-      .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+      .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
       .build();
     assertEquals(deleteConfigurationOptionsModel.name(), "configuration-name");
-    assertEquals(deleteConfigurationOptionsModel.xSmAcceptConfigurationType(), "private_cert_configuration_root_ca");
+    assertEquals(deleteConfigurationOptionsModel.xSmAcceptConfigurationType(), "public_cert_configuration_dns_cloud_internet_services");
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

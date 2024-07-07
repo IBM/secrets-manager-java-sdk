@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import java.util.Date;
@@ -47,7 +48,6 @@ public class SecretMetadata extends GenericModel {
     discriminatorMapping.put("service_credentials", ServiceCredentialsSecretMetadata.class);
     discriminatorMapping.put("username_password", UsernamePasswordSecretMetadata.class);
   }
-
   /**
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
    * service_credentials, kv, and username_password.
@@ -112,6 +112,8 @@ public class SecretMetadata extends GenericModel {
   protected Date updatedAt;
   @SerializedName("versions_total")
   protected Long versionsTotal;
+  @SerializedName("referenced_by")
+  protected List<String> referencedBy;
   @SerializedName("expiration_date")
   protected Date expirationDate;
   protected String ttl;
@@ -352,6 +354,17 @@ public class SecretMetadata extends GenericModel {
   }
 
   /**
+   * Gets the referencedBy.
+   *
+   * List of configurations that have reference to the secret.
+   *
+   * @return the referencedBy
+   */
+  public List<String> getReferencedBy() {
+    return referencedBy;
+  }
+
+  /**
    * Gets the expirationDate.
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
@@ -371,7 +384,8 @@ public class SecretMetadata extends GenericModel {
    * either an integer that specifies the number of seconds, or the string  representation of a duration, such as
    * `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1
    * minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional. If it is set
-   * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0.
+   * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL is modified,
+   * it will be applied only on the next secret rotation.
    *
    * @return the ttl
    */

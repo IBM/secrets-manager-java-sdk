@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
@@ -23,20 +24,20 @@ public class CreateConfigurationActionOptions extends GenericModel {
    * The configuration type of this configuration - use this header to resolve 300 error responses.
    */
   public interface XSmAcceptConfigurationType {
-    /** public_cert_configuration_ca_lets_encrypt. */
-    String PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = "public_cert_configuration_ca_lets_encrypt";
-    /** public_cert_configuration_dns_classic_infrastructure. */
-    String PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = "public_cert_configuration_dns_classic_infrastructure";
     /** public_cert_configuration_dns_cloud_internet_services. */
     String PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = "public_cert_configuration_dns_cloud_internet_services";
-    /** iam_credentials_configuration. */
-    String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
+    /** public_cert_configuration_dns_classic_infrastructure. */
+    String PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = "public_cert_configuration_dns_classic_infrastructure";
+    /** public_cert_configuration_ca_lets_encrypt. */
+    String PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = "public_cert_configuration_ca_lets_encrypt";
     /** private_cert_configuration_root_ca. */
     String PRIVATE_CERT_CONFIGURATION_ROOT_CA = "private_cert_configuration_root_ca";
     /** private_cert_configuration_intermediate_ca. */
     String PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = "private_cert_configuration_intermediate_ca";
     /** private_cert_configuration_template. */
     String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
+    /** iam_credentials_configuration. */
+    String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
   }
 
   protected String name;

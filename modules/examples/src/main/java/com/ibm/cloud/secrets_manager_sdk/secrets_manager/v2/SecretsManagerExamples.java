@@ -51,7 +51,6 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretMetad
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionOptions;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentialsConfigurationPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListConfigurationsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretGroupsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretLocksOptions;
@@ -62,8 +61,9 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretsOpt
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.NotificationsRegistration;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateActionRevokePrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionRotateCRLPrototype;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationRootCAPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateVersionActionRevokePrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateConfigurationDNSCloudInternetServicesPatch;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateConfigurationDNSCloudInternetServicesPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.Secret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretGroup;
@@ -270,26 +270,11 @@ public class SecretsManagerExamples {
     try {
       System.out.println("createConfiguration() result:");
       // begin-create_configuration
-      PrivateCertificateConfigurationRootCAPrototype configurationPrototypeModel = new PrivateCertificateConfigurationRootCAPrototype.Builder()
-        .configType("private_cert_configuration_root_ca")
-        .name("example-root-CA")
-        .maxTtl("43830h")
-        .crlExpiry("72h")
-        .crlDisable(false)
-        .crlDistributionPointsEncoded(true)
-        .issuingCertificatesUrlsEncoded(true)
-        .commonName("example.com")
-        .altNames(java.util.Arrays.asList("alt-name-1", "alt-name-2"))
-        .ipSans("127.0.0.1")
-        .uriSans("https://www.example.com/test")
-        .otherSans(java.util.Arrays.asList("1.2.3.5.4.3.201.10.4.3;utf8:test@example.com"))
-        .ttl("2190h")
-        .format("pem")
-        .privateKeyFormat("der")
-        .keyType("rsa")
-        .keyBits(Long.valueOf("4096"))
-        .maxPathLength(Long.valueOf("-1"))
-        .excludeCnFromSans(false)
+      PublicCertificateConfigurationDNSCloudInternetServicesPrototype configurationPrototypeModel = new PublicCertificateConfigurationDNSCloudInternetServicesPrototype.Builder()
+        .configType("public_cert_configuration_dns_cloud_internet_services")
+        .name("example-cloud-internet-services-config")
+        .cloudInternetServicesApikey("5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ")
+        .cloudInternetServicesCrn("crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::")
         .build();
       CreateConfigurationOptions createConfigurationOptions = new CreateConfigurationOptions.Builder()
         .configurationPrototype(configurationPrototypeModel)
@@ -684,7 +669,7 @@ public class SecretsManagerExamples {
       // begin-get_configuration
       GetConfigurationOptions getConfigurationOptions = new GetConfigurationOptions.Builder()
         .name(configurationNameForGetConfigurationLink)
-        .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
         .build();
 
       Response<Configuration> response = secretsManagerService.getConfiguration(getConfigurationOptions).execute();
@@ -700,14 +685,15 @@ public class SecretsManagerExamples {
     try {
       System.out.println("updateConfiguration() result:");
       // begin-update_configuration
-      IAMCredentialsConfigurationPatch configurationPatchModel = new IAMCredentialsConfigurationPatch.Builder()
-        .apiKey("RmnPBn6n1dzoo0v3kyznKEpg0WzdTpW9lW7FtKa017_u")
+      PublicCertificateConfigurationDNSCloudInternetServicesPatch configurationPatchModel = new PublicCertificateConfigurationDNSCloudInternetServicesPatch.Builder()
+        .cloudInternetServicesApikey("5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ")
+        .cloudInternetServicesCrn("crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::")
         .build();
       Map<String, Object> configurationPatchModelAsPatch = configurationPatchModel.asPatch();
       UpdateConfigurationOptions updateConfigurationOptions = new UpdateConfigurationOptions.Builder()
         .name(configurationNameForGetConfigurationLink)
         .configurationPatch(configurationPatchModelAsPatch)
-        .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
         .build();
 
       Response<Configuration> response = secretsManagerService.updateConfiguration(updateConfigurationOptions).execute();
@@ -729,7 +715,7 @@ public class SecretsManagerExamples {
       CreateConfigurationActionOptions createConfigurationActionOptions = new CreateConfigurationActionOptions.Builder()
         .name(configurationNameForGetConfigurationLink)
         .configActionPrototype(configurationActionPrototypeModel)
-        .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
         .build();
 
       Response<ConfigurationAction> response = secretsManagerService.createConfigurationAction(createConfigurationActionOptions).execute();
@@ -872,7 +858,7 @@ public class SecretsManagerExamples {
       // begin-delete_configuration
       DeleteConfigurationOptions deleteConfigurationOptions = new DeleteConfigurationOptions.Builder()
         .name(configurationNameForGetConfigurationLink)
-        .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
         .build();
 
       Response<Void> response = secretsManagerService.deleteConfiguration(deleteConfigurationOptions).execute();
