@@ -371,7 +371,7 @@ public class Secret extends GenericModel {
   /**
    * Gets the referencedBy.
    *
-   * List of configurations that have reference to the secret.
+   * The list of configurations that have a reference to the secret.
    *
    * @return the referencedBy
    */

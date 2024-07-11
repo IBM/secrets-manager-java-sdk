@@ -10,7 +10,11 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
@@ -19,10 +23,20 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListConfigurationsOptions extends GenericModel {
 
+  public interface SecretTypes {
+    /** iam_credentials. */
+    String IAM_CREDENTIALS = "iam_credentials";
+    /** private_cert. */
+    String PRIVATE_CERT = "private_cert";
+    /** public_cert. */
+    String PUBLIC_CERT = "public_cert";
+  }
+
   protected Long offset;
   protected Long limit;
   protected String sort;
   protected String search;
+  protected List<String> secretTypes;
 
   /**
    * Builder.
@@ -32,6 +46,7 @@ public class ListConfigurationsOptions extends GenericModel {
     private Long limit;
     private String sort;
     private String search;
+    private List<String> secretTypes;
 
     /**
      * Instantiates a new Builder from an existing ListConfigurationsOptions instance.
@@ -43,6 +58,7 @@ public class ListConfigurationsOptions extends GenericModel {
       this.limit = listConfigurationsOptions.limit;
       this.sort = listConfigurationsOptions.sort;
       this.search = listConfigurationsOptions.search;
+      this.secretTypes = listConfigurationsOptions.secretTypes;
     }
 
     /**
@@ -58,6 +74,22 @@ public class ListConfigurationsOptions extends GenericModel {
      */
     public ListConfigurationsOptions build() {
       return new ListConfigurationsOptions(this);
+    }
+
+    /**
+     * Adds a new element to secretTypes.
+     *
+     * @param secretTypes the new element to be added
+     * @return the ListConfigurationsOptions builder
+     */
+    public Builder addSecretTypes(String secretTypes) {
+      com.ibm.cloud.sdk.core.util.Validator.notNull(secretTypes,
+        "secretTypes cannot be null");
+      if (this.secretTypes == null) {
+        this.secretTypes = new ArrayList<String>();
+      }
+      this.secretTypes.add(secretTypes);
+      return this;
     }
 
     /**
@@ -103,6 +135,18 @@ public class ListConfigurationsOptions extends GenericModel {
       this.search = search;
       return this;
     }
+
+    /**
+     * Set the secretTypes.
+     * Existing secretTypes will be replaced.
+     *
+     * @param secretTypes the secretTypes
+     * @return the ListConfigurationsOptions builder
+     */
+    public Builder secretTypes(List<String> secretTypes) {
+      this.secretTypes = secretTypes;
+      return this;
+    }
   }
 
   protected ListConfigurationsOptions() { }
@@ -112,6 +156,7 @@ public class ListConfigurationsOptions extends GenericModel {
     limit = builder.limit;
     sort = builder.sort;
     search = builder.search;
+    secretTypes = builder.secretTypes;
   }
 
   /**
@@ -186,6 +231,22 @@ public class ListConfigurationsOptions extends GenericModel {
    */
   public String search() {
     return search;
+  }
+
+  /**
+   * Gets the secretTypes.
+   *
+   * Filter configurations by secret types, iam_credentials, public_cert or private_cert.
+   *
+   * You can apply multiple filters by using a comma-separated list of secret types.
+   *
+   * **Usage:** To retrieve a list of configurations that are associated with all secret types, use
+   * `..?secret_types=iam_credentials,public_cert,private_cert`.
+   *
+   * @return the secretTypes
+   */
+  public List<String> secretTypes() {
+    return secretTypes;
   }
 }
 

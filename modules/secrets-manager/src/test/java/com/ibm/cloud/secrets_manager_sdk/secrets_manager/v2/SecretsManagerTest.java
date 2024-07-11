@@ -2109,6 +2109,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("config_type")
       .search("example")
+      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
       .build();
 
     // Invoke listConfigurations() with a valid options model and verify the result
@@ -2131,6 +2132,7 @@ public class SecretsManagerTest {
     assertEquals(Long.valueOf(query.get("limit")), Long.valueOf("10"));
     assertEquals(query.get("sort"), "config_type");
     assertEquals(query.get("search"), "example");
+    assertEquals(query.get("secret_types"), RequestUtils.join(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"), ","));
   }
 
   // Test the listConfigurations operation with and without retries enabled
@@ -2166,6 +2168,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("config_type")
       .search("example")
+      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
       .build();
 
     List<ConfigurationMetadata> allResults = new ArrayList<>();
@@ -2201,6 +2204,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("config_type")
       .search("example")
+      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
       .build();
 
     ConfigurationsPager pager = new ConfigurationsPager(secretsManagerService, listConfigurationsOptions);

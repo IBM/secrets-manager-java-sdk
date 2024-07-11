@@ -1013,6 +1013,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .limit(Long.valueOf("10"))
         .sort("config_type")
         .search("example")
+        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
         .build();
 
       // Invoke operation
@@ -1037,6 +1038,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .limit(Long.valueOf("10"))
         .sort("config_type")
         .search("example")
+        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
         .build();
 
       // Test getNext().

@@ -1074,6 +1074,9 @@ public class SecretsManager extends BaseService {
     if (listConfigurationsOptions.search() != null) {
       builder.query("search", String.valueOf(listConfigurationsOptions.search()));
     }
+    if (listConfigurationsOptions.secretTypes() != null) {
+      builder.query("secret_types", RequestUtils.join(listConfigurationsOptions.secretTypes(), ","));
+    }
     ResponseConverter<ConfigurationMetadataPaginatedCollection> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ConfigurationMetadataPaginatedCollection>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);

@@ -648,6 +648,7 @@ public class SecretsManagerExamples {
         .limit(Long.valueOf("10"))
         .sort("config_type")
         .search("example")
+        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
         .build();
 
       ConfigurationsPager pager = new ConfigurationsPager(secretsManagerService, listConfigurationsOptions);

@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.google.gson.annotations.SerializedName;
@@ -31,7 +32,6 @@ public class SecretAction extends GenericModel {
     discriminatorMapping.put("private_cert_action_revoke_certificate", PrivateCertificateActionRevoke.class);
     discriminatorMapping.put("public_cert_action_validate_dns_challenge", PublicCertificateActionValidateManualDNS.class);
   }
-
   /**
    * The type of secret action.
    */
