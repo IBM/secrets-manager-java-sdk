@@ -709,7 +709,7 @@ public class SecretsManagerExamples {
       System.out.println("createNotificationsRegistration() result:");
       // begin-create_notifications_registration
       CreateNotificationsRegistrationOptions createNotificationsRegistrationOptions = new CreateNotificationsRegistrationOptions.Builder()
-        .eventNotificationsInstanceCrn("crn:v1:staging:public:event-notifications:us-south:a/791f5fb10986423e97aa8512f18b7e65:d959ec5c-276a-43a4-97d6-77e69ac03b1e::")
+        .eventNotificationsInstanceCrn("crn:v1:bluemix:public:event-notifications:us-south:a/22018f3c34ff4ff193698d15ca316946:578ad1a4-2fd8-4e66-95d5-79a842ba91f8::")
         .eventNotificationsSourceName("My Secrets Manager")
         .eventNotificationsSourceDescription("Optional description of this source in an Event Notifications instance.")
         .build();
