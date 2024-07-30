@@ -19,6 +19,8 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
 
 /**
  * The properties of the service credentials secret payload.
+ *
+ * This type supports additional properties of type Object.
  */
 public class ServiceCredentialsSecretCredentials extends DynamicModel<Object> {
 

@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.92.2-3f2a0533-20240712-183330
+ * IBM OpenAPI SDK Code Generator Version: 3.93.0-c40121e6-20240729-182103
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2;

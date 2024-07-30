@@ -24,6 +24,8 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
  * Configuration options represented as key-value pairs. Service-defined options are used in the generation of
  * credentials for some services. For example, Cloud Object Storage accepts the optional boolean parameter HMAC for
  * creating specific kind of credentials.
+ *
+ * This type supports additional properties of type Object.
  */
 public class ServiceCredentialsSourceServiceParameters extends DynamicModel<Object> {
 

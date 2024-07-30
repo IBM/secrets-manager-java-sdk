@@ -307,8 +307,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       SecretGroup secretGroupResult = response.getResult();
-
       assertNotNull(secretGroupResult);
+
       secretGroupIdForGetSecretGroupLink = secretGroupResult.getId();
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
@@ -342,8 +342,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       Secret secretResult = response.getResult();
-
       assertNotNull(secretResult);
+
       secretIdForGetSecretLink = secretResult.getId();
       secretIdForGetSecretVersionLink = secretResult.getId();
     } catch (ServiceResponseException e) {
@@ -376,8 +376,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretMetadata secretMetadataResult = response.getResult();
-
       assertNotNull(secretMetadataResult);
+
       secretNameLink = secretMetadataResult.getName();
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
@@ -399,8 +399,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretVersionMetadataCollection secretVersionMetadataCollectionResult = response.getResult();
-
       assertNotNull(secretVersionMetadataCollectionResult);
+
       secretVersionIdForGetSecretVersionLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
       secretIdForCreateSecretVersionLink = secretVersionMetadataCollectionResult.getVersions().get(0).getSecretId();
       secretVersionIdForGetSecretVersionMetadataLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
@@ -436,8 +436,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       SecretLocks secretLocksResult = response.getResult();
-
       assertNotNull(secretLocksResult);
+
       secretIdForListSecretLocksLink = secretLocksResult.getSecretId();
       secretIdForListSecretVersionLocksLink = secretLocksResult.getSecretId();
       secretVersionIdForListSecretVersionLocksLink = secretLocksResult.getVersions().get(0).getVersionId();
@@ -468,8 +468,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       Configuration configurationResult = response.getResult();
-
       assertNotNull(configurationResult);
+
       configurationNameForGetConfigurationLink = configurationResult.getName();
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
@@ -489,8 +489,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretGroupCollection secretGroupCollectionResult = response.getResult();
-
       assertNotNull(secretGroupCollectionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -511,8 +511,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretGroup secretGroupResult = response.getResult();
-
       assertNotNull(secretGroupResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -540,8 +540,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretGroup secretGroupResult = response.getResult();
-
       assertNotNull(secretGroupResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -568,8 +568,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretMetadataPaginatedCollection secretMetadataPaginatedCollectionResult = response.getResult();
-
       assertNotNull(secretMetadataPaginatedCollectionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -626,8 +626,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       Secret secretResult = response.getResult();
-
       assertNotNull(secretResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -648,8 +648,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretMetadata secretMetadataResult = response.getResult();
-
       assertNotNull(secretMetadataResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -677,8 +677,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       Secret secretResult = response.getResult();
-
       assertNotNull(secretResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -706,8 +706,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       SecretVersion secretVersionResult = response.getResult();
-
       assertNotNull(secretVersionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -729,8 +729,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretVersion secretVersionResult = response.getResult();
-
       assertNotNull(secretVersionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -752,8 +752,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretVersionMetadata secretVersionMetadataResult = response.getResult();
-
       assertNotNull(secretVersionMetadataResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -781,8 +781,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretVersionMetadata secretVersionMetadataResult = response.getResult();
-
       assertNotNull(secretVersionMetadataResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -811,8 +811,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretsLocksPaginatedCollection secretsLocksPaginatedCollectionResult = response.getResult();
-
       assertNotNull(secretsLocksPaginatedCollectionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -870,8 +870,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretLocksPaginatedCollection secretLocksPaginatedCollectionResult = response.getResult();
-
       assertNotNull(secretLocksPaginatedCollectionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -935,8 +935,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       SecretLocks secretLocksResult = response.getResult();
-
       assertNotNull(secretLocksResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -962,8 +962,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretVersionLocksPaginatedCollection secretVersionLocksPaginatedCollectionResult = response.getResult();
-
       assertNotNull(secretVersionLocksPaginatedCollectionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -1023,8 +1023,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       ConfigurationMetadataPaginatedCollection configurationMetadataPaginatedCollectionResult = response.getResult();
-
       assertNotNull(configurationMetadataPaginatedCollectionResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -1080,8 +1080,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       Configuration configurationResult = response.getResult();
-
       assertNotNull(configurationResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -1110,8 +1110,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       Configuration configurationResult = response.getResult();
-
       assertNotNull(configurationResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -1139,8 +1139,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 201);
 
       NotificationsRegistration notificationsRegistrationResult = response.getResult();
-
       assertNotNull(notificationsRegistrationResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -1159,8 +1159,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       NotificationsRegistration notificationsRegistrationResult = response.getResult();
-
       assertNotNull(notificationsRegistrationResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -1210,8 +1210,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretLocks secretLocksResult = response.getResult();
-
       assertNotNull(secretLocksResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
@@ -1234,8 +1234,8 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
       assertEquals(response.getStatusCode(), 200);
 
       SecretLocks secretLocksResult = response.getResult();
-
       assertNotNull(secretLocksResult);
+
     } catch (ServiceResponseException e) {
         fail(String.format("Service returned status code %d: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
