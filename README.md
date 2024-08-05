@@ -58,9 +58,7 @@ Secrets Manager uses token-based Identity and Access Management (IAM) authentica
 
 With IAM authentication, you supply an API key that is used to generate an access token. Then, the access token is included in each API request to Secrets Manager. Access tokens are valid for a limited amount of time and must be regenerated.
 
-Authentication for this SDK is accomplished by
-using [IAM authenticators](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md#authentication). Import
-authenticators from `com.ibm.cloud.sdk.core.security`.
+Authentication for this SDK is accomplished by using [IAM authenticators](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md#authentication). Import authenticators from `com.ibm.cloud.sdk.core.security`.
 
 ### Examples
 
