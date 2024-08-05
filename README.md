@@ -86,7 +86,6 @@ the [IBM Java SDK Core documentation](https://github.com/IBM/java-sdk-core/blob/
 #### Examples
 
 Construct a service client and use it to create and retrieve a secret from your Secrets Manager instance.
-
 Here's an example `main.java` class file:
 
 ```java
