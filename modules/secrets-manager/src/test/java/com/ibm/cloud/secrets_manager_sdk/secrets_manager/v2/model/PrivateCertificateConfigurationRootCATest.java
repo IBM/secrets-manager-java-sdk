@@ -16,6 +16,8 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationIntermediateCACSR;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationRootCA;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoKey;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoProviderHPCS;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -44,6 +46,7 @@ public class PrivateCertificateConfigurationRootCATest {
     assertNull(privateCertificateConfigurationRootCaModel.getExpirationDate());
     assertNull(privateCertificateConfigurationRootCaModel.getKeyType());
     assertNull(privateCertificateConfigurationRootCaModel.getKeyBits());
+    assertNull(privateCertificateConfigurationRootCaModel.getCryptoKey());
     assertNull(privateCertificateConfigurationRootCaModel.isCrlDisable());
     assertNull(privateCertificateConfigurationRootCaModel.isIssuingCertificatesUrlsEncoded());
     assertNull(privateCertificateConfigurationRootCaModel.getAltNames());

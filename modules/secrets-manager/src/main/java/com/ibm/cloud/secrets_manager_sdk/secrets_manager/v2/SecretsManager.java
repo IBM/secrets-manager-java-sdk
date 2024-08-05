@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.86.1-c3d7bcef-20240308-215042
+ * IBM OpenAPI SDK Code Generator Version: 3.93.0-c40121e6-20240729-182103
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2;
@@ -280,7 +280,7 @@ public class SecretsManager extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateSecretGroupOptions.secretGroupPatch()), "application/merge-patch+json");
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithSerializeNulls().toJson(updateSecretGroupOptions.secretGroupPatch()), "application/merge-patch+json");
     ResponseConverter<SecretGroup> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<SecretGroup>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
@@ -490,7 +490,7 @@ public class SecretsManager extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateSecretMetadataOptions.secretMetadataPatch()), "application/merge-patch+json");
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithSerializeNulls().toJson(updateSecretMetadataOptions.secretMetadataPatch()), "application/merge-patch+json");
     ResponseConverter<SecretMetadata> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<SecretMetadata>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
@@ -704,7 +704,7 @@ public class SecretsManager extends BaseService {
       builder.header(header.getKey(), header.getValue());
     }
     builder.header("Accept", "application/json");
-    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateSecretVersionMetadataOptions.secretVersionMetadataPatch()), "application/merge-patch+json");
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithSerializeNulls().toJson(updateSecretVersionMetadataOptions.secretVersionMetadataPatch()), "application/merge-patch+json");
     ResponseConverter<SecretVersionMetadata> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<SecretVersionMetadata>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
@@ -1074,6 +1074,9 @@ public class SecretsManager extends BaseService {
     if (listConfigurationsOptions.search() != null) {
       builder.query("search", String.valueOf(listConfigurationsOptions.search()));
     }
+    if (listConfigurationsOptions.secretTypes() != null) {
+      builder.query("secret_types", RequestUtils.join(listConfigurationsOptions.secretTypes(), ","));
+    }
     ResponseConverter<ConfigurationMetadataPaginatedCollection> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<ConfigurationMetadataPaginatedCollection>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);
@@ -1141,7 +1144,7 @@ public class SecretsManager extends BaseService {
     if (updateConfigurationOptions.xSmAcceptConfigurationType() != null) {
       builder.header("X-Sm-Accept-Configuration-Type", updateConfigurationOptions.xSmAcceptConfigurationType());
     }
-    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(updateConfigurationOptions.configurationPatch()), "application/merge-patch+json");
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithSerializeNulls().toJson(updateConfigurationOptions.configurationPatch()), "application/merge-patch+json");
     ResponseConverter<Configuration> responseConverter =
       ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<Configuration>() { }.getType());
     return createServiceCall(builder.build(), responseConverter);

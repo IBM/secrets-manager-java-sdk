@@ -33,10 +33,10 @@ public class GetConfigurationOptionsTest {
   public void testGetConfigurationOptions() throws Throwable {
     GetConfigurationOptions getConfigurationOptionsModel = new GetConfigurationOptions.Builder()
       .name("configuration-name")
-      .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+      .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
       .build();
     assertEquals(getConfigurationOptionsModel.name(), "configuration-name");
-    assertEquals(getConfigurationOptionsModel.xSmAcceptConfigurationType(), "private_cert_configuration_root_ca");
+    assertEquals(getConfigurationOptionsModel.xSmAcceptConfigurationType(), "public_cert_configuration_dns_cloud_internet_services");
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

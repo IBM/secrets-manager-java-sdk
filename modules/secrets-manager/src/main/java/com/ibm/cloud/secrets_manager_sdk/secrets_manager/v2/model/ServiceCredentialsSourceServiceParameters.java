@@ -10,6 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import java.util.HashMap;
@@ -23,6 +24,8 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
  * Configuration options represented as key-value pairs. Service-defined options are used in the generation of
  * credentials for some services. For example, Cloud Object Storage accepts the optional boolean parameter HMAC for
  * creating specific kind of credentials.
+ *
+ * This type supports additional properties of type Object.
  */
 public class ServiceCredentialsSourceServiceParameters extends DynamicModel<Object> {
 

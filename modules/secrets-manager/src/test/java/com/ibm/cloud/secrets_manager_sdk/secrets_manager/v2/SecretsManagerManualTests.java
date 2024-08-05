@@ -185,6 +185,34 @@ public class SecretsManagerManualTests extends SdkIntegrationTestBase {
         }
     }
 
+    @Test
+    public void testCreateConfigurationAction() {
+        try {
+            PrivateCertificateConfigurationActionRotateCRLPrototype configurationActionPrototypeModel = new PrivateCertificateConfigurationActionRotateCRLPrototype.Builder()
+                    .actionType("private_cert_configuration_action_rotate_crl")
+                    .build();
+
+            CreateConfigurationActionOptions createConfigurationActionOptions = new CreateConfigurationActionOptions.Builder()
+                    .name(rootCaName)
+                    .configActionPrototype(configurationActionPrototypeModel)
+                    .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+                    .build();
+
+            // Invoke operation
+            Response<ConfigurationAction> response = service.createConfigurationAction(createConfigurationActionOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
+
+            ConfigurationAction configurationActionResult = response.getResult();
+
+            assertNotNull(configurationActionResult);
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
+    }
+
     private void configPrivateCertEngine() {
         // Create Root CA
         System.out.println("Creating Root CA");

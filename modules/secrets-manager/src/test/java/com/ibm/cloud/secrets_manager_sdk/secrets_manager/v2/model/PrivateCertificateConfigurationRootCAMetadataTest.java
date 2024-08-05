@@ -15,6 +15,8 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationRootCAMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoKey;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoProviderHPCS;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -43,5 +45,6 @@ public class PrivateCertificateConfigurationRootCAMetadataTest {
     assertNull(privateCertificateConfigurationRootCaMetadataModel.getExpirationDate());
     assertNull(privateCertificateConfigurationRootCaMetadataModel.getKeyType());
     assertNull(privateCertificateConfigurationRootCaMetadataModel.getKeyBits());
+    assertNull(privateCertificateConfigurationRootCaMetadataModel.getCryptoKey());
   }
 }

@@ -15,7 +15,7 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateConfigurationOptions;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationRootCAPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateConfigurationDNSCloudInternetServicesPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -32,64 +32,16 @@ public class CreateConfigurationOptionsTest {
 
   @Test
   public void testCreateConfigurationOptions() throws Throwable {
-    PrivateCertificateConfigurationRootCAPrototype configurationPrototypeModel = new PrivateCertificateConfigurationRootCAPrototype.Builder()
-      .configType("private_cert_configuration_root_ca")
+    PublicCertificateConfigurationDNSCloudInternetServicesPrototype configurationPrototypeModel = new PublicCertificateConfigurationDNSCloudInternetServicesPrototype.Builder()
+      .configType("public_cert_configuration_dns_cloud_internet_services")
       .name("my-example-engine-config")
-      .maxTtl("8760h")
-      .crlExpiry("72h")
-      .crlDisable(true)
-      .crlDistributionPointsEncoded(true)
-      .issuingCertificatesUrlsEncoded(true)
-      .commonName("localhost")
-      .altNames(java.util.Arrays.asList("s1.example.com", "*.s2.example.com"))
-      .ipSans("1.1.1.1, 2.2.2.2")
-      .uriSans("testString")
-      .otherSans(java.util.Arrays.asList("2.5.4.5;UTF8:*.example.com"))
-      .ttl("8760h")
-      .format("pem")
-      .privateKeyFormat("der")
-      .keyType("rsa")
-      .keyBits(Long.valueOf("4096"))
-      .maxPathLength(Long.valueOf("26"))
-      .excludeCnFromSans(true)
-      .permittedDnsDomains(java.util.Arrays.asList("testString"))
-      .ou(java.util.Arrays.asList("testString"))
-      .organization(java.util.Arrays.asList("testString"))
-      .country(java.util.Arrays.asList("testString"))
-      .locality(java.util.Arrays.asList("testString"))
-      .province(java.util.Arrays.asList("testString"))
-      .streetAddress(java.util.Arrays.asList("testString"))
-      .postalCode(java.util.Arrays.asList("testString"))
-      .serialNumber("d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5")
+      .cloudInternetServicesApikey("testString")
+      .cloudInternetServicesCrn("testString")
       .build();
-    assertEquals(configurationPrototypeModel.configType(), "private_cert_configuration_root_ca");
+    assertEquals(configurationPrototypeModel.configType(), "public_cert_configuration_dns_cloud_internet_services");
     assertEquals(configurationPrototypeModel.name(), "my-example-engine-config");
-    assertEquals(configurationPrototypeModel.maxTtl(), "8760h");
-    assertEquals(configurationPrototypeModel.crlExpiry(), "72h");
-    assertEquals(configurationPrototypeModel.crlDisable(), Boolean.valueOf(true));
-    assertEquals(configurationPrototypeModel.crlDistributionPointsEncoded(), Boolean.valueOf(true));
-    assertEquals(configurationPrototypeModel.issuingCertificatesUrlsEncoded(), Boolean.valueOf(true));
-    assertEquals(configurationPrototypeModel.commonName(), "localhost");
-    assertEquals(configurationPrototypeModel.altNames(), java.util.Arrays.asList("s1.example.com", "*.s2.example.com"));
-    assertEquals(configurationPrototypeModel.ipSans(), "1.1.1.1, 2.2.2.2");
-    assertEquals(configurationPrototypeModel.uriSans(), "testString");
-    assertEquals(configurationPrototypeModel.otherSans(), java.util.Arrays.asList("2.5.4.5;UTF8:*.example.com"));
-    assertEquals(configurationPrototypeModel.ttl(), "8760h");
-    assertEquals(configurationPrototypeModel.format(), "pem");
-    assertEquals(configurationPrototypeModel.privateKeyFormat(), "der");
-    assertEquals(configurationPrototypeModel.keyType(), "rsa");
-    assertEquals(configurationPrototypeModel.keyBits(), Long.valueOf("4096"));
-    assertEquals(configurationPrototypeModel.maxPathLength(), Long.valueOf("26"));
-    assertEquals(configurationPrototypeModel.excludeCnFromSans(), Boolean.valueOf(true));
-    assertEquals(configurationPrototypeModel.permittedDnsDomains(), java.util.Arrays.asList("testString"));
-    assertEquals(configurationPrototypeModel.ou(), java.util.Arrays.asList("testString"));
-    assertEquals(configurationPrototypeModel.organization(), java.util.Arrays.asList("testString"));
-    assertEquals(configurationPrototypeModel.country(), java.util.Arrays.asList("testString"));
-    assertEquals(configurationPrototypeModel.locality(), java.util.Arrays.asList("testString"));
-    assertEquals(configurationPrototypeModel.province(), java.util.Arrays.asList("testString"));
-    assertEquals(configurationPrototypeModel.streetAddress(), java.util.Arrays.asList("testString"));
-    assertEquals(configurationPrototypeModel.postalCode(), java.util.Arrays.asList("testString"));
-    assertEquals(configurationPrototypeModel.serialNumber(), "d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5");
+    assertEquals(configurationPrototypeModel.cloudInternetServicesApikey(), "testString");
+    assertEquals(configurationPrototypeModel.cloudInternetServicesCrn(), "testString");
 
     CreateConfigurationOptions createConfigurationOptionsModel = new CreateConfigurationOptions.Builder()
       .configurationPrototype(configurationPrototypeModel)

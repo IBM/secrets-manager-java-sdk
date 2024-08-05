@@ -34,11 +34,11 @@ public class UpdateConfigurationOptionsTest {
     UpdateConfigurationOptions updateConfigurationOptionsModel = new UpdateConfigurationOptions.Builder()
       .name("configuration-name")
       .configurationPatch(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .xSmAcceptConfigurationType("private_cert_configuration_root_ca")
+      .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
       .build();
     assertEquals(updateConfigurationOptionsModel.name(), "configuration-name");
     assertEquals(updateConfigurationOptionsModel.configurationPatch(), java.util.Collections.singletonMap("anyKey", "anyValue"));
-    assertEquals(updateConfigurationOptionsModel.xSmAcceptConfigurationType(), "private_cert_configuration_root_ca");
+    assertEquals(updateConfigurationOptionsModel.xSmAcceptConfigurationType(), "public_cert_configuration_dns_cloud_internet_services");
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)
