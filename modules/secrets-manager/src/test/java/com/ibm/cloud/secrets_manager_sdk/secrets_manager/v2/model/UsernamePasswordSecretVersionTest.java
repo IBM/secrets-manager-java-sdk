@@ -14,13 +14,14 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
-import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.UsernamePasswordSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+import org.testng.annotations.Test;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import org.testng.annotations.Test;
-import static org.testng.Assert.*;
+
+import static org.testng.Assert.assertNull;
 
 /**
  * Unit test class for the UsernamePasswordSecretVersion model.
@@ -42,6 +43,7 @@ public class UsernamePasswordSecretVersionTest {
     assertNull(usernamePasswordSecretVersionModel.getAlias());
     assertNull(usernamePasswordSecretVersionModel.getVersionCustomMetadata());
     assertNull(usernamePasswordSecretVersionModel.getSecretId());
+    assertNull(usernamePasswordSecretVersionModel.getExpirationDate());
     assertNull(usernamePasswordSecretVersionModel.getUsername());
     assertNull(usernamePasswordSecretVersionModel.getPassword());
   }
