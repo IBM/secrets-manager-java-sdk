@@ -243,7 +243,6 @@ public class ConfigurationPrototype extends GenericModel {
   protected String notBeforeDuration;
   @SerializedName("api_key")
   protected String apiKey;
-  protected Boolean disabled;
 
   protected ConfigurationPrototype() { }
 
@@ -1096,19 +1095,6 @@ public class ConfigurationPrototype extends GenericModel {
    */
   public String apiKey() {
     return apiKey;
-  }
-
-  /**
-   * Gets the disabled.
-   *
-   * This parameter indicates whether the API key configuration is disabled.
-   *
-   * If it is set to `true`, the IAM credentials engine doesn't use the configured API key for credentials management.
-   *
-   * @return the disabled
-   */
-  public Boolean disabled() {
-    return disabled;
   }
 }
 

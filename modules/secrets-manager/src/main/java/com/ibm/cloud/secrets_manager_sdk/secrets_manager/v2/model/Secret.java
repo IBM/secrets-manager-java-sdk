@@ -124,8 +124,6 @@ public class Secret extends GenericModel {
   protected String apiKeyId;
   @SerializedName("service_id")
   protected String serviceId;
-  @SerializedName("account_id")
-  protected String accountId;
   @SerializedName("service_id_is_static")
   protected Boolean serviceIdIsStatic;
   @SerializedName("reuse_api_key")
@@ -461,18 +459,6 @@ public class Secret extends GenericModel {
    */
   public String getServiceId() {
     return serviceId;
-  }
-
-  /**
-   * Gets the accountId.
-   *
-   * The ID of the account in which the IAM credentials are created. Use this field only if the target account is not
-   * the same as the account of the Secrets Manager instance. Otherwise, the field can be omitted.
-   *
-   * @return the accountId
-   */
-  public String getAccountId() {
-    return accountId;
   }
 
   /**

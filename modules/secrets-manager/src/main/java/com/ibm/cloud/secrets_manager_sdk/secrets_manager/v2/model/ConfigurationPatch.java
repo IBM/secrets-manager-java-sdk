@@ -56,7 +56,6 @@ public class ConfigurationPatch extends GenericModel {
 
   @SerializedName("api_key")
   protected String apiKey;
-  protected Boolean disabled;
   @SerializedName("max_ttl")
   protected String maxTtl;
   @SerializedName("crl_expiry")
@@ -161,20 +160,6 @@ public class ConfigurationPatch extends GenericModel {
    */
   public String apiKey() {
     return apiKey;
-  }
-
-  /**
-   * Gets the disabled.
-   *
-   * This parameter indicates whether the API key configuration is disabled.
-   *
-   * If it is set to `disabled`, the IAM credentials engine doesn't use the configured API key for credentials
-   * management.
-   *
-   * @return the disabled
-   */
-  public Boolean disabled() {
-    return disabled;
   }
 
   /**

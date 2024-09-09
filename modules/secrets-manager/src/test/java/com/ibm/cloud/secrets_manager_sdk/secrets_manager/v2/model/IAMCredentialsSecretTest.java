@@ -47,7 +47,6 @@ public class IAMCredentialsSecretTest {
     assertNull(iamCredentialsSecretModel.getTtl());
     assertNull(iamCredentialsSecretModel.getAccessGroups());
     assertNull(iamCredentialsSecretModel.getServiceId());
-    assertNull(iamCredentialsSecretModel.getAccountId());
     assertNull(iamCredentialsSecretModel.isReuseApiKey());
     assertNull(iamCredentialsSecretModel.getRotation());
     assertNull(iamCredentialsSecretModel.getExpirationDate());

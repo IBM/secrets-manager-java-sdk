@@ -50,7 +50,6 @@ public class IAMCredentialsSecretPrototypeTest {
       .ttl("1d")
       .accessGroups(java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699"))
       .serviceId("ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be")
-      .accountId("708d4dc20986423e79bb8512f81b7f92")
       .reuseApiKey(true)
       .rotation(rotationPolicyModel)
       .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
@@ -64,7 +63,6 @@ public class IAMCredentialsSecretPrototypeTest {
     assertEquals(iamCredentialsSecretPrototypeModel.ttl(), "1d");
     assertEquals(iamCredentialsSecretPrototypeModel.accessGroups(), java.util.Arrays.asList("AccessGroupId-45884031-54be-4dd7-86ff-112511e92699"));
     assertEquals(iamCredentialsSecretPrototypeModel.serviceId(), "ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be");
-    assertEquals(iamCredentialsSecretPrototypeModel.accountId(), "708d4dc20986423e79bb8512f81b7f92");
     assertEquals(iamCredentialsSecretPrototypeModel.reuseApiKey(), Boolean.valueOf(true));
     assertEquals(iamCredentialsSecretPrototypeModel.rotation(), rotationPolicyModel);
     assertEquals(iamCredentialsSecretPrototypeModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
@@ -80,7 +78,6 @@ public class IAMCredentialsSecretPrototypeTest {
     assertEquals(iamCredentialsSecretPrototypeModelNew.secretGroupId(), "default");
     assertEquals(iamCredentialsSecretPrototypeModelNew.ttl(), "1d");
     assertEquals(iamCredentialsSecretPrototypeModelNew.serviceId(), "ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be");
-    assertEquals(iamCredentialsSecretPrototypeModelNew.accountId(), "708d4dc20986423e79bb8512f81b7f92");
     assertEquals(iamCredentialsSecretPrototypeModelNew.reuseApiKey(), Boolean.valueOf(true));
     assertEquals(iamCredentialsSecretPrototypeModelNew.rotation().toString(), rotationPolicyModel.toString());
     assertEquals(iamCredentialsSecretPrototypeModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());

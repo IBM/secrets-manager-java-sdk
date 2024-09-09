@@ -49,7 +49,6 @@ public class IAMCredentialsConfigurationPrototype extends ConfigurationPrototype
     private String name;
     private String configType;
     private String apiKey;
-    private Boolean disabled;
 
     /**
      * Instantiates a new Builder from an existing IAMCredentialsConfigurationPrototype instance.
@@ -60,7 +59,6 @@ public class IAMCredentialsConfigurationPrototype extends ConfigurationPrototype
       this.name = iamCredentialsConfigurationPrototype.name;
       this.configType = iamCredentialsConfigurationPrototype.configType;
       this.apiKey = iamCredentialsConfigurationPrototype.apiKey;
-      this.disabled = iamCredentialsConfigurationPrototype.disabled;
     }
 
     /**
@@ -123,17 +121,6 @@ public class IAMCredentialsConfigurationPrototype extends ConfigurationPrototype
       this.apiKey = apiKey;
       return this;
     }
-
-    /**
-     * Set the disabled.
-     *
-     * @param disabled the disabled
-     * @return the IAMCredentialsConfigurationPrototype builder
-     */
-    public Builder disabled(Boolean disabled) {
-      this.disabled = disabled;
-      return this;
-    }
   }
 
   protected IAMCredentialsConfigurationPrototype() { }
@@ -148,7 +135,6 @@ public class IAMCredentialsConfigurationPrototype extends ConfigurationPrototype
     name = builder.name;
     configType = builder.configType;
     apiKey = builder.apiKey;
-    disabled = builder.disabled;
   }
 
   /**
