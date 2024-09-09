@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.93.0-c40121e6-20240729-182103
+ * IBM OpenAPI SDK Code Generator Version: 3.94.1-71478489-20240820-161623
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2;
@@ -292,7 +292,7 @@ public class SecretsManager extends BaseService {
    * Delete a secret group by specifying the ID of the secret group.
    *
    * **Note:** To delete a secret group, it must be empty. If you need to remove a secret group that contains secrets,
-   * you must first [delete the secrets](#delete-secret) that are associated with the group.
+   * you must first delete the secrets that are associated with the group.
    *
    * @param deleteSecretGroupOptions the {@link DeleteSecretGroupOptions} containing the options for the call
    * @return a {@link ServiceCall} with a void result
@@ -403,8 +403,7 @@ public class SecretsManager extends BaseService {
    * Get a secret and its details by specifying the ID of the secret.
    *
    * A successful request returns the secret data that is associated with your secret, along with other metadata. To
-   * view only the details of a specified secret without retrieving its value, use the [Get secret
-   * metadata](#get-secret-metadata) operation.
+   * view only the details of a specified secret without retrieving its value, use the Get secret metadata operation.
    *
    * @param getSecretOptions the {@link GetSecretOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link Secret}
@@ -527,8 +526,7 @@ public class SecretsManager extends BaseService {
    * Get a secret and its details by specifying the Name and Type of the secret.
    *
    * A successful request returns the secret data that is associated with your secret, along with other metadata. To
-   * view only the details of a specified secret without retrieving its value, use the [Get secret
-   * metadata](#get-secret-metadata) operation.
+   * view only the details of a specified secret without retrieving its value, use the Get secret metadata operation.
    *
    * @param getSecretByNameTypeOptions the {@link GetSecretByNameTypeOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link Secret}

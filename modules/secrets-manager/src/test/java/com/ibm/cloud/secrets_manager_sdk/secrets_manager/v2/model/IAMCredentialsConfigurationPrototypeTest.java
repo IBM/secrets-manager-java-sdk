@@ -35,10 +35,12 @@ public class IAMCredentialsConfigurationPrototypeTest {
       .name("my-example-engine-config")
       .configType("iam_credentials_configuration")
       .apiKey("testString")
+      .disabled(false)
       .build();
     assertEquals(iamCredentialsConfigurationPrototypeModel.name(), "my-example-engine-config");
     assertEquals(iamCredentialsConfigurationPrototypeModel.configType(), "iam_credentials_configuration");
     assertEquals(iamCredentialsConfigurationPrototypeModel.apiKey(), "testString");
+    assertEquals(iamCredentialsConfigurationPrototypeModel.disabled(), Boolean.valueOf(false));
 
     String json = TestUtilities.serialize(iamCredentialsConfigurationPrototypeModel);
 
@@ -47,6 +49,7 @@ public class IAMCredentialsConfigurationPrototypeTest {
     assertEquals(iamCredentialsConfigurationPrototypeModelNew.name(), "my-example-engine-config");
     assertEquals(iamCredentialsConfigurationPrototypeModelNew.configType(), "iam_credentials_configuration");
     assertEquals(iamCredentialsConfigurationPrototypeModelNew.apiKey(), "testString");
+    assertEquals(iamCredentialsConfigurationPrototypeModelNew.disabled(), Boolean.valueOf(false));
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

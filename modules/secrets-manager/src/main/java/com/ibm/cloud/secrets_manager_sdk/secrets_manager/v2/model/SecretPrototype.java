@@ -110,6 +110,8 @@ public class SecretPrototype extends GenericModel {
   protected List<String> accessGroups;
   @SerializedName("service_id")
   protected String serviceId;
+  @SerializedName("account_id")
+  protected String accountId;
   @SerializedName("reuse_api_key")
   protected Boolean reuseApiKey;
   protected RotationPolicy rotation;
@@ -307,6 +309,18 @@ public class SecretPrototype extends GenericModel {
    */
   public String serviceId() {
     return serviceId;
+  }
+
+  /**
+   * Gets the accountId.
+   *
+   * The ID of the account in which the IAM credentials are created. Use this field only if the target account is not
+   * the same as the account of the Secrets Manager instance. Otherwise, the field can be omitted.
+   *
+   * @return the accountId
+   */
+  public String accountId() {
+    return accountId;
   }
 
   /**

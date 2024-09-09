@@ -42,6 +42,7 @@ public class KVSecretVersionTest {
     assertNull(kvSecretVersionModel.getAlias());
     assertNull(kvSecretVersionModel.getVersionCustomMetadata());
     assertNull(kvSecretVersionModel.getSecretId());
+    assertNull(kvSecretVersionModel.getExpirationDate());
     assertNull(kvSecretVersionModel.getData());
   }
 }

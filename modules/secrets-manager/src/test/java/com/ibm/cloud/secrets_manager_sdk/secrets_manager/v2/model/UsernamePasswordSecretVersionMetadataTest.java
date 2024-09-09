@@ -42,5 +42,6 @@ public class UsernamePasswordSecretVersionMetadataTest {
     assertNull(usernamePasswordSecretVersionMetadataModel.getAlias());
     assertNull(usernamePasswordSecretVersionMetadataModel.getVersionCustomMetadata());
     assertNull(usernamePasswordSecretVersionMetadataModel.getSecretId());
+    assertNull(usernamePasswordSecretVersionMetadataModel.getExpirationDate());
   }
 }

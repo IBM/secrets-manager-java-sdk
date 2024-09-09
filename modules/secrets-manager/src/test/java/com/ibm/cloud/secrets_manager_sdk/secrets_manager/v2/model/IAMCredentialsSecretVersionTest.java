@@ -42,6 +42,7 @@ public class IAMCredentialsSecretVersionTest {
     assertNull(iamCredentialsSecretVersionModel.getAlias());
     assertNull(iamCredentialsSecretVersionModel.getVersionCustomMetadata());
     assertNull(iamCredentialsSecretVersionModel.getSecretId());
+    assertNull(iamCredentialsSecretVersionModel.getExpirationDate());
     assertNull(iamCredentialsSecretVersionModel.getServiceId());
   }
 }
