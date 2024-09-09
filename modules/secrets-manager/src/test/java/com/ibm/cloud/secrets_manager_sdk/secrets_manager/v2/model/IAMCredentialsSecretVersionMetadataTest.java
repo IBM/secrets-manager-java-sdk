@@ -14,36 +14,35 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentialsSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
-import org.testng.annotations.Test;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-
-import static org.testng.Assert.assertNull;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 /**
  * Unit test class for the IAMCredentialsSecretVersionMetadata model.
  */
 public class IAMCredentialsSecretVersionMetadataTest {
-    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-    @Test
-    public void testIAMCredentialsSecretVersionMetadata() throws Throwable {
-        IAMCredentialsSecretVersionMetadata iamCredentialsSecretVersionMetadataModel = new IAMCredentialsSecretVersionMetadata();
-        assertNull(iamCredentialsSecretVersionMetadataModel.isAutoRotated());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getCreatedBy());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getCreatedAt());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getId());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getSecretType());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getSecretGroupId());
-        assertNull(iamCredentialsSecretVersionMetadataModel.isPayloadAvailable());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getAlias());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getVersionCustomMetadata());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getSecretId());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getExpirationDate());
-        assertNull(iamCredentialsSecretVersionMetadataModel.getServiceId());
-    }
+  @Test
+  public void testIAMCredentialsSecretVersionMetadata() throws Throwable {
+    IAMCredentialsSecretVersionMetadata iamCredentialsSecretVersionMetadataModel = new IAMCredentialsSecretVersionMetadata();
+    assertNull(iamCredentialsSecretVersionMetadataModel.isAutoRotated());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getCreatedBy());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getCreatedAt());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getId());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getSecretType());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getSecretGroupId());
+    assertNull(iamCredentialsSecretVersionMetadataModel.isPayloadAvailable());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getAlias());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getVersionCustomMetadata());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getSecretId());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getExpirationDate());
+    assertNull(iamCredentialsSecretVersionMetadataModel.getServiceId());
+  }
 }
