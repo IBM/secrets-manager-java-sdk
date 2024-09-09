@@ -17,7 +17,6 @@ A Java client library to interact with the [IBM Cloud® Secrets Manager APIs](ht
 </details>
 
 ## Overview
-
 The IBM Cloud Secrets Manager Java SDK allows developers to programmatically interact with the following IBM Cloud services:
 
 | Service name                                                     | Imported class name |
