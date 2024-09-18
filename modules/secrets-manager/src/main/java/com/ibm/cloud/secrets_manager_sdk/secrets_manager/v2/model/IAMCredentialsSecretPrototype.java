@@ -58,6 +58,7 @@ public class IAMCredentialsSecretPrototype extends SecretPrototype {
     private String ttl;
     private List<String> accessGroups;
     private String serviceId;
+    private String accountId;
     private Boolean reuseApiKey;
     private RotationPolicy rotation;
     private Map<String, Object> customMetadata;
@@ -77,6 +78,7 @@ public class IAMCredentialsSecretPrototype extends SecretPrototype {
       this.ttl = iamCredentialsSecretPrototype.ttl;
       this.accessGroups = iamCredentialsSecretPrototype.accessGroups;
       this.serviceId = iamCredentialsSecretPrototype.serviceId;
+      this.accountId = iamCredentialsSecretPrototype.accountId;
       this.reuseApiKey = iamCredentialsSecretPrototype.reuseApiKey;
       this.rotation = iamCredentialsSecretPrototype.rotation;
       this.customMetadata = iamCredentialsSecretPrototype.customMetadata;
@@ -236,6 +238,17 @@ public class IAMCredentialsSecretPrototype extends SecretPrototype {
     }
 
     /**
+     * Set the accountId.
+     *
+     * @param accountId the accountId
+     * @return the IAMCredentialsSecretPrototype builder
+     */
+    public Builder accountId(String accountId) {
+      this.accountId = accountId;
+      return this;
+    }
+
+    /**
      * Set the reuseApiKey.
      *
      * @param reuseApiKey the reuseApiKey
@@ -299,6 +312,7 @@ public class IAMCredentialsSecretPrototype extends SecretPrototype {
     ttl = builder.ttl;
     accessGroups = builder.accessGroups;
     serviceId = builder.serviceId;
+    accountId = builder.accountId;
     reuseApiKey = builder.reuseApiKey;
     rotation = builder.rotation;
     customMetadata = builder.customMetadata;

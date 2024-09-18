@@ -2096,7 +2096,7 @@ public class SecretsManagerTest {
   @Test
   public void testListConfigurationsWOptions() throws Throwable {
     // Register a mock response
-    String mockResponseBody = "{\"total_count\": 0, \"limit\": 25, \"offset\": 25, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"configurations\": [{\"config_type\": \"iam_credentials_configuration\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\"}]}";
+    String mockResponseBody = "{\"total_count\": 0, \"limit\": 25, \"offset\": 25, \"first\": {\"href\": \"href\"}, \"next\": {\"href\": \"href\"}, \"previous\": {\"href\": \"href\"}, \"last\": {\"href\": \"href\"}, \"configurations\": [{\"config_type\": \"iam_credentials_configuration\", \"name\": \"my-secret-engine-config\", \"secret_type\": \"arbitrary\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"created_at\": \"2022-04-12T23:20:50.520Z\", \"updated_at\": \"2022-04-12T23:20:50.520Z\", \"disabled\": true}]}";
     String listConfigurationsPath = "/api/v2/configurations";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
@@ -2149,8 +2149,8 @@ public class SecretsManagerTest {
   @Test
   public void testListConfigurationsWithPagerGetNext() throws Throwable {
     // Set up the two-page mock response.
-    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"configurations\":[{\"config_type\":\"iam_credentials_configuration\",\"name\":\"my-secret-engine-config\",\"secret_type\":\"arbitrary\",\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"updated_at\":\"2022-04-12T23:20:50.520Z\"}],\"limit\":1}";
-    String mockResponsePage2 = "{\"total_count\":2,\"configurations\":[{\"config_type\":\"iam_credentials_configuration\",\"name\":\"my-secret-engine-config\",\"secret_type\":\"arbitrary\",\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"updated_at\":\"2022-04-12T23:20:50.520Z\"}],\"limit\":1}";
+    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"configurations\":[{\"config_type\":\"iam_credentials_configuration\",\"name\":\"my-secret-engine-config\",\"secret_type\":\"arbitrary\",\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"disabled\":true}],\"limit\":1}";
+    String mockResponsePage2 = "{\"total_count\":2,\"configurations\":[{\"config_type\":\"iam_credentials_configuration\",\"name\":\"my-secret-engine-config\",\"secret_type\":\"arbitrary\",\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"disabled\":true}],\"limit\":1}";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)
@@ -2185,8 +2185,8 @@ public class SecretsManagerTest {
   @Test
   public void testListConfigurationsWithPagerGetAll() throws Throwable {
     // Set up the two-page mock response.
-    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"configurations\":[{\"config_type\":\"iam_credentials_configuration\",\"name\":\"my-secret-engine-config\",\"secret_type\":\"arbitrary\",\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"updated_at\":\"2022-04-12T23:20:50.520Z\"}],\"limit\":1}";
-    String mockResponsePage2 = "{\"total_count\":2,\"configurations\":[{\"config_type\":\"iam_credentials_configuration\",\"name\":\"my-secret-engine-config\",\"secret_type\":\"arbitrary\",\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"updated_at\":\"2022-04-12T23:20:50.520Z\"}],\"limit\":1}";
+    String mockResponsePage1 = "{\"next\":{\"href\":\"https://myhost.com/somePath?offset=1\"},\"total_count\":2,\"configurations\":[{\"config_type\":\"iam_credentials_configuration\",\"name\":\"my-secret-engine-config\",\"secret_type\":\"arbitrary\",\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"disabled\":true}],\"limit\":1}";
+    String mockResponsePage2 = "{\"total_count\":2,\"configurations\":[{\"config_type\":\"iam_credentials_configuration\",\"name\":\"my-secret-engine-config\",\"secret_type\":\"arbitrary\",\"created_by\":\"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\",\"created_at\":\"2022-04-12T23:20:50.520Z\",\"updated_at\":\"2022-04-12T23:20:50.520Z\",\"disabled\":true}],\"limit\":1}";
     server.enqueue(new MockResponse()
       .setHeader("Content-type", "application/json")
       .setResponseCode(200)

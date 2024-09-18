@@ -28,6 +28,7 @@ public class IAMCredentialsConfigurationPatch extends ConfigurationPatch {
    */
   public static class Builder {
     private String apiKey;
+    private Boolean disabled;
 
     /**
      * Instantiates a new Builder from an existing IAMCredentialsConfigurationPatch instance.
@@ -36,21 +37,13 @@ public class IAMCredentialsConfigurationPatch extends ConfigurationPatch {
      */
     public Builder(ConfigurationPatch iamCredentialsConfigurationPatch) {
       this.apiKey = iamCredentialsConfigurationPatch.apiKey;
+      this.disabled = iamCredentialsConfigurationPatch.disabled;
     }
 
     /**
      * Instantiates a new builder.
      */
     public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param apiKey the apiKey
-     */
-    public Builder(String apiKey) {
-      this.apiKey = apiKey;
     }
 
     /**
@@ -72,14 +65,24 @@ public class IAMCredentialsConfigurationPatch extends ConfigurationPatch {
       this.apiKey = apiKey;
       return this;
     }
+
+    /**
+     * Set the disabled.
+     *
+     * @param disabled the disabled
+     * @return the IAMCredentialsConfigurationPatch builder
+     */
+    public Builder disabled(Boolean disabled) {
+      this.disabled = disabled;
+      return this;
+    }
   }
 
   protected IAMCredentialsConfigurationPatch() { }
 
   protected IAMCredentialsConfigurationPatch(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.apiKey,
-      "apiKey cannot be null");
     apiKey = builder.apiKey;
+    disabled = builder.disabled;
   }
 
   /**

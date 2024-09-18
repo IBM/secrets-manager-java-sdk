@@ -38,5 +38,6 @@ public class IAMCredentialsConfigurationTest {
     assertNull(iamCredentialsConfigurationModel.getCreatedBy());
     assertNull(iamCredentialsConfigurationModel.getCreatedAt());
     assertNull(iamCredentialsConfigurationModel.getUpdatedAt());
+    assertNull(iamCredentialsConfigurationModel.isDisabled());
   }
 }

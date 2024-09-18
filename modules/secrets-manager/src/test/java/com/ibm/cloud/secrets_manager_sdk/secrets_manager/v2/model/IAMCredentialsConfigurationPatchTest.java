@@ -34,30 +34,29 @@ public class IAMCredentialsConfigurationPatchTest {
   public void testIAMCredentialsConfigurationPatch() throws Throwable {
     IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModel = new IAMCredentialsConfigurationPatch.Builder()
       .apiKey("testString")
+      .disabled(true)
       .build();
     assertEquals(iamCredentialsConfigurationPatchModel.apiKey(), "testString");
+    assertEquals(iamCredentialsConfigurationPatchModel.disabled(), Boolean.valueOf(true));
 
     String json = TestUtilities.serialize(iamCredentialsConfigurationPatchModel);
 
     IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModelNew = TestUtilities.deserialize(json, IAMCredentialsConfigurationPatch.class);
     assertTrue(iamCredentialsConfigurationPatchModelNew instanceof IAMCredentialsConfigurationPatch);
     assertEquals(iamCredentialsConfigurationPatchModelNew.apiKey(), "testString");
+    assertEquals(iamCredentialsConfigurationPatchModelNew.disabled(), Boolean.valueOf(true));
   }
   @Test
   public void testIAMCredentialsConfigurationPatchAsPatch() throws Throwable {
     IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModel = new IAMCredentialsConfigurationPatch.Builder()
       .apiKey("testString")
+      .disabled(true)
       .build();
 
     Map<String, Object> mergePatch = iamCredentialsConfigurationPatchModel.asPatch();
 
     assertEquals(mergePatch.get("api_key"), "testString");
-  }
-
-
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testIAMCredentialsConfigurationPatchError() throws Throwable {
-    new IAMCredentialsConfigurationPatch.Builder().build();
+    assertTrue(mergePatch.containsKey("disabled"));
   }
 
 }
