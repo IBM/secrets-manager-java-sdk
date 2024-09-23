@@ -189,6 +189,7 @@ public class Configuration extends GenericModel {
   protected String classicInfrastructureUsername;
   @SerializedName("classic_infrastructure_password")
   protected String classicInfrastructurePassword;
+  protected Boolean disabled;
   @SerializedName("api_key")
   protected String apiKey;
   @SerializedName("common_name")
@@ -469,6 +470,17 @@ public class Configuration extends GenericModel {
    */
   public String getClassicInfrastructurePassword() {
     return classicInfrastructurePassword;
+  }
+
+  /**
+   * Gets the disabled.
+   *
+   * This parameter indicates whether the API key configuration is disabled.
+   *
+   * @return the disabled
+   */
+  public Boolean isDisabled() {
+    return disabled;
   }
 
   /**

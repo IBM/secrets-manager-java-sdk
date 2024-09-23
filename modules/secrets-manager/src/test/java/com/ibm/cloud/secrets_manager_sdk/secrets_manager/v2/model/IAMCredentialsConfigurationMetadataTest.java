@@ -38,5 +38,6 @@ public class IAMCredentialsConfigurationMetadataTest {
     assertNull(iamCredentialsConfigurationMetadataModel.getCreatedBy());
     assertNull(iamCredentialsConfigurationMetadataModel.getCreatedAt());
     assertNull(iamCredentialsConfigurationMetadataModel.getUpdatedAt());
+    assertNull(iamCredentialsConfigurationMetadataModel.isDisabled());
   }
 }

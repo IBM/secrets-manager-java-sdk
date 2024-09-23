@@ -154,6 +154,7 @@ public class ConfigurationMetadata extends GenericModel {
   protected Date createdAt;
   @SerializedName("updated_at")
   protected Date updatedAt;
+  protected Boolean disabled;
   @SerializedName("lets_encrypt_environment")
   protected String letsEncryptEnvironment;
   @SerializedName("lets_encrypt_preferred_chain")
@@ -247,6 +248,17 @@ public class ConfigurationMetadata extends GenericModel {
    */
   public Date getUpdatedAt() {
     return updatedAt;
+  }
+
+  /**
+   * Gets the disabled.
+   *
+   * This parameter indicates whether the API key configuration is disabled.
+   *
+   * @return the disabled
+   */
+  public Boolean isDisabled() {
+    return disabled;
   }
 
   /**

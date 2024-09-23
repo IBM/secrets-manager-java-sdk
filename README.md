@@ -33,7 +33,6 @@ The IBM Cloud Secrets Manager Java SDK allows developers to programmatically int
 - Java 11
 
 ## Installation
-
 ##### Maven
 
 ```xml
