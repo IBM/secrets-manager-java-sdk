@@ -32,6 +32,8 @@ public class PrivateCertificateConfigurationActionRevokePrototype extends Config
     String PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = "private_cert_configuration_action_set_signed";
     /** private_cert_configuration_action_revoke_ca_certificate. */
     String PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = "private_cert_configuration_action_revoke_ca_certificate";
+    /** private_cert_configuration_action_rotate_intermediate. */
+    String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = "private_cert_configuration_action_rotate_intermediate";
   }
 
 

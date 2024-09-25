@@ -24,6 +24,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * Classes which extend this class:
  * - PrivateCertificateConfigurationActionRotateCRLPrototype
  * - PrivateCertificateConfigurationActionRevokePrototype
+ * - PrivateCertificateConfigurationActionRotatePrototype
  * - PrivateCertificateConfigurationActionSignCSRPrototype
  * - PrivateCertificateConfigurationActionSignIntermediatePrototype
  * - PrivateCertificateConfigurationActionSetSignedPrototype
@@ -36,6 +37,7 @@ public class ConfigurationActionPrototype extends GenericModel {
     discriminatorMapping = new java.util.HashMap<>();
     discriminatorMapping.put("private_cert_configuration_action_rotate_crl", PrivateCertificateConfigurationActionRotateCRLPrototype.class);
     discriminatorMapping.put("private_cert_configuration_action_revoke_ca_certificate", PrivateCertificateConfigurationActionRevokePrototype.class);
+    discriminatorMapping.put("private_cert_configuration_action_rotate_intermediate", PrivateCertificateConfigurationActionRotatePrototype.class);
     discriminatorMapping.put("private_cert_configuration_action_sign_csr", PrivateCertificateConfigurationActionSignCSRPrototype.class);
     discriminatorMapping.put("private_cert_configuration_action_sign_intermediate", PrivateCertificateConfigurationActionSignIntermediatePrototype.class);
     discriminatorMapping.put("private_cert_configuration_action_set_signed", PrivateCertificateConfigurationActionSetSignedPrototype.class);
@@ -54,6 +56,8 @@ public class ConfigurationActionPrototype extends GenericModel {
     String PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = "private_cert_configuration_action_set_signed";
     /** private_cert_configuration_action_revoke_ca_certificate. */
     String PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = "private_cert_configuration_action_revoke_ca_certificate";
+    /** private_cert_configuration_action_rotate_intermediate. */
+    String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = "private_cert_configuration_action_rotate_intermediate";
   }
 
   /**

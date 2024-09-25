@@ -23,6 +23,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  *
  * Classes which extend this class:
  * - PrivateCertificateConfigurationActionRevoke
+ * - PrivateCertificateConfigurationActionRotate
  * - PrivateCertificateConfigurationActionSignCSR
  * - PrivateCertificateConfigurationActionSignIntermediate
  * - PrivateCertificateConfigurationActionSetSigned
@@ -35,6 +36,7 @@ public class ConfigurationAction extends GenericModel {
   static {
     discriminatorMapping = new java.util.HashMap<>();
     discriminatorMapping.put("private_cert_configuration_action_revoke_ca_certificate", PrivateCertificateConfigurationActionRevoke.class);
+    discriminatorMapping.put("private_cert_configuration_action_rotate_intermediate", PrivateCertificateConfigurationActionRotate.class);
     discriminatorMapping.put("private_cert_configuration_action_sign_csr", PrivateCertificateConfigurationActionSignCSR.class);
     discriminatorMapping.put("private_cert_configuration_action_sign_intermediate", PrivateCertificateConfigurationActionSignIntermediate.class);
     discriminatorMapping.put("private_cert_configuration_action_set_signed", PrivateCertificateConfigurationActionSetSigned.class);
@@ -54,6 +56,8 @@ public class ConfigurationAction extends GenericModel {
     String PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = "private_cert_configuration_action_set_signed";
     /** private_cert_configuration_action_revoke_ca_certificate. */
     String PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = "private_cert_configuration_action_revoke_ca_certificate";
+    /** private_cert_configuration_action_rotate_intermediate. */
+    String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = "private_cert_configuration_action_rotate_intermediate";
   }
 
   /**
@@ -70,6 +74,8 @@ public class ConfigurationAction extends GenericModel {
   protected String actionType;
   @SerializedName("revocation_time_seconds")
   protected Long revocationTimeSeconds;
+  protected String name;
+  protected PrivateCertificateConfigurationRotateAction config;
   @SerializedName("common_name")
   protected String commonName;
   @SerializedName("alt_names")
@@ -130,6 +136,29 @@ public class ConfigurationAction extends GenericModel {
    */
   public Long getRevocationTimeSeconds() {
     return revocationTimeSeconds;
+  }
+
+  /**
+   * Gets the name.
+   *
+   * The name of the intermediate certificate authority configuration.
+   *
+   * @return the name
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Gets the config.
+   *
+   * The response body of the action to rotate an intermediate certificate authority for the private certificate
+   * configuration.
+   *
+   * @return the config
+   */
+  public PrivateCertificateConfigurationRotateAction getConfig() {
+    return config;
   }
 
   /**
