@@ -14,20 +14,9 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 /**
- * The response body of the action to sign the intermediate certificate authority for the private certificate
- * configuration.
+ * The response body to specify the properties of the action to rotate the private certificate.
  */
-public class PrivateCertificateConfigurationActionSignIntermediate extends ConfigurationAction {
-
-  /**
-   * The format of the returned data.
-   */
-  public interface Format {
-    /** pem. */
-    String PEM = "pem";
-    /** pem_bundle. */
-    String PEM_BUNDLE = "pem_bundle";
-  }
+public class PrivateCertificateConfigurationActionRotate extends ConfigurationAction {
 
   /**
    * The type of configuration action.
@@ -48,6 +37,6 @@ public class PrivateCertificateConfigurationActionSignIntermediate extends Confi
   }
 
 
-  protected PrivateCertificateConfigurationActionSignIntermediate() { }
+  protected PrivateCertificateConfigurationActionRotate() { }
 }
 

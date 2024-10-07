@@ -50,7 +50,6 @@ The IBM Cloud Secrets Manager Java SDK allows developers to programmatically int
 ```
 
 ## Authentication
-
 Secrets Manager uses token-based Identity and Access Management (IAM) authentication.
 
 With IAM authentication, you supply an API key that is used to generate an access token. Then, the access token is included in each API request to Secrets Manager. Access tokens are valid for a limited amount of time and must be regenerated.

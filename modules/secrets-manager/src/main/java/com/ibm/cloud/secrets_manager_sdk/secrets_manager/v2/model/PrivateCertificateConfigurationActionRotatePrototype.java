@@ -14,10 +14,9 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 /**
- * The request body of the action to rotate the CRL of an intermediate certificate authority for the private certificate
- * configuration.
+ * The request body to specify the properties of the action to rotate the private certificate configuration.
  */
-public class PrivateCertificateConfigurationActionRotateCRLPrototype extends ConfigurationActionPrototype {
+public class PrivateCertificateConfigurationActionRotatePrototype extends ConfigurationActionPrototype {
 
   /**
    * The type of configuration action.
@@ -45,12 +44,12 @@ public class PrivateCertificateConfigurationActionRotateCRLPrototype extends Con
     private String actionType;
 
     /**
-     * Instantiates a new Builder from an existing PrivateCertificateConfigurationActionRotateCRLPrototype instance.
+     * Instantiates a new Builder from an existing PrivateCertificateConfigurationActionRotatePrototype instance.
      *
-     * @param privateCertificateConfigurationActionRotateCrlPrototype the instance to initialize the Builder with
+     * @param privateCertificateConfigurationActionRotatePrototype the instance to initialize the Builder with
      */
-    public Builder(ConfigurationActionPrototype privateCertificateConfigurationActionRotateCrlPrototype) {
-      this.actionType = privateCertificateConfigurationActionRotateCrlPrototype.actionType;
+    public Builder(ConfigurationActionPrototype privateCertificateConfigurationActionRotatePrototype) {
+      this.actionType = privateCertificateConfigurationActionRotatePrototype.actionType;
     }
 
     /**
@@ -69,19 +68,19 @@ public class PrivateCertificateConfigurationActionRotateCRLPrototype extends Con
     }
 
     /**
-     * Builds a PrivateCertificateConfigurationActionRotateCRLPrototype.
+     * Builds a PrivateCertificateConfigurationActionRotatePrototype.
      *
-     * @return the new PrivateCertificateConfigurationActionRotateCRLPrototype instance
+     * @return the new PrivateCertificateConfigurationActionRotatePrototype instance
      */
-    public PrivateCertificateConfigurationActionRotateCRLPrototype build() {
-      return new PrivateCertificateConfigurationActionRotateCRLPrototype(this);
+    public PrivateCertificateConfigurationActionRotatePrototype build() {
+      return new PrivateCertificateConfigurationActionRotatePrototype(this);
     }
 
     /**
      * Set the actionType.
      *
      * @param actionType the actionType
-     * @return the PrivateCertificateConfigurationActionRotateCRLPrototype builder
+     * @return the PrivateCertificateConfigurationActionRotatePrototype builder
      */
     public Builder actionType(String actionType) {
       this.actionType = actionType;
@@ -89,9 +88,9 @@ public class PrivateCertificateConfigurationActionRotateCRLPrototype extends Con
     }
   }
 
-  protected PrivateCertificateConfigurationActionRotateCRLPrototype() { }
+  protected PrivateCertificateConfigurationActionRotatePrototype() { }
 
-  protected PrivateCertificateConfigurationActionRotateCRLPrototype(Builder builder) {
+  protected PrivateCertificateConfigurationActionRotatePrototype(Builder builder) {
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.actionType,
       "actionType cannot be null");
     actionType = builder.actionType;
@@ -100,7 +99,7 @@ public class PrivateCertificateConfigurationActionRotateCRLPrototype extends Con
   /**
    * New builder.
    *
-   * @return a PrivateCertificateConfigurationActionRotateCRLPrototype builder
+   * @return a PrivateCertificateConfigurationActionRotatePrototype builder
    */
   public Builder newBuilder() {
     return new Builder(this);

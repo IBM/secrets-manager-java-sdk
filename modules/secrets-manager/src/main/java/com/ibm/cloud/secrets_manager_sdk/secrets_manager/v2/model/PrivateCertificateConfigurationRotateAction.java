@@ -19,46 +19,10 @@ import com.google.gson.annotations.SerializedName;
 import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
- * The response body to specify the properties of the action to create a configuration.
- *
- * Classes which extend this class:
- * - PrivateCertificateConfigurationActionRevoke
- * - PrivateCertificateConfigurationActionRotate
- * - PrivateCertificateConfigurationActionSignCSR
- * - PrivateCertificateConfigurationActionSignIntermediate
- * - PrivateCertificateConfigurationActionSetSigned
- * - PrivateCertificateConfigurationActionRotateCRL
+ * The response body of the action to rotate an intermediate certificate authority for the private certificate
+ * configuration.
  */
-public class ConfigurationAction extends GenericModel {
-  @SuppressWarnings("unused")
-  protected static String discriminatorPropertyName = "action_type";
-  protected static java.util.Map<String, Class<?>> discriminatorMapping;
-  static {
-    discriminatorMapping = new java.util.HashMap<>();
-    discriminatorMapping.put("private_cert_configuration_action_revoke_ca_certificate", PrivateCertificateConfigurationActionRevoke.class);
-    discriminatorMapping.put("private_cert_configuration_action_rotate_intermediate", PrivateCertificateConfigurationActionRotate.class);
-    discriminatorMapping.put("private_cert_configuration_action_sign_csr", PrivateCertificateConfigurationActionSignCSR.class);
-    discriminatorMapping.put("private_cert_configuration_action_sign_intermediate", PrivateCertificateConfigurationActionSignIntermediate.class);
-    discriminatorMapping.put("private_cert_configuration_action_set_signed", PrivateCertificateConfigurationActionSetSigned.class);
-    discriminatorMapping.put("private_cert_configuration_action_rotate_crl", PrivateCertificateConfigurationActionRotateCRL.class);
-  }
-  /**
-   * The type of configuration action.
-   */
-  public interface ActionType {
-    /** private_cert_configuration_action_rotate_crl. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_CRL = "private_cert_configuration_action_rotate_crl";
-    /** private_cert_configuration_action_sign_intermediate. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_INTERMEDIATE = "private_cert_configuration_action_sign_intermediate";
-    /** private_cert_configuration_action_sign_csr. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = "private_cert_configuration_action_sign_csr";
-    /** private_cert_configuration_action_set_signed. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = "private_cert_configuration_action_set_signed";
-    /** private_cert_configuration_action_revoke_ca_certificate. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = "private_cert_configuration_action_revoke_ca_certificate";
-    /** private_cert_configuration_action_rotate_intermediate. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = "private_cert_configuration_action_rotate_intermediate";
-  }
+public class PrivateCertificateConfigurationRotateAction extends GenericModel {
 
   /**
    * The format of the returned data.
@@ -70,12 +34,6 @@ public class ConfigurationAction extends GenericModel {
     String PEM_BUNDLE = "pem_bundle";
   }
 
-  @SerializedName("action_type")
-  protected String actionType;
-  @SerializedName("revocation_time_seconds")
-  protected Long revocationTimeSeconds;
-  protected String name;
-  protected PrivateCertificateConfigurationRotateAction config;
   @SerializedName("common_name")
   protected String commonName;
   @SerializedName("alt_names")
@@ -86,7 +44,7 @@ public class ConfigurationAction extends GenericModel {
   protected String uriSans;
   @SerializedName("other_sans")
   protected List<String> otherSans;
-  protected String ttl;
+  protected Long ttl;
   protected String format;
   @SerializedName("max_path_length")
   protected Long maxPathLength;
@@ -109,57 +67,8 @@ public class ConfigurationAction extends GenericModel {
   protected String serialNumber;
   protected String csr;
   protected PrivateCertificateConfigurationCACertificate data;
-  @SerializedName("intermediate_certificate_authority")
-  protected String intermediateCertificateAuthority;
-  protected String certificate;
-  protected Boolean success;
 
-  protected ConfigurationAction() { }
-
-  /**
-   * Gets the actionType.
-   *
-   * The type of configuration action.
-   *
-   * @return the actionType
-   */
-  public String getActionType() {
-    return actionType;
-  }
-
-  /**
-   * Gets the revocationTimeSeconds.
-   *
-   * The timestamp of the certificate revocation.
-   *
-   * @return the revocationTimeSeconds
-   */
-  public Long getRevocationTimeSeconds() {
-    return revocationTimeSeconds;
-  }
-
-  /**
-   * Gets the name.
-   *
-   * The name of the intermediate certificate authority configuration.
-   *
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Gets the config.
-   *
-   * The response body of the action to rotate an intermediate certificate authority for the private certificate
-   * configuration.
-   *
-   * @return the config
-   */
-  public PrivateCertificateConfigurationRotateAction getConfig() {
-    return config;
-  }
+  protected PrivateCertificateConfigurationRotateAction() { }
 
   /**
    * Gets the commonName.
@@ -224,14 +133,11 @@ public class ConfigurationAction extends GenericModel {
   /**
    * Gets the ttl.
    *
-   * The time-to-live (TTL) to assign to a private certificate.
-   *
-   * The value can be supplied as a string representation of a duration in hours, for example '12h'. The value can't
-   * exceed the `max_ttl` that is defined in the associated certificate template.
+   * he requested TTL, after which the certificate expires.
    *
    * @return the ttl
    */
-  public String getTtl() {
+  public Long getTtl() {
     return ttl;
   }
 
@@ -417,40 +323,6 @@ public class ConfigurationAction extends GenericModel {
    */
   public PrivateCertificateConfigurationCACertificate getData() {
     return data;
-  }
-
-  /**
-   * Gets the intermediateCertificateAuthority.
-   *
-   * The name of the intermediate certificate authority configuration.
-   *
-   * @return the intermediateCertificateAuthority
-   */
-  public String getIntermediateCertificateAuthority() {
-    return intermediateCertificateAuthority;
-  }
-
-  /**
-   * Gets the certificate.
-   *
-   * Your PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters.
-   *
-   * @return the certificate
-   */
-  public String getCertificate() {
-    return certificate;
-  }
-
-  /**
-   * Gets the success.
-   *
-   * This field indicates whether the request to rotate the CRL for the private certificate configuration was
-   * successful.
-   *
-   * @return the success
-   */
-  public Boolean isSuccess() {
-    return success;
   }
 }
 

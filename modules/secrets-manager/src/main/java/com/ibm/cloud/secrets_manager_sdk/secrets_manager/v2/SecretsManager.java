@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.95.0-d0e386be-20240906-183310
+ * IBM OpenAPI SDK Code Generator Version: 3.95.2-120e65bc-20240924-152329
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2;
@@ -1185,6 +1185,8 @@ public class SecretsManager extends BaseService {
    * authority certificate.
    * - `private_cert_configuration_action_rotate_crl`: Rotate the certificate revocation list (CRL) of an intermediate
    * certificate authority.
+   * - `private_cert_configuration_action_rotate_intermediate`: Rotate an internally signed intermediate certificate
+   * authority certificate.
    *
    * @param createConfigurationActionOptions the {@link CreateConfigurationActionOptions} containing the options for the call
    * @return a {@link ServiceCall} with a result of type {@link ConfigurationAction}
