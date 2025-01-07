@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,27 +16,30 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateConfigurationDNSCloudInternetServicesMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the PublicCertificateConfigurationDNSCloudInternetServicesMetadata model.
  */
 public class PublicCertificateConfigurationDNSCloudInternetServicesMetadataTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testPublicCertificateConfigurationDNSCloudInternetServicesMetadata() throws Throwable {
-    PublicCertificateConfigurationDNSCloudInternetServicesMetadata publicCertificateConfigurationDnsCloudInternetServicesMetadataModel = new PublicCertificateConfigurationDNSCloudInternetServicesMetadata();
-    assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getConfigType());
-    assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getName());
-    assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getSecretType());
-    assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getCreatedBy());
-    assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getCreatedAt());
-    assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getUpdatedAt());
-  }
+    @Test
+    public void testPublicCertificateConfigurationDNSCloudInternetServicesMetadata() throws Throwable {
+        PublicCertificateConfigurationDNSCloudInternetServicesMetadata publicCertificateConfigurationDnsCloudInternetServicesMetadataModel = new PublicCertificateConfigurationDNSCloudInternetServicesMetadata();
+        assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getConfigType());
+        assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getName());
+        assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getSecretType());
+        assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getCreatedBy());
+        assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getCreatedAt());
+        assertNull(publicCertificateConfigurationDnsCloudInternetServicesMetadataModel.getUpdatedAt());
+    }
 }

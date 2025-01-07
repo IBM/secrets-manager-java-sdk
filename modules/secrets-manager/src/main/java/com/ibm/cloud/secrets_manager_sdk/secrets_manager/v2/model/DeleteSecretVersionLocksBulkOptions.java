@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,159 +23,160 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class DeleteSecretVersionLocksBulkOptions extends GenericModel {
 
-  protected String secretId;
-  protected String id;
-  protected List<String> name;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretId;
-    private String id;
-    private List<String> name;
+    protected String secretId;
+    protected String id;
+    protected List<String> name;
 
     /**
-     * Instantiates a new Builder from an existing DeleteSecretVersionLocksBulkOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretId;
+        private String id;
+        private List<String> name;
+
+        /**
+         * Instantiates a new Builder from an existing DeleteSecretVersionLocksBulkOptions instance.
+         *
+         * @param deleteSecretVersionLocksBulkOptions the instance to initialize the Builder with
+         */
+        private Builder(DeleteSecretVersionLocksBulkOptions deleteSecretVersionLocksBulkOptions) {
+            this.secretId = deleteSecretVersionLocksBulkOptions.secretId;
+            this.id = deleteSecretVersionLocksBulkOptions.id;
+            this.name = deleteSecretVersionLocksBulkOptions.name;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretId the secretId
+         * @param id       the id
+         */
+        public Builder(String secretId, String id) {
+            this.secretId = secretId;
+            this.id = id;
+        }
+
+        /**
+         * Builds a DeleteSecretVersionLocksBulkOptions.
+         *
+         * @return the new DeleteSecretVersionLocksBulkOptions instance
+         */
+        public DeleteSecretVersionLocksBulkOptions build() {
+            return new DeleteSecretVersionLocksBulkOptions(this);
+        }
+
+        /**
+         * Adds a new element to name.
+         *
+         * @param name the new element to be added
+         * @return the DeleteSecretVersionLocksBulkOptions builder
+         */
+        public Builder addName(String name) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(name,
+                    "name cannot be null");
+            if (this.name == null) {
+                this.name = new ArrayList<String>();
+            }
+            this.name.add(name);
+            return this;
+        }
+
+        /**
+         * Set the secretId.
+         *
+         * @param secretId the secretId
+         * @return the DeleteSecretVersionLocksBulkOptions builder
+         */
+        public Builder secretId(String secretId) {
+            this.secretId = secretId;
+            return this;
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the DeleteSecretVersionLocksBulkOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        /**
+         * Set the name.
+         * Existing name will be replaced.
+         *
+         * @param name the name
+         * @return the DeleteSecretVersionLocksBulkOptions builder
+         */
+        public Builder name(List<String> name) {
+            this.name = name;
+            return this;
+        }
+    }
+
+    protected DeleteSecretVersionLocksBulkOptions() {
+    }
+
+    protected DeleteSecretVersionLocksBulkOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretId,
+                "secretId cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        secretId = builder.secretId;
+        id = builder.id;
+        name = builder.name;
+    }
+
+    /**
+     * New builder.
      *
-     * @param deleteSecretVersionLocksBulkOptions the instance to initialize the Builder with
+     * @return a DeleteSecretVersionLocksBulkOptions builder
      */
-    private Builder(DeleteSecretVersionLocksBulkOptions deleteSecretVersionLocksBulkOptions) {
-      this.secretId = deleteSecretVersionLocksBulkOptions.secretId;
-      this.id = deleteSecretVersionLocksBulkOptions.id;
-      this.name = deleteSecretVersionLocksBulkOptions.name;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretId.
+     * <p>
+     * The UUID that uniquely identifies your secret.
      *
-     * @param secretId the secretId
-     * @param id the id
+     * @return the secretId
      */
-    public Builder(String secretId, String id) {
-      this.secretId = secretId;
-      this.id = id;
+    public String secretId() {
+        return secretId;
     }
 
     /**
-     * Builds a DeleteSecretVersionLocksBulkOptions.
+     * Gets the id.
+     * <p>
+     * The UUID that uniquely identifies your secret version. You can use the `current` or `previous` aliases to refer to
+     * the current or previous secret version.
      *
-     * @return the new DeleteSecretVersionLocksBulkOptions instance
+     * @return the id
      */
-    public DeleteSecretVersionLocksBulkOptions build() {
-      return new DeleteSecretVersionLocksBulkOptions(this);
+    public String id() {
+        return id;
     }
 
     /**
-     * Adds a new element to name.
+     * Gets the name.
+     * <p>
+     * Specify the names of the secret locks to be deleted.
      *
-     * @param name the new element to be added
-     * @return the DeleteSecretVersionLocksBulkOptions builder
+     * @return the name
      */
-    public Builder addName(String name) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(name,
-        "name cannot be null");
-      if (this.name == null) {
-        this.name = new ArrayList<String>();
-      }
-      this.name.add(name);
-      return this;
+    public List<String> name() {
+        return name;
     }
-
-    /**
-     * Set the secretId.
-     *
-     * @param secretId the secretId
-     * @return the DeleteSecretVersionLocksBulkOptions builder
-     */
-    public Builder secretId(String secretId) {
-      this.secretId = secretId;
-      return this;
-    }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the DeleteSecretVersionLocksBulkOptions builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-
-    /**
-     * Set the name.
-     * Existing name will be replaced.
-     *
-     * @param name the name
-     * @return the DeleteSecretVersionLocksBulkOptions builder
-     */
-    public Builder name(List<String> name) {
-      this.name = name;
-      return this;
-    }
-  }
-
-  protected DeleteSecretVersionLocksBulkOptions() { }
-
-  protected DeleteSecretVersionLocksBulkOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretId,
-      "secretId cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    secretId = builder.secretId;
-    id = builder.id;
-    name = builder.name;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a DeleteSecretVersionLocksBulkOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretId.
-   *
-   * The v4 UUID that uniquely identifies your secret.
-   *
-   * @return the secretId
-   */
-  public String secretId() {
-    return secretId;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies your secret version. You can use the `current` or `previous` aliases to refer
-   * to the current or previous secret version.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
-
-  /**
-   * Gets the name.
-   *
-   * Specify the names of the secret locks to be deleted.
-   *
-   * @return the name
-   */
-  public List<String> name() {
-    return name;
-  }
 }
 

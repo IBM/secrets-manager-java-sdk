@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,17 +18,22 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
  */
 public class PublicCertificateActionValidateManualDNS extends SecretAction {
 
-  /**
-   * The type of secret action.
-   */
-  public interface ActionType {
-    /** public_cert_action_validate_dns_challenge. */
-    String PUBLIC_CERT_ACTION_VALIDATE_DNS_CHALLENGE = "public_cert_action_validate_dns_challenge";
-    /** private_cert_action_revoke_certificate. */
-    String PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = "private_cert_action_revoke_certificate";
-  }
+    /**
+     * The type of secret action.
+     */
+    public interface ActionType {
+        /**
+         * public_cert_action_validate_dns_challenge.
+         */
+        String PUBLIC_CERT_ACTION_VALIDATE_DNS_CHALLENGE = "public_cert_action_validate_dns_challenge";
+        /**
+         * private_cert_action_revoke_certificate.
+         */
+        String PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = "private_cert_action_revoke_certificate";
+    }
 
 
-  protected PublicCertificateActionValidateManualDNS() { }
+    protected PublicCertificateActionValidateManualDNS() {
+    }
 }
 

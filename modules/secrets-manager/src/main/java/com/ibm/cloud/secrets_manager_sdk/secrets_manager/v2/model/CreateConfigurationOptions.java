@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,85 +20,86 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateConfigurationOptions extends GenericModel {
 
-  protected ConfigurationPrototype configurationPrototype;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private ConfigurationPrototype configurationPrototype;
+    protected ConfigurationPrototype configurationPrototype;
 
     /**
-     * Instantiates a new Builder from an existing CreateConfigurationOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private ConfigurationPrototype configurationPrototype;
+
+        /**
+         * Instantiates a new Builder from an existing CreateConfigurationOptions instance.
+         *
+         * @param createConfigurationOptions the instance to initialize the Builder with
+         */
+        private Builder(CreateConfigurationOptions createConfigurationOptions) {
+            this.configurationPrototype = createConfigurationOptions.configurationPrototype;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param configurationPrototype the configurationPrototype
+         */
+        public Builder(ConfigurationPrototype configurationPrototype) {
+            this.configurationPrototype = configurationPrototype;
+        }
+
+        /**
+         * Builds a CreateConfigurationOptions.
+         *
+         * @return the new CreateConfigurationOptions instance
+         */
+        public CreateConfigurationOptions build() {
+            return new CreateConfigurationOptions(this);
+        }
+
+        /**
+         * Set the configurationPrototype.
+         *
+         * @param configurationPrototype the configurationPrototype
+         * @return the CreateConfigurationOptions builder
+         */
+        public Builder configurationPrototype(ConfigurationPrototype configurationPrototype) {
+            this.configurationPrototype = configurationPrototype;
+            return this;
+        }
+    }
+
+    protected CreateConfigurationOptions() {
+    }
+
+    protected CreateConfigurationOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.configurationPrototype,
+                "configurationPrototype cannot be null");
+        configurationPrototype = builder.configurationPrototype;
+    }
+
+    /**
+     * New builder.
      *
-     * @param createConfigurationOptions the instance to initialize the Builder with
+     * @return a CreateConfigurationOptions builder
      */
-    private Builder(CreateConfigurationOptions createConfigurationOptions) {
-      this.configurationPrototype = createConfigurationOptions.configurationPrototype;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the configurationPrototype.
+     * <p>
+     * The details of your configuration.
      *
-     * @param configurationPrototype the configurationPrototype
+     * @return the configurationPrototype
      */
-    public Builder(ConfigurationPrototype configurationPrototype) {
-      this.configurationPrototype = configurationPrototype;
+    public ConfigurationPrototype configurationPrototype() {
+        return configurationPrototype;
     }
-
-    /**
-     * Builds a CreateConfigurationOptions.
-     *
-     * @return the new CreateConfigurationOptions instance
-     */
-    public CreateConfigurationOptions build() {
-      return new CreateConfigurationOptions(this);
-    }
-
-    /**
-     * Set the configurationPrototype.
-     *
-     * @param configurationPrototype the configurationPrototype
-     * @return the CreateConfigurationOptions builder
-     */
-    public Builder configurationPrototype(ConfigurationPrototype configurationPrototype) {
-      this.configurationPrototype = configurationPrototype;
-      return this;
-    }
-  }
-
-  protected CreateConfigurationOptions() { }
-
-  protected CreateConfigurationOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.configurationPrototype,
-      "configurationPrototype cannot be null");
-    configurationPrototype = builder.configurationPrototype;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a CreateConfigurationOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the configurationPrototype.
-   *
-   * The details of your configuration.
-   *
-   * @return the configurationPrototype
-   */
-  public ConfigurationPrototype configurationPrototype() {
-    return configurationPrototype;
-  }
 }
 

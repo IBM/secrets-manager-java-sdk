@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,80 +19,85 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 /**
  * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
  * username_password, private_cert, public_cert, iam_credentials.
- *
+ * <p>
  * Classes which extend this class:
  * - CommonRotationPolicy
  * - PublicCertificateRotationPolicy
  */
 public class RotationPolicy extends GenericModel {
 
-  /**
-   * The units for the secret rotation time interval.
-   */
-  public interface Unit {
-    /** day. */
-    String DAY = "day";
-    /** month. */
-    String MONTH = "month";
-  }
+    /**
+     * The units for the secret rotation time interval.
+     */
+    public interface Unit {
+        /**
+         * day.
+         */
+        String DAY = "day";
+        /**
+         * month.
+         */
+        String MONTH = "month";
+    }
 
-  @SerializedName("auto_rotate")
-  protected Boolean autoRotate;
-  protected Long interval;
-  protected String unit;
-  @SerializedName("rotate_keys")
-  protected Boolean rotateKeys;
+    @SerializedName("auto_rotate")
+    protected Boolean autoRotate;
+    protected Long interval;
+    protected String unit;
+    @SerializedName("rotate_keys")
+    protected Boolean rotateKeys;
 
-  protected RotationPolicy() { }
+    protected RotationPolicy() {
+    }
 
-  /**
-   * Gets the autoRotate.
-   *
-   * This field indicates whether Secrets Manager rotates your secret automatically.
-   *
-   * The default is `false`. If `auto_rotate` is set to `true` the service rotates your secret based on the defined
-   * interval.
-   *
-   * @return the autoRotate
-   */
-  public Boolean autoRotate() {
-    return autoRotate;
-  }
+    /**
+     * Gets the autoRotate.
+     * <p>
+     * This field indicates whether Secrets Manager rotates your secret automatically.
+     * <p>
+     * The default is `false`. If `auto_rotate` is set to `true` the service rotates your secret based on the defined
+     * interval.
+     *
+     * @return the autoRotate
+     */
+    public Boolean autoRotate() {
+        return autoRotate;
+    }
 
-  /**
-   * Gets the interval.
-   *
-   * The length of the secret rotation time interval.
-   *
-   * @return the interval
-   */
-  public Long interval() {
-    return interval;
-  }
+    /**
+     * Gets the interval.
+     * <p>
+     * The length of the secret rotation time interval.
+     *
+     * @return the interval
+     */
+    public Long interval() {
+        return interval;
+    }
 
-  /**
-   * Gets the unit.
-   *
-   * The units for the secret rotation time interval.
-   *
-   * @return the unit
-   */
-  public String unit() {
-    return unit;
-  }
+    /**
+     * Gets the unit.
+     * <p>
+     * The units for the secret rotation time interval.
+     *
+     * @return the unit
+     */
+    public String unit() {
+        return unit;
+    }
 
-  /**
-   * Gets the rotateKeys.
-   *
-   * This field indicates whether Secrets Manager rotates the private key for your public certificate automatically.
-   *
-   * The default is `false`. If it is set to `true`, the service generates and stores a new private key for your rotated
-   * certificate.
-   *
-   * @return the rotateKeys
-   */
-  public Boolean rotateKeys() {
-    return rotateKeys;
-  }
+    /**
+     * Gets the rotateKeys.
+     * <p>
+     * This field indicates whether Secrets Manager rotates the private key for your public certificate automatically.
+     * <p>
+     * The default is `false`. If it is set to `true`, the service generates and stores a new private key for your rotated
+     * certificate.
+     *
+     * @return the rotateKeys
+     */
+    public Boolean rotateKeys() {
+        return rotateKeys;
+    }
 }
 

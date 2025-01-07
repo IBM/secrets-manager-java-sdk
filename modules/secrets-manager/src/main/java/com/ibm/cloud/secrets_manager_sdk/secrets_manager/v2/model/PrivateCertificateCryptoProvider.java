@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,78 +18,83 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * The data that is associated with a cryptographic provider.
- *
+ * <p>
  * Classes which extend this class:
  * - PrivateCertificateCryptoProviderHPCS
  */
 public class PrivateCertificateCryptoProvider extends GenericModel {
-  @SuppressWarnings("unused")
-  protected static String discriminatorPropertyName = "type";
-  protected static java.util.Map<String, Class<?>> discriminatorMapping;
-  static {
-    discriminatorMapping = new java.util.HashMap<>();
-    discriminatorMapping.put("hyper_protect_crypto_services", PrivateCertificateCryptoProviderHPCS.class);
-  }
-  /**
-   * The type of cryptographic provider.
-   */
-  public interface Type {
-    /** hyper_protect_crypto_services. */
-    String HYPER_PROTECT_CRYPTO_SERVICES = "hyper_protect_crypto_services";
-  }
+    @SuppressWarnings("unused")
+    protected static String discriminatorPropertyName = "type";
+    protected static java.util.Map<String, Class<?>> discriminatorMapping;
 
-  protected String type;
-  @SerializedName("instance_crn")
-  protected String instanceCrn;
-  @SerializedName("pin_iam_credentials_secret_id")
-  protected String pinIamCredentialsSecretId;
-  @SerializedName("private_keystore_id")
-  protected String privateKeystoreId;
+    static {
+        discriminatorMapping = new java.util.HashMap<>();
+        discriminatorMapping.put("hyper_protect_crypto_services", PrivateCertificateCryptoProviderHPCS.class);
+    }
 
-  protected PrivateCertificateCryptoProvider() { }
+    /**
+     * The type of cryptographic provider.
+     */
+    public interface Type {
+        /**
+         * hyper_protect_crypto_services.
+         */
+        String HYPER_PROTECT_CRYPTO_SERVICES = "hyper_protect_crypto_services";
+    }
 
-  /**
-   * Gets the type.
-   *
-   * The type of cryptographic provider.
-   *
-   * @return the type
-   */
-  public String type() {
-    return type;
-  }
+    protected String type;
+    @SerializedName("instance_crn")
+    protected String instanceCrn;
+    @SerializedName("pin_iam_credentials_secret_id")
+    protected String pinIamCredentialsSecretId;
+    @SerializedName("private_keystore_id")
+    protected String privateKeystoreId;
 
-  /**
-   * Gets the instanceCrn.
-   *
-   * The HPCS instance CRN.
-   *
-   * @return the instanceCrn
-   */
-  public String instanceCrn() {
-    return instanceCrn;
-  }
+    protected PrivateCertificateCryptoProvider() {
+    }
 
-  /**
-   * Gets the pinIamCredentialsSecretId.
-   *
-   * The secret Id of iam credentials with api key to access HPCS instance.
-   *
-   * @return the pinIamCredentialsSecretId
-   */
-  public String pinIamCredentialsSecretId() {
-    return pinIamCredentialsSecretId;
-  }
+    /**
+     * Gets the type.
+     * <p>
+     * The type of cryptographic provider.
+     *
+     * @return the type
+     */
+    public String type() {
+        return type;
+    }
 
-  /**
-   * Gets the privateKeystoreId.
-   *
-   * The HPCS private key store space id.
-   *
-   * @return the privateKeystoreId
-   */
-  public String privateKeystoreId() {
-    return privateKeystoreId;
-  }
+    /**
+     * Gets the instanceCrn.
+     * <p>
+     * The HPCS instance CRN.
+     *
+     * @return the instanceCrn
+     */
+    public String instanceCrn() {
+        return instanceCrn;
+    }
+
+    /**
+     * Gets the pinIamCredentialsSecretId.
+     * <p>
+     * The secret Id of iam credentials with api key to access HPCS instance.
+     *
+     * @return the pinIamCredentialsSecretId
+     */
+    public String pinIamCredentialsSecretId() {
+        return pinIamCredentialsSecretId;
+    }
+
+    /**
+     * Gets the privateKeystoreId.
+     * <p>
+     * The HPCS private key store space id.
+     *
+     * @return the privateKeystoreId
+     */
+    public String privateKeystoreId() {
+        return privateKeystoreId;
+    }
 }
 

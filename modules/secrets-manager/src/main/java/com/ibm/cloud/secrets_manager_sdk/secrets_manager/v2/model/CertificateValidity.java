@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,33 +23,34 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CertificateValidity extends GenericModel {
 
-  @SerializedName("not_before")
-  protected Date notBefore;
-  @SerializedName("not_after")
-  protected Date notAfter;
+    @SerializedName("not_before")
+    protected Date notBefore;
+    @SerializedName("not_after")
+    protected Date notAfter;
 
-  protected CertificateValidity() { }
+    protected CertificateValidity() {
+    }
 
-  /**
-   * Gets the notBefore.
-   *
-   * The date-time format follows `RFC 3339`.
-   *
-   * @return the notBefore
-   */
-  public Date getNotBefore() {
-    return notBefore;
-  }
+    /**
+     * Gets the notBefore.
+     * <p>
+     * The date-time format follows `RFC 3339`.
+     *
+     * @return the notBefore
+     */
+    public Date getNotBefore() {
+        return notBefore;
+    }
 
-  /**
-   * Gets the notAfter.
-   *
-   * The date-time format follows `RFC 3339`.
-   *
-   * @return the notAfter
-   */
-  public Date getNotAfter() {
-    return notAfter;
-  }
+    /**
+     * Gets the notAfter.
+     * <p>
+     * The date-time format follows `RFC 3339`.
+     *
+     * @return the notAfter
+     */
+    public Date getNotAfter() {
+        return notAfter;
+    }
 }
 

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,53 +19,56 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertifi
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoKey;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCryptoProviderHPCS;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the PrivateCertificateConfigurationRootCA model.
  */
 public class PrivateCertificateConfigurationRootCATest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testPrivateCertificateConfigurationRootCA() throws Throwable {
-    PrivateCertificateConfigurationRootCA privateCertificateConfigurationRootCaModel = new PrivateCertificateConfigurationRootCA();
-    assertNull(privateCertificateConfigurationRootCaModel.getConfigType());
-    assertNull(privateCertificateConfigurationRootCaModel.getName());
-    assertNull(privateCertificateConfigurationRootCaModel.getSecretType());
-    assertNull(privateCertificateConfigurationRootCaModel.getCreatedBy());
-    assertNull(privateCertificateConfigurationRootCaModel.getCreatedAt());
-    assertNull(privateCertificateConfigurationRootCaModel.getUpdatedAt());
-    assertNull(privateCertificateConfigurationRootCaModel.getCommonName());
-    assertNull(privateCertificateConfigurationRootCaModel.isCrlDistributionPointsEncoded());
-    assertNull(privateCertificateConfigurationRootCaModel.getExpirationDate());
-    assertNull(privateCertificateConfigurationRootCaModel.getKeyType());
-    assertNull(privateCertificateConfigurationRootCaModel.getKeyBits());
-    assertNull(privateCertificateConfigurationRootCaModel.getCryptoKey());
-    assertNull(privateCertificateConfigurationRootCaModel.isCrlDisable());
-    assertNull(privateCertificateConfigurationRootCaModel.isIssuingCertificatesUrlsEncoded());
-    assertNull(privateCertificateConfigurationRootCaModel.getAltNames());
-    assertNull(privateCertificateConfigurationRootCaModel.getIpSans());
-    assertNull(privateCertificateConfigurationRootCaModel.getUriSans());
-    assertNull(privateCertificateConfigurationRootCaModel.getOtherSans());
-    assertNull(privateCertificateConfigurationRootCaModel.getFormat());
-    assertNull(privateCertificateConfigurationRootCaModel.getPrivateKeyFormat());
-    assertNull(privateCertificateConfigurationRootCaModel.getMaxPathLength());
-    assertNull(privateCertificateConfigurationRootCaModel.isExcludeCnFromSans());
-    assertNull(privateCertificateConfigurationRootCaModel.getPermittedDnsDomains());
-    assertNull(privateCertificateConfigurationRootCaModel.getOu());
-    assertNull(privateCertificateConfigurationRootCaModel.getOrganization());
-    assertNull(privateCertificateConfigurationRootCaModel.getCountry());
-    assertNull(privateCertificateConfigurationRootCaModel.getLocality());
-    assertNull(privateCertificateConfigurationRootCaModel.getProvince());
-    assertNull(privateCertificateConfigurationRootCaModel.getStreetAddress());
-    assertNull(privateCertificateConfigurationRootCaModel.getPostalCode());
-    assertNull(privateCertificateConfigurationRootCaModel.getSerialNumber());
-    assertNull(privateCertificateConfigurationRootCaModel.getData());
-  }
+    @Test
+    public void testPrivateCertificateConfigurationRootCA() throws Throwable {
+        PrivateCertificateConfigurationRootCA privateCertificateConfigurationRootCaModel = new PrivateCertificateConfigurationRootCA();
+        assertNull(privateCertificateConfigurationRootCaModel.getConfigType());
+        assertNull(privateCertificateConfigurationRootCaModel.getName());
+        assertNull(privateCertificateConfigurationRootCaModel.getSecretType());
+        assertNull(privateCertificateConfigurationRootCaModel.getCreatedBy());
+        assertNull(privateCertificateConfigurationRootCaModel.getCreatedAt());
+        assertNull(privateCertificateConfigurationRootCaModel.getUpdatedAt());
+        assertNull(privateCertificateConfigurationRootCaModel.getCommonName());
+        assertNull(privateCertificateConfigurationRootCaModel.isCrlDistributionPointsEncoded());
+        assertNull(privateCertificateConfigurationRootCaModel.getExpirationDate());
+        assertNull(privateCertificateConfigurationRootCaModel.getKeyType());
+        assertNull(privateCertificateConfigurationRootCaModel.getKeyBits());
+        assertNull(privateCertificateConfigurationRootCaModel.getCryptoKey());
+        assertNull(privateCertificateConfigurationRootCaModel.isCrlDisable());
+        assertNull(privateCertificateConfigurationRootCaModel.isIssuingCertificatesUrlsEncoded());
+        assertNull(privateCertificateConfigurationRootCaModel.getAltNames());
+        assertNull(privateCertificateConfigurationRootCaModel.getIpSans());
+        assertNull(privateCertificateConfigurationRootCaModel.getUriSans());
+        assertNull(privateCertificateConfigurationRootCaModel.getOtherSans());
+        assertNull(privateCertificateConfigurationRootCaModel.getFormat());
+        assertNull(privateCertificateConfigurationRootCaModel.getPrivateKeyFormat());
+        assertNull(privateCertificateConfigurationRootCaModel.getMaxPathLength());
+        assertNull(privateCertificateConfigurationRootCaModel.isExcludeCnFromSans());
+        assertNull(privateCertificateConfigurationRootCaModel.getPermittedDnsDomains());
+        assertNull(privateCertificateConfigurationRootCaModel.getOu());
+        assertNull(privateCertificateConfigurationRootCaModel.getOrganization());
+        assertNull(privateCertificateConfigurationRootCaModel.getCountry());
+        assertNull(privateCertificateConfigurationRootCaModel.getLocality());
+        assertNull(privateCertificateConfigurationRootCaModel.getProvince());
+        assertNull(privateCertificateConfigurationRootCaModel.getStreetAddress());
+        assertNull(privateCertificateConfigurationRootCaModel.getPostalCode());
+        assertNull(privateCertificateConfigurationRootCaModel.getSerialNumber());
+        assertNull(privateCertificateConfigurationRootCaModel.getData());
+    }
 }

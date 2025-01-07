@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,161 +22,176 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class UpdateConfigurationOptions extends GenericModel {
 
-  /**
-   * The configuration type of this configuration - use this header to resolve 300 error responses.
-   */
-  public interface XSmAcceptConfigurationType {
-    /** public_cert_configuration_dns_cloud_internet_services. */
-    String PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = "public_cert_configuration_dns_cloud_internet_services";
-    /** public_cert_configuration_dns_classic_infrastructure. */
-    String PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = "public_cert_configuration_dns_classic_infrastructure";
-    /** public_cert_configuration_ca_lets_encrypt. */
-    String PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = "public_cert_configuration_ca_lets_encrypt";
-    /** private_cert_configuration_root_ca. */
-    String PRIVATE_CERT_CONFIGURATION_ROOT_CA = "private_cert_configuration_root_ca";
-    /** private_cert_configuration_intermediate_ca. */
-    String PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = "private_cert_configuration_intermediate_ca";
-    /** private_cert_configuration_template. */
-    String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
-    /** iam_credentials_configuration. */
-    String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
-  }
+    /**
+     * The configuration type of this configuration - use this header to resolve 300 error responses.
+     */
+    public interface XSmAcceptConfigurationType {
+        /**
+         * public_cert_configuration_dns_cloud_internet_services.
+         */
+        String PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = "public_cert_configuration_dns_cloud_internet_services";
+        /**
+         * public_cert_configuration_dns_classic_infrastructure.
+         */
+        String PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = "public_cert_configuration_dns_classic_infrastructure";
+        /**
+         * public_cert_configuration_ca_lets_encrypt.
+         */
+        String PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = "public_cert_configuration_ca_lets_encrypt";
+        /**
+         * private_cert_configuration_root_ca.
+         */
+        String PRIVATE_CERT_CONFIGURATION_ROOT_CA = "private_cert_configuration_root_ca";
+        /**
+         * private_cert_configuration_intermediate_ca.
+         */
+        String PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = "private_cert_configuration_intermediate_ca";
+        /**
+         * private_cert_configuration_template.
+         */
+        String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
+        /**
+         * iam_credentials_configuration.
+         */
+        String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
+    }
 
-  protected String name;
-  protected Map<String, Object> configurationPatch;
-  protected String xSmAcceptConfigurationType;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String name;
-    private Map<String, Object> configurationPatch;
-    private String xSmAcceptConfigurationType;
+    protected String name;
+    protected Map<String, Object> configurationPatch;
+    protected String xSmAcceptConfigurationType;
 
     /**
-     * Instantiates a new Builder from an existing UpdateConfigurationOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String name;
+        private Map<String, Object> configurationPatch;
+        private String xSmAcceptConfigurationType;
+
+        /**
+         * Instantiates a new Builder from an existing UpdateConfigurationOptions instance.
+         *
+         * @param updateConfigurationOptions the instance to initialize the Builder with
+         */
+        private Builder(UpdateConfigurationOptions updateConfigurationOptions) {
+            this.name = updateConfigurationOptions.name;
+            this.configurationPatch = updateConfigurationOptions.configurationPatch;
+            this.xSmAcceptConfigurationType = updateConfigurationOptions.xSmAcceptConfigurationType;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param name               the name
+         * @param configurationPatch the configurationPatch
+         */
+        public Builder(String name, Map<String, Object> configurationPatch) {
+            this.name = name;
+            this.configurationPatch = configurationPatch;
+        }
+
+        /**
+         * Builds a UpdateConfigurationOptions.
+         *
+         * @return the new UpdateConfigurationOptions instance
+         */
+        public UpdateConfigurationOptions build() {
+            return new UpdateConfigurationOptions(this);
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the UpdateConfigurationOptions builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the configurationPatch.
+         *
+         * @param configurationPatch the configurationPatch
+         * @return the UpdateConfigurationOptions builder
+         */
+        public Builder configurationPatch(Map<String, Object> configurationPatch) {
+            this.configurationPatch = configurationPatch;
+            return this;
+        }
+
+        /**
+         * Set the xSmAcceptConfigurationType.
+         *
+         * @param xSmAcceptConfigurationType the xSmAcceptConfigurationType
+         * @return the UpdateConfigurationOptions builder
+         */
+        public Builder xSmAcceptConfigurationType(String xSmAcceptConfigurationType) {
+            this.xSmAcceptConfigurationType = xSmAcceptConfigurationType;
+            return this;
+        }
+    }
+
+    protected UpdateConfigurationOptions() {
+    }
+
+    protected UpdateConfigurationOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.name,
+                "name cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.configurationPatch,
+                "configurationPatch cannot be null");
+        name = builder.name;
+        configurationPatch = builder.configurationPatch;
+        xSmAcceptConfigurationType = builder.xSmAcceptConfigurationType;
+    }
+
+    /**
+     * New builder.
      *
-     * @param updateConfigurationOptions the instance to initialize the Builder with
+     * @return a UpdateConfigurationOptions builder
      */
-    private Builder(UpdateConfigurationOptions updateConfigurationOptions) {
-      this.name = updateConfigurationOptions.name;
-      this.configurationPatch = updateConfigurationOptions.configurationPatch;
-      this.xSmAcceptConfigurationType = updateConfigurationOptions.xSmAcceptConfigurationType;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the name.
+     * <p>
+     * The name that uniquely identifies a configuration.
      *
-     * @param name the name
-     * @param configurationPatch the configurationPatch
+     * @return the name
      */
-    public Builder(String name, Map<String, Object> configurationPatch) {
-      this.name = name;
-      this.configurationPatch = configurationPatch;
+    public String name() {
+        return name;
     }
 
     /**
-     * Builds a UpdateConfigurationOptions.
+     * Gets the configurationPatch.
+     * <p>
+     * JSON Merge-Patch content for update_configuration.
      *
-     * @return the new UpdateConfigurationOptions instance
+     * @return the configurationPatch
      */
-    public UpdateConfigurationOptions build() {
-      return new UpdateConfigurationOptions(this);
+    public Map<String, Object> configurationPatch() {
+        return configurationPatch;
     }
 
     /**
-     * Set the name.
+     * Gets the xSmAcceptConfigurationType.
+     * <p>
+     * The configuration type of this configuration - use this header to resolve 300 error responses.
      *
-     * @param name the name
-     * @return the UpdateConfigurationOptions builder
+     * @return the xSmAcceptConfigurationType
      */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
+    public String xSmAcceptConfigurationType() {
+        return xSmAcceptConfigurationType;
     }
-
-    /**
-     * Set the configurationPatch.
-     *
-     * @param configurationPatch the configurationPatch
-     * @return the UpdateConfigurationOptions builder
-     */
-    public Builder configurationPatch(Map<String, Object> configurationPatch) {
-      this.configurationPatch = configurationPatch;
-      return this;
-    }
-
-    /**
-     * Set the xSmAcceptConfigurationType.
-     *
-     * @param xSmAcceptConfigurationType the xSmAcceptConfigurationType
-     * @return the UpdateConfigurationOptions builder
-     */
-    public Builder xSmAcceptConfigurationType(String xSmAcceptConfigurationType) {
-      this.xSmAcceptConfigurationType = xSmAcceptConfigurationType;
-      return this;
-    }
-  }
-
-  protected UpdateConfigurationOptions() { }
-
-  protected UpdateConfigurationOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.name,
-      "name cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.configurationPatch,
-      "configurationPatch cannot be null");
-    name = builder.name;
-    configurationPatch = builder.configurationPatch;
-    xSmAcceptConfigurationType = builder.xSmAcceptConfigurationType;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a UpdateConfigurationOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the name.
-   *
-   * The name that uniquely identifies a configuration.
-   *
-   * @return the name
-   */
-  public String name() {
-    return name;
-  }
-
-  /**
-   * Gets the configurationPatch.
-   *
-   * JSON Merge-Patch content for update_configuration.
-   *
-   * @return the configurationPatch
-   */
-  public Map<String, Object> configurationPatch() {
-    return configurationPatch;
-  }
-
-  /**
-   * Gets the xSmAcceptConfigurationType.
-   *
-   * The configuration type of this configuration - use this header to resolve 300 error responses.
-   *
-   * @return the xSmAcceptConfigurationType
-   */
-  public String xSmAcceptConfigurationType() {
-    return xSmAcceptConfigurationType;
-  }
 }
 

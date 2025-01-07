@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,43 +20,44 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ServiceCredentialsSourceServiceIamApikey extends GenericModel {
 
-  protected String description;
-  protected String id;
-  protected String name;
+    protected String description;
+    protected String id;
+    protected String name;
 
-  protected ServiceCredentialsSourceServiceIamApikey() { }
+    protected ServiceCredentialsSourceServiceIamApikey() {
+    }
 
-  /**
-   * Gets the description.
-   *
-   * The IAM API key description for the generated service credentials.
-   *
-   * @return the description
-   */
-  public String getDescription() {
-    return description;
-  }
+    /**
+     * Gets the description.
+     * <p>
+     * The IAM API key description for the generated service credentials.
+     *
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-  /**
-   * Gets the id.
-   *
-   * The IAM API key id for the generated service credentials.
-   *
-   * @return the id
-   */
-  public String getId() {
-    return id;
-  }
+    /**
+     * Gets the id.
+     * <p>
+     * The IAM API key id for the generated service credentials.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-  /**
-   * Gets the name.
-   *
-   * The IAM API key name for the generated service credentials.
-   *
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
+    /**
+     * Gets the name.
+     * <p>
+     * The IAM API key name for the generated service credentials.
+     *
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 }
 

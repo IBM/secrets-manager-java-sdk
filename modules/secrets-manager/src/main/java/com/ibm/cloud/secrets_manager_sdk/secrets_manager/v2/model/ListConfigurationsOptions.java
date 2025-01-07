@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,230 +23,237 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListConfigurationsOptions extends GenericModel {
 
-  public interface SecretTypes {
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-  }
+    public interface SecretTypes {
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+    }
 
-  protected Long offset;
-  protected Long limit;
-  protected String sort;
-  protected String search;
-  protected List<String> secretTypes;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Long offset;
-    private Long limit;
-    private String sort;
-    private String search;
-    private List<String> secretTypes;
+    protected Long offset;
+    protected Long limit;
+    protected String sort;
+    protected String search;
+    protected List<String> secretTypes;
 
     /**
-     * Instantiates a new Builder from an existing ListConfigurationsOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private Long offset;
+        private Long limit;
+        private String sort;
+        private String search;
+        private List<String> secretTypes;
+
+        /**
+         * Instantiates a new Builder from an existing ListConfigurationsOptions instance.
+         *
+         * @param listConfigurationsOptions the instance to initialize the Builder with
+         */
+        private Builder(ListConfigurationsOptions listConfigurationsOptions) {
+            this.offset = listConfigurationsOptions.offset;
+            this.limit = listConfigurationsOptions.limit;
+            this.sort = listConfigurationsOptions.sort;
+            this.search = listConfigurationsOptions.search;
+            this.secretTypes = listConfigurationsOptions.secretTypes;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a ListConfigurationsOptions.
+         *
+         * @return the new ListConfigurationsOptions instance
+         */
+        public ListConfigurationsOptions build() {
+            return new ListConfigurationsOptions(this);
+        }
+
+        /**
+         * Adds a new element to secretTypes.
+         *
+         * @param secretTypes the new element to be added
+         * @return the ListConfigurationsOptions builder
+         */
+        public Builder addSecretTypes(String secretTypes) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(secretTypes,
+                    "secretTypes cannot be null");
+            if (this.secretTypes == null) {
+                this.secretTypes = new ArrayList<String>();
+            }
+            this.secretTypes.add(secretTypes);
+            return this;
+        }
+
+        /**
+         * Set the offset.
+         *
+         * @param offset the offset
+         * @return the ListConfigurationsOptions builder
+         */
+        public Builder offset(long offset) {
+            this.offset = offset;
+            return this;
+        }
+
+        /**
+         * Set the limit.
+         *
+         * @param limit the limit
+         * @return the ListConfigurationsOptions builder
+         */
+        public Builder limit(long limit) {
+            this.limit = limit;
+            return this;
+        }
+
+        /**
+         * Set the sort.
+         *
+         * @param sort the sort
+         * @return the ListConfigurationsOptions builder
+         */
+        public Builder sort(String sort) {
+            this.sort = sort;
+            return this;
+        }
+
+        /**
+         * Set the search.
+         *
+         * @param search the search
+         * @return the ListConfigurationsOptions builder
+         */
+        public Builder search(String search) {
+            this.search = search;
+            return this;
+        }
+
+        /**
+         * Set the secretTypes.
+         * Existing secretTypes will be replaced.
+         *
+         * @param secretTypes the secretTypes
+         * @return the ListConfigurationsOptions builder
+         */
+        public Builder secretTypes(List<String> secretTypes) {
+            this.secretTypes = secretTypes;
+            return this;
+        }
+    }
+
+    protected ListConfigurationsOptions() {
+    }
+
+    protected ListConfigurationsOptions(Builder builder) {
+        offset = builder.offset;
+        limit = builder.limit;
+        sort = builder.sort;
+        search = builder.search;
+        secretTypes = builder.secretTypes;
+    }
+
+    /**
+     * New builder.
      *
-     * @param listConfigurationsOptions the instance to initialize the Builder with
+     * @return a ListConfigurationsOptions builder
      */
-    private Builder(ListConfigurationsOptions listConfigurationsOptions) {
-      this.offset = listConfigurationsOptions.offset;
-      this.limit = listConfigurationsOptions.limit;
-      this.sort = listConfigurationsOptions.sort;
-      this.search = listConfigurationsOptions.search;
-      this.secretTypes = listConfigurationsOptions.secretTypes;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a ListConfigurationsOptions.
+     * Gets the offset.
+     * <p>
+     * The number of configurations to skip. By specifying `offset`, you retrieve a subset of items that starts with the
+     * `offset` value. Use `offset` with `limit` to page through your available resources.
+     * <p>
+     * **Usage:** If you have 100 configurations in your instance, and you want to retrieve configurations 26 through 50,
+     * use
+     * `..?offset=25&amp;limit=25`.
      *
-     * @return the new ListConfigurationsOptions instance
+     * @return the offset
      */
-    public ListConfigurationsOptions build() {
-      return new ListConfigurationsOptions(this);
+    public Long offset() {
+        return offset;
     }
 
     /**
-     * Adds a new element to secretTypes.
+     * Gets the limit.
+     * <p>
+     * The number of configurations to retrieve. By default, list operations return the first 200 items. To retrieve a
+     * different set of items, use `limit` with `offset` to page through your available resources. Maximum limit allowed
+     * is 1000 secrets.
+     * <p>
+     * **Usage:** If you want to retrieve only the first 25 configurations in your instance, use
+     * `..?limit=25`.
      *
-     * @param secretTypes the new element to be added
-     * @return the ListConfigurationsOptions builder
+     * @return the limit
      */
-    public Builder addSecretTypes(String secretTypes) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(secretTypes,
-        "secretTypes cannot be null");
-      if (this.secretTypes == null) {
-        this.secretTypes = new ArrayList<String>();
-      }
-      this.secretTypes.add(secretTypes);
-      return this;
+    public Long limit() {
+        return limit;
     }
 
     /**
-     * Set the offset.
+     * Gets the sort.
+     * <p>
+     * Sort a collection of configurations by the specified field in ascending order. To sort in descending order use the
+     * `-` character
+     * <p>
+     * <p>
+     * **Available values:**  config_type | secret_type | name
+     * <p>
+     * **Usage:** To sort a list of configurations by their creation date, use
+     * `../configurations?sort=config_type`.
      *
-     * @param offset the offset
-     * @return the ListConfigurationsOptions builder
+     * @return the sort
      */
-    public Builder offset(long offset) {
-      this.offset = offset;
-      return this;
+    public String sort() {
+        return sort;
     }
 
     /**
-     * Set the limit.
+     * Gets the search.
+     * <p>
+     * Obtain a collection of configurations that contain the specified string in one or more of the fields: `name`,
+     * `config_type`, `secret_type`.
+     * <p>
+     * **Usage:** If you want to list only the configurations that contain the string `text`, use
+     * `../configurations?search=text`.
      *
-     * @param limit the limit
-     * @return the ListConfigurationsOptions builder
+     * @return the search
      */
-    public Builder limit(long limit) {
-      this.limit = limit;
-      return this;
+    public String search() {
+        return search;
     }
 
     /**
-     * Set the sort.
+     * Gets the secretTypes.
+     * <p>
+     * Filter configurations by secret types, iam_credentials, public_cert or private_cert.
+     * <p>
+     * You can apply multiple filters by using a comma-separated list of secret types.
+     * <p>
+     * **Usage:** To retrieve a list of configurations that are associated with all secret types, use
+     * `..?secret_types=iam_credentials,public_cert,private_cert`.
      *
-     * @param sort the sort
-     * @return the ListConfigurationsOptions builder
+     * @return the secretTypes
      */
-    public Builder sort(String sort) {
-      this.sort = sort;
-      return this;
+    public List<String> secretTypes() {
+        return secretTypes;
     }
-
-    /**
-     * Set the search.
-     *
-     * @param search the search
-     * @return the ListConfigurationsOptions builder
-     */
-    public Builder search(String search) {
-      this.search = search;
-      return this;
-    }
-
-    /**
-     * Set the secretTypes.
-     * Existing secretTypes will be replaced.
-     *
-     * @param secretTypes the secretTypes
-     * @return the ListConfigurationsOptions builder
-     */
-    public Builder secretTypes(List<String> secretTypes) {
-      this.secretTypes = secretTypes;
-      return this;
-    }
-  }
-
-  protected ListConfigurationsOptions() { }
-
-  protected ListConfigurationsOptions(Builder builder) {
-    offset = builder.offset;
-    limit = builder.limit;
-    sort = builder.sort;
-    search = builder.search;
-    secretTypes = builder.secretTypes;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ListConfigurationsOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the offset.
-   *
-   * The number of configurations to skip. By specifying `offset`, you retrieve a subset of items that starts with the
-   * `offset` value. Use `offset` with `limit` to page through your available resources.
-   *
-   * **Usage:** If you have 100 configurations in your instance, and you want to retrieve configurations 26 through 50,
-   * use
-   * `..?offset=25&amp;limit=25`.
-   *
-   * @return the offset
-   */
-  public Long offset() {
-    return offset;
-  }
-
-  /**
-   * Gets the limit.
-   *
-   * The number of configurations to retrieve. By default, list operations return the first 200 items. To retrieve a
-   * different set of items, use `limit` with `offset` to page through your available resources. Maximum limit allowed
-   * is 1000 secrets.
-   *
-   * **Usage:** If you want to retrieve only the first 25 configurations in your instance, use
-   * `..?limit=25`.
-   *
-   * @return the limit
-   */
-  public Long limit() {
-    return limit;
-  }
-
-  /**
-   * Gets the sort.
-   *
-   * Sort a collection of configurations by the specified field in ascending order. To sort in descending order use the
-   * `-` character
-   *
-   *
-   * **Available values:**  config_type | secret_type | name
-   *
-   * **Usage:** To sort a list of configurations by their creation date, use
-   * `../configurations?sort=config_type`.
-   *
-   * @return the sort
-   */
-  public String sort() {
-    return sort;
-  }
-
-  /**
-   * Gets the search.
-   *
-   * Obtain a collection of configurations that contain the specified string in one or more of the fields: `name`,
-   * `config_type`, `secret_type`.
-   *
-   * **Usage:** If you want to list only the configurations that contain the string `text`, use
-   * `../configurations?search=text`.
-   *
-   * @return the search
-   */
-  public String search() {
-    return search;
-  }
-
-  /**
-   * Gets the secretTypes.
-   *
-   * Filter configurations by secret types, iam_credentials, public_cert or private_cert.
-   *
-   * You can apply multiple filters by using a comma-separated list of secret types.
-   *
-   * **Usage:** To retrieve a list of configurations that are associated with all secret types, use
-   * `..?secret_types=iam_credentials,public_cert,private_cert`.
-   *
-   * @return the secretTypes
-   */
-  public List<String> secretTypes() {
-    return secretTypes;
-  }
 }
 

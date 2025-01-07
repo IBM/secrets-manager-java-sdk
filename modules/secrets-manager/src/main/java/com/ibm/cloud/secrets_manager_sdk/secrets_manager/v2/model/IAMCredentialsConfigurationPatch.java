@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,87 +23,88 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
 public class IAMCredentialsConfigurationPatch extends ConfigurationPatch {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String apiKey;
-    private Boolean disabled;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String apiKey;
+        private Boolean disabled;
+
+        /**
+         * Instantiates a new Builder from an existing IAMCredentialsConfigurationPatch instance.
+         *
+         * @param iamCredentialsConfigurationPatch the instance to initialize the Builder with
+         */
+        public Builder(ConfigurationPatch iamCredentialsConfigurationPatch) {
+            this.apiKey = iamCredentialsConfigurationPatch.apiKey;
+            this.disabled = iamCredentialsConfigurationPatch.disabled;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a IAMCredentialsConfigurationPatch.
+         *
+         * @return the new IAMCredentialsConfigurationPatch instance
+         */
+        public IAMCredentialsConfigurationPatch build() {
+            return new IAMCredentialsConfigurationPatch(this);
+        }
+
+        /**
+         * Set the apiKey.
+         *
+         * @param apiKey the apiKey
+         * @return the IAMCredentialsConfigurationPatch builder
+         */
+        public Builder apiKey(String apiKey) {
+            this.apiKey = apiKey;
+            return this;
+        }
+
+        /**
+         * Set the disabled.
+         *
+         * @param disabled the disabled
+         * @return the IAMCredentialsConfigurationPatch builder
+         */
+        public Builder disabled(Boolean disabled) {
+            this.disabled = disabled;
+            return this;
+        }
+    }
+
+    protected IAMCredentialsConfigurationPatch() {
+    }
+
+    protected IAMCredentialsConfigurationPatch(Builder builder) {
+        apiKey = builder.apiKey;
+        disabled = builder.disabled;
+    }
 
     /**
-     * Instantiates a new Builder from an existing IAMCredentialsConfigurationPatch instance.
+     * New builder.
      *
-     * @param iamCredentialsConfigurationPatch the instance to initialize the Builder with
+     * @return a IAMCredentialsConfigurationPatch builder
      */
-    public Builder(ConfigurationPatch iamCredentialsConfigurationPatch) {
-      this.apiKey = iamCredentialsConfigurationPatch.apiKey;
-      this.disabled = iamCredentialsConfigurationPatch.disabled;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a IAMCredentialsConfigurationPatch.
+     * Construct a JSON merge-patch from the IAMCredentialsConfigurationPatch.
+     * <p>
+     * Note that properties of the IAMCredentialsConfigurationPatch with null values are not represented in the constructed
+     * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
      *
-     * @return the new IAMCredentialsConfigurationPatch instance
+     * @return a JSON merge-patch for the IAMCredentialsConfigurationPatch
      */
-    public IAMCredentialsConfigurationPatch build() {
-      return new IAMCredentialsConfigurationPatch(this);
+    public Map<String, Object> asPatch() {
+        return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
     }
-
-    /**
-     * Set the apiKey.
-     *
-     * @param apiKey the apiKey
-     * @return the IAMCredentialsConfigurationPatch builder
-     */
-    public Builder apiKey(String apiKey) {
-      this.apiKey = apiKey;
-      return this;
-    }
-
-    /**
-     * Set the disabled.
-     *
-     * @param disabled the disabled
-     * @return the IAMCredentialsConfigurationPatch builder
-     */
-    public Builder disabled(Boolean disabled) {
-      this.disabled = disabled;
-      return this;
-    }
-  }
-
-  protected IAMCredentialsConfigurationPatch() { }
-
-  protected IAMCredentialsConfigurationPatch(Builder builder) {
-    apiKey = builder.apiKey;
-    disabled = builder.disabled;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a IAMCredentialsConfigurationPatch builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Construct a JSON merge-patch from the IAMCredentialsConfigurationPatch.
-   *
-   * Note that properties of the IAMCredentialsConfigurationPatch with null values are not represented in the constructed
-   * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
-   *
-   * @return a JSON merge-patch for the IAMCredentialsConfigurationPatch
-   */
-  public Map<String, Object> asPatch() {
-    return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
-  }
 }
 

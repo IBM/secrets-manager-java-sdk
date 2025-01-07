@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,19 +20,20 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class PaginatedCollectionPrevious extends GenericModel {
 
-  protected String href;
+    protected String href;
 
-  protected PaginatedCollectionPrevious() { }
+    protected PaginatedCollectionPrevious() {
+    }
 
-  /**
-   * Gets the href.
-   *
-   * A URL that points to a page in a collection.
-   *
-   * @return the href
-   */
-  public String getHref() {
-    return href;
-  }
+    /**
+     * Gets the href.
+     * <p>
+     * A URL that points to a page in a collection.
+     *
+     * @return the href
+     */
+    public String getHref() {
+        return href;
+    }
 }
 

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,39 +16,42 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionSetSignedPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the PrivateCertificateConfigurationActionSetSignedPrototype model.
  */
 public class PrivateCertificateConfigurationActionSetSignedPrototypeTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testPrivateCertificateConfigurationActionSetSignedPrototype() throws Throwable {
-    PrivateCertificateConfigurationActionSetSignedPrototype privateCertificateConfigurationActionSetSignedPrototypeModel = new PrivateCertificateConfigurationActionSetSignedPrototype.Builder()
-      .actionType("private_cert_configuration_action_set_signed")
-      .certificate("testString")
-      .build();
-    assertEquals(privateCertificateConfigurationActionSetSignedPrototypeModel.actionType(), "private_cert_configuration_action_set_signed");
-    assertEquals(privateCertificateConfigurationActionSetSignedPrototypeModel.certificate(), "testString");
+    @Test
+    public void testPrivateCertificateConfigurationActionSetSignedPrototype() throws Throwable {
+        PrivateCertificateConfigurationActionSetSignedPrototype privateCertificateConfigurationActionSetSignedPrototypeModel = new PrivateCertificateConfigurationActionSetSignedPrototype.Builder()
+                .actionType("private_cert_configuration_action_set_signed")
+                .certificate("testString")
+                .build();
+        assertEquals(privateCertificateConfigurationActionSetSignedPrototypeModel.actionType(), "private_cert_configuration_action_set_signed");
+        assertEquals(privateCertificateConfigurationActionSetSignedPrototypeModel.certificate(), "testString");
 
-    String json = TestUtilities.serialize(privateCertificateConfigurationActionSetSignedPrototypeModel);
+        String json = TestUtilities.serialize(privateCertificateConfigurationActionSetSignedPrototypeModel);
 
-    PrivateCertificateConfigurationActionSetSignedPrototype privateCertificateConfigurationActionSetSignedPrototypeModelNew = TestUtilities.deserialize(json, PrivateCertificateConfigurationActionSetSignedPrototype.class);
-    assertTrue(privateCertificateConfigurationActionSetSignedPrototypeModelNew instanceof PrivateCertificateConfigurationActionSetSignedPrototype);
-    assertEquals(privateCertificateConfigurationActionSetSignedPrototypeModelNew.actionType(), "private_cert_configuration_action_set_signed");
-    assertEquals(privateCertificateConfigurationActionSetSignedPrototypeModelNew.certificate(), "testString");
-  }
+        PrivateCertificateConfigurationActionSetSignedPrototype privateCertificateConfigurationActionSetSignedPrototypeModelNew = TestUtilities.deserialize(json, PrivateCertificateConfigurationActionSetSignedPrototype.class);
+        assertTrue(privateCertificateConfigurationActionSetSignedPrototypeModelNew instanceof PrivateCertificateConfigurationActionSetSignedPrototype);
+        assertEquals(privateCertificateConfigurationActionSetSignedPrototypeModelNew.actionType(), "private_cert_configuration_action_set_signed");
+        assertEquals(privateCertificateConfigurationActionSetSignedPrototypeModelNew.certificate(), "testString");
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testPrivateCertificateConfigurationActionSetSignedPrototypeError() throws Throwable {
-    new PrivateCertificateConfigurationActionSetSignedPrototype.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testPrivateCertificateConfigurationActionSetSignedPrototypeError() throws Throwable {
+        new PrivateCertificateConfigurationActionSetSignedPrototype.Builder().build();
+    }
 
 }

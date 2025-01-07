@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,31 +20,32 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ServiceCredentialsResourceKey extends GenericModel {
 
-  protected String crn;
-  protected String name;
+    protected String crn;
+    protected String name;
 
-  protected ServiceCredentialsResourceKey() { }
+    protected ServiceCredentialsResourceKey() {
+    }
 
-  /**
-   * Gets the crn.
-   *
-   * The resource key CRN of the generated service credentials.
-   *
-   * @return the crn
-   */
-  public String getCrn() {
-    return crn;
-  }
+    /**
+     * Gets the crn.
+     * <p>
+     * The resource key CRN of the generated service credentials.
+     *
+     * @return the crn
+     */
+    public String getCrn() {
+        return crn;
+    }
 
-  /**
-   * Gets the name.
-   *
-   * The resource key name of the generated service credentials.
-   *
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
+    /**
+     * Gets the name.
+     * <p>
+     * The resource key name of the generated service credentials.
+     *
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 }
 

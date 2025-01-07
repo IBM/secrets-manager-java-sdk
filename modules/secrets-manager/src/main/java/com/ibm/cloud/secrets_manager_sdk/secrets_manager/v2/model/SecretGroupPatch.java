@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,115 +23,116 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
  */
 public class SecretGroupPatch extends GenericModel {
 
-  protected String name;
-  protected String description;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String name;
-    private String description;
+    protected String name;
+    protected String description;
 
     /**
-     * Instantiates a new Builder from an existing SecretGroupPatch instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String name;
+        private String description;
+
+        /**
+         * Instantiates a new Builder from an existing SecretGroupPatch instance.
+         *
+         * @param secretGroupPatch the instance to initialize the Builder with
+         */
+        private Builder(SecretGroupPatch secretGroupPatch) {
+            this.name = secretGroupPatch.name;
+            this.description = secretGroupPatch.description;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a SecretGroupPatch.
+         *
+         * @return the new SecretGroupPatch instance
+         */
+        public SecretGroupPatch build() {
+            return new SecretGroupPatch(this);
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the SecretGroupPatch builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the description.
+         *
+         * @param description the description
+         * @return the SecretGroupPatch builder
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+    }
+
+    protected SecretGroupPatch() {
+    }
+
+    protected SecretGroupPatch(Builder builder) {
+        name = builder.name;
+        description = builder.description;
+    }
+
+    /**
+     * New builder.
      *
-     * @param secretGroupPatch the instance to initialize the Builder with
+     * @return a SecretGroupPatch builder
      */
-    private Builder(SecretGroupPatch secretGroupPatch) {
-      this.name = secretGroupPatch.name;
-      this.description = secretGroupPatch.description;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a SecretGroupPatch.
+     * Gets the name.
+     * <p>
+     * The name of your secret group.
      *
-     * @return the new SecretGroupPatch instance
+     * @return the name
      */
-    public SecretGroupPatch build() {
-      return new SecretGroupPatch(this);
+    public String name() {
+        return name;
     }
 
     /**
-     * Set the name.
+     * Gets the description.
+     * <p>
+     * An extended description of your secret group.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+     * group.
      *
-     * @param name the name
-     * @return the SecretGroupPatch builder
+     * @return the description
      */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
+    public String description() {
+        return description;
     }
 
     /**
-     * Set the description.
+     * Construct a JSON merge-patch from the SecretGroupPatch.
+     * <p>
+     * Note that properties of the SecretGroupPatch with null values are not represented in the constructed
+     * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
      *
-     * @param description the description
-     * @return the SecretGroupPatch builder
+     * @return a JSON merge-patch for the SecretGroupPatch
      */
-    public Builder description(String description) {
-      this.description = description;
-      return this;
+    public Map<String, Object> asPatch() {
+        return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
     }
-  }
-
-  protected SecretGroupPatch() { }
-
-  protected SecretGroupPatch(Builder builder) {
-    name = builder.name;
-    description = builder.description;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a SecretGroupPatch builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the name.
-   *
-   * The name of your secret group.
-   *
-   * @return the name
-   */
-  public String name() {
-    return name;
-  }
-
-  /**
-   * Gets the description.
-   *
-   * An extended description of your secret group.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
-   * group.
-   *
-   * @return the description
-   */
-  public String description() {
-    return description;
-  }
-
-  /**
-   * Construct a JSON merge-patch from the SecretGroupPatch.
-   *
-   * Note that properties of the SecretGroupPatch with null values are not represented in the constructed
-   * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
-   *
-   * @return a JSON merge-patch for the SecretGroupPatch
-   */
-  public Map<String, Object> asPatch() {
-    return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
-  }
 }
 

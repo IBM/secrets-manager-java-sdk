@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,85 +23,86 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretGroup extends GenericModel {
 
-  protected String id;
-  protected String name;
-  protected String description;
-  @SerializedName("created_at")
-  protected Date createdAt;
-  @SerializedName("created_by")
-  protected String createdBy;
-  @SerializedName("updated_at")
-  protected Date updatedAt;
+    protected String id;
+    protected String name;
+    protected String description;
+    @SerializedName("created_at")
+    protected Date createdAt;
+    @SerializedName("created_by")
+    protected String createdBy;
+    @SerializedName("updated_at")
+    protected Date updatedAt;
 
-  protected SecretGroup() { }
+    protected SecretGroup() {
+    }
 
-  /**
-   * Gets the id.
-   *
-   * A v4 UUID identifier, or `default` secret group.
-   *
-   * @return the id
-   */
-  public String getId() {
-    return id;
-  }
+    /**
+     * Gets the id.
+     * <p>
+     * A UUID identifier, or `default` secret group.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-  /**
-   * Gets the name.
-   *
-   * The name of your existing secret group.
-   *
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
+    /**
+     * Gets the name.
+     * <p>
+     * The name of your existing secret group.
+     *
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-  /**
-   * Gets the description.
-   *
-   * An extended description of your secret group.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
-   * group.
-   *
-   * @return the description
-   */
-  public String getDescription() {
-    return description;
-  }
+    /**
+     * Gets the description.
+     * <p>
+     * An extended description of your secret group.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+     * group.
+     *
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-  /**
-   * Gets the createdAt.
-   *
-   * The date when the resource was created. The date format follows `RFC 3339`.
-   *
-   * @return the createdAt
-   */
-  public Date getCreatedAt() {
-    return createdAt;
-  }
+    /**
+     * Gets the createdAt.
+     * <p>
+     * The date when the resource was created. The date format follows `RFC 3339`.
+     *
+     * @return the createdAt
+     */
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-  /**
-   * Gets the createdBy.
-   *
-   * The unique identifier that is associated with the entity that created the secret.
-   *
-   * @return the createdBy
-   */
-  public String getCreatedBy() {
-    return createdBy;
-  }
+    /**
+     * Gets the createdBy.
+     * <p>
+     * The unique identifier that is associated with the entity that created the secret.
+     *
+     * @return the createdBy
+     */
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-  /**
-   * Gets the updatedAt.
-   *
-   * The date when a resource was modified. The date format follows `RFC 3339`.
-   *
-   * @return the updatedAt
-   */
-  public Date getUpdatedAt() {
-    return updatedAt;
-  }
+    /**
+     * Gets the updatedAt.
+     * <p>
+     * The date when a resource was modified. The date format follows `RFC 3339`.
+     *
+     * @return the updatedAt
+     */
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
 }
 

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,85 +20,86 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateSecretOptions extends GenericModel {
 
-  protected SecretPrototype secretPrototype;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private SecretPrototype secretPrototype;
+    protected SecretPrototype secretPrototype;
 
     /**
-     * Instantiates a new Builder from an existing CreateSecretOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private SecretPrototype secretPrototype;
+
+        /**
+         * Instantiates a new Builder from an existing CreateSecretOptions instance.
+         *
+         * @param createSecretOptions the instance to initialize the Builder with
+         */
+        private Builder(CreateSecretOptions createSecretOptions) {
+            this.secretPrototype = createSecretOptions.secretPrototype;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretPrototype the secretPrototype
+         */
+        public Builder(SecretPrototype secretPrototype) {
+            this.secretPrototype = secretPrototype;
+        }
+
+        /**
+         * Builds a CreateSecretOptions.
+         *
+         * @return the new CreateSecretOptions instance
+         */
+        public CreateSecretOptions build() {
+            return new CreateSecretOptions(this);
+        }
+
+        /**
+         * Set the secretPrototype.
+         *
+         * @param secretPrototype the secretPrototype
+         * @return the CreateSecretOptions builder
+         */
+        public Builder secretPrototype(SecretPrototype secretPrototype) {
+            this.secretPrototype = secretPrototype;
+            return this;
+        }
+    }
+
+    protected CreateSecretOptions() {
+    }
+
+    protected CreateSecretOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretPrototype,
+                "secretPrototype cannot be null");
+        secretPrototype = builder.secretPrototype;
+    }
+
+    /**
+     * New builder.
      *
-     * @param createSecretOptions the instance to initialize the Builder with
+     * @return a CreateSecretOptions builder
      */
-    private Builder(CreateSecretOptions createSecretOptions) {
-      this.secretPrototype = createSecretOptions.secretPrototype;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretPrototype.
+     * <p>
+     * Specify the properties for your secret.
      *
-     * @param secretPrototype the secretPrototype
+     * @return the secretPrototype
      */
-    public Builder(SecretPrototype secretPrototype) {
-      this.secretPrototype = secretPrototype;
+    public SecretPrototype secretPrototype() {
+        return secretPrototype;
     }
-
-    /**
-     * Builds a CreateSecretOptions.
-     *
-     * @return the new CreateSecretOptions instance
-     */
-    public CreateSecretOptions build() {
-      return new CreateSecretOptions(this);
-    }
-
-    /**
-     * Set the secretPrototype.
-     *
-     * @param secretPrototype the secretPrototype
-     * @return the CreateSecretOptions builder
-     */
-    public Builder secretPrototype(SecretPrototype secretPrototype) {
-      this.secretPrototype = secretPrototype;
-      return this;
-    }
-  }
-
-  protected CreateSecretOptions() { }
-
-  protected CreateSecretOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretPrototype,
-      "secretPrototype cannot be null");
-    secretPrototype = builder.secretPrototype;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a CreateSecretOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretPrototype.
-   *
-   * Specify the properties for your secret.
-   *
-   * @return the secretPrototype
-   */
-  public SecretPrototype secretPrototype() {
-    return secretPrototype;
-  }
 }
 

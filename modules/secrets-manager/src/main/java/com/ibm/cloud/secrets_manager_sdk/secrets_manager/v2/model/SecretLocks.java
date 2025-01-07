@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,95 +23,112 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretLocks extends GenericModel {
 
-  /**
-   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** kv. */
-    String KV = "kv";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-    /** service_credentials. */
-    String SERVICE_CREDENTIALS = "service_credentials";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-  }
+    /**
+     * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+     * service_credentials, kv, and username_password.
+     */
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
+        /**
+         * kv.
+         */
+        String KV = "kv";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * service_credentials.
+         */
+        String SERVICE_CREDENTIALS = "service_credentials";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+    }
 
-  @SerializedName("secret_id")
-  protected String secretId;
-  @SerializedName("secret_group_id")
-  protected String secretGroupId;
-  @SerializedName("secret_type")
-  protected String secretType;
-  @SerializedName("secret_name")
-  protected String secretName;
-  protected List<SecretVersionLocks> versions;
+    @SerializedName("secret_id")
+    protected String secretId;
+    @SerializedName("secret_group_id")
+    protected String secretGroupId;
+    @SerializedName("secret_type")
+    protected String secretType;
+    @SerializedName("secret_name")
+    protected String secretName;
+    protected List<SecretVersionLocks> versions;
 
-  protected SecretLocks() { }
+    protected SecretLocks() {
+    }
 
-  /**
-   * Gets the secretId.
-   *
-   * A v4 UUID identifier.
-   *
-   * @return the secretId
-   */
-  public String getSecretId() {
-    return secretId;
-  }
+    /**
+     * Gets the secretId.
+     * <p>
+     * A UUID identifier.
+     *
+     * @return the secretId
+     */
+    public String getSecretId() {
+        return secretId;
+    }
 
-  /**
-   * Gets the secretGroupId.
-   *
-   * A v4 UUID identifier, or `default` secret group.
-   *
-   * @return the secretGroupId
-   */
-  public String getSecretGroupId() {
-    return secretGroupId;
-  }
+    /**
+     * Gets the secretGroupId.
+     * <p>
+     * A UUID identifier, or `default` secret group.
+     *
+     * @return the secretGroupId
+     */
+    public String getSecretGroupId() {
+        return secretGroupId;
+    }
 
-  /**
-   * Gets the secretType.
-   *
-   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
-   *
-   * @return the secretType
-   */
-  public String getSecretType() {
-    return secretType;
-  }
+    /**
+     * Gets the secretType.
+     * <p>
+     * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+     * service_credentials, kv, and username_password.
+     *
+     * @return the secretType
+     */
+    public String getSecretType() {
+        return secretType;
+    }
 
-  /**
-   * Gets the secretName.
-   *
-   * The human-readable name of your secret.
-   *
-   * @return the secretName
-   */
-  public String getSecretName() {
-    return secretName;
-  }
+    /**
+     * Gets the secretName.
+     * <p>
+     * The human-readable name of your secret.
+     *
+     * @return the secretName
+     */
+    public String getSecretName() {
+        return secretName;
+    }
 
-  /**
-   * Gets the versions.
-   *
-   * A collection of locks that are attached to a secret.
-   *
-   * @return the versions
-   */
-  public List<SecretVersionLocks> getVersions() {
-    return versions;
-  }
+    /**
+     * Gets the versions.
+     * <p>
+     * A collection of locks that are attached to a secret.
+     *
+     * @return the versions
+     */
+    public List<SecretVersionLocks> getVersions() {
+        return versions;
+    }
 }
 

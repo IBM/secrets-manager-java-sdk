@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,85 +20,86 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ListSecretVersionsOptions extends GenericModel {
 
-  protected String secretId;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretId;
+    protected String secretId;
 
     /**
-     * Instantiates a new Builder from an existing ListSecretVersionsOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretId;
+
+        /**
+         * Instantiates a new Builder from an existing ListSecretVersionsOptions instance.
+         *
+         * @param listSecretVersionsOptions the instance to initialize the Builder with
+         */
+        private Builder(ListSecretVersionsOptions listSecretVersionsOptions) {
+            this.secretId = listSecretVersionsOptions.secretId;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretId the secretId
+         */
+        public Builder(String secretId) {
+            this.secretId = secretId;
+        }
+
+        /**
+         * Builds a ListSecretVersionsOptions.
+         *
+         * @return the new ListSecretVersionsOptions instance
+         */
+        public ListSecretVersionsOptions build() {
+            return new ListSecretVersionsOptions(this);
+        }
+
+        /**
+         * Set the secretId.
+         *
+         * @param secretId the secretId
+         * @return the ListSecretVersionsOptions builder
+         */
+        public Builder secretId(String secretId) {
+            this.secretId = secretId;
+            return this;
+        }
+    }
+
+    protected ListSecretVersionsOptions() {
+    }
+
+    protected ListSecretVersionsOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretId,
+                "secretId cannot be empty");
+        secretId = builder.secretId;
+    }
+
+    /**
+     * New builder.
      *
-     * @param listSecretVersionsOptions the instance to initialize the Builder with
+     * @return a ListSecretVersionsOptions builder
      */
-    private Builder(ListSecretVersionsOptions listSecretVersionsOptions) {
-      this.secretId = listSecretVersionsOptions.secretId;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretId.
+     * <p>
+     * The UUID that uniquely identifies your secret.
      *
-     * @param secretId the secretId
+     * @return the secretId
      */
-    public Builder(String secretId) {
-      this.secretId = secretId;
+    public String secretId() {
+        return secretId;
     }
-
-    /**
-     * Builds a ListSecretVersionsOptions.
-     *
-     * @return the new ListSecretVersionsOptions instance
-     */
-    public ListSecretVersionsOptions build() {
-      return new ListSecretVersionsOptions(this);
-    }
-
-    /**
-     * Set the secretId.
-     *
-     * @param secretId the secretId
-     * @return the ListSecretVersionsOptions builder
-     */
-    public Builder secretId(String secretId) {
-      this.secretId = secretId;
-      return this;
-    }
-  }
-
-  protected ListSecretVersionsOptions() { }
-
-  protected ListSecretVersionsOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretId,
-      "secretId cannot be empty");
-    secretId = builder.secretId;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ListSecretVersionsOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretId.
-   *
-   * The v4 UUID that uniquely identifies your secret.
-   *
-   * @return the secretId
-   */
-  public String secretId() {
-    return secretId;
-  }
 }
 

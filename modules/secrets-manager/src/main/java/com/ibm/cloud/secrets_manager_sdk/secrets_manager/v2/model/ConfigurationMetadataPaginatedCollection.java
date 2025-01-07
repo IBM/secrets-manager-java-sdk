@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,104 +23,105 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ConfigurationMetadataPaginatedCollection extends GenericModel {
 
-  @SerializedName("total_count")
-  protected Long totalCount;
-  protected Long limit;
-  protected Long offset;
-  protected PaginatedCollectionFirst first;
-  protected PaginatedCollectionNext next;
-  protected PaginatedCollectionPrevious previous;
-  protected PaginatedCollectionLast last;
-  protected List<ConfigurationMetadata> configurations;
+    @SerializedName("total_count")
+    protected Long totalCount;
+    protected Long limit;
+    protected Long offset;
+    protected PaginatedCollectionFirst first;
+    protected PaginatedCollectionNext next;
+    protected PaginatedCollectionPrevious previous;
+    protected PaginatedCollectionLast last;
+    protected List<ConfigurationMetadata> configurations;
 
-  protected ConfigurationMetadataPaginatedCollection() { }
+    protected ConfigurationMetadataPaginatedCollection() {
+    }
 
-  /**
-   * Gets the totalCount.
-   *
-   * The total number of resources in a collection.
-   *
-   * @return the totalCount
-   */
-  public Long getTotalCount() {
-    return totalCount;
-  }
+    /**
+     * Gets the totalCount.
+     * <p>
+     * The total number of resources in a collection.
+     *
+     * @return the totalCount
+     */
+    public Long getTotalCount() {
+        return totalCount;
+    }
 
-  /**
-   * Gets the limit.
-   *
-   * The number of items that are retrieved in a collection.
-   *
-   * @return the limit
-   */
-  public Long getLimit() {
-    return limit;
-  }
+    /**
+     * Gets the limit.
+     * <p>
+     * The number of items that are retrieved in a collection.
+     *
+     * @return the limit
+     */
+    public Long getLimit() {
+        return limit;
+    }
 
-  /**
-   * Gets the offset.
-   *
-   * The number of items that are skipped in a collection.
-   *
-   * @return the offset
-   */
-  public Long getOffset() {
-    return offset;
-  }
+    /**
+     * Gets the offset.
+     * <p>
+     * The number of items that are skipped in a collection.
+     *
+     * @return the offset
+     */
+    public Long getOffset() {
+        return offset;
+    }
 
-  /**
-   * Gets the first.
-   *
-   * A URL that points to the first page in a collection.
-   *
-   * @return the first
-   */
-  public PaginatedCollectionFirst getFirst() {
-    return first;
-  }
+    /**
+     * Gets the first.
+     * <p>
+     * A URL that points to the first page in a collection.
+     *
+     * @return the first
+     */
+    public PaginatedCollectionFirst getFirst() {
+        return first;
+    }
 
-  /**
-   * Gets the next.
-   *
-   * A URL that points to the next page in a collection.
-   *
-   * @return the next
-   */
-  public PaginatedCollectionNext getNext() {
-    return next;
-  }
+    /**
+     * Gets the next.
+     * <p>
+     * A URL that points to the next page in a collection.
+     *
+     * @return the next
+     */
+    public PaginatedCollectionNext getNext() {
+        return next;
+    }
 
-  /**
-   * Gets the previous.
-   *
-   * A URL that points to the previous page in a collection.
-   *
-   * @return the previous
-   */
-  public PaginatedCollectionPrevious getPrevious() {
-    return previous;
-  }
+    /**
+     * Gets the previous.
+     * <p>
+     * A URL that points to the previous page in a collection.
+     *
+     * @return the previous
+     */
+    public PaginatedCollectionPrevious getPrevious() {
+        return previous;
+    }
 
-  /**
-   * Gets the last.
-   *
-   * A URL that points to the last page in a collection.
-   *
-   * @return the last
-   */
-  public PaginatedCollectionLast getLast() {
-    return last;
-  }
+    /**
+     * Gets the last.
+     * <p>
+     * A URL that points to the last page in a collection.
+     *
+     * @return the last
+     */
+    public PaginatedCollectionLast getLast() {
+        return last;
+    }
 
-  /**
-   * Gets the configurations.
-   *
-   * A collection of configuration metadata.
-   *
-   * @return the configurations
-   */
-  public List<ConfigurationMetadata> getConfigurations() {
-    return configurations;
-  }
+    /**
+     * Gets the configurations.
+     * <p>
+     * A collection of configuration metadata.
+     *
+     * @return the configurations
+     */
+    public List<ConfigurationMetadata> getConfigurations() {
+        return configurations;
+    }
 }
 

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,44 +19,47 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CertificateVal
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CommonRotationPolicy;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificate;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the PublicCertificate model.
  */
 public class PublicCertificateTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testPublicCertificate() throws Throwable {
-    PublicCertificate publicCertificateModel = new PublicCertificate();
-    assertNull(publicCertificateModel.getCreatedBy());
-    assertNull(publicCertificateModel.getCreatedAt());
-    assertNull(publicCertificateModel.getCrn());
-    assertNull(publicCertificateModel.getCustomMetadata());
-    assertNull(publicCertificateModel.getDescription());
-    assertNull(publicCertificateModel.getId());
-    assertNull(publicCertificateModel.getLabels());
-    assertNull(publicCertificateModel.getSecretGroupId());
-    assertNull(publicCertificateModel.getSecretType());
-    assertNull(publicCertificateModel.getUpdatedAt());
-    assertNull(publicCertificateModel.getVersionsTotal());
-    assertNull(publicCertificateModel.getSigningAlgorithm());
-    assertNull(publicCertificateModel.getAltNames());
-    assertNull(publicCertificateModel.getCommonName());
-    assertNull(publicCertificateModel.getExpirationDate());
-    assertNull(publicCertificateModel.getIssuer());
-    assertNull(publicCertificateModel.getKeyAlgorithm());
-    assertNull(publicCertificateModel.getSerialNumber());
-    assertNull(publicCertificateModel.getValidity());
-    assertNull(publicCertificateModel.getRotation());
-    assertNull(publicCertificateModel.getCertificate());
-    assertNull(publicCertificateModel.getIntermediate());
-    assertNull(publicCertificateModel.getPrivateKey());
-  }
+    @Test
+    public void testPublicCertificate() throws Throwable {
+        PublicCertificate publicCertificateModel = new PublicCertificate();
+        assertNull(publicCertificateModel.getCreatedBy());
+        assertNull(publicCertificateModel.getCreatedAt());
+        assertNull(publicCertificateModel.getCrn());
+        assertNull(publicCertificateModel.getCustomMetadata());
+        assertNull(publicCertificateModel.getDescription());
+        assertNull(publicCertificateModel.getId());
+        assertNull(publicCertificateModel.getLabels());
+        assertNull(publicCertificateModel.getSecretGroupId());
+        assertNull(publicCertificateModel.getSecretType());
+        assertNull(publicCertificateModel.getUpdatedAt());
+        assertNull(publicCertificateModel.getVersionsTotal());
+        assertNull(publicCertificateModel.getSigningAlgorithm());
+        assertNull(publicCertificateModel.getAltNames());
+        assertNull(publicCertificateModel.getCommonName());
+        assertNull(publicCertificateModel.getExpirationDate());
+        assertNull(publicCertificateModel.getIssuer());
+        assertNull(publicCertificateModel.getKeyAlgorithm());
+        assertNull(publicCertificateModel.getSerialNumber());
+        assertNull(publicCertificateModel.getValidity());
+        assertNull(publicCertificateModel.getRotation());
+        assertNull(publicCertificateModel.getCertificate());
+        assertNull(publicCertificateModel.getIntermediate());
+        assertNull(publicCertificateModel.getPrivateKey());
+    }
 }

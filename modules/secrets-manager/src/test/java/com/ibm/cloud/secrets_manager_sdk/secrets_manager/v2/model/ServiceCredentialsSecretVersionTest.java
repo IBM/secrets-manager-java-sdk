@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,34 +18,37 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredent
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretCredentials;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ServiceCredentialsSecretVersion model.
  */
 public class ServiceCredentialsSecretVersionTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testServiceCredentialsSecretVersion() throws Throwable {
-    ServiceCredentialsSecretVersion serviceCredentialsSecretVersionModel = new ServiceCredentialsSecretVersion();
-    assertNull(serviceCredentialsSecretVersionModel.isAutoRotated());
-    assertNull(serviceCredentialsSecretVersionModel.getCreatedBy());
-    assertNull(serviceCredentialsSecretVersionModel.getCreatedAt());
-    assertNull(serviceCredentialsSecretVersionModel.getId());
-    assertNull(serviceCredentialsSecretVersionModel.getSecretType());
-    assertNull(serviceCredentialsSecretVersionModel.getSecretGroupId());
-    assertNull(serviceCredentialsSecretVersionModel.isPayloadAvailable());
-    assertNull(serviceCredentialsSecretVersionModel.getAlias());
-    assertNull(serviceCredentialsSecretVersionModel.getVersionCustomMetadata());
-    assertNull(serviceCredentialsSecretVersionModel.getSecretId());
-    assertNull(serviceCredentialsSecretVersionModel.getExpirationDate());
-    assertNull(serviceCredentialsSecretVersionModel.getResourceKey());
-    assertNull(serviceCredentialsSecretVersionModel.getCredentials());
-  }
+    @Test
+    public void testServiceCredentialsSecretVersion() throws Throwable {
+        ServiceCredentialsSecretVersion serviceCredentialsSecretVersionModel = new ServiceCredentialsSecretVersion();
+        assertNull(serviceCredentialsSecretVersionModel.isAutoRotated());
+        assertNull(serviceCredentialsSecretVersionModel.getCreatedBy());
+        assertNull(serviceCredentialsSecretVersionModel.getCreatedAt());
+        assertNull(serviceCredentialsSecretVersionModel.getId());
+        assertNull(serviceCredentialsSecretVersionModel.getSecretType());
+        assertNull(serviceCredentialsSecretVersionModel.getSecretGroupId());
+        assertNull(serviceCredentialsSecretVersionModel.isPayloadAvailable());
+        assertNull(serviceCredentialsSecretVersionModel.getAlias());
+        assertNull(serviceCredentialsSecretVersionModel.getVersionCustomMetadata());
+        assertNull(serviceCredentialsSecretVersionModel.getSecretId());
+        assertNull(serviceCredentialsSecretVersionModel.getExpirationDate());
+        assertNull(serviceCredentialsSecretVersionModel.getResourceKey());
+        assertNull(serviceCredentialsSecretVersionModel.getCredentials());
+    }
 }

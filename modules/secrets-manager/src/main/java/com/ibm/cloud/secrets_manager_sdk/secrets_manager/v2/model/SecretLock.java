@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -24,151 +24,156 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretLock extends GenericModel {
 
-  /**
-   * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
-   * for version `n-1`.
-   */
-  public interface SecretVersionAlias {
-    /** current. */
-    String CURRENT = "current";
-    /** previous. */
-    String PREVIOUS = "previous";
-  }
+    /**
+     * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
+     * for version `n-1`.
+     */
+    public interface SecretVersionAlias {
+        /**
+         * current.
+         */
+        String CURRENT = "current";
+        /**
+         * previous.
+         */
+        String PREVIOUS = "previous";
+    }
 
-  protected String name;
-  protected String description;
-  protected Map<String, Object> attributes;
-  @SerializedName("created_at")
-  protected Date createdAt;
-  @SerializedName("updated_at")
-  protected Date updatedAt;
-  @SerializedName("created_by")
-  protected String createdBy;
-  @SerializedName("secret_group_id")
-  protected String secretGroupId;
-  @SerializedName("secret_id")
-  protected String secretId;
-  @SerializedName("secret_version_id")
-  protected String secretVersionId;
-  @SerializedName("secret_version_alias")
-  protected String secretVersionAlias;
+    protected String name;
+    protected String description;
+    protected Map<String, Object> attributes;
+    @SerializedName("created_at")
+    protected Date createdAt;
+    @SerializedName("updated_at")
+    protected Date updatedAt;
+    @SerializedName("created_by")
+    protected String createdBy;
+    @SerializedName("secret_group_id")
+    protected String secretGroupId;
+    @SerializedName("secret_id")
+    protected String secretId;
+    @SerializedName("secret_version_id")
+    protected String secretVersionId;
+    @SerializedName("secret_version_alias")
+    protected String secretVersionAlias;
 
-  protected SecretLock() { }
+    protected SecretLock() {
+    }
 
-  /**
-   * Gets the name.
-   *
-   * A human-readable name to assign to the lock. The lock name must be unique per secret version.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret lock.
-   *
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
+    /**
+     * Gets the name.
+     * <p>
+     * A human-readable name to assign to the lock. The lock name must be unique per secret version.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret lock.
+     *
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-  /**
-   * Gets the description.
-   *
-   * An extended description of the lock.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
-   * lock.
-   *
-   * @return the description
-   */
-  public String getDescription() {
-    return description;
-  }
+    /**
+     * Gets the description.
+     * <p>
+     * An extended description of the lock.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+     * lock.
+     *
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-  /**
-   * Gets the attributes.
-   *
-   * Optional information to associate with a lock, such as resources CRNs to be used by automation.
-   *
-   * @return the attributes
-   */
-  public Map<String, Object> getAttributes() {
-    return attributes;
-  }
+    /**
+     * Gets the attributes.
+     * <p>
+     * Optional information to associate with a lock, such as resources CRNs to be used by automation.
+     *
+     * @return the attributes
+     */
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
 
-  /**
-   * Gets the createdAt.
-   *
-   * The date when the resource was created. The date format follows `RFC 3339`.
-   *
-   * @return the createdAt
-   */
-  public Date getCreatedAt() {
-    return createdAt;
-  }
+    /**
+     * Gets the createdAt.
+     * <p>
+     * The date when the resource was created. The date format follows `RFC 3339`.
+     *
+     * @return the createdAt
+     */
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-  /**
-   * Gets the updatedAt.
-   *
-   * The date when a resource was modified. The date format follows `RFC 3339`.
-   *
-   * @return the updatedAt
-   */
-  public Date getUpdatedAt() {
-    return updatedAt;
-  }
+    /**
+     * Gets the updatedAt.
+     * <p>
+     * The date when a resource was modified. The date format follows `RFC 3339`.
+     *
+     * @return the updatedAt
+     */
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
 
-  /**
-   * Gets the createdBy.
-   *
-   * The unique identifier that is associated with the entity that created the secret.
-   *
-   * @return the createdBy
-   */
-  public String getCreatedBy() {
-    return createdBy;
-  }
+    /**
+     * Gets the createdBy.
+     * <p>
+     * The unique identifier that is associated with the entity that created the secret.
+     *
+     * @return the createdBy
+     */
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-  /**
-   * Gets the secretGroupId.
-   *
-   * A v4 UUID identifier, or `default` secret group.
-   *
-   * @return the secretGroupId
-   */
-  public String getSecretGroupId() {
-    return secretGroupId;
-  }
+    /**
+     * Gets the secretGroupId.
+     * <p>
+     * A UUID identifier, or `default` secret group.
+     *
+     * @return the secretGroupId
+     */
+    public String getSecretGroupId() {
+        return secretGroupId;
+    }
 
-  /**
-   * Gets the secretId.
-   *
-   * A v4 UUID identifier.
-   *
-   * @return the secretId
-   */
-  public String getSecretId() {
-    return secretId;
-  }
+    /**
+     * Gets the secretId.
+     * <p>
+     * A UUID identifier.
+     *
+     * @return the secretId
+     */
+    public String getSecretId() {
+        return secretId;
+    }
 
-  /**
-   * Gets the secretVersionId.
-   *
-   * A v4 UUID identifier.
-   *
-   * @return the secretVersionId
-   */
-  public String getSecretVersionId() {
-    return secretVersionId;
-  }
+    /**
+     * Gets the secretVersionId.
+     * <p>
+     * A UUID identifier.
+     *
+     * @return the secretVersionId
+     */
+    public String getSecretVersionId() {
+        return secretVersionId;
+    }
 
-  /**
-   * Gets the secretVersionAlias.
-   *
-   * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
-   * for version `n-1`.
-   *
-   * @return the secretVersionAlias
-   */
-  public String getSecretVersionAlias() {
-    return secretVersionAlias;
-  }
+    /**
+     * Gets the secretVersionAlias.
+     * <p>
+     * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
+     * for version `n-1`.
+     *
+     * @return the secretVersionAlias
+     */
+    public String getSecretVersionAlias() {
+        return secretVersionAlias;
+    }
 }
 

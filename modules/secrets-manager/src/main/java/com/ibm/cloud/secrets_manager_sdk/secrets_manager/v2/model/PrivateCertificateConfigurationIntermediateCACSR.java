@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,17 +18,22 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
  */
 public class PrivateCertificateConfigurationIntermediateCACSR extends PrivateCertificateCAData {
 
-  /**
-   * The type of private key to generate.
-   */
-  public interface PrivateKeyType {
-    /** rsa. */
-    String RSA = "rsa";
-    /** ec. */
-    String EC = "ec";
-  }
+    /**
+     * The type of private key to generate.
+     */
+    public interface PrivateKeyType {
+        /**
+         * rsa.
+         */
+        String RSA = "rsa";
+        /**
+         * ec.
+         */
+        String EC = "ec";
+    }
 
 
-  protected PrivateCertificateConfigurationIntermediateCACSR() { }
+    protected PrivateCertificateConfigurationIntermediateCACSR() {
+    }
 }
 

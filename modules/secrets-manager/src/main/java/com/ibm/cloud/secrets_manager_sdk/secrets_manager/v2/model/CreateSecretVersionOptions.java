@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,115 +20,116 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class CreateSecretVersionOptions extends GenericModel {
 
-  protected String secretId;
-  protected SecretVersionPrototype secretVersionPrototype;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretId;
-    private SecretVersionPrototype secretVersionPrototype;
+    protected String secretId;
+    protected SecretVersionPrototype secretVersionPrototype;
 
     /**
-     * Instantiates a new Builder from an existing CreateSecretVersionOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretId;
+        private SecretVersionPrototype secretVersionPrototype;
+
+        /**
+         * Instantiates a new Builder from an existing CreateSecretVersionOptions instance.
+         *
+         * @param createSecretVersionOptions the instance to initialize the Builder with
+         */
+        private Builder(CreateSecretVersionOptions createSecretVersionOptions) {
+            this.secretId = createSecretVersionOptions.secretId;
+            this.secretVersionPrototype = createSecretVersionOptions.secretVersionPrototype;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretId               the secretId
+         * @param secretVersionPrototype the secretVersionPrototype
+         */
+        public Builder(String secretId, SecretVersionPrototype secretVersionPrototype) {
+            this.secretId = secretId;
+            this.secretVersionPrototype = secretVersionPrototype;
+        }
+
+        /**
+         * Builds a CreateSecretVersionOptions.
+         *
+         * @return the new CreateSecretVersionOptions instance
+         */
+        public CreateSecretVersionOptions build() {
+            return new CreateSecretVersionOptions(this);
+        }
+
+        /**
+         * Set the secretId.
+         *
+         * @param secretId the secretId
+         * @return the CreateSecretVersionOptions builder
+         */
+        public Builder secretId(String secretId) {
+            this.secretId = secretId;
+            return this;
+        }
+
+        /**
+         * Set the secretVersionPrototype.
+         *
+         * @param secretVersionPrototype the secretVersionPrototype
+         * @return the CreateSecretVersionOptions builder
+         */
+        public Builder secretVersionPrototype(SecretVersionPrototype secretVersionPrototype) {
+            this.secretVersionPrototype = secretVersionPrototype;
+            return this;
+        }
+    }
+
+    protected CreateSecretVersionOptions() {
+    }
+
+    protected CreateSecretVersionOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretId,
+                "secretId cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretVersionPrototype,
+                "secretVersionPrototype cannot be null");
+        secretId = builder.secretId;
+        secretVersionPrototype = builder.secretVersionPrototype;
+    }
+
+    /**
+     * New builder.
      *
-     * @param createSecretVersionOptions the instance to initialize the Builder with
+     * @return a CreateSecretVersionOptions builder
      */
-    private Builder(CreateSecretVersionOptions createSecretVersionOptions) {
-      this.secretId = createSecretVersionOptions.secretId;
-      this.secretVersionPrototype = createSecretVersionOptions.secretVersionPrototype;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretId.
+     * <p>
+     * The UUID that uniquely identifies your secret.
      *
-     * @param secretId the secretId
-     * @param secretVersionPrototype the secretVersionPrototype
+     * @return the secretId
      */
-    public Builder(String secretId, SecretVersionPrototype secretVersionPrototype) {
-      this.secretId = secretId;
-      this.secretVersionPrototype = secretVersionPrototype;
+    public String secretId() {
+        return secretId;
     }
 
     /**
-     * Builds a CreateSecretVersionOptions.
+     * Gets the secretVersionPrototype.
+     * <p>
+     * Specify the properties for your new secret version.
      *
-     * @return the new CreateSecretVersionOptions instance
+     * @return the secretVersionPrototype
      */
-    public CreateSecretVersionOptions build() {
-      return new CreateSecretVersionOptions(this);
+    public SecretVersionPrototype secretVersionPrototype() {
+        return secretVersionPrototype;
     }
-
-    /**
-     * Set the secretId.
-     *
-     * @param secretId the secretId
-     * @return the CreateSecretVersionOptions builder
-     */
-    public Builder secretId(String secretId) {
-      this.secretId = secretId;
-      return this;
-    }
-
-    /**
-     * Set the secretVersionPrototype.
-     *
-     * @param secretVersionPrototype the secretVersionPrototype
-     * @return the CreateSecretVersionOptions builder
-     */
-    public Builder secretVersionPrototype(SecretVersionPrototype secretVersionPrototype) {
-      this.secretVersionPrototype = secretVersionPrototype;
-      return this;
-    }
-  }
-
-  protected CreateSecretVersionOptions() { }
-
-  protected CreateSecretVersionOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretId,
-      "secretId cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretVersionPrototype,
-      "secretVersionPrototype cannot be null");
-    secretId = builder.secretId;
-    secretVersionPrototype = builder.secretVersionPrototype;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a CreateSecretVersionOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretId.
-   *
-   * The v4 UUID that uniquely identifies your secret.
-   *
-   * @return the secretId
-   */
-  public String secretId() {
-    return secretId;
-  }
-
-  /**
-   * Gets the secretVersionPrototype.
-   *
-   * Specify the properties for your new secret version.
-   *
-   * @return the secretVersionPrototype
-   */
-  public SecretVersionPrototype secretVersionPrototype() {
-    return secretVersionPrototype;
-  }
 }
 

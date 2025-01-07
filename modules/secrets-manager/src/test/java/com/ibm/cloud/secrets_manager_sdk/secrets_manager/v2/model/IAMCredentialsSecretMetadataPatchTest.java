@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -17,81 +17,85 @@ import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CommonRotationPolicy;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentialsSecretMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the IAMCredentialsSecretMetadataPatch model.
  */
 public class IAMCredentialsSecretMetadataPatchTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testIAMCredentialsSecretMetadataPatch() throws Throwable {
-    CommonRotationPolicy rotationPolicyModel = new CommonRotationPolicy.Builder()
-      .autoRotate(true)
-      .interval(Long.valueOf("1"))
-      .unit("day")
-      .build();
-    assertEquals(rotationPolicyModel.autoRotate(), Boolean.valueOf(true));
-    assertEquals(rotationPolicyModel.interval(), Long.valueOf("1"));
-    assertEquals(rotationPolicyModel.unit(), "day");
+    @Test
+    public void testIAMCredentialsSecretMetadataPatch() throws Throwable {
+        CommonRotationPolicy rotationPolicyModel = new CommonRotationPolicy.Builder()
+                .autoRotate(true)
+                .interval(Long.valueOf("1"))
+                .unit("day")
+                .build();
+        assertEquals(rotationPolicyModel.autoRotate(), Boolean.valueOf(true));
+        assertEquals(rotationPolicyModel.interval(), Long.valueOf("1"));
+        assertEquals(rotationPolicyModel.unit(), "day");
 
-    IAMCredentialsSecretMetadataPatch iamCredentialsSecretMetadataPatchModel = new IAMCredentialsSecretMetadataPatch.Builder()
-      .name("my-secret-example")
-      .description("Extended description for this secret.")
-      .labels(java.util.Arrays.asList("my-label"))
-      .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .ttl("1d")
-      .rotation(rotationPolicyModel)
-      .build();
-    assertEquals(iamCredentialsSecretMetadataPatchModel.name(), "my-secret-example");
-    assertEquals(iamCredentialsSecretMetadataPatchModel.description(), "Extended description for this secret.");
-    assertEquals(iamCredentialsSecretMetadataPatchModel.labels(), java.util.Arrays.asList("my-label"));
-    assertEquals(iamCredentialsSecretMetadataPatchModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
-    assertEquals(iamCredentialsSecretMetadataPatchModel.ttl(), "1d");
-    assertEquals(iamCredentialsSecretMetadataPatchModel.rotation(), rotationPolicyModel);
+        IAMCredentialsSecretMetadataPatch iamCredentialsSecretMetadataPatchModel = new IAMCredentialsSecretMetadataPatch.Builder()
+                .name("my-secret-example")
+                .description("Extended description for this secret.")
+                .labels(java.util.Arrays.asList("my-label"))
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .ttl("1d")
+                .rotation(rotationPolicyModel)
+                .build();
+        assertEquals(iamCredentialsSecretMetadataPatchModel.name(), "my-secret-example");
+        assertEquals(iamCredentialsSecretMetadataPatchModel.description(), "Extended description for this secret.");
+        assertEquals(iamCredentialsSecretMetadataPatchModel.labels(), java.util.Arrays.asList("my-label"));
+        assertEquals(iamCredentialsSecretMetadataPatchModel.customMetadata(), java.util.Collections.singletonMap("anyKey", "anyValue"));
+        assertEquals(iamCredentialsSecretMetadataPatchModel.ttl(), "1d");
+        assertEquals(iamCredentialsSecretMetadataPatchModel.rotation(), rotationPolicyModel);
 
-    String json = TestUtilities.serialize(iamCredentialsSecretMetadataPatchModel);
+        String json = TestUtilities.serialize(iamCredentialsSecretMetadataPatchModel);
 
-    IAMCredentialsSecretMetadataPatch iamCredentialsSecretMetadataPatchModelNew = TestUtilities.deserialize(json, IAMCredentialsSecretMetadataPatch.class);
-    assertTrue(iamCredentialsSecretMetadataPatchModelNew instanceof IAMCredentialsSecretMetadataPatch);
-    assertEquals(iamCredentialsSecretMetadataPatchModelNew.name(), "my-secret-example");
-    assertEquals(iamCredentialsSecretMetadataPatchModelNew.description(), "Extended description for this secret.");
-    assertEquals(iamCredentialsSecretMetadataPatchModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
-    assertEquals(iamCredentialsSecretMetadataPatchModelNew.ttl(), "1d");
-    assertEquals(iamCredentialsSecretMetadataPatchModelNew.rotation().toString(), rotationPolicyModel.toString());
-  }
-  @Test
-  public void testIAMCredentialsSecretMetadataPatchAsPatch() throws Throwable {
-    CommonRotationPolicy rotationPolicyModel = new CommonRotationPolicy.Builder()
-      .autoRotate(true)
-      .interval(Long.valueOf("1"))
-      .unit("day")
-      .build();
+        IAMCredentialsSecretMetadataPatch iamCredentialsSecretMetadataPatchModelNew = TestUtilities.deserialize(json, IAMCredentialsSecretMetadataPatch.class);
+        assertTrue(iamCredentialsSecretMetadataPatchModelNew instanceof IAMCredentialsSecretMetadataPatch);
+        assertEquals(iamCredentialsSecretMetadataPatchModelNew.name(), "my-secret-example");
+        assertEquals(iamCredentialsSecretMetadataPatchModelNew.description(), "Extended description for this secret.");
+        assertEquals(iamCredentialsSecretMetadataPatchModelNew.customMetadata().toString(), java.util.Collections.singletonMap("anyKey", "anyValue").toString());
+        assertEquals(iamCredentialsSecretMetadataPatchModelNew.ttl(), "1d");
+        assertEquals(iamCredentialsSecretMetadataPatchModelNew.rotation().toString(), rotationPolicyModel.toString());
+    }
 
-    IAMCredentialsSecretMetadataPatch iamCredentialsSecretMetadataPatchModel = new IAMCredentialsSecretMetadataPatch.Builder()
-      .name("my-secret-example")
-      .description("Extended description for this secret.")
-      .labels(java.util.Arrays.asList("my-label"))
-      .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-      .ttl("1d")
-      .rotation(rotationPolicyModel)
-      .build();
+    @Test
+    public void testIAMCredentialsSecretMetadataPatchAsPatch() throws Throwable {
+        CommonRotationPolicy rotationPolicyModel = new CommonRotationPolicy.Builder()
+                .autoRotate(true)
+                .interval(Long.valueOf("1"))
+                .unit("day")
+                .build();
 
-    Map<String, Object> mergePatch = iamCredentialsSecretMetadataPatchModel.asPatch();
+        IAMCredentialsSecretMetadataPatch iamCredentialsSecretMetadataPatchModel = new IAMCredentialsSecretMetadataPatch.Builder()
+                .name("my-secret-example")
+                .description("Extended description for this secret.")
+                .labels(java.util.Arrays.asList("my-label"))
+                .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                .ttl("1d")
+                .rotation(rotationPolicyModel)
+                .build();
 
-    assertEquals(mergePatch.get("name"), "my-secret-example");
-    assertEquals(mergePatch.get("description"), "Extended description for this secret.");
-    assertTrue(mergePatch.containsKey("labels"));
-    assertTrue(mergePatch.containsKey("custom_metadata"));
-    assertEquals(mergePatch.get("ttl"), "1d");
-    assertTrue(mergePatch.containsKey("rotation"));
-  }
+        Map<String, Object> mergePatch = iamCredentialsSecretMetadataPatchModel.asPatch();
+
+        assertEquals(mergePatch.get("name"), "my-secret-example");
+        assertEquals(mergePatch.get("description"), "Extended description for this secret.");
+        assertTrue(mergePatch.containsKey("labels"));
+        assertTrue(mergePatch.containsKey("custom_metadata"));
+        assertEquals(mergePatch.get("ttl"), "1d");
+        assertTrue(mergePatch.containsKey("rotation"));
+    }
 
 }

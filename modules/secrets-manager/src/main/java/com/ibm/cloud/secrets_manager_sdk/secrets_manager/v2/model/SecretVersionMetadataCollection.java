@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,32 +23,33 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretVersionMetadataCollection extends GenericModel {
 
-  protected List<SecretVersionMetadata> versions;
-  @SerializedName("total_count")
-  protected Long totalCount;
+    protected List<SecretVersionMetadata> versions;
+    @SerializedName("total_count")
+    protected Long totalCount;
 
-  protected SecretVersionMetadataCollection() { }
+    protected SecretVersionMetadataCollection() {
+    }
 
-  /**
-   * Gets the versions.
-   *
-   * A collection of secret version metadata.
-   *
-   * @return the versions
-   */
-  public List<SecretVersionMetadata> getVersions() {
-    return versions;
-  }
+    /**
+     * Gets the versions.
+     * <p>
+     * A collection of secret version metadata.
+     *
+     * @return the versions
+     */
+    public List<SecretVersionMetadata> getVersions() {
+        return versions;
+    }
 
-  /**
-   * Gets the totalCount.
-   *
-   * The total number of resources in a collection.
-   *
-   * @return the totalCount
-   */
-  public Long getTotalCount() {
-    return totalCount;
-  }
+    /**
+     * Gets the totalCount.
+     * <p>
+     * The total number of resources in a collection.
+     *
+     * @return the totalCount
+     */
+    public Long getTotalCount() {
+        return totalCount;
+    }
 }
 

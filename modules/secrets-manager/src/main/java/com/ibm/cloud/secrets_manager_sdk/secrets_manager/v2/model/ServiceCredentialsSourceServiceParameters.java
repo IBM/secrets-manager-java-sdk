@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -24,110 +24,112 @@ import com.ibm.cloud.sdk.core.service.model.DynamicModel;
  * Configuration options represented as key-value pairs. Service-defined options are used in the generation of
  * credentials for some services. For example, Cloud Object Storage accepts the optional boolean parameter HMAC for
  * creating specific kind of credentials.
- *
+ * <p>
  * This type supports additional properties of type Object.
  */
 public class ServiceCredentialsSourceServiceParameters extends DynamicModel<Object> {
 
-  @SerializedName("serviceid_crn")
-  protected String serviceidCrn;
+    @SerializedName("serviceid_crn")
+    protected String serviceidCrn;
 
-  public ServiceCredentialsSourceServiceParameters() {
-    super(new TypeToken<Object>() { });
-  }
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String serviceidCrn;
-    private Map<String, Object> dynamicProperties;
+    public ServiceCredentialsSourceServiceParameters() {
+        super(new TypeToken<Object>() {
+        });
+    }
 
     /**
-     * Instantiates a new Builder from an existing ServiceCredentialsSourceServiceParameters instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String serviceidCrn;
+        private Map<String, Object> dynamicProperties;
+
+        /**
+         * Instantiates a new Builder from an existing ServiceCredentialsSourceServiceParameters instance.
+         *
+         * @param serviceCredentialsSourceServiceParameters the instance to initialize the Builder with
+         */
+        private Builder(ServiceCredentialsSourceServiceParameters serviceCredentialsSourceServiceParameters) {
+            this.serviceidCrn = serviceCredentialsSourceServiceParameters.serviceidCrn;
+            this.dynamicProperties = serviceCredentialsSourceServiceParameters.getProperties();
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a ServiceCredentialsSourceServiceParameters.
+         *
+         * @return the new ServiceCredentialsSourceServiceParameters instance
+         */
+        public ServiceCredentialsSourceServiceParameters build() {
+            return new ServiceCredentialsSourceServiceParameters(this);
+        }
+
+        /**
+         * Set the serviceidCrn.
+         *
+         * @param serviceidCrn the serviceidCrn
+         * @return the ServiceCredentialsSourceServiceParameters builder
+         */
+        public Builder serviceidCrn(String serviceidCrn) {
+            this.serviceidCrn = serviceidCrn;
+            return this;
+        }
+
+        /**
+         * Add an arbitrary property.
+         *
+         * @param name  the name of the property to add
+         * @param value the value of the property to add
+         * @return the ServiceCredentialsSourceServiceParameters builder
+         */
+        public Builder add(String name, Object value) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(name, "name cannot be null");
+            if (this.dynamicProperties == null) {
+                this.dynamicProperties = new HashMap<String, Object>();
+            }
+            this.dynamicProperties.put(name, value);
+            return this;
+        }
+    }
+
+    protected ServiceCredentialsSourceServiceParameters(Builder builder) {
+        super(new TypeToken<Object>() {
+        });
+        serviceidCrn = builder.serviceidCrn;
+        this.setProperties(builder.dynamicProperties);
+    }
+
+    /**
+     * New builder.
      *
-     * @param serviceCredentialsSourceServiceParameters the instance to initialize the Builder with
+     * @return a ServiceCredentialsSourceServiceParameters builder
      */
-    private Builder(ServiceCredentialsSourceServiceParameters serviceCredentialsSourceServiceParameters) {
-      this.serviceidCrn = serviceCredentialsSourceServiceParameters.serviceidCrn;
-      this.dynamicProperties = serviceCredentialsSourceServiceParameters.getProperties();
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a ServiceCredentialsSourceServiceParameters.
+     * Gets the serviceidCrn.
+     * <p>
+     * An optional platform defined option to reuse an existing IAM Service ID for the role assignment.
      *
-     * @return the new ServiceCredentialsSourceServiceParameters instance
+     * @return the serviceidCrn
      */
-    public ServiceCredentialsSourceServiceParameters build() {
-      return new ServiceCredentialsSourceServiceParameters(this);
+    public String getServiceidCrn() {
+        return this.serviceidCrn;
     }
 
     /**
-     * Set the serviceidCrn.
+     * Sets the serviceidCrn.
      *
-     * @param serviceidCrn the serviceidCrn
-     * @return the ServiceCredentialsSourceServiceParameters builder
+     * @param serviceidCrn the new serviceidCrn
      */
-    public Builder serviceidCrn(String serviceidCrn) {
-      this.serviceidCrn = serviceidCrn;
-      return this;
+    public void setServiceidCrn(final String serviceidCrn) {
+        this.serviceidCrn = serviceidCrn;
     }
-
-    /**
-     * Add an arbitrary property.
-     *
-     * @param name the name of the property to add
-     * @param value the value of the property to add
-     * @return the ServiceCredentialsSourceServiceParameters builder
-     */
-    public Builder add(String name, Object value) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(name, "name cannot be null");
-      if (this.dynamicProperties == null) {
-        this.dynamicProperties = new HashMap<String, Object>();
-      }
-      this.dynamicProperties.put(name, value);
-      return this;
-    }
-  }
-
-  protected ServiceCredentialsSourceServiceParameters(Builder builder) {
-    super(new TypeToken<Object>() { });
-    serviceidCrn = builder.serviceidCrn;
-    this.setProperties(builder.dynamicProperties);
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ServiceCredentialsSourceServiceParameters builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the serviceidCrn.
-   *
-   * An optional platform defined option to reuse an existing IAM Service ID for the role assignment.
-   *
-   * @return the serviceidCrn
-   */
-  public String getServiceidCrn() {
-    return this.serviceidCrn;
-  }
-
-  /**
-   * Sets the serviceidCrn.
-   *
-   * @param serviceidCrn the new serviceidCrn
-   */
-  public void setServiceidCrn(final String serviceidCrn) {
-    this.serviceidCrn = serviceidCrn;
-  }
 }

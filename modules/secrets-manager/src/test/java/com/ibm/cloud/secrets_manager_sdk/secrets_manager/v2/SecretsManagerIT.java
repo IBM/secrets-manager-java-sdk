@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -76,6 +76,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentials
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentialsSecretVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentialsSecretVersionPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ImportedCertificate;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ImportedCertificateManagedCsr;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ImportedCertificateManagedCsrResponse;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ImportedCertificateMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ImportedCertificateMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ImportedCertificatePrototype;
@@ -110,8 +112,10 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertifi
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateCAData;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionRevoke;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionRevokePrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionRotate;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionRotateCRL;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionRotateCRLPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionRotatePrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionSetSigned;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionSetSignedPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationActionSignCSR;
@@ -128,6 +132,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertifi
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationRootCAMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationRootCAPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationRootCAPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationRotateAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationTemplate;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationTemplateMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateConfigurationTemplatePatch;
@@ -226,1078 +231,1081 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.UsernamePasswo
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.VersionAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import com.ibm.cloud.secrets_manager_sdk.test.SdkIntegrationTestBase;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Integration test class for the SecretsManager service.
  */
 public class SecretsManagerIT extends SdkIntegrationTestBase {
-  public SecretsManager service = null;
-  public static Map<String, String> config = null;
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    public SecretsManager service = null;
+    public static Map<String, String> config = null;
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  // Variables to hold link values
-  String configurationNameForGetConfigurationLink = null;
-  String secretGroupIdForGetSecretGroupLink = null;
-  String secretIdForCreateSecretVersionLink = null;
-  String secretIdForCreateSecretVersionLocksLink = null;
-  String secretIdForGetSecretLink = null;
-  String secretIdForGetSecretVersionLink = null;
-  String secretIdForListSecretLocksLink = null;
-  String secretIdForListSecretVersionLocksLink = null;
-  String secretNameLink = null;
-  String secretVersionIdForCreateSecretVersionLocksLink = null;
-  String secretVersionIdForDeleteSecretVersionLocksLink = null;
-  String secretVersionIdForGetSecretVersionLink = null;
-  String secretVersionIdForGetSecretVersionMetadataLink = null;
-  String secretVersionIdForListSecretVersionLocksLink = null;
-  String secretVersionIdForUpdateSecretVersionMetadataLink = null;
+    // Variables to hold link values
+    String configurationNameForGetConfigurationLink = null;
+    String secretGroupIdForGetSecretGroupLink = null;
+    String secretIdForCreateSecretVersionLink = null;
+    String secretIdForCreateSecretVersionLocksLink = null;
+    String secretIdForGetSecretLink = null;
+    String secretIdForGetSecretVersionLink = null;
+    String secretIdForListSecretLocksLink = null;
+    String secretIdForListSecretVersionLocksLink = null;
+    String secretNameLink = null;
+    String secretVersionIdForCreateSecretVersionLocksLink = null;
+    String secretVersionIdForDeleteSecretVersionLocksLink = null;
+    String secretVersionIdForGetSecretVersionLink = null;
+    String secretVersionIdForGetSecretVersionMetadataLink = null;
+    String secretVersionIdForListSecretVersionLocksLink = null;
+    String secretVersionIdForUpdateSecretVersionMetadataLink = null;
 
-  /**
-   * This method provides our config filename to the base class.
-   */
+    /**
+     * This method provides our config filename to the base class.
+     */
 
-  public String getConfigFilename() {
-    return "../../secrets_manager_v2.env";
-  }
-
-  @BeforeClass
-  public void constructService() {
-    // Ask super if we should skip the tests.
-    if (skipTests()) {
-      return;
+    public String getConfigFilename() {
+        return "../../secrets_manager_v2.env";
     }
 
-    service = SecretsManager.newInstance();
-    assertNotNull(service);
-    assertNotNull(service.getServiceUrl());
+    @BeforeClass
+    public void constructService() {
+        // Ask super if we should skip the tests.
+        if (skipTests()) {
+            return;
+        }
 
-    // Load up our test-specific config properties.
-    config = CredentialUtils.getServiceProperties(SecretsManager.DEFAULT_SERVICE_NAME);
-    assertNotNull(config);
-    assertFalse(config.isEmpty());
-    assertEquals(service.getServiceUrl(), config.get("URL"));
+        service = SecretsManager.newInstance();
+        assertNotNull(service);
+        assertNotNull(service.getServiceUrl());
 
-    service.enableRetries(4, 30);
+        // Load up our test-specific config properties.
+        config = CredentialUtils.getServiceProperties(SecretsManager.DEFAULT_SERVICE_NAME);
+        assertNotNull(config);
+        assertFalse(config.isEmpty());
+        assertEquals(service.getServiceUrl(), config.get("URL"));
 
-    System.out.println("Setup complete.");
-  }
+        service.enableRetries(4, 30);
 
-  @Test
-  public void testCreateSecretGroup() throws Exception {
-    try {
-      CreateSecretGroupOptions createSecretGroupOptions = new CreateSecretGroupOptions.Builder()
-        .name("my-secret-group")
-        .description("Extended description for this group.")
-        .build();
-
-      // Invoke operation
-      Response<SecretGroup> response = service.createSecretGroup(createSecretGroupOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
-
-      SecretGroup secretGroupResult = response.getResult();
-      assertNotNull(secretGroupResult);
-
-      secretGroupIdForGetSecretGroupLink = secretGroupResult.getId();
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        System.out.println("Setup complete.");
     }
-  }
 
-  @Test(dependsOnMethods = { "testCreateSecretGroup" })
-  public void testCreateSecret() throws Exception {
-    try {
-      ArbitrarySecretPrototype secretPrototypeModel = new ArbitrarySecretPrototype.Builder()
-        .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .description("Description of my arbitrary secret.")
-        .expirationDate(DateUtils.parseAsDateTime("2030-10-05T11:49:42Z"))
-        .labels(java.util.Arrays.asList("dev", "us-south"))
-        .name("example-arbitrary-secret")
-        .secretGroupId("default")
-        .secretType("arbitrary")
-        .payload("secret-data")
-        .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .build();
+    @Test
+    public void testCreateSecretGroup() throws Exception {
+        try {
+            CreateSecretGroupOptions createSecretGroupOptions = new CreateSecretGroupOptions.Builder()
+                    .name("my-secret-group")
+                    .description("Extended description for this group.")
+                    .build();
 
-      CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
-        .secretPrototype(secretPrototypeModel)
-        .build();
+            // Invoke operation
+            Response<SecretGroup> response = service.createSecretGroup(createSecretGroupOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
 
-      // Invoke operation
-      Response<Secret> response = service.createSecret(createSecretOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
+            SecretGroup secretGroupResult = response.getResult();
+            assertNotNull(secretGroupResult);
 
-      Secret secretResult = response.getResult();
-      assertNotNull(secretResult);
-
-      secretIdForGetSecretLink = secretResult.getId();
-      secretIdForGetSecretVersionLink = secretResult.getId();
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            secretGroupIdForGetSecretGroupLink = secretGroupResult.getId();
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testCreateSecret" })
-  public void testUpdateSecretMetadata() throws Exception {
-    try {
-      ArbitrarySecretMetadataPatch secretMetadataPatchModel = new ArbitrarySecretMetadataPatch.Builder()
-        .name("updated-arbitrary-secret-name-example")
-        .description("updated Arbitrary Secret description")
-        .labels(java.util.Arrays.asList("dev", "us-south"))
-        .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
-        .build();
-      Map<String, Object> secretMetadataPatchModelAsPatch = secretMetadataPatchModel.asPatch();
+    @Test(dependsOnMethods = {"testCreateSecretGroup"})
+    public void testCreateSecret() throws Exception {
+        try {
+            ArbitrarySecretPrototype secretPrototypeModel = new ArbitrarySecretPrototype.Builder()
+                    .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                    .description("Description of my arbitrary secret.")
+                    .expirationDate(DateUtils.parseAsDateTime("2030-10-05T11:49:42Z"))
+                    .labels(java.util.Arrays.asList("dev", "us-south"))
+                    .name("example-arbitrary-secret")
+                    .secretGroupId("default")
+                    .secretType("arbitrary")
+                    .payload("secret-data")
+                    .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                    .build();
 
-      UpdateSecretMetadataOptions updateSecretMetadataOptions = new UpdateSecretMetadataOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .secretMetadataPatch(secretMetadataPatchModelAsPatch)
-        .build();
+            CreateSecretOptions createSecretOptions = new CreateSecretOptions.Builder()
+                    .secretPrototype(secretPrototypeModel)
+                    .build();
 
-      // Invoke operation
-      Response<SecretMetadata> response = service.updateSecretMetadata(updateSecretMetadataOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Invoke operation
+            Response<Secret> response = service.createSecret(createSecretOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
 
-      SecretMetadata secretMetadataResult = response.getResult();
-      assertNotNull(secretMetadataResult);
+            Secret secretResult = response.getResult();
+            assertNotNull(secretResult);
 
-      secretNameLink = secretMetadataResult.getName();
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            secretIdForGetSecretLink = secretResult.getId();
+            secretIdForGetSecretVersionLink = secretResult.getId();
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testUpdateSecretMetadata" })
-  public void testListSecretVersions() throws Exception {
-    try {
-      ListSecretVersionsOptions listSecretVersionsOptions = new ListSecretVersionsOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .build();
+    @Test(dependsOnMethods = {"testCreateSecret"})
+    public void testUpdateSecretMetadata() throws Exception {
+        try {
+            ArbitrarySecretMetadataPatch secretMetadataPatchModel = new ArbitrarySecretMetadataPatch.Builder()
+                    .name("updated-arbitrary-secret-name-example")
+                    .description("updated Arbitrary Secret description")
+                    .labels(java.util.Arrays.asList("dev", "us-south"))
+                    .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                    .expirationDate(DateUtils.parseAsDateTime("2033-04-12T23:20:50.520Z"))
+                    .build();
+            Map<String, Object> secretMetadataPatchModelAsPatch = secretMetadataPatchModel.asPatch();
 
-      // Invoke operation
-      Response<SecretVersionMetadataCollection> response = service.listSecretVersions(listSecretVersionsOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            UpdateSecretMetadataOptions updateSecretMetadataOptions = new UpdateSecretMetadataOptions.Builder()
+                    .id(secretIdForGetSecretLink)
+                    .secretMetadataPatch(secretMetadataPatchModelAsPatch)
+                    .build();
 
-      SecretVersionMetadataCollection secretVersionMetadataCollectionResult = response.getResult();
-      assertNotNull(secretVersionMetadataCollectionResult);
+            // Invoke operation
+            Response<SecretMetadata> response = service.updateSecretMetadata(updateSecretMetadataOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      secretVersionIdForGetSecretVersionLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
-      secretIdForCreateSecretVersionLink = secretVersionMetadataCollectionResult.getVersions().get(0).getSecretId();
-      secretVersionIdForGetSecretVersionMetadataLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
-      secretVersionIdForUpdateSecretVersionMetadataLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
-      secretIdForCreateSecretVersionLocksLink = secretVersionMetadataCollectionResult.getVersions().get(0).getSecretId();
-      secretVersionIdForCreateSecretVersionLocksLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
-      secretVersionIdForDeleteSecretVersionLocksLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            SecretMetadata secretMetadataResult = response.getResult();
+            assertNotNull(secretMetadataResult);
+
+            secretNameLink = secretMetadataResult.getName();
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecretVersions" })
-  public void testCreateSecretLocksBulk() throws Exception {
-    try {
-      SecretLockPrototype secretLockPrototypeModel = new SecretLockPrototype.Builder()
-        .name("lock-example-1")
-        .description("lock for consumer 1")
-        .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .build();
+    @Test(dependsOnMethods = {"testUpdateSecretMetadata"})
+    public void testListSecretVersions() throws Exception {
+        try {
+            ListSecretVersionsOptions listSecretVersionsOptions = new ListSecretVersionsOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .build();
 
-      CreateSecretLocksBulkOptions createSecretLocksBulkOptions = new CreateSecretLocksBulkOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-        .mode("remove_previous")
-        .build();
+            // Invoke operation
+            Response<SecretVersionMetadataCollection> response = service.listSecretVersions(listSecretVersionsOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Invoke operation
-      Response<SecretLocks> response = service.createSecretLocksBulk(createSecretLocksBulkOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
+            SecretVersionMetadataCollection secretVersionMetadataCollectionResult = response.getResult();
+            assertNotNull(secretVersionMetadataCollectionResult);
 
-      SecretLocks secretLocksResult = response.getResult();
-      assertNotNull(secretLocksResult);
-
-      secretIdForListSecretLocksLink = secretLocksResult.getSecretId();
-      secretIdForListSecretVersionLocksLink = secretLocksResult.getSecretId();
-      secretVersionIdForListSecretVersionLocksLink = secretLocksResult.getVersions().get(0).getVersionId();
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            secretVersionIdForGetSecretVersionLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
+            secretIdForCreateSecretVersionLink = secretVersionMetadataCollectionResult.getVersions().get(0).getSecretId();
+            secretVersionIdForGetSecretVersionMetadataLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
+            secretVersionIdForUpdateSecretVersionMetadataLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
+            secretIdForCreateSecretVersionLocksLink = secretVersionMetadataCollectionResult.getVersions().get(0).getSecretId();
+            secretVersionIdForCreateSecretVersionLocksLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
+            secretVersionIdForDeleteSecretVersionLocksLink = secretVersionMetadataCollectionResult.getVersions().get(0).getId();
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testCreateSecretLocksBulk" })
-  public void testCreateConfiguration() throws Exception {
-    try {
-      PublicCertificateConfigurationDNSCloudInternetServicesPrototype configurationPrototypeModel = new PublicCertificateConfigurationDNSCloudInternetServicesPrototype.Builder()
-        .configType("public_cert_configuration_dns_cloud_internet_services")
-        .name("example-cloud-internet-services-config")
-        .cloudInternetServicesApikey("5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ")
-        .cloudInternetServicesCrn("crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::")
-        .build();
+    @Test(dependsOnMethods = {"testListSecretVersions"})
+    public void testCreateSecretLocksBulk() throws Exception {
+        try {
+            SecretLockPrototype secretLockPrototypeModel = new SecretLockPrototype.Builder()
+                    .name("lock-example-1")
+                    .description("lock for consumer 1")
+                    .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                    .build();
 
-      CreateConfigurationOptions createConfigurationOptions = new CreateConfigurationOptions.Builder()
-        .configurationPrototype(configurationPrototypeModel)
-        .build();
+            CreateSecretLocksBulkOptions createSecretLocksBulkOptions = new CreateSecretLocksBulkOptions.Builder()
+                    .id(secretIdForGetSecretLink)
+                    .locks(java.util.Arrays.asList(secretLockPrototypeModel))
+                    .mode("remove_previous")
+                    .build();
 
-      // Invoke operation
-      Response<Configuration> response = service.createConfiguration(createConfigurationOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
+            // Invoke operation
+            Response<SecretLocks> response = service.createSecretLocksBulk(createSecretLocksBulkOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
 
-      Configuration configurationResult = response.getResult();
-      assertNotNull(configurationResult);
+            SecretLocks secretLocksResult = response.getResult();
+            assertNotNull(secretLocksResult);
 
-      configurationNameForGetConfigurationLink = configurationResult.getName();
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            secretIdForListSecretLocksLink = secretLocksResult.getSecretId();
+            secretIdForListSecretVersionLocksLink = secretLocksResult.getSecretId();
+            secretVersionIdForListSecretVersionLocksLink = secretLocksResult.getVersions().get(0).getVersionId();
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testCreateConfiguration" })
-  public void testListSecretGroups() throws Exception {
-    try {
-      ListSecretGroupsOptions listSecretGroupsOptions = new ListSecretGroupsOptions();
+    @Test(dependsOnMethods = {"testCreateSecretLocksBulk"})
+    public void testCreateConfiguration() throws Exception {
+        try {
+            PublicCertificateConfigurationDNSCloudInternetServicesPrototype configurationPrototypeModel = new PublicCertificateConfigurationDNSCloudInternetServicesPrototype.Builder()
+                    .configType("public_cert_configuration_dns_cloud_internet_services")
+                    .name("example-cloud-internet-services-config")
+                    .cloudInternetServicesApikey("5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ")
+                    .cloudInternetServicesCrn("crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::")
+                    .build();
 
-      // Invoke operation
-      Response<SecretGroupCollection> response = service.listSecretGroups(listSecretGroupsOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            CreateConfigurationOptions createConfigurationOptions = new CreateConfigurationOptions.Builder()
+                    .configurationPrototype(configurationPrototypeModel)
+                    .build();
 
-      SecretGroupCollection secretGroupCollectionResult = response.getResult();
-      assertNotNull(secretGroupCollectionResult);
+            // Invoke operation
+            Response<Configuration> response = service.createConfiguration(createConfigurationOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            Configuration configurationResult = response.getResult();
+            assertNotNull(configurationResult);
+
+            configurationNameForGetConfigurationLink = configurationResult.getName();
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecretGroups" })
-  public void testGetSecretGroup() throws Exception {
-    try {
-      GetSecretGroupOptions getSecretGroupOptions = new GetSecretGroupOptions.Builder()
-        .id(secretGroupIdForGetSecretGroupLink)
-        .build();
+    @Test(dependsOnMethods = {"testCreateConfiguration"})
+    public void testListSecretGroups() throws Exception {
+        try {
+            ListSecretGroupsOptions listSecretGroupsOptions = new ListSecretGroupsOptions();
 
-      // Invoke operation
-      Response<SecretGroup> response = service.getSecretGroup(getSecretGroupOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Invoke operation
+            Response<SecretGroupCollection> response = service.listSecretGroups(listSecretGroupsOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      SecretGroup secretGroupResult = response.getResult();
-      assertNotNull(secretGroupResult);
+            SecretGroupCollection secretGroupCollectionResult = response.getResult();
+            assertNotNull(secretGroupCollectionResult);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testGetSecretGroup" })
-  public void testUpdateSecretGroup() throws Exception {
-    try {
-      SecretGroupPatch secretGroupPatchModel = new SecretGroupPatch.Builder()
-        .name("my-secret-group")
-        .description("Extended description for this group.")
-        .build();
-      Map<String, Object> secretGroupPatchModelAsPatch = secretGroupPatchModel.asPatch();
+    @Test(dependsOnMethods = {"testListSecretGroups"})
+    public void testGetSecretGroup() throws Exception {
+        try {
+            GetSecretGroupOptions getSecretGroupOptions = new GetSecretGroupOptions.Builder()
+                    .id(secretGroupIdForGetSecretGroupLink)
+                    .build();
 
-      UpdateSecretGroupOptions updateSecretGroupOptions = new UpdateSecretGroupOptions.Builder()
-        .id(secretGroupIdForGetSecretGroupLink)
-        .secretGroupPatch(secretGroupPatchModelAsPatch)
-        .build();
+            // Invoke operation
+            Response<SecretGroup> response = service.getSecretGroup(getSecretGroupOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Invoke operation
-      Response<SecretGroup> response = service.updateSecretGroup(updateSecretGroupOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            SecretGroup secretGroupResult = response.getResult();
+            assertNotNull(secretGroupResult);
 
-      SecretGroup secretGroupResult = response.getResult();
-      assertNotNull(secretGroupResult);
-
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testUpdateSecretGroup" })
-  public void testListSecrets() throws Exception {
-    try {
-      ListSecretsOptions listSecretsOptions = new ListSecretsOptions.Builder()
-        .offset(Long.valueOf("0"))
-        .limit(Long.valueOf("10"))
-        .sort("created_at")
-        .search("example")
-        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
-        .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
-        .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
-        .build();
+    @Test(dependsOnMethods = {"testGetSecretGroup"})
+    public void testUpdateSecretGroup() throws Exception {
+        try {
+            SecretGroupPatch secretGroupPatchModel = new SecretGroupPatch.Builder()
+                    .name("my-secret-group")
+                    .description("Extended description for this group.")
+                    .build();
+            Map<String, Object> secretGroupPatchModelAsPatch = secretGroupPatchModel.asPatch();
 
-      // Invoke operation
-      Response<SecretMetadataPaginatedCollection> response = service.listSecrets(listSecretsOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            UpdateSecretGroupOptions updateSecretGroupOptions = new UpdateSecretGroupOptions.Builder()
+                    .id(secretGroupIdForGetSecretGroupLink)
+                    .secretGroupPatch(secretGroupPatchModelAsPatch)
+                    .build();
 
-      SecretMetadataPaginatedCollection secretMetadataPaginatedCollectionResult = response.getResult();
-      assertNotNull(secretMetadataPaginatedCollectionResult);
+            // Invoke operation
+            Response<SecretGroup> response = service.updateSecretGroup(updateSecretGroupOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            SecretGroup secretGroupResult = response.getResult();
+            assertNotNull(secretGroupResult);
+
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecrets" })
-  public void testListSecretsWithPager() throws Exception {
-    try {
-      ListSecretsOptions options = new ListSecretsOptions.Builder()
-        .limit(Long.valueOf("10"))
-        .sort("created_at")
-        .search("example")
-        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
-        .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
-        .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
-        .build();
+    @Test(dependsOnMethods = {"testUpdateSecretGroup"})
+    public void testListSecrets() throws Exception {
+        try {
+            ListSecretsOptions listSecretsOptions = new ListSecretsOptions.Builder()
+                    .offset(Long.valueOf("0"))
+                    .limit(Long.valueOf("10"))
+                    .sort("created_at")
+                    .search("example")
+                    .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+                    .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+                    .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
+                    .build();
 
-      // Test getNext().
-      List<SecretMetadata> allResults = new ArrayList<>();
-      SecretsPager pager = new SecretsPager(service, options);
-      while (pager.hasNext()) {
-        List<SecretMetadata> nextPage = pager.getNext();
-        assertNotNull(nextPage);
-        allResults.addAll(nextPage);
-      }
-      assertFalse(allResults.isEmpty());
+            // Invoke operation
+            Response<SecretMetadataPaginatedCollection> response = service.listSecrets(listSecretsOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Test getAll();
-      pager = new SecretsPager(service, options);
-      List<SecretMetadata> allItems = pager.getAll();
-      assertNotNull(allItems);
-      assertFalse(allItems.isEmpty());
+            SecretMetadataPaginatedCollection secretMetadataPaginatedCollectionResult = response.getResult();
+            assertNotNull(secretMetadataPaginatedCollectionResult);
 
-      assertEquals(allItems.size(), allResults.size());
-      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecrets" })
-  public void testGetSecret() throws Exception {
-    try {
-      GetSecretOptions getSecretOptions = new GetSecretOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .build();
+    @Test(dependsOnMethods = {"testListSecrets"})
+    public void testListSecretsWithPager() throws Exception {
+        try {
+            ListSecretsOptions options = new ListSecretsOptions.Builder()
+                    .limit(Long.valueOf("10"))
+                    .sort("created_at")
+                    .search("example")
+                    .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+                    .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+                    .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
+                    .build();
 
-      // Invoke operation
-      Response<Secret> response = service.getSecret(getSecretOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Test getNext().
+            List<SecretMetadata> allResults = new ArrayList<>();
+            SecretsPager pager = new SecretsPager(service, options);
+            while (pager.hasNext()) {
+                List<SecretMetadata> nextPage = pager.getNext();
+                assertNotNull(nextPage);
+                allResults.addAll(nextPage);
+            }
+            assertFalse(allResults.isEmpty());
 
-      Secret secretResult = response.getResult();
-      assertNotNull(secretResult);
+            // Test getAll();
+            pager = new SecretsPager(service, options);
+            List<SecretMetadata> allItems = pager.getAll();
+            assertNotNull(allItems);
+            assertFalse(allItems.isEmpty());
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            assertEquals(allItems.size(), allResults.size());
+            System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testGetSecret" })
-  public void testGetSecretMetadata() throws Exception {
-    try {
-      GetSecretMetadataOptions getSecretMetadataOptions = new GetSecretMetadataOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .build();
+    @Test(dependsOnMethods = {"testListSecrets"})
+    public void testGetSecret() throws Exception {
+        try {
+            GetSecretOptions getSecretOptions = new GetSecretOptions.Builder()
+                    .id(secretIdForGetSecretLink)
+                    .build();
 
-      // Invoke operation
-      Response<SecretMetadata> response = service.getSecretMetadata(getSecretMetadataOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Invoke operation
+            Response<Secret> response = service.getSecret(getSecretOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      SecretMetadata secretMetadataResult = response.getResult();
-      assertNotNull(secretMetadataResult);
+            Secret secretResult = response.getResult();
+            assertNotNull(secretResult);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  // The integration test for createSecretAction has been explicitly excluded from generation.
-  // A test for this operation must be developed manually.
-  // @Test
-  // public void testCreateSecretAction() throws Exception {}
+    @Test(dependsOnMethods = {"testGetSecret"})
+    public void testGetSecretMetadata() throws Exception {
+        try {
+            GetSecretMetadataOptions getSecretMetadataOptions = new GetSecretMetadataOptions.Builder()
+                    .id(secretIdForGetSecretLink)
+                    .build();
 
-  @Test(dependsOnMethods = { "testGetSecretMetadata" })
-  public void testGetSecretByNameType() throws Exception {
-    try {
-      GetSecretByNameTypeOptions getSecretByNameTypeOptions = new GetSecretByNameTypeOptions.Builder()
-        .secretType("arbitrary")
-        .name(secretNameLink)
-        .secretGroupName("default")
-        .build();
+            // Invoke operation
+            Response<SecretMetadata> response = service.getSecretMetadata(getSecretMetadataOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Invoke operation
-      Response<Secret> response = service.getSecretByNameType(getSecretByNameTypeOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            SecretMetadata secretMetadataResult = response.getResult();
+            assertNotNull(secretMetadataResult);
 
-      Secret secretResult = response.getResult();
-      assertNotNull(secretResult);
-
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testGetSecretByNameType" })
-  public void testCreateSecretVersion() throws Exception {
-    try {
-      ArbitrarySecretVersionPrototype secretVersionPrototypeModel = new ArbitrarySecretVersionPrototype.Builder()
-        .payload("updated secret credentials")
-        .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .build();
+    // The integration test for createSecretAction has been explicitly excluded from generation.
+    // A test for this operation must be developed manually.
+    // @Test
+    // public void testCreateSecretAction() throws Exception {}
 
-      CreateSecretVersionOptions createSecretVersionOptions = new CreateSecretVersionOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .secretVersionPrototype(secretVersionPrototypeModel)
-        .build();
+    @Test(dependsOnMethods = {"testGetSecretMetadata"})
+    public void testGetSecretByNameType() throws Exception {
+        try {
+            GetSecretByNameTypeOptions getSecretByNameTypeOptions = new GetSecretByNameTypeOptions.Builder()
+                    .secretType("arbitrary")
+                    .name(secretNameLink)
+                    .secretGroupName("default")
+                    .build();
 
-      // Invoke operation
-      Response<SecretVersion> response = service.createSecretVersion(createSecretVersionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
+            // Invoke operation
+            Response<Secret> response = service.getSecretByNameType(getSecretByNameTypeOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      SecretVersion secretVersionResult = response.getResult();
-      assertNotNull(secretVersionResult);
+            Secret secretResult = response.getResult();
+            assertNotNull(secretResult);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testCreateSecretVersion" })
-  public void testGetSecretVersion() throws Exception {
-    try {
-      GetSecretVersionOptions getSecretVersionOptions = new GetSecretVersionOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForGetSecretVersionLink)
-        .build();
+    @Test(dependsOnMethods = {"testGetSecretByNameType"})
+    public void testCreateSecretVersion() throws Exception {
+        try {
+            ArbitrarySecretVersionPrototype secretVersionPrototypeModel = new ArbitrarySecretVersionPrototype.Builder()
+                    .payload("updated secret credentials")
+                    .customMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                    .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                    .build();
 
-      // Invoke operation
-      Response<SecretVersion> response = service.getSecretVersion(getSecretVersionOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            CreateSecretVersionOptions createSecretVersionOptions = new CreateSecretVersionOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .secretVersionPrototype(secretVersionPrototypeModel)
+                    .build();
 
-      SecretVersion secretVersionResult = response.getResult();
-      assertNotNull(secretVersionResult);
+            // Invoke operation
+            Response<SecretVersion> response = service.createSecretVersion(createSecretVersionOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            SecretVersion secretVersionResult = response.getResult();
+            assertNotNull(secretVersionResult);
+
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testGetSecretVersion" })
-  public void testGetSecretVersionMetadata() throws Exception {
-    try {
-      GetSecretVersionMetadataOptions getSecretVersionMetadataOptions = new GetSecretVersionMetadataOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForGetSecretVersionLink)
-        .build();
+    @Test(dependsOnMethods = {"testCreateSecretVersion"})
+    public void testGetSecretVersion() throws Exception {
+        try {
+            GetSecretVersionOptions getSecretVersionOptions = new GetSecretVersionOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .id(secretVersionIdForGetSecretVersionLink)
+                    .build();
 
-      // Invoke operation
-      Response<SecretVersionMetadata> response = service.getSecretVersionMetadata(getSecretVersionMetadataOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Invoke operation
+            Response<SecretVersion> response = service.getSecretVersion(getSecretVersionOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      SecretVersionMetadata secretVersionMetadataResult = response.getResult();
-      assertNotNull(secretVersionMetadataResult);
+            SecretVersion secretVersionResult = response.getResult();
+            assertNotNull(secretVersionResult);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testGetSecretVersionMetadata" })
-  public void testUpdateSecretVersionMetadata() throws Exception {
-    try {
-      SecretVersionMetadataPatch secretVersionMetadataPatchModel = new SecretVersionMetadataPatch.Builder()
-        .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .build();
-      Map<String, Object> secretVersionMetadataPatchModelAsPatch = secretVersionMetadataPatchModel.asPatch();
+    @Test(dependsOnMethods = {"testGetSecretVersion"})
+    public void testGetSecretVersionMetadata() throws Exception {
+        try {
+            GetSecretVersionMetadataOptions getSecretVersionMetadataOptions = new GetSecretVersionMetadataOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .id(secretVersionIdForGetSecretVersionLink)
+                    .build();
 
-      UpdateSecretVersionMetadataOptions updateSecretVersionMetadataOptions = new UpdateSecretVersionMetadataOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForGetSecretVersionLink)
-        .secretVersionMetadataPatch(secretVersionMetadataPatchModelAsPatch)
-        .build();
+            // Invoke operation
+            Response<SecretVersionMetadata> response = service.getSecretVersionMetadata(getSecretVersionMetadataOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Invoke operation
-      Response<SecretVersionMetadata> response = service.updateSecretVersionMetadata(updateSecretVersionMetadataOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            SecretVersionMetadata secretVersionMetadataResult = response.getResult();
+            assertNotNull(secretVersionMetadataResult);
 
-      SecretVersionMetadata secretVersionMetadataResult = response.getResult();
-      assertNotNull(secretVersionMetadataResult);
-
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  // The integration test for createSecretVersionAction has been explicitly excluded from generation.
-  // A test for this operation must be developed manually.
-  // @Test
-  // public void testCreateSecretVersionAction() throws Exception {}
+    @Test(dependsOnMethods = {"testGetSecretVersionMetadata"})
+    public void testUpdateSecretVersionMetadata() throws Exception {
+        try {
+            SecretVersionMetadataPatch secretVersionMetadataPatchModel = new SecretVersionMetadataPatch.Builder()
+                    .versionCustomMetadata(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                    .build();
+            Map<String, Object> secretVersionMetadataPatchModelAsPatch = secretVersionMetadataPatchModel.asPatch();
 
-  @Test(dependsOnMethods = { "testUpdateSecretVersionMetadata" })
-  public void testListSecretsLocks() throws Exception {
-    try {
-      ListSecretsLocksOptions listSecretsLocksOptions = new ListSecretsLocksOptions.Builder()
-        .offset(Long.valueOf("0"))
-        .limit(Long.valueOf("10"))
-        .search("example")
-        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
-        .build();
+            UpdateSecretVersionMetadataOptions updateSecretVersionMetadataOptions = new UpdateSecretVersionMetadataOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .id(secretVersionIdForGetSecretVersionLink)
+                    .secretVersionMetadataPatch(secretVersionMetadataPatchModelAsPatch)
+                    .build();
 
-      // Invoke operation
-      Response<SecretsLocksPaginatedCollection> response = service.listSecretsLocks(listSecretsLocksOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Invoke operation
+            Response<SecretVersionMetadata> response = service.updateSecretVersionMetadata(updateSecretVersionMetadataOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      SecretsLocksPaginatedCollection secretsLocksPaginatedCollectionResult = response.getResult();
-      assertNotNull(secretsLocksPaginatedCollectionResult);
+            SecretVersionMetadata secretVersionMetadataResult = response.getResult();
+            assertNotNull(secretVersionMetadataResult);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecretsLocks" })
-  public void testListSecretsLocksWithPager() throws Exception {
-    try {
-      ListSecretsLocksOptions options = new ListSecretsLocksOptions.Builder()
-        .limit(Long.valueOf("10"))
-        .search("example")
-        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
-        .build();
+    // The integration test for createSecretVersionAction has been explicitly excluded from generation.
+    // A test for this operation must be developed manually.
+    // @Test
+    // public void testCreateSecretVersionAction() throws Exception {}
 
-      // Test getNext().
-      List<SecretLocks> allResults = new ArrayList<>();
-      SecretsLocksPager pager = new SecretsLocksPager(service, options);
-      while (pager.hasNext()) {
-        List<SecretLocks> nextPage = pager.getNext();
-        assertNotNull(nextPage);
-        allResults.addAll(nextPage);
-      }
-      assertFalse(allResults.isEmpty());
+    @Test(dependsOnMethods = {"testUpdateSecretVersionMetadata"})
+    public void testListSecretsLocks() throws Exception {
+        try {
+            ListSecretsLocksOptions listSecretsLocksOptions = new ListSecretsLocksOptions.Builder()
+                    .offset(Long.valueOf("0"))
+                    .limit(Long.valueOf("10"))
+                    .search("example")
+                    .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+                    .build();
 
-      // Test getAll();
-      pager = new SecretsLocksPager(service, options);
-      List<SecretLocks> allItems = pager.getAll();
-      assertNotNull(allItems);
-      assertFalse(allItems.isEmpty());
+            // Invoke operation
+            Response<SecretsLocksPaginatedCollection> response = service.listSecretsLocks(listSecretsLocksOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      assertEquals(allItems.size(), allResults.size());
-      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            SecretsLocksPaginatedCollection secretsLocksPaginatedCollectionResult = response.getResult();
+            assertNotNull(secretsLocksPaginatedCollectionResult);
+
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecretsLocks" })
-  public void testListSecretLocks() throws Exception {
-    try {
-      ListSecretLocksOptions listSecretLocksOptions = new ListSecretLocksOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .offset(Long.valueOf("0"))
-        .limit(Long.valueOf("10"))
-        .sort("name")
-        .search("example")
-        .build();
+    @Test(dependsOnMethods = {"testListSecretsLocks"})
+    public void testListSecretsLocksWithPager() throws Exception {
+        try {
+            ListSecretsLocksOptions options = new ListSecretsLocksOptions.Builder()
+                    .limit(Long.valueOf("10"))
+                    .search("example")
+                    .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+                    .build();
 
-      // Invoke operation
-      Response<SecretLocksPaginatedCollection> response = service.listSecretLocks(listSecretLocksOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Test getNext().
+            List<SecretLocks> allResults = new ArrayList<>();
+            SecretsLocksPager pager = new SecretsLocksPager(service, options);
+            while (pager.hasNext()) {
+                List<SecretLocks> nextPage = pager.getNext();
+                assertNotNull(nextPage);
+                allResults.addAll(nextPage);
+            }
+            assertFalse(allResults.isEmpty());
 
-      SecretLocksPaginatedCollection secretLocksPaginatedCollectionResult = response.getResult();
-      assertNotNull(secretLocksPaginatedCollectionResult);
+            // Test getAll();
+            pager = new SecretsLocksPager(service, options);
+            List<SecretLocks> allItems = pager.getAll();
+            assertNotNull(allItems);
+            assertFalse(allItems.isEmpty());
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            assertEquals(allItems.size(), allResults.size());
+            System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecretLocks" })
-  public void testListSecretLocksWithPager() throws Exception {
-    try {
-      ListSecretLocksOptions options = new ListSecretLocksOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .limit(Long.valueOf("10"))
-        .sort("name")
-        .search("example")
-        .build();
+    @Test(dependsOnMethods = {"testListSecretsLocks"})
+    public void testListSecretLocks() throws Exception {
+        try {
+            ListSecretLocksOptions listSecretLocksOptions = new ListSecretLocksOptions.Builder()
+                    .id(secretIdForGetSecretLink)
+                    .offset(Long.valueOf("0"))
+                    .limit(Long.valueOf("10"))
+                    .sort("name")
+                    .search("example")
+                    .build();
 
-      // Test getNext().
-      List<SecretLock> allResults = new ArrayList<>();
-      SecretLocksPager pager = new SecretLocksPager(service, options);
-      while (pager.hasNext()) {
-        List<SecretLock> nextPage = pager.getNext();
-        assertNotNull(nextPage);
-        allResults.addAll(nextPage);
-      }
-      assertFalse(allResults.isEmpty());
+            // Invoke operation
+            Response<SecretLocksPaginatedCollection> response = service.listSecretLocks(listSecretLocksOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Test getAll();
-      pager = new SecretLocksPager(service, options);
-      List<SecretLock> allItems = pager.getAll();
-      assertNotNull(allItems);
-      assertFalse(allItems.isEmpty());
+            SecretLocksPaginatedCollection secretLocksPaginatedCollectionResult = response.getResult();
+            assertNotNull(secretLocksPaginatedCollectionResult);
 
-      assertEquals(allItems.size(), allResults.size());
-      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecretLocks" })
-  public void testCreateSecretVersionLocksBulk() throws Exception {
-    try {
-      SecretLockPrototype secretLockPrototypeModel = new SecretLockPrototype.Builder()
-        .name("lock-example-1")
-        .description("lock for consumer 1")
-        .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
-        .build();
+    @Test(dependsOnMethods = {"testListSecretLocks"})
+    public void testListSecretLocksWithPager() throws Exception {
+        try {
+            ListSecretLocksOptions options = new ListSecretLocksOptions.Builder()
+                    .id(secretIdForGetSecretLink)
+                    .limit(Long.valueOf("10"))
+                    .sort("name")
+                    .search("example")
+                    .build();
 
-      CreateSecretVersionLocksBulkOptions createSecretVersionLocksBulkOptions = new CreateSecretVersionLocksBulkOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForGetSecretVersionLink)
-        .locks(java.util.Arrays.asList(secretLockPrototypeModel))
-        .mode("remove_previous")
-        .build();
+            // Test getNext().
+            List<SecretLock> allResults = new ArrayList<>();
+            SecretLocksPager pager = new SecretLocksPager(service, options);
+            while (pager.hasNext()) {
+                List<SecretLock> nextPage = pager.getNext();
+                assertNotNull(nextPage);
+                allResults.addAll(nextPage);
+            }
+            assertFalse(allResults.isEmpty());
 
-      // Invoke operation
-      Response<SecretLocks> response = service.createSecretVersionLocksBulk(createSecretVersionLocksBulkOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
+            // Test getAll();
+            pager = new SecretLocksPager(service, options);
+            List<SecretLock> allItems = pager.getAll();
+            assertNotNull(allItems);
+            assertFalse(allItems.isEmpty());
 
-      SecretLocks secretLocksResult = response.getResult();
-      assertNotNull(secretLocksResult);
-
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            assertEquals(allItems.size(), allResults.size());
+            System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testCreateSecretVersionLocksBulk" })
-  public void testListSecretVersionLocks() throws Exception {
-    try {
-      ListSecretVersionLocksOptions listSecretVersionLocksOptions = new ListSecretVersionLocksOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForGetSecretVersionLink)
-        .offset(Long.valueOf("0"))
-        .limit(Long.valueOf("10"))
-        .sort("name")
-        .search("example")
-        .build();
+    @Test(dependsOnMethods = {"testListSecretLocks"})
+    public void testCreateSecretVersionLocksBulk() throws Exception {
+        try {
+            SecretLockPrototype secretLockPrototypeModel = new SecretLockPrototype.Builder()
+                    .name("lock-example-1")
+                    .description("lock for consumer 1")
+                    .attributes(java.util.Collections.singletonMap("anyKey", "anyValue"))
+                    .build();
 
-      // Invoke operation
-      Response<SecretVersionLocksPaginatedCollection> response = service.listSecretVersionLocks(listSecretVersionLocksOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            CreateSecretVersionLocksBulkOptions createSecretVersionLocksBulkOptions = new CreateSecretVersionLocksBulkOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .id(secretVersionIdForGetSecretVersionLink)
+                    .locks(java.util.Arrays.asList(secretLockPrototypeModel))
+                    .mode("remove_previous")
+                    .build();
 
-      SecretVersionLocksPaginatedCollection secretVersionLocksPaginatedCollectionResult = response.getResult();
-      assertNotNull(secretVersionLocksPaginatedCollectionResult);
+            // Invoke operation
+            Response<SecretLocks> response = service.createSecretVersionLocksBulk(createSecretVersionLocksBulkOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            SecretLocks secretLocksResult = response.getResult();
+            assertNotNull(secretLocksResult);
+
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecretVersionLocks" })
-  public void testListSecretVersionLocksWithPager() throws Exception {
-    try {
-      ListSecretVersionLocksOptions options = new ListSecretVersionLocksOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForGetSecretVersionLink)
-        .limit(Long.valueOf("10"))
-        .sort("name")
-        .search("example")
-        .build();
+    @Test(dependsOnMethods = {"testCreateSecretVersionLocksBulk"})
+    public void testListSecretVersionLocks() throws Exception {
+        try {
+            ListSecretVersionLocksOptions listSecretVersionLocksOptions = new ListSecretVersionLocksOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .id(secretVersionIdForGetSecretVersionLink)
+                    .offset(Long.valueOf("0"))
+                    .limit(Long.valueOf("10"))
+                    .sort("name")
+                    .search("example")
+                    .build();
 
-      // Test getNext().
-      List<SecretLock> allResults = new ArrayList<>();
-      SecretVersionLocksPager pager = new SecretVersionLocksPager(service, options);
-      while (pager.hasNext()) {
-        List<SecretLock> nextPage = pager.getNext();
-        assertNotNull(nextPage);
-        allResults.addAll(nextPage);
-      }
-      assertFalse(allResults.isEmpty());
+            // Invoke operation
+            Response<SecretVersionLocksPaginatedCollection> response = service.listSecretVersionLocks(listSecretVersionLocksOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Test getAll();
-      pager = new SecretVersionLocksPager(service, options);
-      List<SecretLock> allItems = pager.getAll();
-      assertNotNull(allItems);
-      assertFalse(allItems.isEmpty());
+            SecretVersionLocksPaginatedCollection secretVersionLocksPaginatedCollectionResult = response.getResult();
+            assertNotNull(secretVersionLocksPaginatedCollectionResult);
 
-      assertEquals(allItems.size(), allResults.size());
-      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListSecretVersionLocks" })
-  public void testListConfigurations() throws Exception {
-    try {
-      ListConfigurationsOptions listConfigurationsOptions = new ListConfigurationsOptions.Builder()
-        .offset(Long.valueOf("0"))
-        .limit(Long.valueOf("10"))
-        .sort("config_type")
-        .search("example")
-        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
-        .build();
+    @Test(dependsOnMethods = {"testListSecretVersionLocks"})
+    public void testListSecretVersionLocksWithPager() throws Exception {
+        try {
+            ListSecretVersionLocksOptions options = new ListSecretVersionLocksOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .id(secretVersionIdForGetSecretVersionLink)
+                    .limit(Long.valueOf("10"))
+                    .sort("name")
+                    .search("example")
+                    .build();
 
-      // Invoke operation
-      Response<ConfigurationMetadataPaginatedCollection> response = service.listConfigurations(listConfigurationsOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Test getNext().
+            List<SecretLock> allResults = new ArrayList<>();
+            SecretVersionLocksPager pager = new SecretVersionLocksPager(service, options);
+            while (pager.hasNext()) {
+                List<SecretLock> nextPage = pager.getNext();
+                assertNotNull(nextPage);
+                allResults.addAll(nextPage);
+            }
+            assertFalse(allResults.isEmpty());
 
-      ConfigurationMetadataPaginatedCollection configurationMetadataPaginatedCollectionResult = response.getResult();
-      assertNotNull(configurationMetadataPaginatedCollectionResult);
+            // Test getAll();
+            pager = new SecretVersionLocksPager(service, options);
+            List<SecretLock> allItems = pager.getAll();
+            assertNotNull(allItems);
+            assertFalse(allItems.isEmpty());
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            assertEquals(allItems.size(), allResults.size());
+            System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListConfigurations" })
-  public void testListConfigurationsWithPager() throws Exception {
-    try {
-      ListConfigurationsOptions options = new ListConfigurationsOptions.Builder()
-        .limit(Long.valueOf("10"))
-        .sort("config_type")
-        .search("example")
-        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
-        .build();
+    @Test(dependsOnMethods = {"testListSecretVersionLocks"})
+    public void testListConfigurations() throws Exception {
+        try {
+            ListConfigurationsOptions listConfigurationsOptions = new ListConfigurationsOptions.Builder()
+                    .offset(Long.valueOf("0"))
+                    .limit(Long.valueOf("10"))
+                    .sort("config_type")
+                    .search("example")
+                    .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+                    .build();
 
-      // Test getNext().
-      List<ConfigurationMetadata> allResults = new ArrayList<>();
-      ConfigurationsPager pager = new ConfigurationsPager(service, options);
-      while (pager.hasNext()) {
-        List<ConfigurationMetadata> nextPage = pager.getNext();
-        assertNotNull(nextPage);
-        allResults.addAll(nextPage);
-      }
-      assertFalse(allResults.isEmpty());
+            // Invoke operation
+            Response<ConfigurationMetadataPaginatedCollection> response = service.listConfigurations(listConfigurationsOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Test getAll();
-      pager = new ConfigurationsPager(service, options);
-      List<ConfigurationMetadata> allItems = pager.getAll();
-      assertNotNull(allItems);
-      assertFalse(allItems.isEmpty());
+            ConfigurationMetadataPaginatedCollection configurationMetadataPaginatedCollectionResult = response.getResult();
+            assertNotNull(configurationMetadataPaginatedCollectionResult);
 
-      assertEquals(allItems.size(), allResults.size());
-      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testListConfigurations" })
-  public void testGetConfiguration() throws Exception {
-    try {
-      GetConfigurationOptions getConfigurationOptions = new GetConfigurationOptions.Builder()
-        .name(configurationNameForGetConfigurationLink)
-        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
-        .build();
+    @Test(dependsOnMethods = {"testListConfigurations"})
+    public void testListConfigurationsWithPager() throws Exception {
+        try {
+            ListConfigurationsOptions options = new ListConfigurationsOptions.Builder()
+                    .limit(Long.valueOf("10"))
+                    .sort("config_type")
+                    .search("example")
+                    .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+                    .build();
 
-      // Invoke operation
-      Response<Configuration> response = service.getConfiguration(getConfigurationOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            // Test getNext().
+            List<ConfigurationMetadata> allResults = new ArrayList<>();
+            ConfigurationsPager pager = new ConfigurationsPager(service, options);
+            while (pager.hasNext()) {
+                List<ConfigurationMetadata> nextPage = pager.getNext();
+                assertNotNull(nextPage);
+                allResults.addAll(nextPage);
+            }
+            assertFalse(allResults.isEmpty());
 
-      Configuration configurationResult = response.getResult();
-      assertNotNull(configurationResult);
+            // Test getAll();
+            pager = new ConfigurationsPager(service, options);
+            List<ConfigurationMetadata> allItems = pager.getAll();
+            assertNotNull(allItems);
+            assertFalse(allItems.isEmpty());
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            assertEquals(allItems.size(), allResults.size());
+            System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testGetConfiguration" })
-  public void testUpdateConfiguration() throws Exception {
-    try {
-      PublicCertificateConfigurationDNSCloudInternetServicesPatch configurationPatchModel = new PublicCertificateConfigurationDNSCloudInternetServicesPatch.Builder()
-        .cloudInternetServicesApikey("5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ")
-        .cloudInternetServicesCrn("crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::")
-        .build();
-      Map<String, Object> configurationPatchModelAsPatch = configurationPatchModel.asPatch();
+    @Test(dependsOnMethods = {"testListConfigurations"})
+    public void testGetConfiguration() throws Exception {
+        try {
+            GetConfigurationOptions getConfigurationOptions = new GetConfigurationOptions.Builder()
+                    .name(configurationNameForGetConfigurationLink)
+                    .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
+                    .build();
 
-      UpdateConfigurationOptions updateConfigurationOptions = new UpdateConfigurationOptions.Builder()
-        .name(configurationNameForGetConfigurationLink)
-        .configurationPatch(configurationPatchModelAsPatch)
-        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
-        .build();
+            // Invoke operation
+            Response<Configuration> response = service.getConfiguration(getConfigurationOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Invoke operation
-      Response<Configuration> response = service.updateConfiguration(updateConfigurationOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+            Configuration configurationResult = response.getResult();
+            assertNotNull(configurationResult);
 
-      Configuration configurationResult = response.getResult();
-      assertNotNull(configurationResult);
-
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  // The integration test for createConfigurationAction has been explicitly excluded from generation.
-  // A test for this operation must be developed manually.
-  // @Test
-  // public void testCreateConfigurationAction() throws Exception {}
+    @Test(dependsOnMethods = {"testGetConfiguration"})
+    public void testUpdateConfiguration() throws Exception {
+        try {
+            PublicCertificateConfigurationDNSCloudInternetServicesPatch configurationPatchModel = new PublicCertificateConfigurationDNSCloudInternetServicesPatch.Builder()
+                    .cloudInternetServicesApikey("5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ")
+                    .cloudInternetServicesCrn("crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::")
+                    .build();
+            Map<String, Object> configurationPatchModelAsPatch = configurationPatchModel.asPatch();
 
-  @Test(dependsOnMethods = { "testUpdateConfiguration" })
-  public void testCreateNotificationsRegistration() throws Exception {
-    try {
-      CreateNotificationsRegistrationOptions createNotificationsRegistrationOptions = new CreateNotificationsRegistrationOptions.Builder()
-        .eventNotificationsInstanceCrn("crn:v1:bluemix:public:event-notifications:us-south:a/22018f3c34ff4ff193698d15ca316946:578ad1a4-2fd8-4e66-95d5-79a842ba91f8::")
-        .eventNotificationsSourceName("My Secrets Manager")
-        .eventNotificationsSourceDescription("Optional description of this source in an Event Notifications instance.")
-        .build();
+            UpdateConfigurationOptions updateConfigurationOptions = new UpdateConfigurationOptions.Builder()
+                    .name(configurationNameForGetConfigurationLink)
+                    .configurationPatch(configurationPatchModelAsPatch)
+                    .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
+                    .build();
 
-      // Invoke operation
-      Response<NotificationsRegistration> response = service.createNotificationsRegistration(createNotificationsRegistrationOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 201);
+            // Invoke operation
+            Response<Configuration> response = service.updateConfiguration(updateConfigurationOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      NotificationsRegistration notificationsRegistrationResult = response.getResult();
-      assertNotNull(notificationsRegistrationResult);
+            Configuration configurationResult = response.getResult();
+            assertNotNull(configurationResult);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testCreateNotificationsRegistration" })
-  public void testGetNotificationsRegistration() throws Exception {
-    try {
-      GetNotificationsRegistrationOptions getNotificationsRegistrationOptions = new GetNotificationsRegistrationOptions();
+    // The integration test for createConfigurationAction has been explicitly excluded from generation.
+    // A test for this operation must be developed manually.
+    // @Test
+    // public void testCreateConfigurationAction() throws Exception {}
 
-      // Invoke operation
-      Response<NotificationsRegistration> response = service.getNotificationsRegistration(getNotificationsRegistrationOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+    @Test(dependsOnMethods = {"testUpdateConfiguration"})
+    public void testCreateNotificationsRegistration() throws Exception {
+        try {
+            CreateNotificationsRegistrationOptions createNotificationsRegistrationOptions = new CreateNotificationsRegistrationOptions.Builder()
+                    .eventNotificationsInstanceCrn("crn:v1:bluemix:public:event-notifications:us-south:a/22018f3c34ff4ff193698d15ca316946:578ad1a4-2fd8-4e66-95d5-79a842ba91f8::")
+                    .eventNotificationsSourceName("My Secrets Manager")
+                    .eventNotificationsSourceDescription("Optional description of this source in an Event Notifications instance.")
+                    .build();
 
-      NotificationsRegistration notificationsRegistrationResult = response.getResult();
-      assertNotNull(notificationsRegistrationResult);
+            // Invoke operation
+            Response<NotificationsRegistration> response = service.createNotificationsRegistration(createNotificationsRegistrationOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 201);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            NotificationsRegistration notificationsRegistrationResult = response.getResult();
+            assertNotNull(notificationsRegistrationResult);
+
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  // The integration test for getNotificationsRegistrationTest has been explicitly excluded from generation.
-  // A test for this operation must be developed manually.
-  // @Test
-  // public void testGetNotificationsRegistrationTest() throws Exception {}
+    @Test(dependsOnMethods = {"testCreateNotificationsRegistration"})
+    public void testGetNotificationsRegistration() throws Exception {
+        try {
+            GetNotificationsRegistrationOptions getNotificationsRegistrationOptions = new GetNotificationsRegistrationOptions();
 
-  @Test(dependsOnMethods = { "testGetNotificationsRegistration" })
-  public void testDeleteSecretGroup() throws Exception {
-    try {
-      DeleteSecretGroupOptions deleteSecretGroupOptions = new DeleteSecretGroupOptions.Builder()
-        .id(secretGroupIdForGetSecretGroupLink)
-        .build();
+            // Invoke operation
+            Response<NotificationsRegistration> response = service.getNotificationsRegistration(getNotificationsRegistrationOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-      // Invoke operation
-      Response<Void> response = service.deleteSecretGroup(deleteSecretGroupOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            NotificationsRegistration notificationsRegistrationResult = response.getResult();
+            assertNotNull(notificationsRegistrationResult);
+
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  // The integration test for deleteSecretVersionData has been explicitly excluded from generation.
-  // A test for this operation must be developed manually.
-  // @Test
-  // public void testDeleteSecretVersionData() throws Exception {}
+    // The integration test for getNotificationsRegistrationTest has been explicitly excluded from generation.
+    // A test for this operation must be developed manually.
+    // @Test
+    // public void testGetNotificationsRegistrationTest() throws Exception {}
 
-  @Test(dependsOnMethods = { "testDeleteSecretGroup" })
-  public void testDeleteSecretLocksBulk() throws Exception {
-    try {
-      DeleteSecretLocksBulkOptions deleteSecretLocksBulkOptions = new DeleteSecretLocksBulkOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .name(java.util.Arrays.asList("lock-example-1"))
-        .build();
+    @Test(dependsOnMethods = {"testGetNotificationsRegistration"})
+    public void testDeleteSecretGroup() throws Exception {
+        try {
+            DeleteSecretGroupOptions deleteSecretGroupOptions = new DeleteSecretGroupOptions.Builder()
+                    .id(secretGroupIdForGetSecretGroupLink)
+                    .build();
 
-      // Invoke operation
-      Response<SecretLocks> response = service.deleteSecretLocksBulk(deleteSecretLocksBulkOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      SecretLocks secretLocksResult = response.getResult();
-      assertNotNull(secretLocksResult);
-
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            // Invoke operation
+            Response<Void> response = service.deleteSecretGroup(deleteSecretGroupOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 204);
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testDeleteSecretLocksBulk" })
-  public void testDeleteSecretVersionLocksBulk() throws Exception {
-    try {
-      DeleteSecretVersionLocksBulkOptions deleteSecretVersionLocksBulkOptions = new DeleteSecretVersionLocksBulkOptions.Builder()
-        .secretId(secretIdForGetSecretLink)
-        .id(secretVersionIdForGetSecretVersionLink)
-        .name(java.util.Arrays.asList("lock-example-1"))
-        .build();
+    // The integration test for deleteSecretVersionData has been explicitly excluded from generation.
+    // A test for this operation must be developed manually.
+    // @Test
+    // public void testDeleteSecretVersionData() throws Exception {}
 
-      // Invoke operation
-      Response<SecretLocks> response = service.deleteSecretVersionLocksBulk(deleteSecretVersionLocksBulkOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
+    @Test(dependsOnMethods = {"testDeleteSecretGroup"})
+    public void testDeleteSecretLocksBulk() throws Exception {
+        try {
+            DeleteSecretLocksBulkOptions deleteSecretLocksBulkOptions = new DeleteSecretLocksBulkOptions.Builder()
+                    .id(secretIdForGetSecretLink)
+                    .name(java.util.Arrays.asList("lock-example-1"))
+                    .build();
 
-      SecretLocks secretLocksResult = response.getResult();
-      assertNotNull(secretLocksResult);
+            // Invoke operation
+            Response<SecretLocks> response = service.deleteSecretLocksBulk(deleteSecretLocksBulkOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
 
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            SecretLocks secretLocksResult = response.getResult();
+            assertNotNull(secretLocksResult);
+
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testDeleteSecretVersionLocksBulk" })
-  public void testDeleteSecret() throws Exception {
-    try {
-      DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
-        .id(secretIdForGetSecretLink)
-        .build();
+    @Test(dependsOnMethods = {"testDeleteSecretLocksBulk"})
+    public void testDeleteSecretVersionLocksBulk() throws Exception {
+        try {
+            DeleteSecretVersionLocksBulkOptions deleteSecretVersionLocksBulkOptions = new DeleteSecretVersionLocksBulkOptions.Builder()
+                    .secretId(secretIdForGetSecretLink)
+                    .id(secretVersionIdForGetSecretVersionLink)
+                    .name(java.util.Arrays.asList("lock-example-1"))
+                    .build();
 
-      // Invoke operation
-      Response<Void> response = service.deleteSecret(deleteSecretOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            // Invoke operation
+            Response<SecretLocks> response = service.deleteSecretVersionLocksBulk(deleteSecretVersionLocksBulkOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 200);
+
+            SecretLocks secretLocksResult = response.getResult();
+            assertNotNull(secretLocksResult);
+
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testDeleteSecret" })
-  public void testDeleteConfiguration() throws Exception {
-    try {
-      DeleteConfigurationOptions deleteConfigurationOptions = new DeleteConfigurationOptions.Builder()
-        .name(configurationNameForGetConfigurationLink)
-        .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
-        .build();
+    @Test(dependsOnMethods = {"testDeleteSecretVersionLocksBulk"})
+    public void testDeleteSecret() throws Exception {
+        try {
+            DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
+                    .id(secretIdForGetSecretLink)
+                    .build();
 
-      // Invoke operation
-      Response<Void> response = service.deleteConfiguration(deleteConfigurationOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            // Invoke operation
+            Response<Void> response = service.deleteSecret(deleteSecretOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 204);
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @Test(dependsOnMethods = { "testDeleteConfiguration" })
-  public void testDeleteNotificationsRegistration() throws Exception {
-    try {
-      DeleteNotificationsRegistrationOptions deleteNotificationsRegistrationOptions = new DeleteNotificationsRegistrationOptions();
+    @Test(dependsOnMethods = {"testDeleteSecret"})
+    public void testDeleteConfiguration() throws Exception {
+        try {
+            DeleteConfigurationOptions deleteConfigurationOptions = new DeleteConfigurationOptions.Builder()
+                    .name(configurationNameForGetConfigurationLink)
+                    .xSmAcceptConfigurationType("public_cert_configuration_dns_cloud_internet_services")
+                    .build();
 
-      // Invoke operation
-      Response<Void> response = service.deleteNotificationsRegistration(deleteNotificationsRegistrationOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 204);
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+            // Invoke operation
+            Response<Void> response = service.deleteConfiguration(deleteConfigurationOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 204);
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
     }
-  }
 
-  @AfterClass
-  public void tearDown() {
-    // Add any clean up logic here
-    System.out.println("Clean up complete.");
-  }
- }
+    @Test(dependsOnMethods = {"testDeleteConfiguration"})
+    public void testDeleteNotificationsRegistration() throws Exception {
+        try {
+            DeleteNotificationsRegistrationOptions deleteNotificationsRegistrationOptions = new DeleteNotificationsRegistrationOptions();
+
+            // Invoke operation
+            Response<Void> response = service.deleteNotificationsRegistration(deleteNotificationsRegistrationOptions).execute();
+            // Validate response
+            assertNotNull(response);
+            assertEquals(response.getStatusCode(), 204);
+        } catch (ServiceResponseException e) {
+            fail(String.format("Service returned status code %d: %s%nError details: %s",
+                    e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+        }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        // Add any clean up logic here
+        System.out.println("Clean up complete.");
+    }
+}

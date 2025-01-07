@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -21,58 +21,59 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class PasswordGenerationPolicyRO extends GenericModel {
 
-  protected Long length;
-  @SerializedName("include_digits")
-  protected Boolean includeDigits;
-  @SerializedName("include_symbols")
-  protected Boolean includeSymbols;
-  @SerializedName("include_uppercase")
-  protected Boolean includeUppercase;
+    protected Long length;
+    @SerializedName("include_digits")
+    protected Boolean includeDigits;
+    @SerializedName("include_symbols")
+    protected Boolean includeSymbols;
+    @SerializedName("include_uppercase")
+    protected Boolean includeUppercase;
 
-  protected PasswordGenerationPolicyRO() { }
+    protected PasswordGenerationPolicyRO() {
+    }
 
-  /**
-   * Gets the length.
-   *
-   * The length of auto-generated passwords.
-   *
-   * @return the length
-   */
-  public Long getLength() {
-    return length;
-  }
+    /**
+     * Gets the length.
+     * <p>
+     * The length of auto-generated passwords.
+     *
+     * @return the length
+     */
+    public Long getLength() {
+        return length;
+    }
 
-  /**
-   * Gets the includeDigits.
-   *
-   * Include digits in auto-generated passwords.
-   *
-   * @return the includeDigits
-   */
-  public Boolean isIncludeDigits() {
-    return includeDigits;
-  }
+    /**
+     * Gets the includeDigits.
+     * <p>
+     * Include digits in auto-generated passwords.
+     *
+     * @return the includeDigits
+     */
+    public Boolean isIncludeDigits() {
+        return includeDigits;
+    }
 
-  /**
-   * Gets the includeSymbols.
-   *
-   * Include symbols in auto-generated passwords.
-   *
-   * @return the includeSymbols
-   */
-  public Boolean isIncludeSymbols() {
-    return includeSymbols;
-  }
+    /**
+     * Gets the includeSymbols.
+     * <p>
+     * Include symbols in auto-generated passwords.
+     *
+     * @return the includeSymbols
+     */
+    public Boolean isIncludeSymbols() {
+        return includeSymbols;
+    }
 
-  /**
-   * Gets the includeUppercase.
-   *
-   * Include uppercase letters in auto-generated passwords.
-   *
-   * @return the includeUppercase
-   */
-  public Boolean isIncludeUppercase() {
-    return includeUppercase;
-  }
+    /**
+     * Gets the includeUppercase.
+     * <p>
+     * Include uppercase letters in auto-generated passwords.
+     *
+     * @return the includeUppercase
+     */
+    public Boolean isIncludeUppercase() {
+        return includeUppercase;
+    }
 }
 

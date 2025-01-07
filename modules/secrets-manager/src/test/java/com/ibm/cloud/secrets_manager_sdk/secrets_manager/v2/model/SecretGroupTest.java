@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,26 +16,29 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretGroup;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the SecretGroup model.
  */
 public class SecretGroupTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testSecretGroup() throws Throwable {
-    SecretGroup secretGroupModel = new SecretGroup();
-    assertNull(secretGroupModel.getId());
-    assertNull(secretGroupModel.getDescription());
-    assertNull(secretGroupModel.getCreatedAt());
-    assertNull(secretGroupModel.getCreatedBy());
-    assertNull(secretGroupModel.getUpdatedAt());
-  }
+    @Test
+    public void testSecretGroup() throws Throwable {
+        SecretGroup secretGroupModel = new SecretGroup();
+        assertNull(secretGroupModel.getId());
+        assertNull(secretGroupModel.getDescription());
+        assertNull(secretGroupModel.getCreatedAt());
+        assertNull(secretGroupModel.getCreatedBy());
+        assertNull(secretGroupModel.getUpdatedAt());
+    }
 }

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,44 +18,51 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * The request body to specify the properties for your secret action.
- *
+ * <p>
  * Classes which extend this class:
  * - PrivateCertificateActionRevokePrototype
  * - PublicCertificateActionValidateManualDNSPrototype
  */
 public class SecretActionPrototype extends GenericModel {
-  @SuppressWarnings("unused")
-  protected static String discriminatorPropertyName = "action_type";
-  protected static java.util.Map<String, Class<?>> discriminatorMapping;
-  static {
-    discriminatorMapping = new java.util.HashMap<>();
-    discriminatorMapping.put("public_cert_action_validate_dns_challenge", PublicCertificateActionValidateManualDNSPrototype.class);
-    discriminatorMapping.put("private_cert_action_revoke_certificate", PrivateCertificateActionRevokePrototype.class);
-  }
-  /**
-   * The type of secret action.
-   */
-  public interface ActionType {
-    /** public_cert_action_validate_dns_challenge. */
-    String PUBLIC_CERT_ACTION_VALIDATE_DNS_CHALLENGE = "public_cert_action_validate_dns_challenge";
-    /** private_cert_action_revoke_certificate. */
-    String PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = "private_cert_action_revoke_certificate";
-  }
+    @SuppressWarnings("unused")
+    protected static String discriminatorPropertyName = "action_type";
+    protected static java.util.Map<String, Class<?>> discriminatorMapping;
 
-  @SerializedName("action_type")
-  protected String actionType;
+    static {
+        discriminatorMapping = new java.util.HashMap<>();
+        discriminatorMapping.put("public_cert_action_validate_dns_challenge", PublicCertificateActionValidateManualDNSPrototype.class);
+        discriminatorMapping.put("private_cert_action_revoke_certificate", PrivateCertificateActionRevokePrototype.class);
+    }
 
-  protected SecretActionPrototype() { }
+    /**
+     * The type of secret action.
+     */
+    public interface ActionType {
+        /**
+         * public_cert_action_validate_dns_challenge.
+         */
+        String PUBLIC_CERT_ACTION_VALIDATE_DNS_CHALLENGE = "public_cert_action_validate_dns_challenge";
+        /**
+         * private_cert_action_revoke_certificate.
+         */
+        String PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = "private_cert_action_revoke_certificate";
+    }
 
-  /**
-   * Gets the actionType.
-   *
-   * The type of secret action.
-   *
-   * @return the actionType
-   */
-  public String actionType() {
-    return actionType;
-  }
+    @SerializedName("action_type")
+    protected String actionType;
+
+    protected SecretActionPrototype() {
+    }
+
+    /**
+     * Gets the actionType.
+     * <p>
+     * The type of secret action.
+     *
+     * @return the actionType
+     */
+    public String actionType() {
+        return actionType;
+    }
 }
 

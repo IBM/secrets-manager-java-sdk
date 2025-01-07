@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,30 +16,33 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretsLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ListSecretsLocksOptions model.
  */
 public class ListSecretsLocksOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testListSecretsLocksOptions() throws Throwable {
-    ListSecretsLocksOptions listSecretsLocksOptionsModel = new ListSecretsLocksOptions.Builder()
-      .offset(Long.valueOf("0"))
-      .limit(Long.valueOf("200"))
-      .search("example")
-      .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
-      .build();
-    assertEquals(listSecretsLocksOptionsModel.offset(), Long.valueOf("0"));
-    assertEquals(listSecretsLocksOptionsModel.limit(), Long.valueOf("200"));
-    assertEquals(listSecretsLocksOptionsModel.search(), "example");
-    assertEquals(listSecretsLocksOptionsModel.groups(), java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"));
-  }
+    @Test
+    public void testListSecretsLocksOptions() throws Throwable {
+        ListSecretsLocksOptions listSecretsLocksOptionsModel = new ListSecretsLocksOptions.Builder()
+                .offset(Long.valueOf("0"))
+                .limit(Long.valueOf("200"))
+                .search("example")
+                .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+                .build();
+        assertEquals(listSecretsLocksOptionsModel.offset(), Long.valueOf("0"));
+        assertEquals(listSecretsLocksOptionsModel.limit(), Long.valueOf("200"));
+        assertEquals(listSecretsLocksOptionsModel.search(), "example");
+        assertEquals(listSecretsLocksOptionsModel.groups(), java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"));
+    }
 }

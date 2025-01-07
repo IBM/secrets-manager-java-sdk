@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,34 +18,37 @@ import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the PrivateCertificateVersionMetadata model.
  */
 public class PrivateCertificateVersionMetadataTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testPrivateCertificateVersionMetadata() throws Throwable {
-    PrivateCertificateVersionMetadata privateCertificateVersionMetadataModel = new PrivateCertificateVersionMetadata();
-    assertNull(privateCertificateVersionMetadataModel.isAutoRotated());
-    assertNull(privateCertificateVersionMetadataModel.getCreatedBy());
-    assertNull(privateCertificateVersionMetadataModel.getCreatedAt());
-    assertNull(privateCertificateVersionMetadataModel.getId());
-    assertNull(privateCertificateVersionMetadataModel.getSecretType());
-    assertNull(privateCertificateVersionMetadataModel.getSecretGroupId());
-    assertNull(privateCertificateVersionMetadataModel.isPayloadAvailable());
-    assertNull(privateCertificateVersionMetadataModel.getAlias());
-    assertNull(privateCertificateVersionMetadataModel.getVersionCustomMetadata());
-    assertNull(privateCertificateVersionMetadataModel.getSecretId());
-    assertNull(privateCertificateVersionMetadataModel.getExpirationDate());
-    assertNull(privateCertificateVersionMetadataModel.getSerialNumber());
-    assertNull(privateCertificateVersionMetadataModel.getValidity());
-  }
+    @Test
+    public void testPrivateCertificateVersionMetadata() throws Throwable {
+        PrivateCertificateVersionMetadata privateCertificateVersionMetadataModel = new PrivateCertificateVersionMetadata();
+        assertNull(privateCertificateVersionMetadataModel.isAutoRotated());
+        assertNull(privateCertificateVersionMetadataModel.getCreatedBy());
+        assertNull(privateCertificateVersionMetadataModel.getCreatedAt());
+        assertNull(privateCertificateVersionMetadataModel.getId());
+        assertNull(privateCertificateVersionMetadataModel.getSecretType());
+        assertNull(privateCertificateVersionMetadataModel.getSecretGroupId());
+        assertNull(privateCertificateVersionMetadataModel.isPayloadAvailable());
+        assertNull(privateCertificateVersionMetadataModel.getAlias());
+        assertNull(privateCertificateVersionMetadataModel.getVersionCustomMetadata());
+        assertNull(privateCertificateVersionMetadataModel.getSecretId());
+        assertNull(privateCertificateVersionMetadataModel.getExpirationDate());
+        assertNull(privateCertificateVersionMetadataModel.getSerialNumber());
+        assertNull(privateCertificateVersionMetadataModel.getValidity());
+    }
 }

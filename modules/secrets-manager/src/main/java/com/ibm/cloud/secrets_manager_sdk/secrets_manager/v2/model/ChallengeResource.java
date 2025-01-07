@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,69 +23,70 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ChallengeResource extends GenericModel {
 
-  protected String domain;
-  protected Date expiration;
-  protected String status;
-  @SerializedName("txt_record_name")
-  protected String txtRecordName;
-  @SerializedName("txt_record_value")
-  protected String txtRecordValue;
+    protected String domain;
+    protected Date expiration;
+    protected String status;
+    @SerializedName("txt_record_name")
+    protected String txtRecordName;
+    @SerializedName("txt_record_value")
+    protected String txtRecordValue;
 
-  protected ChallengeResource() { }
+    protected ChallengeResource() {
+    }
 
-  /**
-   * Gets the domain.
-   *
-   * The challenge domain.
-   *
-   * @return the domain
-   */
-  public String getDomain() {
-    return domain;
-  }
+    /**
+     * Gets the domain.
+     * <p>
+     * The challenge domain.
+     *
+     * @return the domain
+     */
+    public String getDomain() {
+        return domain;
+    }
 
-  /**
-   * Gets the expiration.
-   *
-   * The challenge expiration date. The date format follows `RFC 3339`.
-   *
-   * @return the expiration
-   */
-  public Date getExpiration() {
-    return expiration;
-  }
+    /**
+     * Gets the expiration.
+     * <p>
+     * The challenge expiration date. The date format follows `RFC 3339`.
+     *
+     * @return the expiration
+     */
+    public Date getExpiration() {
+        return expiration;
+    }
 
-  /**
-   * Gets the status.
-   *
-   * The challenge status.
-   *
-   * @return the status
-   */
-  public String getStatus() {
-    return status;
-  }
+    /**
+     * Gets the status.
+     * <p>
+     * The challenge status.
+     *
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
 
-  /**
-   * Gets the txtRecordName.
-   *
-   * The TXT record name.
-   *
-   * @return the txtRecordName
-   */
-  public String getTxtRecordName() {
-    return txtRecordName;
-  }
+    /**
+     * Gets the txtRecordName.
+     * <p>
+     * The TXT record name.
+     *
+     * @return the txtRecordName
+     */
+    public String getTxtRecordName() {
+        return txtRecordName;
+    }
 
-  /**
-   * Gets the txtRecordValue.
-   *
-   * The TXT record value.
-   *
-   * @return the txtRecordValue
-   */
-  public String getTxtRecordValue() {
-    return txtRecordValue;
-  }
+    /**
+     * Gets the txtRecordValue.
+     * <p>
+     * The TXT record value.
+     *
+     * @return the txtRecordValue
+     */
+    public String getTxtRecordValue() {
+        return txtRecordValue;
+    }
 }
 

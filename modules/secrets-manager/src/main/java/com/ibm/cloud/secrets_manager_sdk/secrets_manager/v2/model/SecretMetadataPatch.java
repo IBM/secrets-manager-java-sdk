@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,7 +23,7 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
 
 /**
  * Update your secret metadata.
- *
+ * <p>
  * Classes which extend this class:
  * - ArbitrarySecretMetadataPatch
  * - IAMCredentialsSecretMetadataPatch
@@ -36,136 +36,150 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
  */
 public class SecretMetadataPatch extends GenericModel {
 
-  protected String name;
-  protected String description;
-  protected List<String> labels;
-  @SerializedName("custom_metadata")
-  protected Map<String, Object> customMetadata;
-  @SerializedName("expiration_date")
-  protected Date expirationDate;
-  protected String ttl;
-  protected RotationPolicy rotation;
-  @SerializedName("password_generation_policy")
-  protected PasswordGenerationPolicyPatch passwordGenerationPolicy;
+    protected String name;
+    protected String description;
+    protected List<String> labels;
+    @SerializedName("custom_metadata")
+    protected Map<String, Object> customMetadata;
+    @SerializedName("expiration_date")
+    protected Date expirationDate;
+    protected String ttl;
+    protected RotationPolicy rotation;
+    @SerializedName("managed_csr")
+    protected ImportedCertificateManagedCsr managedCsr;
+    @SerializedName("password_generation_policy")
+    protected PasswordGenerationPolicyPatch passwordGenerationPolicy;
 
-  protected SecretMetadataPatch() { }
+    protected SecretMetadataPatch() {
+    }
 
-  /**
-   * Gets the name.
-   *
-   * A human-readable name to assign to your secret.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret.
-   *
-   * @return the name
-   */
-  public String name() {
-    return name;
-  }
+    /**
+     * Gets the name.
+     * <p>
+     * A human-readable name to assign to your secret.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret.
+     *
+     * @return the name
+     */
+    public String name() {
+        return name;
+    }
 
-  /**
-   * Gets the description.
-   *
-   * An extended description of your secret.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
-   * group.
-   *
-   * @return the description
-   */
-  public String description() {
-    return description;
-  }
+    /**
+     * Gets the description.
+     * <p>
+     * An extended description of your secret.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+     * group.
+     *
+     * @return the description
+     */
+    public String description() {
+        return description;
+    }
 
-  /**
-   * Gets the labels.
-   *
-   * Labels that you can use to search secrets in your instance. Only 30 labels can be created.
-   *
-   * Label can be between 2-64 characters, including spaces.
-   *
-   * To protect your privacy, do not use personal data, such as your name or location, as a label for your secret.
-   *
-   * @return the labels
-   */
-  public List<String> labels() {
-    return labels;
-  }
+    /**
+     * Gets the labels.
+     * <p>
+     * Labels that you can use to search secrets in your instance. Only 30 labels can be created.
+     * <p>
+     * Label can be between 2-64 characters, including spaces.
+     * <p>
+     * To protect your privacy, do not use personal data, such as your name or location, as a label for your secret.
+     *
+     * @return the labels
+     */
+    public List<String> labels() {
+        return labels;
+    }
 
-  /**
-   * Gets the customMetadata.
-   *
-   * The secret metadata that a user can customize.
-   *
-   * @return the customMetadata
-   */
-  public Map<String, Object> customMetadata() {
-    return customMetadata;
-  }
+    /**
+     * Gets the customMetadata.
+     * <p>
+     * The secret metadata that a user can customize.
+     *
+     * @return the customMetadata
+     */
+    public Map<String, Object> customMetadata() {
+        return customMetadata;
+    }
 
-  /**
-   * Gets the expirationDate.
-   *
-   * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
-   * Arbitrary, username_password.
-   *
-   * @return the expirationDate
-   */
-  public Date expirationDate() {
-    return expirationDate;
-  }
+    /**
+     * Gets the expirationDate.
+     * <p>
+     * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
+     * Arbitrary, username_password.
+     *
+     * @return the expirationDate
+     */
+    public Date expirationDate() {
+        return expirationDate;
+    }
 
-  /**
-   * Gets the ttl.
-   *
-   * The time-to-live (TTL) or lease duration to assign to credentials that are generated. Supported secret types:
-   * iam_credentials, service_credentials. The TTL defines how long generated credentials remain valid. The value can be
-   * either an integer that specifies the number of seconds, or the string  representation of a duration, such as
-   * `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1
-   * minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional. If it is set
-   * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL is modified,
-   * it will be applied only on the next secret rotation.
-   *
-   * @return the ttl
-   */
-  public String ttl() {
-    return ttl;
-  }
+    /**
+     * Gets the ttl.
+     * <p>
+     * The time-to-live (TTL) or lease duration to assign to credentials that are generated. Supported secret types:
+     * iam_credentials, service_credentials. The TTL defines how long generated credentials remain valid. The value can be
+     * either an integer that specifies the number of seconds, or the string  representation of a duration, such as
+     * `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1
+     * minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional. If it is set
+     * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL is modified,
+     * it will be applied only on the next secret rotation.
+     *
+     * @return the ttl
+     */
+    public String ttl() {
+        return ttl;
+    }
 
-  /**
-   * Gets the rotation.
-   *
-   * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
-   * username_password, private_cert, public_cert, iam_credentials.
-   *
-   * @return the rotation
-   */
-  public RotationPolicy rotation() {
-    return rotation;
-  }
+    /**
+     * Gets the rotation.
+     * <p>
+     * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
+     * username_password, private_cert, public_cert, iam_credentials.
+     *
+     * @return the rotation
+     */
+    public RotationPolicy rotation() {
+        return rotation;
+    }
 
-  /**
-   * Gets the passwordGenerationPolicy.
-   *
-   * Policy patch for auto-generated passwords. Policy properties that are included in the patch are updated.
-   * Properties that are not included in the patch remain unchanged.
-   *
-   * @return the passwordGenerationPolicy
-   */
-  public PasswordGenerationPolicyPatch passwordGenerationPolicy() {
-    return passwordGenerationPolicy;
-  }
+    /**
+     * Gets the managedCsr.
+     * <p>
+     * The data specified to create the CSR and the private key.
+     *
+     * @return the managedCsr
+     */
+    public ImportedCertificateManagedCsr managedCsr() {
+        return managedCsr;
+    }
 
-  /**
-   * Construct a JSON merge-patch from the SecretMetadataPatch.
-   *
-   * Note that properties of the SecretMetadataPatch with null values are not represented in the constructed
-   * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
-   *
-   * @return a JSON merge-patch for the SecretMetadataPatch
-   */
-  public Map<String, Object> asPatch() {
-    return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
-  }
+    /**
+     * Gets the passwordGenerationPolicy.
+     * <p>
+     * Policy patch for auto-generated passwords. Policy properties that are included in the patch are updated.
+     * Properties that are not included in the patch remain unchanged.
+     *
+     * @return the passwordGenerationPolicy
+     */
+    public PasswordGenerationPolicyPatch passwordGenerationPolicy() {
+        return passwordGenerationPolicy;
+    }
+
+    /**
+     * Construct a JSON merge-patch from the SecretMetadataPatch.
+     * <p>
+     * Note that properties of the SecretMetadataPatch with null values are not represented in the constructed
+     * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
+     *
+     * @return a JSON merge-patch for the SecretMetadataPatch
+     */
+    public Map<String, Object> asPatch() {
+        return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
+    }
 }
 

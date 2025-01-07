@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,87 +23,88 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
 public class PublicCertificateConfigurationDNSClassicInfrastructurePatch extends ConfigurationPatch {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String classicInfrastructureUsername;
-    private String classicInfrastructurePassword;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String classicInfrastructureUsername;
+        private String classicInfrastructurePassword;
+
+        /**
+         * Instantiates a new Builder from an existing PublicCertificateConfigurationDNSClassicInfrastructurePatch instance.
+         *
+         * @param publicCertificateConfigurationDnsClassicInfrastructurePatch the instance to initialize the Builder with
+         */
+        public Builder(ConfigurationPatch publicCertificateConfigurationDnsClassicInfrastructurePatch) {
+            this.classicInfrastructureUsername = publicCertificateConfigurationDnsClassicInfrastructurePatch.classicInfrastructureUsername;
+            this.classicInfrastructurePassword = publicCertificateConfigurationDnsClassicInfrastructurePatch.classicInfrastructurePassword;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a PublicCertificateConfigurationDNSClassicInfrastructurePatch.
+         *
+         * @return the new PublicCertificateConfigurationDNSClassicInfrastructurePatch instance
+         */
+        public PublicCertificateConfigurationDNSClassicInfrastructurePatch build() {
+            return new PublicCertificateConfigurationDNSClassicInfrastructurePatch(this);
+        }
+
+        /**
+         * Set the classicInfrastructureUsername.
+         *
+         * @param classicInfrastructureUsername the classicInfrastructureUsername
+         * @return the PublicCertificateConfigurationDNSClassicInfrastructurePatch builder
+         */
+        public Builder classicInfrastructureUsername(String classicInfrastructureUsername) {
+            this.classicInfrastructureUsername = classicInfrastructureUsername;
+            return this;
+        }
+
+        /**
+         * Set the classicInfrastructurePassword.
+         *
+         * @param classicInfrastructurePassword the classicInfrastructurePassword
+         * @return the PublicCertificateConfigurationDNSClassicInfrastructurePatch builder
+         */
+        public Builder classicInfrastructurePassword(String classicInfrastructurePassword) {
+            this.classicInfrastructurePassword = classicInfrastructurePassword;
+            return this;
+        }
+    }
+
+    protected PublicCertificateConfigurationDNSClassicInfrastructurePatch() {
+    }
+
+    protected PublicCertificateConfigurationDNSClassicInfrastructurePatch(Builder builder) {
+        classicInfrastructureUsername = builder.classicInfrastructureUsername;
+        classicInfrastructurePassword = builder.classicInfrastructurePassword;
+    }
 
     /**
-     * Instantiates a new Builder from an existing PublicCertificateConfigurationDNSClassicInfrastructurePatch instance.
+     * New builder.
      *
-     * @param publicCertificateConfigurationDnsClassicInfrastructurePatch the instance to initialize the Builder with
+     * @return a PublicCertificateConfigurationDNSClassicInfrastructurePatch builder
      */
-    public Builder(ConfigurationPatch publicCertificateConfigurationDnsClassicInfrastructurePatch) {
-      this.classicInfrastructureUsername = publicCertificateConfigurationDnsClassicInfrastructurePatch.classicInfrastructureUsername;
-      this.classicInfrastructurePassword = publicCertificateConfigurationDnsClassicInfrastructurePatch.classicInfrastructurePassword;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a PublicCertificateConfigurationDNSClassicInfrastructurePatch.
+     * Construct a JSON merge-patch from the PublicCertificateConfigurationDNSClassicInfrastructurePatch.
+     * <p>
+     * Note that properties of the PublicCertificateConfigurationDNSClassicInfrastructurePatch with null values are not represented in the constructed
+     * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
      *
-     * @return the new PublicCertificateConfigurationDNSClassicInfrastructurePatch instance
+     * @return a JSON merge-patch for the PublicCertificateConfigurationDNSClassicInfrastructurePatch
      */
-    public PublicCertificateConfigurationDNSClassicInfrastructurePatch build() {
-      return new PublicCertificateConfigurationDNSClassicInfrastructurePatch(this);
+    public Map<String, Object> asPatch() {
+        return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
     }
-
-    /**
-     * Set the classicInfrastructureUsername.
-     *
-     * @param classicInfrastructureUsername the classicInfrastructureUsername
-     * @return the PublicCertificateConfigurationDNSClassicInfrastructurePatch builder
-     */
-    public Builder classicInfrastructureUsername(String classicInfrastructureUsername) {
-      this.classicInfrastructureUsername = classicInfrastructureUsername;
-      return this;
-    }
-
-    /**
-     * Set the classicInfrastructurePassword.
-     *
-     * @param classicInfrastructurePassword the classicInfrastructurePassword
-     * @return the PublicCertificateConfigurationDNSClassicInfrastructurePatch builder
-     */
-    public Builder classicInfrastructurePassword(String classicInfrastructurePassword) {
-      this.classicInfrastructurePassword = classicInfrastructurePassword;
-      return this;
-    }
-  }
-
-  protected PublicCertificateConfigurationDNSClassicInfrastructurePatch() { }
-
-  protected PublicCertificateConfigurationDNSClassicInfrastructurePatch(Builder builder) {
-    classicInfrastructureUsername = builder.classicInfrastructureUsername;
-    classicInfrastructurePassword = builder.classicInfrastructurePassword;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a PublicCertificateConfigurationDNSClassicInfrastructurePatch builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Construct a JSON merge-patch from the PublicCertificateConfigurationDNSClassicInfrastructurePatch.
-   *
-   * Note that properties of the PublicCertificateConfigurationDNSClassicInfrastructurePatch with null values are not represented in the constructed
-   * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
-   *
-   * @return a JSON merge-patch for the PublicCertificateConfigurationDNSClassicInfrastructurePatch
-   */
-  public Map<String, Object> asPatch() {
-    return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
-  }
 }
 

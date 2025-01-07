@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -22,219 +22,236 @@ import java.util.Map;
  */
 public class KVSecretPrototype extends SecretPrototype {
 
-  /**
-   * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
-   */
-  public interface SecretType {
-    /** arbitrary. */
-    String ARBITRARY = "arbitrary";
-    /** iam_credentials. */
-    String IAM_CREDENTIALS = "iam_credentials";
-    /** imported_cert. */
-    String IMPORTED_CERT = "imported_cert";
-    /** kv. */
-    String KV = "kv";
-    /** private_cert. */
-    String PRIVATE_CERT = "private_cert";
-    /** public_cert. */
-    String PUBLIC_CERT = "public_cert";
-    /** service_credentials. */
-    String SERVICE_CREDENTIALS = "service_credentials";
-    /** username_password. */
-    String USERNAME_PASSWORD = "username_password";
-  }
+    /**
+     * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+     * service_credentials, kv, and username_password.
+     */
+    public interface SecretType {
+        /**
+         * arbitrary.
+         */
+        String ARBITRARY = "arbitrary";
+        /**
+         * iam_credentials.
+         */
+        String IAM_CREDENTIALS = "iam_credentials";
+        /**
+         * imported_cert.
+         */
+        String IMPORTED_CERT = "imported_cert";
+        /**
+         * kv.
+         */
+        String KV = "kv";
+        /**
+         * private_cert.
+         */
+        String PRIVATE_CERT = "private_cert";
+        /**
+         * public_cert.
+         */
+        String PUBLIC_CERT = "public_cert";
+        /**
+         * service_credentials.
+         */
+        String SERVICE_CREDENTIALS = "service_credentials";
+        /**
+         * username_password.
+         */
+        String USERNAME_PASSWORD = "username_password";
+    }
 
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretType;
-    private String name;
-    private String description;
-    private String secretGroupId;
-    private List<String> labels;
-    private Map<String, Object> data;
-    private Map<String, Object> customMetadata;
-    private Map<String, Object> versionCustomMetadata;
 
     /**
-     * Instantiates a new Builder from an existing KVSecretPrototype instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretType;
+        private String name;
+        private String description;
+        private String secretGroupId;
+        private List<String> labels;
+        private Map<String, Object> data;
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
+
+        /**
+         * Instantiates a new Builder from an existing KVSecretPrototype instance.
+         *
+         * @param kvSecretPrototype the instance to initialize the Builder with
+         */
+        public Builder(SecretPrototype kvSecretPrototype) {
+            this.secretType = kvSecretPrototype.secretType;
+            this.name = kvSecretPrototype.name;
+            this.description = kvSecretPrototype.description;
+            this.secretGroupId = kvSecretPrototype.secretGroupId;
+            this.labels = kvSecretPrototype.labels;
+            this.data = kvSecretPrototype.data;
+            this.customMetadata = kvSecretPrototype.customMetadata;
+            this.versionCustomMetadata = kvSecretPrototype.versionCustomMetadata;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretType the secretType
+         * @param name       the name
+         * @param data       the data
+         */
+        public Builder(String secretType, String name, Map<String, Object> data) {
+            this.secretType = secretType;
+            this.name = name;
+            this.data = data;
+        }
+
+        /**
+         * Builds a KVSecretPrototype.
+         *
+         * @return the new KVSecretPrototype instance
+         */
+        public KVSecretPrototype build() {
+            return new KVSecretPrototype(this);
+        }
+
+        /**
+         * Adds a new element to labels.
+         *
+         * @param labels the new element to be added
+         * @return the KVSecretPrototype builder
+         */
+        public Builder addLabels(String labels) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
+                    "labels cannot be null");
+            if (this.labels == null) {
+                this.labels = new ArrayList<String>();
+            }
+            this.labels.add(labels);
+            return this;
+        }
+
+        /**
+         * Set the secretType.
+         *
+         * @param secretType the secretType
+         * @return the KVSecretPrototype builder
+         */
+        public Builder secretType(String secretType) {
+            this.secretType = secretType;
+            return this;
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the KVSecretPrototype builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the description.
+         *
+         * @param description the description
+         * @return the KVSecretPrototype builder
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        /**
+         * Set the secretGroupId.
+         *
+         * @param secretGroupId the secretGroupId
+         * @return the KVSecretPrototype builder
+         */
+        public Builder secretGroupId(String secretGroupId) {
+            this.secretGroupId = secretGroupId;
+            return this;
+        }
+
+        /**
+         * Set the labels.
+         * Existing labels will be replaced.
+         *
+         * @param labels the labels
+         * @return the KVSecretPrototype builder
+         */
+        public Builder labels(List<String> labels) {
+            this.labels = labels;
+            return this;
+        }
+
+        /**
+         * Set the data.
+         *
+         * @param data the data
+         * @return the KVSecretPrototype builder
+         */
+        public Builder data(Map<String, Object> data) {
+            this.data = data;
+            return this;
+        }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the KVSecretPrototype builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the KVSecretPrototype builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+    }
+
+    protected KVSecretPrototype() {
+    }
+
+    protected KVSecretPrototype(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretType,
+                "secretType cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
+                "name cannot be null");
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.data,
+                "data cannot be null");
+        secretType = builder.secretType;
+        name = builder.name;
+        description = builder.description;
+        secretGroupId = builder.secretGroupId;
+        labels = builder.labels;
+        data = builder.data;
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
+    }
+
+    /**
+     * New builder.
      *
-     * @param kvSecretPrototype the instance to initialize the Builder with
+     * @return a KVSecretPrototype builder
      */
-    public Builder(SecretPrototype kvSecretPrototype) {
-      this.secretType = kvSecretPrototype.secretType;
-      this.name = kvSecretPrototype.name;
-      this.description = kvSecretPrototype.description;
-      this.secretGroupId = kvSecretPrototype.secretGroupId;
-      this.labels = kvSecretPrototype.labels;
-      this.data = kvSecretPrototype.data;
-      this.customMetadata = kvSecretPrototype.customMetadata;
-      this.versionCustomMetadata = kvSecretPrototype.versionCustomMetadata;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
-     *
-     * @param secretType the secretType
-     * @param name the name
-     * @param data the data
-     */
-    public Builder(String secretType, String name, Map<String, Object> data) {
-      this.secretType = secretType;
-      this.name = name;
-      this.data = data;
-    }
-
-    /**
-     * Builds a KVSecretPrototype.
-     *
-     * @return the new KVSecretPrototype instance
-     */
-    public KVSecretPrototype build() {
-      return new KVSecretPrototype(this);
-    }
-
-    /**
-     * Adds a new element to labels.
-     *
-     * @param labels the new element to be added
-     * @return the KVSecretPrototype builder
-     */
-    public Builder addLabels(String labels) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
-        "labels cannot be null");
-      if (this.labels == null) {
-        this.labels = new ArrayList<String>();
-      }
-      this.labels.add(labels);
-      return this;
-    }
-
-    /**
-     * Set the secretType.
-     *
-     * @param secretType the secretType
-     * @return the KVSecretPrototype builder
-     */
-    public Builder secretType(String secretType) {
-      this.secretType = secretType;
-      return this;
-    }
-
-    /**
-     * Set the name.
-     *
-     * @param name the name
-     * @return the KVSecretPrototype builder
-     */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
-    }
-
-    /**
-     * Set the description.
-     *
-     * @param description the description
-     * @return the KVSecretPrototype builder
-     */
-    public Builder description(String description) {
-      this.description = description;
-      return this;
-    }
-
-    /**
-     * Set the secretGroupId.
-     *
-     * @param secretGroupId the secretGroupId
-     * @return the KVSecretPrototype builder
-     */
-    public Builder secretGroupId(String secretGroupId) {
-      this.secretGroupId = secretGroupId;
-      return this;
-    }
-
-    /**
-     * Set the labels.
-     * Existing labels will be replaced.
-     *
-     * @param labels the labels
-     * @return the KVSecretPrototype builder
-     */
-    public Builder labels(List<String> labels) {
-      this.labels = labels;
-      return this;
-    }
-
-    /**
-     * Set the data.
-     *
-     * @param data the data
-     * @return the KVSecretPrototype builder
-     */
-    public Builder data(Map<String, Object> data) {
-      this.data = data;
-      return this;
-    }
-
-    /**
-     * Set the customMetadata.
-     *
-     * @param customMetadata the customMetadata
-     * @return the KVSecretPrototype builder
-     */
-    public Builder customMetadata(Map<String, Object> customMetadata) {
-      this.customMetadata = customMetadata;
-      return this;
-    }
-
-    /**
-     * Set the versionCustomMetadata.
-     *
-     * @param versionCustomMetadata the versionCustomMetadata
-     * @return the KVSecretPrototype builder
-     */
-    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-      this.versionCustomMetadata = versionCustomMetadata;
-      return this;
-    }
-  }
-
-  protected KVSecretPrototype() { }
-
-  protected KVSecretPrototype(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.secretType,
-      "secretType cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
-      "name cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.data,
-      "data cannot be null");
-    secretType = builder.secretType;
-    name = builder.name;
-    description = builder.description;
-    secretGroupId = builder.secretGroupId;
-    labels = builder.labels;
-    data = builder.data;
-    customMetadata = builder.customMetadata;
-    versionCustomMetadata = builder.versionCustomMetadata;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a KVSecretPrototype builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

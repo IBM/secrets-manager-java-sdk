@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,85 +23,86 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ServiceCredentialsSourceServiceRole extends GenericModel {
 
-  protected String crn;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String crn;
+    protected String crn;
 
     /**
-     * Instantiates a new Builder from an existing ServiceCredentialsSourceServiceRole instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String crn;
+
+        /**
+         * Instantiates a new Builder from an existing ServiceCredentialsSourceServiceRole instance.
+         *
+         * @param serviceCredentialsSourceServiceRole the instance to initialize the Builder with
+         */
+        private Builder(ServiceCredentialsSourceServiceRole serviceCredentialsSourceServiceRole) {
+            this.crn = serviceCredentialsSourceServiceRole.crn;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param crn the crn
+         */
+        public Builder(String crn) {
+            this.crn = crn;
+        }
+
+        /**
+         * Builds a ServiceCredentialsSourceServiceRole.
+         *
+         * @return the new ServiceCredentialsSourceServiceRole instance
+         */
+        public ServiceCredentialsSourceServiceRole build() {
+            return new ServiceCredentialsSourceServiceRole(this);
+        }
+
+        /**
+         * Set the crn.
+         *
+         * @param crn the crn
+         * @return the ServiceCredentialsSourceServiceRole builder
+         */
+        public Builder crn(String crn) {
+            this.crn = crn;
+            return this;
+        }
+    }
+
+    protected ServiceCredentialsSourceServiceRole() {
+    }
+
+    protected ServiceCredentialsSourceServiceRole(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.crn,
+                "crn cannot be null");
+        crn = builder.crn;
+    }
+
+    /**
+     * New builder.
      *
-     * @param serviceCredentialsSourceServiceRole the instance to initialize the Builder with
+     * @return a ServiceCredentialsSourceServiceRole builder
      */
-    private Builder(ServiceCredentialsSourceServiceRole serviceCredentialsSourceServiceRole) {
-      this.crn = serviceCredentialsSourceServiceRole.crn;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the crn.
+     * <p>
+     * The service role CRN.
      *
-     * @param crn the crn
+     * @return the crn
      */
-    public Builder(String crn) {
-      this.crn = crn;
+    public String crn() {
+        return crn;
     }
-
-    /**
-     * Builds a ServiceCredentialsSourceServiceRole.
-     *
-     * @return the new ServiceCredentialsSourceServiceRole instance
-     */
-    public ServiceCredentialsSourceServiceRole build() {
-      return new ServiceCredentialsSourceServiceRole(this);
-    }
-
-    /**
-     * Set the crn.
-     *
-     * @param crn the crn
-     * @return the ServiceCredentialsSourceServiceRole builder
-     */
-    public Builder crn(String crn) {
-      this.crn = crn;
-      return this;
-    }
-  }
-
-  protected ServiceCredentialsSourceServiceRole() { }
-
-  protected ServiceCredentialsSourceServiceRole(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.crn,
-      "crn cannot be null");
-    crn = builder.crn;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ServiceCredentialsSourceServiceRole builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the crn.
-   *
-   * The service role CRN.
-   *
-   * @return the crn
-   */
-  public String crn() {
-    return crn;
-  }
 }
 

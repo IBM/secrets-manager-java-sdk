@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,129 +23,130 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
 public class PrivateCertificateConfigurationIntermediateCAPatch extends ConfigurationPatch {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String maxTtl;
-    private String crlExpiry;
-    private Boolean crlDisable;
-    private Boolean crlDistributionPointsEncoded;
-    private Boolean issuingCertificatesUrlsEncoded;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String maxTtl;
+        private String crlExpiry;
+        private Boolean crlDisable;
+        private Boolean crlDistributionPointsEncoded;
+        private Boolean issuingCertificatesUrlsEncoded;
+
+        /**
+         * Instantiates a new Builder from an existing PrivateCertificateConfigurationIntermediateCAPatch instance.
+         *
+         * @param privateCertificateConfigurationIntermediateCaPatch the instance to initialize the Builder with
+         */
+        public Builder(ConfigurationPatch privateCertificateConfigurationIntermediateCaPatch) {
+            this.maxTtl = privateCertificateConfigurationIntermediateCaPatch.maxTtl;
+            this.crlExpiry = privateCertificateConfigurationIntermediateCaPatch.crlExpiry;
+            this.crlDisable = privateCertificateConfigurationIntermediateCaPatch.crlDisable;
+            this.crlDistributionPointsEncoded = privateCertificateConfigurationIntermediateCaPatch.crlDistributionPointsEncoded;
+            this.issuingCertificatesUrlsEncoded = privateCertificateConfigurationIntermediateCaPatch.issuingCertificatesUrlsEncoded;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a PrivateCertificateConfigurationIntermediateCAPatch.
+         *
+         * @return the new PrivateCertificateConfigurationIntermediateCAPatch instance
+         */
+        public PrivateCertificateConfigurationIntermediateCAPatch build() {
+            return new PrivateCertificateConfigurationIntermediateCAPatch(this);
+        }
+
+        /**
+         * Set the maxTtl.
+         *
+         * @param maxTtl the maxTtl
+         * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
+         */
+        public Builder maxTtl(String maxTtl) {
+            this.maxTtl = maxTtl;
+            return this;
+        }
+
+        /**
+         * Set the crlExpiry.
+         *
+         * @param crlExpiry the crlExpiry
+         * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
+         */
+        public Builder crlExpiry(String crlExpiry) {
+            this.crlExpiry = crlExpiry;
+            return this;
+        }
+
+        /**
+         * Set the crlDisable.
+         *
+         * @param crlDisable the crlDisable
+         * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
+         */
+        public Builder crlDisable(Boolean crlDisable) {
+            this.crlDisable = crlDisable;
+            return this;
+        }
+
+        /**
+         * Set the crlDistributionPointsEncoded.
+         *
+         * @param crlDistributionPointsEncoded the crlDistributionPointsEncoded
+         * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
+         */
+        public Builder crlDistributionPointsEncoded(Boolean crlDistributionPointsEncoded) {
+            this.crlDistributionPointsEncoded = crlDistributionPointsEncoded;
+            return this;
+        }
+
+        /**
+         * Set the issuingCertificatesUrlsEncoded.
+         *
+         * @param issuingCertificatesUrlsEncoded the issuingCertificatesUrlsEncoded
+         * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
+         */
+        public Builder issuingCertificatesUrlsEncoded(Boolean issuingCertificatesUrlsEncoded) {
+            this.issuingCertificatesUrlsEncoded = issuingCertificatesUrlsEncoded;
+            return this;
+        }
+    }
+
+    protected PrivateCertificateConfigurationIntermediateCAPatch() {
+    }
+
+    protected PrivateCertificateConfigurationIntermediateCAPatch(Builder builder) {
+        maxTtl = builder.maxTtl;
+        crlExpiry = builder.crlExpiry;
+        crlDisable = builder.crlDisable;
+        crlDistributionPointsEncoded = builder.crlDistributionPointsEncoded;
+        issuingCertificatesUrlsEncoded = builder.issuingCertificatesUrlsEncoded;
+    }
 
     /**
-     * Instantiates a new Builder from an existing PrivateCertificateConfigurationIntermediateCAPatch instance.
+     * New builder.
      *
-     * @param privateCertificateConfigurationIntermediateCaPatch the instance to initialize the Builder with
+     * @return a PrivateCertificateConfigurationIntermediateCAPatch builder
      */
-    public Builder(ConfigurationPatch privateCertificateConfigurationIntermediateCaPatch) {
-      this.maxTtl = privateCertificateConfigurationIntermediateCaPatch.maxTtl;
-      this.crlExpiry = privateCertificateConfigurationIntermediateCaPatch.crlExpiry;
-      this.crlDisable = privateCertificateConfigurationIntermediateCaPatch.crlDisable;
-      this.crlDistributionPointsEncoded = privateCertificateConfigurationIntermediateCaPatch.crlDistributionPointsEncoded;
-      this.issuingCertificatesUrlsEncoded = privateCertificateConfigurationIntermediateCaPatch.issuingCertificatesUrlsEncoded;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a PrivateCertificateConfigurationIntermediateCAPatch.
+     * Construct a JSON merge-patch from the PrivateCertificateConfigurationIntermediateCAPatch.
+     * <p>
+     * Note that properties of the PrivateCertificateConfigurationIntermediateCAPatch with null values are not represented in the constructed
+     * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
      *
-     * @return the new PrivateCertificateConfigurationIntermediateCAPatch instance
+     * @return a JSON merge-patch for the PrivateCertificateConfigurationIntermediateCAPatch
      */
-    public PrivateCertificateConfigurationIntermediateCAPatch build() {
-      return new PrivateCertificateConfigurationIntermediateCAPatch(this);
+    public Map<String, Object> asPatch() {
+        return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
     }
-
-    /**
-     * Set the maxTtl.
-     *
-     * @param maxTtl the maxTtl
-     * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
-     */
-    public Builder maxTtl(String maxTtl) {
-      this.maxTtl = maxTtl;
-      return this;
-    }
-
-    /**
-     * Set the crlExpiry.
-     *
-     * @param crlExpiry the crlExpiry
-     * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
-     */
-    public Builder crlExpiry(String crlExpiry) {
-      this.crlExpiry = crlExpiry;
-      return this;
-    }
-
-    /**
-     * Set the crlDisable.
-     *
-     * @param crlDisable the crlDisable
-     * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
-     */
-    public Builder crlDisable(Boolean crlDisable) {
-      this.crlDisable = crlDisable;
-      return this;
-    }
-
-    /**
-     * Set the crlDistributionPointsEncoded.
-     *
-     * @param crlDistributionPointsEncoded the crlDistributionPointsEncoded
-     * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
-     */
-    public Builder crlDistributionPointsEncoded(Boolean crlDistributionPointsEncoded) {
-      this.crlDistributionPointsEncoded = crlDistributionPointsEncoded;
-      return this;
-    }
-
-    /**
-     * Set the issuingCertificatesUrlsEncoded.
-     *
-     * @param issuingCertificatesUrlsEncoded the issuingCertificatesUrlsEncoded
-     * @return the PrivateCertificateConfigurationIntermediateCAPatch builder
-     */
-    public Builder issuingCertificatesUrlsEncoded(Boolean issuingCertificatesUrlsEncoded) {
-      this.issuingCertificatesUrlsEncoded = issuingCertificatesUrlsEncoded;
-      return this;
-    }
-  }
-
-  protected PrivateCertificateConfigurationIntermediateCAPatch() { }
-
-  protected PrivateCertificateConfigurationIntermediateCAPatch(Builder builder) {
-    maxTtl = builder.maxTtl;
-    crlExpiry = builder.crlExpiry;
-    crlDisable = builder.crlDisable;
-    crlDistributionPointsEncoded = builder.crlDistributionPointsEncoded;
-    issuingCertificatesUrlsEncoded = builder.issuingCertificatesUrlsEncoded;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a PrivateCertificateConfigurationIntermediateCAPatch builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Construct a JSON merge-patch from the PrivateCertificateConfigurationIntermediateCAPatch.
-   *
-   * Note that properties of the PrivateCertificateConfigurationIntermediateCAPatch with null values are not represented in the constructed
-   * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
-   *
-   * @return a JSON merge-patch for the PrivateCertificateConfigurationIntermediateCAPatch
-   */
-  public Map<String, Object> asPatch() {
-    return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
-  }
 }
 

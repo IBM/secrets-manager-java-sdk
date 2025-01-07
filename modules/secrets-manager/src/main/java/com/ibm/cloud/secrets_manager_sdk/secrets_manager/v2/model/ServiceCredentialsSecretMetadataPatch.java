@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -25,160 +25,161 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
 public class ServiceCredentialsSecretMetadataPatch extends SecretMetadataPatch {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Map<String, Object> customMetadata;
-    private String description;
-    private List<String> labels;
-    private String name;
-    private RotationPolicy rotation;
-    private String ttl;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private Map<String, Object> customMetadata;
+        private String description;
+        private List<String> labels;
+        private String name;
+        private RotationPolicy rotation;
+        private String ttl;
+
+        /**
+         * Instantiates a new Builder from an existing ServiceCredentialsSecretMetadataPatch instance.
+         *
+         * @param serviceCredentialsSecretMetadataPatch the instance to initialize the Builder with
+         */
+        public Builder(SecretMetadataPatch serviceCredentialsSecretMetadataPatch) {
+            this.customMetadata = serviceCredentialsSecretMetadataPatch.customMetadata;
+            this.description = serviceCredentialsSecretMetadataPatch.description;
+            this.labels = serviceCredentialsSecretMetadataPatch.labels;
+            this.name = serviceCredentialsSecretMetadataPatch.name;
+            this.rotation = serviceCredentialsSecretMetadataPatch.rotation;
+            this.ttl = serviceCredentialsSecretMetadataPatch.ttl;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a ServiceCredentialsSecretMetadataPatch.
+         *
+         * @return the new ServiceCredentialsSecretMetadataPatch instance
+         */
+        public ServiceCredentialsSecretMetadataPatch build() {
+            return new ServiceCredentialsSecretMetadataPatch(this);
+        }
+
+        /**
+         * Adds a new element to labels.
+         *
+         * @param labels the new element to be added
+         * @return the ServiceCredentialsSecretMetadataPatch builder
+         */
+        public Builder addLabels(String labels) {
+            com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
+                    "labels cannot be null");
+            if (this.labels == null) {
+                this.labels = new ArrayList<String>();
+            }
+            this.labels.add(labels);
+            return this;
+        }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the ServiceCredentialsSecretMetadataPatch builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the description.
+         *
+         * @param description the description
+         * @return the ServiceCredentialsSecretMetadataPatch builder
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        /**
+         * Set the labels.
+         * Existing labels will be replaced.
+         *
+         * @param labels the labels
+         * @return the ServiceCredentialsSecretMetadataPatch builder
+         */
+        public Builder labels(List<String> labels) {
+            this.labels = labels;
+            return this;
+        }
+
+        /**
+         * Set the name.
+         *
+         * @param name the name
+         * @return the ServiceCredentialsSecretMetadataPatch builder
+         */
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Set the rotation.
+         *
+         * @param rotation the rotation
+         * @return the ServiceCredentialsSecretMetadataPatch builder
+         */
+        public Builder rotation(RotationPolicy rotation) {
+            this.rotation = rotation;
+            return this;
+        }
+
+        /**
+         * Set the ttl.
+         *
+         * @param ttl the ttl
+         * @return the ServiceCredentialsSecretMetadataPatch builder
+         */
+        public Builder ttl(String ttl) {
+            this.ttl = ttl;
+            return this;
+        }
+    }
+
+    protected ServiceCredentialsSecretMetadataPatch() {
+    }
+
+    protected ServiceCredentialsSecretMetadataPatch(Builder builder) {
+        customMetadata = builder.customMetadata;
+        description = builder.description;
+        labels = builder.labels;
+        name = builder.name;
+        rotation = builder.rotation;
+        ttl = builder.ttl;
+    }
 
     /**
-     * Instantiates a new Builder from an existing ServiceCredentialsSecretMetadataPatch instance.
+     * New builder.
      *
-     * @param serviceCredentialsSecretMetadataPatch the instance to initialize the Builder with
+     * @return a ServiceCredentialsSecretMetadataPatch builder
      */
-    public Builder(SecretMetadataPatch serviceCredentialsSecretMetadataPatch) {
-      this.customMetadata = serviceCredentialsSecretMetadataPatch.customMetadata;
-      this.description = serviceCredentialsSecretMetadataPatch.description;
-      this.labels = serviceCredentialsSecretMetadataPatch.labels;
-      this.name = serviceCredentialsSecretMetadataPatch.name;
-      this.rotation = serviceCredentialsSecretMetadataPatch.rotation;
-      this.ttl = serviceCredentialsSecretMetadataPatch.ttl;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a ServiceCredentialsSecretMetadataPatch.
+     * Construct a JSON merge-patch from the ServiceCredentialsSecretMetadataPatch.
+     * <p>
+     * Note that properties of the ServiceCredentialsSecretMetadataPatch with null values are not represented in the constructed
+     * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
      *
-     * @return the new ServiceCredentialsSecretMetadataPatch instance
+     * @return a JSON merge-patch for the ServiceCredentialsSecretMetadataPatch
      */
-    public ServiceCredentialsSecretMetadataPatch build() {
-      return new ServiceCredentialsSecretMetadataPatch(this);
+    public Map<String, Object> asPatch() {
+        return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
     }
-
-    /**
-     * Adds a new element to labels.
-     *
-     * @param labels the new element to be added
-     * @return the ServiceCredentialsSecretMetadataPatch builder
-     */
-    public Builder addLabels(String labels) {
-      com.ibm.cloud.sdk.core.util.Validator.notNull(labels,
-        "labels cannot be null");
-      if (this.labels == null) {
-        this.labels = new ArrayList<String>();
-      }
-      this.labels.add(labels);
-      return this;
-    }
-
-    /**
-     * Set the customMetadata.
-     *
-     * @param customMetadata the customMetadata
-     * @return the ServiceCredentialsSecretMetadataPatch builder
-     */
-    public Builder customMetadata(Map<String, Object> customMetadata) {
-      this.customMetadata = customMetadata;
-      return this;
-    }
-
-    /**
-     * Set the description.
-     *
-     * @param description the description
-     * @return the ServiceCredentialsSecretMetadataPatch builder
-     */
-    public Builder description(String description) {
-      this.description = description;
-      return this;
-    }
-
-    /**
-     * Set the labels.
-     * Existing labels will be replaced.
-     *
-     * @param labels the labels
-     * @return the ServiceCredentialsSecretMetadataPatch builder
-     */
-    public Builder labels(List<String> labels) {
-      this.labels = labels;
-      return this;
-    }
-
-    /**
-     * Set the name.
-     *
-     * @param name the name
-     * @return the ServiceCredentialsSecretMetadataPatch builder
-     */
-    public Builder name(String name) {
-      this.name = name;
-      return this;
-    }
-
-    /**
-     * Set the rotation.
-     *
-     * @param rotation the rotation
-     * @return the ServiceCredentialsSecretMetadataPatch builder
-     */
-    public Builder rotation(RotationPolicy rotation) {
-      this.rotation = rotation;
-      return this;
-    }
-
-    /**
-     * Set the ttl.
-     *
-     * @param ttl the ttl
-     * @return the ServiceCredentialsSecretMetadataPatch builder
-     */
-    public Builder ttl(String ttl) {
-      this.ttl = ttl;
-      return this;
-    }
-  }
-
-  protected ServiceCredentialsSecretMetadataPatch() { }
-
-  protected ServiceCredentialsSecretMetadataPatch(Builder builder) {
-    customMetadata = builder.customMetadata;
-    description = builder.description;
-    labels = builder.labels;
-    name = builder.name;
-    rotation = builder.rotation;
-    ttl = builder.ttl;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a ServiceCredentialsSecretMetadataPatch builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Construct a JSON merge-patch from the ServiceCredentialsSecretMetadataPatch.
-   *
-   * Note that properties of the ServiceCredentialsSecretMetadataPatch with null values are not represented in the constructed
-   * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
-   *
-   * @return a JSON merge-patch for the ServiceCredentialsSecretMetadataPatch
-   */
-  public Map<String, Object> asPatch() {
-    return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
-  }
 }
 

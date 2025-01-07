@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,116 +20,117 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class GetSecretVersionMetadataOptions extends GenericModel {
 
-  protected String secretId;
-  protected String id;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String secretId;
-    private String id;
+    protected String secretId;
+    protected String id;
 
     /**
-     * Instantiates a new Builder from an existing GetSecretVersionMetadataOptions instance.
+     * Builder.
+     */
+    public static class Builder {
+        private String secretId;
+        private String id;
+
+        /**
+         * Instantiates a new Builder from an existing GetSecretVersionMetadataOptions instance.
+         *
+         * @param getSecretVersionMetadataOptions the instance to initialize the Builder with
+         */
+        private Builder(GetSecretVersionMetadataOptions getSecretVersionMetadataOptions) {
+            this.secretId = getSecretVersionMetadataOptions.secretId;
+            this.id = getSecretVersionMetadataOptions.id;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param secretId the secretId
+         * @param id       the id
+         */
+        public Builder(String secretId, String id) {
+            this.secretId = secretId;
+            this.id = id;
+        }
+
+        /**
+         * Builds a GetSecretVersionMetadataOptions.
+         *
+         * @return the new GetSecretVersionMetadataOptions instance
+         */
+        public GetSecretVersionMetadataOptions build() {
+            return new GetSecretVersionMetadataOptions(this);
+        }
+
+        /**
+         * Set the secretId.
+         *
+         * @param secretId the secretId
+         * @return the GetSecretVersionMetadataOptions builder
+         */
+        public Builder secretId(String secretId) {
+            this.secretId = secretId;
+            return this;
+        }
+
+        /**
+         * Set the id.
+         *
+         * @param id the id
+         * @return the GetSecretVersionMetadataOptions builder
+         */
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+    }
+
+    protected GetSecretVersionMetadataOptions() {
+    }
+
+    protected GetSecretVersionMetadataOptions(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretId,
+                "secretId cannot be empty");
+        com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
+                "id cannot be empty");
+        secretId = builder.secretId;
+        id = builder.id;
+    }
+
+    /**
+     * New builder.
      *
-     * @param getSecretVersionMetadataOptions the instance to initialize the Builder with
+     * @return a GetSecretVersionMetadataOptions builder
      */
-    private Builder(GetSecretVersionMetadataOptions getSecretVersionMetadataOptions) {
-      this.secretId = getSecretVersionMetadataOptions.secretId;
-      this.id = getSecretVersionMetadataOptions.id;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Gets the secretId.
+     * <p>
+     * The UUID that uniquely identifies your secret.
      *
-     * @param secretId the secretId
-     * @param id the id
+     * @return the secretId
      */
-    public Builder(String secretId, String id) {
-      this.secretId = secretId;
-      this.id = id;
+    public String secretId() {
+        return secretId;
     }
 
     /**
-     * Builds a GetSecretVersionMetadataOptions.
+     * Gets the id.
+     * <p>
+     * The UUID that uniquely identifies your secret version. You can use the `current` or `previous` aliases to refer to
+     * the current or previous secret version.
      *
-     * @return the new GetSecretVersionMetadataOptions instance
+     * @return the id
      */
-    public GetSecretVersionMetadataOptions build() {
-      return new GetSecretVersionMetadataOptions(this);
+    public String id() {
+        return id;
     }
-
-    /**
-     * Set the secretId.
-     *
-     * @param secretId the secretId
-     * @return the GetSecretVersionMetadataOptions builder
-     */
-    public Builder secretId(String secretId) {
-      this.secretId = secretId;
-      return this;
-    }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id
-     * @return the GetSecretVersionMetadataOptions builder
-     */
-    public Builder id(String id) {
-      this.id = id;
-      return this;
-    }
-  }
-
-  protected GetSecretVersionMetadataOptions() { }
-
-  protected GetSecretVersionMetadataOptions(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.secretId,
-      "secretId cannot be empty");
-    com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
-      "id cannot be empty");
-    secretId = builder.secretId;
-    id = builder.id;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a GetSecretVersionMetadataOptions builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the secretId.
-   *
-   * The v4 UUID that uniquely identifies your secret.
-   *
-   * @return the secretId
-   */
-  public String secretId() {
-    return secretId;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * The v4 UUID that uniquely identifies your secret version. You can use the `current` or `previous` aliases to refer
-   * to the current or previous secret version.
-   *
-   * @return the id
-   */
-  public String id() {
-    return id;
-  }
 }
 

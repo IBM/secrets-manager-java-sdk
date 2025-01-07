@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,35 +18,52 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
  */
 public class PrivateCertificateConfigurationActionSignCSR extends ConfigurationAction {
 
-  /**
-   * The format of the returned data.
-   */
-  public interface Format {
-    /** pem. */
-    String PEM = "pem";
-    /** pem_bundle. */
-    String PEM_BUNDLE = "pem_bundle";
-  }
+    /**
+     * The format of the returned data.
+     */
+    public interface Format {
+        /**
+         * pem.
+         */
+        String PEM = "pem";
+        /**
+         * pem_bundle.
+         */
+        String PEM_BUNDLE = "pem_bundle";
+    }
 
-  /**
-   * The type of configuration action.
-   */
-  public interface ActionType {
-    /** private_cert_configuration_action_rotate_crl. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_CRL = "private_cert_configuration_action_rotate_crl";
-    /** private_cert_configuration_action_sign_intermediate. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_INTERMEDIATE = "private_cert_configuration_action_sign_intermediate";
-    /** private_cert_configuration_action_sign_csr. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = "private_cert_configuration_action_sign_csr";
-    /** private_cert_configuration_action_set_signed. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = "private_cert_configuration_action_set_signed";
-    /** private_cert_configuration_action_revoke_ca_certificate. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = "private_cert_configuration_action_revoke_ca_certificate";
-    /** private_cert_configuration_action_rotate_intermediate. */
-    String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = "private_cert_configuration_action_rotate_intermediate";
-  }
+    /**
+     * The type of configuration action.
+     */
+    public interface ActionType {
+        /**
+         * private_cert_configuration_action_rotate_crl.
+         */
+        String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_CRL = "private_cert_configuration_action_rotate_crl";
+        /**
+         * private_cert_configuration_action_sign_intermediate.
+         */
+        String PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_INTERMEDIATE = "private_cert_configuration_action_sign_intermediate";
+        /**
+         * private_cert_configuration_action_sign_csr.
+         */
+        String PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = "private_cert_configuration_action_sign_csr";
+        /**
+         * private_cert_configuration_action_set_signed.
+         */
+        String PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = "private_cert_configuration_action_set_signed";
+        /**
+         * private_cert_configuration_action_revoke_ca_certificate.
+         */
+        String PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = "private_cert_configuration_action_revoke_ca_certificate";
+        /**
+         * private_cert_configuration_action_rotate_intermediate.
+         */
+        String PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = "private_cert_configuration_action_rotate_intermediate";
+    }
 
 
-  protected PrivateCertificateConfigurationActionSignCSR() { }
+    protected PrivateCertificateConfigurationActionSignCSR() {
+    }
 }
 

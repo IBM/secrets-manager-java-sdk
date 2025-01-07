@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -21,20 +21,21 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class NotificationsRegistration extends GenericModel {
 
-  @SerializedName("event_notifications_instance_crn")
-  protected String eventNotificationsInstanceCrn;
+    @SerializedName("event_notifications_instance_crn")
+    protected String eventNotificationsInstanceCrn;
 
-  protected NotificationsRegistration() { }
+    protected NotificationsRegistration() {
+    }
 
-  /**
-   * Gets the eventNotificationsInstanceCrn.
-   *
-   * A CRN that uniquely identifies an IBM Cloud resource.
-   *
-   * @return the eventNotificationsInstanceCrn
-   */
-  public String getEventNotificationsInstanceCrn() {
-    return eventNotificationsInstanceCrn;
-  }
+    /**
+     * Gets the eventNotificationsInstanceCrn.
+     * <p>
+     * A CRN that uniquely identifies an IBM Cloud resource.
+     *
+     * @return the eventNotificationsInstanceCrn
+     */
+    public String getEventNotificationsInstanceCrn() {
+        return eventNotificationsInstanceCrn;
+    }
 }
 

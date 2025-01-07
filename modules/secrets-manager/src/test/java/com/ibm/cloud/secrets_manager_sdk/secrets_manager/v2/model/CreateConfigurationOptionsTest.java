@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -17,41 +17,44 @@ import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateConfigurationDNSCloudInternetServicesPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the CreateConfigurationOptions model.
  */
 public class CreateConfigurationOptionsTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testCreateConfigurationOptions() throws Throwable {
-    PublicCertificateConfigurationDNSCloudInternetServicesPrototype configurationPrototypeModel = new PublicCertificateConfigurationDNSCloudInternetServicesPrototype.Builder()
-      .configType("public_cert_configuration_dns_cloud_internet_services")
-      .name("my-example-engine-config")
-      .cloudInternetServicesApikey("testString")
-      .cloudInternetServicesCrn("testString")
-      .build();
-    assertEquals(configurationPrototypeModel.configType(), "public_cert_configuration_dns_cloud_internet_services");
-    assertEquals(configurationPrototypeModel.name(), "my-example-engine-config");
-    assertEquals(configurationPrototypeModel.cloudInternetServicesApikey(), "testString");
-    assertEquals(configurationPrototypeModel.cloudInternetServicesCrn(), "testString");
+    @Test
+    public void testCreateConfigurationOptions() throws Throwable {
+        PublicCertificateConfigurationDNSCloudInternetServicesPrototype configurationPrototypeModel = new PublicCertificateConfigurationDNSCloudInternetServicesPrototype.Builder()
+                .configType("public_cert_configuration_dns_cloud_internet_services")
+                .name("my-example-engine-config")
+                .cloudInternetServicesApikey("testString")
+                .cloudInternetServicesCrn("testString")
+                .build();
+        assertEquals(configurationPrototypeModel.configType(), "public_cert_configuration_dns_cloud_internet_services");
+        assertEquals(configurationPrototypeModel.name(), "my-example-engine-config");
+        assertEquals(configurationPrototypeModel.cloudInternetServicesApikey(), "testString");
+        assertEquals(configurationPrototypeModel.cloudInternetServicesCrn(), "testString");
 
-    CreateConfigurationOptions createConfigurationOptionsModel = new CreateConfigurationOptions.Builder()
-      .configurationPrototype(configurationPrototypeModel)
-      .build();
-    assertEquals(createConfigurationOptionsModel.configurationPrototype(), configurationPrototypeModel);
-  }
+        CreateConfigurationOptions createConfigurationOptionsModel = new CreateConfigurationOptions.Builder()
+                .configurationPrototype(configurationPrototypeModel)
+                .build();
+        assertEquals(createConfigurationOptionsModel.configurationPrototype(), configurationPrototypeModel);
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testCreateConfigurationOptionsError() throws Throwable {
-    new CreateConfigurationOptions.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testCreateConfigurationOptionsError() throws Throwable {
+        new CreateConfigurationOptions.Builder().build();
+    }
 
 }

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -16,47 +16,51 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentialsConfigurationPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the IAMCredentialsConfigurationPatch model.
  */
 public class IAMCredentialsConfigurationPatchTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testIAMCredentialsConfigurationPatch() throws Throwable {
-    IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModel = new IAMCredentialsConfigurationPatch.Builder()
-      .apiKey("testString")
-      .disabled(true)
-      .build();
-    assertEquals(iamCredentialsConfigurationPatchModel.apiKey(), "testString");
-    assertEquals(iamCredentialsConfigurationPatchModel.disabled(), Boolean.valueOf(true));
+    @Test
+    public void testIAMCredentialsConfigurationPatch() throws Throwable {
+        IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModel = new IAMCredentialsConfigurationPatch.Builder()
+                .apiKey("testString")
+                .disabled(true)
+                .build();
+        assertEquals(iamCredentialsConfigurationPatchModel.apiKey(), "testString");
+        assertEquals(iamCredentialsConfigurationPatchModel.disabled(), Boolean.valueOf(true));
 
-    String json = TestUtilities.serialize(iamCredentialsConfigurationPatchModel);
+        String json = TestUtilities.serialize(iamCredentialsConfigurationPatchModel);
 
-    IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModelNew = TestUtilities.deserialize(json, IAMCredentialsConfigurationPatch.class);
-    assertTrue(iamCredentialsConfigurationPatchModelNew instanceof IAMCredentialsConfigurationPatch);
-    assertEquals(iamCredentialsConfigurationPatchModelNew.apiKey(), "testString");
-    assertEquals(iamCredentialsConfigurationPatchModelNew.disabled(), Boolean.valueOf(true));
-  }
-  @Test
-  public void testIAMCredentialsConfigurationPatchAsPatch() throws Throwable {
-    IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModel = new IAMCredentialsConfigurationPatch.Builder()
-      .apiKey("testString")
-      .disabled(true)
-      .build();
+        IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModelNew = TestUtilities.deserialize(json, IAMCredentialsConfigurationPatch.class);
+        assertTrue(iamCredentialsConfigurationPatchModelNew instanceof IAMCredentialsConfigurationPatch);
+        assertEquals(iamCredentialsConfigurationPatchModelNew.apiKey(), "testString");
+        assertEquals(iamCredentialsConfigurationPatchModelNew.disabled(), Boolean.valueOf(true));
+    }
 
-    Map<String, Object> mergePatch = iamCredentialsConfigurationPatchModel.asPatch();
+    @Test
+    public void testIAMCredentialsConfigurationPatchAsPatch() throws Throwable {
+        IAMCredentialsConfigurationPatch iamCredentialsConfigurationPatchModel = new IAMCredentialsConfigurationPatch.Builder()
+                .apiKey("testString")
+                .disabled(true)
+                .build();
 
-    assertEquals(mergePatch.get("api_key"), "testString");
-    assertTrue(mergePatch.containsKey("disabled"));
-  }
+        Map<String, Object> mergePatch = iamCredentialsConfigurationPatchModel.asPatch();
+
+        assertEquals(mergePatch.get("api_key"), "testString");
+        assertTrue(mergePatch.containsKey("disabled"));
+    }
 
 }

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,70 +23,75 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretVersionLocks extends GenericModel {
 
-  /**
-   * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
-   * for version `n-1`.
-   */
-  public interface VersionAlias {
-    /** current. */
-    String CURRENT = "current";
-    /** previous. */
-    String PREVIOUS = "previous";
-  }
+    /**
+     * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
+     * for version `n-1`.
+     */
+    public interface VersionAlias {
+        /**
+         * current.
+         */
+        String CURRENT = "current";
+        /**
+         * previous.
+         */
+        String PREVIOUS = "previous";
+    }
 
-  @SerializedName("version_id")
-  protected String versionId;
-  @SerializedName("version_alias")
-  protected String versionAlias;
-  protected List<String> locks;
-  @SerializedName("payload_available")
-  protected Boolean payloadAvailable;
+    @SerializedName("version_id")
+    protected String versionId;
+    @SerializedName("version_alias")
+    protected String versionAlias;
+    protected List<String> locks;
+    @SerializedName("payload_available")
+    protected Boolean payloadAvailable;
 
-  protected SecretVersionLocks() { }
+    protected SecretVersionLocks() {
+    }
 
-  /**
-   * Gets the versionId.
-   *
-   * A v4 UUID identifier.
-   *
-   * @return the versionId
-   */
-  public String getVersionId() {
-    return versionId;
-  }
+    /**
+     * Gets the versionId.
+     * <p>
+     * A UUID identifier.
+     *
+     * @return the versionId
+     */
+    public String getVersionId() {
+        return versionId;
+    }
 
-  /**
-   * Gets the versionAlias.
-   *
-   * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
-   * for version `n-1`.
-   *
-   * @return the versionAlias
-   */
-  public String getVersionAlias() {
-    return versionAlias;
-  }
+    /**
+     * Gets the versionAlias.
+     * <p>
+     * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
+     * for version `n-1`.
+     *
+     * @return the versionAlias
+     */
+    public String getVersionAlias() {
+        return versionAlias;
+    }
 
-  /**
-   * Gets the locks.
-   *
-   * The names of all locks that are associated with this secret version.
-   *
-   * @return the locks
-   */
-  public List<String> getLocks() {
-    return locks;
-  }
+    /**
+     * Gets the locks.
+     * <p>
+     * The names of all locks that are associated with this secret version.
+     *
+     * @return the locks
+     */
+    public List<String> getLocks() {
+        return locks;
+    }
 
-  /**
-   * Gets the payloadAvailable.
-   *
-   * Indicates whether the secret payload is available in this secret version.
-   *
-   * @return the payloadAvailable
-   */
-  public Boolean isPayloadAvailable() {
-    return payloadAvailable;
-  }
+    /**
+     * Gets the payloadAvailable.
+     * <p>
+     * Indicates whether the secret payload is available in this secret version.
+     *
+     * @return the payloadAvailable
+     */
+    public Boolean isPayloadAvailable() {
+        return payloadAvailable;
+    }
 }
 

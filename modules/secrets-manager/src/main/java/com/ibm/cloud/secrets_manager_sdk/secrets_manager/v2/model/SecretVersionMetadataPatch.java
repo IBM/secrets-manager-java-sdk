@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -24,87 +24,88 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
  */
 public class SecretVersionMetadataPatch extends GenericModel {
 
-  @SerializedName("version_custom_metadata")
-  protected Map<String, Object> versionCustomMetadata;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Map<String, Object> versionCustomMetadata;
+    @SerializedName("version_custom_metadata")
+    protected Map<String, Object> versionCustomMetadata;
 
     /**
-     * Instantiates a new Builder from an existing SecretVersionMetadataPatch instance.
+     * Builder.
+     */
+    public static class Builder {
+        private Map<String, Object> versionCustomMetadata;
+
+        /**
+         * Instantiates a new Builder from an existing SecretVersionMetadataPatch instance.
+         *
+         * @param secretVersionMetadataPatch the instance to initialize the Builder with
+         */
+        private Builder(SecretVersionMetadataPatch secretVersionMetadataPatch) {
+            this.versionCustomMetadata = secretVersionMetadataPatch.versionCustomMetadata;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a SecretVersionMetadataPatch.
+         *
+         * @return the new SecretVersionMetadataPatch instance
+         */
+        public SecretVersionMetadataPatch build() {
+            return new SecretVersionMetadataPatch(this);
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the SecretVersionMetadataPatch builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+    }
+
+    protected SecretVersionMetadataPatch() {
+    }
+
+    protected SecretVersionMetadataPatch(Builder builder) {
+        versionCustomMetadata = builder.versionCustomMetadata;
+    }
+
+    /**
+     * New builder.
      *
-     * @param secretVersionMetadataPatch the instance to initialize the Builder with
+     * @return a SecretVersionMetadataPatch builder
      */
-    private Builder(SecretVersionMetadataPatch secretVersionMetadataPatch) {
-      this.versionCustomMetadata = secretVersionMetadataPatch.versionCustomMetadata;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a SecretVersionMetadataPatch.
+     * Gets the versionCustomMetadata.
+     * <p>
+     * The secret version metadata that a user can customize.
      *
-     * @return the new SecretVersionMetadataPatch instance
+     * @return the versionCustomMetadata
      */
-    public SecretVersionMetadataPatch build() {
-      return new SecretVersionMetadataPatch(this);
+    public Map<String, Object> versionCustomMetadata() {
+        return versionCustomMetadata;
     }
 
     /**
-     * Set the versionCustomMetadata.
+     * Construct a JSON merge-patch from the SecretVersionMetadataPatch.
+     * <p>
+     * Note that properties of the SecretVersionMetadataPatch with null values are not represented in the constructed
+     * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
      *
-     * @param versionCustomMetadata the versionCustomMetadata
-     * @return the SecretVersionMetadataPatch builder
+     * @return a JSON merge-patch for the SecretVersionMetadataPatch
      */
-    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-      this.versionCustomMetadata = versionCustomMetadata;
-      return this;
+    public Map<String, Object> asPatch() {
+        return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
     }
-  }
-
-  protected SecretVersionMetadataPatch() { }
-
-  protected SecretVersionMetadataPatch(Builder builder) {
-    versionCustomMetadata = builder.versionCustomMetadata;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a SecretVersionMetadataPatch builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the versionCustomMetadata.
-   *
-   * The secret version metadata that a user can customize.
-   *
-   * @return the versionCustomMetadata
-   */
-  public Map<String, Object> versionCustomMetadata() {
-    return versionCustomMetadata;
-  }
-
-  /**
-   * Construct a JSON merge-patch from the SecretVersionMetadataPatch.
-   *
-   * Note that properties of the SecretVersionMetadataPatch with null values are not represented in the constructed
-   * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
-   *
-   * @return a JSON merge-patch for the SecretVersionMetadataPatch
-   */
-  public Map<String, Object> asPatch() {
-    return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
-  }
 }
 

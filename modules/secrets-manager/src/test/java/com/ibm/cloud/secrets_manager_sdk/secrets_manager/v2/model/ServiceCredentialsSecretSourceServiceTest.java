@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -19,59 +19,62 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredent
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceParameters;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceRole;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ServiceCredentialsSecretSourceService model.
  */
 public class ServiceCredentialsSecretSourceServiceTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testServiceCredentialsSecretSourceService() throws Throwable {
-    ServiceCredentialsSourceServiceInstance serviceCredentialsSourceServiceInstanceModel = new ServiceCredentialsSourceServiceInstance.Builder()
-      .crn("testString")
-      .build();
-    assertEquals(serviceCredentialsSourceServiceInstanceModel.crn(), "testString");
+    @Test
+    public void testServiceCredentialsSecretSourceService() throws Throwable {
+        ServiceCredentialsSourceServiceInstance serviceCredentialsSourceServiceInstanceModel = new ServiceCredentialsSourceServiceInstance.Builder()
+                .crn("testString")
+                .build();
+        assertEquals(serviceCredentialsSourceServiceInstanceModel.crn(), "testString");
 
-    ServiceCredentialsSourceServiceParameters serviceCredentialsSourceServiceParametersModel = new ServiceCredentialsSourceServiceParameters.Builder()
-      .serviceidCrn("testString")
-      .add("foo", "testString")
-      .build();
-    assertEquals(serviceCredentialsSourceServiceParametersModel.getServiceidCrn(), "testString");
-    assertEquals(serviceCredentialsSourceServiceParametersModel.get("foo"), "testString");
+        ServiceCredentialsSourceServiceParameters serviceCredentialsSourceServiceParametersModel = new ServiceCredentialsSourceServiceParameters.Builder()
+                .serviceidCrn("testString")
+                .add("foo", "testString")
+                .build();
+        assertEquals(serviceCredentialsSourceServiceParametersModel.getServiceidCrn(), "testString");
+        assertEquals(serviceCredentialsSourceServiceParametersModel.get("foo"), "testString");
 
-    ServiceCredentialsSourceServiceRole serviceCredentialsSourceServiceRoleModel = new ServiceCredentialsSourceServiceRole.Builder()
-      .crn("testString")
-      .build();
-    assertEquals(serviceCredentialsSourceServiceRoleModel.crn(), "testString");
+        ServiceCredentialsSourceServiceRole serviceCredentialsSourceServiceRoleModel = new ServiceCredentialsSourceServiceRole.Builder()
+                .crn("testString")
+                .build();
+        assertEquals(serviceCredentialsSourceServiceRoleModel.crn(), "testString");
 
-    ServiceCredentialsSecretSourceService serviceCredentialsSecretSourceServiceModel = new ServiceCredentialsSecretSourceService.Builder()
-      .instance(serviceCredentialsSourceServiceInstanceModel)
-      .parameters(serviceCredentialsSourceServiceParametersModel)
-      .role(serviceCredentialsSourceServiceRoleModel)
-      .build();
-    assertEquals(serviceCredentialsSecretSourceServiceModel.instance(), serviceCredentialsSourceServiceInstanceModel);
-    assertEquals(serviceCredentialsSecretSourceServiceModel.parameters(), serviceCredentialsSourceServiceParametersModel);
-    assertEquals(serviceCredentialsSecretSourceServiceModel.role(), serviceCredentialsSourceServiceRoleModel);
+        ServiceCredentialsSecretSourceService serviceCredentialsSecretSourceServiceModel = new ServiceCredentialsSecretSourceService.Builder()
+                .instance(serviceCredentialsSourceServiceInstanceModel)
+                .parameters(serviceCredentialsSourceServiceParametersModel)
+                .role(serviceCredentialsSourceServiceRoleModel)
+                .build();
+        assertEquals(serviceCredentialsSecretSourceServiceModel.instance(), serviceCredentialsSourceServiceInstanceModel);
+        assertEquals(serviceCredentialsSecretSourceServiceModel.parameters(), serviceCredentialsSourceServiceParametersModel);
+        assertEquals(serviceCredentialsSecretSourceServiceModel.role(), serviceCredentialsSourceServiceRoleModel);
 
-    String json = TestUtilities.serialize(serviceCredentialsSecretSourceServiceModel);
+        String json = TestUtilities.serialize(serviceCredentialsSecretSourceServiceModel);
 
-    ServiceCredentialsSecretSourceService serviceCredentialsSecretSourceServiceModelNew = TestUtilities.deserialize(json, ServiceCredentialsSecretSourceService.class);
-    assertTrue(serviceCredentialsSecretSourceServiceModelNew instanceof ServiceCredentialsSecretSourceService);
-    assertEquals(serviceCredentialsSecretSourceServiceModelNew.instance().toString(), serviceCredentialsSourceServiceInstanceModel.toString());
-    assertEquals(serviceCredentialsSecretSourceServiceModelNew.parameters().toString(), serviceCredentialsSourceServiceParametersModel.toString());
-    assertEquals(serviceCredentialsSecretSourceServiceModelNew.role().toString(), serviceCredentialsSourceServiceRoleModel.toString());
-  }
+        ServiceCredentialsSecretSourceService serviceCredentialsSecretSourceServiceModelNew = TestUtilities.deserialize(json, ServiceCredentialsSecretSourceService.class);
+        assertTrue(serviceCredentialsSecretSourceServiceModelNew instanceof ServiceCredentialsSecretSourceService);
+        assertEquals(serviceCredentialsSecretSourceServiceModelNew.instance().toString(), serviceCredentialsSourceServiceInstanceModel.toString());
+        assertEquals(serviceCredentialsSecretSourceServiceModelNew.parameters().toString(), serviceCredentialsSourceServiceParametersModel.toString());
+        assertEquals(serviceCredentialsSecretSourceServiceModelNew.role().toString(), serviceCredentialsSourceServiceRoleModel.toString());
+    }
 
-  @Test(expectedExceptions = IllegalArgumentException.class)
-  public void testServiceCredentialsSecretSourceServiceError() throws Throwable {
-    new ServiceCredentialsSecretSourceService.Builder().build();
-  }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testServiceCredentialsSecretSourceServiceError() throws Throwable {
+        new ServiceCredentialsSecretSourceService.Builder().build();
+    }
 
 }

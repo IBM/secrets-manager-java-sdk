@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -27,37 +27,40 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredent
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceParameters;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ServiceCredentialsSourceServiceRole;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
 
 /**
  * Unit test class for the ServiceCredentialsSecret model.
  */
 public class ServiceCredentialsSecretTest {
-  final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
-  final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
+    final HashMap<String, InputStream> mockStreamMap = TestUtilities.createMockStreamMap();
+    final List<FileWithMetadata> mockListFileWithMetadata = TestUtilities.creatMockListFileWithMetadata();
 
-  @Test
-  public void testServiceCredentialsSecret() throws Throwable {
-    ServiceCredentialsSecret serviceCredentialsSecretModel = new ServiceCredentialsSecret();
-    assertNull(serviceCredentialsSecretModel.getCreatedBy());
-    assertNull(serviceCredentialsSecretModel.getCreatedAt());
-    assertNull(serviceCredentialsSecretModel.getCrn());
-    assertNull(serviceCredentialsSecretModel.getCustomMetadata());
-    assertNull(serviceCredentialsSecretModel.getDescription());
-    assertNull(serviceCredentialsSecretModel.getId());
-    assertNull(serviceCredentialsSecretModel.getLabels());
-    assertNull(serviceCredentialsSecretModel.getSecretGroupId());
-    assertNull(serviceCredentialsSecretModel.getSecretType());
-    assertNull(serviceCredentialsSecretModel.getUpdatedAt());
-    assertNull(serviceCredentialsSecretModel.getVersionsTotal());
-    assertNull(serviceCredentialsSecretModel.getRotation());
-    assertNull(serviceCredentialsSecretModel.getTtl());
-    assertNull(serviceCredentialsSecretModel.getExpirationDate());
-    assertNull(serviceCredentialsSecretModel.getSourceService());
-    assertNull(serviceCredentialsSecretModel.getCredentials());
-  }
+    @Test
+    public void testServiceCredentialsSecret() throws Throwable {
+        ServiceCredentialsSecret serviceCredentialsSecretModel = new ServiceCredentialsSecret();
+        assertNull(serviceCredentialsSecretModel.getCreatedBy());
+        assertNull(serviceCredentialsSecretModel.getCreatedAt());
+        assertNull(serviceCredentialsSecretModel.getCrn());
+        assertNull(serviceCredentialsSecretModel.getCustomMetadata());
+        assertNull(serviceCredentialsSecretModel.getDescription());
+        assertNull(serviceCredentialsSecretModel.getId());
+        assertNull(serviceCredentialsSecretModel.getLabels());
+        assertNull(serviceCredentialsSecretModel.getSecretGroupId());
+        assertNull(serviceCredentialsSecretModel.getSecretType());
+        assertNull(serviceCredentialsSecretModel.getUpdatedAt());
+        assertNull(serviceCredentialsSecretModel.getVersionsTotal());
+        assertNull(serviceCredentialsSecretModel.getRotation());
+        assertNull(serviceCredentialsSecretModel.getTtl());
+        assertNull(serviceCredentialsSecretModel.getExpirationDate());
+        assertNull(serviceCredentialsSecretModel.getSourceService());
+        assertNull(serviceCredentialsSecretModel.getCredentials());
+    }
 }

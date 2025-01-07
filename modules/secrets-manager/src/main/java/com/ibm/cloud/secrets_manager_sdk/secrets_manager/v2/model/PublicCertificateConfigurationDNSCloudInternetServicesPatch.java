@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,98 +23,99 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
 public class PublicCertificateConfigurationDNSCloudInternetServicesPatch extends ConfigurationPatch {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private String cloudInternetServicesApikey;
-    private String cloudInternetServicesCrn;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private String cloudInternetServicesApikey;
+        private String cloudInternetServicesCrn;
+
+        /**
+         * Instantiates a new Builder from an existing PublicCertificateConfigurationDNSCloudInternetServicesPatch instance.
+         *
+         * @param publicCertificateConfigurationDnsCloudInternetServicesPatch the instance to initialize the Builder with
+         */
+        public Builder(ConfigurationPatch publicCertificateConfigurationDnsCloudInternetServicesPatch) {
+            this.cloudInternetServicesApikey = publicCertificateConfigurationDnsCloudInternetServicesPatch.cloudInternetServicesApikey;
+            this.cloudInternetServicesCrn = publicCertificateConfigurationDnsCloudInternetServicesPatch.cloudInternetServicesCrn;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Instantiates a new builder with required properties.
+         *
+         * @param cloudInternetServicesApikey the cloudInternetServicesApikey
+         */
+        public Builder(String cloudInternetServicesApikey) {
+            this.cloudInternetServicesApikey = cloudInternetServicesApikey;
+        }
+
+        /**
+         * Builds a PublicCertificateConfigurationDNSCloudInternetServicesPatch.
+         *
+         * @return the new PublicCertificateConfigurationDNSCloudInternetServicesPatch instance
+         */
+        public PublicCertificateConfigurationDNSCloudInternetServicesPatch build() {
+            return new PublicCertificateConfigurationDNSCloudInternetServicesPatch(this);
+        }
+
+        /**
+         * Set the cloudInternetServicesApikey.
+         *
+         * @param cloudInternetServicesApikey the cloudInternetServicesApikey
+         * @return the PublicCertificateConfigurationDNSCloudInternetServicesPatch builder
+         */
+        public Builder cloudInternetServicesApikey(String cloudInternetServicesApikey) {
+            this.cloudInternetServicesApikey = cloudInternetServicesApikey;
+            return this;
+        }
+
+        /**
+         * Set the cloudInternetServicesCrn.
+         *
+         * @param cloudInternetServicesCrn the cloudInternetServicesCrn
+         * @return the PublicCertificateConfigurationDNSCloudInternetServicesPatch builder
+         */
+        public Builder cloudInternetServicesCrn(String cloudInternetServicesCrn) {
+            this.cloudInternetServicesCrn = cloudInternetServicesCrn;
+            return this;
+        }
+    }
+
+    protected PublicCertificateConfigurationDNSCloudInternetServicesPatch() {
+    }
+
+    protected PublicCertificateConfigurationDNSCloudInternetServicesPatch(Builder builder) {
+        com.ibm.cloud.sdk.core.util.Validator.notNull(builder.cloudInternetServicesApikey,
+                "cloudInternetServicesApikey cannot be null");
+        cloudInternetServicesApikey = builder.cloudInternetServicesApikey;
+        cloudInternetServicesCrn = builder.cloudInternetServicesCrn;
+    }
 
     /**
-     * Instantiates a new Builder from an existing PublicCertificateConfigurationDNSCloudInternetServicesPatch instance.
+     * New builder.
      *
-     * @param publicCertificateConfigurationDnsCloudInternetServicesPatch the instance to initialize the Builder with
+     * @return a PublicCertificateConfigurationDNSCloudInternetServicesPatch builder
      */
-    public Builder(ConfigurationPatch publicCertificateConfigurationDnsCloudInternetServicesPatch) {
-      this.cloudInternetServicesApikey = publicCertificateConfigurationDnsCloudInternetServicesPatch.cloudInternetServicesApikey;
-      this.cloudInternetServicesCrn = publicCertificateConfigurationDnsCloudInternetServicesPatch.cloudInternetServicesCrn;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Instantiates a new builder with required properties.
+     * Construct a JSON merge-patch from the PublicCertificateConfigurationDNSCloudInternetServicesPatch.
+     * <p>
+     * Note that properties of the PublicCertificateConfigurationDNSCloudInternetServicesPatch with null values are not represented in the constructed
+     * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
      *
-     * @param cloudInternetServicesApikey the cloudInternetServicesApikey
+     * @return a JSON merge-patch for the PublicCertificateConfigurationDNSCloudInternetServicesPatch
      */
-    public Builder(String cloudInternetServicesApikey) {
-      this.cloudInternetServicesApikey = cloudInternetServicesApikey;
+    public Map<String, Object> asPatch() {
+        return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
     }
-
-    /**
-     * Builds a PublicCertificateConfigurationDNSCloudInternetServicesPatch.
-     *
-     * @return the new PublicCertificateConfigurationDNSCloudInternetServicesPatch instance
-     */
-    public PublicCertificateConfigurationDNSCloudInternetServicesPatch build() {
-      return new PublicCertificateConfigurationDNSCloudInternetServicesPatch(this);
-    }
-
-    /**
-     * Set the cloudInternetServicesApikey.
-     *
-     * @param cloudInternetServicesApikey the cloudInternetServicesApikey
-     * @return the PublicCertificateConfigurationDNSCloudInternetServicesPatch builder
-     */
-    public Builder cloudInternetServicesApikey(String cloudInternetServicesApikey) {
-      this.cloudInternetServicesApikey = cloudInternetServicesApikey;
-      return this;
-    }
-
-    /**
-     * Set the cloudInternetServicesCrn.
-     *
-     * @param cloudInternetServicesCrn the cloudInternetServicesCrn
-     * @return the PublicCertificateConfigurationDNSCloudInternetServicesPatch builder
-     */
-    public Builder cloudInternetServicesCrn(String cloudInternetServicesCrn) {
-      this.cloudInternetServicesCrn = cloudInternetServicesCrn;
-      return this;
-    }
-  }
-
-  protected PublicCertificateConfigurationDNSCloudInternetServicesPatch() { }
-
-  protected PublicCertificateConfigurationDNSCloudInternetServicesPatch(Builder builder) {
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.cloudInternetServicesApikey,
-      "cloudInternetServicesApikey cannot be null");
-    cloudInternetServicesApikey = builder.cloudInternetServicesApikey;
-    cloudInternetServicesCrn = builder.cloudInternetServicesCrn;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a PublicCertificateConfigurationDNSCloudInternetServicesPatch builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Construct a JSON merge-patch from the PublicCertificateConfigurationDNSCloudInternetServicesPatch.
-   *
-   * Note that properties of the PublicCertificateConfigurationDNSCloudInternetServicesPatch with null values are not represented in the constructed
-   * JSON merge-patch object, but can be explicitly set afterward to signify a property delete.
-   *
-   * @return a JSON merge-patch for the PublicCertificateConfigurationDNSCloudInternetServicesPatch
-   */
-  public Map<String, Object> asPatch() {
-    return GsonSingleton.getGson().fromJson(this.toString(), Map.class);
-  }
 }
 

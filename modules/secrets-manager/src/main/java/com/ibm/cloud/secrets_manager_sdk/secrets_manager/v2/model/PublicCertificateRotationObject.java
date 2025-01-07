@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -21,78 +21,79 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class PublicCertificateRotationObject extends GenericModel {
 
-  @SerializedName("rotate_keys")
-  protected Boolean rotateKeys;
-
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Boolean rotateKeys;
+    @SerializedName("rotate_keys")
+    protected Boolean rotateKeys;
 
     /**
-     * Instantiates a new Builder from an existing PublicCertificateRotationObject instance.
+     * Builder.
+     */
+    public static class Builder {
+        private Boolean rotateKeys;
+
+        /**
+         * Instantiates a new Builder from an existing PublicCertificateRotationObject instance.
+         *
+         * @param publicCertificateRotationObject the instance to initialize the Builder with
+         */
+        private Builder(PublicCertificateRotationObject publicCertificateRotationObject) {
+            this.rotateKeys = publicCertificateRotationObject.rotateKeys;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a PublicCertificateRotationObject.
+         *
+         * @return the new PublicCertificateRotationObject instance
+         */
+        public PublicCertificateRotationObject build() {
+            return new PublicCertificateRotationObject(this);
+        }
+
+        /**
+         * Set the rotateKeys.
+         *
+         * @param rotateKeys the rotateKeys
+         * @return the PublicCertificateRotationObject builder
+         */
+        public Builder rotateKeys(Boolean rotateKeys) {
+            this.rotateKeys = rotateKeys;
+            return this;
+        }
+    }
+
+    protected PublicCertificateRotationObject() {
+    }
+
+    protected PublicCertificateRotationObject(Builder builder) {
+        rotateKeys = builder.rotateKeys;
+    }
+
+    /**
+     * New builder.
      *
-     * @param publicCertificateRotationObject the instance to initialize the Builder with
+     * @return a PublicCertificateRotationObject builder
      */
-    private Builder(PublicCertificateRotationObject publicCertificateRotationObject) {
-      this.rotateKeys = publicCertificateRotationObject.rotateKeys;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
 
     /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a PublicCertificateRotationObject.
+     * Gets the rotateKeys.
+     * <p>
+     * This field indicates whether Secrets Manager rotates the private key for your public certificate automatically.
+     * <p>
+     * The default is `false`. If it is set to `true`, the service generates and stores a new private key for your rotated
+     * certificate.
      *
-     * @return the new PublicCertificateRotationObject instance
+     * @return the rotateKeys
      */
-    public PublicCertificateRotationObject build() {
-      return new PublicCertificateRotationObject(this);
+    public Boolean rotateKeys() {
+        return rotateKeys;
     }
-
-    /**
-     * Set the rotateKeys.
-     *
-     * @param rotateKeys the rotateKeys
-     * @return the PublicCertificateRotationObject builder
-     */
-    public Builder rotateKeys(Boolean rotateKeys) {
-      this.rotateKeys = rotateKeys;
-      return this;
-    }
-  }
-
-  protected PublicCertificateRotationObject() { }
-
-  protected PublicCertificateRotationObject(Builder builder) {
-    rotateKeys = builder.rotateKeys;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a PublicCertificateRotationObject builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
-
-  /**
-   * Gets the rotateKeys.
-   *
-   * This field indicates whether Secrets Manager rotates the private key for your public certificate automatically.
-   *
-   * The default is `false`. If it is set to `true`, the service generates and stores a new private key for your rotated
-   * certificate.
-   *
-   * @return the rotateKeys
-   */
-  public Boolean rotateKeys() {
-    return rotateKeys;
-  }
 }
 

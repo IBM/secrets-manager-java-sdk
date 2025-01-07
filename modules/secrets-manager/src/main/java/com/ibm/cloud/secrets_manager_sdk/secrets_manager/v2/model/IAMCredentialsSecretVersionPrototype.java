@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -21,75 +21,76 @@ import java.util.Map;
 public class IAMCredentialsSecretVersionPrototype extends SecretVersionPrototype {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Map<String, Object> customMetadata;
-    private Map<String, Object> versionCustomMetadata;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
+
+        /**
+         * Instantiates a new Builder from an existing IAMCredentialsSecretVersionPrototype instance.
+         *
+         * @param iamCredentialsSecretVersionPrototype the instance to initialize the Builder with
+         */
+        public Builder(SecretVersionPrototype iamCredentialsSecretVersionPrototype) {
+            this.customMetadata = iamCredentialsSecretVersionPrototype.customMetadata;
+            this.versionCustomMetadata = iamCredentialsSecretVersionPrototype.versionCustomMetadata;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a IAMCredentialsSecretVersionPrototype.
+         *
+         * @return the new IAMCredentialsSecretVersionPrototype instance
+         */
+        public IAMCredentialsSecretVersionPrototype build() {
+            return new IAMCredentialsSecretVersionPrototype(this);
+        }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the IAMCredentialsSecretVersionPrototype builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the IAMCredentialsSecretVersionPrototype builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+    }
+
+    protected IAMCredentialsSecretVersionPrototype() {
+    }
+
+    protected IAMCredentialsSecretVersionPrototype(Builder builder) {
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
+    }
 
     /**
-     * Instantiates a new Builder from an existing IAMCredentialsSecretVersionPrototype instance.
+     * New builder.
      *
-     * @param iamCredentialsSecretVersionPrototype the instance to initialize the Builder with
+     * @return a IAMCredentialsSecretVersionPrototype builder
      */
-    public Builder(SecretVersionPrototype iamCredentialsSecretVersionPrototype) {
-      this.customMetadata = iamCredentialsSecretVersionPrototype.customMetadata;
-      this.versionCustomMetadata = iamCredentialsSecretVersionPrototype.versionCustomMetadata;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a IAMCredentialsSecretVersionPrototype.
-     *
-     * @return the new IAMCredentialsSecretVersionPrototype instance
-     */
-    public IAMCredentialsSecretVersionPrototype build() {
-      return new IAMCredentialsSecretVersionPrototype(this);
-    }
-
-    /**
-     * Set the customMetadata.
-     *
-     * @param customMetadata the customMetadata
-     * @return the IAMCredentialsSecretVersionPrototype builder
-     */
-    public Builder customMetadata(Map<String, Object> customMetadata) {
-      this.customMetadata = customMetadata;
-      return this;
-    }
-
-    /**
-     * Set the versionCustomMetadata.
-     *
-     * @param versionCustomMetadata the versionCustomMetadata
-     * @return the IAMCredentialsSecretVersionPrototype builder
-     */
-    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-      this.versionCustomMetadata = versionCustomMetadata;
-      return this;
-    }
-  }
-
-  protected IAMCredentialsSecretVersionPrototype() { }
-
-  protected IAMCredentialsSecretVersionPrototype(Builder builder) {
-    customMetadata = builder.customMetadata;
-    versionCustomMetadata = builder.versionCustomMetadata;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a IAMCredentialsSecretVersionPrototype builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

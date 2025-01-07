@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,19 +20,20 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ServiceCredentialsSourceServiceIamRole extends GenericModel {
 
-  protected String crn;
+    protected String crn;
 
-  protected ServiceCredentialsSourceServiceIamRole() { }
+    protected ServiceCredentialsSourceServiceIamRole() {
+    }
 
-  /**
-   * Gets the crn.
-   *
-   * The IAM role CRN assigned to the generated service credentials.
-   *
-   * @return the crn
-   */
-  public String getCrn() {
-    return crn;
-  }
+    /**
+     * Gets the crn.
+     * <p>
+     * The IAM role CRN assigned to the generated service credentials.
+     *
+     * @return the crn
+     */
+    public String getCrn() {
+        return crn;
+    }
 }
 

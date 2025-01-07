@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -21,89 +21,90 @@ import java.util.Map;
 public class PrivateCertificateVersionPrototype extends SecretVersionPrototype {
 
 
-  /**
-   * Builder.
-   */
-  public static class Builder {
-    private Map<String, Object> customMetadata;
-    private Map<String, Object> versionCustomMetadata;
-    private String csr;
+    /**
+     * Builder.
+     */
+    public static class Builder {
+        private Map<String, Object> customMetadata;
+        private Map<String, Object> versionCustomMetadata;
+        private String csr;
+
+        /**
+         * Instantiates a new Builder from an existing PrivateCertificateVersionPrototype instance.
+         *
+         * @param privateCertificateVersionPrototype the instance to initialize the Builder with
+         */
+        public Builder(SecretVersionPrototype privateCertificateVersionPrototype) {
+            this.customMetadata = privateCertificateVersionPrototype.customMetadata;
+            this.versionCustomMetadata = privateCertificateVersionPrototype.versionCustomMetadata;
+            this.csr = privateCertificateVersionPrototype.csr;
+        }
+
+        /**
+         * Instantiates a new builder.
+         */
+        public Builder() {
+        }
+
+        /**
+         * Builds a PrivateCertificateVersionPrototype.
+         *
+         * @return the new PrivateCertificateVersionPrototype instance
+         */
+        public PrivateCertificateVersionPrototype build() {
+            return new PrivateCertificateVersionPrototype(this);
+        }
+
+        /**
+         * Set the customMetadata.
+         *
+         * @param customMetadata the customMetadata
+         * @return the PrivateCertificateVersionPrototype builder
+         */
+        public Builder customMetadata(Map<String, Object> customMetadata) {
+            this.customMetadata = customMetadata;
+            return this;
+        }
+
+        /**
+         * Set the versionCustomMetadata.
+         *
+         * @param versionCustomMetadata the versionCustomMetadata
+         * @return the PrivateCertificateVersionPrototype builder
+         */
+        public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
+            this.versionCustomMetadata = versionCustomMetadata;
+            return this;
+        }
+
+        /**
+         * Set the csr.
+         *
+         * @param csr the csr
+         * @return the PrivateCertificateVersionPrototype builder
+         */
+        public Builder csr(String csr) {
+            this.csr = csr;
+            return this;
+        }
+    }
+
+    protected PrivateCertificateVersionPrototype() {
+    }
+
+    protected PrivateCertificateVersionPrototype(Builder builder) {
+        customMetadata = builder.customMetadata;
+        versionCustomMetadata = builder.versionCustomMetadata;
+        csr = builder.csr;
+    }
 
     /**
-     * Instantiates a new Builder from an existing PrivateCertificateVersionPrototype instance.
+     * New builder.
      *
-     * @param privateCertificateVersionPrototype the instance to initialize the Builder with
+     * @return a PrivateCertificateVersionPrototype builder
      */
-    public Builder(SecretVersionPrototype privateCertificateVersionPrototype) {
-      this.customMetadata = privateCertificateVersionPrototype.customMetadata;
-      this.versionCustomMetadata = privateCertificateVersionPrototype.versionCustomMetadata;
-      this.csr = privateCertificateVersionPrototype.csr;
+    public Builder newBuilder() {
+        return new Builder(this);
     }
-
-    /**
-     * Instantiates a new builder.
-     */
-    public Builder() {
-    }
-
-    /**
-     * Builds a PrivateCertificateVersionPrototype.
-     *
-     * @return the new PrivateCertificateVersionPrototype instance
-     */
-    public PrivateCertificateVersionPrototype build() {
-      return new PrivateCertificateVersionPrototype(this);
-    }
-
-    /**
-     * Set the customMetadata.
-     *
-     * @param customMetadata the customMetadata
-     * @return the PrivateCertificateVersionPrototype builder
-     */
-    public Builder customMetadata(Map<String, Object> customMetadata) {
-      this.customMetadata = customMetadata;
-      return this;
-    }
-
-    /**
-     * Set the versionCustomMetadata.
-     *
-     * @param versionCustomMetadata the versionCustomMetadata
-     * @return the PrivateCertificateVersionPrototype builder
-     */
-    public Builder versionCustomMetadata(Map<String, Object> versionCustomMetadata) {
-      this.versionCustomMetadata = versionCustomMetadata;
-      return this;
-    }
-
-    /**
-     * Set the csr.
-     *
-     * @param csr the csr
-     * @return the PrivateCertificateVersionPrototype builder
-     */
-    public Builder csr(String csr) {
-      this.csr = csr;
-      return this;
-    }
-  }
-
-  protected PrivateCertificateVersionPrototype() { }
-
-  protected PrivateCertificateVersionPrototype(Builder builder) {
-    customMetadata = builder.customMetadata;
-    versionCustomMetadata = builder.versionCustomMetadata;
-    csr = builder.csr;
-  }
-
-  /**
-   * New builder.
-   *
-   * @return a PrivateCertificateVersionPrototype builder
-   */
-  public Builder newBuilder() {
-    return new Builder(this);
-  }
 }
 

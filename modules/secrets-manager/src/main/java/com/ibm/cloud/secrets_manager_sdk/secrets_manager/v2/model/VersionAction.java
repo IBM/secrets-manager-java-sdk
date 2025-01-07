@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -18,53 +18,58 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * The request body to specify the properties of the action to create a secret version.
- *
+ * <p>
  * Classes which extend this class:
  * - PrivateCertificateVersionActionRevoke
  */
 public class VersionAction extends GenericModel {
-  @SuppressWarnings("unused")
-  protected static String discriminatorPropertyName = "action_type";
-  protected static java.util.Map<String, Class<?>> discriminatorMapping;
-  static {
-    discriminatorMapping = new java.util.HashMap<>();
-    discriminatorMapping.put("private_cert_action_revoke_certificate", PrivateCertificateVersionActionRevoke.class);
-  }
-  /**
-   * The type of secret version action.
-   */
-  public interface ActionType {
-    /** private_cert_action_revoke_certificate. */
-    String PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = "private_cert_action_revoke_certificate";
-  }
+    @SuppressWarnings("unused")
+    protected static String discriminatorPropertyName = "action_type";
+    protected static java.util.Map<String, Class<?>> discriminatorMapping;
 
-  @SerializedName("action_type")
-  protected String actionType;
-  @SerializedName("revocation_time_seconds")
-  protected Long revocationTimeSeconds;
+    static {
+        discriminatorMapping = new java.util.HashMap<>();
+        discriminatorMapping.put("private_cert_action_revoke_certificate", PrivateCertificateVersionActionRevoke.class);
+    }
 
-  protected VersionAction() { }
+    /**
+     * The type of secret version action.
+     */
+    public interface ActionType {
+        /**
+         * private_cert_action_revoke_certificate.
+         */
+        String PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = "private_cert_action_revoke_certificate";
+    }
 
-  /**
-   * Gets the actionType.
-   *
-   * The type of secret version action.
-   *
-   * @return the actionType
-   */
-  public String getActionType() {
-    return actionType;
-  }
+    @SerializedName("action_type")
+    protected String actionType;
+    @SerializedName("revocation_time_seconds")
+    protected Long revocationTimeSeconds;
 
-  /**
-   * Gets the revocationTimeSeconds.
-   *
-   * The timestamp of the certificate revocation.
-   *
-   * @return the revocationTimeSeconds
-   */
-  public Long getRevocationTimeSeconds() {
-    return revocationTimeSeconds;
-  }
+    protected VersionAction() {
+    }
+
+    /**
+     * Gets the actionType.
+     * <p>
+     * The type of secret version action.
+     *
+     * @return the actionType
+     */
+    public String getActionType() {
+        return actionType;
+    }
+
+    /**
+     * Gets the revocationTimeSeconds.
+     * <p>
+     * The timestamp of the certificate revocation.
+     *
+     * @return the revocationTimeSeconds
+     */
+    public Long getRevocationTimeSeconds() {
+        return revocationTimeSeconds;
+    }
 }
 

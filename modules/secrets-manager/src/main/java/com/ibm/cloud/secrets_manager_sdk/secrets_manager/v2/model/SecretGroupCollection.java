@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -23,33 +23,34 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class SecretGroupCollection extends GenericModel {
 
-  @SerializedName("secret_groups")
-  protected List<SecretGroup> secretGroups;
-  @SerializedName("total_count")
-  protected Long totalCount;
+    @SerializedName("secret_groups")
+    protected List<SecretGroup> secretGroups;
+    @SerializedName("total_count")
+    protected Long totalCount;
 
-  protected SecretGroupCollection() { }
+    protected SecretGroupCollection() {
+    }
 
-  /**
-   * Gets the secretGroups.
-   *
-   * A collection of secret groups.
-   *
-   * @return the secretGroups
-   */
-  public List<SecretGroup> getSecretGroups() {
-    return secretGroups;
-  }
+    /**
+     * Gets the secretGroups.
+     * <p>
+     * A collection of secret groups.
+     *
+     * @return the secretGroups
+     */
+    public List<SecretGroup> getSecretGroups() {
+        return secretGroups;
+    }
 
-  /**
-   * Gets the totalCount.
-   *
-   * The total number of resources in a collection.
-   *
-   * @return the totalCount
-   */
-  public Long getTotalCount() {
-    return totalCount;
-  }
+    /**
+     * Gets the totalCount.
+     * <p>
+     * The total number of resources in a collection.
+     *
+     * @return the totalCount
+     */
+    public Long getTotalCount() {
+        return totalCount;
+    }
 }
 

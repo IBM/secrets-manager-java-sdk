@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,43 +20,44 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  */
 public class ServiceCredentialsSourceServiceIam extends GenericModel {
 
-  protected ServiceCredentialsSourceServiceIamApikey apikey;
-  protected ServiceCredentialsSourceServiceIamRole role;
-  protected ServiceCredentialsSourceServiceIamServiceid serviceid;
+    protected ServiceCredentialsSourceServiceIamApikey apikey;
+    protected ServiceCredentialsSourceServiceIamRole role;
+    protected ServiceCredentialsSourceServiceIamServiceid serviceid;
 
-  protected ServiceCredentialsSourceServiceIam() { }
+    protected ServiceCredentialsSourceServiceIam() {
+    }
 
-  /**
-   * Gets the apikey.
-   *
-   * The IAM apikey metadata for the IAM credentials that were generated.
-   *
-   * @return the apikey
-   */
-  public ServiceCredentialsSourceServiceIamApikey getApikey() {
-    return apikey;
-  }
+    /**
+     * Gets the apikey.
+     * <p>
+     * The IAM apikey metadata for the IAM credentials that were generated.
+     *
+     * @return the apikey
+     */
+    public ServiceCredentialsSourceServiceIamApikey getApikey() {
+        return apikey;
+    }
 
-  /**
-   * Gets the role.
-   *
-   * The IAM role for the generate service credentials.
-   *
-   * @return the role
-   */
-  public ServiceCredentialsSourceServiceIamRole getRole() {
-    return role;
-  }
+    /**
+     * Gets the role.
+     * <p>
+     * The IAM role for the generate service credentials.
+     *
+     * @return the role
+     */
+    public ServiceCredentialsSourceServiceIamRole getRole() {
+        return role;
+    }
 
-  /**
-   * Gets the serviceid.
-   *
-   * The IAM serviceid for the generated service credentials.
-   *
-   * @return the serviceid
-   */
-  public ServiceCredentialsSourceServiceIamServiceid getServiceid() {
-    return serviceid;
-  }
+    /**
+     * Gets the serviceid.
+     * <p>
+     * The IAM serviceid for the generated service credentials.
+     *
+     * @return the serviceid
+     */
+    public ServiceCredentialsSourceServiceIamServiceid getServiceid() {
+        return serviceid;
+    }
 }
 
