@@ -89,9 +89,6 @@ public class ImportedCertificateManagedCsr extends GenericModel {
     protected String extKeyUsageOids;
     @SerializedName("rotate_keys")
     protected Boolean rotateKeys;
-    protected String csr;
-    @SerializedName("private_key")
-    protected String privateKey;
 
     /**
      * Builder.
@@ -123,8 +120,6 @@ public class ImportedCertificateManagedCsr extends GenericModel {
         private String policyIdentifiers;
         private String extKeyUsageOids;
         private Boolean rotateKeys;
-        private String csr;
-        private String privateKey;
 
         /**
          * Instantiates a new Builder from an existing ImportedCertificateManagedCsr instance.
@@ -158,8 +153,6 @@ public class ImportedCertificateManagedCsr extends GenericModel {
             this.policyIdentifiers = importedCertificateManagedCsr.policyIdentifiers;
             this.extKeyUsageOids = importedCertificateManagedCsr.extKeyUsageOids;
             this.rotateKeys = importedCertificateManagedCsr.rotateKeys;
-            this.csr = importedCertificateManagedCsr.csr;
-            this.privateKey = importedCertificateManagedCsr.privateKey;
         }
 
         /**
@@ -581,28 +574,6 @@ public class ImportedCertificateManagedCsr extends GenericModel {
             this.rotateKeys = rotateKeys;
             return this;
         }
-
-        /**
-         * Set the csr.
-         *
-         * @param csr the csr
-         * @return the ImportedCertificateManagedCsr builder
-         */
-        public Builder csr(String csr) {
-            this.csr = csr;
-            return this;
-        }
-
-        /**
-         * Set the privateKey.
-         *
-         * @param privateKey the privateKey
-         * @return the ImportedCertificateManagedCsr builder
-         */
-        public Builder privateKey(String privateKey) {
-            this.privateKey = privateKey;
-            return this;
-        }
     }
 
     protected ImportedCertificateManagedCsr() {
@@ -635,8 +606,6 @@ public class ImportedCertificateManagedCsr extends GenericModel {
         policyIdentifiers = builder.policyIdentifiers;
         extKeyUsageOids = builder.extKeyUsageOids;
         rotateKeys = builder.rotateKeys;
-        csr = builder.csr;
-        privateKey = builder.privateKey;
     }
 
     /**
@@ -953,29 +922,6 @@ public class ImportedCertificateManagedCsr extends GenericModel {
      */
     public Boolean rotateKeys() {
         return rotateKeys;
-    }
-
-    /**
-     * Gets the csr.
-     * <p>
-     * The certificate signing request.
-     *
-     * @return the csr
-     */
-    public String csr() {
-        return csr;
-    }
-
-    /**
-     * Gets the privateKey.
-     * <p>
-     * The PEM-encoded private key that is associated with the certificate. The data must be formatted on a single line
-     * with embedded newline characters.
-     *
-     * @return the privateKey
-     */
-    public String privateKey() {
-        return privateKey;
     }
 }
 

@@ -42,7 +42,7 @@ public class PrivateCertificateConfigurationActionSignIntermediatePrototypeTest 
                 .otherSans(java.util.Arrays.asList("2.5.4.5;UTF8:*.example.com"))
                 .ttl("12h")
                 .format("pem")
-                .maxPathLength(Long.valueOf("26"))
+                .maxPathLength(Long.valueOf("-1"))
                 .excludeCnFromSans(true)
                 .permittedDnsDomains(java.util.Arrays.asList("testString"))
                 .useCsrValues(true)
@@ -64,7 +64,7 @@ public class PrivateCertificateConfigurationActionSignIntermediatePrototypeTest 
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.otherSans(), java.util.Arrays.asList("2.5.4.5;UTF8:*.example.com"));
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.ttl(), "12h");
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.format(), "pem");
-        assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.maxPathLength(), Long.valueOf("26"));
+        assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.maxPathLength(), Long.valueOf("-1"));
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.excludeCnFromSans(), Boolean.valueOf(true));
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.permittedDnsDomains(), java.util.Arrays.asList("testString"));
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModel.useCsrValues(), Boolean.valueOf(true));
@@ -88,7 +88,7 @@ public class PrivateCertificateConfigurationActionSignIntermediatePrototypeTest 
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.uriSans(), "testString");
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.ttl(), "12h");
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.format(), "pem");
-        assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.maxPathLength(), Long.valueOf("26"));
+        assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.maxPathLength(), Long.valueOf("-1"));
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.excludeCnFromSans(), Boolean.valueOf(true));
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.useCsrValues(), Boolean.valueOf(true));
         assertEquals(privateCertificateConfigurationActionSignIntermediatePrototypeModelNew.serialNumber(), "d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5");

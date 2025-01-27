@@ -62,8 +62,6 @@ public class ImportedCertificatePrototypeTest {
                 .policyIdentifiers("testString")
                 .extKeyUsageOids("testString")
                 .rotateKeys(true)
-                .csr("testString")
-                .privateKey("testString")
                 .build();
         assertEquals(importedCertificateManagedCsrModel.ou(), java.util.Arrays.asList("testString"));
         assertEquals(importedCertificateManagedCsrModel.organization(), java.util.Arrays.asList("testString"));
@@ -91,8 +89,6 @@ public class ImportedCertificatePrototypeTest {
         assertEquals(importedCertificateManagedCsrModel.policyIdentifiers(), "testString");
         assertEquals(importedCertificateManagedCsrModel.extKeyUsageOids(), "testString");
         assertEquals(importedCertificateManagedCsrModel.rotateKeys(), Boolean.valueOf(true));
-        assertEquals(importedCertificateManagedCsrModel.csr(), "testString");
-        assertEquals(importedCertificateManagedCsrModel.privateKey(), "testString");
 
         ImportedCertificatePrototype importedCertificatePrototypeModel = new ImportedCertificatePrototype.Builder()
                 .secretType("imported_cert")

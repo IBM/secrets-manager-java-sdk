@@ -1383,7 +1383,7 @@ public class SecretsManagerTest {
     @Test
     public void testCreateSecretVersionActionWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"action_type\": \"private_cert_action_revoke_certificate\", \"revocation_time_seconds\": 21}";
+        String mockResponseBody = "{\"action_type\": \"private_cert_action_revoke_certificate\", \"revocation_time_seconds\": 1577836800}";
         String createSecretVersionActionPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/actions";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")
@@ -2388,7 +2388,7 @@ public class SecretsManagerTest {
     @Test
     public void testCreateConfigurationActionWOptions() throws Throwable {
         // Register a mock response
-        String mockResponseBody = "{\"action_type\": \"private_cert_configuration_action_revoke_ca_certificate\", \"revocation_time_seconds\": 21}";
+        String mockResponseBody = "{\"action_type\": \"private_cert_configuration_action_revoke_ca_certificate\", \"revocation_time_seconds\": 1577836800}";
         String createConfigurationActionPath = "/api/v2/configurations/configuration-name/actions";
         server.enqueue(new MockResponse()
                 .setHeader("Content-type", "application/json")

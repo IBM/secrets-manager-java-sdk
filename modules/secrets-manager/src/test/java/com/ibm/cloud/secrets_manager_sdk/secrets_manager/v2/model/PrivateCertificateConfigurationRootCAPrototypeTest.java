@@ -77,7 +77,7 @@ public class PrivateCertificateConfigurationRootCAPrototypeTest {
                 .privateKeyFormat("der")
                 .keyType("rsa")
                 .keyBits(Long.valueOf("4096"))
-                .maxPathLength(Long.valueOf("26"))
+                .maxPathLength(Long.valueOf("-1"))
                 .excludeCnFromSans(true)
                 .permittedDnsDomains(java.util.Arrays.asList("testString"))
                 .ou(java.util.Arrays.asList("testString"))
@@ -107,7 +107,7 @@ public class PrivateCertificateConfigurationRootCAPrototypeTest {
         assertEquals(privateCertificateConfigurationRootCaPrototypeModel.privateKeyFormat(), "der");
         assertEquals(privateCertificateConfigurationRootCaPrototypeModel.keyType(), "rsa");
         assertEquals(privateCertificateConfigurationRootCaPrototypeModel.keyBits(), Long.valueOf("4096"));
-        assertEquals(privateCertificateConfigurationRootCaPrototypeModel.maxPathLength(), Long.valueOf("26"));
+        assertEquals(privateCertificateConfigurationRootCaPrototypeModel.maxPathLength(), Long.valueOf("-1"));
         assertEquals(privateCertificateConfigurationRootCaPrototypeModel.excludeCnFromSans(), Boolean.valueOf(true));
         assertEquals(privateCertificateConfigurationRootCaPrototypeModel.permittedDnsDomains(), java.util.Arrays.asList("testString"));
         assertEquals(privateCertificateConfigurationRootCaPrototypeModel.ou(), java.util.Arrays.asList("testString"));
@@ -139,7 +139,7 @@ public class PrivateCertificateConfigurationRootCAPrototypeTest {
         assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.privateKeyFormat(), "der");
         assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.keyType(), "rsa");
         assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.keyBits(), Long.valueOf("4096"));
-        assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.maxPathLength(), Long.valueOf("26"));
+        assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.maxPathLength(), Long.valueOf("-1"));
         assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.excludeCnFromSans(), Boolean.valueOf(true));
         assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.serialNumber(), "d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5");
     }

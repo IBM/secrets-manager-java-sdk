@@ -61,8 +61,6 @@ public class ImportedCertificateManagedCsrTest {
                 .policyIdentifiers("testString")
                 .extKeyUsageOids("testString")
                 .rotateKeys(true)
-                .csr("testString")
-                .privateKey("testString")
                 .build();
         assertEquals(importedCertificateManagedCsrModel.ou(), java.util.Arrays.asList("testString"));
         assertEquals(importedCertificateManagedCsrModel.organization(), java.util.Arrays.asList("testString"));
@@ -90,8 +88,6 @@ public class ImportedCertificateManagedCsrTest {
         assertEquals(importedCertificateManagedCsrModel.policyIdentifiers(), "testString");
         assertEquals(importedCertificateManagedCsrModel.extKeyUsageOids(), "testString");
         assertEquals(importedCertificateManagedCsrModel.rotateKeys(), Boolean.valueOf(true));
-        assertEquals(importedCertificateManagedCsrModel.csr(), "testString");
-        assertEquals(importedCertificateManagedCsrModel.privateKey(), "testString");
 
         String json = TestUtilities.serialize(importedCertificateManagedCsrModel);
 
@@ -116,7 +112,5 @@ public class ImportedCertificateManagedCsrTest {
         assertEquals(importedCertificateManagedCsrModelNew.policyIdentifiers(), "testString");
         assertEquals(importedCertificateManagedCsrModelNew.extKeyUsageOids(), "testString");
         assertEquals(importedCertificateManagedCsrModelNew.rotateKeys(), Boolean.valueOf(true));
-        assertEquals(importedCertificateManagedCsrModelNew.csr(), "testString");
-        assertEquals(importedCertificateManagedCsrModelNew.privateKey(), "testString");
     }
 }

@@ -63,8 +63,6 @@ public class ImportedCertificateMetadataPatchTest {
                 .policyIdentifiers("testString")
                 .extKeyUsageOids("testString")
                 .rotateKeys(true)
-                .csr("testString")
-                .privateKey("testString")
                 .build();
         assertEquals(importedCertificateManagedCsrModel.ou(), java.util.Arrays.asList("testString"));
         assertEquals(importedCertificateManagedCsrModel.organization(), java.util.Arrays.asList("testString"));
@@ -92,8 +90,6 @@ public class ImportedCertificateMetadataPatchTest {
         assertEquals(importedCertificateManagedCsrModel.policyIdentifiers(), "testString");
         assertEquals(importedCertificateManagedCsrModel.extKeyUsageOids(), "testString");
         assertEquals(importedCertificateManagedCsrModel.rotateKeys(), Boolean.valueOf(true));
-        assertEquals(importedCertificateManagedCsrModel.csr(), "testString");
-        assertEquals(importedCertificateManagedCsrModel.privateKey(), "testString");
 
         ImportedCertificateMetadataPatch importedCertificateMetadataPatchModel = new ImportedCertificateMetadataPatch.Builder()
                 .name("my-secret-example")
@@ -147,8 +143,6 @@ public class ImportedCertificateMetadataPatchTest {
                 .policyIdentifiers("testString")
                 .extKeyUsageOids("testString")
                 .rotateKeys(true)
-                .csr("testString")
-                .privateKey("testString")
                 .build();
 
         ImportedCertificateMetadataPatch importedCertificateMetadataPatchModel = new ImportedCertificateMetadataPatch.Builder()
