@@ -234,8 +234,7 @@ public class ImportedCertificateManagedCsrResponse extends GenericModel {
      * The custom Object Identifier (OID) or UTF8-string Subject Alternative Names to define for the certificate, in a
      * comma-delimited list.
      * <p>
-     * The alternative names must The format is the same as OpenSSL: `&lt;oid&gt;:&lt;type&gt;:&lt;value&gt;` where the
-     * current valid type is `UTF8`.
+     * The format is the same as OpenSSL: `&lt;oid&gt;:&lt;type&gt;:&lt;value&gt;` where the current valid type is `UTF8`.
      *
      * @return the otherSans
      */
@@ -331,7 +330,7 @@ public class ImportedCertificateManagedCsrResponse extends GenericModel {
      * <p>
      * Allowable values for RSA keys are: `2048`, `3072`, `4096` and `8192`. Allowable values for EC keys are: `224`,
      * `256`, `384`, and `521`. The default for RSA keys is `2048`. The default for EC keys is `256`. Ignored for ed25519
-     * key.
+     * keys.
      *
      * @return the keyBits
      */
