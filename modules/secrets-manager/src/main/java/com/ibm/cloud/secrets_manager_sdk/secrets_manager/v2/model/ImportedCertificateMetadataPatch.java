@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -33,6 +33,7 @@ public class ImportedCertificateMetadataPatch extends SecretMetadataPatch {
     private String description;
     private List<String> labels;
     private Map<String, Object> customMetadata;
+    private ImportedCertificateManagedCsr managedCsr;
 
     /**
      * Instantiates a new Builder from an existing ImportedCertificateMetadataPatch instance.
@@ -44,6 +45,7 @@ public class ImportedCertificateMetadataPatch extends SecretMetadataPatch {
       this.description = importedCertificateMetadataPatch.description;
       this.labels = importedCertificateMetadataPatch.labels;
       this.customMetadata = importedCertificateMetadataPatch.customMetadata;
+      this.managedCsr = importedCertificateMetadataPatch.managedCsr;
     }
 
     /**
@@ -121,6 +123,17 @@ public class ImportedCertificateMetadataPatch extends SecretMetadataPatch {
       this.customMetadata = customMetadata;
       return this;
     }
+
+    /**
+     * Set the managedCsr.
+     *
+     * @param managedCsr the managedCsr
+     * @return the ImportedCertificateMetadataPatch builder
+     */
+    public Builder managedCsr(ImportedCertificateManagedCsr managedCsr) {
+      this.managedCsr = managedCsr;
+      return this;
+    }
   }
 
   protected ImportedCertificateMetadataPatch() { }
@@ -130,6 +143,7 @@ public class ImportedCertificateMetadataPatch extends SecretMetadataPatch {
     description = builder.description;
     labels = builder.labels;
     customMetadata = builder.customMetadata;
+    managedCsr = builder.managedCsr;
   }
 
   /**

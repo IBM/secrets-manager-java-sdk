@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -93,7 +93,7 @@ public class GetSecretGroupOptions extends GenericModel {
   /**
    * Gets the id.
    *
-   * The v4 UUID that uniquely identifies your secret group.
+   * The UUID that uniquely identifies your secret group.
    *
    * @return the id
    */

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -17,6 +17,7 @@ import com.ibm.cloud.sdk.core.service.model.FileWithMetadata;
 import com.ibm.cloud.sdk.core.util.DateUtils;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CertificateValidity;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ImportedCertificate;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ImportedCertificateManagedCsrResponse;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.utils.TestUtilities;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -54,8 +55,10 @@ public class ImportedCertificateTest {
     assertNull(importedCertificateModel.isPrivateKeyIncluded());
     assertNull(importedCertificateModel.getSerialNumber());
     assertNull(importedCertificateModel.getValidity());
+    assertNull(importedCertificateModel.getManagedCsr());
     assertNull(importedCertificateModel.getCertificate());
     assertNull(importedCertificateModel.getIntermediate());
     assertNull(importedCertificateModel.getPrivateKey());
+    assertNull(importedCertificateModel.getCsr());
   }
 }

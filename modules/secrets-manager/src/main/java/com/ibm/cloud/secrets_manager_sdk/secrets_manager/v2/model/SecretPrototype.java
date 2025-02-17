@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -119,6 +119,8 @@ public class SecretPrototype extends GenericModel {
   protected String intermediate;
   @SerializedName("private_key")
   protected String privateKey;
+  @SerializedName("managed_csr")
+  protected ImportedCertificateManagedCsr managedCsr;
   protected Map<String, Object> data;
   @SerializedName("certificate_template")
   protected String certificateTemplate;
@@ -221,7 +223,7 @@ public class SecretPrototype extends GenericModel {
   /**
    * Gets the secretGroupId.
    *
-   * A v4 UUID identifier, or `default` secret group.
+   * A UUID identifier, or `default` secret group.
    *
    * @return the secretGroupId
    */
@@ -382,6 +384,17 @@ public class SecretPrototype extends GenericModel {
    */
   public String privateKey() {
     return privateKey;
+  }
+
+  /**
+   * Gets the managedCsr.
+   *
+   * The data specified to create the CSR and the private key.
+   *
+   * @return the managedCsr
+   */
+  public ImportedCertificateManagedCsr managedCsr() {
+    return managedCsr;
   }
 
   /**

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -164,7 +164,7 @@ public class SecretVersionMetadata extends GenericModel {
   /**
    * Gets the id.
    *
-   * A v4 UUID identifier.
+   * A UUID identifier.
    *
    * @return the id
    */
@@ -198,7 +198,7 @@ public class SecretVersionMetadata extends GenericModel {
   /**
    * Gets the secretGroupId.
    *
-   * A v4 UUID identifier, or `default` secret group.
+   * A UUID identifier, or `default` secret group.
    *
    * @return the secretGroupId
    */
@@ -243,7 +243,7 @@ public class SecretVersionMetadata extends GenericModel {
   /**
    * Gets the secretId.
    *
-   * A v4 UUID identifier.
+   * A UUID identifier.
    *
    * @return the secretId
    */

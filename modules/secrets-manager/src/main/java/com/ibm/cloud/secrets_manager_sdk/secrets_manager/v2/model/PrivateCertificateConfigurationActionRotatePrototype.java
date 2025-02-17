@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,7 +14,7 @@
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 /**
- * The request body to specify the properties of the action to rotate the private certificate configuration.
+ * The request body to specify the properties of the action to rotate an intermediate CA certificate.
  */
 public class PrivateCertificateConfigurationActionRotatePrototype extends ConfigurationActionPrototype {
 
