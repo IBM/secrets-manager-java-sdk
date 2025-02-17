@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -74,7 +74,7 @@ public class PrivateCertificateConfigurationRootCAPrototypeTest {
       .privateKeyFormat("der")
       .keyType("rsa")
       .keyBits(Long.valueOf("4096"))
-      .maxPathLength(Long.valueOf("26"))
+      .maxPathLength(Long.valueOf("-1"))
       .excludeCnFromSans(true)
       .permittedDnsDomains(java.util.Arrays.asList("testString"))
       .ou(java.util.Arrays.asList("testString"))
@@ -104,7 +104,7 @@ public class PrivateCertificateConfigurationRootCAPrototypeTest {
     assertEquals(privateCertificateConfigurationRootCaPrototypeModel.privateKeyFormat(), "der");
     assertEquals(privateCertificateConfigurationRootCaPrototypeModel.keyType(), "rsa");
     assertEquals(privateCertificateConfigurationRootCaPrototypeModel.keyBits(), Long.valueOf("4096"));
-    assertEquals(privateCertificateConfigurationRootCaPrototypeModel.maxPathLength(), Long.valueOf("26"));
+    assertEquals(privateCertificateConfigurationRootCaPrototypeModel.maxPathLength(), Long.valueOf("-1"));
     assertEquals(privateCertificateConfigurationRootCaPrototypeModel.excludeCnFromSans(), Boolean.valueOf(true));
     assertEquals(privateCertificateConfigurationRootCaPrototypeModel.permittedDnsDomains(), java.util.Arrays.asList("testString"));
     assertEquals(privateCertificateConfigurationRootCaPrototypeModel.ou(), java.util.Arrays.asList("testString"));
@@ -136,7 +136,7 @@ public class PrivateCertificateConfigurationRootCAPrototypeTest {
     assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.privateKeyFormat(), "der");
     assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.keyType(), "rsa");
     assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.keyBits(), Long.valueOf("4096"));
-    assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.maxPathLength(), Long.valueOf("26"));
+    assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.maxPathLength(), Long.valueOf("-1"));
     assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.excludeCnFromSans(), Boolean.valueOf(true));
     assertEquals(privateCertificateConfigurationRootCaPrototypeModelNew.serialNumber(), "d9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5");
   }

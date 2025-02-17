@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -119,6 +119,7 @@ public class SecretVersion extends GenericModel {
   protected String intermediate;
   @SerializedName("private_key")
   protected String privateKey;
+  protected String csr;
   protected Map<String, Object> data;
   @SerializedName("issuing_ca")
   protected String issuingCa;
@@ -180,7 +181,7 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the id.
    *
-   * A v4 UUID identifier.
+   * A UUID identifier.
    *
    * @return the id
    */
@@ -214,7 +215,7 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the secretGroupId.
    *
-   * A v4 UUID identifier, or `default` secret group.
+   * A UUID identifier, or `default` secret group.
    *
    * @return the secretGroupId
    */
@@ -259,7 +260,7 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the secretId.
    *
-   * A v4 UUID identifier.
+   * A UUID identifier.
    *
    * @return the secretId
    */
@@ -389,6 +390,17 @@ public class SecretVersion extends GenericModel {
    */
   public String getPrivateKey() {
     return privateKey;
+  }
+
+  /**
+   * Gets the csr.
+   *
+   * The certificate signing request.
+   *
+   * @return the csr
+   */
+  public String getCsr() {
+    return csr;
   }
 
   /**

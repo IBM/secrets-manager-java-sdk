@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -58,6 +58,7 @@ public class ImportedCertificatePrototype extends SecretPrototype {
     private String certificate;
     private String intermediate;
     private String privateKey;
+    private ImportedCertificateManagedCsr managedCsr;
     private Map<String, Object> customMetadata;
     private Map<String, Object> versionCustomMetadata;
 
@@ -75,6 +76,7 @@ public class ImportedCertificatePrototype extends SecretPrototype {
       this.certificate = importedCertificatePrototype.certificate;
       this.intermediate = importedCertificatePrototype.intermediate;
       this.privateKey = importedCertificatePrototype.privateKey;
+      this.managedCsr = importedCertificatePrototype.managedCsr;
       this.customMetadata = importedCertificatePrototype.customMetadata;
       this.versionCustomMetadata = importedCertificatePrototype.versionCustomMetadata;
     }
@@ -90,12 +92,10 @@ public class ImportedCertificatePrototype extends SecretPrototype {
      *
      * @param secretType the secretType
      * @param name the name
-     * @param certificate the certificate
      */
-    public Builder(String secretType, String name, String certificate) {
+    public Builder(String secretType, String name) {
       this.secretType = secretType;
       this.name = name;
-      this.certificate = certificate;
     }
 
     /**
@@ -213,6 +213,17 @@ public class ImportedCertificatePrototype extends SecretPrototype {
     }
 
     /**
+     * Set the managedCsr.
+     *
+     * @param managedCsr the managedCsr
+     * @return the ImportedCertificatePrototype builder
+     */
+    public Builder managedCsr(ImportedCertificateManagedCsr managedCsr) {
+      this.managedCsr = managedCsr;
+      return this;
+    }
+
+    /**
      * Set the customMetadata.
      *
      * @param customMetadata the customMetadata
@@ -242,8 +253,6 @@ public class ImportedCertificatePrototype extends SecretPrototype {
       "secretType cannot be null");
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
       "name cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.certificate,
-      "certificate cannot be null");
     secretType = builder.secretType;
     name = builder.name;
     description = builder.description;
@@ -252,6 +261,7 @@ public class ImportedCertificatePrototype extends SecretPrototype {
     certificate = builder.certificate;
     intermediate = builder.intermediate;
     privateKey = builder.privateKey;
+    managedCsr = builder.managedCsr;
     customMetadata = builder.customMetadata;
     versionCustomMetadata = builder.versionCustomMetadata;
   }

@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -98,14 +98,12 @@ public class PublicCertificatePrototype extends SecretPrototype {
      *
      * @param secretType the secretType
      * @param name the name
-     * @param commonName the commonName
      * @param ca the ca
      * @param dns the dns
      */
-    public Builder(String secretType, String name, String commonName, String ca, String dns) {
+    public Builder(String secretType, String name, String ca, String dns) {
       this.secretType = secretType;
       this.name = name;
-      this.commonName = commonName;
       this.ca = ca;
       this.dns = dns;
     }
@@ -315,8 +313,6 @@ public class PublicCertificatePrototype extends SecretPrototype {
       "secretType cannot be null");
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.name,
       "name cannot be null");
-    com.ibm.cloud.sdk.core.util.Validator.notNull(builder.commonName,
-      "commonName cannot be null");
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.ca,
       "ca cannot be null");
     com.ibm.cloud.sdk.core.util.Validator.notNull(builder.dns,

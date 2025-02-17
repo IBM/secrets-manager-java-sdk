@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -45,6 +45,8 @@ public class SecretMetadataPatch extends GenericModel {
   protected Date expirationDate;
   protected String ttl;
   protected RotationPolicy rotation;
+  @SerializedName("managed_csr")
+  protected ImportedCertificateManagedCsr managedCsr;
   @SerializedName("password_generation_policy")
   protected PasswordGenerationPolicyPatch passwordGenerationPolicy;
 
@@ -142,6 +144,17 @@ public class SecretMetadataPatch extends GenericModel {
    */
   public RotationPolicy rotation() {
     return rotation;
+  }
+
+  /**
+   * Gets the managedCsr.
+   *
+   * The data specified to create the CSR and the private key.
+   *
+   * @return the managedCsr
+   */
+  public ImportedCertificateManagedCsr managedCsr() {
+    return managedCsr;
   }
 
   /**

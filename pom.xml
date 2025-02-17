@@ -17,11 +17,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sdk-core-version>9.21.2</sdk-core-version>
+        <sdk-core-version>9.22.2</sdk-core-version>
 
         <git-repository-name>secrets-manager-java-sdk</git-repository-name>
 
-        <testng-version>7.8.0</testng-version>
+        <testng-version>7.10.2</testng-version>
         <okhttp3-version>4.12.0</okhttp3-version>
         <surefire-version>3.1.2</surefire-version>
         <jacoco-plugin-version>0.8.10</jacoco-plugin-version>
@@ -39,7 +39,7 @@
         <maven-reports-plugin-version>3.4.5</maven-reports-plugin-version>
         <maven-failsafe-plugin-version>3.1.2</maven-failsafe-plugin-version>
         <maven-buildnumber-plugin-version>3.2.0</maven-buildnumber-plugin-version>
-        <slf4j-version>2.0.13</slf4j-version>
+        <slf4j-version>2.0.16</slf4j-version>
 
         <maven-enforcer-version>3.4.1</maven-enforcer-version>
         <min-jdk-version>11</min-jdk-version>
