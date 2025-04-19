@@ -17,7 +17,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sdk-core-version>9.22.2</sdk-core-version>
+        <sdk-core-version>9.23.1</sdk-core-version>
 
         <git-repository-name>secrets-manager-java-sdk</git-repository-name>
 
