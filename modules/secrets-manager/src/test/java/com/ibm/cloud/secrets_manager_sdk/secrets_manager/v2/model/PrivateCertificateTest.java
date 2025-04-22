@@ -50,7 +50,6 @@ public class PrivateCertificateTest {
     assertNull(privateCertificateModel.getAltNames());
     assertNull(privateCertificateModel.getCertificateTemplate());
     assertNull(privateCertificateModel.getCommonName());
-    assertNull(privateCertificateModel.getExpirationDate());
     assertNull(privateCertificateModel.getIssuer());
     assertNull(privateCertificateModel.getRotation());
     assertNull(privateCertificateModel.getSerialNumber());

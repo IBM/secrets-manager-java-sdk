@@ -44,7 +44,6 @@ public class ServiceCredentialsSecretVersionTest {
     assertNull(serviceCredentialsSecretVersionModel.getAlias());
     assertNull(serviceCredentialsSecretVersionModel.getVersionCustomMetadata());
     assertNull(serviceCredentialsSecretVersionModel.getSecretId());
-    assertNull(serviceCredentialsSecretVersionModel.getExpirationDate());
     assertNull(serviceCredentialsSecretVersionModel.getResourceKey());
     assertNull(serviceCredentialsSecretVersionModel.getCredentials());
   }

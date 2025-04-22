@@ -43,7 +43,6 @@ public class PrivateCertificateConfigurationIntermediateCATest {
     assertNull(privateCertificateConfigurationIntermediateCaModel.getUpdatedAt());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getCommonName());
     assertNull(privateCertificateConfigurationIntermediateCaModel.isCrlDistributionPointsEncoded());
-    assertNull(privateCertificateConfigurationIntermediateCaModel.getExpirationDate());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getIssuer());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getKeyType());
     assertNull(privateCertificateConfigurationIntermediateCaModel.getKeyBits());

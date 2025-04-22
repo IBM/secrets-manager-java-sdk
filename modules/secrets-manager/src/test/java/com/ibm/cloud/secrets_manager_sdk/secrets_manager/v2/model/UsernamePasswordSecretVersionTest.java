@@ -42,7 +42,6 @@ public class UsernamePasswordSecretVersionTest {
     assertNull(usernamePasswordSecretVersionModel.getAlias());
     assertNull(usernamePasswordSecretVersionModel.getVersionCustomMetadata());
     assertNull(usernamePasswordSecretVersionModel.getSecretId());
-    assertNull(usernamePasswordSecretVersionModel.getExpirationDate());
     assertNull(usernamePasswordSecretVersionModel.getUsername());
     assertNull(usernamePasswordSecretVersionModel.getPassword());
   }

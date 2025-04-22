@@ -22,7 +22,7 @@ public class PrivateCertificateConfigurationIntermediateCA extends Configuration
    * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
    * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
    * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
-   * private_cert_configuration_template.
+   * private_cert_configuration_template, custom_credentials_configuration.
    */
   public interface ConfigType {
     /** public_cert_configuration_dns_cloud_internet_services. */
@@ -39,6 +39,8 @@ public class PrivateCertificateConfigurationIntermediateCA extends Configuration
     String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
     /** iam_credentials_configuration. */
     String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
+    /** custom_credentials_configuration. */
+    String CUSTOM_CREDENTIALS_CONFIGURATION = "custom_credentials_configuration";
   }
 
   /**
@@ -62,6 +64,8 @@ public class PrivateCertificateConfigurationIntermediateCA extends Configuration
     String SERVICE_CREDENTIALS = "service_credentials";
     /** username_password. */
     String USERNAME_PASSWORD = "username_password";
+    /** custom_credentials. */
+    String CUSTOM_CREDENTIALS = "custom_credentials";
   }
 
   /**

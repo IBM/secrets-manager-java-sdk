@@ -39,6 +39,8 @@ public class ServiceCredentialsSecret extends Secret {
     String SERVICE_CREDENTIALS = "service_credentials";
     /** username_password. */
     String USERNAME_PASSWORD = "username_password";
+    /** custom_credentials. */
+    String CUSTOM_CREDENTIALS = "custom_credentials";
   }
 
   /**

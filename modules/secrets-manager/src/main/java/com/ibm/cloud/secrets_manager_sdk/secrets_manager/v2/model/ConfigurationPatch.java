@@ -31,6 +31,7 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
  * - PublicCertificateConfigurationCALetsEncryptPatch
  * - PublicCertificateConfigurationDNSCloudInternetServicesPatch
  * - PublicCertificateConfigurationDNSClassicInfrastructurePatch
+ * - CustomCredentialsConfigurationPatch
  */
 public class ConfigurationPatch extends GenericModel {
 
@@ -147,6 +148,8 @@ public class ConfigurationPatch extends GenericModel {
   protected String classicInfrastructureUsername;
   @SerializedName("classic_infrastructure_password")
   protected String classicInfrastructurePassword;
+  @SerializedName("task_timeout")
+  protected String taskTimeout;
 
   protected ConfigurationPatch() { }
 
@@ -802,6 +805,20 @@ public class ConfigurationPatch extends GenericModel {
    */
   public String classicInfrastructurePassword() {
     return classicInfrastructurePassword;
+  }
+
+  /**
+   * Gets the taskTimeout.
+   *
+   * Specifies the maximum allowed time for a Code Engine task to be completed. After this time elapses, the task state
+   * will changed to failed. The minimum value is 5 minutes and the maximum value is 24 hours. Default task time out is
+   * 10 minutes.  The value can be either an integer that specifies the number of seconds, or the string representation
+   * of a duration, such as `10m` or `2h`.
+   *
+   * @return the taskTimeout
+   */
+  public String taskTimeout() {
+    return taskTimeout;
   }
 
   /**

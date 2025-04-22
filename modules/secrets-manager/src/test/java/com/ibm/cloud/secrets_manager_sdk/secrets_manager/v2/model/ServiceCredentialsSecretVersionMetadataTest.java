@@ -43,7 +43,6 @@ public class ServiceCredentialsSecretVersionMetadataTest {
     assertNull(serviceCredentialsSecretVersionMetadataModel.getAlias());
     assertNull(serviceCredentialsSecretVersionMetadataModel.getVersionCustomMetadata());
     assertNull(serviceCredentialsSecretVersionMetadataModel.getSecretId());
-    assertNull(serviceCredentialsSecretVersionMetadataModel.getExpirationDate());
     assertNull(serviceCredentialsSecretVersionMetadataModel.getResourceKey());
   }
 }

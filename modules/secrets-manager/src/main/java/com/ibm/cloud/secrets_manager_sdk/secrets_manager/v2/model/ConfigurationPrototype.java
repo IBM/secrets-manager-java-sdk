@@ -29,6 +29,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - PrivateCertificateConfigurationIntermediateCAPrototype
  * - PrivateCertificateConfigurationTemplatePrototype
  * - IAMCredentialsConfigurationPrototype
+ * - CustomCredentialsConfigurationPrototype
  */
 public class ConfigurationPrototype extends GenericModel {
   @SuppressWarnings("unused")
@@ -43,12 +44,13 @@ public class ConfigurationPrototype extends GenericModel {
     discriminatorMapping.put("private_cert_configuration_intermediate_ca", PrivateCertificateConfigurationIntermediateCAPrototype.class);
     discriminatorMapping.put("private_cert_configuration_template", PrivateCertificateConfigurationTemplatePrototype.class);
     discriminatorMapping.put("iam_credentials_configuration", IAMCredentialsConfigurationPrototype.class);
+    discriminatorMapping.put("custom_credentials_configuration", CustomCredentialsConfigurationPrototype.class);
   }
   /**
    * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
    * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
    * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
-   * private_cert_configuration_template.
+   * private_cert_configuration_template, custom_credentials_configuration.
    */
   public interface ConfigType {
     /** public_cert_configuration_dns_cloud_internet_services. */
@@ -65,6 +67,8 @@ public class ConfigurationPrototype extends GenericModel {
     String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
     /** iam_credentials_configuration. */
     String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
+    /** custom_credentials_configuration. */
+    String CUSTOM_CREDENTIALS_CONFIGURATION = "custom_credentials_configuration";
   }
 
   /**
@@ -244,6 +248,12 @@ public class ConfigurationPrototype extends GenericModel {
   @SerializedName("api_key")
   protected String apiKey;
   protected Boolean disabled;
+  @SerializedName("api_key_ref")
+  protected String apiKeyRef;
+  @SerializedName("code_engine")
+  protected CustomCredentialsConfigurationCodeEngine codeEngine;
+  @SerializedName("task_timeout")
+  protected String taskTimeout;
 
   protected ConfigurationPrototype() { }
 
@@ -253,7 +263,7 @@ public class ConfigurationPrototype extends GenericModel {
    * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
    * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
    * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
-   * private_cert_configuration_template.
+   * private_cert_configuration_template, custom_credentials_configuration.
    *
    * @return the configType
    */
@@ -1109,6 +1119,42 @@ public class ConfigurationPrototype extends GenericModel {
    */
   public Boolean disabled() {
     return disabled;
+  }
+
+  /**
+   * Gets the apiKeyRef.
+   *
+   * The IAM credentials secret ID that is used for setting up a custom credentials engine configuration.
+   *
+   * @return the apiKeyRef
+   */
+  public String apiKeyRef() {
+    return apiKeyRef;
+  }
+
+  /**
+   * Gets the codeEngine.
+   *
+   * The parameters required to configure Code Engine.
+   *
+   * @return the codeEngine
+   */
+  public CustomCredentialsConfigurationCodeEngine codeEngine() {
+    return codeEngine;
+  }
+
+  /**
+   * Gets the taskTimeout.
+   *
+   * Specifies the maximum allowed time for a Code Engine task to be completed. After this time elapses, the task state
+   * will changed to failed. The minimum value is 5 minutes and the maximum value is 24 hours. Default task time out is
+   * 10 minutes.  The value can be either an integer that specifies the number of seconds, or the string representation
+   * of a duration, such as `10m` or `2h`.
+   *
+   * @return the taskTimeout
+   */
+  public String taskTimeout() {
+    return taskTimeout;
   }
 }
 

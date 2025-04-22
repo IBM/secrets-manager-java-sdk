@@ -30,6 +30,8 @@ public class ListConfigurationsOptions extends GenericModel {
     String PRIVATE_CERT = "private_cert";
     /** public_cert. */
     String PUBLIC_CERT = "public_cert";
+    /** custom_credentials. */
+    String CUSTOM_CREDENTIALS = "custom_credentials";
   }
 
   protected Long offset;
@@ -241,7 +243,7 @@ public class ListConfigurationsOptions extends GenericModel {
    * You can apply multiple filters by using a comma-separated list of secret types.
    *
    * **Usage:** To retrieve a list of configurations that are associated with all secret types, use
-   * `..?secret_types=iam_credentials,public_cert,private_cert`.
+   * `..?secret_types=iam_credentials,public_cert,private_cert,custom_credentials`.
    *
    * @return the secretTypes
    */

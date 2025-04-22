@@ -32,6 +32,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - PublicCertificatePrototype
  * - ServiceCredentialsSecretPrototype
  * - UsernamePasswordSecretPrototype
+ * - CustomCredentialsSecretPrototype
  */
 public class SecretPrototype extends GenericModel {
   @SuppressWarnings("unused")
@@ -47,6 +48,7 @@ public class SecretPrototype extends GenericModel {
     discriminatorMapping.put("public_cert", PublicCertificatePrototype.class);
     discriminatorMapping.put("service_credentials", ServiceCredentialsSecretPrototype.class);
     discriminatorMapping.put("username_password", UsernamePasswordSecretPrototype.class);
+    discriminatorMapping.put("custom_credentials", CustomCredentialsSecretPrototype.class);
   }
   /**
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
@@ -69,6 +71,8 @@ public class SecretPrototype extends GenericModel {
     String SERVICE_CREDENTIALS = "service_credentials";
     /** username_password. */
     String USERNAME_PASSWORD = "username_password";
+    /** custom_credentials. */
+    String CUSTOM_CREDENTIALS = "custom_credentials";
   }
 
   /**
@@ -152,6 +156,8 @@ public class SecretPrototype extends GenericModel {
   protected String password;
   @SerializedName("password_generation_policy")
   protected PasswordGenerationPolicy passwordGenerationPolicy;
+  protected String configuration;
+  protected Map<String, Object> parameters;
 
   protected SecretPrototype() { }
 
@@ -269,12 +275,13 @@ public class SecretPrototype extends GenericModel {
    * Gets the ttl.
    *
    * The time-to-live (TTL) or lease duration to assign to credentials that are generated. Supported secret types:
-   * iam_credentials, service_credentials. The TTL defines how long generated credentials remain valid. The value can be
-   * either an integer that specifies the number of seconds, or the string  representation of a duration, such as
-   * `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1
-   * minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional. If it is set
-   * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL is modified,
-   * it will be applied only on the next secret rotation.
+   * iam_credentials, service_credentials, custom_credentials. The TTL defines how long generated credentials remain
+   * valid. The value can be either an integer that specifies the number of seconds, or the string  representation of a
+   * duration, such as `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum
+   * duration is 1 minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional.
+   * If it is set the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL
+   * is modified, it will be applied only on the next secret rotation. For the custom_credentials secret type, the TTL
+   * field is optional. The minimum duration is 1 day. The maximum is 90 days.
    *
    * @return the ttl
    */
@@ -343,7 +350,7 @@ public class SecretPrototype extends GenericModel {
    * Gets the rotation.
    *
    * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
-   * username_password, private_cert, public_cert, iam_credentials.
+   * username_password, private_cert, public_cert, iam_credentials, custom_credentials.
    *
    * @return the rotation
    */
@@ -619,6 +626,28 @@ public class SecretPrototype extends GenericModel {
    */
   public PasswordGenerationPolicy passwordGenerationPolicy() {
     return passwordGenerationPolicy;
+  }
+
+  /**
+   * Gets the configuration.
+   *
+   * The name of the custom credentials configuration.
+   *
+   * @return the configuration
+   */
+  public String configuration() {
+    return configuration;
+  }
+
+  /**
+   * Gets the parameters.
+   *
+   * The parameters that are passed to custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+   *
+   * @return the parameters
+   */
+  public Map<String, Object> parameters() {
+    return parameters;
   }
 }
 

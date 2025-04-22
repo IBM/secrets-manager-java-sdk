@@ -32,6 +32,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - PublicCertificate
  * - ServiceCredentialsSecret
  * - UsernamePasswordSecret
+ * - CustomCredentialsSecret
  */
 public class Secret extends GenericModel {
   @SuppressWarnings("unused")
@@ -47,6 +48,7 @@ public class Secret extends GenericModel {
     discriminatorMapping.put("public_cert", PublicCertificate.class);
     discriminatorMapping.put("service_credentials", ServiceCredentialsSecret.class);
     discriminatorMapping.put("username_password", UsernamePasswordSecret.class);
+    discriminatorMapping.put("custom_credentials", CustomCredentialsSecret.class);
   }
   /**
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
@@ -69,6 +71,8 @@ public class Secret extends GenericModel {
     String SERVICE_CREDENTIALS = "service_credentials";
     /** username_password. */
     String USERNAME_PASSWORD = "username_password";
+    /** custom_credentials. */
+    String CUSTOM_CREDENTIALS = "custom_credentials";
   }
 
   /**
@@ -184,6 +188,18 @@ public class Secret extends GenericModel {
   protected PasswordGenerationPolicyRO passwordGenerationPolicy;
   protected String username;
   protected String password;
+  @SerializedName("task_count")
+  protected Long taskCount;
+  @SerializedName("processing_task_id")
+  protected String processingTaskId;
+  @SerializedName("queued_task_count")
+  protected Long queuedTaskCount;
+  @SerializedName("last_failed_task_id")
+  protected String lastFailedTaskId;
+  protected String configuration;
+  protected Map<String, Object> parameters;
+  @SerializedName("credentials_content")
+  protected Map<String, Object> credentialsContent;
 
   protected Secret() { }
 
@@ -388,7 +404,8 @@ public class Secret extends GenericModel {
    * Gets the expirationDate.
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
-   * Arbitrary, username_password.
+   * arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
+   * custom_credentials.
    *
    * @return the expirationDate
    */
@@ -411,12 +428,13 @@ public class Secret extends GenericModel {
    * Gets the ttl.
    *
    * The time-to-live (TTL) or lease duration to assign to credentials that are generated. Supported secret types:
-   * iam_credentials, service_credentials. The TTL defines how long generated credentials remain valid. The value can be
-   * either an integer that specifies the number of seconds, or the string  representation of a duration, such as
-   * `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1
-   * minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional. If it is set
-   * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL is modified,
-   * it will be applied only on the next secret rotation.
+   * iam_credentials, service_credentials, custom_credentials. The TTL defines how long generated credentials remain
+   * valid. The value can be either an integer that specifies the number of seconds, or the string  representation of a
+   * duration, such as `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum
+   * duration is 1 minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional.
+   * If it is set the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL
+   * is modified, it will be applied only on the next secret rotation. For the custom_credentials secret type, the TTL
+   * field is optional. The minimum duration is 1 day. The maximum is 90 days.
    *
    * @return the ttl
    */
@@ -510,7 +528,7 @@ public class Secret extends GenericModel {
    * Gets the rotation.
    *
    * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
-   * username_password, private_cert, public_cert, iam_credentials.
+   * username_password, private_cert, public_cert, iam_credentials, custom_credentials.
    *
    * @return the rotation
    */
@@ -880,6 +898,85 @@ public class Secret extends GenericModel {
    */
   public String getPassword() {
     return password;
+  }
+
+  /**
+   * Gets the taskCount.
+   *
+   * The number of tasks that were created for this secret.
+   *
+   * @return the taskCount
+   */
+  public Long getTaskCount() {
+    return taskCount;
+  }
+
+  /**
+   * Gets the processingTaskId.
+   *
+   * A Secret Manager task identifier.
+   *
+   * @return the processingTaskId
+   */
+  public String getProcessingTaskId() {
+    return processingTaskId;
+  }
+
+  /**
+   * Gets the queuedTaskCount.
+   *
+   * Number of queued tasks for this secret.
+   *
+   * @return the queuedTaskCount
+   */
+  public Long getQueuedTaskCount() {
+    return queuedTaskCount;
+  }
+
+  /**
+   * Gets the lastFailedTaskId.
+   *
+   * A Secret Manager task identifier.
+   *
+   * @return the lastFailedTaskId
+   */
+  public String getLastFailedTaskId() {
+    return lastFailedTaskId;
+  }
+
+  /**
+   * Gets the configuration.
+   *
+   * The name of the custom credentials configuration.
+   *
+   * @return the configuration
+   */
+  public String getConfiguration() {
+    return configuration;
+  }
+
+  /**
+   * Gets the parameters.
+   *
+   * The fields that can be passed to and from the custom credentials engine. Allowed types are 'string', 'integer' and
+   * 'boolean'.
+   *
+   * @return the parameters
+   */
+  public Map<String, Object> getParameters() {
+    return parameters;
+  }
+
+  /**
+   * Gets the credentialsContent.
+   *
+   * The fields that can be passed to and from the custom credentials engine. Allowed types are 'string', 'integer' and
+   * 'boolean'.
+   *
+   * @return the credentialsContent
+   */
+  public Map<String, Object> getCredentialsContent() {
+    return credentialsContent;
   }
 }
 

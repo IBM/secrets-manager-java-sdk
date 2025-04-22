@@ -56,7 +56,6 @@ public class ServiceCredentialsSecretTest {
     assertNull(serviceCredentialsSecretModel.getVersionsTotal());
     assertNull(serviceCredentialsSecretModel.getRotation());
     assertNull(serviceCredentialsSecretModel.getTtl());
-    assertNull(serviceCredentialsSecretModel.getExpirationDate());
     assertNull(serviceCredentialsSecretModel.getSourceService());
     assertNull(serviceCredentialsSecretModel.getCredentials());
   }

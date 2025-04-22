@@ -49,7 +49,6 @@ public class PublicCertificateMetadataTest {
     assertNull(publicCertificateMetadataModel.getSigningAlgorithm());
     assertNull(publicCertificateMetadataModel.getAltNames());
     assertNull(publicCertificateMetadataModel.getCommonName());
-    assertNull(publicCertificateMetadataModel.getExpirationDate());
     assertNull(publicCertificateMetadataModel.getIssuer());
     assertNull(publicCertificateMetadataModel.getKeyAlgorithm());
     assertNull(publicCertificateMetadataModel.getSerialNumber());

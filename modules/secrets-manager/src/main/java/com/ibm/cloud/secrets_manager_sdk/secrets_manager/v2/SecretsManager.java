@@ -12,7 +12,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.100.0-2ad7a784-20250212-162551
+ * IBM OpenAPI SDK Code Generator Version: 3.104.0-b4a47c49-20250418-184351
  */
 
 package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2;
@@ -45,6 +45,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteNotifica
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVersionDataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVersionLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetConfigurationOptions;
@@ -54,16 +55,19 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretByNam
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListConfigurationsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretGroupsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretLocksOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretTasksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretVersionLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretsLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.NotificationsRegistration;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ReplaceSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.Secret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretGroup;
@@ -72,6 +76,8 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretLocks;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretLocksPaginatedCollection;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadataPaginatedCollection;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTask;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskCollection;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersionLocksPaginatedCollection;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersionMetadata;
@@ -442,6 +448,9 @@ public class SecretsManager extends BaseService {
     for (Entry<String, String> header : sdkHeaders.entrySet()) {
       builder.header(header.getKey(), header.getValue());
     }
+    if (deleteSecretOptions.forceDelete() != null) {
+      builder.query("force_delete", String.valueOf(deleteSecretOptions.forceDelete()));
+    }
     ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
     return createServiceCall(builder.build(), responseConverter);
   }
@@ -737,6 +746,114 @@ public class SecretsManager extends BaseService {
   }
 
   /**
+   * List secret tasks.
+   *
+   * List secret tasks.
+   *
+   * Supported secret types: `custom_credentials`.
+   *
+   * @param listSecretTasksOptions the {@link ListSecretTasksOptions} containing the options for the call
+   * @return a {@link ServiceCall} with a result of type {@link SecretTaskCollection}
+   */
+  public ServiceCall<SecretTaskCollection> listSecretTasks(ListSecretTasksOptions listSecretTasksOptions) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(listSecretTasksOptions,
+      "listSecretTasksOptions cannot be null");
+    Map<String, String> pathParamsMap = new HashMap<String, String>();
+    pathParamsMap.put("secret_id", listSecretTasksOptions.secretId());
+    RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/secrets/{secret_id}/tasks", pathParamsMap));
+    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v2", "listSecretTasks");
+    for (Entry<String, String> header : sdkHeaders.entrySet()) {
+      builder.header(header.getKey(), header.getValue());
+    }
+    builder.header("Accept", "application/json");
+    ResponseConverter<SecretTaskCollection> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<SecretTaskCollection>() { }.getType());
+    return createServiceCall(builder.build(), responseConverter);
+  }
+
+  /**
+   * Get a secret's task.
+   *
+   * Get a task of a secret and its details by specifying the ID of the task.
+   *
+   * A successful request returns the task that is associated with your secret.
+   *
+   * Supported secret types: `custom_credentials`.
+   *
+   * @param getSecretTaskOptions the {@link GetSecretTaskOptions} containing the options for the call
+   * @return a {@link ServiceCall} with a result of type {@link SecretTask}
+   */
+  public ServiceCall<SecretTask> getSecretTask(GetSecretTaskOptions getSecretTaskOptions) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(getSecretTaskOptions,
+      "getSecretTaskOptions cannot be null");
+    Map<String, String> pathParamsMap = new HashMap<String, String>();
+    pathParamsMap.put("secret_id", getSecretTaskOptions.secretId());
+    pathParamsMap.put("id", getSecretTaskOptions.id());
+    RequestBuilder builder = RequestBuilder.get(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/secrets/{secret_id}/tasks/{id}", pathParamsMap));
+    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v2", "getSecretTask");
+    for (Entry<String, String> header : sdkHeaders.entrySet()) {
+      builder.header(header.getKey(), header.getValue());
+    }
+    builder.header("Accept", "application/json");
+    ResponseConverter<SecretTask> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<SecretTask>() { }.getType());
+    return createServiceCall(builder.build(), responseConverter);
+  }
+
+  /**
+   * Update a secret's task.
+   *
+   * A callback endpoint for updating a task with results.
+   *
+   * Supported secret types: `custom_credentials`.
+   *
+   * @param replaceSecretTaskOptions the {@link ReplaceSecretTaskOptions} containing the options for the call
+   * @return a {@link ServiceCall} with a result of type {@link SecretTask}
+   */
+  public ServiceCall<SecretTask> replaceSecretTask(ReplaceSecretTaskOptions replaceSecretTaskOptions) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(replaceSecretTaskOptions,
+      "replaceSecretTaskOptions cannot be null");
+    Map<String, String> pathParamsMap = new HashMap<String, String>();
+    pathParamsMap.put("secret_id", replaceSecretTaskOptions.secretId());
+    pathParamsMap.put("id", replaceSecretTaskOptions.id());
+    RequestBuilder builder = RequestBuilder.put(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/secrets/{secret_id}/tasks/{id}", pathParamsMap));
+    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v2", "replaceSecretTask");
+    for (Entry<String, String> header : sdkHeaders.entrySet()) {
+      builder.header(header.getKey(), header.getValue());
+    }
+    builder.header("Accept", "application/json");
+    builder.bodyContent(com.ibm.cloud.sdk.core.util.GsonSingleton.getGsonWithoutPrettyPrinting().toJson(replaceSecretTaskOptions.taskPut()), "application/json");
+    ResponseConverter<SecretTask> responseConverter =
+      ResponseConverterUtils.getValue(new com.google.gson.reflect.TypeToken<SecretTask>() { }.getType());
+    return createServiceCall(builder.build(), responseConverter);
+  }
+
+  /**
+   * Delete a task.
+   *
+   * Delete a task by specifying the ID of the secret.
+   *
+   * Supported secret types: `custom_credentials`.
+   *
+   * @param deleteSecretTaskOptions the {@link DeleteSecretTaskOptions} containing the options for the call
+   * @return a {@link ServiceCall} with a void result
+   */
+  public ServiceCall<Void> deleteSecretTask(DeleteSecretTaskOptions deleteSecretTaskOptions) {
+    com.ibm.cloud.sdk.core.util.Validator.notNull(deleteSecretTaskOptions,
+      "deleteSecretTaskOptions cannot be null");
+    Map<String, String> pathParamsMap = new HashMap<String, String>();
+    pathParamsMap.put("secret_id", deleteSecretTaskOptions.secretId());
+    pathParamsMap.put("id", deleteSecretTaskOptions.id());
+    RequestBuilder builder = RequestBuilder.delete(RequestBuilder.resolveRequestUrl(getServiceUrl(), "/api/v2/secrets/{secret_id}/tasks/{id}", pathParamsMap));
+    Map<String, String> sdkHeaders = SdkCommon.getSdkHeaders("secrets_manager", "v2", "deleteSecretTask");
+    for (Entry<String, String> header : sdkHeaders.entrySet()) {
+      builder.header(header.getKey(), header.getValue());
+    }
+    ResponseConverter<Void> responseConverter = ResponseConverterUtils.getVoid();
+    return createServiceCall(builder.build(), responseConverter);
+  }
+
+  /**
    * List secrets and their locks.
    *
    * List the secrets and their locks in your Secrets Manager instance.
@@ -1013,11 +1130,12 @@ public class SecretsManager extends BaseService {
    * Add a configuration to the specified secret type.
    *
    * Use this operation to define the configurations that are required to create public certificates (`public_cert`),
-   * private certificates (`private_cert`) and IAM Credentials secrets (`iam_credentials`).
+   * private certificates (`private_cert`), IAM credentials secrets (`iam_credentials`) and custom credentials secrets
+   * (`custom_credentials`).
    *
    * You can add multiple configurations for your instance as follows:
    *
-   * - A single configuration for IAM Credentials.
+   * - A single configuration for IAM credentials.
    * - Up to 10 CA configurations for public certificates.
    * - Up to 10 DNS configurations for public certificates.
    * - Up to 10 Root CA configurations for private certificates.

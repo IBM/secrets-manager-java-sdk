@@ -32,6 +32,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - PublicCertificateVersion
  * - ServiceCredentialsSecretVersion
  * - UsernamePasswordSecretVersion
+ * - CustomCredentialsSecretVersion
  */
 public class SecretVersion extends GenericModel {
   @SuppressWarnings("unused")
@@ -47,6 +48,7 @@ public class SecretVersion extends GenericModel {
     discriminatorMapping.put("public_cert", PublicCertificateVersion.class);
     discriminatorMapping.put("service_credentials", ServiceCredentialsSecretVersion.class);
     discriminatorMapping.put("username_password", UsernamePasswordSecretVersion.class);
+    discriminatorMapping.put("custom_credentials", CustomCredentialsSecretVersion.class);
   }
   /**
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
@@ -69,6 +71,8 @@ public class SecretVersion extends GenericModel {
     String SERVICE_CREDENTIALS = "service_credentials";
     /** username_password. */
     String USERNAME_PASSWORD = "username_password";
+    /** custom_credentials. */
+    String CUSTOM_CREDENTIALS = "custom_credentials";
   }
 
   /**
@@ -130,6 +134,10 @@ public class SecretVersion extends GenericModel {
   protected ServiceCredentialsSecretCredentials credentials;
   protected String username;
   protected String password;
+  @SerializedName("credentials_id")
+  protected String credentialsId;
+  @SerializedName("credentials_content")
+  protected Map<String, Object> credentialsContent;
 
   protected SecretVersion() { }
 
@@ -272,7 +280,8 @@ public class SecretVersion extends GenericModel {
    * Gets the expirationDate.
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
-   * Arbitrary, username_password.
+   * arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
+   * custom_credentials.
    *
    * @return the expirationDate
    */
@@ -478,6 +487,29 @@ public class SecretVersion extends GenericModel {
    */
   public String getPassword() {
     return password;
+  }
+
+  /**
+   * Gets the credentialsId.
+   *
+   * Credentials created by the custom credentials system.
+   *
+   * @return the credentialsId
+   */
+  public String getCredentialsId() {
+    return credentialsId;
+  }
+
+  /**
+   * Gets the credentialsContent.
+   *
+   * The fields that can be passed to and from the custom credentials engine. Allowed types are 'string', 'integer' and
+   * 'boolean'.
+   *
+   * @return the credentialsContent
+   */
+  public Map<String, Object> getCredentialsContent() {
+    return credentialsContent;
   }
 }
 

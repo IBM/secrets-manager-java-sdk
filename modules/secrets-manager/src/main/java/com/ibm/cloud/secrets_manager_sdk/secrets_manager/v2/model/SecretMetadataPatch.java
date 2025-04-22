@@ -33,6 +33,7 @@ import com.ibm.cloud.sdk.core.util.GsonSingleton;
  * - PublicCertificateMetadataPatch
  * - ServiceCredentialsSecretMetadataPatch
  * - UsernamePasswordSecretMetadataPatch
+ * - CustomCredentialsSecretMetadataPatch
  */
 public class SecretMetadataPatch extends GenericModel {
 
@@ -49,6 +50,7 @@ public class SecretMetadataPatch extends GenericModel {
   protected ImportedCertificateManagedCsr managedCsr;
   @SerializedName("password_generation_policy")
   protected PasswordGenerationPolicyPatch passwordGenerationPolicy;
+  protected Map<String, Object> parameters;
 
   protected SecretMetadataPatch() { }
 
@@ -121,12 +123,13 @@ public class SecretMetadataPatch extends GenericModel {
    * Gets the ttl.
    *
    * The time-to-live (TTL) or lease duration to assign to credentials that are generated. Supported secret types:
-   * iam_credentials, service_credentials. The TTL defines how long generated credentials remain valid. The value can be
-   * either an integer that specifies the number of seconds, or the string  representation of a duration, such as
-   * `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1
-   * minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional. If it is set
-   * the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL is modified,
-   * it will be applied only on the next secret rotation.
+   * iam_credentials, service_credentials, custom_credentials. The TTL defines how long generated credentials remain
+   * valid. The value can be either an integer that specifies the number of seconds, or the string  representation of a
+   * duration, such as `1440m` or `24h`. For the iam_credentials secret type, the TTL field is mandatory. The minimum
+   * duration is 1 minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional.
+   * If it is set the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL
+   * is modified, it will be applied only on the next secret rotation. For the custom_credentials secret type, the TTL
+   * field is optional. The minimum duration is 1 day. The maximum is 90 days.
    *
    * @return the ttl
    */
@@ -138,7 +141,7 @@ public class SecretMetadataPatch extends GenericModel {
    * Gets the rotation.
    *
    * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
-   * username_password, private_cert, public_cert, iam_credentials.
+   * username_password, private_cert, public_cert, iam_credentials, custom_credentials.
    *
    * @return the rotation
    */
@@ -167,6 +170,17 @@ public class SecretMetadataPatch extends GenericModel {
    */
   public PasswordGenerationPolicyPatch passwordGenerationPolicy() {
     return passwordGenerationPolicy;
+  }
+
+  /**
+   * Gets the parameters.
+   *
+   * The parameters that are passed to custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+   *
+   * @return the parameters
+   */
+  public Map<String, Object> parameters() {
+    return parameters;
   }
 
   /**

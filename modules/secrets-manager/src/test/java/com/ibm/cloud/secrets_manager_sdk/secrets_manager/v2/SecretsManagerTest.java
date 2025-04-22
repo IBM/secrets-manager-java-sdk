@@ -49,11 +49,28 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretOp
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionActionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfiguration;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationCodeEngine;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationPatch;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationSchema;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationSchemaCredentials;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationSchemaParameter;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsNewCredentials;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecret;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretMetadataPatch;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretVersionPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVersionDataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVersionLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetConfigurationOptions;
@@ -63,6 +80,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretByNam
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentialsConfiguration;
@@ -96,6 +114,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.KVSecretVersio
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListConfigurationsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretGroupsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretLocksOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretTasksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretVersionLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretsLocksOptions;
@@ -173,6 +192,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertific
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateVersionPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ReplaceSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.RotationPolicy;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.Secret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretAction;
@@ -189,6 +209,13 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadata
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadataPaginatedCollection;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTask;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskCollection;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskError;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototypeUpdateSecretTaskCredentialsCreated;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototypeUpdateSecretTaskCredentialsDeleted;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototypeUpdateSecretTaskFailed;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersionActionPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersionLocks;
@@ -792,6 +819,7 @@ public class SecretsManagerTest {
     // Construct an instance of the DeleteSecretOptions model
     DeleteSecretOptions deleteSecretOptionsModel = new DeleteSecretOptions.Builder()
       .id("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
+      .forceDelete(false)
       .build();
 
     // Invoke deleteSecret() with a valid options model and verify the result
@@ -807,9 +835,10 @@ public class SecretsManagerTest {
     // Verify request path
     String parsedPath = TestUtilities.parseReqPath(request);
     assertEquals(parsedPath, deleteSecretPath);
-    // Verify that there is no query string
+    // Verify query params
     Map<String, String> query = TestUtilities.parseQueryString(request);
-    assertNull(query);
+    assertNotNull(query);
+    assertEquals(Boolean.valueOf(query.get("force_delete")), Boolean.valueOf(false));
   }
 
   // Test the deleteSecret operation with and without retries enabled
@@ -1432,6 +1461,225 @@ public class SecretsManagerTest {
   public void testCreateSecretVersionActionNoOptions() throws Throwable {
     server.enqueue(new MockResponse());
     secretsManagerService.createSecretVersionAction(null).execute();
+  }
+
+  // Test the listSecretTasks operation with a valid options model parameter
+  @Test
+  public void testListSecretTasksWOptions() throws Throwable {
+    // Register a mock response
+    String mockResponseBody = "{\"tasks\": [{\"id\": \"sm-task-b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"creation_date\": \"2022-04-12T23:20:50.520Z\", \"last_update_date\": \"2022-04-12T23:20:50.520Z\", \"updated_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"type\": \"create_credentials\", \"status\": \"queued\", \"trigger\": \"secret_creation\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"errors\": [{\"code\": \"code\", \"description\": \"Failed to create credentials\"}]}]}";
+    String listSecretTasksPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/tasks";
+    server.enqueue(new MockResponse()
+      .setHeader("Content-type", "application/json")
+      .setResponseCode(200)
+      .setBody(mockResponseBody));
+
+    // Construct an instance of the ListSecretTasksOptions model
+    ListSecretTasksOptions listSecretTasksOptionsModel = new ListSecretTasksOptions.Builder()
+      .secretId("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
+      .build();
+
+    // Invoke listSecretTasks() with a valid options model and verify the result
+    Response<SecretTaskCollection> response = secretsManagerService.listSecretTasks(listSecretTasksOptionsModel).execute();
+    assertNotNull(response);
+    SecretTaskCollection responseObj = response.getResult();
+    assertNotNull(responseObj);
+
+    // Verify the contents of the request sent to the mock server
+    RecordedRequest request = server.takeRequest();
+    assertNotNull(request);
+    assertEquals(request.getMethod(), "GET");
+    // Verify request path
+    String parsedPath = TestUtilities.parseReqPath(request);
+    assertEquals(parsedPath, listSecretTasksPath);
+    // Verify that there is no query string
+    Map<String, String> query = TestUtilities.parseQueryString(request);
+    assertNull(query);
+  }
+
+  // Test the listSecretTasks operation with and without retries enabled
+  @Test
+  public void testListSecretTasksWRetries() throws Throwable {
+    secretsManagerService.enableRetries(4, 30);
+    testListSecretTasksWOptions();
+
+    secretsManagerService.disableRetries();
+    testListSecretTasksWOptions();
+  }
+
+  // Test the listSecretTasks operation with a null options model (negative test)
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testListSecretTasksNoOptions() throws Throwable {
+    server.enqueue(new MockResponse());
+    secretsManagerService.listSecretTasks(null).execute();
+  }
+
+  // Test the getSecretTask operation with a valid options model parameter
+  @Test
+  public void testGetSecretTaskWOptions() throws Throwable {
+    // Register a mock response
+    String mockResponseBody = "{\"id\": \"sm-task-b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"creation_date\": \"2022-04-12T23:20:50.520Z\", \"last_update_date\": \"2022-04-12T23:20:50.520Z\", \"updated_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"type\": \"create_credentials\", \"status\": \"queued\", \"trigger\": \"secret_creation\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"errors\": [{\"code\": \"code\", \"description\": \"Failed to create credentials\"}]}";
+    String getSecretTaskPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/tasks/sm-task-a436bebd-dbbd-5c0d-ab35-1232f1234f95";
+    server.enqueue(new MockResponse()
+      .setHeader("Content-type", "application/json")
+      .setResponseCode(200)
+      .setBody(mockResponseBody));
+
+    // Construct an instance of the GetSecretTaskOptions model
+    GetSecretTaskOptions getSecretTaskOptionsModel = new GetSecretTaskOptions.Builder()
+      .secretId("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
+      .id("sm-task-a436bebd-dbbd-5c0d-ab35-1232f1234f95")
+      .build();
+
+    // Invoke getSecretTask() with a valid options model and verify the result
+    Response<SecretTask> response = secretsManagerService.getSecretTask(getSecretTaskOptionsModel).execute();
+    assertNotNull(response);
+    SecretTask responseObj = response.getResult();
+    assertNotNull(responseObj);
+
+    // Verify the contents of the request sent to the mock server
+    RecordedRequest request = server.takeRequest();
+    assertNotNull(request);
+    assertEquals(request.getMethod(), "GET");
+    // Verify request path
+    String parsedPath = TestUtilities.parseReqPath(request);
+    assertEquals(parsedPath, getSecretTaskPath);
+    // Verify that there is no query string
+    Map<String, String> query = TestUtilities.parseQueryString(request);
+    assertNull(query);
+  }
+
+  // Test the getSecretTask operation with and without retries enabled
+  @Test
+  public void testGetSecretTaskWRetries() throws Throwable {
+    secretsManagerService.enableRetries(4, 30);
+    testGetSecretTaskWOptions();
+
+    secretsManagerService.disableRetries();
+    testGetSecretTaskWOptions();
+  }
+
+  // Test the getSecretTask operation with a null options model (negative test)
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testGetSecretTaskNoOptions() throws Throwable {
+    server.enqueue(new MockResponse());
+    secretsManagerService.getSecretTask(null).execute();
+  }
+
+  // Test the replaceSecretTask operation with a valid options model parameter
+  @Test
+  public void testReplaceSecretTaskWOptions() throws Throwable {
+    // Register a mock response
+    String mockResponseBody = "{\"id\": \"sm-task-b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"created_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"creation_date\": \"2022-04-12T23:20:50.520Z\", \"last_update_date\": \"2022-04-12T23:20:50.520Z\", \"updated_by\": \"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21\", \"type\": \"create_credentials\", \"status\": \"queued\", \"trigger\": \"secret_creation\", \"secret_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"secret_version_id\": \"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5\", \"errors\": [{\"code\": \"code\", \"description\": \"Failed to create credentials\"}]}";
+    String replaceSecretTaskPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/tasks/sm-task-a436bebd-dbbd-5c0d-ab35-1232f1234f95";
+    server.enqueue(new MockResponse()
+      .setHeader("Content-type", "application/json")
+      .setResponseCode(200)
+      .setBody(mockResponseBody));
+
+    // Construct an instance of the CustomCredentialsNewCredentials model
+    CustomCredentialsNewCredentials customCredentialsNewCredentialsModel = new CustomCredentialsNewCredentials.Builder()
+      .id("b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5")
+      .payload(java.util.Collections.singletonMap("anyKey", "anyValue"))
+      .build();
+
+    // Construct an instance of the SecretTaskPrototypeUpdateSecretTaskCredentialsCreated model
+    SecretTaskPrototypeUpdateSecretTaskCredentialsCreated secretTaskPrototypeModel = new SecretTaskPrototypeUpdateSecretTaskCredentialsCreated.Builder()
+      .status("credentials_created")
+      .credentials(customCredentialsNewCredentialsModel)
+      .build();
+
+    // Construct an instance of the ReplaceSecretTaskOptions model
+    ReplaceSecretTaskOptions replaceSecretTaskOptionsModel = new ReplaceSecretTaskOptions.Builder()
+      .secretId("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
+      .id("sm-task-a436bebd-dbbd-5c0d-ab35-1232f1234f95")
+      .taskPut(secretTaskPrototypeModel)
+      .build();
+
+    // Invoke replaceSecretTask() with a valid options model and verify the result
+    Response<SecretTask> response = secretsManagerService.replaceSecretTask(replaceSecretTaskOptionsModel).execute();
+    assertNotNull(response);
+    SecretTask responseObj = response.getResult();
+    assertNotNull(responseObj);
+
+    // Verify the contents of the request sent to the mock server
+    RecordedRequest request = server.takeRequest();
+    assertNotNull(request);
+    assertEquals(request.getMethod(), "PUT");
+    // Verify request path
+    String parsedPath = TestUtilities.parseReqPath(request);
+    assertEquals(parsedPath, replaceSecretTaskPath);
+    // Verify that there is no query string
+    Map<String, String> query = TestUtilities.parseQueryString(request);
+    assertNull(query);
+  }
+
+  // Test the replaceSecretTask operation with and without retries enabled
+  @Test
+  public void testReplaceSecretTaskWRetries() throws Throwable {
+    secretsManagerService.enableRetries(4, 30);
+    testReplaceSecretTaskWOptions();
+
+    secretsManagerService.disableRetries();
+    testReplaceSecretTaskWOptions();
+  }
+
+  // Test the replaceSecretTask operation with a null options model (negative test)
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testReplaceSecretTaskNoOptions() throws Throwable {
+    server.enqueue(new MockResponse());
+    secretsManagerService.replaceSecretTask(null).execute();
+  }
+
+  // Test the deleteSecretTask operation with a valid options model parameter
+  @Test
+  public void testDeleteSecretTaskWOptions() throws Throwable {
+    // Register a mock response
+    String mockResponseBody = "";
+    String deleteSecretTaskPath = "/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/tasks/sm-task-a436bebd-dbbd-5c0d-ab35-1232f1234f95";
+    server.enqueue(new MockResponse()
+      .setResponseCode(204)
+      .setBody(mockResponseBody));
+
+    // Construct an instance of the DeleteSecretTaskOptions model
+    DeleteSecretTaskOptions deleteSecretTaskOptionsModel = new DeleteSecretTaskOptions.Builder()
+      .secretId("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
+      .id("sm-task-a436bebd-dbbd-5c0d-ab35-1232f1234f95")
+      .build();
+
+    // Invoke deleteSecretTask() with a valid options model and verify the result
+    Response<Void> response = secretsManagerService.deleteSecretTask(deleteSecretTaskOptionsModel).execute();
+    assertNotNull(response);
+    Void responseObj = response.getResult();
+    assertNull(responseObj);
+
+    // Verify the contents of the request sent to the mock server
+    RecordedRequest request = server.takeRequest();
+    assertNotNull(request);
+    assertEquals(request.getMethod(), "DELETE");
+    // Verify request path
+    String parsedPath = TestUtilities.parseReqPath(request);
+    assertEquals(parsedPath, deleteSecretTaskPath);
+    // Verify that there is no query string
+    Map<String, String> query = TestUtilities.parseQueryString(request);
+    assertNull(query);
+  }
+
+  // Test the deleteSecretTask operation with and without retries enabled
+  @Test
+  public void testDeleteSecretTaskWRetries() throws Throwable {
+    secretsManagerService.enableRetries(4, 30);
+    testDeleteSecretTaskWOptions();
+
+    secretsManagerService.disableRetries();
+    testDeleteSecretTaskWOptions();
+  }
+
+  // Test the deleteSecretTask operation with a null options model (negative test)
+  @Test(expectedExceptions = IllegalArgumentException.class)
+  public void testDeleteSecretTaskNoOptions() throws Throwable {
+    server.enqueue(new MockResponse());
+    secretsManagerService.deleteSecretTask(null).execute();
   }
 
   // Test the listSecretsLocks operation with a valid options model parameter
@@ -2114,7 +2362,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("config_type")
       .search("example")
-      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"))
       .build();
 
     // Invoke listConfigurations() with a valid options model and verify the result
@@ -2137,7 +2385,7 @@ public class SecretsManagerTest {
     assertEquals(Long.valueOf(query.get("limit")), Long.valueOf("10"));
     assertEquals(query.get("sort"), "config_type");
     assertEquals(query.get("search"), "example");
-    assertEquals(query.get("secret_types"), RequestUtils.join(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"), ","));
+    assertEquals(query.get("secret_types"), RequestUtils.join(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"), ","));
   }
 
   // Test the listConfigurations operation with and without retries enabled
@@ -2173,7 +2421,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("config_type")
       .search("example")
-      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"))
       .build();
 
     List<ConfigurationMetadata> allResults = new ArrayList<>();
@@ -2209,7 +2457,7 @@ public class SecretsManagerTest {
       .limit(Long.valueOf("10"))
       .sort("config_type")
       .search("example")
-      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"))
       .build();
 
     ConfigurationsPager pager = new ConfigurationsPager(secretsManagerService, listConfigurationsOptions);

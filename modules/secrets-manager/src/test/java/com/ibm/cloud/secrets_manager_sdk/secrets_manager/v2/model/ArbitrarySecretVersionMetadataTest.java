@@ -42,6 +42,5 @@ public class ArbitrarySecretVersionMetadataTest {
     assertNull(arbitrarySecretVersionMetadataModel.getAlias());
     assertNull(arbitrarySecretVersionMetadataModel.getVersionCustomMetadata());
     assertNull(arbitrarySecretVersionMetadataModel.getSecretId());
-    assertNull(arbitrarySecretVersionMetadataModel.getExpirationDate());
   }
 }

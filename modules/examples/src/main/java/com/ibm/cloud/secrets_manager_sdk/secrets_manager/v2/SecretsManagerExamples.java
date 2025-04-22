@@ -35,11 +35,13 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretOp
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionActionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsNewCredentials;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVersionDataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVersionLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetConfigurationOptions;
@@ -49,11 +51,13 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretByNam
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListConfigurationsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretGroupsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretLocksOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretTasksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretVersionLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretsLocksOptions;
@@ -64,6 +68,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertifi
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PrivateCertificateVersionActionRevokePrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateConfigurationDNSCloudInternetServicesPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateConfigurationDNSCloudInternetServicesPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ReplaceSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.Secret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretAction;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretGroup;
@@ -74,6 +79,9 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretLockProt
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretLocks;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretLocksPager;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTask;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskCollection;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototypeUpdateSecretTaskCredentialsCreated;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersionLocksPager;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersionMetadata;
@@ -547,6 +555,68 @@ public class SecretsManagerExamples {
     }
 
     try {
+      System.out.println("listSecretTasks() result:");
+      // begin-list_secret_tasks
+      ListSecretTasksOptions listSecretTasksOptions = new ListSecretTasksOptions.Builder()
+        .secretId(secretIdForGetSecretLink)
+        .build();
+
+      Response<SecretTaskCollection> response = secretsManagerService.listSecretTasks(listSecretTasksOptions).execute();
+      SecretTaskCollection secretTaskCollection = response.getResult();
+
+      System.out.println(secretTaskCollection);
+      // end-list_secret_tasks
+    } catch (ServiceResponseException e) {
+        logger.error(String.format("Service returned status code %s: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
+    }
+
+    try {
+      System.out.println("getSecretTask() result:");
+      // begin-get_secret_task
+      GetSecretTaskOptions getSecretTaskOptions = new GetSecretTaskOptions.Builder()
+        .secretId(secretIdForGetSecretLink)
+        .id(secretIdForGetSecretLink)
+        .build();
+
+      Response<SecretTask> response = secretsManagerService.getSecretTask(getSecretTaskOptions).execute();
+      SecretTask secretTask = response.getResult();
+
+      System.out.println(secretTask);
+      // end-get_secret_task
+    } catch (ServiceResponseException e) {
+        logger.error(String.format("Service returned status code %s: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
+    }
+
+    try {
+      System.out.println("replaceSecretTask() result:");
+      // begin-replace_secret_task
+      CustomCredentialsNewCredentials customCredentialsNewCredentialsModel = new CustomCredentialsNewCredentials.Builder()
+        .id("b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5")
+        .payload(new java.util.HashMap<String, Object>())
+        .build();
+      SecretTaskPrototypeUpdateSecretTaskCredentialsCreated secretTaskPrototypeModel = new SecretTaskPrototypeUpdateSecretTaskCredentialsCreated.Builder()
+        .status("credentials_created")
+        .credentials(customCredentialsNewCredentialsModel)
+        .build();
+      ReplaceSecretTaskOptions replaceSecretTaskOptions = new ReplaceSecretTaskOptions.Builder()
+        .secretId(secretIdForGetSecretLink)
+        .id(secretIdForGetSecretLink)
+        .taskPut(secretTaskPrototypeModel)
+        .build();
+
+      Response<SecretTask> response = secretsManagerService.replaceSecretTask(replaceSecretTaskOptions).execute();
+      SecretTask secretTask = response.getResult();
+
+      System.out.println(secretTask);
+      // end-replace_secret_task
+    } catch (ServiceResponseException e) {
+        logger.error(String.format("Service returned status code %s: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
+    }
+
+    try {
       System.out.println("listSecretsLocks() result:");
       // begin-list_secrets_locks
       ListSecretsLocksOptions listSecretsLocksOptions = new ListSecretsLocksOptions.Builder()
@@ -648,7 +718,7 @@ public class SecretsManagerExamples {
         .limit(Long.valueOf("10"))
         .sort("config_type")
         .search("example")
-        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"))
         .build();
 
       ConfigurationsPager pager = new ConfigurationsPager(secretsManagerService, listConfigurationsOptions);
@@ -850,6 +920,21 @@ public class SecretsManagerExamples {
       Response<Void> response = secretsManagerService.deleteSecret(deleteSecretOptions).execute();
       // end-delete_secret
       System.out.printf("deleteSecret() response status code: %d%n", response.getStatusCode());
+    } catch (ServiceResponseException e) {
+        logger.error(String.format("Service returned status code %s: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);
+    }
+
+    try {
+      // begin-delete_secret_task
+      DeleteSecretTaskOptions deleteSecretTaskOptions = new DeleteSecretTaskOptions.Builder()
+        .secretId(secretIdForGetSecretLink)
+        .id(secretIdForGetSecretLink)
+        .build();
+
+      Response<Void> response = secretsManagerService.deleteSecretTask(deleteSecretTaskOptions).execute();
+      // end-delete_secret_task
+      System.out.printf("deleteSecretTask() response status code: %d%n", response.getStatusCode());
     } catch (ServiceResponseException e) {
         logger.error(String.format("Service returned status code %s: %s%nError details: %s",
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()), e);

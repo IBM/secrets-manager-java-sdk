@@ -31,6 +31,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - PublicCertificateVersionMetadata
  * - ServiceCredentialsSecretVersionMetadata
  * - UsernamePasswordSecretVersionMetadata
+ * - CustomCredentialsSecretVersionMetadata
  */
 public class SecretVersionMetadata extends GenericModel {
   @SuppressWarnings("unused")
@@ -46,6 +47,7 @@ public class SecretVersionMetadata extends GenericModel {
     discriminatorMapping.put("public_cert", PublicCertificateVersionMetadata.class);
     discriminatorMapping.put("service_credentials", ServiceCredentialsSecretVersionMetadata.class);
     discriminatorMapping.put("username_password", UsernamePasswordSecretVersionMetadata.class);
+    discriminatorMapping.put("custom_credentials", CustomCredentialsSecretVersionMetadata.class);
   }
   /**
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
@@ -68,6 +70,8 @@ public class SecretVersionMetadata extends GenericModel {
     String SERVICE_CREDENTIALS = "service_credentials";
     /** username_password. */
     String USERNAME_PASSWORD = "username_password";
+    /** custom_credentials. */
+    String CUSTOM_CREDENTIALS = "custom_credentials";
   }
 
   /**
@@ -113,6 +117,8 @@ public class SecretVersionMetadata extends GenericModel {
   protected CertificateValidity validity;
   @SerializedName("resource_key")
   protected ServiceCredentialsResourceKey resourceKey;
+  @SerializedName("credentials_id")
+  protected String credentialsId;
 
   protected SecretVersionMetadata() { }
 
@@ -255,7 +261,8 @@ public class SecretVersionMetadata extends GenericModel {
    * Gets the expirationDate.
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
-   * Arbitrary, username_password.
+   * arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
+   * custom_credentials.
    *
    * @return the expirationDate
    */
@@ -323,6 +330,17 @@ public class SecretVersionMetadata extends GenericModel {
    */
   public ServiceCredentialsResourceKey getResourceKey() {
     return resourceKey;
+  }
+
+  /**
+   * Gets the credentialsId.
+   *
+   * Credentials created by the custom credentials system.
+   *
+   * @return the credentialsId
+   */
+  public String getCredentialsId() {
+    return credentialsId;
   }
 }
 

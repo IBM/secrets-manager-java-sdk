@@ -47,11 +47,28 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretOp
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionActionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CreateSecretVersionOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfiguration;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationCodeEngine;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationPatch;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationSchema;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationSchemaCredentials;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsConfigurationSchemaParameter;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsNewCredentials;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecret;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretMetadataPatch;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretVersion;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretVersionMetadata;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.CustomCredentialsSecretVersionPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteConfigurationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteNotificationsRegistrationOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVersionDataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.DeleteSecretVersionLocksBulkOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetConfigurationOptions;
@@ -61,6 +78,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretByNam
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretGroupOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionMetadataOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.GetSecretVersionOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.IAMCredentialsConfiguration;
@@ -94,6 +112,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.KVSecretVersio
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListConfigurationsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretGroupsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretLocksOptions;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretTasksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretVersionLocksOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretVersionsOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ListSecretsLocksOptions;
@@ -171,6 +190,7 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertific
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateVersionMetadata;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.PublicCertificateVersionPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.ReplaceSecretTaskOptions;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.RotationPolicy;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.Secret;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretAction;
@@ -187,6 +207,13 @@ import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadata
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadataPaginatedCollection;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretMetadataPatch;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTask;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskCollection;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskError;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototype;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototypeUpdateSecretTaskCredentialsCreated;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototypeUpdateSecretTaskCredentialsDeleted;
+import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretTaskPrototypeUpdateSecretTaskFailed;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersion;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersionActionPrototype;
 import com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model.SecretVersionLocks;
@@ -799,6 +826,21 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   // @Test
   // public void testCreateSecretVersionAction() throws Exception {}
 
+  // The integration test for listSecretTasks has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testListSecretTasks() throws Exception {}
+
+  // The integration test for getSecretTask has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testGetSecretTask() throws Exception {}
+
+  // The integration test for replaceSecretTask has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testReplaceSecretTask() throws Exception {}
+
   @Test(dependsOnMethods = { "testUpdateSecretVersionMetadata" })
   public void testListSecretsLocks() throws Exception {
     try {
@@ -1018,7 +1060,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .limit(Long.valueOf("10"))
         .sort("config_type")
         .search("example")
-        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"))
         .build();
 
       // Invoke operation
@@ -1043,7 +1085,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
         .limit(Long.valueOf("10"))
         .sort("config_type")
         .search("example")
-        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+        .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"))
         .build();
 
       // Test getNext().
@@ -1252,6 +1294,7 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     try {
       DeleteSecretOptions deleteSecretOptions = new DeleteSecretOptions.Builder()
         .id(secretIdForGetSecretLink)
+        .forceDelete(false)
         .build();
 
       // Invoke operation
@@ -1264,6 +1307,11 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
     }
   }
+
+  // The integration test for deleteSecretTask has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testDeleteSecretTask() throws Exception {}
 
   @Test(dependsOnMethods = { "testDeleteSecret" })
   public void testDeleteConfiguration() throws Exception {

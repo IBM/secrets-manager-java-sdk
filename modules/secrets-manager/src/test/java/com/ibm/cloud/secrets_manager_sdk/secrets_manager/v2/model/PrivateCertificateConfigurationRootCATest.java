@@ -43,7 +43,6 @@ public class PrivateCertificateConfigurationRootCATest {
     assertNull(privateCertificateConfigurationRootCaModel.getUpdatedAt());
     assertNull(privateCertificateConfigurationRootCaModel.getCommonName());
     assertNull(privateCertificateConfigurationRootCaModel.isCrlDistributionPointsEncoded());
-    assertNull(privateCertificateConfigurationRootCaModel.getExpirationDate());
     assertNull(privateCertificateConfigurationRootCaModel.getKeyType());
     assertNull(privateCertificateConfigurationRootCaModel.getKeyBits());
     assertNull(privateCertificateConfigurationRootCaModel.getCryptoKey());
