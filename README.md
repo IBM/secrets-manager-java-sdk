@@ -73,7 +73,6 @@ the [IBM Java SDK Core documentation](https://github.com/IBM/java-sdk-core/blob/
 ## Using the SDK
 
 ### Basic usage
-
 - Use the `setServiceUrl` method to set the endpoint URL that is specific to your Secrets Manager service instance. To find your endpoint URL, you can copy it from the **Endpoints** page in the Secrets Manager UI.
 
 #### Examples
