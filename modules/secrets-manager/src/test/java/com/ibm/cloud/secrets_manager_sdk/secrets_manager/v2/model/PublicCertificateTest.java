@@ -49,7 +49,6 @@ public class PublicCertificateTest {
     assertNull(publicCertificateModel.getSigningAlgorithm());
     assertNull(publicCertificateModel.getAltNames());
     assertNull(publicCertificateModel.getCommonName());
-    assertNull(publicCertificateModel.getExpirationDate());
     assertNull(publicCertificateModel.getIssuer());
     assertNull(publicCertificateModel.getKeyAlgorithm());
     assertNull(publicCertificateModel.getSerialNumber());

@@ -43,7 +43,6 @@ public class ArbitrarySecretTest {
     assertNull(arbitrarySecretModel.getSecretType());
     assertNull(arbitrarySecretModel.getUpdatedAt());
     assertNull(arbitrarySecretModel.getVersionsTotal());
-    assertNull(arbitrarySecretModel.getExpirationDate());
     assertNull(arbitrarySecretModel.getPayload());
   }
 }

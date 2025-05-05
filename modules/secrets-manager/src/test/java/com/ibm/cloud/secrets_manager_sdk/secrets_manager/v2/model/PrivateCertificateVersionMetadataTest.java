@@ -44,7 +44,6 @@ public class PrivateCertificateVersionMetadataTest {
     assertNull(privateCertificateVersionMetadataModel.getAlias());
     assertNull(privateCertificateVersionMetadataModel.getVersionCustomMetadata());
     assertNull(privateCertificateVersionMetadataModel.getSecretId());
-    assertNull(privateCertificateVersionMetadataModel.getExpirationDate());
     assertNull(privateCertificateVersionMetadataModel.getSerialNumber());
     assertNull(privateCertificateVersionMetadataModel.getValidity());
   }

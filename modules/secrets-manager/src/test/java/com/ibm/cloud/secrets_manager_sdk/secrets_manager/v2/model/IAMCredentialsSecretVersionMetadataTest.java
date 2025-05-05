@@ -42,7 +42,6 @@ public class IAMCredentialsSecretVersionMetadataTest {
     assertNull(iamCredentialsSecretVersionMetadataModel.getAlias());
     assertNull(iamCredentialsSecretVersionMetadataModel.getVersionCustomMetadata());
     assertNull(iamCredentialsSecretVersionMetadataModel.getSecretId());
-    assertNull(iamCredentialsSecretVersionMetadataModel.getExpirationDate());
     assertNull(iamCredentialsSecretVersionMetadataModel.getServiceId());
   }
 }

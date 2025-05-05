@@ -46,7 +46,6 @@ public class UsernamePasswordSecretMetadataTest {
     assertNull(usernamePasswordSecretMetadataModel.getUpdatedAt());
     assertNull(usernamePasswordSecretMetadataModel.getVersionsTotal());
     assertNull(usernamePasswordSecretMetadataModel.getRotation());
-    assertNull(usernamePasswordSecretMetadataModel.getExpirationDate());
     assertNull(usernamePasswordSecretMetadataModel.getPasswordGenerationPolicy());
   }
 }

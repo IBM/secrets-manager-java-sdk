@@ -21,12 +21,14 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 public class DeleteSecretOptions extends GenericModel {
 
   protected String id;
+  protected Boolean forceDelete;
 
   /**
    * Builder.
    */
   public static class Builder {
     private String id;
+    private Boolean forceDelete;
 
     /**
      * Instantiates a new Builder from an existing DeleteSecretOptions instance.
@@ -35,6 +37,7 @@ public class DeleteSecretOptions extends GenericModel {
      */
     private Builder(DeleteSecretOptions deleteSecretOptions) {
       this.id = deleteSecretOptions.id;
+      this.forceDelete = deleteSecretOptions.forceDelete;
     }
 
     /**
@@ -71,6 +74,17 @@ public class DeleteSecretOptions extends GenericModel {
       this.id = id;
       return this;
     }
+
+    /**
+     * Set the forceDelete.
+     *
+     * @param forceDelete the forceDelete
+     * @return the DeleteSecretOptions builder
+     */
+    public Builder forceDelete(Boolean forceDelete) {
+      this.forceDelete = forceDelete;
+      return this;
+    }
   }
 
   protected DeleteSecretOptions() { }
@@ -79,6 +93,7 @@ public class DeleteSecretOptions extends GenericModel {
     com.ibm.cloud.sdk.core.util.Validator.notEmpty(builder.id,
       "id cannot be empty");
     id = builder.id;
+    forceDelete = builder.forceDelete;
   }
 
   /**
@@ -99,6 +114,17 @@ public class DeleteSecretOptions extends GenericModel {
    */
   public String id() {
     return id;
+  }
+
+  /**
+   * Gets the forceDelete.
+   *
+   * Set to `true` to force delete the secret. Available only for custom credentials secret type.
+   *
+   * @return the forceDelete
+   */
+  public Boolean forceDelete() {
+    return forceDelete;
   }
 }
 

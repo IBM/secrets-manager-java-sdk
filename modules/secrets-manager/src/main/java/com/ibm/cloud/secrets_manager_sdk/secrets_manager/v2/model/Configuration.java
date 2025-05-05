@@ -30,6 +30,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
  * - PrivateCertificateConfigurationRootCA
  * - PrivateCertificateConfigurationIntermediateCA
  * - PrivateCertificateConfigurationTemplate
+ * - CustomCredentialsConfiguration
  */
 public class Configuration extends GenericModel {
   @SuppressWarnings("unused")
@@ -44,12 +45,13 @@ public class Configuration extends GenericModel {
     discriminatorMapping.put("private_cert_configuration_root_ca", PrivateCertificateConfigurationRootCA.class);
     discriminatorMapping.put("private_cert_configuration_intermediate_ca", PrivateCertificateConfigurationIntermediateCA.class);
     discriminatorMapping.put("private_cert_configuration_template", PrivateCertificateConfigurationTemplate.class);
+    discriminatorMapping.put("custom_credentials_configuration", CustomCredentialsConfiguration.class);
   }
   /**
    * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
    * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
    * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
-   * private_cert_configuration_template.
+   * private_cert_configuration_template, custom_credentials_configuration.
    */
   public interface ConfigType {
     /** public_cert_configuration_dns_cloud_internet_services. */
@@ -66,6 +68,8 @@ public class Configuration extends GenericModel {
     String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
     /** iam_credentials_configuration. */
     String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
+    /** custom_credentials_configuration. */
+    String CUSTOM_CREDENTIALS_CONFIGURATION = "custom_credentials_configuration";
   }
 
   /**
@@ -89,6 +93,8 @@ public class Configuration extends GenericModel {
     String SERVICE_CREDENTIALS = "service_credentials";
     /** username_password. */
     String USERNAME_PASSWORD = "username_password";
+    /** custom_credentials. */
+    String CUSTOM_CREDENTIALS = "custom_credentials";
   }
 
   /**
@@ -299,6 +305,15 @@ public class Configuration extends GenericModel {
   protected Boolean basicConstraintsValidForNonCa;
   @SerializedName("not_before_duration_seconds")
   protected Long notBeforeDurationSeconds;
+  @SerializedName("code_engine_key_ref")
+  protected String codeEngineKeyRef;
+  @SerializedName("api_key_ref")
+  protected String apiKeyRef;
+  @SerializedName("code_engine")
+  protected CustomCredentialsConfigurationCodeEngine codeEngine;
+  protected CustomCredentialsConfigurationSchema schema;
+  @SerializedName("task_timeout")
+  protected String taskTimeout;
 
   protected Configuration() { }
 
@@ -308,7 +323,7 @@ public class Configuration extends GenericModel {
    * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
    * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
    * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
-   * private_cert_configuration_template.
+   * private_cert_configuration_template, custom_credentials_configuration.
    *
    * @return the configType
    */
@@ -523,7 +538,8 @@ public class Configuration extends GenericModel {
    * Gets the expirationDate.
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
-   * Arbitrary, username_password.
+   * arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
+   * custom_credentials.
    *
    * @return the expirationDate
    */
@@ -1208,6 +1224,65 @@ public class Configuration extends GenericModel {
    */
   public Long getNotBeforeDurationSeconds() {
     return notBeforeDurationSeconds;
+  }
+
+  /**
+   * Gets the codeEngineKeyRef.
+   *
+   * The IAM API key used by the credentials provider to access this Secrets Manager instance.
+   *
+   * @return the codeEngineKeyRef
+   */
+  public String getCodeEngineKeyRef() {
+    return codeEngineKeyRef;
+  }
+
+  /**
+   * Gets the apiKeyRef.
+   *
+   * The IAM credentials secret ID that is used for setting up a custom credentials engine configuration.
+   *
+   * @return the apiKeyRef
+   */
+  public String getApiKeyRef() {
+    return apiKeyRef;
+  }
+
+  /**
+   * Gets the codeEngine.
+   *
+   * The parameters required to configure Code Engine.
+   *
+   * @return the codeEngine
+   */
+  public CustomCredentialsConfigurationCodeEngine getCodeEngine() {
+    return codeEngine;
+  }
+
+  /**
+   * Gets the schema.
+   *
+   * The schema that defines by the Code Engine job to be used as input and output formats for this custom credentials
+   * configuration.
+   *
+   * @return the schema
+   */
+  public CustomCredentialsConfigurationSchema getSchema() {
+    return schema;
+  }
+
+  /**
+   * Gets the taskTimeout.
+   *
+   * Specifies the maximum allowed time for a Code Engine task to be completed. After this time elapses, the task state
+   * will changed to failed. The minimum value is 5 minutes and the maximum value is 24 hours. Default task time out is
+   * 10 minutes.  The value can be either an integer that specifies the number of seconds, or the string representation
+   * of a duration, such as `10m` or `2h`.
+   *
+   * @return the taskTimeout
+   */
+  public String getTaskTimeout() {
+    return taskTimeout;
   }
 }
 

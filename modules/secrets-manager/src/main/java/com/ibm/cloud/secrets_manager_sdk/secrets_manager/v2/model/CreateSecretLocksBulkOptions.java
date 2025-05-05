@@ -28,7 +28,8 @@ public class CreateSecretLocksBulkOptions extends GenericModel {
    * on a secret version.
    * - `remove_previous`: Removes any other locks with matching names if they are found in the previous version of the
    * secret. - `remove_previous_and_delete`: Completes the same action as `remove_previous`, but also permanently
-   * deletes the data of the previous secret version if it doesn't have any locks.
+   * deletes the data of the previous secret version if it doesn't have any locks. Not supported for custom credentials
+   * secret type.
    */
   public interface Mode {
     /** remove_previous. */
@@ -187,7 +188,8 @@ public class CreateSecretLocksBulkOptions extends GenericModel {
    * on a secret version.
    * - `remove_previous`: Removes any other locks with matching names if they are found in the previous version of the
    * secret. - `remove_previous_and_delete`: Completes the same action as `remove_previous`, but also permanently
-   * deletes the data of the previous secret version if it doesn't have any locks.
+   * deletes the data of the previous secret version if it doesn't have any locks. Not supported for custom credentials
+   * secret type.
    *
    * @return the mode
    */

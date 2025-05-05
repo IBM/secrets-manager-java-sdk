@@ -49,7 +49,6 @@ public class ImportedCertificateTest {
     assertNull(importedCertificateModel.getSigningAlgorithm());
     assertNull(importedCertificateModel.getAltNames());
     assertNull(importedCertificateModel.getCommonName());
-    assertNull(importedCertificateModel.getExpirationDate());
     assertNull(importedCertificateModel.isIntermediateIncluded());
     assertNull(importedCertificateModel.getIssuer());
     assertNull(importedCertificateModel.isPrivateKeyIncluded());

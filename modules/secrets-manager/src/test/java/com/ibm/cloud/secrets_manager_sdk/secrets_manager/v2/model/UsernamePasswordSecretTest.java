@@ -46,7 +46,6 @@ public class UsernamePasswordSecretTest {
     assertNull(usernamePasswordSecretModel.getUpdatedAt());
     assertNull(usernamePasswordSecretModel.getVersionsTotal());
     assertNull(usernamePasswordSecretModel.getRotation());
-    assertNull(usernamePasswordSecretModel.getExpirationDate());
     assertNull(usernamePasswordSecretModel.getPasswordGenerationPolicy());
     assertNull(usernamePasswordSecretModel.getUsername());
     assertNull(usernamePasswordSecretModel.getPassword());

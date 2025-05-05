@@ -36,12 +36,12 @@ public class ListConfigurationsOptionsTest {
       .limit(Long.valueOf("200"))
       .sort("config_type")
       .search("example")
-      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"))
+      .secretTypes(java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"))
       .build();
     assertEquals(listConfigurationsOptionsModel.offset(), Long.valueOf("0"));
     assertEquals(listConfigurationsOptionsModel.limit(), Long.valueOf("200"));
     assertEquals(listConfigurationsOptionsModel.sort(), "config_type");
     assertEquals(listConfigurationsOptionsModel.search(), "example");
-    assertEquals(listConfigurationsOptionsModel.secretTypes(), java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert"));
+    assertEquals(listConfigurationsOptionsModel.secretTypes(), java.util.Arrays.asList("iam_credentials", "public_cert", "private_cert", "custom_credentials"));
   }
 }

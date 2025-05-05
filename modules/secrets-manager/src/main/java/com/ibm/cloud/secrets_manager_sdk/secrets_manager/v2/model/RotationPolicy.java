@@ -18,7 +18,7 @@ import com.ibm.cloud.sdk.core.service.model.GenericModel;
 
 /**
  * This field indicates whether Secrets Manager rotates your secrets automatically. Supported secret types:
- * username_password, private_cert, public_cert, iam_credentials.
+ * username_password, private_cert, public_cert, iam_credentials, custom_credentials.
  *
  * Classes which extend this class:
  * - CommonRotationPolicy

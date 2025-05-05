@@ -33,8 +33,10 @@ public class DeleteSecretOptionsTest {
   public void testDeleteSecretOptions() throws Throwable {
     DeleteSecretOptions deleteSecretOptionsModel = new DeleteSecretOptions.Builder()
       .id("0b5571f7-21e6-42b7-91c5-3f5ac9793a46")
+      .forceDelete(false)
       .build();
     assertEquals(deleteSecretOptionsModel.id(), "0b5571f7-21e6-42b7-91c5-3f5ac9793a46");
+    assertEquals(deleteSecretOptionsModel.forceDelete(), Boolean.valueOf(false));
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

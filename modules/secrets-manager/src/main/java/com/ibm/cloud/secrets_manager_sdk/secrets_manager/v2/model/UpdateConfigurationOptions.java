@@ -40,6 +40,8 @@ public class UpdateConfigurationOptions extends GenericModel {
     String PRIVATE_CERT_CONFIGURATION_TEMPLATE = "private_cert_configuration_template";
     /** iam_credentials_configuration. */
     String IAM_CREDENTIALS_CONFIGURATION = "iam_credentials_configuration";
+    /** custom_credentials_configuration. */
+    String CUSTOM_CREDENTIALS_CONFIGURATION = "custom_credentials_configuration";
   }
 
   protected String name;
