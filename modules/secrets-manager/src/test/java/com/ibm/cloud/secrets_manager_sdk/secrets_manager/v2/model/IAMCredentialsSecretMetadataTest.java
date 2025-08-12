@@ -35,6 +35,7 @@ public class IAMCredentialsSecretMetadataTest {
     IAMCredentialsSecretMetadata iamCredentialsSecretMetadataModel = new IAMCredentialsSecretMetadata();
     assertNull(iamCredentialsSecretMetadataModel.getCreatedBy());
     assertNull(iamCredentialsSecretMetadataModel.getCreatedAt());
+    assertNull(iamCredentialsSecretMetadataModel.getRetrievedAt());
     assertNull(iamCredentialsSecretMetadataModel.getCrn());
     assertNull(iamCredentialsSecretMetadataModel.getCustomMetadata());
     assertNull(iamCredentialsSecretMetadataModel.getDescription());

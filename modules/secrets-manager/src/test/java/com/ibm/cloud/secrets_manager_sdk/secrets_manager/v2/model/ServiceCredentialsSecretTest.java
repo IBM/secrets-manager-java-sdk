@@ -45,6 +45,7 @@ public class ServiceCredentialsSecretTest {
     ServiceCredentialsSecret serviceCredentialsSecretModel = new ServiceCredentialsSecret();
     assertNull(serviceCredentialsSecretModel.getCreatedBy());
     assertNull(serviceCredentialsSecretModel.getCreatedAt());
+    assertNull(serviceCredentialsSecretModel.getRetrievedAt());
     assertNull(serviceCredentialsSecretModel.getCrn());
     assertNull(serviceCredentialsSecretModel.getCustomMetadata());
     assertNull(serviceCredentialsSecretModel.getDescription());

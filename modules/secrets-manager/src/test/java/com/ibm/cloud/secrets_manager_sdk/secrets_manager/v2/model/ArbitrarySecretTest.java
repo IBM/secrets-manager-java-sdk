@@ -34,6 +34,7 @@ public class ArbitrarySecretTest {
     ArbitrarySecret arbitrarySecretModel = new ArbitrarySecret();
     assertNull(arbitrarySecretModel.getCreatedBy());
     assertNull(arbitrarySecretModel.getCreatedAt());
+    assertNull(arbitrarySecretModel.getRetrievedAt());
     assertNull(arbitrarySecretModel.getCrn());
     assertNull(arbitrarySecretModel.getCustomMetadata());
     assertNull(arbitrarySecretModel.getDescription());
