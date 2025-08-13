@@ -36,6 +36,7 @@ public class UsernamePasswordSecretMetadataTest {
     UsernamePasswordSecretMetadata usernamePasswordSecretMetadataModel = new UsernamePasswordSecretMetadata();
     assertNull(usernamePasswordSecretMetadataModel.getCreatedBy());
     assertNull(usernamePasswordSecretMetadataModel.getCreatedAt());
+    assertNull(usernamePasswordSecretMetadataModel.getRetrievedAt());
     assertNull(usernamePasswordSecretMetadataModel.getCrn());
     assertNull(usernamePasswordSecretMetadataModel.getCustomMetadata());
     assertNull(usernamePasswordSecretMetadataModel.getDescription());
