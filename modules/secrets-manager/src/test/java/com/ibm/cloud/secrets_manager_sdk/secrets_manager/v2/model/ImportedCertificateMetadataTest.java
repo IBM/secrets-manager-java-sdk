@@ -37,7 +37,6 @@ public class ImportedCertificateMetadataTest {
     ImportedCertificateMetadata importedCertificateMetadataModel = new ImportedCertificateMetadata();
     assertNull(importedCertificateMetadataModel.getCreatedBy());
     assertNull(importedCertificateMetadataModel.getCreatedAt());
-    assertNull(importedCertificateMetadataModel.getRetrievedAt());
     assertNull(importedCertificateMetadataModel.getCrn());
     assertNull(importedCertificateMetadataModel.getCustomMetadata());
     assertNull(importedCertificateMetadataModel.getDescription());

@@ -37,7 +37,6 @@ public class ImportedCertificateTest {
     ImportedCertificate importedCertificateModel = new ImportedCertificate();
     assertNull(importedCertificateModel.getCreatedBy());
     assertNull(importedCertificateModel.getCreatedAt());
-    assertNull(importedCertificateModel.getRetrievedAt());
     assertNull(importedCertificateModel.getCrn());
     assertNull(importedCertificateModel.getCustomMetadata());
     assertNull(importedCertificateModel.getDescription());
