@@ -36,7 +36,6 @@ public class UsernamePasswordSecretTest {
     UsernamePasswordSecret usernamePasswordSecretModel = new UsernamePasswordSecret();
     assertNull(usernamePasswordSecretModel.getCreatedBy());
     assertNull(usernamePasswordSecretModel.getCreatedAt());
-    assertNull(usernamePasswordSecretModel.getRetrievedAt());
     assertNull(usernamePasswordSecretModel.getCrn());
     assertNull(usernamePasswordSecretModel.getCustomMetadata());
     assertNull(usernamePasswordSecretModel.getDescription());

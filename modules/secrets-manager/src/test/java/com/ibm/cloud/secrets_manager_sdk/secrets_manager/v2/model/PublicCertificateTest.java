@@ -37,7 +37,6 @@ public class PublicCertificateTest {
     PublicCertificate publicCertificateModel = new PublicCertificate();
     assertNull(publicCertificateModel.getCreatedBy());
     assertNull(publicCertificateModel.getCreatedAt());
-    assertNull(publicCertificateModel.getRetrievedAt());
     assertNull(publicCertificateModel.getCrn());
     assertNull(publicCertificateModel.getCustomMetadata());
     assertNull(publicCertificateModel.getDescription());

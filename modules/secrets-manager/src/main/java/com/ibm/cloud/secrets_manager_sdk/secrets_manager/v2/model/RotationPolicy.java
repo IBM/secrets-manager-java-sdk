@@ -34,8 +34,6 @@ public class RotationPolicy extends GenericModel {
     String DAY = "day";
     /** month. */
     String MONTH = "month";
-    /** hour. */
-    String HOUR = "hour";
   }
 
   @SerializedName("auto_rotate")

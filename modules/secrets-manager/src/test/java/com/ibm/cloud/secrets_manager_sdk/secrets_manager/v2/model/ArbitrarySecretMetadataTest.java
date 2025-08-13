@@ -34,7 +34,6 @@ public class ArbitrarySecretMetadataTest {
     ArbitrarySecretMetadata arbitrarySecretMetadataModel = new ArbitrarySecretMetadata();
     assertNull(arbitrarySecretMetadataModel.getCreatedBy());
     assertNull(arbitrarySecretMetadataModel.getCreatedAt());
-    assertNull(arbitrarySecretMetadataModel.getRetrievedAt());
     assertNull(arbitrarySecretMetadataModel.getCrn());
     assertNull(arbitrarySecretMetadataModel.getCustomMetadata());
     assertNull(arbitrarySecretMetadataModel.getDescription());
