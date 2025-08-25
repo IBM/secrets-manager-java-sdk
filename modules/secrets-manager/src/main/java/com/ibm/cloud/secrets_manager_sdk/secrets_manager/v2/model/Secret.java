@@ -95,6 +95,8 @@ public class Secret extends GenericModel {
   protected String createdBy;
   @SerializedName("created_at")
   protected Date createdAt;
+  @SerializedName("retrieved_at")
+  protected Date retrievedAt;
   protected String crn;
   @SerializedName("custom_metadata")
   protected Map<String, Object> customMetadata;
@@ -196,6 +198,8 @@ public class Secret extends GenericModel {
   protected Long queuedTaskCount;
   @SerializedName("last_failed_task_id")
   protected String lastFailedTaskId;
+  @SerializedName("last_rotation_failed")
+  protected Boolean lastRotationFailed;
   protected String configuration;
   protected Map<String, Object> parameters;
   @SerializedName("credentials_content")
@@ -223,6 +227,18 @@ public class Secret extends GenericModel {
    */
   public Date getCreatedAt() {
     return createdAt;
+  }
+
+  /**
+   * Gets the retrievedAt.
+   *
+   * The date when the data of the secret was last retrieved. The date format follows RFC 3339. Epoch date if there is
+   * no record of secret data retrieval.
+   *
+   * @return the retrievedAt
+   */
+  public Date getRetrievedAt() {
+    return retrievedAt;
   }
 
   /**
@@ -942,6 +958,17 @@ public class Secret extends GenericModel {
    */
   public String getLastFailedTaskId() {
     return lastFailedTaskId;
+  }
+
+  /**
+   * Gets the lastRotationFailed.
+   *
+   * Indicates if the last rotation (automatic or manual) for the secret failed.
+   *
+   * @return the lastRotationFailed
+   */
+  public Boolean isLastRotationFailed() {
+    return lastRotationFailed;
   }
 
   /**

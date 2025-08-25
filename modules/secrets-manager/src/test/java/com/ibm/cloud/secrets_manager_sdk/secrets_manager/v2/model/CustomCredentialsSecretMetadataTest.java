@@ -35,6 +35,7 @@ public class CustomCredentialsSecretMetadataTest {
     CustomCredentialsSecretMetadata customCredentialsSecretMetadataModel = new CustomCredentialsSecretMetadata();
     assertNull(customCredentialsSecretMetadataModel.getCreatedBy());
     assertNull(customCredentialsSecretMetadataModel.getCreatedAt());
+    assertNull(customCredentialsSecretMetadataModel.getRetrievedAt());
     assertNull(customCredentialsSecretMetadataModel.getCrn());
     assertNull(customCredentialsSecretMetadataModel.getCustomMetadata());
     assertNull(customCredentialsSecretMetadataModel.getDescription());

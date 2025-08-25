@@ -37,6 +37,7 @@ public class PrivateCertificateMetadataTest {
     PrivateCertificateMetadata privateCertificateMetadataModel = new PrivateCertificateMetadata();
     assertNull(privateCertificateMetadataModel.getCreatedBy());
     assertNull(privateCertificateMetadataModel.getCreatedAt());
+    assertNull(privateCertificateMetadataModel.getRetrievedAt());
     assertNull(privateCertificateMetadataModel.getCrn());
     assertNull(privateCertificateMetadataModel.getCustomMetadata());
     assertNull(privateCertificateMetadataModel.getDescription());
