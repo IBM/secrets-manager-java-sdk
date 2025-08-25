@@ -39,14 +39,14 @@ The IBM Cloud Secrets Manager Java SDK allows developers to programmatically int
 <dependency>
     <groupId>com.ibm.cloud</groupId>
     <artifactId>secrets-manager</artifactId>
-    <version>2.0.22</version>
+    <version>2.0.23</version>
 </dependency>
 ```
 
 ##### Gradle
 
 ```gradle
-'com.ibm.cloud:secrets-manager:2.0.22'
+'com.ibm.cloud:secrets-manager:2.0.23'
 ```
 
 ## Authentication
