@@ -15,6 +15,18 @@ package com.ibm.cloud.secrets_manager_sdk.secrets_manager.v2.model;
 
 /**
  * This field indicates whether Secrets Manager rotates your secrets automatically.
+ *
+ * Rotation interval cannot exceed the assiged TTL value.
+ *
+ * Custom Credentials: Minimum 6 hours, Maximum 3 months.
+ *
+ * Service Credentials: Minimum 1 day, Maximum 3 months.
+ *
+ * IAM Credentials: Minimum 1 day, Maximum 3 months.
+ *
+ * Private certificate: Minimum 1 day, Maximum 24 months.
+ *
+ * User credentials: Minimum 1 day, Maximum 24 months.
  */
 public class CommonRotationPolicy extends RotationPolicy {
 
@@ -26,6 +38,8 @@ public class CommonRotationPolicy extends RotationPolicy {
     String DAY = "day";
     /** month. */
     String MONTH = "month";
+    /** hour. */
+    String HOUR = "hour";
   }
 
 

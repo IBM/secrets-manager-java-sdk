@@ -282,7 +282,7 @@ public class ListSecretsOptions extends GenericModel {
    * character
    *
    *
-   * **Available values:** id | created_at | updated_at | expiration_date | secret_type | name
+   * **Available values:** id | created_at | updated_at | retrieved_at | expiration_date | secret_type | name
    *
    * **Usage:** To sort a list of secrets by their creation date, use
    * `../secrets?sort=created_at`.

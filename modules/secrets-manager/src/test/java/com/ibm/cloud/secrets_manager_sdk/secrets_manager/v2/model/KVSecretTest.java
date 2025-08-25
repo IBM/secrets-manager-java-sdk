@@ -34,6 +34,7 @@ public class KVSecretTest {
     KVSecret kvSecretModel = new KVSecret();
     assertNull(kvSecretModel.getCreatedBy());
     assertNull(kvSecretModel.getCreatedAt());
+    assertNull(kvSecretModel.getRetrievedAt());
     assertNull(kvSecretModel.getCrn());
     assertNull(kvSecretModel.getCustomMetadata());
     assertNull(kvSecretModel.getDescription());
