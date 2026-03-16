@@ -431,7 +431,7 @@
                 <repository>
                     <!-- This is where the nexus staging plugin will publish artifacts -->
                     <id>central</id>
-                    <url>https://s01.ossss.sonatype.org/service/local/staging/deploy/maven2</url>
+                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</url>
                 </repository>
                 <!-- Optional: add snapshots if you publish SNAPSHOT versions -->
                 <!--
