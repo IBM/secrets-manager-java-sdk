@@ -427,34 +427,26 @@
             <!-- For this profile, we'll get dependencies from maven central -->
             <repositories></repositories>
 
-            <distributionManagement>
-                <repository>
-                    <!-- This is where the nexus staging plugin will publish artifacts -->
-                    <id>central</id>
-                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</url>
-                </repository>
-                <!-- Optional: add snapshots if you publish SNAPSHOT versions -->
-                <!--
-                <snapshotRepository>
-                    <id>central</id>
-                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
-                -->
-            </distributionManagement>
+            <!-- No <distributionManagement> needed – the plugin handles upload -->
 
             <build>
                 <plugins>
+                    <!-- Remove nexus-staging-maven-plugin -->
+
+                    <!-- New: official Central Publishing Plugin -->
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.9.0</version> <!-- or latest; check https://central.sonatype.com/artifact/org.sonatype.central/central-publishing-maven-plugin -->
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>central</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                            <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
+                            <publishingServerId>central</publishingServerId> <!-- match settings.xml <id> -->
+                            <autoPublish>true</autoPublish> <!-- auto-approve & release after validation -->
+                            <waitUntil>published</waitUntil> <!-- wait for sync to Central -->
                         </configuration>
                     </plugin>
+
+                    <!-- Keep GPG signing (still required) -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
