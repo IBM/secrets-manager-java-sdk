@@ -1,3 +1,5 @@
+## [2.0.24](https://github.com/IBM/secrets-manager-java-sdk/compare/v2.0.23...v2.0.24) (2026-03-16)
+
 ## [2.0.23](https://github.com/IBM/secrets-manager-java-sdk/compare/v2.0.22...v2.0.23) (2025-08-25)
 
 ## [2.0.22](https://github.com/IBM/secrets-manager-java-sdk/compare/v2.0.21...v2.0.22) (2025-05-05)
