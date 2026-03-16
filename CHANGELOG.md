@@ -1,3 +1,10 @@
+## [2.0.28](https://github.com/IBM/secrets-manager-java-sdk/compare/v2.0.27...v2.0.28) (2026-03-16)
+
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.17 ([0b460ff](https://github.com/IBM/secrets-manager-java-sdk/commit/0b460ffa24d4cd31262354faae073438e204c4d4))
+
 ## [2.0.27](https://github.com/IBM/secrets-manager-java-sdk/compare/v2.0.26...v2.0.27) (2026-03-16)
 
 ## [2.0.26](https://github.com/IBM/secrets-manager-java-sdk/compare/v2.0.25...v2.0.26) (2026-03-16)
