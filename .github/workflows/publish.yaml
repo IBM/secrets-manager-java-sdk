@@ -24,7 +24,7 @@ jobs:
           gpg --list-secret-keys --keyid-format LONG
 
       - name: Set up Maven Central Repository
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: 11
           distribution: zulu
