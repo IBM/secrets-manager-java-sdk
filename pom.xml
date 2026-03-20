@@ -8,7 +8,7 @@
 
     <description>Java Client Library to access the IBM Cloud Secrets Manager APIs</description>
 
-    <url>https://github.com/Rohit-8541/secrets-manager-java-sdk</url>
+    <url>https://github.com/IBM/secrets-manager-java-sdk</url>
 
     <groupId>com.ibm.cloud</groupId>
     <version>2.0.28</version>
@@ -69,14 +69,14 @@
     </organization>
 
     <scm>
-        <connection>scm:git:https://github.com/Rohit-8541/secrets-manager-java-sdk</connection>
-        <developerConnection>scm:git:https://github.com/Rohit-8541/secrets-manager-java-sdk</developerConnection>
-        <url>https://github.com/Rohit-8541/secrets-manager-java-sdk/tree/master</url>
+        <connection>scm:git:https://github.com/IBM/secrets-manager-java-sdk</connection>
+        <developerConnection>scm:git:https://github.com/IBM/secrets-manager-java-sdk</developerConnection>
+        <url>https://github.com/IBM/secrets-manager-java-sdk/tree/master</url>
     </scm>
 
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/Rohit-8541/secrets-manager-java-sdk/issues</url>
+        <url>https://github.com/IBM/secrets-manager-java-sdk/issues</url>
     </issueManagement>
 
     <repositories></repositories>
