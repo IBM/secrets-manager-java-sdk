@@ -1,0 +1,30 @@
+[tool.bumpversion]
+current_version = "2.0.28"
+commit = false
+tag = false
+allow_dirty = true
+
+[[tool.bumpversion.files]]
+filename = "pom.xml"
+search = "<version>{current_version}</version>"
+replace = "<version>{new_version}</version>"
+
+[[tool.bumpversion.files]]
+filename = "modules/common/pom.xml"
+search = "{current_version}"
+replace = "{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "modules/coverage-reports/pom.xml"
+search = "{current_version}"
+replace = "{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "modules/secrets-manager/pom.xml"
+search = "{current_version}"
+replace = "{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "README.md"
+search = "{current_version}"
+replace = "{new_version}"
