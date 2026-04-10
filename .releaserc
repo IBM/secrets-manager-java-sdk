@@ -24,13 +24,6 @@
         "assets": ["pom.xml", "modules/*/pom.xml", "README.md", ".bumpversion.toml"]
       }
     ],
-    [
-      "@semantic-release/github",
-      {
-        "successComment": false,
-        "failComment": false,
-        "releasedLabels": false
-      }
-    ]
+    "@semantic-release/github"
   ]
 }
