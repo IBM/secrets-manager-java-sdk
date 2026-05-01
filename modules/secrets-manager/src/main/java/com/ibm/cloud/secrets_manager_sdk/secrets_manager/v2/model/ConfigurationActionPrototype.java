@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -43,7 +43,8 @@ public class ConfigurationActionPrototype extends GenericModel {
     discriminatorMapping.put("private_cert_configuration_action_set_signed", PrivateCertificateConfigurationActionSetSignedPrototype.class);
   }
   /**
-   * The type of configuration action.
+   * The type of configuration action or the type of configuration action or the type of configuration action or the
+   * type of configuration action or the type of configuration action or the type of configuration action.
    */
   public interface ActionType {
     /** private_cert_configuration_action_rotate_crl. */
@@ -61,7 +62,7 @@ public class ConfigurationActionPrototype extends GenericModel {
   }
 
   /**
-   * The format of the returned data.
+   * The format of the returned data or the format of the returned data.
    */
   public interface Format {
     /** pem. */
@@ -113,7 +114,8 @@ public class ConfigurationActionPrototype extends GenericModel {
   /**
    * Gets the actionType.
    *
-   * The type of configuration action.
+   * The type of configuration action or the type of configuration action or the type of configuration action or the
+   * type of configuration action or the type of configuration action or the type of configuration action.
    *
    * @return the actionType
    */
@@ -124,7 +126,8 @@ public class ConfigurationActionPrototype extends GenericModel {
   /**
    * Gets the commonName.
    *
-   * The Common Name (CN) represents the server name that is protected by the SSL certificate.
+   * The Common Name (CN) represents the server name that is protected by the SSL certificate or the Common Name (CN)
+   * represents the server name that is protected by the SSL certificate.
    *
    * @return the commonName
    */
@@ -147,7 +150,8 @@ public class ConfigurationActionPrototype extends GenericModel {
   /**
    * Gets the ipSans.
    *
-   * The IP Subject Alternative Names to define for the CA certificate, in a comma-delimited list.
+   * The IP Subject Alternative Names to define for the CA certificate, in a comma-delimited list or the IP Subject
+   * Alternative Names to define for the CA certificate, in a comma-delimited list.
    *
    * @return the ipSans
    */
@@ -158,7 +162,8 @@ public class ConfigurationActionPrototype extends GenericModel {
   /**
    * Gets the uriSans.
    *
-   * The URI Subject Alternative Names to define for the CA certificate, in a comma-delimited list.
+   * The URI Subject Alternative Names to define for the CA certificate, in a comma-delimited list or the URI Subject
+   * Alternative Names to define for the CA certificate, in a comma-delimited list.
    *
    * @return the uriSans
    */
@@ -187,6 +192,10 @@ public class ConfigurationActionPrototype extends GenericModel {
    * The time-to-live (TTL) to assign to a private certificate.
    *
    * The value can be supplied as a string representation of a duration in hours, for example '12h'. The value can't
+   * exceed the `max_ttl` that is defined in the associated certificate template or the time-to-live (TTL) to assign to
+   * a private certificate.
+   *
+   * The value can be supplied as a string representation of a duration in hours, for example '12h'. The value can't
    * exceed the `max_ttl` that is defined in the associated certificate template.
    *
    * @return the ttl
@@ -198,7 +207,7 @@ public class ConfigurationActionPrototype extends GenericModel {
   /**
    * Gets the format.
    *
-   * The format of the returned data.
+   * The format of the returned data or the format of the returned data.
    *
    * @return the format
    */
@@ -210,6 +219,10 @@ public class ConfigurationActionPrototype extends GenericModel {
    * Gets the maxPathLength.
    *
    * The maximum path length to encode in the generated certificate. `-1` means no limit.
+   *
+   * If the signing certificate has a maximum path length set, the path length is set to one less than that of the
+   * signing certificate. A limit of `0` means a literal path length of zero or the maximum path length to encode in the
+   * generated certificate. `-1` means no limit.
    *
    * If the signing certificate has a maximum path length set, the path length is set to one less than that of the
    * signing certificate. A limit of `0` means a literal path length of zero.
@@ -224,6 +237,10 @@ public class ConfigurationActionPrototype extends GenericModel {
    * Gets the excludeCnFromSans.
    *
    * This parameter controls whether the common name is excluded from Subject Alternative Names (SANs).
+   *
+   * If the common name is set to `true`, it is not included in DNS, or email SANs if they apply. This field can be
+   * useful if the common name is a human-readable identifier, instead of a hostname or an email address or this
+   * parameter controls whether the common name is excluded from Subject Alternative Names (SANs).
    *
    * If the common name is set to `true`, it is not included in DNS, or email SANs if they apply. This field can be
    * useful if the common name is a human-readable identifier, instead of a hostname or an email address.
@@ -249,6 +266,16 @@ public class ConfigurationActionPrototype extends GenericModel {
    * Gets the useCsrValues.
    *
    * This field indicates whether to use values from a certificate signing request (CSR) to complete a
+   * `private_cert_configuration_action_sign_csr` action. If it is set to `true`, then:
+   *
+   * 1) Subject information, including names and alternate names, are preserved from the CSR rather than by using the
+   * values that are provided in the other parameters to this operation.
+   *
+   * 2) Any key usage, for example, non-repudiation, that is requested in the CSR are added to the basic set of key
+   * usages used for CA certificates that are signed by the intermediate authority.
+   *
+   * 3) Extensions that are requested in the CSR are copied into the issued private certificate or this field indicates
+   * whether to use values from a certificate signing request (CSR) to complete a
    * `private_cert_configuration_action_sign_csr` action. If it is set to `true`, then:
    *
    * 1) Subject information, including names and alternate names, are preserved from the CSR rather than by using the
@@ -347,6 +374,11 @@ public class ConfigurationActionPrototype extends GenericModel {
    *
    * The requested value for the [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31) attribute
    * that is in the certificate's distinguished name (DN).
+   *
+   * **Note:** This field is not related to the `serial_number` field that is returned in the API response. The
+   * `serial_number` field represents the certificate's randomly assigned serial number or the requested value for the
+   * [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31) attribute that is in the certificate's
+   * distinguished name (DN).
    *
    * **Note:** This field is not related to the `serial_number` field that is returned in the API response. The
    * `serial_number` field represents the certificate's randomly assigned serial number.

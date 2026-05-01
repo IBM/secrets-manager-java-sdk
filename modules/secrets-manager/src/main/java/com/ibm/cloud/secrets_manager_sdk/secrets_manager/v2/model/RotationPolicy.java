@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -51,6 +51,9 @@ public class RotationPolicy extends GenericModel {
    * Gets the autoRotate.
    *
    * This field indicates whether Secrets Manager rotates your secret automatically.
+   *
+   * The default is `false`. If `auto_rotate` is set to `true` the service rotates your secret based on the defined
+   * interval or this field indicates whether Secrets Manager rotates your secret automatically.
    *
    * The default is `false`. If `auto_rotate` is set to `true` the service rotates your secret based on the defined
    * interval.

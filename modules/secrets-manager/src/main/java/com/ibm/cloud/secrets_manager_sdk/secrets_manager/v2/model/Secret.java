@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -52,7 +52,18 @@ public class Secret extends GenericModel {
   }
   /**
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password or the secret type. Supported types are arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the
+   * secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password.
    */
   public interface SecretType {
     /** arbitrary. */
@@ -76,7 +87,10 @@ public class Secret extends GenericModel {
   }
 
   /**
-   * A text representation of the secret state.
+   * A text representation of the secret state or a text representation of the secret state or a text representation of
+   * the secret state or a text representation of the secret state or a text representation of the secret state or a
+   * text representation of the secret state or a text representation of the secret state or a text representation of
+   * the secret state or a text representation of the secret state.
    */
   public interface StateDescription {
     /** pre_activation. */
@@ -210,7 +224,13 @@ public class Secret extends GenericModel {
   /**
    * Gets the createdBy.
    *
-   * The unique identifier that is associated with the entity that created the secret.
+   * The unique identifier that is associated with the entity that created the secret or the unique identifier that is
+   * associated with the entity that created the secret or the unique identifier that is associated with the entity that
+   * created the secret or the unique identifier that is associated with the entity that created the secret or the
+   * unique identifier that is associated with the entity that created the secret or the unique identifier that is
+   * associated with the entity that created the secret or the unique identifier that is associated with the entity that
+   * created the secret or the unique identifier that is associated with the entity that created the secret or the
+   * unique identifier that is associated with the entity that created the secret.
    *
    * @return the createdBy
    */
@@ -221,7 +241,13 @@ public class Secret extends GenericModel {
   /**
    * Gets the createdAt.
    *
-   * The date when the resource was created. The date format follows `RFC 3339`.
+   * The date when the resource was created. The date format follows `RFC 3339` or the date when the resource was
+   * created. The date format follows `RFC 3339` or the date when the resource was created. The date format follows `RFC
+   * 3339` or the date when the resource was created. The date format follows `RFC 3339` or the date when the resource
+   * was created. The date format follows `RFC 3339` or the date when the resource was created. The date format follows
+   * `RFC 3339` or the date when the resource was created. The date format follows `RFC 3339` or the date when the
+   * resource was created. The date format follows `RFC 3339` or the date when the resource was created. The date format
+   * follows `RFC 3339`.
    *
    * @return the createdAt
    */
@@ -233,7 +259,17 @@ public class Secret extends GenericModel {
    * Gets the retrievedAt.
    *
    * The date when the data of the secret was last retrieved. The date format follows RFC 3339. Epoch date if there is
-   * no record of secret data retrieval.
+   * no record of secret data retrieval or the date when the data of the secret was last retrieved. The date format
+   * follows RFC 3339. Epoch date if there is no record of secret data retrieval or the date when the data of the secret
+   * was last retrieved. The date format follows RFC 3339. Epoch date if there is no record of secret data retrieval or
+   * the date when the data of the secret was last retrieved. The date format follows RFC 3339. Epoch date if there is
+   * no record of secret data retrieval or the date when the data of the secret was last retrieved. The date format
+   * follows RFC 3339. Epoch date if there is no record of secret data retrieval or the date when the data of the secret
+   * was last retrieved. The date format follows RFC 3339. Epoch date if there is no record of secret data retrieval or
+   * the date when the data of the secret was last retrieved. The date format follows RFC 3339. Epoch date if there is
+   * no record of secret data retrieval or the date when the data of the secret was last retrieved. The date format
+   * follows RFC 3339. Epoch date if there is no record of secret data retrieval or the date when the data of the secret
+   * was last retrieved. The date format follows RFC 3339. Epoch date if there is no record of secret data retrieval.
    *
    * @return the retrievedAt
    */
@@ -244,7 +280,11 @@ public class Secret extends GenericModel {
   /**
    * Gets the crn.
    *
-   * A CRN that uniquely identifies an IBM Cloud resource.
+   * A CRN that uniquely identifies an IBM Cloud resource or a CRN that uniquely identifies an IBM Cloud resource or a
+   * CRN that uniquely identifies an IBM Cloud resource or a CRN that uniquely identifies an IBM Cloud resource or a CRN
+   * that uniquely identifies an IBM Cloud resource or a CRN that uniquely identifies an IBM Cloud resource or a CRN
+   * that uniquely identifies an IBM Cloud resource or a CRN that uniquely identifies an IBM Cloud resource or a CRN
+   * that uniquely identifies an IBM Cloud resource.
    *
    * @return the crn
    */
@@ -269,6 +309,30 @@ public class Secret extends GenericModel {
    * An extended description of your secret.
    *
    * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
    * group.
    *
    * @return the description
@@ -281,7 +345,16 @@ public class Secret extends GenericModel {
    * Gets the downloaded.
    *
    * This field indicates whether the secret data that is associated with a secret version was retrieved in a call to
-   * the service API.
+   * the service API or this field indicates whether the secret data that is associated with a secret version was
+   * retrieved in a call to the service API or this field indicates whether the secret data that is associated with a
+   * secret version was retrieved in a call to the service API or this field indicates whether the secret data that is
+   * associated with a secret version was retrieved in a call to the service API or this field indicates whether the
+   * secret data that is associated with a secret version was retrieved in a call to the service API or this field
+   * indicates whether the secret data that is associated with a secret version was retrieved in a call to the service
+   * API or this field indicates whether the secret data that is associated with a secret version was retrieved in a
+   * call to the service API or this field indicates whether the secret data that is associated with a secret version
+   * was retrieved in a call to the service API or this field indicates whether the secret data that is associated with
+   * a secret version was retrieved in a call to the service API.
    *
    * @return the downloaded
    */
@@ -292,7 +365,8 @@ public class Secret extends GenericModel {
   /**
    * Gets the id.
    *
-   * A UUID identifier.
+   * A UUID identifier or a UUID identifier or a UUID identifier or a UUID identifier or a UUID identifier or a UUID
+   * identifier or a UUID identifier or a UUID identifier or a UUID identifier.
    *
    * @return the id
    */
@@ -318,7 +392,9 @@ public class Secret extends GenericModel {
   /**
    * Gets the locksTotal.
    *
-   * The number of locks of the secret.
+   * The number of locks of the secret or the number of locks of the secret or the number of locks of the secret or the
+   * number of locks of the secret or the number of locks of the secret or the number of locks of the secret or the
+   * number of locks of the secret or the number of locks of the secret or the number of locks of the secret.
    *
    * @return the locksTotal
    */
@@ -329,7 +405,10 @@ public class Secret extends GenericModel {
   /**
    * Gets the name.
    *
-   * The human-readable name of your secret.
+   * The human-readable name of your secret or the human-readable name of your secret or the human-readable name of your
+   * secret or the human-readable name of your secret or the human-readable name of your secret or the human-readable
+   * name of your secret or the human-readable name of your secret or the human-readable name of your secret or the
+   * human-readable name of your secret.
    *
    * @return the name
    */
@@ -340,7 +419,10 @@ public class Secret extends GenericModel {
   /**
    * Gets the secretGroupId.
    *
-   * A UUID identifier, or `default` secret group.
+   * A UUID identifier, or `default` secret group or a UUID identifier, or `default` secret group or a UUID identifier,
+   * or `default` secret group or a UUID identifier, or `default` secret group or a UUID identifier, or `default` secret
+   * group or a UUID identifier, or `default` secret group or a UUID identifier, or `default` secret group or a UUID
+   * identifier, or `default` secret group or a UUID identifier, or `default` secret group.
    *
    * @return the secretGroupId
    */
@@ -352,7 +434,18 @@ public class Secret extends GenericModel {
    * Gets the secretType.
    *
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password or the secret type. Supported types are arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the
+   * secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password.
    *
    * @return the secretType
    */
@@ -364,6 +457,20 @@ public class Secret extends GenericModel {
    * Gets the state.
    *
    * The secret state that is based on `NIST SP 800-57`. States are integers and correspond to the `Pre-activation = 0`,
+   * `Active = 1`,  `Suspended = 2`, `Deactivated = 3`, and `Destroyed = 5` values or the secret state that is based on
+   * `NIST SP 800-57`. States are integers and correspond to the `Pre-activation = 0`, `Active = 1`,  `Suspended = 2`,
+   * `Deactivated = 3`, and `Destroyed = 5` values or the secret state that is based on `NIST SP 800-57`. States are
+   * integers and correspond to the `Pre-activation = 0`, `Active = 1`,  `Suspended = 2`, `Deactivated = 3`, and
+   * `Destroyed = 5` values or the secret state that is based on `NIST SP 800-57`. States are integers and correspond to
+   * the `Pre-activation = 0`, `Active = 1`,  `Suspended = 2`, `Deactivated = 3`, and `Destroyed = 5` values or the
+   * secret state that is based on `NIST SP 800-57`. States are integers and correspond to the `Pre-activation = 0`,
+   * `Active = 1`,  `Suspended = 2`, `Deactivated = 3`, and `Destroyed = 5` values or the secret state that is based on
+   * `NIST SP 800-57`. States are integers and correspond to the `Pre-activation = 0`, `Active = 1`,  `Suspended = 2`,
+   * `Deactivated = 3`, and `Destroyed = 5` values or the secret state that is based on `NIST SP 800-57`. States are
+   * integers and correspond to the `Pre-activation = 0`, `Active = 1`,  `Suspended = 2`, `Deactivated = 3`, and
+   * `Destroyed = 5` values or the secret state that is based on `NIST SP 800-57`. States are integers and correspond to
+   * the `Pre-activation = 0`, `Active = 1`,  `Suspended = 2`, `Deactivated = 3`, and `Destroyed = 5` values or the
+   * secret state that is based on `NIST SP 800-57`. States are integers and correspond to the `Pre-activation = 0`,
    * `Active = 1`,  `Suspended = 2`, `Deactivated = 3`, and `Destroyed = 5` values.
    *
    * @return the state
@@ -375,7 +482,10 @@ public class Secret extends GenericModel {
   /**
    * Gets the stateDescription.
    *
-   * A text representation of the secret state.
+   * A text representation of the secret state or a text representation of the secret state or a text representation of
+   * the secret state or a text representation of the secret state or a text representation of the secret state or a
+   * text representation of the secret state or a text representation of the secret state or a text representation of
+   * the secret state or a text representation of the secret state.
    *
    * @return the stateDescription
    */
@@ -386,7 +496,12 @@ public class Secret extends GenericModel {
   /**
    * Gets the updatedAt.
    *
-   * The date when a resource was modified. The date format follows `RFC 3339`.
+   * The date when a resource was modified. The date format follows `RFC 3339` or the date when a resource was modified.
+   * The date format follows `RFC 3339` or the date when a resource was modified. The date format follows `RFC 3339` or
+   * the date when a resource was modified. The date format follows `RFC 3339` or the date when a resource was modified.
+   * The date format follows `RFC 3339` or the date when a resource was modified. The date format follows `RFC 3339` or
+   * the date when a resource was modified. The date format follows `RFC 3339` or the date when a resource was modified.
+   * The date format follows `RFC 3339` or the date when a resource was modified. The date format follows `RFC 3339`.
    *
    * @return the updatedAt
    */
@@ -397,7 +512,10 @@ public class Secret extends GenericModel {
   /**
    * Gets the versionsTotal.
    *
-   * The number of versions of your secret.
+   * The number of versions of your secret or the number of versions of your secret or the number of versions of your
+   * secret or the number of versions of your secret or the number of versions of your secret or the number of versions
+   * of your secret or the number of versions of your secret or the number of versions of your secret or the number of
+   * versions of your secret.
    *
    * @return the versionsTotal
    */
@@ -421,7 +539,22 @@ public class Secret extends GenericModel {
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
    * arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
-   * custom_credentials.
+   * custom_credentials or the date when the secret material expires. The date format follows the `RFC 3339` format.
+   * Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials,
+   * username_password, and custom_credentials or the date when the secret material expires. The date format follows the
+   * `RFC 3339` format. Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, username_password, and custom_credentials or the date when the secret material expires. The
+   * date format follows the `RFC 3339` format. Supported secret types: arbitrary, imported_cert, public_cert,
+   * private_cert, iam_credentials, service_credentials, username_password, and custom_credentials or the date when the
+   * secret material expires. The date format follows the `RFC 3339` format. Supported secret types: arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
+   * custom_credentials or the date when the secret material expires. The date format follows the `RFC 3339` format.
+   * Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials,
+   * username_password, and custom_credentials or the date when the secret material expires. The date format follows the
+   * `RFC 3339` format. Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, username_password, and custom_credentials or the date when the secret material expires. The
+   * date format follows the `RFC 3339` format. Supported secret types: arbitrary, imported_cert, public_cert,
+   * private_cert, iam_credentials, service_credentials, username_password, and custom_credentials.
    *
    * @return the expirationDate
    */
@@ -450,7 +583,22 @@ public class Secret extends GenericModel {
    * duration is 1 minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional.
    * If it is set the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL
    * is modified, it will be applied only on the next secret rotation. For the custom_credentials secret type, the TTL
-   * field is optional. The minimum duration is 1 day. The maximum is 90 days.
+   * field is optional. The minimum duration is 1 day. The maximum is 90 days or the time-to-live (TTL) or lease
+   * duration to assign to credentials that are generated. Supported secret types: iam_credentials, service_credentials,
+   * custom_credentials. The TTL defines how long generated credentials remain valid. The value can be either an integer
+   * that specifies the number of seconds, or the string  representation of a duration, such as `1440m` or `24h`. For
+   * the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1 minute. The maximum is 90
+   * days. For the service_credentials secret type, the TTL field is optional. If it is set the minimum duration is 1
+   * day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will be applied only on
+   * the next secret rotation. For the custom_credentials secret type, the TTL field is optional. The minimum duration
+   * is 1 day. The maximum is 90 days or the time-to-live (TTL) or lease duration to assign to credentials that are
+   * generated. Supported secret types: iam_credentials, service_credentials, custom_credentials. The TTL defines how
+   * long generated credentials remain valid. The value can be either an integer that specifies the number of seconds,
+   * or the string  representation of a duration, such as `1440m` or `24h`. For the iam_credentials secret type, the TTL
+   * field is mandatory. The minimum duration is 1 minute. The maximum is 90 days. For the service_credentials secret
+   * type, the TTL field is optional. If it is set the minimum duration is 1 day. The maximum is 90 days. By default,
+   * the TTL is set to 0. After the TTL is modified, it will be applied only on the next secret rotation. For the
+   * custom_credentials secret type, the TTL field is optional. The minimum duration is 1 day. The maximum is 90 days.
    *
    * @return the ttl
    */
@@ -558,6 +706,22 @@ public class Secret extends GenericModel {
    * The date that the secret is scheduled for automatic rotation.
    *
    * The service automatically creates a new version of the secret on its next rotation date. This field exists only for
+   * secrets that can be auto-rotated and an existing rotation policy or the date that the secret is scheduled for
+   * automatic rotation.
+   *
+   * The service automatically creates a new version of the secret on its next rotation date. This field exists only for
+   * secrets that can be auto-rotated and an existing rotation policy or the date that the secret is scheduled for
+   * automatic rotation.
+   *
+   * The service automatically creates a new version of the secret on its next rotation date. This field exists only for
+   * secrets that can be auto-rotated and an existing rotation policy or the date that the secret is scheduled for
+   * automatic rotation.
+   *
+   * The service automatically creates a new version of the secret on its next rotation date. This field exists only for
+   * secrets that can be auto-rotated and an existing rotation policy or the date that the secret is scheduled for
+   * automatic rotation.
+   *
+   * The service automatically creates a new version of the secret on its next rotation date. This field exists only for
    * secrets that can be auto-rotated and an existing rotation policy.
    *
    * @return the nextRotationDate
@@ -585,7 +749,9 @@ public class Secret extends GenericModel {
    * Gets the signingAlgorithm.
    *
    * The identifier for the cryptographic algorithm that is used by the issuing certificate authority to sign a
-   * certificate.
+   * certificate or the identifier for the cryptographic algorithm that is used by the issuing certificate authority to
+   * sign a certificate or the identifier for the cryptographic algorithm that is used by the issuing certificate
+   * authority to sign a certificate.
    *
    * @return the signingAlgorithm
    */
@@ -608,7 +774,9 @@ public class Secret extends GenericModel {
   /**
    * Gets the commonName.
    *
-   * The Common Name (CN) represents the server name protected by the SSL certificate.
+   * The Common Name (CN) represents the server name protected by the SSL certificate or the Common Name (CN) represents
+   * the server name that is protected by the SSL certificate or the Common Name (CN) represents the server name
+   * protected by the SSL certificate.
    *
    * @return the commonName
    */
@@ -630,7 +798,9 @@ public class Secret extends GenericModel {
   /**
    * Gets the issuer.
    *
-   * The distinguished name that identifies the entity that signed and issued the certificate.
+   * The distinguished name that identifies the entity that signed and issued the certificate or the distinguished name
+   * that identifies the entity that signed and issued the certificate or the distinguished name that identifies the
+   * entity that signed and issued the certificate.
    *
    * @return the issuer
    */
@@ -642,7 +812,13 @@ public class Secret extends GenericModel {
    * Gets the keyAlgorithm.
    *
    * The identifier for the cryptographic algorithm used to generate the public key that is associated with the
-   * certificate.
+   * certificate or the identifier for the cryptographic algorithm used to generate the public key that is associated
+   * with the certificate or the identifier for the cryptographic algorithm that is used to generate the public key that
+   * is associated with the certificate.
+   *
+   * The algorithm that you select determines the encryption algorithm (`RSA` or `ECDSA`) and key size to be used to
+   * generate keys and sign certificates. For longer living certificates, it is recommended to use longer keys to
+   * provide more encryption protection. Allowed values:  `RSA2048`, `RSA4096`, `ECDSA256`, and `ECDSA384`.
    *
    * @return the keyAlgorithm
    */
@@ -664,7 +840,9 @@ public class Secret extends GenericModel {
   /**
    * Gets the serialNumber.
    *
-   * The unique serial number that was assigned to a certificate by the issuing certificate authority.
+   * The unique serial number that was assigned to a certificate by the issuing certificate authority or the unique
+   * serial number that was assigned to a certificate by the issuing certificate authority or the unique serial number
+   * that was assigned to a certificate by the issuing certificate authority.
    *
    * @return the serialNumber
    */
@@ -697,7 +875,9 @@ public class Secret extends GenericModel {
   /**
    * Gets the certificate.
    *
-   * Your PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters.
+   * Your PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters or your
+   * PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters or your
+   * PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters.
    *
    * @return the certificate
    */
@@ -709,7 +889,8 @@ public class Secret extends GenericModel {
    * Gets the intermediate.
    *
    * The PEM-encoded intermediate certificate that is associated with the root certificate. The data must be formatted
-   * on a single line with embedded newline characters.
+   * on a single line with embedded newline characters or the PEM-encoded intermediate certificate that is associated
+   * with the root certificate. The data must be formatted on a single line with embedded newline characters.
    *
    * @return the intermediate
    */
@@ -721,7 +902,9 @@ public class Secret extends GenericModel {
    * Gets the privateKey.
    *
    * The PEM-encoded private key that is associated with the certificate. The data must be formatted on a single line
-   * with embedded newline characters.
+   * with embedded newline characters or the PEM-encoded private key that is associated with the certificate. The data
+   * must be formatted on a single line with embedded newline characters or the PEM-encoded private key that is
+   * associated with the certificate. The data must be formatted on a single line with embedded newline characters.
    *
    * @return the privateKey
    */
@@ -985,8 +1168,8 @@ public class Secret extends GenericModel {
   /**
    * Gets the parameters.
    *
-   * The fields that can be passed to and from the custom credentials engine. Allowed types are 'string', 'integer' and
-   * 'boolean'.
+   * The fields that can be passed to and from the custom credentials engine. Allowed types are string, integer, and
+   * boolean.
    *
    * @return the parameters
    */
@@ -997,8 +1180,8 @@ public class Secret extends GenericModel {
   /**
    * Gets the credentialsContent.
    *
-   * The fields that can be passed to and from the custom credentials engine. Allowed types are 'string', 'integer' and
-   * 'boolean'.
+   * The fields that can be passed to and from the custom credentials engine. Allowed types are string, integer, and
+   * boolean.
    *
    * @return the credentialsContent
    */

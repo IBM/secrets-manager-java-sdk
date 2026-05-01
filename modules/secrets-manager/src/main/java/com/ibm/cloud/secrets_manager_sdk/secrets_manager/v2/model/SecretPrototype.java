@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -642,7 +642,7 @@ public class SecretPrototype extends GenericModel {
   /**
    * Gets the parameters.
    *
-   * The parameters that are passed to custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+   * The parameters that are passed to custom credentials engine. Allowed types are string, integer, and boolean.
    *
    * @return the parameters
    */

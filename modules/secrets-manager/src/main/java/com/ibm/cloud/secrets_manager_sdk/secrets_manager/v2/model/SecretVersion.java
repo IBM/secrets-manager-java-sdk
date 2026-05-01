@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -52,7 +52,18 @@ public class SecretVersion extends GenericModel {
   }
   /**
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password or the secret type. Supported types are arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the
+   * secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password.
    */
   public interface SecretType {
     /** arbitrary. */
@@ -77,7 +88,16 @@ public class SecretVersion extends GenericModel {
 
   /**
    * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
-   * for version `n-1`.
+   * for version `n-1` or a human-readable alias that describes the secret version. 'Current' is used for version `n`
+   * and 'previous' is used for version `n-1` or a human-readable alias that describes the secret version. 'Current' is
+   * used for version `n` and 'previous' is used for version `n-1` or a human-readable alias that describes the secret
+   * version. 'Current' is used for version `n` and 'previous' is used for version `n-1` or a human-readable alias that
+   * describes the secret version. 'Current' is used for version `n` and 'previous' is used for version `n-1` or a
+   * human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
+   * for version `n-1` or a human-readable alias that describes the secret version. 'Current' is used for version `n`
+   * and 'previous' is used for version `n-1` or a human-readable alias that describes the secret version. 'Current' is
+   * used for version `n` and 'previous' is used for version `n-1` or a human-readable alias that describes the secret
+   * version. 'Current' is used for version `n` and 'previous' is used for version `n-1`.
    */
   public interface Alias {
     /** current. */
@@ -144,7 +164,13 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the autoRotated.
    *
-   * Indicates whether the version of the secret was created by automatic rotation.
+   * Indicates whether the version of the secret was created by automatic rotation or indicates whether the version of
+   * the secret was created by automatic rotation or indicates whether the version of the secret was created by
+   * automatic rotation or indicates whether the version of the secret was created by automatic rotation or indicates
+   * whether the version of the secret was created by automatic rotation or indicates whether the version of the secret
+   * was created by automatic rotation or indicates whether the version of the secret was created by automatic rotation
+   * or indicates whether the version of the secret was created by automatic rotation or indicates whether the version
+   * of the secret was created by automatic rotation.
    *
    * @return the autoRotated
    */
@@ -155,7 +181,13 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the createdBy.
    *
-   * The unique identifier that is associated with the entity that created the secret.
+   * The unique identifier that is associated with the entity that created the secret or the unique identifier that is
+   * associated with the entity that created the secret or the unique identifier that is associated with the entity that
+   * created the secret or the unique identifier that is associated with the entity that created the secret or the
+   * unique identifier that is associated with the entity that created the secret or the unique identifier that is
+   * associated with the entity that created the secret or the unique identifier that is associated with the entity that
+   * created the secret or the unique identifier that is associated with the entity that created the secret or the
+   * unique identifier that is associated with the entity that created the secret.
    *
    * @return the createdBy
    */
@@ -166,7 +198,13 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the createdAt.
    *
-   * The date when the resource was created. The date format follows `RFC 3339`.
+   * The date when the resource was created. The date format follows `RFC 3339` or the date when the resource was
+   * created. The date format follows `RFC 3339` or the date when the resource was created. The date format follows `RFC
+   * 3339` or the date when the resource was created. The date format follows `RFC 3339` or the date when the resource
+   * was created. The date format follows `RFC 3339` or the date when the resource was created. The date format follows
+   * `RFC 3339` or the date when the resource was created. The date format follows `RFC 3339` or the date when the
+   * resource was created. The date format follows `RFC 3339` or the date when the resource was created. The date format
+   * follows `RFC 3339`.
    *
    * @return the createdAt
    */
@@ -178,7 +216,16 @@ public class SecretVersion extends GenericModel {
    * Gets the downloaded.
    *
    * This field indicates whether the secret data that is associated with a secret version was retrieved in a call to
-   * the service API.
+   * the service API or this field indicates whether the secret data that is associated with a secret version was
+   * retrieved in a call to the service API or this field indicates whether the secret data that is associated with a
+   * secret version was retrieved in a call to the service API or this field indicates whether the secret data that is
+   * associated with a secret version was retrieved in a call to the service API or this field indicates whether the
+   * secret data that is associated with a secret version was retrieved in a call to the service API or this field
+   * indicates whether the secret data that is associated with a secret version was retrieved in a call to the service
+   * API or this field indicates whether the secret data that is associated with a secret version was retrieved in a
+   * call to the service API or this field indicates whether the secret data that is associated with a secret version
+   * was retrieved in a call to the service API or this field indicates whether the secret data that is associated with
+   * a secret version was retrieved in a call to the service API.
    *
    * @return the downloaded
    */
@@ -189,7 +236,8 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the id.
    *
-   * A UUID identifier.
+   * A UUID identifier or a UUID identifier or a UUID identifier or a UUID identifier or a UUID identifier or a UUID
+   * identifier or a UUID identifier or a UUID identifier or a UUID identifier.
    *
    * @return the id
    */
@@ -200,7 +248,10 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the secretName.
    *
-   * The human-readable name of your secret.
+   * The human-readable name of your secret or the human-readable name of your secret or the human-readable name of your
+   * secret or the human-readable name of your secret or the human-readable name of your secret or the human-readable
+   * name of your secret or the human-readable name of your secret or the human-readable name of your secret or the
+   * human-readable name of your secret.
    *
    * @return the secretName
    */
@@ -212,7 +263,18 @@ public class SecretVersion extends GenericModel {
    * Gets the secretType.
    *
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password or the secret type. Supported types are arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the
+   * secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password.
    *
    * @return the secretType
    */
@@ -223,7 +285,10 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the secretGroupId.
    *
-   * A UUID identifier, or `default` secret group.
+   * A UUID identifier, or `default` secret group or a UUID identifier, or `default` secret group or a UUID identifier,
+   * or `default` secret group or a UUID identifier, or `default` secret group or a UUID identifier, or `default` secret
+   * group or a UUID identifier, or `default` secret group or a UUID identifier, or `default` secret group or a UUID
+   * identifier, or `default` secret group or a UUID identifier, or `default` secret group.
    *
    * @return the secretGroupId
    */
@@ -234,7 +299,12 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the payloadAvailable.
    *
-   * Indicates whether the secret payload is available in this secret version.
+   * Indicates whether the secret payload is available in this secret version or indicates whether the secret payload is
+   * available in this secret version or indicates whether the secret payload is available in this secret version or
+   * indicates whether the secret payload is available in this secret version or indicates whether the secret payload is
+   * available in this secret version or indicates whether the secret payload is available in this secret version or
+   * indicates whether the secret payload is available in this secret version or indicates whether the secret payload is
+   * available in this secret version or indicates whether the secret payload is available in this secret version.
    *
    * @return the payloadAvailable
    */
@@ -246,7 +316,16 @@ public class SecretVersion extends GenericModel {
    * Gets the alias.
    *
    * A human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
-   * for version `n-1`.
+   * for version `n-1` or a human-readable alias that describes the secret version. 'Current' is used for version `n`
+   * and 'previous' is used for version `n-1` or a human-readable alias that describes the secret version. 'Current' is
+   * used for version `n` and 'previous' is used for version `n-1` or a human-readable alias that describes the secret
+   * version. 'Current' is used for version `n` and 'previous' is used for version `n-1` or a human-readable alias that
+   * describes the secret version. 'Current' is used for version `n` and 'previous' is used for version `n-1` or a
+   * human-readable alias that describes the secret version. 'Current' is used for version `n` and 'previous' is used
+   * for version `n-1` or a human-readable alias that describes the secret version. 'Current' is used for version `n`
+   * and 'previous' is used for version `n-1` or a human-readable alias that describes the secret version. 'Current' is
+   * used for version `n` and 'previous' is used for version `n-1` or a human-readable alias that describes the secret
+   * version. 'Current' is used for version `n` and 'previous' is used for version `n-1`.
    *
    * @return the alias
    */
@@ -268,7 +347,8 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the secretId.
    *
-   * A UUID identifier.
+   * A UUID identifier or a UUID identifier or a UUID identifier or a UUID identifier or a UUID identifier or a UUID
+   * identifier or a UUID identifier or a UUID identifier or a UUID identifier.
    *
    * @return the secretId
    */
@@ -281,6 +361,24 @@ public class SecretVersion extends GenericModel {
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
    * arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
+   * custom_credentials or the date when the secret material expires. The date format follows the `RFC 3339` format.
+   * Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials,
+   * username_password, and custom_credentials or the date when the secret material expires. The date format follows the
+   * `RFC 3339` format. Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, username_password, and custom_credentials or the date when the secret material expires. The
+   * date format follows the `RFC 3339` format. Supported secret types: arbitrary, imported_cert, public_cert,
+   * private_cert, iam_credentials, service_credentials, username_password, and custom_credentials or the date when the
+   * secret material expires. The date format follows the `RFC 3339` format. Supported secret types: arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
+   * custom_credentials or the date when the secret material expires. The date format follows the `RFC 3339` format.
+   * Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials,
+   * username_password, and custom_credentials or the date when the secret material expires. The date format follows the
+   * `RFC 3339` format. Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, username_password, and custom_credentials or the date when the secret material expires. The
+   * date format follows the `RFC 3339` format. Supported secret types: arbitrary, imported_cert, public_cert,
+   * private_cert, iam_credentials, service_credentials, username_password, and custom_credentials or the date when the
+   * secret material expires. The date format follows the `RFC 3339` format. Supported secret types: arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
    * custom_credentials.
    *
    * @return the expirationDate
@@ -347,7 +445,9 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the serialNumber.
    *
-   * The unique serial number that was assigned to a certificate by the issuing certificate authority.
+   * The unique serial number that was assigned to a certificate by the issuing certificate authority or the unique
+   * serial number that was assigned to a certificate by the issuing certificate authority or the unique serial number
+   * that was assigned to a certificate by the issuing certificate authority.
    *
    * @return the serialNumber
    */
@@ -369,7 +469,9 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the certificate.
    *
-   * Your PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters.
+   * Your PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters or your
+   * PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters or your
+   * PEM-encoded certificate. The data must be formatted on a single line with embedded newline characters.
    *
    * @return the certificate
    */
@@ -381,7 +483,8 @@ public class SecretVersion extends GenericModel {
    * Gets the intermediate.
    *
    * The PEM-encoded intermediate certificate that is associated with the root certificate. The data must be formatted
-   * on a single line with embedded newline characters.
+   * on a single line with embedded newline characters or the PEM-encoded intermediate certificate that is associated
+   * with the root certificate. The data must be formatted on a single line with embedded newline characters.
    *
    * @return the intermediate
    */
@@ -393,7 +496,9 @@ public class SecretVersion extends GenericModel {
    * Gets the privateKey.
    *
    * The PEM-encoded private key that is associated with the certificate. The data must be formatted on a single line
-   * with embedded newline characters.
+   * with embedded newline characters or the PEM-encoded private key that is associated with the certificate. The data
+   * must be formatted on a single line with embedded newline characters or the PEM-encoded private key that is
+   * associated with the certificate. The data must be formatted on a single line with embedded newline characters.
    *
    * @return the privateKey
    */
@@ -503,8 +608,8 @@ public class SecretVersion extends GenericModel {
   /**
    * Gets the credentialsContent.
    *
-   * The fields that can be passed to and from the custom credentials engine. Allowed types are 'string', 'integer' and
-   * 'boolean'.
+   * The fields that can be passed to and from the custom credentials engine. Allowed types are string, integer, and
+   * boolean.
    *
    * @return the credentialsContent
    */

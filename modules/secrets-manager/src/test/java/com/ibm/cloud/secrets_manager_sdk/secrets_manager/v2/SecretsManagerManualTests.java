@@ -112,6 +112,7 @@ public class SecretsManagerManualTests extends SdkIntegrationTestBase {
     @Test
     public void testDeleteSecretVersionData() {
         try {
+            System.out.println("Delete Secret Version Data");
             // Delete version's secret-data
             DeleteSecretVersionDataOptions deleteSecretVersionDataOptions = new DeleteSecretVersionDataOptions.Builder()
                     .secretId(iamSecret)
@@ -132,6 +133,7 @@ public class SecretsManagerManualTests extends SdkIntegrationTestBase {
     @Test
     public void testCreateSecretAction() {
         try {
+            System.out.println("Create Secret Action");
             // Revoke Private Cert Secret
             PublicCertificateActionValidateManualDNSPrototype secretActionPrototypeModel = new PublicCertificateActionValidateManualDNSPrototype.Builder()
                     .actionType("private_cert_action_revoke_certificate")
@@ -160,6 +162,7 @@ public class SecretsManagerManualTests extends SdkIntegrationTestBase {
     @Test
     public void testCreateSecretVersionAction() {
         try {
+            System.out.println("Create Secret Version Action");
             PrivateCertificateVersionActionRevokePrototype secretVersionActionPrototypeModel = new PrivateCertificateVersionActionRevokePrototype.Builder()
                     .actionType("private_cert_action_revoke_certificate")
                     .build();
@@ -188,6 +191,7 @@ public class SecretsManagerManualTests extends SdkIntegrationTestBase {
     @Test
     public void testCreateConfigurationAction() {
         try {
+            System.out.println("Create Configuration Action");
             PrivateCertificateConfigurationActionRotateCRLPrototype configurationActionPrototypeModel = new PrivateCertificateConfigurationActionRotateCRLPrototype.Builder()
                     .actionType("private_cert_configuration_action_rotate_crl")
                     .build();

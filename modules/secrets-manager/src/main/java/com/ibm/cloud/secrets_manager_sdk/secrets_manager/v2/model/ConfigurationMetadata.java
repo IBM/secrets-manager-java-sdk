@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -50,6 +50,34 @@ public class ConfigurationMetadata extends GenericModel {
    * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
    * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
    * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
    * private_cert_configuration_template, custom_credentials_configuration.
    */
   public interface ConfigType {
@@ -73,7 +101,17 @@ public class ConfigurationMetadata extends GenericModel {
 
   /**
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password or the secret type. Supported types are arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the
+   * secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password.
    */
   public interface SecretType {
     /** arbitrary. */
@@ -107,7 +145,7 @@ public class ConfigurationMetadata extends GenericModel {
   }
 
   /**
-   * The type of private key to generate.
+   * The type of private key to generate or the type of private key to generate.
    */
   public interface KeyType {
     /** rsa. */
@@ -119,6 +157,9 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * The status of the certificate authority. The status of a root certificate authority is either `configured` or
    * `expired`. For intermediate certificate authorities, possible statuses include `signing_required`,
+   * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked` or the status
+   * of the certificate authority. The status of a root certificate authority is either `configured` or `expired`. For
+   * intermediate certificate authorities, possible statuses include `signing_required`,
    * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked`.
    */
   public interface Status {
@@ -201,6 +242,34 @@ public class ConfigurationMetadata extends GenericModel {
    * The configuration type. Can be one of: iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
    * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
    * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
+   * private_cert_configuration_template, custom_credentials_configuration or the configuration type. Can be one of:
+   * iam_credentials_configuration, public_cert_configuration_ca_lets_encrypt,
+   * public_cert_configuration_dns_classic_infrastructure, public_cert_configuration_dns_cloud_internet_services,
+   * private_cert_configuration_root_ca, private_cert_configuration_intermediate_ca,
    * private_cert_configuration_template, custom_credentials_configuration.
    *
    * @return the configType
@@ -212,7 +281,9 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the name.
    *
-   * The unique name of your configuration.
+   * The unique name of your configuration or the unique name of your configuration or the unique name of your
+   * configuration or the unique name of your configuration or the unique name of your configuration or the unique name
+   * of your configuration or the unique name of your configuration or the unique name of your configuration.
    *
    * @return the name
    */
@@ -224,7 +295,17 @@ public class ConfigurationMetadata extends GenericModel {
    * Gets the secretType.
    *
    * The secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-   * service_credentials, kv, and username_password.
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password or the secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert,
+   * iam_credentials, service_credentials, kv, and username_password or the secret type. Supported types are arbitrary,
+   * imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the
+   * secret type. Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
+   * service_credentials, kv, and username_password or the secret type. Supported types are arbitrary, imported_cert,
+   * public_cert, private_cert, iam_credentials, service_credentials, kv, and username_password or the secret type.
+   * Supported types are arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, kv,
+   * and username_password.
    *
    * @return the secretType
    */
@@ -235,7 +316,12 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the createdBy.
    *
-   * The unique identifier that is associated with the entity that created the secret.
+   * The unique identifier that is associated with the entity that created the secret or the unique identifier that is
+   * associated with the entity that created the secret or the unique identifier that is associated with the entity that
+   * created the secret or the unique identifier that is associated with the entity that created the secret or the
+   * unique identifier that is associated with the entity that created the secret or the unique identifier that is
+   * associated with the entity that created the secret or the unique identifier that is associated with the entity that
+   * created the secret or the unique identifier that is associated with the entity that created the secret.
    *
    * @return the createdBy
    */
@@ -246,7 +332,12 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the createdAt.
    *
-   * The date when the resource was created. The date format follows `RFC 3339`.
+   * The date when the resource was created. The date format follows `RFC 3339` or the date when the resource was
+   * created. The date format follows `RFC 3339` or the date when the resource was created. The date format follows `RFC
+   * 3339` or the date when the resource was created. The date format follows `RFC 3339` or the date when the resource
+   * was created. The date format follows `RFC 3339` or the date when the resource was created. The date format follows
+   * `RFC 3339` or the date when the resource was created. The date format follows `RFC 3339` or the date when the
+   * resource was created. The date format follows `RFC 3339`.
    *
    * @return the createdAt
    */
@@ -257,7 +348,12 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the updatedAt.
    *
-   * The date when a resource was modified. The date format follows `RFC 3339`.
+   * The date when a resource was modified. The date format follows `RFC 3339` or the date when a resource was modified.
+   * The date format follows `RFC 3339` or the date when a resource was modified. The date format follows `RFC 3339` or
+   * the date when a resource was modified. The date format follows `RFC 3339` or the date when a resource was modified.
+   * The date format follows `RFC 3339` or the date when a resource was modified. The date format follows `RFC 3339` or
+   * the date when a resource was modified. The date format follows `RFC 3339` or the date when a resource was modified.
+   * The date format follows `RFC 3339`.
    *
    * @return the updatedAt
    */
@@ -302,7 +398,8 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the commonName.
    *
-   * The Common Name (CN) represents the server name that is protected by the SSL certificate.
+   * The Common Name (CN) represents the server name that is protected by the SSL certificate or the Common Name (CN)
+   * represents the server name that is protected by the SSL certificate.
    *
    * @return the commonName
    */
@@ -314,7 +411,9 @@ public class ConfigurationMetadata extends GenericModel {
    * Gets the crlDistributionPointsEncoded.
    *
    * This field determines whether to encode the certificate revocation list (CRL) distribution points in the
-   * certificates that are issued by this certificate authority.
+   * certificates that are issued by this certificate authority or this field determines whether to encode the
+   * certificate revocation list (CRL) distribution points in the certificates that are issued by this certificate
+   * authority.
    *
    * @return the crlDistributionPointsEncoded
    */
@@ -327,7 +426,9 @@ public class ConfigurationMetadata extends GenericModel {
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
    * arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials, username_password, and
-   * custom_credentials.
+   * custom_credentials or the date when the secret material expires. The date format follows the `RFC 3339` format.
+   * Supported secret types: arbitrary, imported_cert, public_cert, private_cert, iam_credentials, service_credentials,
+   * username_password, and custom_credentials.
    *
    * @return the expirationDate
    */
@@ -338,7 +439,7 @@ public class ConfigurationMetadata extends GenericModel {
   /**
    * Gets the keyType.
    *
-   * The type of private key to generate.
+   * The type of private key to generate or the type of private key to generate.
    *
    * @return the keyType
    */
@@ -350,6 +451,10 @@ public class ConfigurationMetadata extends GenericModel {
    * Gets the keyBits.
    *
    * The number of bits to use to generate the private key.
+   *
+   * Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC keys are: `224`, `256`, `384`, and
+   * `521`. The default for RSA keys is `2048`. The default for EC keys is `256` or the number of bits to use to
+   * generate the private key.
    *
    * Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC keys are: `224`, `256`, `384`, and
    * `521`. The default for RSA keys is `2048`. The default for EC keys is `256`.
@@ -365,6 +470,9 @@ public class ConfigurationMetadata extends GenericModel {
    *
    * The status of the certificate authority. The status of a root certificate authority is either `configured` or
    * `expired`. For intermediate certificate authorities, possible statuses include `signing_required`,
+   * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked` or the status
+   * of the certificate authority. The status of a root certificate authority is either `configured` or `expired`. For
+   * intermediate certificate authorities, possible statuses include `signing_required`,
    * `signed_certificate_required`, `certificate_template_required`, `configured`, `expired` or `revoked`.
    *
    * @return the status

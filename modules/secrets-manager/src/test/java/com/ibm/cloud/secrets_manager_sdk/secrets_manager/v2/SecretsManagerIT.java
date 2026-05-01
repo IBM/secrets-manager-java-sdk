@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -385,6 +385,70 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   }
 
   @Test(dependsOnMethods = { "testCreateSecret" })
+  public void testListSecrets() throws Exception {
+    try {
+      ListSecretsOptions listSecretsOptions = new ListSecretsOptions.Builder()
+        .offset(Long.valueOf("0"))
+        .limit(Long.valueOf("10"))
+        .sort("created_at")
+        .search("example")
+        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+        .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+        .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
+        .build();
+
+      // Invoke operation
+      Response<SecretMetadataPaginatedCollection> response = service.listSecrets(listSecretsOptions).execute();
+      // Validate response
+      assertNotNull(response);
+      assertEquals(response.getStatusCode(), 200);
+
+      SecretMetadataPaginatedCollection secretMetadataPaginatedCollectionResult = response.getResult();
+      assertNotNull(secretMetadataPaginatedCollectionResult);
+
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testListSecrets" })
+  public void testListSecretsWithPager() throws Exception {
+    try {
+      ListSecretsOptions options = new ListSecretsOptions.Builder()
+        .limit(Long.valueOf("10"))
+        .sort("created_at")
+        .search("example")
+        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
+        .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
+        .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
+        .build();
+
+      // Test getNext().
+      List<SecretMetadata> allResults = new ArrayList<>();
+      SecretsPager pager = new SecretsPager(service, options);
+      while (pager.hasNext()) {
+        List<SecretMetadata> nextPage = pager.getNext();
+        assertNotNull(nextPage);
+        allResults.addAll(nextPage);
+      }
+      assertFalse(allResults.isEmpty());
+
+      // Test getAll();
+      pager = new SecretsPager(service, options);
+      List<SecretMetadata> allItems = pager.getAll();
+      assertNotNull(allItems);
+      assertFalse(allItems.isEmpty());
+
+      assertEquals(allItems.size(), allResults.size());
+      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
+    } catch (ServiceResponseException e) {
+        fail(String.format("Service returned status code %d: %s%nError details: %s",
+          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
+    }
+  }
+
+  @Test(dependsOnMethods = { "testListSecrets" })
   public void testUpdateSecretMetadata() throws Exception {
     try {
       ArbitrarySecretMetadataPatch secretMetadataPatchModel = new ArbitrarySecretMetadataPatch.Builder()
@@ -581,70 +645,6 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
   }
 
   @Test(dependsOnMethods = { "testUpdateSecretGroup" })
-  public void testListSecrets() throws Exception {
-    try {
-      ListSecretsOptions listSecretsOptions = new ListSecretsOptions.Builder()
-        .offset(Long.valueOf("0"))
-        .limit(Long.valueOf("10"))
-        .sort("created_at")
-        .search("example")
-        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
-        .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
-        .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
-        .build();
-
-      // Invoke operation
-      Response<SecretMetadataPaginatedCollection> response = service.listSecrets(listSecretsOptions).execute();
-      // Validate response
-      assertNotNull(response);
-      assertEquals(response.getStatusCode(), 200);
-
-      SecretMetadataPaginatedCollection secretMetadataPaginatedCollectionResult = response.getResult();
-      assertNotNull(secretMetadataPaginatedCollectionResult);
-
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testListSecrets" })
-  public void testListSecretsWithPager() throws Exception {
-    try {
-      ListSecretsOptions options = new ListSecretsOptions.Builder()
-        .limit(Long.valueOf("10"))
-        .sort("created_at")
-        .search("example")
-        .groups(java.util.Arrays.asList("default", "cac40995-c37a-4dcb-9506-472869077634"))
-        .secretTypes(java.util.Arrays.asList("arbitrary", "kv"))
-        .matchAllLabels(java.util.Arrays.asList("dev", "us-south"))
-        .build();
-
-      // Test getNext().
-      List<SecretMetadata> allResults = new ArrayList<>();
-      SecretsPager pager = new SecretsPager(service, options);
-      while (pager.hasNext()) {
-        List<SecretMetadata> nextPage = pager.getNext();
-        assertNotNull(nextPage);
-        allResults.addAll(nextPage);
-      }
-      assertFalse(allResults.isEmpty());
-
-      // Test getAll();
-      pager = new SecretsPager(service, options);
-      List<SecretMetadata> allItems = pager.getAll();
-      assertNotNull(allItems);
-      assertFalse(allItems.isEmpty());
-
-      assertEquals(allItems.size(), allResults.size());
-      System.out.println(String.format("Retrieved a total of %d item(s) with pagination.", allResults.size()));
-    } catch (ServiceResponseException e) {
-        fail(String.format("Service returned status code %d: %s%nError details: %s",
-          e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
-    }
-  }
-
-  @Test(dependsOnMethods = { "testListSecrets" })
   public void testGetSecret() throws Exception {
     try {
       GetSecretOptions getSecretOptions = new GetSecretOptions.Builder()
@@ -1237,11 +1237,6 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
     }
   }
 
-  // The integration test for deleteSecretVersionData has been explicitly excluded from generation.
-  // A test for this operation must be developed manually.
-  // @Test
-  // public void testDeleteSecretVersionData() throws Exception {}
-
   @Test(dependsOnMethods = { "testDeleteSecretGroup" })
   public void testDeleteSecretLocksBulk() throws Exception {
     try {
@@ -1307,6 +1302,11 @@ public class SecretsManagerIT extends SdkIntegrationTestBase {
           e.getStatusCode(), e.getMessage(), e.getDebuggingInfo()));
     }
   }
+
+  // The integration test for deleteSecretVersionData has been explicitly excluded from generation.
+  // A test for this operation must be developed manually.
+  // @Test
+  // public void testDeleteSecretVersionData() throws Exception {}
 
   // The integration test for deleteSecretTask has been explicitly excluded from generation.
   // A test for this operation must be developed manually.

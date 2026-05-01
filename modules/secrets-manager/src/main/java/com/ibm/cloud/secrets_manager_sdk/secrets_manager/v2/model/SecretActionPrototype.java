@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -33,7 +33,7 @@ public class SecretActionPrototype extends GenericModel {
     discriminatorMapping.put("private_cert_action_revoke_certificate", PrivateCertificateActionRevokePrototype.class);
   }
   /**
-   * The type of secret action.
+   * The type of secret action or the type of secret action.
    */
   public interface ActionType {
     /** public_cert_action_validate_dns_challenge. */
@@ -50,7 +50,7 @@ public class SecretActionPrototype extends GenericModel {
   /**
    * Gets the actionType.
    *
-   * The type of secret action.
+   * The type of secret action or the type of secret action.
    *
    * @return the actionType
    */

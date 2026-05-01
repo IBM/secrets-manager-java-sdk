@@ -1,5 +1,5 @@
 /*
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -59,6 +59,30 @@ public class SecretMetadataPatch extends GenericModel {
    *
    * A human-readable name to assign to your secret.
    *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret or a
+   * human-readable name to assign to your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret or a
+   * human-readable name to assign to your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret or a
+   * human-readable name to assign to your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret or a
+   * human-readable name to assign to your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret or a
+   * human-readable name to assign to your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret or a
+   * human-readable name to assign to your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret or a
+   * human-readable name to assign to your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret or a
+   * human-readable name to assign to your secret.
+   *
    * To protect your privacy, do not use personal data, such as your name or location, as a name for your secret.
    *
    * @return the name
@@ -71,6 +95,30 @@ public class SecretMetadataPatch extends GenericModel {
    * Gets the description.
    *
    * An extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
+   *
+   * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
+   * group or an extended description of your secret.
    *
    * To protect your privacy, do not use personal data, such as your name or location, as a description for your secret
    * group.
@@ -111,7 +159,8 @@ public class SecretMetadataPatch extends GenericModel {
    * Gets the expirationDate.
    *
    * The date when the secret material expires. The date format follows the `RFC 3339` format. Supported secret types:
-   * Arbitrary, username_password.
+   * Arbitrary, username_password or the date when the secret material expires. The date format follows the `RFC 3339`
+   * format. Supported secret types: Arbitrary, username_password.
    *
    * @return the expirationDate
    */
@@ -129,7 +178,22 @@ public class SecretMetadataPatch extends GenericModel {
    * duration is 1 minute. The maximum is 90 days. For the service_credentials secret type, the TTL field is optional.
    * If it is set the minimum duration is 1 day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL
    * is modified, it will be applied only on the next secret rotation. For the custom_credentials secret type, the TTL
-   * field is optional. The minimum duration is 1 day. The maximum is 90 days.
+   * field is optional. The minimum duration is 1 day. The maximum is 90 days or the time-to-live (TTL) or lease
+   * duration to assign to credentials that are generated. Supported secret types: iam_credentials, service_credentials,
+   * custom_credentials. The TTL defines how long generated credentials remain valid. The value can be either an integer
+   * that specifies the number of seconds, or the string  representation of a duration, such as `1440m` or `24h`. For
+   * the iam_credentials secret type, the TTL field is mandatory. The minimum duration is 1 minute. The maximum is 90
+   * days. For the service_credentials secret type, the TTL field is optional. If it is set the minimum duration is 1
+   * day. The maximum is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will be applied only on
+   * the next secret rotation. For the custom_credentials secret type, the TTL field is optional. The minimum duration
+   * is 1 day. The maximum is 90 days or the time-to-live (TTL) or lease duration to assign to credentials that are
+   * generated. Supported secret types: iam_credentials, service_credentials, custom_credentials. The TTL defines how
+   * long generated credentials remain valid. The value can be either an integer that specifies the number of seconds,
+   * or the string  representation of a duration, such as `1440m` or `24h`. For the iam_credentials secret type, the TTL
+   * field is mandatory. The minimum duration is 1 minute. The maximum is 90 days. For the service_credentials secret
+   * type, the TTL field is optional. If it is set the minimum duration is 1 day. The maximum is 90 days. By default,
+   * the TTL is set to 0. After the TTL is modified, it will be applied only on the next secret rotation. For the
+   * custom_credentials secret type, the TTL field is optional. The minimum duration is 1 day. The maximum is 90 days.
    *
    * @return the ttl
    */
@@ -175,7 +239,7 @@ public class SecretMetadataPatch extends GenericModel {
   /**
    * Gets the parameters.
    *
-   * The parameters that are passed to custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+   * The parameters that are passed to custom credentials engine. Allowed types are string, integer, and boolean.
    *
    * @return the parameters
    */
